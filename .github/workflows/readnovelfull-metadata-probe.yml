@@ -23,34 +23,8 @@ jobs:
           cache: pip
       - name: Install pinned dependencies
         run: python -m pip install -r requirements.lock
-      - name: Inspect only the first archive URL shapes (no chapter prose)
+      - name: Validate public ReadNovelFull catalogue without chapter prose
         run: |
-          python - <<'PY'
-          from bs4 import BeautifulSoup
-          from urllib.parse import urljoin
-          from tools.readnovelfull_source import (
-              fetch_public_html, book_metadata, archive_url, validate_chapter_url
-          )
-          book = "https://readnovelfull.com/cultivation-online-v3.html"
-          metadata = book_metadata(fetch_public_html(book), book)
-          html = fetch_public_html(archive_url(metadata["novel_id"]))
-          links = BeautifulSoup(html, "html.parser").select(".list-chapter li a[href]")
-          print("Total chapter links:", len(links))
-          invalid = []
-          numbers = []
-          prefixes = set()
-          for a in links:
-              url = urljoin(book, a["href"])
-              try:
-                  parsed, pos, prefix = validate_chapter_url(url)
-                  numbers.append(pos)
-                  prefixes.add(prefix)
-              except ValueError as exc:
-                  if len(invalid) < 20:
-                      invalid.append((a["href"][:200], str(exc)))
-          print("Invalid link samples:", invalid)
-          print("Unique valid chapter numbers:", len(set(numbers)))
-          print("Range:", (min(numbers), max(numbers)) if numbers else None)
-          print("Shared chapter prefixes:", sorted(prefixes)[:10])
-          print("Missing numbers (first 20):", sorted(set(range(1, max(numbers)+1)) - set(numbers))[:20] if numbers else [])
-          PY
+          python -m tools.readnovelfull_downloader \
+            "https://readnovelfull.com/cultivation-online-v3.html" \
+            --list-only --confirm-rights
