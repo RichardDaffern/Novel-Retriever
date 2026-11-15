@@ -1,6 +1,6 @@
 # Website support and download capabilities
 
-> **Maintained against the Novel_Library implementation, 14 November 2026.** This page describes **which sources this repository can download from**, versus which it can only investigate or import from pre-existing files. Website access and authorisation can change; the presence of code is not a guarantee that a particular live novel downloads successfully.
+> **Maintained against the Novel_Library implementation, 15 November 2026.** This page describes **which sources this repository can download from**, versus which it can only investigate or import from pre-existing files. Website access and authorisation can change; the presence of code is not a guarantee that a particular live novel downloads successfully.
 
 Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.md) · [Experimental source research](experimental-sources.md)
 
@@ -10,6 +10,7 @@ Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.m
 | --- | --- | --- | --- |
 | **NovelFull** (`novelfull.com`) | **Yes** | FanFicFare-powered single or bulk chapter-range downloads; verified whole-book EPUB assembly | [NovelFull workflow](../.github/workflows/download-novel.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
 | **FreeWebNovel** (`freewebnovel.com`) | **Yes**, accessible public chapters only | Dedicated sequential downloader; validated range assembly, single or bulk | [FreeWebNovel workflow](../.github/workflows/freewebnovel-download.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
+| **ReadNovelFull** (`readnovelfull.com`) | **Implemented, live full-book test pending** | Exact AJAX chapter catalogue; verified single/range/bulk EPUB downloads | [ReadNovelFull workflow](../.github/workflows/readnovelfull-download.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
 | **Scribble Hub** (`scribblehub.com`) | **One verified cross-post via GitHub Actions**, not general Scribble Hub website access | [Scribble Hub - Download](../.github/workflows/scribblehub-download.yml) or the [unified bulk workflow](../.github/workflows/library-bulk-download.yml), for registered same-author cross-posts only; authorised offline EPUB import | [Cross-post details](#scribble-hub) |
 | **WebNovel** (`webnovel.com`) | **No** | Book metadata probe, at most two public test chapters where accessible; offline saved-HTML/TXT/JSON imports | [WebNovel probes and import tools](#webnovel) |
 | **Royal Road** (`royalroad.com`) | **No enabled website-download workflow** | Convert an already-authorised local EPUB; offline saved-page feasibility | [Local EPUB importer](../tools/import_local_epub.py) |
@@ -19,7 +20,7 @@ Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.m
 
 **Meaning of “Yes”:** an actual chapter-fetching and complete-book assembly workflow exists in this repository. It does **not** mean all titles are currently reachable, have consecutive readable chapters, or are authorised for archiving. In particular, FreeWebNovel's original public two-chapter test was verified on 10 November 2026; a complete live full-book run was **not established by that test**.
 
-**FanFicFare note:** its dependency contains additional site adapters, including Royal Road, but this project's existing hosted download workflows have only been configured and tested for the two full-download websites above. Do not label every FanFicFare adapter a supported website in the project's Actions menus.
+**FanFicFare note:** its dependency contains additional site adapters, including Royal Road, but this project's existing hosted download workflows have only been configured for the three full-download websites above, with the new ReadNovelFull parser implemented separately (not via FanFicFare). Do not label every FanFicFare adapter a supported website in the project's Actions menus.
 
 ## Full-download websites
 
@@ -53,9 +54,22 @@ Every chapter must be readable and correctly numbered; unexpectedly empty/short 
 
 **Verification caveat:** an initial live two-chapter test against *The First Order* was reported successful on 10 November 2026, but that does not establish full-book availability for the site as a whole. Site access changes or non-consecutive chapter numbering can prevent a complete download. No login, paywall, CAPTCHA or anti-bot workaround is supported.
 
+### ReadNovelFull
+
+- **Website:** https://readnovelfull.com/
+- **Typical book URL:** `https://readnovelfull.com/<title-slug>.html`
+- **Single-book Action:** **ReadNovelFull - Download**
+- **Bulk Action:** **Library - Bulk Download** (ReadNovelFull or All)
+- **Local range:** `python -m tools.readnovelfull_downloader "https://readnovelfull.com/cultivation-online-v3.html" --chapter-range 1-2 --confirm-rights`
+- **Implementation:** `tools/readnovelfull_source.py`, `tools/readnovelfull_downloader.py`, `tools/readnovelfull_chunks.py`.
+
+Unlike the initial book-page preview, the site's ordinary `/ajax/chapter-archive?novelId=...` endpoint provides the chapter catalogue. The parser validates exact same-source chapter links and complete consecutive positions before producing 100-chapter batches. Each batch fetches chapters sequentially with a one-second delay; at most two batches run concurrently per book and only one ReadNovelFull book is dispatched at a time from bulk. Existing EPUB/TXT/manifest checks, per-book artefacts, registry updates, partial-failure recovery and retry-only bulk selection are preserved. No login, CAPTCHA, proxy or access-challenge bypass is supported.
+
+**Verification:** Offline fixtures cover URL safety, AJAX indexing, chapter checks, resumability, EPUB assembly and bulk routing. Live complete-book success is not yet verified. This site can change its structure or block CI requests. Do not claim all listed books are downloadable. Archive only material you have permission to store, and keep its source URL attributed in metadata.
+
 ### Single or multiple novels
 
-Use **[Library - Bulk Download](../.github/workflows/library-bulk-download.yml)** to choose All, NovelFull or FreeWebNovel and enter either saved novel names or source URLs. It supports up to **10 distinct novels** in a submission, with at most three NovelFull and two FreeWebNovel books running concurrently. Unknown/ambiguous saved names and unsupported URL/site mismatches fail before downloading.
+Use **[Library - Bulk Download](../.github/workflows/library-bulk-download.yml)** to choose All, NovelFull, FreeWebNovel, ReadNovelFull or verified Scribble Hub and enter saved novel names or source URLs. The former ten-novel cap is removed; the platform permits up to **256 scheduled jobs** per run. Concurrent limits are three NovelFull, two FreeWebNovel, one ReadNovelFull and one Scribble Hub novel. Unknown/ambiguous saved names and unsupported URL/site mismatches fail before downloading.
 
 This is deliberately the **only** combined bulk menu. A completed artefact recorded in the download registry is skipped unless Force is selected; previously validated chapter batches can also be reused. Details: [download guide](DOWNLOAD_GUIDE.md).
 
