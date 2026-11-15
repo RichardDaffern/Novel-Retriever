@@ -20,6 +20,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/lucifers-descendant-system",
+      "title": "Lucifer's Descendant System",
+      "author": "Zhanye",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 407,
+          "run_id": 43734398943,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943",
+          "artifact_id": 14172519667,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14172519667",
+          "completed_at_utc": "2026-11-15T17:43:55Z",
+          "expires_at_utc": "2026-11-22T17:43:55Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/my-enchanting-system",
       "title": "My Enchanting System",
       "author": "Alen_Tanor",
