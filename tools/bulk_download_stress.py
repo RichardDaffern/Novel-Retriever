@@ -16,7 +16,7 @@ import tempfile
 import time
 from unittest.mock import patch
 
-from tools.library_bulk import MAX_MATRIX_JOBS, selection_plan, write_actions
+from tools.mixed_source_bulk import MAX_MATRIX_JOBS, selection_plan, write_actions
 
 
 def synthetic_urls(n: int) -> list[str]:

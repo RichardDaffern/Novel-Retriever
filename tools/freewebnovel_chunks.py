@@ -11,10 +11,10 @@ import subprocess
 import sys
 
 from tools import chunked_download as batches
-from tools.bulk_download import create_plan, parse_novel_urls
+from tools.sequential_bulk_download import create_plan, parse_novel_urls
 from tools.download_registry import read_registry
 from tools.freewebnovel_downloader import book_details
-from tools.freewebnovel_probe import fetch_public_html, validate_book_url
+from tools.freewebnovel_source import fetch_public_html, validate_book_url
 
 
 def _output(name: str, value: str) -> None:

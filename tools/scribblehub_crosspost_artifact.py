@@ -18,7 +18,7 @@ import tempfile
 from zipfile import BadZipFile, ZipFile
 
 from tools.download_registry import canonical_url
-from tools.verified_crosspost_download import (
+from tools.scribblehub_crosspost_downloader import (
     CrosspostDownloadError, _verified_record,
 )
 

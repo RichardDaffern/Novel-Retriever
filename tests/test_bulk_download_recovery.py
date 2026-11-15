@@ -6,7 +6,7 @@ from tempfile import TemporaryDirectory
 import unittest
 from zipfile import ZipFile, ZIP_STORED, ZIP_DEFLATED
 
-from tools.bulk_recovery import recover
+from tools.bulk_download_recovery import recover
 from tools.chunked_download import _epub
 
 

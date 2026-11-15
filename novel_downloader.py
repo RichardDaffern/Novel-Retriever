@@ -297,7 +297,7 @@ def run_fanficfare(url: str, book_dir: Path, list_only: bool, start: int | None,
 
     # FanFicFare --progressbar prints dots per network fetch, not per chapter.
     # Run its CLI through the chapter-completion callback adapter.
-    runner = Path(__file__).resolve().with_name("fff_progress_runner.py")
+    runner = Path(__file__).resolve().with_name("fanficfare_progress_runner.py")
     args = [sys.executable, str(runner), "--non-interactive", "-f", "epub", "-o", "output_filename=source.epub"]
     if start is not None:
         args += ["--begin", str(start)]

@@ -1,23 +1,23 @@
 # Additional novel-source feasibility: completed second-pass investigation
 
-**Last verified:** 15 November 2026. **Historical research status:** no new domain was enabled when this assessment was written. **Subsequent development:** WuxiaClick now has a [rights-confirmed, capped 20-chapter range workflow](../.github/workflows/wuxiaclick-download.yml) and [mixed-link bulk routing](../.github/workflows/library-bulk-download.yml). Unrestricted full-book export remains disabled; consult [current website support](WEBSITE_SUPPORT.md#wuxiaclick-bounded-source-not-unrestricted-full-book-export).
+**Last verified:** 15 November 2026. **Historical research status:** no new domain was enabled when this assessment was written. **Subsequent development:** WuxiaClick now has a [rights-confirmed, capped 20-chapter range workflow](../../.github/workflows/wuxiaclick-download.yml) and [mixed-link bulk routing](../../.github/workflows/library-bulk-download.yml). Unrestricted full-book export remains disabled; consult [current website support](../website-support.md#wuxiaclick-bounded-source-not-unrestricted-full-book-export).
 
-**Follow-up live tests completed:** [HTTP-200 scenarios](HTTP200_LIVE_SCENARIOS_2026-11-15.md) cover actual publicly readable first and final chapters for two WuxiaClick novels, the site's linked catalogue pagination, two LibRead-to-FreeWebNovel redirects, and NovelBin.cc chapter HTTP 429. Source permissions and full-book TOC completeness remain gating.
+**Follow-up live tests completed:** [HTTP-200 scenarios](live-http-200-source-tests-2026-11-15.md) cover actual publicly readable first and final chapters for two WuxiaClick novels, the site's linked catalogue pagination, two LibRead-to-FreeWebNovel redirects, and NovelBin.cc chapter HTTP 429. Source permissions and full-book TOC completeness remain gating.
 
-This is the consolidated source-of-truth for the next candidate websites in [Novel_Library](../README.md). The single user-facing bulk workflow remains **Library - Bulk Download**, which automatically routes mixed novel URLs. The existing NovelFull, FreeWebNovel, ReadNovelFull and one verified Scribble Hub author cross-post remain the only current internet-enabled source options.
+This is the consolidated source-of-truth for the next candidate websites in [Novel_Library](../../README.md). The single user-facing bulk workflow remains **Library - Bulk Download**, which automatically routes mixed novel URLs. The existing NovelFull, FreeWebNovel, ReadNovelFull and one verified Scribble Hub author cross-post remain the only current internet-enabled source options.
 
 ## Scope and evidence
 
 - Reviewed WuxiaClick, AO3, Light Novel Pub/NovelCodex, Royal Road, LibRead, NovelBin and its lookalikes, BoxNovel, NovelGo, NovelArrow/NovelPing, NovelHi, NovelBuddy, Novel Fire, WTR-Lab, official Wuxiaworld and WebNovel.
 - Inspected accessible book metadata, public chapter indexes, up to one publicly viewable sample chapter through web research, published source rules, current service status and available first-party export options.
-- Ran **two metadata-only GitHub Actions experiments from Ubuntu runners**: [robots + HEAD #43724193316 (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md) and [robots + HEAD + one book/homepage GET #43724354923 (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md).
+- Ran **two metadata-only GitHub Actions experiments from Ubuntu runners**: [robots + HEAD #43724193316 (archived)](source-test-evidence-archive.md) and [robots + HEAD + one book/homepage GET #43724354923 (archived)](source-test-evidence-archive.md).
 - For each candidate, the runner checked its robots file first. When robots explicitly disallowed the planned probe or robots could not be verified, the runner **stopped**. One site-homepage/book GET was allowed only when robots permitted it. No login, CAPTCHA, locked chapters or challenges were bypassed.
 - For the second experiment, redirects were **not followed**. At most the first 12 KB of a public **book or homepage**, not a chapter, were inspected transiently to extract a title. No body text or EPUB was saved, uploaded or printed. Site availability is time-dependent. This is **not a licensed archiving or full-book download test**.
 - Browser/web retrieval and a GitHub-hosted request are distinct tests. A 200 HEAD or GET does not imply public chapter downloads work or are permitted.
 
 ## Actual GitHub-runner observations
 
-The following came from the second live [runner probe #43724354923 (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md), not guesses about GitHub networking:
+The following came from the second live [runner probe #43724354923 (archived)](source-test-evidence-archive.md), not guesses about GitHub networking:
 
 | Site and target | Robots result | HEAD | GET | Conclusion |
 | --- | --- | --- | --- | --- |
@@ -53,8 +53,8 @@ The following came from the second live [runner probe #43724354923 (archived)](S
 | **Novel Fire** ([previous investigation](experimental-sources.md), [terms link](https://novelfire.net/page/terms-of-service)) | Previous public route study records numbered book chapter lists; earlier policy review found crawler restrictions. Fresh terms were not independently retrievable in this pass. | **Remain excluded** without explicit permission. Do not interpret inaccessible legal text as an invitation to crawl. |
 | **WTR-Lab** ([terms](https://wtr-lab.com/en/terms-of-use)) | Historical permission review found restrictions on automated requests/copying and some chapters are ticket-locked. Current terms request also yielded **403** in web research. | **No automated downloader**; retain an authorised local-EPUB import path. |
 | **Wuxiaworld.com (official)** ([terms](https://www.wuxiaworld.com/terms-of-service)) | Terms restrict automated collection and archiving; some licensed chapters are not freely accessible. | **Do not automate chapter harvesting** without formal permission; use publisher-approved access only. |
-| **WebNovel.com** ([repo documentation](WEBSITE_SUPPORT.md#webnovel)) | Previous book-metadata/browser probes and offline saved-page imports exist, but public access can return 403/challenge and many chapters are locked. | **No general live bulk downloader**. Keep authorised offline import only. |
-| **Scribble Hub** ([existing support](WEBSITE_SUPPORT.md#scribble-hub)) | Direct hosted automation previously returned 403; the repo already supports **one specifically validated author cross-post** via an independent documented FicHub EPUB route. | **General direct-site access remains unverified.** Do not expand beyond author-verified works without distinct permission and complete story validation. |
+| **WebNovel.com** ([repo documentation](../website-support.md#webnovel)) | Previous book-metadata/browser probes and offline saved-page imports exist, but public access can return 403/challenge and many chapters are locked. | **No general live bulk downloader**. Keep authorised offline import only. |
+| **Scribble Hub** ([existing support](../website-support.md#scribble-hub)) | Direct hosted automation previously returned 403; the repo already supports **one specifically validated author cross-post** via an independent documented FicHub EPUB route. | **General direct-site access remains unverified.** Do not expand beyond author-verified works without distinct permission and complete story validation. |
 
 ## Delivery decisions
 

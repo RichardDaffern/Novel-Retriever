@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 
 from tools.download_registry import website_name, write_registry, read_registry
-from tools.library_bulk import (
+from tools.mixed_source_bulk import (
     catalogue_entries, main, parse_names, read_curated, selection_plan,
 )
 
@@ -296,7 +296,7 @@ class LibraryBulkTests(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             registry = root / "registry.json"
-            catalogue = root / "novel_sources.json"
+            catalogue = root / "curated_novels.json"
             registry.write_text(json.dumps(sample_registry()), encoding="utf-8")
             catalogue.write_text(json.dumps(CURATED), encoding="utf-8")
             self.assertEqual(

@@ -7,7 +7,7 @@ import unittest
 from novel_downloader import epub_chapters
 from tools import chunked_download as batches
 from tools.download_registry import website_name
-from tools.library_bulk import selection_plan
+from tools.mixed_source_bulk import selection_plan
 from tools.readnovelfull_source import (
     SourceError, archive_url, chapter_index, discover,
     extract_chapter, validate_book_url, validate_chapter_url,

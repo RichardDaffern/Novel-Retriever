@@ -2,7 +2,7 @@
 
 > **Maintained against the Novel_Library implementation, 15 November 2026.** This page describes **which sources this repository can download from**, versus which it can only investigate or import from pre-existing files. Website access and authorisation can change; the presence of code is not a guarantee that a particular live novel downloads successfully.
 
-Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.md) · [Experimental source research](experimental-sources.md) · [New-source feasibility](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) · [Live HTTP-200 tests](HTTP200_LIVE_SCENARIOS_2026-11-15.md)
+Back to the [README](../README.md) · [Detailed download guide](download-guide.md) · [Experimental source research](research/experimental-sources.md) · [New-source feasibility](research/source-feasibility-2026-11-15.md) · [Live HTTP-200 tests](research/live-http-200-source-tests-2026-11-15.md)
 
 ## At a glance
 
@@ -17,7 +17,7 @@ Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.m
 | **Royal Road** (`royalroad.com`) | **No enabled website-download workflow** | Convert an already-authorised local EPUB; offline saved-page feasibility | [Local EPUB importer](../tools/import_local_epub.py) |
 | **WTR-Lab** (`wtr-lab.com`) | **No** | Convert an already-authorised local EPUB; offline saved-page feasibility | [Local EPUB importer](../tools/import_local_epub.py) |
 | **Novel Fire** (`novelfire.net`) | **No** | Offline analysis of saved HTML (book, index and up to two chapters) | [Feasibility tool](../tools/source_feasibility.py) |
-| **Light Novel Pub** (`lightnovelpub.com`) | **No, service shut down** | Historical **saved HTML only**; successor NovelCodex does not host chapters | [Updated research](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) |
+| **Light Novel Pub** (`lightnovelpub.com`) | **No, service shut down** | Historical **saved HTML only**; successor NovelCodex does not host chapters | [Updated research](research/source-feasibility-2026-11-15.md) |
 
 **Meaning of “Yes”:** an actual chapter-fetching and complete-book assembly workflow exists in this repository. It does **not** mean all titles are currently reachable, have consecutive readable chapters, or are authorised for archiving. In particular, FreeWebNovel's original public two-chapter test was verified on 10 November 2026; a complete live full-book run was **not established by that test**.
 
@@ -32,7 +32,7 @@ Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.m
 - **Single-book Action:** **NovelFull - Download**
 - **Bulk Action:** **Library - Bulk Download** (NovelFull links auto-detected)
 - **Direct CLI:** `python -u novel_downloader.py "<authorised-https-book-url>" --confirm-rights`
-- **Implementation:** [`novel_downloader.py`](../novel_downloader.py), [`fff_progress_runner.py`](../fff_progress_runner.py), [`tools/chunked_download.py`](../tools/chunked_download.py).
+- **Implementation:** [`novel_downloader.py`](../novel_downloader.py), [`fanficfare_progress_runner.py`](../fanficfare_progress_runner.py), [`tools/chunked_download.py`](../tools/chunked_download.py).
 
 FanFicFare supplies a supported-site book reader. The Actions pipeline discovers the chapter count, splits the selected inclusive range into normally **200-chapter batches**, and adapts concurrency up to six workers. Only complete, source-matched pieces with all expected positions and valid chapter hashes may be reused or assembled. The final EPUB is checked against the TXT chapter collection.
 
@@ -81,13 +81,13 @@ The website's [October 2026 update](https://wuxia.click/blog/pick-up-where-you-l
 
 The parser verifies all linked catalogue pages and their exact ordered chapter URLs rather than guessing URL numbers. Display headings can have different chapter numbers from URL suffixes, and some novels contain chapter-number gaps. The HTML reader requires `#chapter-content` and rejects missing, short, locked, repeated or mismatched chapters. Each verified range produces the existing EPUB/TXT/metadata/manifest format, with a checkpoint retained after failures. Robots restrictions, redirects, challenges and request failures stop the process. No login/session/cookie or download-allowance bypass is implemented.
 
-**Tests:** Synthetic regression fixtures cover URL validation, missing pages, numbered offsets, EPUB assembly, checkpoint recovery and mixed source bulk planning. [Live all-page catalogue test (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md) verified 2,276 chapters for *Martial World* and 1,709 for *True Martial World*. No full-book live EPUB output has been verified or claimed.
+**Tests:** Synthetic regression fixtures cover URL validation, missing pages, numbered offsets, EPUB assembly, checkpoint recovery and mixed source bulk planning. [Live all-page catalogue test (archived)](research/source-test-evidence-archive.md) verified 2,276 chapters for *Martial World* and 1,709 for *True Martial World*. No full-book live EPUB output has been verified or claimed.
 
 ### Single or multiple novels
 
 Use **[Library - Bulk Download](../.github/workflows/library-bulk-download.yml)** and paste one or more supported book links into the single **Novel links** field, optionally alongside saved novel names. The source of each link is identified automatically; no website group selection is required. The former ten-novel cap is removed; GitHub allows up to **256 scheduled jobs** per run. Concurrent limits are three NovelFull, two FreeWebNovel, one ReadNovelFull, one capped WuxiaClick novel and one Scribble Hub novel. Unknown/ambiguous names and unsupported or malformed URLs fail before downloading.
 
-This is deliberately the **only** combined bulk menu. A completed artefact recorded in the download registry is skipped unless Force is selected; previously validated chapter batches can also be reused. Details: [download guide](DOWNLOAD_GUIDE.md).
+This is deliberately the **only** combined bulk menu. A completed artefact recorded in the download registry is skipped unless Force is selected; previously validated chapter batches can also be reused. Details: [download guide](download-guide.md).
 
 ## Websites without full-download support
 
@@ -116,16 +116,16 @@ python -m tools.import_local_epub --epub "My Authorised Book.epub" --source-url 
 - **Verified internet-download command (no EPUB input), local alternative:**
 
 ~~~powershell
-python -m tools.verified_crosspost_download "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima/" --confirm-rights
+python -m tools.scribblehub_crosspost_downloader "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima/" --confirm-rights
 ~~~
 
   The same registered cross-post is also available in **Library - Bulk Download** by pasting its URL alongside other supported novel links, with an explicit archiving-rights checkbox and whole-book selection. Completed artefacts survive partial bulk failures, and successful books are repackaged into a separate recovery artefact with a manifest.
 
   It calls only `https://fichub.net/api/v0/epub` and a validated FicHub EPUB cache URL. It does **not** fetch pages from Scribble Hub or FanFiction.net itself. It rejects unknown Scribble Hub IDs, mismatched source identity, author/title or count, unsafe returned EPUB URLs, unexpected front matter, missing checkpoint chapters and failed ZIP hashes. It never automatically retries HTTP 429 or publishes an incomplete ZIP. The ZIP goes to `Downloaded_Novels/` and can be deliberately refreshed with `--replace`. The separate, regular bulk GitHub Actions workflow is unchanged.
-- **Scope:** this is a **specific author-verified cross-post**, not general Scribble Hub coverage. A FicHub cache may be temporarily unavailable or stale, and FicHub's API is explicitly unstable; a valid EPUB can only be claimed once the generated archive actually passes the full downloader's checks. Other Scribble Hub works require their own verifiable author cross-post and explicit registration in [verified_crossposts.json](../tools/verified_crossposts.json), or an EPUB you independently hold with permission.
+- **Scope:** this is a **specific author-verified cross-post**, not general Scribble Hub coverage. A FicHub cache may be temporarily unavailable or stale, and FicHub's API is explicitly unstable; a valid EPUB can only be claimed once the generated archive actually passes the full downloader's checks. Other Scribble Hub works require their own verifiable author cross-post and explicit registration in [scribblehub_verified_crossposts.json](../tools/scribblehub_verified_crossposts.json), or an EPUB you independently hold with permission.
 - **Decision:** retain direct Scribble Hub **website downloading** as feasibility only. Do **not** enable arbitrary Scribble Hub series in the unified bulk downloader, launch chapter downloads, or create a production workflow on the strength of an adapter being present. A future implementation needs verified permitted access, reliable metadata and chapter discovery, two authorised chapter fixtures, and all normal archive-integrity tests. If the site refuses automated access, stop instead of attempting to evade protections.
 
-For development background see [experimental source research](experimental-sources.md#scribble-hub-feasibility).
+For development background see [experimental source research](research/experimental-sources.md#scribble-hub-feasibility).
 
 ### Royal Road and WTR-Lab
 
@@ -141,7 +141,7 @@ The URL is illustrative identity metadata; the command does **not** download tha
 
 **WTR-Lab:** no automated downloader is enabled. Its published rules restrict automated requests and copying, and some chapters are locked. Offline import is possible for a user-supplied, authorised EPUB only, not for automatically collected site text.
 
-For source-policy detail, examples, [completed 15 November 2026 GitHub-runner diagnostics](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) and offline page analysis, see [experimental-sources.md](experimental-sources.md).
+For source-policy detail, examples, [completed 15 November 2026 GitHub-runner diagnostics](research/source-feasibility-2026-11-15.md) and offline page analysis, see [experimental-sources.md](research/experimental-sources.md).
 
 ### Novel Fire and Light Novel Pub
 
@@ -151,7 +151,7 @@ These sites have **offline feasibility analysis only**. [`tools/source_feasibili
 - **Light Novel Pub** (`lightnovelpub.com`): **the live novel-hosting platform has shut down**. Its root now leads to a shutdown announcement; [NovelCodex](https://www.novelcodex.com/) explicitly says it does not host novels or chapters. Old saved HTML fixtures can still be analysed offline, but no live chapter-download workflow should be added.
 - **Light Novel World / `lightnovelpub.org`** is not equivalent to `lightnovelpub.com`; the older site has been reported shut down. It is not supported here.
 
-The detailed feasibility research, format observations and acceptance requirements are in [experimental-sources.md](experimental-sources.md).
+The detailed feasibility research, format observations and acceptance requirements are in [experimental-sources.md](research/experimental-sources.md).
 
 ### WebNovel
 
@@ -177,11 +177,11 @@ python -m tools.webnovel_probe "https://www.webnovel.com/book/22196546206090805"
 
 It does not download chapter bodies, and ordinary scripted requests have previously encountered site challenges. Offline saved-page imports require user-held files and permission; they never bypass an access restriction.
 
-See [WebNovel browser probe](../tools/WEBNOVEL_BROWSER_PROBE.md), [saved-page import](../tools/WEBNOVEL_SAVED_PAGE_IMPORT.md), [bulk local import](../tools/WEBNOVEL_BULK_IMPORT.md), [two-chapter public probe](../tools/WEBNOVEL_PUBLIC_TWO_CHAPTER.md), and [JSON import](../tools/WEBNOVEL_EXPORT.md).
+See [WebNovel browser probe](research/webnovel-browser-probe.md), [saved-page import](research/webnovel-saved-page-import.md), [bulk local import](research/webnovel-bulk-import.md), [two-chapter public probe](research/webnovel-two-chapter-sample.md), and [JSON import](research/webnovel-export.md).
 
 ## Outputs, rights and changes to site support
 
-Supported completed-book outputs contain `metadata.json`, `chapters.json`, `source.epub`, numbered UTF-8 `chapter_*.txt` and an optional cover, generally packaged as a single-book ZIP after local Windows retrieval. The [download guide](DOWNLOAD_GUIDE.md) explains transient GitHub Actions artefacts, source URL identity and data-integrity checks.
+Supported completed-book outputs contain `metadata.json`, `chapters.json`, `source.epub`, numbered UTF-8 `chapter_*.txt` and an optional cover, generally packaged as a single-book ZIP after local Windows retrieval. The [download guide](download-guide.md) explains transient GitHub Actions artefacts, source URL identity and data-integrity checks.
 
 To add another **live** website, first verify archiving permission, stable public chapter access, complete catalogue ordering, fail-closed extraction and offline regression coverage. Keep the existing NovelFull and FreeWebNovel paths functioning, and extend the **single** bulk menu rather than creating another competing bulk action.
 

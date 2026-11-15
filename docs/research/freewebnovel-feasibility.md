@@ -26,9 +26,9 @@ In PowerShell, from the Novel_Library repository root:
 git pull
 python -m pip install -r requirements.txt
 
-python -m tools.freewebnovel_probe "https://freewebnovel.com/novel/the-first-order" --catalog-only
+python -m tools.freewebnovel_source "https://freewebnovel.com/novel/the-first-order" --catalog-only
 
-python -m tools.freewebnovel_probe "https://freewebnovel.com/novel/the-first-order" --confirm-rights
+python -m tools.freewebnovel_source "https://freewebnovel.com/novel/the-first-order" --confirm-rights
 ~~~
 
 The first command loads **only the public book catalogue**, shows the title

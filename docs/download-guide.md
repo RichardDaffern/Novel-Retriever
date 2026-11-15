@@ -1,6 +1,6 @@
 # Downloading novels, GitHub Actions and Windows retrieval
 
-This is the detailed operating guide moved out of the short [README](../README.md). For the authoritative list of available websites and their restrictions, see [Website support](WEBSITE_SUPPORT.md). For covers, synopsis repairs and archive metadata, see [Metadata maintenance](METADATA_GUIDE.md).
+This is the detailed operating guide moved out of the short [README](../README.md). For the authoritative list of available websites and their restrictions, see [Website support](website-support.md). For covers, synopsis repairs and archive metadata, see [Metadata maintenance](metadata-guide.md).
 
 **Archiving rights and privacy:** Download only material you may archive. Site access restrictions are not bypassed. Novel text and EPUBs are not committed to this repository. Actions artefacts on a public GitHub repository may be accessible to other users.
 
@@ -52,10 +52,10 @@ The Action fetches the registered same-author FanFiction.net cross-post through 
 **Local alternative:** from the **Novel_Library root** on Windows, after `python -m pip install -r requirements.lock`:
 
 ~~~cmd
-python -m tools.verified_crosspost_download "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima/" --confirm-rights
+python -m tools.scribblehub_crosspost_downloader "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima/" --confirm-rights
 ~~~
 
-The Action and local command use `tools/verified_crossposts.json` to match the numeric Scribble Hub ID to the exact same-author FanFiction.net work. It retrieves the source EPUB from FicHub's documented API, verifies the source identity and chapter count, removes only recognised non-story EPUB front matter, and reuses the atomic `tools.import_local_epub` writer to produce a fully validated `Downloaded_Novels/novel-<stable-ID>.zip`. There is **no need to have an EPUB beforehand**. The raw downloaded EPUB and temporary chapters are removed after the final ZIP validates.
+The Action and local command use `tools/scribblehub_verified_crossposts.json` to match the numeric Scribble Hub ID to the exact same-author FanFiction.net work. It retrieves the source EPUB from FicHub's documented API, verifies the source identity and chapter count, removes only recognised non-story EPUB front matter, and reuses the atomic `tools.import_local_epub` writer to produce a fully validated `Downloaded_Novels/novel-<stable-ID>.zip`. There is **no need to have an EPUB beforehand**. The raw downloaded EPUB and temporary chapters are removed after the final ZIP validates.
 
 Use `--replace` only for deliberate updates. An existing ZIP is not overwritten automatically. This method does **not** work for arbitrary Scribble Hub IDs; those fail closed rather than guessing an unrelated cross-post. It does not bypass the source site's challenge or read protected/premium chapters. Use only when you have permission to archive the work.
 
@@ -63,7 +63,7 @@ Use `--replace` only for deliberate updates. An existing ZIP is not overwritten 
 
 Technical constraints: one FicHub API request and one EPUB request, **no concurrent calls and no automatic retries**; reject HTTP 429/redirects and unrecognised paths; check original title/author/FFN ID against registered values, preserve stable Scribble Hub numeric-series identity, and verify each chapter's byte-level SHA-256, EPUB chapter count and final ZIP CRC before publication.
 
-See the [website capability matrix](WEBSITE_SUPPORT.md#scribble-hub) and [offline tests](../tests/test_verified_crosspost_download.py).
+See the [website capability matrix](website-support.md#scribble-hub) and [offline tests](../tests/test_scribblehub_crosspost_downloader.py).
 
 ## GitHub Actions: NovelFull - Download
 
@@ -96,7 +96,7 @@ For automatic PR creation and merging, the repository owner must enable **Settin
 
 The dedicated FreeWebNovel workflow handles a single novel; the unified bulk workflow handles multiple titles from NovelFull, FreeWebNovel and explicitly verified Scribble Hub author cross-posts. This is **not** the NovelFull FanFicFare adapter. Its Actions workflow splits work into normally 50-chapter batches, accepts only publicly readable chapters, verifies chapter content and positions, and does not bypass access challenges.
 
-Read the full [FreeWebNovel capability and limitations](WEBSITE_SUPPORT.md#freewebnovel) before running it.
+Read the full [FreeWebNovel capability and limitations](website-support.md#freewebnovel) before running it.
 
 ## ReadNovelFull - Download
 
@@ -116,7 +116,7 @@ Use [WuxiaClick - Download](https://github.com/RichardDaffern/Novel_Library/acti
 
 The implementation validates all paginated `#chapters` index pages, reading order, unique exact chapter links, text headings, readable body and missing/duplicate entries before assembling an EPUB, numbered TXT chapters, metadata, manifest and optional cover. Not every URL suffix matches its displayed chapter number: for example the first URL of *Martial World* has an in-text Chapter 0, and the final chapter URL suffix may be greater than the number of indexed entries. Requests are serial, paced, robots-aware, and never bypass access controls. Failed batches preserve validated checkpoints.
 
-**[Live catalogue verification (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md):** 2,276 indexed *Martial World* chapters and 1,709 indexed *True Martial World* chapters passed. This verifies metadata catalogue consistency, not an authorised live EPUB download. Content download acceptance depends on the user's permission and site rules.
+**[Live catalogue verification (archived)](research/source-test-evidence-archive.md):** 2,276 indexed *Martial World* chapters and 1,709 indexed *True Martial World* chapters passed. This verifies metadata catalogue consistency, not an authorised live EPUB download. Content download acceptance depends on the user's permission and site rules.
 
 Local authorised example:
 
@@ -145,11 +145,11 @@ as multi-value text rather than selected with checkboxes. Example: enter
 resolves their URLs automatically. To list recognised titles, run:
 
 ~~~powershell
-python -m tools.library_bulk list
+python -m tools.mixed_source_bulk list
 ~~~
 
 Titles come from the completed-download registry and
-[novel_sources.json](../novel_sources.json), a small curated list seeded with
+[curated_novels.json](../curated_novels.json), a small curated list seeded with
 the tested FreeWebNovel example. For a brand-new title, enter its exact URL;
 after a successful download and registry update, that title is available by
 name. You can also add a title/URL to the curated JSON list beforehand.
@@ -184,7 +184,7 @@ during recovery, and remain available if recovery packaging itself fails.
 
 Retry manifests are available for **seven days** and only for bulk runs created *after* this feature is released. Earlier manifests lack reliable range and run-ID details, so the tool refuses to guess them. If the original summary/recovery job never produced a manifest, use a fresh bulk submission with the remaining URLs instead. A run with no missing work reports that explicitly.
 
-**Synthetic load testing:** `python -m tools.bulk_stress` checks 20, 50 and 100 selections, mixed website matrices, duplicates and registry skips without contacting novel websites; it also confirms 256 jobs are accepted and 257 are rejected.
+**Synthetic load testing:** `python -m tools.bulk_download_stress` checks 20, 50 and 100 selections, mixed website matrices, duplicates and registry skips without contacting novel websites; it also confirms 256 jobs are accepted and 257 are rejected.
 
 **Bulk performance report:** every new bulk run attempts to read completed job timings from GitHub's own Actions API (no requests to novel websites). Open the run's **Summary** for a breakdown of installation/setup, discovery, chapter download or cached-batch reuse, EPUB assembly, artefact transfers, registry updates and recovery. Download the small `bulk-performance-<run-id>` JSON under **Artifacts** for an auditable baseline. Telemetry runs with `continue-on-error`, so a temporary API failure cannot discard a successful novel.
 
@@ -261,6 +261,6 @@ The CI workflow verifies two synthetic chapters on Linux and Windows. A separate
 - **A novel is not in the registry:** Check the individual workflow's registry PR, branch and merge diagnostics; the completed download artefact can exist even if its metadata PR failed.
 - **An incomplete batch:** Inspect the failed chapter-range artefact and logs. The final book should not be considered complete or recorded until all required positions validate.
 - **A Windows ZIP cannot be repacked:** Inspect `download-last-run.log`, `failed-downloads.txt`, source URL metadata and the ZIP's chapters manifest. Existing invalid files are deliberately preserved.
-- **A downloaded novel has no synopsis or cover:** See [metadata maintenance](METADATA_GUIDE.md); an absent source field is not automatically a downloader failure.
+- **A downloaded novel has no synopsis or cover:** See [metadata maintenance](metadata-guide.md); an absent source field is not automatically a downloader failure.
 
 For code-level entry points, architecture diagrams and failure invariants, consult [AGENTS.md](../AGENTS.md).

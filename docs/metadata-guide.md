@@ -2,7 +2,7 @@
 
 Detailed maintenance instructions moved out of the short [README](../README.md). This document explains optional images, sourced descriptions, older ZIP repair, and the difference between local files and separately hosted library records.
 
-Other guides: [Supported websites](WEBSITE_SUPPORT.md) · [Downloading and Windows](DOWNLOAD_GUIDE.md) · [PDF conversion](PDF_TO_NOVEL.md) · [AI agent handbook](../AGENTS.md).
+Other guides: [Supported websites](website-support.md) · [Downloading and Windows](download-guide.md) · [PDF conversion](pdf-to-novel.md) · [AI agent handbook](../AGENTS.md).
 
 
 ## Novel covers and image-only downloads

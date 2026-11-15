@@ -5,8 +5,8 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from tools.library_bulk import main, retry_selection_plan
-from tools.bulk_stress import run_stress
+from tools.mixed_source_bulk import main, retry_selection_plan
+from tools.bulk_download_stress import run_stress
 
 
 NF = "https://novelfull.com/retry-fully.html"

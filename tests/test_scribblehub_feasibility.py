@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from fanficfare.adapters.adapter_scribblehubcom import ScribbleHubComAdapter
 
 from novel_downloader import validate_url
-from tools.library_bulk import _validated_url
+from tools.mixed_source_bulk import _validated_url
 
 
 SERIES = "https://www.scribblehub.com/series/2677327/blueflame-the-starless-king/"

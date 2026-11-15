@@ -1,7 +1,7 @@
 # Live HTTP-200 website scenario validation
 
 **Date:** 15 November 2026  
-**Subsequent update:** Bounded WuxiaClick chapter ranges have since been implemented with a rights gate, 20-chapter per-run ceiling and direct/bulk Actions workflows. The [live full-index and first/last chapter parser check (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md) passed for both *Martial World* and *True Martial World*. Live metadata author, genres and synopsis checks passed in [run #43730710184 (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md). This remains distinct from an authorised complete EPUB download.  
+**Subsequent update:** Bounded WuxiaClick chapter ranges have since been implemented with a rights gate, 20-chapter per-run ceiling and direct/bulk Actions workflows. The [live full-index and first/last chapter parser check (archived)](source-test-evidence-archive.md) passed for both *Martial World* and *True Martial World*. Live metadata author, genres and synopsis checks passed in [run #43730710184 (archived)](source-test-evidence-archive.md). This remains distinct from an authorised complete EPUB download.  
 **Status:** Completed bounded live technical tests. Research only; no website enabled for automated full-book downloads.
 
 ## Evidence and safeguards
@@ -10,9 +10,9 @@ Tests ran from ordinary GitHub-hosted Ubuntu Actions runners, using public pages
 
 Live evidence:
 
-1. [Run #43726026737: two WuxiaClick books, two LibRead books, one NovelBin.cc book and chapter probes (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md)
-2. [Run #43726221266: WuxiaClick first and final chapter URLs and pagination discovery (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md)
-3. [Run #43726340193: WuxiaClick first, second and final catalogue pages (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md)
+1. [Run #43726026737: two WuxiaClick books, two LibRead books, one NovelBin.cc book and chapter probes (archived)](source-test-evidence-archive.md)
+2. [Run #43726221266: WuxiaClick first and final chapter URLs and pagination discovery (archived)](source-test-evidence-archive.md)
+3. [Run #43726340193: WuxiaClick first, second and final catalogue pages (archived)](source-test-evidence-archive.md)
 
 These were **real website requests**, not mocks. They are technical access checks, **not full-novel EPUB downloads or verified authorisation to archive and redistribute content**.
 

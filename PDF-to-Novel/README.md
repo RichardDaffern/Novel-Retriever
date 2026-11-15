@@ -23,7 +23,7 @@ If a PDF cannot be reliably split into chapters, it is **not** published as a ZI
 When possible, the program saves a `<PDF filename>-chapter-plan.json` review
 suggestion in `Novels/`. Review/edit that JSON and copy it beside your input PDF
 as `PDFs/<PDF filename without .pdf>.chapters.json`, then rerun. If the PDF is
-image-only or has nonstandard layout, see `../docs/PDF_TO_NOVEL.md`.
+image-only or has nonstandard layout, see `../docs/pdf-to-novel.md`.
 
 Note: when a ZIP is already present and you intentionally want a new conversion
 using a revised chapter plan, **move the old ZIP out of `Novels/`** before

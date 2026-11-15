@@ -7,7 +7,7 @@ import unittest
 from zipfile import ZipFile
 
 from tools.chunked_download import _epub
-from tools.verified_crosspost_download import (
+from tools.scribblehub_crosspost_downloader import (
     CrosspostDownloadError, _epub_url, _require_successful_export,
     download_verified_crosspost,
 )
