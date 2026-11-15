@@ -8,6 +8,14 @@
 >
 > **Precedence:** For actual behaviour, trust executable code and the current tests first; then inspect workflow YAML, the README and focused documentation. If a statement here conflicts with the repository, verify and update this file in the same change. Never silently assume a feature described as experimental is production-ready.
 
+## Repository naming conventions
+
+- Python modules and test files use `snake_case.py`; tests start with `test_` and identify the component under test.
+- Internal modules distinguish **sequential novel bulk execution** (`tools/sequential_bulk_download.py`) from **mixed-site bulk orchestration** (`tools/mixed_source_bulk.py`). Site adapters and their tests use recognisable website names.
+- Human-readable guides use lowercase `kebab-case.md`. Source investigations and experimental notes belong in `docs/research/`, not inside executable `tools/`.
+- Keep **public entry points stable**: `novel_downloader.py`, `Download-All-Novels.cmd`, `PDF-to-Novel/Convert-PDFs.cmd`, all existing `.github/workflows/*.yml` names, `DOWNLOADED_NOVELS.md` and `downloaded_novels.json`. Their paths are consumed by users, GitHub Actions and storage workflows.
+- When renaming an internal file, update imports, test names, workflow invocations, documentation links, JSON file paths and Windows commands together. `tests/test_repository_naming.py` checks the public entry points and local Markdown links.
+
 ## 1. Mission, boundaries and design philosophy
 
 Novel_Library is a Python-centric, local-first toolkit for converting content a user is authorised to archive into consistent, inspectable novel artefacts. Its core output is an EPUB, UTF-8 text chapters and JSON metadata. It also supplies GitHub Actions workflows for fetching or assembling permitted chapter ranges, a metadata-only index of completed downloads, a Windows tool for retrieving completed GitHub Actions artefacts, and local PDF/EPUB import utilities.
