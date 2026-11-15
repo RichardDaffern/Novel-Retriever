@@ -1,4 +1,4 @@
-name: Temporary - WuxiaClick Index Validation
+name: Temporary - WuxiaClick Full TOC Validation
 on:
   push:
     branches: [feature/wuxiaclick-bounded-download-20261115]
@@ -23,20 +23,6 @@ jobs:
           for slug in ("martial-world","true-martial-world"):
               url="https://wuxia.click/novel/"+slug
               print("INDEX_START",slug,flush=True)
-              page=BeautifulSoup(fetch_public_html(url), "html.parser")
-              section=page.select_one("#chapters")
-              anchors=section.select("a[href]") if section else []
-              chapter_links=[a for a in anchors if "/chapter/" in a.get("href","")]
-              print("DOM",slug,"section",bool(section),"anchors",len(anchors),
-                    "chapter_links",len(chapter_links),"section_tags",
-                    [x.name for x in list(section.children)[:8] if getattr(x,"name",None)] if section else None)
-              for a in chapter_links[:3]:
-                  def tag(n):
-                      return (n.name, n.get("id",""), n.get("class",[])[:4]) if n else None
-                  print("DOM_LABEL",slug,a.get("href"),repr(a.get_text(" ",strip=True)[:140]))
-                  print("DOM_LINK",slug,a.get("href"),"ancestors",
-                        [tag(a),tag(a.parent),tag(a.parent.parent),
-                         tag(a.parent.parent.parent),tag(a.parent.parent.parent.parent)])
               d=discover(url)
               rows=d["chapters"]
               assert len(rows)==d["numChapters"]
