@@ -21,7 +21,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (97 novels)
+## NovelFull (98 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -119,6 +119,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Top Student: Experience Infinite Occupations](https://novelfull.com/top-student-experience-infinite-occupations.html) | all | 348 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13628605600) | 2026-11-15T18:00:49Z |
 | [Transcending the Nine Heavens](https://novelfull.com/transcending-the-nine-heavens.html) | all | 1510 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629491257) | 2026-11-15T18:34:37Z |
 | [TranXending Vision](https://novelfull.com/tranxending-vision.html) | all | 1201 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629356718) | 2026-11-15T18:34:08Z |
+| [Trial Marriage Husband: Need to Work Hard](https://novelfull.com/trial-marriage-husband-need-to-work-hard.html) | all | 1275 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14175858121) | 2026-11-22T19:13:16Z |
 | [True Martial World](https://novelfull.com/true-martial-world.html) | all | 1710 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625147182) | 2026-11-15T16:29:28Z |
 | [Unrivaled Medicine God](https://novelfull.com/unrivaled-medicine-god.html) | all | 3120 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625248157) | 2026-11-15T16:37:41Z |
 | [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
