@@ -21,7 +21,7 @@ on:
         type: boolean
         default: false
       confirm_rights:
-        description: 'Required for Scribble Hub: I have permission to archive these works'
+        description: 'Required for WuxiaClick or Scribble Hub: I have archiving rights'
         required: false
         type: boolean
         default: false
@@ -47,6 +47,8 @@ jobs:
       freewebnovel_matrix: ${{ steps.plan.outputs.freewebnovel_matrix }}
       has_readnovelfull: ${{ steps.plan.outputs.has_readnovelfull }}
       readnovelfull_matrix: ${{ steps.plan.outputs.readnovelfull_matrix }}
+      has_wuxiaclick: ${{ steps.plan.outputs.has_wuxiaclick }}
+      wuxiaclick_matrix: ${{ steps.plan.outputs.wuxiaclick_matrix }}
       has_scribblehub: ${{ steps.plan.outputs.has_scribblehub }}
       scribblehub_matrix: ${{ steps.plan.outputs.scribblehub_matrix }}
     steps:
@@ -173,6 +175,25 @@ jobs:
       pull-requests: write
       actions: read
 
+  wuxiaclick:
+    needs: prepare
+    if: needs.prepare.outputs.has_wuxiaclick == 'true'
+    strategy:
+      fail-fast: false
+      # Do not parallelise WuxiaClick novels or bypass its daily allowance.
+      max-parallel: 1
+      matrix: ${{ fromJSON(needs.prepare.outputs.wuxiaclick_matrix) }}
+    uses: ./.github/workflows/wuxiaclick-download.yml
+    with:
+      novel_url: ${{ matrix.novel_url }}
+      chapter_range: ${{ matrix.chapter_range }}
+      force: ${{ matrix.force }}
+      confirm_rights: ${{ inputs.confirm_rights }}
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
+
   scribblehub:
     needs: prepare
     if: needs.prepare.outputs.has_scribblehub == 'true'
@@ -192,7 +213,7 @@ jobs:
       actions: read
 
   summary:
-    needs: [prepare, novelfull, freewebnovel, readnovelfull, scribblehub]
+    needs: [prepare, novelfull, freewebnovel, readnovelfull, wuxiaclick, scribblehub]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -211,9 +232,10 @@ jobs:
           NOVELFULL: ${{ needs.novelfull.result }}
           FREEWEBNOVEL: ${{ needs.freewebnovel.result }}
           READNOVELFULL: ${{ needs.readnovelfull.result }}
+          WUXIACLICK: ${{ needs.wuxiaclick.result }}
           SCRIBBLEHUB: ${{ needs.scribblehub.result }}
         run: |
-          for result in "$NOVELFULL" "$FREEWEBNOVEL" "$READNOVELFULL" "$SCRIBBLEHUB"; do
+          for result in "$NOVELFULL" "$FREEWEBNOVEL" "$READNOVELFULL" "$WUXIACLICK" "$SCRIBBLEHUB"; do
             if [[ "$result" == "failure" || "$result" == "cancelled" ]]; then
               echo "required=true" >> "$GITHUB_OUTPUT"
               echo "::notice::A child download failed or was cancelled; recovering completed novels."
@@ -301,6 +323,7 @@ jobs:
           NOVELFULL: ${{ needs.novelfull.result }}
           FREEWEBNOVEL: ${{ needs.freewebnovel.result }}
           READNOVELFULL: ${{ needs.readnovelfull.result }}
+          WUXIACLICK: ${{ needs.wuxiaclick.result }}
           SCRIBBLEHUB: ${{ needs.scribblehub.result }}
           RECOVERY: ${{ steps.recovery.outcome }}
         run: |
@@ -311,6 +334,7 @@ jobs:
           echo "| NovelFull | $NOVELFULL |" >> "$GITHUB_STEP_SUMMARY"
           echo "| FreeWebNovel | $FREEWEBNOVEL |" >> "$GITHUB_STEP_SUMMARY"
           echo "| ReadNovelFull | $READNOVELFULL |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| WuxiaClick | $WUXIACLICK |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Scribble Hub | $SCRIBBLEHUB |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Partial recovery | $RECOVERY |" >> "$GITHUB_STEP_SUMMARY"
           echo "Independently completed novels retain their original individual artefacts." >> "$GITHUB_STEP_SUMMARY"
@@ -326,6 +350,7 @@ jobs:
                 "$NOVELFULL" == "failure" || "$NOVELFULL" == "cancelled" || \
                 "$FREEWEBNOVEL" == "failure" || "$FREEWEBNOVEL" == "cancelled" || \
                 "$READNOVELFULL" == "failure" || "$READNOVELFULL" == "cancelled" || \
+                "$WUXIACLICK" == "failure" || "$WUXIACLICK" == "cancelled" || \
                 "$SCRIBBLEHUB" == "failure" || "$SCRIBBLEHUB" == "cancelled" || \
                 "$RECOVERY" == "failure" ]]; then
             echo "::error::At least one grouped download failed or was cancelled."
