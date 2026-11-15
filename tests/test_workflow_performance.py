@@ -132,7 +132,7 @@ class PerformanceTests(unittest.TestCase):
         bulk = Path(".github/workflows/library-bulk-download.yml").read_text(
             encoding="utf-8")
         self.assertIn(
-            "name: Checkout bulk summary tools\\n"
+            "name: Checkout bulk summary tools\n"
             "        if: always() && needs.prepare.result == 'success'",
             bulk,
         )
