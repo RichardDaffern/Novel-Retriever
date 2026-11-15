@@ -14,7 +14,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 HOST = "readnovelfull.com"
 BOOK = re.compile(r"/([a-z0-9][a-z0-9_-]*)\.html\Z")
-CHAPTER = re.compile(r"/([a-z0-9][a-z0-9_-]*)/chapter-([1-9][0-9]*)(?:-[a-z0-9_-]+)?\.html\Z")
+CHAPTER = re.compile(r"/([a-z0-9][a-z0-9_-]*)/chapter-([1-9][0-9]*)(?:[a-z_-][a-z0-9_-]*)?\.html\Z")
 ARCHIVE = "/ajax/chapter-archive"
 MAX_HTML = 12 * 1024 * 1024
 MAX_CHAPTERS = 20000
