@@ -25,4 +25,6 @@ jobs:
               print("METADATA",slug,"author",repr(details["author"]),
                     "synopsis_chars",len(details["description"]),
                     "genres",details["genres"][:8],"count",details["numChapters"])
+              assert details["author"] != "Unknown"
+              assert len(details["description"]) > 80, "Synopsis missing from real book"
           PY
