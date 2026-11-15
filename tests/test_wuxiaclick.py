@@ -18,7 +18,7 @@ EMPTY = {"version": 1, "novels": []}
 
 def book(rows, total=2, pages=True):
     links = "".join(
-        f'<dd><a href="/chapter/test-sun-{n}">Chapter {n}: {title}</a></dd>'
+        f'<li><a href="/chapter/test-sun-{n}">Chapter {n} , {title} Nov 18, 2021</a></li>'
         for n, title in rows)
     nav = "".join(
         f'<a href="/novel/test-sun?page={n}#chapters">Page {n}</a>'
@@ -27,7 +27,7 @@ def book(rows, total=2, pages=True):
             '<h2>Synopsis</h2><p>An invented synopsis.</p>'
             f'<section id="chapters"><h2>Chapters {total}</h2>'
             f'<p>{total} chapters, numbered 1–{total+1}</p>'
-            f'<dl>{links}</dl>{nav}</section></html>')
+            f'<ol>{links}</ol>{nav}</section></html>')
 
 
 def chapter(heading, words=WORDS):
