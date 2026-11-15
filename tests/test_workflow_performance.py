@@ -117,7 +117,7 @@ class PerformanceTests(unittest.TestCase):
 
     def test_existing_batch_artifact_scope_is_retained(self):
         key = "needs.prepare.outputs.key"
-        for filename in ("download-novel.yml", "freewebnovel-download.yml"):
+        for filename in ("download-novel.yml", "freewebnovel-download.yml", "readnovelfull-download.yml"):
             src = Path(".github/workflows", filename).read_text(encoding="utf-8")
             expected = "pattern: chapter-batch-$" + "{{ " + key + " }}-*"
             self.assertIn(expected, src)
@@ -139,7 +139,7 @@ class PerformanceTests(unittest.TestCase):
         gate = bulk.split(
             "      - name: Decide whether partial recovery is needed", 1
         )[1].split("      - name: Retrieve selected novel plan", 1)[0]
-        self.assertIn('for result in "$NOVELFULL" "$FREEWEBNOVEL" "$SCRIBBLEHUB"', gate)
+        self.assertIn('for result in "$NOVELFULL" "$FREEWEBNOVEL" "$READNOVELFULL" "$SCRIBBLEHUB"', gate)
         self.assertIn('"$result" == "failure" || "$result" == "cancelled"', gate)
         self.assertIn('echo "required=true"', gate)
         self.assertIn('echo "required=false"', gate)
