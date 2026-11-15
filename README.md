@@ -107,7 +107,8 @@ A complete book normally contains `source.epub`, `metadata.json`, `chapters.json
 | [Metadata and archive guide](docs/METADATA_GUIDE.md) | Covers, EPUB descriptions, synopsis repair and archive safety |
 | [PDF conversion](docs/PDF_TO_NOVEL.md) | PDF chapter detection, validation and manual corrections |
 | [Source feasibility research](docs/experimental-sources.md) | Royal Road, WTR-Lab, Novel Fire and Light Novel Pub investigations |
-| [Additional website feasibility](docs/ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) | Complete 15 Nov 2026 investigation: WuxiaClick, AO3, Royal Road, novel mirrors, site restrictions and live GitHub-runner checks |
+| [Additional website feasibility](docs/ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) | Complete 15 Nov 2026 investigation: WuxiaClick, AO3, Royal Road and novel mirrors |
+| [Live HTTP-200 source tests](docs/HTTP200_LIVE_SCENARIOS_2026-11-15.md) | Real WuxiaClick chapter tests, LibRead redirects and NovelBin.cc rate-limit checks from GitHub Actions |
 | [AI agent technical handbook](AGENTS.md) | Full architecture, file contracts, implementation and development invariants |
 
 **Only download and archive material you have permission to store.** The project does not bypass source-site restrictions. Never commit novel text, EPUBs, personal files or secrets. GitHub Actions artefacts from a public repository may be accessible to other users.
