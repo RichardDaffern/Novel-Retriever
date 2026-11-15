@@ -4,12 +4,13 @@ A Python toolkit for downloading **authorised** web novels, assembling complete 
 
 ## Websites and download support
 
-**Full-novel website downloading is implemented for these two sources:**
+**Full-novel website downloading is implemented for these three sources:**
 
 | Website | Download support | How to use |
 | --- | --- | --- |
 | [NovelFull](https://novelfull.com/) | **Yes**, using FanFicFare and verified chapter batches | **NovelFull - Download** or **Library - Bulk Download** |
 | [FreeWebNovel](https://freewebnovel.com/) | **Yes**, for accessible public chapters, with chapter-by-chapter validation | **FreeWebNovel - Download** or **Library - Bulk Download** |
+| [ReadNovelFull](https://readnovelfull.com/) | **Yes, newly implemented**; full AJAX chapter catalogue, verified EPUB/TXT chapters. Live full-book success not yet established | **ReadNovelFull - Download** or **Library - Bulk Download** |
 
 Other sources have restricted or specialised options, not general-purpose website downloaders:
 
@@ -30,8 +31,9 @@ Go to [Actions](https://github.com/RichardDaffern/Novel_Library/actions) and run
 
 - **NovelFull - Download**: download a single NovelFull book.
 - **FreeWebNovel - Download**: download a single FreeWebNovel book.
+- **ReadNovelFull - Download**: download a single ReadNovelFull book from a `/book-slug.html` URL.
 - **Scribble Hub - Download**: download the verified same-author FanFiction.net cross-post of Scribble Hub series `445037` via FicHub; confirm rights before running.
-- **Library - Bulk Download**: the **only bulk workflow**, supporting NovelFull, FreeWebNovel and **verified Scribble Hub cross-posts**. Select All or a website; enter saved names or exact URLs. No ten-novel limit; GitHub's platform allows up to **256 scheduled jobs per run**. To rerun only failed/missing novels, enter the earlier run ID in **Retry from previous run** (for runs with the new retry manifest).
+- **Library - Bulk Download**: the **only bulk workflow**, supporting NovelFull, FreeWebNovel, ReadNovelFull and **verified Scribble Hub cross-posts**. Select All or a website; enter saved names or exact URLs. No ten-novel limit; GitHub's platform allows up to **256 scheduled jobs per run**. To rerun only failed/missing novels, enter the earlier run ID in **Retry from previous run** (for runs with the new retry manifest).
 - **Covers - Download**: download **images only**, not chapter text.
 
 For novel downloads, provide a source URL (or saved titles for bulk), optionally choose a chapter range and use **Force** only to intentionally redownload. Scribble Hub requires explicit archiving-rights confirmation and whole-book selection. **If some bulk jobs fail, completed books remain in their own artefacts and in a `bulk-successful-novels-<run-id>` recovery artefact**, with one ZIP per verified novel plus a results manifest. **When all child downloads succeed, individual book artefacts remain available and redundant recovery repackaging is skipped** to reduce runtime and data transfers. Artefacts are retained for **seven days**. The bulk run also publishes a **`bulk-performance-<run-id>`** JSON report showing phase timings, separate from overall elapsed time.
