@@ -92,6 +92,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/peerless-genius-system",
+      "title": "Peerless Genius System",
+      "author": "稻草也疯狂",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 859,
+          "run_id": 43734404117,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117",
+          "artifact_id": 14177902316,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14177902316",
+          "completed_at_utc": "2026-11-15T19:48:44Z",
+          "expires_at_utc": "2026-11-22T19:48:44Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/perfect-superstar",
       "title": "Perfect Superstar",
       "author": "Chen Ru Tai Ping Yang",
