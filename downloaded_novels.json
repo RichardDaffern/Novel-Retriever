@@ -20,6 +20,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/12-hours-after.html",
+      "title": "12 Hours After",
+      "author": "FromHell",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 198,
+          "run_id": 43734388839,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839",
+          "artifact_id": 14171010402,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14171010402",
+          "completed_at_utc": "2026-11-15T16:39:40Z",
+          "expires_at_utc": "2026-11-22T16:39:40Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/abe-the-wizard.html",
       "title": "Abe the Wizard",
       "author": "The Mass Of Eating Melon Seeds",
