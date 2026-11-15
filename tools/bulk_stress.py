@@ -60,7 +60,7 @@ def run_stress(sizes: tuple[int, ...] = (20, 50, 100)) -> list[dict]:
             records = dict(line.split("=", 1) for line in out.read_text().splitlines())
             matrices = [
                 json.loads(records[f"{site}_matrix"])["include"]
-                for site in ("novelfull", "freewebnovel", "scribblehub")
+                for site in ("novelfull", "freewebnovel", "readnovelfull", "scribblehub")
             ]
             combined = [row["novel_url"] for matrix in matrices for row in matrix]
             assert plan["selected_count"] == requested
