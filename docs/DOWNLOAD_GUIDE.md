@@ -160,6 +160,12 @@ Retry manifests are available for **seven days** and only for bulk runs created 
 
 **Synthetic load testing:** `python -m tools.bulk_stress` checks 20, 50 and 100 selections, mixed website matrices, duplicates and registry skips without contacting novel websites; it also confirms 256 jobs are accepted and 257 are rejected.
 
+**Bulk performance report:** every new bulk run attempts to read completed job timings from GitHub's own Actions API (no requests to novel websites). Open the run's **Summary** for a breakdown of installation/setup, discovery, chapter download or cached-batch reuse, EPUB assembly, artefact transfers, registry updates and recovery. Download the small `bulk-performance-<run-id>` JSON under **Artifacts** for an auditable baseline. Telemetry runs with `continue-on-error`, so a temporary API failure cannot discard a successful novel.
+
+The report includes **summed per-step durations across parallel jobs**, not a claim about whole-workflow elapsed time. The completed-jobs elapsed window is separate and may exclude an in-progress summary job. A chapter-fetch step can reuse a cached batch without contacting the website. Compare multiple equivalent bulk runs before changing site concurrency or claiming a download speed-up.
+
+**Low-risk packaging optimisation:** the recovery process stores already-compressed EPUB/cover files without recompressing them, continues compressing TXT/JSON, and uploads the resulting book ZIPs with Actions compression level zero. The normal completed novel and chapter artefacts retain their existing compression and full integrity checks. Both website workflows already restrict assembly downloads to their own chapter-batch IDs, so no new filtering is required. Source request rates and the existing 3/2/1 per-site concurrency limits are unchanged.
+
 The recovery bundle and individual novel artefacts are retained for seven days.
 A large recovery bundle is bounded by a 1.75 GiB packaging safety limit; books
 not included because of this limit remain individually retrievable.

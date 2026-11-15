@@ -4,7 +4,7 @@ import hashlib
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
-from zipfile import ZipFile
+from zipfile import ZipFile, ZIP_STORED, ZIP_DEFLATED
 
 from tools.bulk_recovery import recover
 from tools.chunked_download import _epub
@@ -87,6 +87,10 @@ class BulkRecoveryTests(unittest.TestCase):
                     names = archive.namelist()
                     self.assertTrue(any(name.endswith("/source.epub") for name in names))
                     self.assertTrue(any(name.endswith("/metadata.json") for name in names))
+                    epub_name = next(name for name in names if name.endswith("/source.epub"))
+                    chapter_name = next(name for name in names if name.endswith("/chapter_00001.txt"))
+                    self.assertEqual(archive.getinfo(epub_name).compress_type, ZIP_STORED)
+                    self.assertEqual(archive.getinfo(chapter_name).compress_type, ZIP_DEFLATED)
                     self.assertEqual(sum(name.endswith(".txt") for name in names), 2)
             self.assertEqual(
                 json.loads((root / "recovery" / "bulk_recovery_manifest.json").read_text())["recovered"],
