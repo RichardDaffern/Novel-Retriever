@@ -2,7 +2,7 @@
 import json
 import unittest
 
-from tools.freewebnovel_probe import (
+from tools.freewebnovel_source import (
     ProbeError, chapter_url, inspect_chapter, parse_catalogue, probe,
     validate_book_url,
 )

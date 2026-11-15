@@ -71,7 +71,7 @@ jobs:
         run: |
           python - <<'PY'
           import os
-          from tools.verified_crosspost_download import _verified_record
+          from tools.scribblehub_crosspost_downloader import _verified_record
 
           if os.environ["CONFIRM_RIGHTS"] != "true":
               raise SystemExit("Confirm that you have permission to archive this novel.")
@@ -109,7 +109,7 @@ jobs:
           PYTHONUNBUFFERED: '1'
         timeout-minutes: 15
         run: |
-          python -u -m tools.verified_crosspost_download "$NOVEL_URL" \
+          python -u -m tools.scribblehub_crosspost_downloader "$NOVEL_URL" \
             --confirm-rights --output-dir downloaded_zip
 
       - name: Explain FicHub export failure
@@ -126,7 +126,7 @@ jobs:
         env:
           NOVEL_URL: ${{ steps.source.outputs.url }}
         run: |
-          python -u -m tools.verified_crosspost_artifact \
+          python -u -m tools.scribblehub_crosspost_artifact \
             --archive-dir downloaded_zip \
             --source-url "$NOVEL_URL" \
             --output-dir downloads

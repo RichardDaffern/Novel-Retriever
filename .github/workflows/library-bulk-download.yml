@@ -105,7 +105,7 @@ jobs:
           CONFIRM_RIGHTS: ${{ inputs.confirm_rights }}
           RETRY_RUN_ID: ${{ inputs.retry_run_id }}
         run: |
-          args=(python -m tools.library_bulk plan \
+          args=(python -m tools.mixed_source_bulk plan \
             --names "$NOVEL_NAMES" --urls "$NOVEL_URLS" \
             --chapter-range "$CHAPTER_RANGE")
           if [[ "$FORCE" == "true" ]]; then args+=(--force); fi
@@ -265,7 +265,7 @@ jobs:
         id: recovery
         if: always() && steps.recovery_gate.outputs.required == 'true'
         run: |
-          python -m tools.bulk_recovery \
+          python -m tools.bulk_download_recovery \
             --plan saved_plan/library_bulk_plan.json \
             --artifacts collected_artifacts \
             --output recovery_output \

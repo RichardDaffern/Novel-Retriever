@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from tools.bulk_download import (
+from tools.sequential_bulk_download import (
     create_plan, main, parse_novel_urls, run_batch, storage_key,
     summary, validate_and_record,
 )

@@ -10,8 +10,8 @@ from zipfile import ZIP_DEFLATED, ZipFile
 from tools.chunked_download import _epub
 from tools.download_registry import record_download, website_name
 from tools.import_local_epub import import_epub_to_zip
-from tools.verified_crosspost_artifact import prepare_artifact
-from tools.verified_crosspost_download import CrosspostDownloadError
+from tools.scribblehub_crosspost_artifact import prepare_artifact
+from tools.scribblehub_crosspost_downloader import CrosspostDownloadError
 
 
 SERIES = "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima/"
@@ -43,7 +43,7 @@ def make_archive(root: Path, *, source_url: str = SERIES) -> Path:
 
 class VerifiedActionsArtifactTests(unittest.TestCase):
     def prepare(self, archive: Path, output: Path, source_url: str = SERIES):
-        with patch("tools.verified_crosspost_artifact._verified_record",
+        with patch("tools.scribblehub_crosspost_artifact._verified_record",
                    return_value=(SERIES, "445037", REGISTRY)):
             return prepare_artifact(archive, output, source_url)
 
@@ -115,10 +115,10 @@ class VerifiedActionsArtifactTests(unittest.TestCase):
         self.assertIn("workflow_call:", workflow)
         self.assertIn("      confirm_rights:", workflow)
         self.assertIn("        default: false", workflow)
-        self.assertIn("tools.verified_crosspost_download", workflow)
+        self.assertIn("tools.scribblehub_crosspost_downloader", workflow)
         self.assertIn("id: download", workflow)
         self.assertIn("Explain FicHub export failure", workflow)
-        self.assertIn("tools.verified_crosspost_artifact", workflow)
+        self.assertIn("tools.scribblehub_crosspost_artifact", workflow)
         self.assertIn("tools.download_registry check", workflow)
         self.assertIn("tools.publish_registry", workflow)
         self.assertIn("upload-artifact@", workflow)
@@ -130,7 +130,7 @@ class VerifiedActionsArtifactTests(unittest.TestCase):
         self.assertIn("confirm_rights:", bulk)
         self.assertIn("max-parallel: 1", bulk)
         self.assertIn("bulk-successful-novels-", bulk)
-        self.assertIn("tools.bulk_recovery", bulk)
+        self.assertIn("tools.bulk_download_recovery", bulk)
 
 
 if __name__ == "__main__":

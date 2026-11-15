@@ -4,7 +4,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 from novel_downloader import epub_chapters
-from tools.library_bulk import selection_plan
+from tools.mixed_source_bulk import selection_plan
 from tools.download_registry import website_name
 from tools.wuxiaclick_source import SourceError, discover, extract_chapter, validate_book_url, _index_rows
 from tools.wuxiaclick_downloader import DownloadError, download_range
