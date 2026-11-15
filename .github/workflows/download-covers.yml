@@ -69,6 +69,6 @@ jobs:
         with:
           name: novel-cover-images
           path: Downloaded_Covers/
-          retention-days: 30
+          retention-days: 90
           if-no-files-found: ignore
           compression-level: 6
