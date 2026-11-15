@@ -120,7 +120,7 @@ jobs:
         with:
           name: bulk-selection-${{ github.run_id }}
           path: library_bulk_plan.json
-          retention-days: 7
+          retention-days: 90
           if-no-files-found: error
 
   novelfull:
@@ -277,7 +277,7 @@ jobs:
         with:
           name: bulk-recovery-manifest-${{ github.run_id }}
           path: recovery_output/bulk_recovery_manifest.json
-          retention-days: 7
+          retention-days: 90
           if-no-files-found: error
 
       - name: Publish successful-novels recovery bundle even when the bulk run failed
@@ -286,7 +286,7 @@ jobs:
         with:
           name: bulk-successful-novels-${{ github.run_id }}
           path: recovery_output/
-          retention-days: 7
+          retention-days: 90
           if-no-files-found: error
           # Each recovered novel is already a compressed ZIP.
           compression-level: 0
@@ -312,7 +312,7 @@ jobs:
         with:
           name: bulk-performance-${{ github.run_id }}
           path: bulk_performance.json
-          retention-days: 7
+          retention-days: 90
           if-no-files-found: error
           compression-level: 0
 
