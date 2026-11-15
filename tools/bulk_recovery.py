@@ -177,11 +177,17 @@ def recover(plan: dict, artifact_root: Path, output_dir: Path,
                 dest.unlink()
             dest = None
     missing = [
-        {"url": url, "site": item["site"], "title": item.get("title", "")}
+        {
+            "url": url, "site": item["site"],
+            "title": item.get("title", ""),
+            "chapter_range": item.get("chapter_range", ""),
+            "force": bool(item.get("force", False)),
+        }
         for url, item in scheduled.items() if url not in completed_urls
     ]
     report = {
         "version": 1,
+        "run_id": run_id,
         "selected": plan.get("selected_count", len(scheduled)),
         "recovered": recovered,
         "missing_or_failed": missing,

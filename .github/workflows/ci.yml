@@ -68,6 +68,16 @@ jobs:
           assert count >= 1, f'Expected at least one chapter link, got {count}'
           print(f'NovelFull adapter chapter discovery succeeded: {count} entries (metadata only)')
           PY
+      - name: Check synthetic 20, 50 and 100-novel bulk planner load
+        run: python -m tools.bulk_stress --json-output synthetic_bulk_stress.json
+      - name: Publish synthetic bulk stress results
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: synthetic-bulk-stress-results
+          path: synthetic_bulk_stress.json
+          retention-days: 3
+          if-no-files-found: error
+
       - name: Upload two-chapter synthetic test output
         if: success()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

@@ -177,6 +177,70 @@ def selection_plan(
     }
 
 
+def retry_selection_plan(
+    registry: dict, curated: dict, manifest: dict, *,
+    confirm_rights: bool = False, expected_run_id: str = "",
+) -> dict:
+    """Reschedule ONLY missing/failed books, preserving the requested range.
+
+    A recovery manifest is produced after the previous bulk run has verified
+    every recovered book. Never accept a legacy manifest without range data:
+    guessing would accidentally fetch full books instead of requested ranges.
+    """
+    if not isinstance(manifest, dict) or manifest.get("version") != 1:
+        raise ValueError("Expected a version-1 bulk recovery manifest")
+    previous = manifest.get("run_id")
+    if expected_run_id and (
+        not expected_run_id.isdecimal() or str(previous) != expected_run_id
+    ):
+        raise ValueError("The retry manifest does not match the requested GitHub run ID")
+    missing = manifest.get("missing_or_failed")
+    if not isinstance(missing, list):
+        raise ValueError("Retry manifest is missing a failed/missing novels list")
+    if not missing:
+        raise ValueError("No failed or missing novels remain to retry")
+    if len(missing) > MAX_MATRIX_JOBS:
+        raise ValueError("A retry run cannot exceed 256 scheduled novels; split the selection")
+    urls: list[str] = []
+    seen: set[str] = set()
+    ranges: set[str] = set()
+    for item in missing:
+        if not isinstance(item, dict) or "chapter_range" not in item:
+            raise ValueError(
+                "The recovery manifest predates range-aware retry; cannot "
+                "safely infer the original chapter ranges"
+            )
+        raw = item.get("url")
+        if not isinstance(raw, str) or not raw:
+            raise ValueError("The recovery manifest has an invalid novel URL")
+        site, url = _validated_url(raw)
+        if item.get("site") != site:
+            raise ValueError("Retry manifest source-site identity mismatch")
+        if url in seen:
+            raise ValueError("Duplicate failed novel in recovery manifest")
+        seen.add(url)
+        urls.append(url)
+        rng = normalise_range(item["chapter_range"])
+        ranges.add(rng)
+        if type(item.get("force", False)) is not bool:
+            raise ValueError("Retry manifest contains an invalid original Force flag")
+    if len(ranges) != 1:
+        raise ValueError(
+            "The previous bulk run used different chapter ranges; "
+            "retry the groups separately to preserve exact ranges"
+        )
+    rng = next(iter(ranges))
+    # Retry is intentionally NOT forceful. Cached valid successful artefacts
+    # from another run must be skipped, regardless of the previous Force flag.
+    plan = selection_plan(
+        registry, curated, "", " ".join(urls), "All",
+        "" if rng == "all" else rng,
+        force=False, confirm_rights=confirm_rights,
+    )
+    plan["retry_from_run_id"] = str(previous or "")
+    return plan
+
+
 def _output(key: str, value: str) -> None:
     file = os.environ.get("GITHUB_OUTPUT")
     if file:
@@ -232,6 +296,11 @@ def main(argv=None) -> int:
     parser.add_argument("--registry", type=Path, default=Path("downloaded_novels.json"))
     parser.add_argument("--catalogue", type=Path, default=DEFAULT_CATALOGUE)
     parser.add_argument("--plan-file", type=Path, default=Path("library_bulk_plan.json"))
+    parser.add_argument(
+        "--retry-manifest", type=Path,
+        help="Recovery manifest from an earlier bulk run; retry only failed/missing novels",
+    )
+    parser.add_argument("--retry-run-id", default="", help="Verify the source run ID")
     args = parser.parse_args(argv)
     try:
         registry = read_registry(args.registry)
@@ -243,10 +312,26 @@ def main(argv=None) -> int:
                                  if e["site"] == site}, key=str.casefold)
                 print("\n".join(f"- {title}" for title in unique) or "(no saved novels)")
             return 0
-        plan = selection_plan(
-            registry, curated, args.names, args.urls,
-            args.website, args.chapter_range, args.force, args.confirm_rights,
-        )
+        if args.retry_manifest is not None:
+            if (args.names.strip() or args.urls.strip() or
+                    args.chapter_range.strip() or args.website != "All" or args.force):
+                raise ValueError(
+                    "Retry from previous run cannot be mixed with titles, URLs, "
+                    "chapter ranges, website filters or Force"
+                )
+            prior = json.loads(args.retry_manifest.read_text(encoding="utf-8"))
+            plan = retry_selection_plan(
+                registry, curated, prior,
+                confirm_rights=args.confirm_rights,
+                expected_run_id=args.retry_run_id,
+            )
+        else:
+            if args.retry_run_id:
+                raise ValueError("--retry-run-id requires --retry-manifest")
+            plan = selection_plan(
+                registry, curated, args.names, args.urls,
+                args.website, args.chapter_range, args.force, args.confirm_rights,
+            )
         args.plan_file.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n",
                                   encoding="utf-8")
         write_actions(plan)
