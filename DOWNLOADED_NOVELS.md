@@ -17,7 +17,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (96 novels)
+## NovelFull (97 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -53,6 +53,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [I Have the Alchemy Emperor in My Head](https://novelfull.com/i-have-the-alchemy-emperor-in-my-head.html) | all | 2555 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13636831037) | 2026-11-15T22:13:06Z |
 | [Immortal Devil Transformation](https://novelfull.com/immortal-devil-transformation.html) | all | 869 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13645170874) | 2026-11-16T02:11:51Z |
 | [Imperial God Emperor](https://novelfull.com/imperial-god-emperor.html) | all | 1371 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13651502124) | 2026-11-16T05:12:15Z |
+| [In Different World with Naruto System](https://novelfull.com/in-different-world-with-naruto-system.html) | all | 382 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14175161600) | 2026-11-22T18:39:56Z |
 | [Invincible](https://novelfull.com/invincible.html) | all | 3753 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13653866052) | 2026-11-16T06:14:23Z |
 | [I’ll Add Points To All Things](https://novelfull.com/ill-add-points-to-all-things.html) | all | 945 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13641833043) | 2026-11-16T00:59:34Z |
 | [I’m Really a Superstar](https://novelfull.com/im-really-a-superstar.html) | all | 1696 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13643775900) | 2026-11-16T01:31:41Z |
@@ -112,8 +113,8 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627465520) | 2026-11-15T17:27:24Z |
 | [Throne of Magical Arcana](https://novelfull.com/throne-of-magical-arcana.html) | all | 910 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627324316) | 2026-11-15T17:49:19Z |
 | [Top Student: Experience Infinite Occupations](https://novelfull.com/top-student-experience-infinite-occupations.html) | all | 348 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13628605600) | 2026-11-15T18:00:49Z |
-| [Transcending the Nine Heavens](https://novelfull.com/transcending-the-nine-heavens.html) | all | 1510 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629491257) | 2026-11-15T18:34:37Z |
-| [TranXending Vision](https://novelfull.com/tranxending-vision.html) | all | 1201 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629356718) | 2026-11-15T18:34:08Z |
+| [Transcending the Nine Heavens](https://novelfull.com/transcending-the-nine-heavens.html) | all | 1510 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629491257) | 2026-11-15T18:34:37Z |
+| [TranXending Vision](https://novelfull.com/tranxending-vision.html) | all | 1201 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629356718) | 2026-11-15T18:34:08Z |
 | [True Martial World](https://novelfull.com/true-martial-world.html) | all | 1710 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625147182) | 2026-11-15T16:29:28Z |
 | [Unrivaled Medicine God](https://novelfull.com/unrivaled-medicine-god.html) | all | 3120 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625248157) | 2026-11-15T16:37:41Z |
 | [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
