@@ -29,7 +29,7 @@ Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.m
 - **Website:** https://novelfull.com/
 - **Typical book URL:** `https://novelfull.com/<title-slug>.html`
 - **Single-book Action:** **NovelFull - Download**
-- **Bulk Action:** **Library - Bulk Download** (website = NovelFull or All)
+- **Bulk Action:** **Library - Bulk Download** (NovelFull links auto-detected)
 - **Direct CLI:** `python -u novel_downloader.py "<authorised-https-book-url>" --confirm-rights`
 - **Implementation:** [`novel_downloader.py`](../novel_downloader.py), [`fff_progress_runner.py`](../fff_progress_runner.py), [`tools/chunked_download.py`](../tools/chunked_download.py).
 
@@ -44,7 +44,7 @@ Each successful novel produces a temporary GitHub Actions artefact and a **metad
 - **Website:** https://freewebnovel.com/
 - **Typical book URL:** `https://freewebnovel.com/novel/<title-slug>`
 - **Single-book Action:** **FreeWebNovel - Download**
-- **Bulk Action:** **Library - Bulk Download** (website = FreeWebNovel or All)
+- **Bulk Action:** **Library - Bulk Download** (FreeWebNovel links auto-detected)
 - **Direct CLI:** `python -m tools.freewebnovel_downloader "<authorised-https-book-url>" --chapter-range 1-2 --confirm-rights`
 - **Implementation:** [`tools/freewebnovel_downloader.py`](../tools/freewebnovel_downloader.py) and [`tools/freewebnovel_chunks.py`](../tools/freewebnovel_chunks.py).
 
@@ -59,7 +59,7 @@ Every chapter must be readable and correctly numbered; unexpectedly empty/short 
 - **Website:** https://readnovelfull.com/
 - **Typical book URL:** `https://readnovelfull.com/<title-slug>.html`
 - **Single-book Action:** **ReadNovelFull - Download**
-- **Bulk Action:** **Library - Bulk Download** (ReadNovelFull or All)
+- **Bulk Action:** **Library - Bulk Download** (ReadNovelFull links auto-detected)
 - **Local range:** `python -m tools.readnovelfull_downloader "https://readnovelfull.com/cultivation-online-v3.html" --chapter-range 1-2 --confirm-rights`
 - **Implementation:** `tools/readnovelfull_source.py`, `tools/readnovelfull_downloader.py`, `tools/readnovelfull_chunks.py`.
 
@@ -69,7 +69,7 @@ Unlike the initial book-page preview, the site's ordinary `/ajax/chapter-archive
 
 ### Single or multiple novels
 
-Use **[Library - Bulk Download](../.github/workflows/library-bulk-download.yml)** to choose All, NovelFull, FreeWebNovel, ReadNovelFull or verified Scribble Hub and enter saved novel names or source URLs. The former ten-novel cap is removed; the platform permits up to **256 scheduled jobs** per run. Concurrent limits are three NovelFull, two FreeWebNovel, one ReadNovelFull and one Scribble Hub novel. Unknown/ambiguous saved names and unsupported URL/site mismatches fail before downloading.
+Use **[Library - Bulk Download](../.github/workflows/library-bulk-download.yml)** and paste one or more supported book links into the single **Novel links** field, optionally alongside saved novel names. The source of each link is identified automatically; no website group selection is required. The former ten-novel cap is removed; GitHub allows up to **256 scheduled jobs** per run. Concurrent limits are three NovelFull, two FreeWebNovel, one ReadNovelFull and one Scribble Hub novel. Unknown/ambiguous names and unsupported or malformed URLs fail before downloading.
 
 This is deliberately the **only** combined bulk menu. A completed artefact recorded in the download registry is skipped unless Force is selected; previously validated chapter batches can also be reused. Details: [download guide](DOWNLOAD_GUIDE.md).
 
@@ -103,11 +103,11 @@ python -m tools.import_local_epub --epub "My Authorised Book.epub" --source-url 
 python -m tools.verified_crosspost_download "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima/" --confirm-rights
 ~~~
 
-  The same registered cross-post is also available in **Library - Bulk Download** (Scribble Hub or All), with an explicit archiving-rights checkbox and whole-book selection. Completed artefacts survive partial bulk failures, and successful books are repackaged into a separate recovery artefact with a manifest.
+  The same registered cross-post is also available in **Library - Bulk Download** by pasting its URL alongside other supported novel links, with an explicit archiving-rights checkbox and whole-book selection. Completed artefacts survive partial bulk failures, and successful books are repackaged into a separate recovery artefact with a manifest.
 
   It calls only `https://fichub.net/api/v0/epub` and a validated FicHub EPUB cache URL. It does **not** fetch pages from Scribble Hub or FanFiction.net itself. It rejects unknown Scribble Hub IDs, mismatched source identity, author/title or count, unsafe returned EPUB URLs, unexpected front matter, missing checkpoint chapters and failed ZIP hashes. It never automatically retries HTTP 429 or publishes an incomplete ZIP. The ZIP goes to `Downloaded_Novels/` and can be deliberately refreshed with `--replace`. The separate, regular bulk GitHub Actions workflow is unchanged.
 - **Scope:** this is a **specific author-verified cross-post**, not general Scribble Hub coverage. A FicHub cache may be temporarily unavailable or stale, and FicHub's API is explicitly unstable; a valid EPUB can only be claimed once the generated archive actually passes the full downloader's checks. Other Scribble Hub works require their own verifiable author cross-post and explicit registration in [verified_crossposts.json](../tools/verified_crossposts.json), or an EPUB you independently hold with permission.
-- **Decision:** retain direct Scribble Hub **website downloading** as feasibility only. Do **not** add it to the unified bulk website dropdown, launch chapter downloads, or create a production workflow on the strength of an adapter being present. A future implementation needs verified permitted access, reliable metadata and chapter discovery, two authorised chapter fixtures, and all normal archive-integrity tests. If the site refuses automated access, stop instead of attempting to evade protections.
+- **Decision:** retain direct Scribble Hub **website downloading** as feasibility only. Do **not** enable arbitrary Scribble Hub series in the unified bulk downloader, launch chapter downloads, or create a production workflow on the strength of an adapter being present. A future implementation needs verified permitted access, reliable metadata and chapter discovery, two authorised chapter fixtures, and all normal archive-integrity tests. If the site refuses automated access, stop instead of attempting to evade protections.
 
 For development background see [experimental source research](experimental-sources.md#scribble-hub-feasibility).
 
