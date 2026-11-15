@@ -2,7 +2,7 @@
 """Download a registered author cross-post from FicHub and package a validated novel ZIP.
 
 This is NOT a general Scribble Hub website scraper. It accepts only previously
-verified Scribble Hub/FanFiction.net work pairs in verified_crossposts.json,
+verified Scribble Hub/FanFiction.net work pairs in scribblehub_verified_crossposts.json,
 fetches the actual EPUB through FicHub's documented API, and validates both
 the provenance and full chapter sequence before publishing a ZIP.
 
@@ -30,7 +30,7 @@ from tools.import_local_epub import (
 )
 from tools.novel_covers import extract_epub_cover, write_cover
 
-REGISTRY_FILE = Path(__file__).with_name("verified_crossposts.json")
+REGISTRY_FILE = Path(__file__).with_name("scribblehub_verified_crossposts.json")
 API = "https://fichub.net/api/v0/epub"
 USER_AGENT = (
     "Novel_Library-Crosspost/1.0 "

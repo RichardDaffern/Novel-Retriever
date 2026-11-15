@@ -22,7 +22,7 @@ from bs4 import BeautifulSoup
 
 from novel_downloader import epub_chapters, slugify
 from tools.chunked_download import _epub
-from tools.freewebnovel_probe import (
+from tools.freewebnovel_source import (
     ProbeError, BODY_SELECTORS, LOCK_TEXT, chapter_url,
     fetch_public_html, parse_catalogue, validate_book_url,
 )

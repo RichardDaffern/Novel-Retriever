@@ -17,22 +17,22 @@ from pathlib import Path
 import re
 from urllib.parse import urlsplit
 
-from tools.bulk_download import parse_novel_urls
+from tools.sequential_bulk_download import parse_novel_urls
 from tools.download_registry import (
     already_available, canonical_url, normalise_range, read_registry,
     website_name,
 )
-from tools.freewebnovel_probe import validate_book_url
+from tools.freewebnovel_source import validate_book_url
 from tools.readnovelfull_source import validate_book_url as validate_readnovelfull_url
 from tools.wuxiaclick_source import validate_book_url as validate_wuxiaclick_url
-from tools.verified_crosspost_download import _verified_record
+from tools.scribblehub_crosspost_downloader import _verified_record
 
 # This is GitHub's actual matrix execution limit, not an artificial ten-book
 # restriction. Only *scheduled* downloads count, not cached/skipped books.
 MAX_MATRIX_JOBS = 256
 SITES = ("NovelFull", "FreeWebNovel", "ReadNovelFull", "WuxiaClick", "Scribble Hub")
 WEBSITE_CHOICES = ("All",) + SITES
-DEFAULT_CATALOGUE = Path("novel_sources.json")
+DEFAULT_CATALOGUE = Path("curated_novels.json")
 
 
 def _normal_name(text: str) -> str:
@@ -79,7 +79,7 @@ def read_curated(path: Path) -> dict:
         return {"version": 1, "novels": []}
     data = json.loads(path.read_text(encoding="utf-8"))
     if data.get("version") != 1 or not isinstance(data.get("novels"), list):
-        raise ValueError("Invalid novel_sources.json format")
+        raise ValueError("Invalid curated_novels.json format")
     return data
 
 
@@ -127,7 +127,7 @@ def selection_plan(
             suffix = f" Possible matches: {', '.join(near)}." if near else ""
             raise ValueError(
                 f"Unknown novel name {name!r} for {website}. "
-                f"Add it to novel_sources.json or paste its exact URL.{suffix}"
+                f"Add it to curated_novels.json or paste its exact URL.{suffix}"
             )
         if len(unique) > 1:
             raise ValueError(
