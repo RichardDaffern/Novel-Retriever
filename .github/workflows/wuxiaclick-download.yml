@@ -17,7 +17,7 @@ on:
         type: boolean
         default: false
       confirm_rights:
-        description: 'Required: I have permission to archive the selected chapters'
+        description: 'I have permission to archive and share these artefacts (public repo)'
         required: true
         type: boolean
         default: false
@@ -39,7 +39,7 @@ on:
         type: boolean
         default: false
       confirm_rights:
-        description: 'Required: rights to archive this work'
+        description: 'I have permission to archive and share the resulting artefact'
         required: true
         type: boolean
         default: false
