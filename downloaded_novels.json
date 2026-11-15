@@ -290,6 +290,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/dual-cultivation.html",
+      "title": "Dual Cultivation",
+      "author": "MyLittleBrother",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1148,
+          "run_id": 43734393507,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507",
+          "artifact_id": 14173585699,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14173585699",
+          "completed_at_utc": "2026-11-15T17:44:33Z",
+          "expires_at_utc": "2026-11-22T17:44:33Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/dungeon-hunter.html",
       "title": "Dungeon Hunter",
       "author": "Onhu",
