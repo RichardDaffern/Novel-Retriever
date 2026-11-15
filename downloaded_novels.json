@@ -146,6 +146,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/sword-pilgrim",
+      "title": "Sword Pilgrim",
+      "author": "Nangseon",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 281,
+          "run_id": 43734410920,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920",
+          "artifact_id": 14175901918,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14175901918",
+          "completed_at_utc": "2026-11-15T19:04:09Z",
+          "expires_at_utc": "2026-11-22T19:04:09Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/the-place-you-called-from",
       "title": "The Place You Called From",
       "author": "Sugaru Miaki (Fafoo)",
