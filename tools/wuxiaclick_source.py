@@ -178,7 +178,11 @@ def book_metadata(page: str, url: str) -> dict:
             author = label[3:].strip() or "Unknown"
             break
     description = ""
-    heading = soup.find(["h2", "h3"], string=re.compile(r"^\s*synopsis\s*$", re.I))
+    # A styled heading may contain child spans/icons, so matching its direct
+    # .string is too strict for the live WuxiaClick page.
+    heading = next(
+        (node for node in soup.find_all(["h2", "h3", "h4"])
+         if node.get_text(" ", strip=True).casefold() == "synopsis"), None)
     if heading:
         node = heading.find_next(["p", "div"])
         if node:
