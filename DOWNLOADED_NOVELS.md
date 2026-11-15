@@ -10,10 +10,11 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 |---|---|---:|---|---|
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 
-## NovelFull (90 novels)
+## NovelFull (91 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
+| [12 Hours After](https://novelfull.com/12-hours-after.html) | all | 198 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14171010402) | 2026-11-22T16:39:40Z |
 | [Abe the Wizard](https://novelfull.com/abe-the-wizard.html) | all | 1512 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42393126629/artifacts/13592251409) | 2026-11-14T21:53:01Z |
 | [Chaotic Sword God](https://novelfull.com/chaotic-sword-god.html) | all | 4035 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42466652147/artifacts/13619781585) | 2026-11-15T13:43:07Z |
 | [Crazy Detective](https://novelfull.com/crazy-detective.html) | all | 2686 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13636899276) | 2026-11-15T22:35:59Z |
