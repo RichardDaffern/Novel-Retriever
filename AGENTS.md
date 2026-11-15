@@ -61,6 +61,10 @@ Authorised source book / user-supplied EPUB / user-supplied PDF
                |       |
                |       +--> numbered, verified 50-chapter workflow jobs
                |
+               +--> ReadNovelFull AJAX chapter index + bounded batches
+               |       |
+               |       +--> exact per-chapter URLs; 100-chapter workflow jobs
+               |
                +--> offline import_local_epub.py / pdf_to_novel.py
                        |
                        v
@@ -375,7 +379,7 @@ This example makes live source requests. **Do not use it in deterministic CI or 
 
 `.github/workflows/library-bulk-download.yml` is named **Library - Bulk Download** and is the single user-facing bulk workflow.
 
-The user chooses **All**, **NovelFull**, **FreeWebNovel** or **Scribble Hub**, and enters one or more saved novel names or exact source URLs. The input may combine names and URLs. A chapter range can optionally apply to the selection, and `force` bypasses an available-artifact skip.
+The user chooses **All**, **NovelFull**, **FreeWebNovel**, **ReadNovelFull** or **Scribble Hub**, and enters one or more saved novel names or exact source URLs. The input may combine names and URLs. A chapter range can optionally apply to the selection, and `force` bypasses an available-artifact skip.
 
 Implementation is in `tools/library_bulk.py`:
 
@@ -384,8 +388,8 @@ Implementation is in `tools/library_bulk.py`:
 - Validate each URL's source site, path and the selected website filter.
 - No arbitrary ten-novel limit. Respect the GitHub Actions **256-job matrix limit** for scheduled (non-skipped) downloads; fail with an informative message rather than letting GitHub silently reject an oversized matrix.
 - Check available completed artefacts and skip them by default.
-- Group requested work by site; call existing **NovelFull - Download**, **FreeWebNovel - Download** and the **verified Scribble Hub - Download** reusable workflows. Scribble Hub's `workflow_call` requires explicit `confirm_rights` and only allowlisted same-author cross-posts; only full-book exports are supported.
-- Limit simultaneous novels to at most **three NovelFull**, **two FreeWebNovel** and **one Scribble Hub** jobs.
+- Group requested work by site; call existing **NovelFull - Download**, **FreeWebNovel - Download**, **ReadNovelFull - Download** and the **verified Scribble Hub - Download** reusable workflows. Scribble Hub's `workflow_call` requires explicit `confirm_rights` and only allowlisted same-author cross-posts; only full-book exports are supported.
+- Limit simultaneous novels to at most **three NovelFull**, **two FreeWebNovel**, **one ReadNovelFull** and **one Scribble Hub** jobs.
 - Preserve each child's own chapter batch limits and per-book validation.
 - After **all** children finish, the summary job runs under `if: always()`. If all child groups succeeded or were skipped, it bypasses the duplicate recovery artefact downloads, ZIP validation and repackaging: each completed book already has its independent downloadable artefact. When any child group failed or was cancelled, the `recovery_gate` enables retrieval of every successful `novel-<run-id>-*` artefact. `tools/bulk_recovery.py` then validates source identity, EPUB ZIP CRC, manifest ordering and each TXT SHA-256 before packaging one portable ZIP per complete novel into a seven-day `bulk-successful-novels-<run-id>` recovery artefact, plus a JSON manifest of missing/rejected downloads. Do not remove failure recovery or rewrite the already-finished child artefacts.
 - Never delete independently uploaded successful child artefacts when any other book, registry update or recovery job fails. The overall bulk workflow must still signal failures, without losing verified successes. Recovery has an intentional 1.75 GiB aggregate size safety limit; original child artefacts persist if exceeded.
@@ -393,7 +397,7 @@ Implementation is in `tools/library_bulk.py`:
 - `python -m tools.bulk_stress` runs offline 20/50/100-batch planner and matrix tests, with a 256/257 boundary check. These consume no website requests.
 - `tools/workflow_performance.py` reads GitHub's jobs API under `actions:read` during the bulk summary job and publishes small `bulk-performance-<run-id>` JSON and Markdown timing metrics. The API-only timing collector must never make source-site requests or log tokens; an API error must not fail downloads. Report cumulative **per-phase step seconds** and the **completed-jobs elapsed window** separately: parallel work overlaps and metrics are recorded before the summary job itself finishes.
 - `tools/bulk_recovery.py` stores EPUB/JPEG/PNG members without recompression (ZIP_STORED), but keeps text and JSON compressed, preserving all integrity checks. The outer `bulk-successful-novels-<run-id>` Actions archive uses `compression-level: 0` because it mostly contains already-compressed book ZIPs. Do not change other artefacts' compression to 0 without measurement; TXT chapters can compress very well.
-- NovelFull and FreeWebNovel final assembly workflows already download only `chapter-batch-<key>-*` artefacts for their own novel. Do not label this existing protection as a new optimisation. Avoid increasing site concurrency or reducing polite request pacing until comparable real bulk timing data justifies it.
+- NovelFull, FreeWebNovel and ReadNovelFull final assembly workflows already download only `chapter-batch-<key>-*` artefacts for their own novel. Do not label this existing protection as a new optimisation. Avoid increasing site concurrency or reducing polite request pacing until comparable real bulk timing data justifies it.
 
 Do not create another bulk UI just because a source adds a new adapter. Extend the single planner and dispatch model only after that site's legal, technical and testing requirements are met.
 
@@ -688,9 +692,10 @@ Before writing any live downloader:
 | `.github/workflows/pdf-conversion-ci.yml` | Relevant PR/push paths and manual dispatch | Ubuntu + Windows Python 3.12 PDF tests | Offline synthetic outputs |
 | `.github/workflows/download-novel.yml` | Manual and reusable call | Prepare, bounded chapter batches, assemble, report | Temporary book artefacts and metadata registry PR |
 | `.github/workflows/freewebnovel-download.yml` | Manual and reusable call | Prepare, bounded chapter batches, assemble, report | Temporary book artefacts and metadata registry PR |
+| `.github/workflows/readnovelfull-download.yml` | Manual and reusable call | Discover AJAX chapter list, paced 100-chapter batches, verified EPUB assembly, publish registry | Temporary verified novel artefact; no website workaround |
 | `.github/workflows/scribblehub-download.yml` | Manual and reusable call | Explicit rights gate, verified same-author FicHub cross-post, archive verification | Temporary complete novel artefact and metadata-only registry PR |
 | `.github/workflows/scribblehub-download.yml` | Manual only | Verify rights and registered author cross-post, FicHub export, ZIP validation, artefact assembly and metadata registry | Seven-day complete-novel artefact and metadata-only registry PR; only allowlisted same-author cross-posts |
-| `.github/workflows/library-bulk-download.yml` | Manual | Resolve selections, three site-specific reusable workflows, always-run summary with failure-gated recovery | Avoids duplicate recovery transfers on success; publishes a verified partial-success recovery artefact and retry manifest when any child fails |
+| `.github/workflows/library-bulk-download.yml` | Manual | Resolve selections, four site-specific reusable workflows, always-run summary with failure-gated recovery | Avoids duplicate recovery transfers on success; publishes a verified partial-success recovery artefact and retry manifest when any child fails |
 | `.github/workflows/download-covers.yml` | Manual | Cover-only job | 30-day cover-image artefact; no chapter or registry edits |
 
 Security/operational expectations:
