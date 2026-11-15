@@ -21,7 +21,7 @@ Other sources have restricted or specialised options, not general-purpose websit
 | [Royal Road](https://www.royalroad.com/) | Offline conversion of an already-authorised local EPUB; no enabled site-download workflow |
 | [WTR-Lab](https://wtr-lab.com/) | Offline conversion of an already-authorised local EPUB; no enabled site-download workflow |
 | [Novel Fire](https://novelfire.net/) | Offline feasibility checks only; no website downloader |
-| [Light Novel Pub](https://lightnovelpub.com/) | Offline feasibility checks only; no website downloader |
+| [Light Novel Pub](https://lightnovelpub.com/) | **Site shut down**; successor NovelCodex tracks novels but does not host chapters. Existing offline HTML fixtures only |
 
 **[Website support guide](docs/WEBSITE_SUPPORT.md)** explains the supported URL formats, download limits, available workflows, current verification level and restrictions for **each** site. A working tool does not guarantee that a source currently permits or serves every novel.
 
@@ -107,7 +107,7 @@ A complete book normally contains `source.epub`, `metadata.json`, `chapters.json
 | [Metadata and archive guide](docs/METADATA_GUIDE.md) | Covers, EPUB descriptions, synopsis repair and archive safety |
 | [PDF conversion](docs/PDF_TO_NOVEL.md) | PDF chapter detection, validation and manual corrections |
 | [Source feasibility research](docs/experimental-sources.md) | Royal Road, WTR-Lab, Novel Fire and Light Novel Pub investigations |
-| [Additional website feasibility](docs/ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) | WuxiaClick, AO3, NovelBuddy, LibRead, NovelHi and other new-source candidates |
+| [Additional website feasibility](docs/ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) | Complete 15 Nov 2026 investigation: WuxiaClick, AO3, Royal Road, novel mirrors, site restrictions and live GitHub-runner checks |
 | [AI agent technical handbook](AGENTS.md) | Full architecture, file contracts, implementation and development invariants |
 
 **Only download and archive material you have permission to store.** The project does not bypass source-site restrictions. Never commit novel text, EPUBs, personal files or secrets. GitHub Actions artefacts from a public repository may be accessible to other users.

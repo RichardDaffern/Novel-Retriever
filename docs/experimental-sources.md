@@ -1,6 +1,6 @@
 # Next-site feasibility: Novel Fire and Light Novel Pub
 
-**November 2026 update:** [Additional novel-source feasibility review](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) compares WuxiaClick, AO3, NovelHi, LibRead, NovelBuddy, Royal Road and other candidates. No new downloader was enabled.
+**15 November 2026 verified update:** [Completed multi-site investigation](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) includes two robots-first GitHub Actions probes of WuxiaClick, Royal Road, LibRead, NovelBin and other candidates. **LightNovelPub.com itself has now shut down**; its successor NovelCodex explicitly does **not** host chapter content. This older document records historical/offline evidence only. No additional live source was enabled.
 
 **Status: research and isolated, offline parsing only. No new live downloader is enabled.**
 Last reviewed: 10 November 2026.
@@ -13,7 +13,7 @@ pipelines, downloaded registry, cover ZIP formats, or the unified bulk job.
 | Candidate | Observed public URLs and catalogue | Important constraint | Decision |
 |---|---|---|---|
 | Novel Fire (novelfire.net) | Public book pages use `/book/<slug>`; `/book/<slug>/chapters` lists numbered links such as `/book/martial-world/chapter-1` and `chapter-2`, with paginated indexes | Its own published terms prohibit crawling/scraping and reserve archive exceptions for public search indexing; automated access may also meet challenges | Do not enable chapter crawling or automatic downloading without verified permission |
-| Light Novel Pub (lightnovelpub.com) | Previously indexed novel pages used `/novel/<slug>`, e.g. `/novel/reverend-insanity-05122222` | Site reliability and current chapter URL/content markup could not be verified from live source; permissions and access remain unverified | Do not enable automated chapter downloads until permitted, publicly readable samples have passed validation |
+| Light Novel Pub (lightnovelpub.com) | **Historical** novel URLs used `/novel/<slug>` | **Shut down as of the 15 November live check**; its successor NovelCodex is explicitly a chapter-free tracking site | **No live chapter downloader**; historical saved HTML may still be tested offline |
 | Light Novel World / old lightnovelpub.org | `lightnovelpub.org` now explicitly says it has shut down and migrated to chikari.moe | It is not interchangeable with `lightnovelpub.com`; the new service is not established as a chapter source | Reject the retired domain rather than silently redirecting or assuming equivalence |
 
 Public source references checked:
@@ -21,7 +21,8 @@ Public source references checked:
 - Novel Fire sample book: https://novelfire.net/book/martial-world
 - Novel Fire numbered catalogue: https://novelfire.net/book/martial-world/chapters
 - Novel Fire terms: https://novelfire.net/page/terms-of-service
-- Previously indexed Light Novel Pub: https://lightnovelpub.com/
+- Former Light Novel Pub (shutdown notice): https://lightnovelpub.com/
+- Successor tracking-only site: https://www.novelcodex.com/
 - Old Light Novel World shutdown notice: https://lightnovelpub.org/
 
 The terms and website layouts can change. Website reachability alone is
@@ -48,9 +49,7 @@ To inspect up to two chapters **only if permitted and already saved**:
 python -m tools.source_feasibility "https://novelfire.net/book/martial-world" --book-html "book.html" --index-html "chapters.html" --chapter-html "chapter1.html" --chapter-html "chapter2.html" --confirm-rights
 ```
 
-Replace the book URL with a valid `https://lightnovelpub.com/novel/<slug>`
-and use that book's saved pages to test Light Novel Pub. Do not treat old
-cached source pages as a successful test of present-day download access.
+For Light Novel Pub, **use only HTML saved before the shutdown**, with a historically valid `https://lightnovelpub.com/novel/<slug>` as provenance. Its current site no longer hosts chapters. Do not attempt new live downloads or treat cached HTML as proof of present-day access.
 The tool never requests websites and cannot bypass login/challenges.
 
 ## Acceptance criteria before any full downloader

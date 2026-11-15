@@ -637,7 +637,7 @@ Different sites have different technical and permission restrictions. A parser e
 | WTR-Lab | Offline feasibility and authorised local EPUB import | No automated website downloader enabled |
 | Scribble Hub | Authorised offline EPUB import; **one** verified same-author FFN cross-post via FicHub | Direct Scribble Hub HTTP 403; no general site downloader or bulk menu |
 | Novel Fire | Offline saved-HTML feasibility only | No automated novel crawling; respect published restrictions |
-| Light Novel Pub | Offline saved-HTML feasibility only | No full downloader enabled |
+| Light Novel Pub | **Shut-down source**; historical saved-HTML parser only | No new live download support; successor NovelCodex does not host chapters |
 | WebNovel | Read-only public metadata, HTTP/browser feasibility, constrained two-public-chapter tests, authorised saved-page/JSON/TXT imports | No unrestricted WebNovel all-chapter downloader, no locked content or challenge bypass |
 | Local selectable-text PDF | Production offline conversion | Source review, no OCR |
 | Authorised local EPUB | Production offline conversion | Source identity and archive validation |
@@ -909,7 +909,8 @@ When changing a subsystem, also consult the relevant living guide:
 
 - `README.md`: general operation and latest end-user instructions.
 - `PDF-to-Novel/README.md` and `docs/PDF_TO_NOVEL.md`: one-click Windows conversion, boundary overrides and validation reports.
-- `docs/experimental-sources.md`: detailed decisions and restrictions for Novel Fire, Light Novel Pub, WTR-Lab and Royal Road.
+- `docs/experimental-sources.md`: historical/offline analysis for Novel Fire, Light Novel Pub, WTR-Lab and Royal Road.
+- `docs/ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md`: complete, evidence-linked 15 November 2026 candidate matrix with GitHub Actions robots-first reachability runs, blockers and required rights gates. Do not re-enable shut-down/restricted domains or silently add new website options.
 - `tools/FREEWEBNOVEL_FEASIBILITY.md`: initial FreeWebNovel two-chapter compatibility research.
 - `tools/WEBNOVEL_BROWSER_PROBE.md`: ordinary browser feasibility and challenge stop conditions.
 - `tools/WEBNOVEL_PUBLIC_TWO_CHAPTER.md`: bounded public chapter probe.
