@@ -49,10 +49,10 @@ permissions:
   pull-requests: write
   actions: read
 
-# Different novels may run together. Duplicate runs for the same exact URL
-# queue rather than interrupting ongoing downloads.
+# Queue all WuxiaClick source jobs rather than parallelising independent
+# books/runs against the site's strict offline download allowance.
 concurrency:
-  group: wuxiaclick-download-${{ inputs.novel_url }}
+  group: wuxiaclick-download-shared
   cancel-in-progress: false
   queue: max
 
