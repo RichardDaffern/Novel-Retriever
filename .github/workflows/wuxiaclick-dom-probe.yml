@@ -1,0 +1,57 @@
+name: Temporary - WuxiaClick DOM Discovery
+on:
+  push:
+    branches: [feature/wuxiaclick-bounded-download-20261115]
+    paths: [.github/workflows/wuxiaclick-dom-probe.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - run: python -m pip install beautifulsoup4==4.14.2
+      - shell: bash
+        run: |
+          python -u - <<'PY'
+          from bs4 import BeautifulSoup
+          import re,time
+          from urllib.request import Request,build_opener,HTTPRedirectHandler
+          from urllib.parse import urlsplit,parse_qs,urljoin
+          from urllib.robotparser import RobotFileParser
+          class NoRedirect(HTTPRedirectHandler):
+              def redirect_request(self,req,fp,code,msg,h,newurl): return None
+          client=build_opener(NoRedirect())
+          ua="NovelLibraryFeasibility/1.0 (github.com/RichardDaffern/Novel_Library)"
+          def fetch(url):
+              with client.open(Request(url,headers={"User-Agent":ua}),timeout=15) as f:
+                  data=f.read(800000)
+                  return data.decode("utf-8","replace")
+          rp=RobotFileParser()
+          rp.parse(fetch("https://wuxia.click/robots.txt").splitlines())
+          def compact_tag(x):
+              if x is None:return None
+              return f"{x.name}.{'.'.join(x.get('class',[]))}#{x.get('id','')}"
+          for slug in ("martial-world","true-martial-world"):
+              book=f"https://wuxia.click/novel/{slug}"
+              if not rp.can_fetch(ua,book):continue
+              for pg in (1,2,23 if slug=="martial-world" else 18):
+                  url=book if pg==1 else book+f"?page={pg}#chapters"
+                  if not rp.can_fetch(ua,url):continue
+                  time.sleep(1)
+                  soup=BeautifulSoup(fetch(url),"html.parser")
+                  anchors=[a for a in soup.select('a[href]')
+                    if re.fullmatch(r'/chapter/'+slug+r'-\d+',urlsplit(urljoin(book,a.get('href',''))).path)]
+                  counts=re.findall(r"([\d,]+) chapters?, numbered ([\d,]+).([\d,]+)",soup.get_text(" ",strip=True),re.I)
+                  print("BOOK",slug,"PAGE",pg,"CHAPTER_ANCHORS",len(anchors),"COUNTS",counts[:1])
+                  if not anchors:continue
+                  for label,a in (("first",anchors[0]),("second",anchors[1]),("last",anchors[-1])):
+                      print(label,"path",a.get("href"),"text",a.get_text(" ",strip=True)[:95],"a",compact_tag(a),
+                            "parent",compact_tag(a.parent),"gparent",compact_tag(a.parent.parent),
+                            "ggparent",compact_tag(a.parent.parent.parent))
+                  if pg==1:
+                      print("META title",repr((soup.select_one("h1") or soup).get_text(" ",strip=True)[:100]))
+                      for sel in ("meta[name=description]","meta[property='og:description']",".prose","[data-testid]","#chapters",".chapter-list","[id*=chapter]","[class*=chapter]","[class*=synopsis]","[class*=description]"):
+                          x=soup.select_one(sel)
+                          if x is not None:print("META selector",sel,"tag",compact_tag(x),"text_len",len(x.get_text(" ",strip=True)),"meta-content",repr(str(x.get("content",""))[:95]))
+          PY
