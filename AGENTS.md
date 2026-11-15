@@ -379,16 +379,16 @@ This example makes live source requests. **Do not use it in deterministic CI or 
 
 `.github/workflows/library-bulk-download.yml` is named **Library - Bulk Download** and is the single user-facing bulk workflow.
 
-The user chooses **All**, **NovelFull**, **FreeWebNovel**, **ReadNovelFull** or **Scribble Hub**, and enters one or more saved novel names or exact source URLs. The input may combine names and URLs. A chapter range can optionally apply to the selection, and `force` bypasses an available-artifact skip.
+The user pastes **one or more supported novel URLs**, including a mixed list of NovelFull, FreeWebNovel and ReadNovelFull links, into the first **Novel links** field. The source is automatically detected per URL. There is **no website dropdown** in GitHub Actions; users can optionally add saved novel names and a chapter range. `force` bypasses an available-artifact skip. Scribble Hub author-verified cross-posts require a separate rights confirmation and a whole-book range.
 
 Implementation is in `tools/library_bulk.py`:
 
 - Resolve names from the downloaded registry and `novel_sources.json`.
 - Reject unknown or ambiguous names rather than guessing which book is meant.
-- Validate each URL's source site, path and the selected website filter.
+- Validate each URL's source site and recognised book path; auto-route by validated domain. No website selection is supplied by the manual GitHub Actions form. The deprecated optional `--website` CLI filter is retained for existing automation only.
 - No arbitrary ten-novel limit. Respect the GitHub Actions **256-job matrix limit** for scheduled (non-skipped) downloads; fail with an informative message rather than letting GitHub silently reject an oversized matrix.
 - Check available completed artefacts and skip them by default.
-- Group requested work by site; call existing **NovelFull - Download**, **FreeWebNovel - Download**, **ReadNovelFull - Download** and the **verified Scribble Hub - Download** reusable workflows. Scribble Hub's `workflow_call` requires explicit `confirm_rights` and only allowlisted same-author cross-posts; only full-book exports are supported.
+- Group mixed-source links automatically by site; call existing **NovelFull - Download**, **FreeWebNovel - Download**, **ReadNovelFull - Download** and the **verified Scribble Hub - Download** reusable workflows. Scribble Hub's `workflow_call` requires explicit `confirm_rights` and only allowlisted same-author cross-posts; only full-book exports are supported.
 - Limit simultaneous novels to at most **three NovelFull**, **two FreeWebNovel**, **one ReadNovelFull** and **one Scribble Hub** jobs.
 - Preserve each child's own chapter batch limits and per-book validation.
 - After **all** children finish, the summary job runs under `if: always()`. If all child groups succeeded or were skipped, it bypasses the duplicate recovery artefact downloads, ZIP validation and repackaging: each completed book already has its independent downloadable artefact. When any child group failed or was cancelled, the `recovery_gate` enables retrieval of every successful `novel-<run-id>-*` artefact. `tools/bulk_recovery.py` then validates source identity, EPUB ZIP CRC, manifest ordering and each TXT SHA-256 before packaging one portable ZIP per complete novel into a seven-day `bulk-successful-novels-<run-id>` recovery artefact, plus a JSON manifest of missing/rejected downloads. Do not remove failure recovery or rewrite the already-finished child artefacts.
@@ -695,7 +695,7 @@ Before writing any live downloader:
 | `.github/workflows/readnovelfull-download.yml` | Manual and reusable call | Discover AJAX chapter list, paced 100-chapter batches, verified EPUB assembly, publish registry | Temporary verified novel artefact; no website workaround |
 | `.github/workflows/scribblehub-download.yml` | Manual and reusable call | Explicit rights gate, verified same-author FicHub cross-post, archive verification | Temporary complete novel artefact and metadata-only registry PR |
 | `.github/workflows/scribblehub-download.yml` | Manual only | Verify rights and registered author cross-post, FicHub export, ZIP validation, artefact assembly and metadata registry | Seven-day complete-novel artefact and metadata-only registry PR; only allowlisted same-author cross-posts |
-| `.github/workflows/library-bulk-download.yml` | Manual | Resolve selections, four site-specific reusable workflows, always-run summary with failure-gated recovery | Avoids duplicate recovery transfers on success; publishes a verified partial-success recovery artefact and retry manifest when any child fails |
+| `.github/workflows/library-bulk-download.yml` | Manual, one recommended download form | Accept mixed novel URLs and names, auto-detect sites, call four reusable workflows, always-run summary with failure-gated recovery | No website dropdown; avoids duplicate recovery transfers on success; preserves partial-failure artefacts and retry manifest |
 | `.github/workflows/download-covers.yml` | Manual | Cover-only job | 30-day cover-image artefact; no chapter or registry edits |
 
 Security/operational expectations:
@@ -721,7 +721,7 @@ Security/operational expectations:
 | `tests/test_chunked_download.py` | Batch planning, counts, piece identity, complete/reused artefacts, assembly, synopsis/cover/genre metadata |
 | `tests/test_download_registry.py` | Canonical URL and range handling, expiry and completed record logic |
 | `tests/test_publish_registry.py` | Latest-main metadata publishing, merge races and retry behaviour |
-| `tests/test_library_bulk.py`, `tests/test_bulk_download.py` | Name/URL selection, website grouping, deduplication, error handling |
+| `tests/test_library_bulk.py`, `tests/test_bulk_download.py` | Mixed-source URLs, automatic grouping with no UI site selection, deduplication and error handling |
 | `tests/test_freewebnovel_probe.py`, `tests/test_freewebnovel_downloader.py` | Public-site parser, boundaries, lock/challenge detection and complete ranges |
 | `tests/test_epub_source_metadata.py` | OPF description/genre/status extraction |
 | `tests/test_novel_covers.py` | Cover limits, safe book/image URL policy, EPUB cover handling |
