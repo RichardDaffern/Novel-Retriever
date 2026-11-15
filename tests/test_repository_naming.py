@@ -75,12 +75,17 @@ class RepositoryNamingTests(unittest.TestCase):
         )
         for folder in (ROOT / "tools", ROOT / "tests"):
             for source in folder.rglob("*.py"):
+                if source.resolve() == Path(__file__).resolve():
+                    continue
                 body = source.read_text(encoding="utf-8")
                 for name in old_names:
                     with self.subTest(file=str(source.relative_to(ROOT)), name=name):
                         # Match full unqualified import, not a substring of
                         # a valid renamed identifier.
-                        self.assertNotIn(name, body, f"Stale reference {name} in {source}")
+                        stale = re.search(
+                            r"(?<![A-Za-z0-9_])" + re.escape(name)
+                            + r"(?![A-Za-z0-9_])", body)
+                        self.assertIsNone(stale, f"Stale reference {name} in {source}")
 
 
 if __name__ == "__main__":
