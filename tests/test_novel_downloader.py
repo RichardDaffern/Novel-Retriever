@@ -8,7 +8,7 @@ from unittest.mock import patch
 import zipfile
 
 from novel_downloader import export_epub, epub_chapters, main, slugify, validate_url, run_fanficfare, parse_chapter_range
-from fanficfare_progress_runner import _checkpoint_chapter, progress_reporter
+from tools.fanficfare_progress_runner import _checkpoint_chapter, progress_reporter
 
 
 class NovelDownloaderTests(unittest.TestCase):
