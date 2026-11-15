@@ -2,7 +2,7 @@
 
 > **Maintained against the Novel_Library implementation, 15 November 2026.** This page describes **which sources this repository can download from**, versus which it can only investigate or import from pre-existing files. Website access and authorisation can change; the presence of code is not a guarantee that a particular live novel downloads successfully.
 
-Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.md) · [Experimental source research](experimental-sources.md)
+Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.md) · [Experimental source research](experimental-sources.md) · [New-source feasibility (15 Nov 2026)](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md)
 
 ## At a glance
 
