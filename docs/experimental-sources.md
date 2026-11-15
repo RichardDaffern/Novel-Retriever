@@ -1,5 +1,7 @@
 # Next-site feasibility: Novel Fire and Light Novel Pub
 
+**November 2026 update:** [Additional novel-source feasibility review](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) compares WuxiaClick, AO3, NovelHi, LibRead, NovelBuddy, Royal Road and other candidates. No new downloader was enabled.
+
 **Status: research and isolated, offline parsing only. No new live downloader is enabled.**
 Last reviewed: 10 November 2026.
 
