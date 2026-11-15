@@ -6,7 +6,7 @@ import unittest
 from novel_downloader import epub_chapters
 from tools.library_bulk import selection_plan
 from tools.download_registry import website_name
-from tools.wuxiaclick_source import SourceError, discover, extract_chapter, validate_book_url
+from tools.wuxiaclick_source import SourceError, discover, extract_chapter, validate_book_url, _index_rows
 from tools.wuxiaclick_downloader import DownloadError, download_range
 from tools.wuxiaclick_chunks import plan_download
 
@@ -71,6 +71,23 @@ class SourceTests(unittest.TestCase):
         with self.assertRaisesRegex(SourceError, "Locked"):
             extract_chapter(chapter("Chapter 0", "unlock this chapter " + WORDS),
                             source_number=1, title="Chapter 0")
+
+    def test_comma_formatted_final_chapter_and_optional_title_prefix(self):
+        page = book([(1710, "Epilogue: Every Ending Is Also A Beginning")], 1)
+        page = page.replace(
+            "Chapter 1710 , Epilogue",
+            "Chapter 1,710 , Epilogue",
+        )
+        _, rows, _ = _index_rows(page, URL)
+        self.assertEqual(rows[0]["source_number"], 1710)
+        self.assertEqual(rows[0]["title"], "Epilogue: Every Ending Is Also A Beginning")
+        self.assertTrue(extract_chapter(
+            chapter("Chapter 1 - Grave of Yi Yun"),
+            source_number=1, title="Grave of Yi Yun",
+        )["text"])
+        with self.assertRaisesRegex(SourceError, "identity"):
+            extract_chapter(chapter("Chapter 1 - Wrong Story"),
+                            source_number=1, title="Grave of Yi Yun")
 
     def test_epub_checkpoint_and_limits(self):
         rows = [(1, "Chapter 0 - Magic Cube"), (2, "Chapter 1 - Lin Ming")]
