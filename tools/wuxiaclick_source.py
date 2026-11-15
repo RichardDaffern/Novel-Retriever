@@ -214,7 +214,7 @@ def _index_rows(page: str, book_url: str) -> tuple[str, list[dict], set[int]]:
             raise SourceError("Empty chapter label")
         # The public TOC renders 'Chapter <source-id> , <actual title> DATE'.
         # Chapter 0 may be source URL -1, and an afterword may be unnumbered.
-        title = re.sub(r"(?i)^chapter\s+\d+\s*[,;:]\s*", "", label).strip()
+        title = re.sub(r"(?i)^chapter\s+[\d,]+\s*[,;:]\s*", "", label).strip()
         title = re.sub(
             r"\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
             r"\s+[0-9]{1,2},\s+[0-9]{4}$", "", title, flags=re.I).strip()
@@ -285,7 +285,13 @@ def extract_chapter(page: str, *, title: str, source_number: int) -> dict:
     # the heading numeral to the URL suffix or reading-position ordinal.
     def norm(text: str) -> str:
         return re.sub(r"\W+", "", text.casefold())
-    if norm(observed) != norm(title):
+    def without_chapter_number(text: str) -> str:
+        return re.sub(r"(?i)^chapter\s+[\d,]+\s*[-:\u2013\u2014]\s*", "", text).strip()
+    # Some TOC labels omit the in-text "Chapter N -" prefix while the page
+    # heading retains it. Normalise only this prefix, not arbitrary words.
+    if (norm(observed) != norm(title)
+            and norm(without_chapter_number(observed)) != norm(title)
+            and norm(observed) != norm(without_chapter_number(title))):
         raise SourceError(
             f"Chapter identity mismatch for source chapter {source_number}")
     node = soup.select_one("#chapter-content")
