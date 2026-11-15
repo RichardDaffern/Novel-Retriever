@@ -81,7 +81,7 @@ The website's [October 2026 update](https://wuxia.click/blog/pick-up-where-you-l
 
 The parser verifies all linked catalogue pages and their exact ordered chapter URLs rather than guessing URL numbers. Display headings can have different chapter numbers from URL suffixes, and some novels contain chapter-number gaps. The HTML reader requires `#chapter-content` and rejects missing, short, locked, repeated or mismatched chapters. Each verified range produces the existing EPUB/TXT/metadata/manifest format, with a checkpoint retained after failures. Robots restrictions, redirects, challenges and request failures stop the process. No login/session/cookie or download-allowance bypass is implemented.
 
-**Tests:** Synthetic regression fixtures cover URL validation, missing pages, numbered offsets, EPUB assembly, checkpoint recovery and mixed source bulk planning. [Live all-page catalogue test](https://github.com/RichardDaffern/Novel_Library/actions/runs/43729861621) verified 2,276 chapters for *Martial World* and 1,709 for *True Martial World*. No full-book live EPUB output has been verified or claimed.
+**Tests:** Synthetic regression fixtures cover URL validation, missing pages, numbered offsets, EPUB assembly, checkpoint recovery and mixed source bulk planning. [Live all-page catalogue test (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md) verified 2,276 chapters for *Martial World* and 1,709 for *True Martial World*. No full-book live EPUB output has been verified or claimed.
 
 ### Single or multiple novels
 
