@@ -182,6 +182,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/dungeon-hunter.html",
+      "title": "Dungeon Hunter",
+      "author": "Onhu",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 171,
+          "run_id": 43734393507,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507",
+          "artifact_id": 14170676589,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14170676589",
+          "completed_at_utc": "2026-11-15T16:39:21Z",
+          "expires_at_utc": "2026-11-22T16:39:21Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/emperors-domination.html",
       "title": "Emperor’s Domination",
       "author": "Yan Bi Xiao Sheng",
