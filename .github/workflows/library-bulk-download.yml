@@ -21,7 +21,7 @@ on:
         type: boolean
         default: false
       confirm_rights:
-        description: 'Required for WuxiaClick or Scribble Hub: I have archiving rights'
+        description: 'WuxiaClick/Scribble Hub: I have rights to archive and share artefacts'
         required: false
         type: boolean
         default: false
