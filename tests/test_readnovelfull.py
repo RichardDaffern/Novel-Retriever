@@ -23,6 +23,7 @@ PAGE = f"""<html><h3 class="title">Cultivation Online</h3>
 <div id="rating" data-novel-id="2572"></div><ul class="info-meta">
 <li>Genre: <a>Action</a><a>Romance</a></li>
 <li>Author: Mylittlebrother</li><li>Status: Ongoing</li></ul>
+<div class="desc">Cultivation Online</div>
 <div class="desc-text">An invented synopsis for offline tests.</div>
 <ul class="list-chapter"><li><a href="{CH1}">Chapter 1</a></li>
 <li><a href="{CH2}">Chapter 2</a></li></ul></html>"""
@@ -73,6 +74,7 @@ class ReadNovelFullTests(unittest.TestCase):
         self.assertEqual([x["url"] for x in details["chapters"]], [CH1, CH2])
         self.assertEqual(details["genres"], ["Action", "Romance"])
         self.assertEqual(details["status"], "Ongoing")
+        self.assertEqual(details["description"], "An invented synopsis for offline tests.")
 
     def test_refuse_invalid_archive_or_wrong_identity(self):
         with self.assertRaisesRegex(SourceError, "missing"):
@@ -92,6 +94,12 @@ class ReadNovelFullTests(unittest.TestCase):
         self.assertNotIn("ADVERTISEMENT", found["text"])
         with self.assertRaisesRegex(SourceError, "Expected Chapter 2"):
             extract_chapter(html_chapter(1), number=2, title="Chapter 2")
+        # Real chapter pages show the book title in h1 and chapter number in h2.
+        with self.assertRaisesRegex(SourceError, "Expected Chapter 2"):
+            extract_chapter(
+                '<h1>Cultivation Online</h1><h2>Chapter 1: Prologue</h2>'
+                '<div id="chr-content"><p>' + TEXT + '</p></div>',
+                number=2, title="Chapter 2")
         with self.assertRaisesRegex(SourceError, "locked"):
             extract_chapter('<div id="chr-content">Unlock this chapter</div>', number=1, title="Chapter 1")
         with self.assertRaises(SourceError):
