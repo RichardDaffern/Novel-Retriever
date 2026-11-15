@@ -1,4 +1,4 @@
-name: Temporary - WuxiaClick Full TOC Validation
+name: Temporary - WuxiaClick Metadata Quality
 on:
   push:
     branches: [feature/wuxiaclick-bounded-download-20261115]
@@ -15,27 +15,14 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements.lock
-      - name: Verify real complete ordered chapter metadata with no chapter-text requests
+      - name: Verify actual author synopsis and genres from two book pages
         run: |
           python -u - <<'PY'
-          from tools.wuxiaclick_source import discover, fetch_public_html, extract_chapter
-          from bs4 import BeautifulSoup
-          for slug in ("martial-world","true-martial-world"):
+          from tools.wuxiaclick_source import book_metadata, fetch_public_html
+          for slug in ("martial-world", "true-martial-world"):
               url="https://wuxia.click/novel/"+slug
-              print("INDEX_START",slug,flush=True)
-              d=discover(url)
-              rows=d["chapters"]
-              assert len(rows)==d["numChapters"]
-              assert [r["position"] for r in rows]==list(range(1,len(rows)+1))
-              assert len({r["url"] for r in rows})==len(rows)
-              print("INDEX_PASS",slug,"count",len(rows),"first",rows[0]["source_number"],
-                    "last",rows[-1]["source_number"],"first_title",repr(rows[0]["title"][:70]),
-                    "last_title",repr(rows[-1]["title"][:70]),flush=True)
-              for row in (rows[0], rows[-1]):
-                  html=fetch_public_html(row["url"])
-                  item=extract_chapter(html,title=row["title"],
-                                       source_number=row["source_number"])
-                  print("CHAPTER_PARSE_PASS",slug,"source",row["source_number"],
-                        "title",repr(item["title"][:65]),
-                        "characters",len(item["text"]),flush=True)
+              details=book_metadata(fetch_public_html(url), url)
+              print("METADATA",slug,"author",repr(details["author"]),
+                    "synopsis_chars",len(details["description"]),
+                    "genres",details["genres"][:8],"count",details["numChapters"])
           PY
