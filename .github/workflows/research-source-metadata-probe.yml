@@ -1,0 +1,82 @@
+name: Temporary - Research Source Metadata Probe
+
+on:
+  push:
+    branches:
+      - research/full-source-feasibility-20261115
+    paths:
+      - .github/workflows/research-source-metadata-probe.yml
+
+permissions:
+  contents: read
+
+jobs:
+  metadata-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check robots and public metadata reachability without novel text
+        shell: bash
+        run: |
+          python - <<'PY'
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          import urllib.robotparser
+          import ssl
+          import time
+
+          USER_AGENT = "NovelLibraryFeasibility/1.0 (metadata-only; github.com/RichardDaffern/Novel_Library)"
+          TARGETS = (
+              ("wuxia.click", "https://wuxia.click/novel/martial-world"),
+              ("royalroad.com", "https://www.royalroad.com/fiction/21220/mother-of-learning"),
+              ("libread.com", "https://libread.com/libread/re-tales-of-the-rune-tech-sage-22188"),
+              ("novelbin.com", "https://novelbin.com/"),
+              ("boxnovel.com", "https://boxnovel.com/"),
+              ("novelgo.id", "https://novelgo.id/"),
+              ("novelarrow.com", "https://novelarrow.com/"),
+              ("novelping.com", "https://novelping.com/"),
+              ("novelbin.cc", "https://novelbin.cc/"),
+              ("lightnovelpub.com", "https://lightnovelpub.com/"),
+          )
+          def fetch(url, method="GET", maxbytes=12000):
+              req = urllib.request.Request(url, method=method, headers={
+                  "User-Agent": USER_AGENT,
+                  "Accept": "text/plain" if url.endswith("/robots.txt") else "text/html",
+              })
+              try:
+                  with urllib.request.urlopen(req, timeout=8) as res:
+                      status, final = res.status, res.geturl()
+                      typ = (res.headers.get("content-type") or "").split(";")[0]
+                      data = res.read(maxbytes) if method == "GET" else b""
+                      return status, final, typ, data
+              except urllib.error.HTTPError as exc:
+                  return exc.code, exc.geturl(), "", b""
+              except (urllib.error.URLError, TimeoutError, ssl.SSLError) as exc:
+                  return type(exc).__name__, url, "", b""
+
+          for name, book in TARGETS:
+              host = urllib.parse.urlsplit(book).hostname
+              robots = f"https://{host}/robots.txt"
+              status, final, typ, body = fetch(robots)
+              print(f"SOURCE {name} ROBOTS {status} FINAL_HOST {urllib.parse.urlsplit(final).hostname}")
+              if status == 200:
+                  parser = urllib.robotparser.RobotFileParser()
+                  parser.parse(body.decode("utf-8", errors="replace").splitlines())
+                  allowed = parser.can_fetch(USER_AGENT, book)
+                  if not allowed:
+                      print(f"SOURCE {name} HEAD skipped: robots disallow")
+                      continue
+              elif status == 404:
+                  # Missing robots file is not permission to archive content.
+                  print(f"SOURCE {name} ROBOTS unavailable (404), checking HEAD only")
+              else:
+                  print(f"SOURCE {name} HEAD skipped: robots status not verified")
+                  continue
+              code, to, content_type, _ = fetch(book, method="HEAD")
+              print(
+                  f"SOURCE {name} HEAD {code} CONTENT_TYPE {content_type!r}"
+                  f" FINAL_HOST {urllib.parse.urlsplit(to).hostname}"
+              )
+              time.sleep(0.5)
+          PY
