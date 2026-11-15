@@ -10,15 +10,18 @@ from __future__ import annotations
 
 import re
 import time
+from functools import lru_cache
 from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
+from urllib.robotparser import RobotFileParser
 
 from bs4 import BeautifulSoup
 
 HOST = "wuxia.click"
 BOOK = re.compile(r"^/novel/([a-z0-9]+(?:-[a-z0-9]+)*)$")
 CHAPTER = re.compile(r"^/chapter/([a-z0-9]+(?:-[a-z0-9]+)*)-([1-9][0-9]*)$")
+USER_AGENT = "NovelLibraryWuxiaClick/1.0 (github.com/RichardDaffern/Novel_Library)"
 MAX_HTML = 3 * 1024 * 1024
 MAX_PAGES = 250
 MAX_CHAPTERS = 20000
@@ -76,6 +79,27 @@ class NoRedirect(HTTPRedirectHandler):
         raise SourceError("Unexpected redirect; no access workaround attempted")
 
 
+@lru_cache(maxsize=1)
+def _robots() -> RobotFileParser:
+    """Fail closed if the site's current robots rules cannot be verified."""
+    try:
+        with build_opener(NoRedirect()).open(Request(
+            "https://" + HOST + "/robots.txt",
+            headers={"User-Agent": USER_AGENT, "Accept": "text/plain"},
+        ), timeout=15) as response:
+            if response.status != 200 or response.headers.get_content_type() not in (
+                    "text/plain", "text/html"):
+                raise SourceError("Unable to verify WuxiaClick robots rules")
+            raw = response.read(128001)
+            if len(raw) > 128000:
+                raise SourceError("Robots policy exceeds size limit")
+    except (HTTPError, URLError) as exc:
+        raise SourceError("WuxiaClick robots policy unavailable; stopped") from exc
+    rules = RobotFileParser()
+    rules.parse(raw.decode("utf-8-sig", errors="replace").splitlines())
+    return rules
+
+
 def fetch_public_html(url: str) -> str:
     p = _parts(url)
     if BOOK.fullmatch(p.path):
@@ -92,9 +116,11 @@ def fetch_public_html(url: str) -> str:
         pass
     else:
         raise SourceError("Refusing non-book/non-chapter URL")
+    if not _robots().can_fetch(USER_AGENT, url):
+        raise SourceError("Site robots policy does not permit this URL; stopped")
     try:
         with build_opener(NoRedirect()).open(Request(url, headers={
-            "User-Agent": "NovelLibraryWuxiaClick/1.0",
+            "User-Agent": USER_AGENT,
             "Accept": "text/html",
         }), timeout=25) as response:
             if response.status != 200 or response.headers.get(
