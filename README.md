@@ -18,7 +18,7 @@ Prefer a dedicated Action when downloading from one particular website.
 | [WuxiaClick](https://wuxia.click/) | [WuxiaClick - Download](.github/workflows/wuxiaclick-download.yml) | Authorised ranges of up to **20 chapters**; full-book export disabled |
 | [Scribble Hub](https://www.scribblehub.com/) | [Scribble Hub - Download](.github/workflows/scribblehub-download.yml) | Only the verified author cross-post, series `445037` |
 
-**Note:** WuxiaClick and Scribble Hub require explicit rights confirmation. Respect WuxiaClick’s daily offline-download allowance, including across separate runs. [Website restrictions and supported URL formats](docs/WEBSITE_SUPPORT.md).
+**Note:** WuxiaClick and Scribble Hub require explicit rights confirmation. Respect WuxiaClick’s daily offline-download allowance, including across separate runs. [Website restrictions and supported URL formats](docs/website-support.md).
 
 ## Collect completed novels on Windows
 
@@ -38,10 +38,10 @@ The self-test uses invented chapters and makes no novel-site requests.
 
 ## Other tools and guides
 
-- [PDF to novel ZIP](docs/PDF_TO_NOVEL.md) via [Convert-PDFs.cmd](PDF-to-Novel/Convert-PDFs.cmd)
-- [Import an authorised local EPUB](docs/WEBSITE_SUPPORT.md) and [manage covers/metadata](docs/METADATA_GUIDE.md)
-- [Download guide, chapter batching and troubleshooting](docs/DOWNLOAD_GUIDE.md)
-- [Source research and unsupported sites](docs/ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md)
+- [PDF to novel ZIP](docs/pdf-to-novel.md) via [Convert-PDFs.cmd](PDF-to-Novel/Convert-PDFs.cmd)
+- [Import an authorised local EPUB](docs/website-support.md) and [manage covers/metadata](docs/metadata-guide.md)
+- [Download guide, chapter batching and troubleshooting](docs/download-guide.md)
+- [Source research and unsupported sites](docs/research/source-feasibility-2026-11-15.md)
 - [Technical handbook for contributors and AI agents](AGENTS.md)
 
 Only archive material you have permission to store **and share through GitHub Actions artefacts**. The toolkit does not bypass website access restrictions. Never commit novel text, EPUBs or secrets.

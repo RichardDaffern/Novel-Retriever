@@ -52,7 +52,7 @@ Conceptual data flow:
 ~~~text
 Authorised source book / user-supplied EPUB / user-supplied PDF
                |
-               +--> NovelFull via FanFicFare + fff_progress_runner.py
+               +--> NovelFull via FanFicFare + fanficfare_progress_runner.py
                |       |
                |       +--> individual verified chapter-range jobs
                |       +--> cached complete range reuse (when available)
@@ -99,14 +99,14 @@ This section is a navigation map, not an exhaustive list of every test.
 | `README.md` | Main user guide and up-to-date operational instructions | Update when behaviour or commands change |
 | `AGENTS.md` | This detailed agent/contributor reference | Keep aligned with executable source |
 | `novel_downloader.py` | Main FanFicFare-backed direct downloader; EPUB spine parsing, chapters, staging and identity safety | High: common library functions used by several tools |
-| `fff_progress_runner.py` | FanFicFare callback wrapper for chapter progress and temporary chapter checkpoints | High: partial-download resilience |
+| `fanficfare_progress_runner.py` | FanFicFare callback wrapper for chapter progress and temporary chapter checkpoints | High: partial-download resilience |
 | `tools/chunked_download.py` | NovelFull range planning, caching, batch validation, EPUB assembly | High: completeness, ordering, metadata and artifact reuse |
 | `tools/freewebnovel_downloader.py` | Separate public-page sequential FreeWebNovel range downloader | High: site restrictions and fail-closed parser |
 | `tools/freewebnovel_chunks.py` | FreeWebNovel workflow orchestration using shared batch APIs | High: keep independent from NovelFull |
 | `tools/download_registry.py` | Canonical URLs, ranges, availability, registry records and Markdown rendering | High: previously downloaded book selection |
 | `tools/publish_registry.py` | Retryable optimistic registry PR publishing on the latest `main` | High: concurrent download completion |
-| `tools/library_bulk.py` | Single consolidated bulk workflow planning by names or URLs, grouped by site | High: avoid incorrect title-to-URL guessing |
-| `tools/bulk_download.py` | General local/multiple-URL planning and execution utilities | Maintain tests even if a newer workflow path is preferred |
+| `tools/mixed_source_bulk.py` | Single consolidated bulk workflow planning by names or URLs, grouped by site | High: avoid incorrect title-to-URL guessing |
+| `tools/sequential_bulk_download.py` | General local/multiple-URL planning and execution utilities | Maintain tests even if a newer workflow path is preferred |
 | `tools/epub_source_metadata.py` | Recover source EPUB description, genres and publication status from OPF | Preserve data instead of deriving it from novel prose |
 | `tools/novel_covers.py` | Image detection, public URL restrictions, image limits, EPUB cover extraction | Covers are optional and untrusted image input |
 | `tools/download_covers.py` | Cover-only collection from existing registry Markdown | Never download/rewrite chapter text |
@@ -120,13 +120,13 @@ This section is a navigation map, not an exhaustive list of every test.
 | `PDF-to-Novel/Convert-PDFs.cmd` | Windows entry point for batch PDF conversion | Preserve relative paths, confirmation and pause |
 | `PDF-to-Novel/PDFs/` | Local PDF inputs; gitignored | Do not commit books |
 | `PDF-to-Novel/Novels/` | Local converted ZIPs and reports; gitignored | Do not commit books |
-| `docs/PDF_TO_NOVEL.md` | PDF structure, manual review, limitations | Read before changing PDF heuristics |
-| `docs/experimental-sources.md` | Source permissions and research decisions | Read before introducing new sites |
+| `docs/pdf-to-novel.md` | PDF structure, manual review, limitations | Read before changing PDF heuristics |
+| `docs/research/experimental-sources.md` | Source permissions and research decisions | Read before introducing new sites |
 | `tools/WEBNOVEL_*.md` | WebNovel feasibility and locally saved import instructions | Do not mistake prototypes for production scrapers |
-| `tools/FREEWEBNOVEL_FEASIBILITY.md` | Early two-chapter public compatibility notes | The working full-range implementation lives elsewhere |
+| `docs/research/freewebnovel-feasibility.md` | Early two-chapter public compatibility notes | The working full-range implementation lives elsewhere |
 | `downloaded_novels.json` | Metadata-only history of completed downloads and artefact links | Do not hand-edit concurrent updates without care |
 | `DOWNLOADED_NOVELS.md` | Generated human-readable registry index | Maintain synchronisation with JSON |
-| `novel_sources.json` | Small curated URL/title list for bulk name resolution | Not the downloaded content corpus |
+| `curated_novels.json` | Small curated URL/title list for bulk name resolution | Not the downloaded content corpus |
 | `requirements.txt`, `requirements-pdf.txt` | Broad developer compatibility constraints | Update deliberately, not incidentally |
 | `requirements.lock`, `requirements-pdf.lock` | Resolved Python 3.12 package versions used in CI | Install from these in routine CI/workflows |
 | `tests/` | Main offline unit tests, Windows packaging smoke, regressions | Extend alongside production changes |
@@ -310,7 +310,7 @@ Important flags: `--list-only` (FanFicFare metadata discovery), `--chapter-range
 
 ### Progress reporting
 
-`fff_progress_runner.py` observes FanFicFare's chapter completion callback, rather than interpreting every console progress dot as one chapter. It produces chapter counts/progress percentages and writes temporary chapter text checkpoints as individual chapters finish.
+`fanficfare_progress_runner.py` observes FanFicFare's chapter completion callback, rather than interpreting every console progress dot as one chapter. It produces chapter counts/progress percentages and writes temporary chapter text checkpoints as individual chapters finish.
 
 Do not delete checkpoints or advertise a partial output as complete after exceptions. Tests in `tests/test_novel_downloader.py` exercise progress and checkpoint behaviour.
 
@@ -349,7 +349,7 @@ Some source EPUBs legitimately have no description or cover. The code must retai
 
 Components:
 
-- `tools/freewebnovel_probe.py`: constrained catalogue/chapter compatibility probing, at most two chapter requests.
+- `tools/freewebnovel_source.py`: constrained catalogue/chapter compatibility probing, at most two chapter requests.
 - `tools/freewebnovel_downloader.py`: site-specific book details, sequential numbered chapter extraction, text-quality checks, checkpoint files, optional cover, EPUB creation.
 - `tools/freewebnovel_chunks.py`: batch plan/fetch/assemble wrapper.
 - `.github/workflows/freewebnovel-download.yml`: dedicated single-book Actions workflow with the same high-level prepare/batches/assemble/register structure.
@@ -381,9 +381,9 @@ This example makes live source requests. **Do not use it in deterministic CI or 
 
 The user pastes **one or more supported novel URLs**, including a mixed list of NovelFull, FreeWebNovel and ReadNovelFull links, into the first **Novel links** field. The source is automatically detected per URL. There is **no website dropdown** in GitHub Actions; users can optionally add saved novel names and a chapter range. `force` bypasses an available-artifact skip. Scribble Hub author-verified cross-posts require a separate rights confirmation and a whole-book range.
 
-Implementation is in `tools/library_bulk.py`:
+Implementation is in `tools/mixed_source_bulk.py`:
 
-- Resolve names from the downloaded registry and `novel_sources.json`.
+- Resolve names from the downloaded registry and `curated_novels.json`.
 - Reject unknown or ambiguous names rather than guessing which book is meant.
 - Validate each URL's source site and recognised book path; auto-route by validated domain. No website selection is supplied by the manual GitHub Actions form. The deprecated optional `--website` CLI filter is retained for existing automation only.
 - No arbitrary ten-novel limit. Respect the GitHub Actions **256-job matrix limit** for scheduled (non-skipped) downloads; fail with an informative message rather than letting GitHub silently reject an oversized matrix.
@@ -391,12 +391,12 @@ Implementation is in `tools/library_bulk.py`:
 - Group mixed-source links automatically by site; call existing **NovelFull - Download**, **FreeWebNovel - Download**, **ReadNovelFull - Download** and the **verified Scribble Hub - Download** reusable workflows. Scribble Hub's `workflow_call` requires explicit `confirm_rights` and only allowlisted same-author cross-posts; only full-book exports are supported.
 - Limit simultaneous novels to at most **three NovelFull**, **two FreeWebNovel**, **one ReadNovelFull** and **one Scribble Hub** jobs.
 - Preserve each child's own chapter batch limits and per-book validation.
-- After **all** children finish, the summary job runs under `if: always()`. If all child groups succeeded or were skipped, it bypasses the duplicate recovery artefact downloads, ZIP validation and repackaging: each completed book already has its independent downloadable artefact. When any child group failed or was cancelled, the `recovery_gate` enables retrieval of every successful `novel-<run-id>-*` artefact. `tools/bulk_recovery.py` then validates source identity, EPUB ZIP CRC, manifest ordering and each TXT SHA-256 before packaging one portable ZIP per complete novel into a seven-day `bulk-successful-novels-<run-id>` recovery artefact, plus a JSON manifest of missing/rejected downloads. Do not remove failure recovery or rewrite the already-finished child artefacts.
+- After **all** children finish, the summary job runs under `if: always()`. If all child groups succeeded or were skipped, it bypasses the duplicate recovery artefact downloads, ZIP validation and repackaging: each completed book already has its independent downloadable artefact. When any child group failed or was cancelled, the `recovery_gate` enables retrieval of every successful `novel-<run-id>-*` artefact. `tools/bulk_download_recovery.py` then validates source identity, EPUB ZIP CRC, manifest ordering and each TXT SHA-256 before packaging one portable ZIP per complete novel into a seven-day `bulk-successful-novels-<run-id>` recovery artefact, plus a JSON manifest of missing/rejected downloads. Do not remove failure recovery or rewrite the already-finished child artefacts.
 - Never delete independently uploaded successful child artefacts when any other book, registry update or recovery job fails. The overall bulk workflow must still signal failures, without losing verified successes. Recovery has an intentional 1.75 GiB aggregate size safety limit; original child artefacts persist if exceeded.
-- On partial failure the summary also publishes a small **`bulk-recovery-manifest-<run-id>`** artefact with `run_id` and each failed/missing book's original `chapter_range`. No retry manifest is needed or generated for fully successful runs. The single bulk workflow's optional **`retry_run_id`** field downloads that manifest from the named earlier run via GitHub's artefact API. `tools.library_bulk.retry_selection_plan` then validates source sites, registered Scribble Hub identity, run ID and range, and schedules only missing books (skipping newly cached successes, never reusing an old Force flag). Do not mix retry with other selections. Retry manifests exist for seven days; legacy manifests without ranges are rejected instead of guessing.
-- `python -m tools.bulk_stress` runs offline 20/50/100-batch planner and matrix tests, with a 256/257 boundary check. These consume no website requests.
+- On partial failure the summary also publishes a small **`bulk-recovery-manifest-<run-id>`** artefact with `run_id` and each failed/missing book's original `chapter_range`. No retry manifest is needed or generated for fully successful runs. The single bulk workflow's optional **`retry_run_id`** field downloads that manifest from the named earlier run via GitHub's artefact API. `tools.mixed_source_bulk.retry_selection_plan` then validates source sites, registered Scribble Hub identity, run ID and range, and schedules only missing books (skipping newly cached successes, never reusing an old Force flag). Do not mix retry with other selections. Retry manifests exist for seven days; legacy manifests without ranges are rejected instead of guessing.
+- `python -m tools.bulk_download_stress` runs offline 20/50/100-batch planner and matrix tests, with a 256/257 boundary check. These consume no website requests.
 - `tools/workflow_performance.py` reads GitHub's jobs API under `actions:read` during the bulk summary job and publishes small `bulk-performance-<run-id>` JSON and Markdown timing metrics. The API-only timing collector must never make source-site requests or log tokens; an API error must not fail downloads. Report cumulative **per-phase step seconds** and the **completed-jobs elapsed window** separately: parallel work overlaps and metrics are recorded before the summary job itself finishes.
-- `tools/bulk_recovery.py` stores EPUB/JPEG/PNG members without recompression (ZIP_STORED), but keeps text and JSON compressed, preserving all integrity checks. The outer `bulk-successful-novels-<run-id>` Actions archive uses `compression-level: 0` because it mostly contains already-compressed book ZIPs. Do not change other artefacts' compression to 0 without measurement; TXT chapters can compress very well.
+- `tools/bulk_download_recovery.py` stores EPUB/JPEG/PNG members without recompression (ZIP_STORED), but keeps text and JSON compressed, preserving all integrity checks. The outer `bulk-successful-novels-<run-id>` Actions archive uses `compression-level: 0` because it mostly contains already-compressed book ZIPs. Do not change other artefacts' compression to 0 without measurement; TXT chapters can compress very well.
 - NovelFull, FreeWebNovel and ReadNovelFull final assembly workflows already download only `chapter-batch-<key>-*` artefacts for their own novel. Do not label this existing protection as a new optimisation. Avoid increasing site concurrency or reducing polite request pacing until comparable real bulk timing data justifies it.
 
 Do not create another bulk UI just because a source adds a new adapter. Extend the single planner and dispatch model only after that site's legal, technical and testing requirements are met.
@@ -404,10 +404,10 @@ Do not create another bulk UI just because a source adds a new adapter. Extend t
 Useful read-only command:
 
 ~~~powershell
-python -m tools.library_bulk list
+python -m tools.mixed_source_bulk list
 ~~~
 
-`tools/bulk_download.py` is an additional generic planner/running utility. Read it before modifying shared URL/range conventions, but **the endorsed combined Actions menu is Library - Bulk Download**.
+`tools/sequential_bulk_download.py` is an additional generic planner/running utility. Read it before modifying shared URL/range conventions, but **the endorsed combined Actions menu is Library - Bulk Download**.
 
 ## 9. Download registry, caching, artefact expiration and concurrent publication
 
@@ -417,7 +417,7 @@ python -m tools.library_bulk list
 - Each novel has a canonical source URL, display title, author and a `downloads` history array.
 - Each download record stores `range`, `status`, `chapter_count`, `run_id`, `run_url`, `artifact_id`, `artifact_url`, `completed_at_utc` and `expires_at_utc`.
 - `DOWNLOADED_NOVELS.md` is the generated human-facing view of that history, grouped by website.
-- `novel_sources.json` is a small curated list for resolving saved titles that are not yet in the completed registry. It does **not** contain the novel content.
+- `curated_novels.json` is a small curated list for resolving saved titles that are not yet in the completed registry. It does **not** contain the novel content.
 
 The registry holds **metadata and links only**. The actual chapter text and EPUB live in GitHub Actions artefacts while available, or in user-controlled local storage after download.
 
@@ -504,7 +504,7 @@ The Windows ZIP helper's validation rules are its own concrete contract. Do not 
 
 ## 11. Offline PDF to one-book ZIP
 
-The PDF converter is separate from all website downloaders and is documented in `docs/PDF_TO_NOVEL.md` and `PDF-to-Novel/README.md`.
+The PDF converter is separate from all website downloaders and is documented in `docs/pdf-to-novel.md` and `PDF-to-Novel/README.md`.
 
 ### Components
 
@@ -645,7 +645,7 @@ Different sites have different technical and permission restrictions. A parser e
 
 ### WuxiaClick bounded chapter downloader
 
-Use `tools/wuxiaclick_source.py` for strict `https://wuxia.click/novel/<slug>` book IDs, numbered `/chapter/<slug>-N` links and linked `?page=N` TOC pagination. Live real index tests [#43729861621 (archived)](docs/SOURCE_TEST_EVIDENCE_ARCHIVE.md) verified 2,276 *Martial World* and 1,709 *True Martial World* chapter entries. **Do not guess numeric URL suffixes**: a heading can say Chapter 0 when its URL ends `-1`; the site counts entries independently of maximal URL suffix. TOC entries belong to `section#chapters ol li a`, not the nearby latest or first-chapter navigation. Site labels include source numbers and dates, which must be removed before comparing text headings.
+Use `tools/wuxiaclick_source.py` for strict `https://wuxia.click/novel/<slug>` book IDs, numbered `/chapter/<slug>-N` links and linked `?page=N` TOC pagination. Live real index tests [#43729861621 (archived)](docs/research/source-test-evidence-archive.md) verified 2,276 *Martial World* and 1,709 *True Martial World* chapter entries. **Do not guess numeric URL suffixes**: a heading can say Chapter 0 when its URL ends `-1`; the site counts entries independently of maximal URL suffix. TOC entries belong to `section#chapters ol li a`, not the nearby latest or first-chapter navigation. Site labels include source numbers and dates, which must be removed before comparing text headings.
 
 `tools/wuxiaclick_downloader.py` produces the standard verified EPUB/TXT chapter/metadata/cover output using `#chapter-content`, with strict heading identity checks, source hash and checkpoint integrity. `tools/wuxiaclick_chunks.py` reuses shared batch validation and assembly. It is **not** a full-book bulk scraper: site policy describes a daily signed-out offline download allowance of **20 chapters**. The code requires `--confirm-rights`, caps any range at 20 chapters, never schedules multiple parallel pieces for a full book and checks robots access before ordinary public-page requests. Multiple WuxiaClick books in a single bulk run must collectively fit 20 chapter selections. Do not run repeated jobs to exceed the daily allowance; cross-run allowance accounting is not implemented. The user's rights to store the works are not inferred from their public readability. When output artefacts are public, do not expose content without distribution rights.
 
@@ -653,16 +653,16 @@ The dedicated [WuxiaClick workflow](.github/workflows/wuxiaclick-download.yml) c
 
 ### Author-verified Scribble Hub cross-post through FicHub
 
-`tools/verified_crosspost_download.py` is a **narrow, internet-enabled** route, distinct from both the direct NovelFull/FreeWebNovel downloaders and the network-free `tools/import_local_epub.py`:
+`tools/scribblehub_crosspost_downloader.py` is a **narrow, internet-enabled** route, distinct from both the direct NovelFull/FreeWebNovel downloaders and the network-free `tools/import_local_epub.py`:
 
-- The user provides the original Scribble Hub **series** URL and `--confirm-rights`; no local EPUB is required. The command is `python -m tools.verified_crosspost_download "<scribble-hub-series-url>" --confirm-rights`.
-- `tools/verified_crossposts.json` is an explicit author cross-post allowlist. Currently it contains only Scribble Hub series `445037`, by MonkWithAPen, cross-posted by the same author as FanFiction.net story `14031894`. **Never** infer the mirror for an unrelated series simply from a similar title.
-- The dedicated manual [`.github/workflows/scribblehub-download.yml`](.github/workflows/scribblehub-download.yml) uses the validated cross-post CLI and `tools/verified_crosspost_artifact.py` to convert the validated ZIP to the **standard** book folder before `upload-artifact`. It runs the existing registry check and `tools.publish_registry`, and avoids publishing a nested ZIP. It has a mandatory authorisation checkbox and rejects unregistered novel IDs. Artefacts on public repositories may be publicly accessible.
+- The user provides the original Scribble Hub **series** URL and `--confirm-rights`; no local EPUB is required. The command is `python -m tools.scribblehub_crosspost_downloader "<scribble-hub-series-url>" --confirm-rights`.
+- `tools/scribblehub_verified_crossposts.json` is an explicit author cross-post allowlist. Currently it contains only Scribble Hub series `445037`, by MonkWithAPen, cross-posted by the same author as FanFiction.net story `14031894`. **Never** infer the mirror for an unrelated series simply from a similar title.
+- The dedicated manual [`.github/workflows/scribblehub-download.yml`](.github/workflows/scribblehub-download.yml) uses the validated cross-post CLI and `tools/scribblehub_crosspost_artifact.py` to convert the validated ZIP to the **standard** book folder before `upload-artifact`. It runs the existing registry check and `tools.publish_registry`, and avoids publishing a nested ZIP. It has a mandatory authorisation checkbox and rejects unregistered novel IDs. Artefacts on public repositories may be publicly accessible.
 - The downloader calls FicHub's documented `/api/v0/epub` and its same-host EPUB cache, **not** Scribble Hub's pages or the protected chapter AJAX endpoint. Source URL validation, story author/title/FFN numeric ID, reported count, first-chapter title and a numbered checkpoint are fail-closed.
 - The 14 November 2026 remote test found **432** author-posted story chapters and a FicHub EPUB containing **two non-story introductory sections plus 432 actual chapters**. The code excludes only the two registered front sections when the verified first story chapter follows. If this structure or count changes unexpectedly, stop rather than silently shift chapters.
 - Preserve cover and EPUB description if present, reconstruct a clean EPUB with exactly the story chapters, and call the **existing** `import_epub_to_zip` to stage and verify chapter SHA-256, EPUB integrity, ZIP CRC, metadata and stable Scribble numeric-ID identity. The command publishes to `Downloaded_Novels/` and requires `--replace` for updating an existing ZIP.
 - FicHub's API is unstable and may be temporarily rate-limited or stale. Use a custom project User-Agent with contact; perform at most one export request plus one ebook request per operation; **no concurrent calls or automatic retries**. Do not expose or commit story text or upload the ebook into a public CI artefact.
-- Tests in `tests/test_verified_crosspost_download.py` and `tests/test_verified_crosspost_artifact.py` use wholly synthetic EPUB fixtures and injected fake HTTP clients; they cover provenance, chapter completeness, front-matter exclusion, bad URL handling, rights, failed requests and rollback. Keep NovelFull and FreeWebNovel regressions green.
+- Tests in `tests/test_scribblehub_crosspost_downloader.py` and `tests/test_scribblehub_crosspost_artifact.py` use wholly synthetic EPUB fixtures and injected fake HTTP clients; they cover provenance, chapter completeness, front-matter exclusion, bad URL handling, rights, failed requests and rollback. Keep NovelFull and FreeWebNovel regressions green.
 
 This route is also reused by the unified bulk workflow for authorised, registered cross-posts. It does **not** mean Scribble Hub's direct HTTPS chapter requests can be automated reliably. Unknown series IDs must fail with a clear explanation until another same-author cross-post is independently verified and registered.
 
@@ -731,8 +731,8 @@ Security/operational expectations:
 | `tests/test_chunked_download.py` | Batch planning, counts, piece identity, complete/reused artefacts, assembly, synopsis/cover/genre metadata |
 | `tests/test_download_registry.py` | Canonical URL and range handling, expiry and completed record logic |
 | `tests/test_publish_registry.py` | Latest-main metadata publishing, merge races and retry behaviour |
-| `tests/test_library_bulk.py`, `tests/test_bulk_download.py` | Mixed-source URLs, automatic grouping with no UI site selection, deduplication and error handling |
-| `tests/test_freewebnovel_probe.py`, `tests/test_freewebnovel_downloader.py` | Public-site parser, boundaries, lock/challenge detection and complete ranges |
+| `tests/test_mixed_source_bulk.py`, `tests/test_sequential_bulk_download.py` | Mixed-source URLs, automatic grouping with no UI site selection, deduplication and error handling |
+| `tests/test_freewebnovel_source.py`, `tests/test_freewebnovel_downloader.py` | Public-site parser, boundaries, lock/challenge detection and complete ranges |
 | `tests/test_epub_source_metadata.py` | OPF description/genre/status extraction |
 | `tests/test_novel_covers.py` | Cover limits, safe book/image URL policy, EPUB cover handling |
 | `tests/test_import_local_epub.py` | Offline, verified EPUB-to-ZIP import |
@@ -844,18 +844,18 @@ When time is constrained, prioritise:
 | --- | --- | --- |
 | “A downloaded book has wrong chapters or a missing range” | `novel_downloader.py`, `tools/chunked_download.py`, `tools/download_registry.py` | Exact source/range identity, every position, EPUB spine, source metadata |
 | “My previous EPUB was overwritten or the wrong book reused” | `novel_downloader.py` | Collision tests, failed forced refresh, rollback |
-| “A large NovelFull download times out” | `.github/workflows/download-novel.yml`, `tools/chunked_download.py`, `fff_progress_runner.py` | Resume/reuse valid ranges; incomplete batches never register |
-| “FreeWebNovel gives the wrong chapter” | `tools/freewebnovel_downloader.py`, `tools/freewebnovel_probe.py` | Number/title/body checks; no auto bypass |
-| “Add another bulk option” | `tools/library_bulk.py`, `.github/workflows/library-bulk-download.yml` | Reuse single grouped bulk menu; no duplicate workflow |
+| “A large NovelFull download times out” | `.github/workflows/download-novel.yml`, `tools/chunked_download.py`, `fanficfare_progress_runner.py` | Resume/reuse valid ranges; incomplete batches never register |
+| “FreeWebNovel gives the wrong chapter” | `tools/freewebnovel_downloader.py`, `tools/freewebnovel_source.py` | Number/title/body checks; no auto bypass |
+| “Add another bulk option” | `tools/mixed_source_bulk.py`, `.github/workflows/library-bulk-download.yml` | Reuse single grouped bulk menu; no duplicate workflow |
 | “Why is a book not in DOWNLOADED_NOVELS.md?” | `tools/publish_registry.py`, `tools/download_registry.py` | Check artefact success versus registry PR state |
 | “Why does downloaded novel ZIP not appear locally?” | `tools/download_all_artifacts.ps1`, `tools/zip_novel_artifacts.ps1` | Existing ZIP scan, expired artifact, correct nested book, local log |
 | “Abe the Wizard / historic bulk artefact contains extra directories” | `tools/zip_novel_artifacts.ps1` | Exact source metadata, only one correct book ZIP |
-| “Make a PDF usable by the reader” | `tools/pdf_to_novel.py`, `tools/pdf_batch.py`, `docs/PDF_TO_NOVEL.md` | Boundary report, TXT fidelity, ZIP+EPUB validation |
+| “Make a PDF usable by the reader” | `tools/pdf_to_novel.py`, `tools/pdf_batch.py`, `docs/pdf-to-novel.md` | Boundary report, TXT fidelity, ZIP+EPUB validation |
 | “Convert my already-authorised EPUB” | `tools/import_local_epub.py` | Source URL identity, ZIP safety budgets, no silent overwrite |
 | “New novels have no synopsis/genre” | `tools/epub_source_metadata.py`, `tools/chunked_download.py` | Source OPF metadata and final EPUB/JSON equality |
 | “Old novel ZIP is missing synopsis” | `tools/repair_synopsis.py` | Dry-run first; chapter-manifest preservation |
 | “Download only covers” | `tools/download_covers.py`, `tools/novel_covers.py` | Only images; no novel archive mutation |
-| “Automate downloading from WebNovel, WTR-Lab, Novel Fire etc.” | `docs/experimental-sources.md`, the specific feasibility modules | First verify permission; do not bypass site restrictions |
+| “Automate downloading from WebNovel, WTR-Lab, Novel Fire etc.” | `docs/research/experimental-sources.md`, the specific feasibility modules | First verify permission; do not bypass site restrictions |
 | “CI failed on Windows” | `.github/workflows/ci.yml`, PowerShell scripts, Windows test files | PS5.1 parse/parameter rules, paths with spaces, exit status |
 
 ## 19. Troubleshooting and expected failure semantics
@@ -918,16 +918,16 @@ These should remain explicit when discussing the project or proposing future wor
 When changing a subsystem, also consult the relevant living guide:
 
 - `README.md`: general operation and latest end-user instructions.
-- `PDF-to-Novel/README.md` and `docs/PDF_TO_NOVEL.md`: one-click Windows conversion, boundary overrides and validation reports.
-- `docs/experimental-sources.md`: historical/offline analysis for Novel Fire, Light Novel Pub, WTR-Lab and Royal Road.
-- `docs/ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md`: complete, evidence-linked 15 November 2026 candidate matrix with GitHub Actions robots-first reachability runs, blockers and required rights gates. Do not re-enable shut-down/restricted domains or silently add new website options.
-- `docs/HTTP200_LIVE_SCENARIOS_2026-11-15.md`: exact HTTP-200 GitHub-hosted real book/chapter checks for WuxiaClick, LibRead redirects and NovelBin.cc HTTP 429, including catalogue pagination and reported count versus URL suffix. Use indexed reading positions rather than assumed sequential numeric paths.
-- `tools/FREEWEBNOVEL_FEASIBILITY.md`: initial FreeWebNovel two-chapter compatibility research.
-- `tools/WEBNOVEL_BROWSER_PROBE.md`: ordinary browser feasibility and challenge stop conditions.
-- `tools/WEBNOVEL_PUBLIC_TWO_CHAPTER.md`: bounded public chapter probe.
-- `tools/WEBNOVEL_SAVED_PAGE_IMPORT.md`: offline one/two saved HTML/TXT chapter input.
-- `tools/WEBNOVEL_EXPORT.md`: offline user-provided JSON-to-EPUB/TXT feasibility.
-- `tools/WEBNOVEL_BULK_IMPORT.md`: offline, validated/resumable bulk import of saved local chapters.
+- `PDF-to-Novel/README.md` and `docs/pdf-to-novel.md`: one-click Windows conversion, boundary overrides and validation reports.
+- `docs/research/experimental-sources.md`: historical/offline analysis for Novel Fire, Light Novel Pub, WTR-Lab and Royal Road.
+- `docs/research/source-feasibility-2026-11-15.md`: complete, evidence-linked 15 November 2026 candidate matrix with GitHub Actions robots-first reachability runs, blockers and required rights gates. Do not re-enable shut-down/restricted domains or silently add new website options.
+- `docs/research/live-http-200-source-tests-2026-11-15.md`: exact HTTP-200 GitHub-hosted real book/chapter checks for WuxiaClick, LibRead redirects and NovelBin.cc HTTP 429, including catalogue pagination and reported count versus URL suffix. Use indexed reading positions rather than assumed sequential numeric paths.
+- `docs/research/freewebnovel-feasibility.md`: initial FreeWebNovel two-chapter compatibility research.
+- `docs/research/webnovel-browser-probe.md`: ordinary browser feasibility and challenge stop conditions.
+- `docs/research/webnovel-two-chapter-sample.md`: bounded public chapter probe.
+- `docs/research/webnovel-saved-page-import.md`: offline one/two saved HTML/TXT chapter input.
+- `docs/research/webnovel-export.md`: offline user-provided JSON-to-EPUB/TXT feasibility.
+- `docs/research/webnovel-bulk-import.md`: offline, validated/resumable bulk import of saved local chapters.
 - `DOWNLOADED_NOVELS.md`: generated historical registry view.
 
 ## 22. Concise final rules for coding agents
