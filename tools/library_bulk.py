@@ -24,12 +24,13 @@ from tools.download_registry import (
 )
 from tools.freewebnovel_probe import validate_book_url
 from tools.readnovelfull_source import validate_book_url as validate_readnovelfull_url
+from tools.wuxiaclick_source import validate_book_url as validate_wuxiaclick_url
 from tools.verified_crosspost_download import _verified_record
 
 # This is GitHub's actual matrix execution limit, not an artificial ten-book
 # restriction. Only *scheduled* downloads count, not cached/skipped books.
 MAX_MATRIX_JOBS = 256
-SITES = ("NovelFull", "FreeWebNovel", "ReadNovelFull", "Scribble Hub")
+SITES = ("NovelFull", "FreeWebNovel", "ReadNovelFull", "WuxiaClick", "Scribble Hub")
 WEBSITE_CHOICES = ("All",) + SITES
 DEFAULT_CATALOGUE = Path("novel_sources.json")
 
@@ -45,6 +46,8 @@ def _validated_url(value: str) -> tuple[str, str]:
         return site, validate_book_url(url)
     if site == "ReadNovelFull":
         return site, validate_readnovelfull_url(url)
+    if site == "WuxiaClick":
+        return site, validate_wuxiaclick_url(url)
     if site == "Scribble Hub":
         # Uses only verified same-author cross-posts; never try direct
         # Scribble Hub chapter scraping for arbitrary series URLs.
@@ -142,6 +145,20 @@ def selection_plan(
         item = next((entry for entry in entries if entry["url"] == url), None)
         chosen[url] = item or {"url": url, "title": url.rsplit("/", 1)[-1], "site": site}
     rng = normalise_range(chapter_range)
+    wuxia_selected = sum(item["site"] == "WuxiaClick" for item in chosen.values())
+    if wuxia_selected:
+        if not confirm_rights:
+            raise ValueError(
+                "WuxiaClick requires explicit permission to archive the work")
+        if rng == "all":
+            raise ValueError(
+                "WuxiaClick has a 20-chapter/day signed-out offline allowance. "
+                "Select an explicit inclusive range of at most 20 chapters")
+        lower, upper = map(int, rng.split("-"))
+        if (upper - lower + 1) * wuxia_selected > 20:
+            raise ValueError(
+                "WuxiaClick bulk selection exceeds the 20-chapter daily "
+                "signed-out download allowance; reduce range or WuxiaClick books")
     if any(item["site"] == "Scribble Hub" for item in chosen.values()):
         if not confirm_rights:
             raise ValueError(
@@ -257,6 +274,7 @@ def write_actions(plan: dict) -> None:
         ("NovelFull", "novelfull"),
         ("FreeWebNovel", "freewebnovel"),
         ("ReadNovelFull", "readnovelfull"),
+        ("WuxiaClick", "wuxiaclick"),
         ("Scribble Hub", "scribblehub"),
     ):
         group = plan["groups"][site]
@@ -302,7 +320,7 @@ def main(argv=None) -> int:
     parser.add_argument("--force", action="store_true")
     parser.add_argument(
         "--confirm-rights", action="store_true",
-        help="Required when the selection contains a Scribble Hub cross-post",
+        help="Required for WuxiaClick and Scribble Hub source downloads",
     )
     parser.add_argument("--registry", type=Path, default=Path("downloaded_novels.json"))
     parser.add_argument("--catalogue", type=Path, default=DEFAULT_CATALOGUE)

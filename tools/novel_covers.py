@@ -25,9 +25,10 @@ MAX_IMAGE_BYTES = 8 * 1024 * 1024
 MAX_HTML_BYTES = 3 * 1024 * 1024
 MAX_PIXELS = 20_000_000
 Image.MAX_IMAGE_PIXELS = MAX_PIXELS
-SOURCE_HOSTS = {"novelfull.com", "freewebnovel.com", "readnovelfull.com"}
+SOURCE_HOSTS = {"novelfull.com", "freewebnovel.com", "readnovelfull.com", "wuxia.click"}
 BOOK_PATH = re.compile(r"^/novel/[a-z0-9]+(?:-[a-z0-9]+)*/?$")
 NOVELFULL_PATH = re.compile(r"^/[a-z0-9_-]+\.html$")
+WUXIACLICK_PATH = re.compile(r"^/novel/[a-z0-9]+(?:-[a-z0-9]+)*$")
 SUPPORTED = {"JPEG": ".jpg", "PNG": ".png"}
 
 
@@ -68,6 +69,8 @@ def validate_book_url(url: str) -> str:
         raise CoverError("Expected a NovelFull/ReadNovelFull /book-title.html URL")
     if host == "freewebnovel.com" and not BOOK_PATH.fullmatch(p.path):
         raise CoverError("Expected a FreeWebNovel /novel/book-title URL")
+    if host == "wuxia.click" and not WUXIACLICK_PATH.fullmatch(p.path):
+        raise CoverError("Expected a WuxiaClick /novel/book-title URL")
     return url
 
 

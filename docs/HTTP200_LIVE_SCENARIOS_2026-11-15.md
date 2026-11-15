@@ -1,6 +1,7 @@
 # Live HTTP-200 website scenario validation
 
 **Date:** 15 November 2026  
+**Subsequent update:** Bounded WuxiaClick chapter ranges have since been implemented with a rights gate, 20-chapter per-run ceiling and direct/bulk Actions workflows. The [live full-index and first/last chapter parser check](https://github.com/RichardDaffern/Novel_Library/actions/runs/43730188638) passed for both *Martial World* and *True Martial World*. Live metadata author, genres and synopsis checks passed in [run #43730710184](https://github.com/RichardDaffern/Novel_Library/actions/runs/43730710184). This remains distinct from an authorised complete EPUB download.  
 **Status:** Completed bounded live technical tests. Research only; no website enabled for automated full-book downloads.
 
 ## Evidence and safeguards

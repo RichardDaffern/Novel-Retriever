@@ -1,6 +1,6 @@
 # Additional novel-source feasibility: completed second-pass investigation
 
-**Last verified:** 15 November 2026. **Production status:** research only. **No new domain enabled.**
+**Last verified:** 15 November 2026. **Historical research status:** no new domain was enabled when this assessment was written. **Subsequent development:** WuxiaClick now has a [rights-confirmed, capped 20-chapter range workflow](../.github/workflows/wuxiaclick-download.yml) and [mixed-link bulk routing](../.github/workflows/library-bulk-download.yml). Unrestricted full-book export remains disabled; consult [current website support](WEBSITE_SUPPORT.md#wuxiaclick-bounded-source-not-unrestricted-full-book-export).
 
 **Follow-up live tests completed:** [HTTP-200 scenarios](HTTP200_LIVE_SCENARIOS_2026-11-15.md) cover actual publicly readable first and final chapters for two WuxiaClick novels, the site's linked catalogue pagination, two LibRead-to-FreeWebNovel redirects, and NovelBin.cc chapter HTTP 429. Source permissions and full-book TOC completeness remain gating.
 

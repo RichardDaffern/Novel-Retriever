@@ -110,9 +110,24 @@ Each chapter range is downloaded sequentially with a one-second delay between ch
 python -m tools.readnovelfull_downloader "https://readnovelfull.com/cultivation-online-v3.html" --chapter-range 1-2 --confirm-rights
 ~~~
 
+## WuxiaClick - Download (authorised, bounded ranges)
+
+Use [WuxiaClick - Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/wuxiaclick-download.yml) to download an authorised range, for example from `https://wuxia.click/novel/martial-world`. Enter `1-2` or another inclusive range of **at most 20 chapters**, and explicitly tick **Confirm rights**. The website has a [daily offline-download allowance starting at 20 chapters for signed-out users](https://wuxia.click/blog/pick-up-where-you-left-off). This tool caps one job at 20 chapters but does **not** track cumulative usage across separate runs; respect your total daily entitlement and the rights of the work. Full-book unattended archiving is deliberately disabled.
+
+The implementation validates all paginated `#chapters` index pages, reading order, unique exact chapter links, text headings, readable body and missing/duplicate entries before assembling an EPUB, numbered TXT chapters, metadata, manifest and optional cover. Not every URL suffix matches its displayed chapter number: for example the first URL of *Martial World* has an in-text Chapter 0, and the final chapter URL suffix may be greater than the number of indexed entries. Requests are serial, paced, robots-aware, and never bypass access controls. Failed batches preserve validated checkpoints.
+
+**[Live catalogue verification](https://github.com/RichardDaffern/Novel_Library/actions/runs/43729861621):** 2,276 indexed *Martial World* chapters and 1,709 indexed *True Martial World* chapters passed. This verifies metadata catalogue consistency, not an authorised live EPUB download. Content download acceptance depends on the user's permission and site rules.
+
+Local authorised example:
+
+~~~powershell
+python -m pip install -r requirements.lock
+python -m tools.wuxiaclick_downloader "https://wuxia.click/novel/martial-world" --chapter-range 1-2 --confirm-rights
+~~~
+
 ## GitHub Actions: Library - Bulk Download
 
-Use **[Library - Bulk Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/library-bulk-download.yml) > Run workflow** for downloads from NovelFull, FreeWebNovel, ReadNovelFull and verified Scribble Hub author cross-posts. **This is the only bulk workflow.** Paste multiple links into one field. The website is detected automatically from each URL; no dropdown or manual grouping is required. The workflow internally groups each link into its compatible downloader.
+Use **[Library - Bulk Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/library-bulk-download.yml) > Run workflow** for downloads from NovelFull, FreeWebNovel, ReadNovelFull, **bounded WuxiaClick ranges** and verified Scribble Hub author cross-posts. **This is the only bulk workflow.** Paste multiple links into one field. The website is detected automatically from each URL; no dropdown or manual grouping is required. The workflow internally groups each link into its compatible downloader.
 
 - **Novel links:** Paste one or more complete HTTPS novel URLs from any supported sites. Separate with a comma, space, semicolon or newline. Mixed websites can be submitted together.
 - **Saved novel names:** Type names listed in
@@ -120,9 +135,9 @@ Use **[Library - Bulk Download](https://github.com/RichardDaffern/Novel_Library/
   semicolons. Example: `The World Online; The First Order`. Use semicolons
   when a novel's title itself contains a comma.
 - **New titles:** Paste their exact URLs into Novel links. Saved names and new URLs can be mixed in the same submission.
-- **Chapter range:** Optional; blank requests a whole novel.
+- **Chapter range:** Optional for other sources; blank requests a whole novel. For WuxiaClick a range is required for books with more than 20 chapters and may cover at most 20 chapters per WuxiaClick novel, or fewer when selecting several WuxiaClick novels in one run.
 - **Force:** Redownload even if a completed artifact is still available.
-- **Confirm rights:** Required when the selection includes Scribble Hub. Only registered, same-author cross-posts are supported; other Scribble Hub series are rejected. For these books, chapter range must be blank because only whole-novel exports are verified.
+- **Confirm rights:** Required when the selection includes **WuxiaClick or Scribble Hub**. WuxiaClick is capped at 20 chapters across the WuxiaClick novels in one bulk run; do not chain runs to exceed the site's daily allowance. Only registered, same-author Scribble Hub cross-posts are supported; for these, chapter range must be blank because only whole-novel exports are verified. A bulk selection containing both WuxiaClick and Scribble Hub is not supported because their chapter-range requirements differ.
 
 GitHub Actions lacks a dynamic multi-select field, so saved names are entered
 as multi-value text rather than selected with checkboxes. Example: enter

@@ -11,6 +11,7 @@ Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.m
 | **NovelFull** (`novelfull.com`) | **Yes** | FanFicFare-powered single or bulk chapter-range downloads; verified whole-book EPUB assembly | [NovelFull workflow](../.github/workflows/download-novel.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
 | **FreeWebNovel** (`freewebnovel.com`) | **Yes**, accessible public chapters only | Dedicated sequential downloader; validated range assembly, single or bulk | [FreeWebNovel workflow](../.github/workflows/freewebnovel-download.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
 | **ReadNovelFull** (`readnovelfull.com`) | **Implemented, live full-book test pending** | Exact AJAX chapter catalogue; verified single/range/bulk EPUB downloads | [ReadNovelFull workflow](../.github/workflows/readnovelfull-download.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
+| **WuxiaClick** (`wuxia.click`) | **Bounded downloads only (max 20 chapters per run)** | Paginated exact TOC, rights gate, verified EPUB/TXT ranges; full-book archiving disabled | [WuxiaClick workflow](../.github/workflows/wuxiaclick-download.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
 | **Scribble Hub** (`scribblehub.com`) | **One verified cross-post via GitHub Actions**, not general Scribble Hub website access | [Scribble Hub - Download](../.github/workflows/scribblehub-download.yml) or the [unified bulk workflow](../.github/workflows/library-bulk-download.yml), for registered same-author cross-posts only; authorised offline EPUB import | [Cross-post details](#scribble-hub) |
 | **WebNovel** (`webnovel.com`) | **No** | Book metadata probe, at most two public test chapters where accessible; offline saved-HTML/TXT/JSON imports | [WebNovel probes and import tools](#webnovel) |
 | **Royal Road** (`royalroad.com`) | **No enabled website-download workflow** | Convert an already-authorised local EPUB; offline saved-page feasibility | [Local EPUB importer](../tools/import_local_epub.py) |
@@ -67,9 +68,24 @@ Unlike the initial book-page preview, the site's ordinary `/ajax/chapter-archive
 
 **Verification:** Offline fixtures cover URL safety, AJAX indexing, chapter checks, resumability, EPUB assembly and bulk routing. Live complete-book success is not yet verified. This site can change its structure or block CI requests. Do not claim all listed books are downloadable. Archive only material you have permission to store, and keep its source URL attributed in metadata.
 
+### WuxiaClick (bounded source, not unrestricted full-book export)
+
+- **Website:** https://wuxia.click/
+- **Canonical book URL:** `https://wuxia.click/novel/<slug>`
+- **Single-book Action:** [WuxiaClick - Download](../.github/workflows/wuxiaclick-download.yml)
+- **Bulk Action:** **Library - Bulk Download**, automatically detects WuxiaClick URLs without a website selector
+- **Local CLI:** `python -m tools.wuxiaclick_downloader "https://wuxia.click/novel/martial-world" --chapter-range 1-2 --confirm-rights`
+- **Modules:** `tools/wuxiaclick_source.py`, `tools/wuxiaclick_downloader.py`, `tools/wuxiaclick_chunks.py`.
+
+The website's [October 2026 update](https://wuxia.click/blog/pick-up-where-you-left-off) introduced an offline download allowance starting at **20 chapters per day for signed-out visitors**. The Actions pipeline enforces a **20-chapter per-run ceiling**, disallows unattended whole-book downloads exceeding that cap, uses one paced batch per novel, and requires explicit confirmation of the work's archiving rights. In the bulk workflow, WuxiaClick chapters across *all selected WuxiaClick books* must total 20 or fewer. **The tool cannot track consumption across independent runs; do not use repeat runs to exceed the site's daily allowance.** The public repository's artefacts may be accessible to others; a checkbox does not itself confer permission to redistribute copyrighted text.
+
+The parser verifies all linked catalogue pages and their exact ordered chapter URLs rather than guessing URL numbers. Display headings can have different chapter numbers from URL suffixes, and some novels contain chapter-number gaps. The HTML reader requires `#chapter-content` and rejects missing, short, locked, repeated or mismatched chapters. Each verified range produces the existing EPUB/TXT/metadata/manifest format, with a checkpoint retained after failures. Robots restrictions, redirects, challenges and request failures stop the process. No login/session/cookie or download-allowance bypass is implemented.
+
+**Tests:** Synthetic regression fixtures cover URL validation, missing pages, numbered offsets, EPUB assembly, checkpoint recovery and mixed source bulk planning. [Live all-page catalogue test](https://github.com/RichardDaffern/Novel_Library/actions/runs/43729861621) verified 2,276 chapters for *Martial World* and 1,709 for *True Martial World*. No full-book live EPUB output has been verified or claimed.
+
 ### Single or multiple novels
 
-Use **[Library - Bulk Download](../.github/workflows/library-bulk-download.yml)** and paste one or more supported book links into the single **Novel links** field, optionally alongside saved novel names. The source of each link is identified automatically; no website group selection is required. The former ten-novel cap is removed; GitHub allows up to **256 scheduled jobs** per run. Concurrent limits are three NovelFull, two FreeWebNovel, one ReadNovelFull and one Scribble Hub novel. Unknown/ambiguous names and unsupported or malformed URLs fail before downloading.
+Use **[Library - Bulk Download](../.github/workflows/library-bulk-download.yml)** and paste one or more supported book links into the single **Novel links** field, optionally alongside saved novel names. The source of each link is identified automatically; no website group selection is required. The former ten-novel cap is removed; GitHub allows up to **256 scheduled jobs** per run. Concurrent limits are three NovelFull, two FreeWebNovel, one ReadNovelFull, one capped WuxiaClick novel and one Scribble Hub novel. Unknown/ambiguous names and unsupported or malformed URLs fail before downloading.
 
 This is deliberately the **only** combined bulk menu. A completed artefact recorded in the download registry is skipped unless Force is selected; previously validated chapter batches can also be reused. Details: [download guide](DOWNLOAD_GUIDE.md).
 

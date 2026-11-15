@@ -139,7 +139,7 @@ class PerformanceTests(unittest.TestCase):
         gate = bulk.split(
             "      - name: Decide whether partial recovery is needed", 1
         )[1].split("      - name: Retrieve selected novel plan", 1)[0]
-        self.assertIn('for result in "$NOVELFULL" "$FREEWEBNOVEL" "$READNOVELFULL" "$SCRIBBLEHUB"', gate)
+        self.assertIn('for result in "$NOVELFULL" "$FREEWEBNOVEL" "$READNOVELFULL" "$WUXIACLICK" "$SCRIBBLEHUB"', gate)
         self.assertIn('"$result" == "failure" || "$result" == "cancelled"', gate)
         self.assertIn('echo "required=true"', gate)
         self.assertIn('echo "required=false"', gate)
