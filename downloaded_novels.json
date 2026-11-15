@@ -92,6 +92,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/spirit-cultivation",
+      "title": "Spirit Cultivation",
+      "author": "Piokilek",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 546,
+          "run_id": 43734410920,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920",
+          "artifact_id": 14173503709,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14173503709",
+          "completed_at_utc": "2026-11-15T18:10:33Z",
+          "expires_at_utc": "2026-11-22T18:10:33Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/three-days-of-happiness",
       "title": "Three Days of Happiness",
       "author": "Sugaru Miaki (Fafoo)",

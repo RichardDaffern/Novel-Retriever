@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (6 novels)
+## FreeWebNovel (7 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -13,6 +13,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [My Enchanting System](https://freewebnovel.com/novel/my-enchanting-system) | all | 887 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14173391066) | 2026-11-22T17:43:00Z |
 | [Overlord of Blood and Iron](https://freewebnovel.com/novel/overlord-of-blood-and-iron-novel) | all | 355 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14172990861) | 2026-11-22T17:38:41Z |
 | [Shrouding the Heavens](https://freewebnovel.com/novel/shrouding-the-heavens) | all | 323 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14172118221) | 2026-11-22T17:24:06Z |
+| [Spirit Cultivation](https://freewebnovel.com/novel/spirit-cultivation) | all | 546 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14173503709) | 2026-11-22T18:10:33Z |
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 
 ## NovelFull (96 novels)
@@ -108,14 +109,14 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Villainess Reverses the Hourglass](https://novelfull.com/the-villainess-reverses-the-hourglass.html) | all | 288 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14171899046) | 2026-11-22T17:23:44Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368375482/artifacts/13575943777) | 2026-11-14T13:31:01Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627465520) | 2026-11-15T17:27:24Z |
-| [Throne of Magical Arcana](https://novelfull.com/throne-of-magical-arcana.html) | all | 910 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627324316) | 2026-11-15T17:49:19Z |
-| [Top Student: Experience Infinite Occupations](https://novelfull.com/top-student-experience-infinite-occupations.html) | all | 348 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13628605600) | 2026-11-15T18:00:49Z |
+| [Throne of Magical Arcana](https://novelfull.com/throne-of-magical-arcana.html) | all | 910 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627324316) | 2026-11-15T17:49:19Z |
+| [Top Student: Experience Infinite Occupations](https://novelfull.com/top-student-experience-infinite-occupations.html) | all | 348 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13628605600) | 2026-11-15T18:00:49Z |
 | [Transcending the Nine Heavens](https://novelfull.com/transcending-the-nine-heavens.html) | all | 1510 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629491257) | 2026-11-15T18:34:37Z |
 | [TranXending Vision](https://novelfull.com/tranxending-vision.html) | all | 1201 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629356718) | 2026-11-15T18:34:08Z |
 | [True Martial World](https://novelfull.com/true-martial-world.html) | all | 1710 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625147182) | 2026-11-15T16:29:28Z |
 | [Unrivaled Medicine God](https://novelfull.com/unrivaled-medicine-god.html) | all | 3120 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625248157) | 2026-11-15T16:37:41Z |
 | [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
-| [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
+| [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
 | [When I Saw The Returns, I Invested In My Future Wife First](https://novelfull.com/when-i-saw-the-returns-i-invested-in-my-future-wife-first.html) | all | 450 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13626582748) | 2026-11-15T17:13:00Z |
 
 ## Scribble Hub (1 novels)
