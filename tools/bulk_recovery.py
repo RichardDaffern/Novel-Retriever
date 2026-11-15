@@ -18,7 +18,7 @@ import json
 from pathlib import Path
 import re
 import sys
-from zipfile import ZipFile, ZIP_DEFLATED, BadZipFile
+from zipfile import ZipFile, ZIP_DEFLATED, ZIP_STORED, BadZipFile
 
 from tools.download_registry import canonical_url, normalise_range
 
@@ -150,7 +150,15 @@ def recover(plan: dict, artifact_root: Path, output_dir: Path,
                 raise RecoveryError("Duplicate recovery file identity")
             with ZipFile(dest, "w", compression=ZIP_DEFLATED, compresslevel=6) as z:
                 for name in sorted(filenames):
-                    z.write(book / name, arcname=f"{book.name}/{name}")
+                    # EPUB/JPEG/PNG are already compressed. Recompressing
+                    # them wastes CPU but barely changes archive size.
+                    method = ZIP_STORED if name in (
+                        "source.epub", "cover.jpg", "cover.png"
+                    ) else ZIP_DEFLATED
+                    z.write(
+                        book / name, arcname=f"{book.name}/{name}",
+                        compress_type=method,
+                    )
             with ZipFile(dest) as z:
                 if z.testzip() is not None or len(z.namelist()) != len(filenames):
                     raise RecoveryError("Recovery ZIP integrity check failed")
