@@ -2,6 +2,8 @@
 
 **Last verified:** 15 November 2026. **Production status:** research only. **No new domain enabled.**
 
+**Follow-up live tests completed:** [HTTP-200 scenarios](HTTP200_LIVE_SCENARIOS_2026-11-15.md) cover actual publicly readable first and final chapters for two WuxiaClick novels, the site's linked catalogue pagination, two LibRead-to-FreeWebNovel redirects, and NovelBin.cc chapter HTTP 429. Source permissions and full-book TOC completeness remain gating.
+
 This is the consolidated source-of-truth for the next candidate websites in [Novel_Library](../README.md). The single user-facing bulk workflow remains **Library - Bulk Download**, which automatically routes mixed novel URLs. The existing NovelFull, FreeWebNovel, ReadNovelFull and one verified Scribble Hub author cross-post remain the only current internet-enabled source options.
 
 ## Scope and evidence
