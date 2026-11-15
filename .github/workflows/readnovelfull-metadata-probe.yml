@@ -23,8 +23,24 @@ jobs:
           cache: pip
       - name: Install pinned dependencies
         run: python -m pip install -r requirements.lock
-      - name: Check ReadNovelFull public catalogue only (no chapter prose)
+      - name: Inspect only the first archive URL shapes (no chapter prose)
         run: |
-          python -m tools.readnovelfull_downloader \
-            "https://readnovelfull.com/cultivation-online-v3.html" \
-            --list-only --confirm-rights
+          python - <<'PY'
+          from bs4 import BeautifulSoup
+          from urllib.parse import urlsplit
+          from tools.readnovelfull_source import (
+              fetch_public_html, book_metadata, archive_url, validate_chapter_url
+          )
+          book = "https://readnovelfull.com/cultivation-online-v3.html"
+          metadata = book_metadata(fetch_public_html(book), book)
+          html = fetch_public_html(archive_url(metadata["novel_id"]))
+          links = BeautifulSoup(html, "html.parser").select(".list-chapter li a[href]")
+          print("Total chapter links:", len(links))
+          for a in (links[:8] + links[-3:]):
+              url = a["href"]
+              print("Catalogue link:", url[:240])
+              try:
+                  print("Parsed:", validate_chapter_url(url)[:2])
+              except ValueError as exc:
+                  print("Rejected:", exc)
+          PY
