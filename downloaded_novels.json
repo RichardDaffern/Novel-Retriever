@@ -92,6 +92,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/perfect-superstar",
+      "title": "Perfect Superstar",
+      "author": "Chen Ru Tai Ping Yang",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 231,
+          "run_id": 43734404117,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117",
+          "artifact_id": 14177333229,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14177333229",
+          "completed_at_utc": "2026-11-15T19:46:18Z",
+          "expires_at_utc": "2026-11-22T19:46:18Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/shrouding-the-heavens",
       "title": "Shrouding the Heavens",
       "author": "Chen Dong",
