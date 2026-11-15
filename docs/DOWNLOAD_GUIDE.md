@@ -144,9 +144,12 @@ validation and registered download status checks remain unchanged.
 
 **Partial-failure recovery:** each successfully completed book has its own
 separately downloadable novel artefact, even if another book fails or the
-overall bulk workflow status is red. The always-run summary job additionally
-downloads the completed child artefacts, re-verifies source URLs, ZIP/EPUB CRC,
-chapter positions, manifest and individual SHA-256 digests, then publishes
+overall bulk workflow status is red. **If all child groups succeed or are
+skipped, the summary avoids redownloading and rezipping those books**:
+the existing individual artefacts remain available. If any child group fails
+or is cancelled, the always-run summary job downloads the completed child
+artefacts, re-verifies source URLs, ZIP/EPUB CRC, chapter positions, manifest
+and individual SHA-256 digests, then publishes
 `bulk-successful-novels-<run-id>` under the bulk run's **Artifacts** section.
 Download that recovery artefact and extract it to obtain **one ordinary ZIP per
 successful novel**, plus `bulk_recovery_manifest.json` showing recovered,
@@ -164,9 +167,9 @@ Retry manifests are available for **seven days** and only for bulk runs created 
 
 The report includes **summed per-step durations across parallel jobs**, not a claim about whole-workflow elapsed time. The completed-jobs elapsed window is separate and may exclude an in-progress summary job. A chapter-fetch step can reuse a cached batch without contacting the website. Compare multiple equivalent bulk runs before changing site concurrency or claiming a download speed-up.
 
-**Low-risk packaging optimisation:** the recovery process stores already-compressed EPUB/cover files without recompressing them, continues compressing TXT/JSON, and uploads the resulting book ZIPs with Actions compression level zero. The normal completed novel and chapter artefacts retain their existing compression and full integrity checks. Both website workflows already restrict assembly downloads to their own chapter-batch IDs, so no new filtering is required. Source request rates and the existing 3/2/1 per-site concurrency limits are unchanged.
+**Low-risk packaging optimisation:** successful bulk runs skip duplicate recovery transfers and repackaging entirely. On partial failure, recovery stores already-compressed EPUB/cover files without recompressing them, continues compressing TXT/JSON, and uploads the resulting book ZIPs with Actions compression level zero. The normal completed novel and chapter artefacts retain their existing compression and full integrity checks. Both website workflows already restrict assembly downloads to their own chapter-batch IDs, so no new filtering is required. Source request rates and the existing 3/2/1 per-site concurrency limits are unchanged.
 
-The recovery bundle and individual novel artefacts are retained for seven days.
+When created after a child failure, the recovery bundle and original individual novel artefacts are retained for seven days. A fully successful bulk run has individual novel artefacts and a performance report, but no redundant recovery bundle or retry manifest.
 A large recovery bundle is bounded by a 1.75 GiB packaging safety limit; books
 not included because of this limit remain individually retrievable.
 Public-repository Actions artefacts may be accessible to other users.
