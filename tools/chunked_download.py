@@ -189,7 +189,7 @@ def cache_has_synopsis_support(metadata: dict, url: str) -> bool:
     host = (urlsplit(url).hostname or "").lower().removeprefix("www.")
     if host == "novelfull.com" and metadata.get("synopsis_pipeline_version") != 2:
         return False
-    if host in {"novelfull.com", "freewebnovel.com"}:
+    if host in {"novelfull.com", "freewebnovel.com", "readnovelfull.com"}:
         return metadata.get("cover_pipeline_version") == 1
     return True
 
