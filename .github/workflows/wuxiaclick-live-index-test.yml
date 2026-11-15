@@ -18,7 +18,7 @@ jobs:
       - name: Verify real complete ordered chapter metadata with no chapter-text requests
         run: |
           python -u - <<'PY'
-          from tools.wuxiaclick_source import discover, fetch_public_html
+          from tools.wuxiaclick_source import discover, fetch_public_html, extract_chapter
           from bs4 import BeautifulSoup
           for slug in ("martial-world","true-martial-world"):
               url="https://wuxia.click/novel/"+slug
@@ -31,4 +31,11 @@ jobs:
               print("INDEX_PASS",slug,"count",len(rows),"first",rows[0]["source_number"],
                     "last",rows[-1]["source_number"],"first_title",repr(rows[0]["title"][:70]),
                     "last_title",repr(rows[-1]["title"][:70]),flush=True)
+              for row in (rows[0], rows[-1]):
+                  html=fetch_public_html(row["url"])
+                  item=extract_chapter(html,title=row["title"],
+                                       source_number=row["source_number"])
+                  print("CHAPTER_PARSE_PASS",slug,"source",row["source_number"],
+                        "title",repr(item["title"][:65]),
+                        "characters",len(item["text"]),flush=True)
           PY
