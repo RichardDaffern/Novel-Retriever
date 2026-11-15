@@ -4,10 +4,11 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (1 novels)
+## FreeWebNovel (2 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
+| [Big Life](https://freewebnovel.com/novel/big-life) | all | 304 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14171863992) | 2026-11-22T17:21:51Z |
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 
 ## NovelFull (92 novels)
@@ -95,7 +96,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Legendary Moonlight Sculptor](https://novelfull.com/the-legendary-moonlight-sculptor.html) | all | 710 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13624187862) | 2026-11-15T16:03:05Z |
 | [The Lord’s Empire](https://novelfull.com/the-lords-empire.html) | all | 1729 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13625076323) | 2026-11-15T16:28:03Z |
 | [The Ocean Lord Is Unusually Powerful](https://novelfull.com/the-ocean-lord-is-unusually-powerful.html) | all | 855 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13624069033) | 2026-11-15T16:09:39Z |
-| [The Second Coming of Gluttony](https://novelfull.com/the-second-coming-of-gluttony.html) | all | 550 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13626140911) | 2026-11-15T16:56:44Z |
+| [The Second Coming of Gluttony](https://novelfull.com/the-second-coming-of-gluttony.html) | all | 550 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13626140911) | 2026-11-15T16:56:44Z |
 | [The Surgeon’s Studio](https://novelfull.com/the-surgeons-studio.html) | all | 2977 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627346622) | 2026-11-15T17:31:08Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368375482/artifacts/13575943777) | 2026-11-14T13:31:01Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627465520) | 2026-11-15T17:27:24Z |
@@ -107,7 +108,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Unrivaled Medicine God](https://novelfull.com/unrivaled-medicine-god.html) | all | 3120 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625248157) | 2026-11-15T16:37:41Z |
 | [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
 | [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
-| [When I Saw The Returns, I Invested In My Future Wife First](https://novelfull.com/when-i-saw-the-returns-i-invested-in-my-future-wife-first.html) | all | 450 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13626582748) | 2026-11-15T17:13:00Z |
+| [When I Saw The Returns, I Invested In My Future Wife First](https://novelfull.com/when-i-saw-the-returns-i-invested-in-my-future-wife-first.html) | all | 450 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13626582748) | 2026-11-15T17:13:00Z |
 
 ## Scribble Hub (1 novels)
 
