@@ -256,6 +256,8 @@ jobs:
 
       - name: Publish small performance report
         if: always() && steps.timings.outcome == 'success'
+        # Telemetry must never turn a successful novel download into a failure.
+        continue-on-error: true
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: bulk-performance-${{ github.run_id }}
