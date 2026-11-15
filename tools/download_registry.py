@@ -110,6 +110,7 @@ SITE_LABELS = {
     "novelfull.com": "NovelFull",
     "freewebnovel.com": "FreeWebNovel",
     "readnovelfull.com": "ReadNovelFull",
+    "wuxia.click": "WuxiaClick",
     "scribblehub.com": "Scribble Hub",
 }
 
