@@ -633,6 +633,7 @@ Different sites have different technical and permission restrictions. A parser e
 | --- | --- | --- |
 | NovelFull | Production FanFicFare-backed bounded downloader | Authorised HTTPS source, verified range assembly |
 | FreeWebNovel | Separate production public-page range downloader | Sequential requests, restrictions respected, missing chapters fail closed |
+| WuxiaClick | **Bounded** public page source (20 chapters per run max) | Exact paginated TOC, rights gate, daily allowance awareness, no full-book harvest or quota evasion |
 | Royal Road | Offline feasibility and authorised local EPUB import | No enabled live GitHub bulk downloader here |
 | WTR-Lab | Offline feasibility and authorised local EPUB import | No automated website downloader enabled |
 | Scribble Hub | Authorised offline EPUB import; **one** verified same-author FFN cross-post via FicHub | Direct Scribble Hub HTTP 403; no general site downloader or bulk menu |
@@ -641,6 +642,14 @@ Different sites have different technical and permission restrictions. A parser e
 | WebNovel | Read-only public metadata, HTTP/browser feasibility, constrained two-public-chapter tests, authorised saved-page/JSON/TXT imports | No unrestricted WebNovel all-chapter downloader, no locked content or challenge bypass |
 | Local selectable-text PDF | Production offline conversion | Source review, no OCR |
 | Authorised local EPUB | Production offline conversion | Source identity and archive validation |
+
+### WuxiaClick bounded chapter downloader
+
+Use `tools/wuxiaclick_source.py` for strict `https://wuxia.click/novel/<slug>` book IDs, numbered `/chapter/<slug>-N` links and linked `?page=N` TOC pagination. Live real index tests [#43729861621](https://github.com/RichardDaffern/Novel_Library/actions/runs/43729861621) verified 2,276 *Martial World* and 1,709 *True Martial World* chapter entries. **Do not guess numeric URL suffixes**: a heading can say Chapter 0 when its URL ends `-1`; the site counts entries independently of maximal URL suffix. TOC entries belong to `section#chapters ol li a`, not the nearby latest or first-chapter navigation. Site labels include source numbers and dates, which must be removed before comparing text headings.
+
+`tools/wuxiaclick_downloader.py` produces the standard verified EPUB/TXT chapter/metadata/cover output using `#chapter-content`, with strict heading identity checks, source hash and checkpoint integrity. `tools/wuxiaclick_chunks.py` reuses shared batch validation and assembly. It is **not** a full-book bulk scraper: site policy describes a daily signed-out offline download allowance of **20 chapters**. The code requires `--confirm-rights`, caps any range at 20 chapters, never schedules multiple parallel pieces for a full book and checks robots access before ordinary public-page requests. Multiple WuxiaClick books in a single bulk run must collectively fit 20 chapter selections. Do not run repeated jobs to exceed the daily allowance; cross-run allowance accounting is not implemented. The user's rights to store the works are not inferred from their public readability. When output artefacts are public, do not expose content without distribution rights.
+
+The dedicated [WuxiaClick workflow](.github/workflows/wuxiaclick-download.yml) can be run for an authorised bounded range. The **same** existing [mixed-link bulk form](.github/workflows/library-bulk-download.yml) auto-routes WuxiaClick URLs. User must confirm rights for this site and Scribble Hub. Normal bulk retries, independent successful artefacts and failure recovery still apply. Never add a second bulk website selector.
 
 ### Author-verified Scribble Hub cross-post through FicHub
 
@@ -693,9 +702,10 @@ Before writing any live downloader:
 | `.github/workflows/download-novel.yml` | Manual and reusable call | Prepare, bounded chapter batches, assemble, report | Temporary book artefacts and metadata registry PR |
 | `.github/workflows/freewebnovel-download.yml` | Manual and reusable call | Prepare, bounded chapter batches, assemble, report | Temporary book artefacts and metadata registry PR |
 | `.github/workflows/readnovelfull-download.yml` | Manual and reusable call | Discover AJAX chapter list, paced 100-chapter batches, verified EPUB assembly, publish registry | Temporary verified novel artefact; no website workaround |
+| `.github/workflows/wuxiaclick-download.yml` | Manual and reusable call | Exact 100-entry paginated book TOC, single <=20-chapter confirmed-rights batch, verified EPUB and recovery | Bounded temporary source artefact only; no whole-book quota evasion |
 | `.github/workflows/scribblehub-download.yml` | Manual and reusable call | Explicit rights gate, verified same-author FicHub cross-post, archive verification | Temporary complete novel artefact and metadata-only registry PR |
 | `.github/workflows/scribblehub-download.yml` | Manual only | Verify rights and registered author cross-post, FicHub export, ZIP validation, artefact assembly and metadata registry | Seven-day complete-novel artefact and metadata-only registry PR; only allowlisted same-author cross-posts |
-| `.github/workflows/library-bulk-download.yml` | Manual, one recommended download form | Accept mixed novel URLs and names, auto-detect sites, call four reusable workflows, always-run summary with failure-gated recovery | No website dropdown; avoids duplicate recovery transfers on success; preserves partial-failure artefacts and retry manifest |
+| `.github/workflows/library-bulk-download.yml` | Manual, one recommended download form | Accept mixed novel URLs and names, auto-detect sites, call five reusable workflows, always-run summary with failure-gated recovery | No website dropdown; avoids duplicate recovery transfers on success; preserves partial-failure artefacts and retry manifest |
 | `.github/workflows/download-covers.yml` | Manual | Cover-only job | 30-day cover-image artefact; no chapter or registry edits |
 
 Security/operational expectations:
