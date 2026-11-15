@@ -129,5 +129,35 @@ class PerformanceTests(unittest.TestCase):
         self.assertIn("bulk-performance-$" + "{{ github.run_id }}", bulk)
 
 
+    def test_successful_bulk_skips_duplicate_recovery_but_keeps_failure_safety(self):
+        bulk = Path(".github/workflows/library-bulk-download.yml").read_text(
+            encoding="utf-8")
+        gate = bulk.split(
+            "      - name: Decide whether partial recovery is needed", 1
+        )[1].split("      - name: Retrieve selected novel plan", 1)[0]
+        self.assertIn('for result in "$NOVELFULL" "$FREEWEBNOVEL" "$SCRIBBLEHUB"', gate)
+        self.assertIn('"$result" == "failure" || "$result" == "cancelled"', gate)
+        self.assertIn('echo "required=true"', gate)
+        self.assertIn('echo "required=false"', gate)
+        for step_name in (
+            "Retrieve selected novel plan",
+            "Collect successful per-novel artefacts even if other downloads failed",
+            "Validate and package all completed novels separately",
+        ):
+            with self.subTest(step=step_name):
+                start = bulk.index("      - name: " + step_name)
+                end = bulk.find("\n      - name: ", start + 1)
+                block = bulk[start:end if end != -1 else None]
+                self.assertIn(
+                    "if: always() && steps.recovery_gate.outputs.required == 'true'",
+                    block,
+                )
+        self.assertIn(
+            "if: always() && steps.recovery.outcome == 'success'", bulk)
+        self.assertIn("bulk-successful-novels-$" + "{{ github.run_id }}", bulk)
+        self.assertIn("bulk-recovery-manifest-$" + "{{ github.run_id }}", bulk)
+        self.assertIn("tools.workflow_performance", bulk)
+
+
 if __name__ == "__main__":
     unittest.main()
