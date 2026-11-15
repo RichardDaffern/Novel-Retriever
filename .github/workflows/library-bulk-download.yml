@@ -11,6 +11,7 @@ on:
           - All
           - NovelFull
           - FreeWebNovel
+          - ReadNovelFull
           - Scribble Hub
         default: All
       novel_names:
@@ -55,6 +56,8 @@ jobs:
       novelfull_matrix: ${{ steps.plan.outputs.novelfull_matrix }}
       has_freewebnovel: ${{ steps.plan.outputs.has_freewebnovel }}
       freewebnovel_matrix: ${{ steps.plan.outputs.freewebnovel_matrix }}
+      has_readnovelfull: ${{ steps.plan.outputs.has_readnovelfull }}
+      readnovelfull_matrix: ${{ steps.plan.outputs.readnovelfull_matrix }}
       has_scribblehub: ${{ steps.plan.outputs.has_scribblehub }}
       scribblehub_matrix: ${{ steps.plan.outputs.scribblehub_matrix }}
     steps:
@@ -166,6 +169,24 @@ jobs:
       pull-requests: write
       actions: read
 
+  readnovelfull:
+    needs: prepare
+    if: needs.prepare.outputs.has_readnovelfull == 'true'
+    strategy:
+      fail-fast: false
+      # One novel at a time, with at most two paced chapter batches.
+      max-parallel: 1
+      matrix: ${{ fromJSON(needs.prepare.outputs.readnovelfull_matrix) }}
+    uses: ./.github/workflows/readnovelfull-download.yml
+    with:
+      novel_url: ${{ matrix.novel_url }}
+      chapter_range: ${{ matrix.chapter_range }}
+      force: ${{ matrix.force }}
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
+
   scribblehub:
     needs: prepare
     if: needs.prepare.outputs.has_scribblehub == 'true'
@@ -185,7 +206,7 @@ jobs:
       actions: read
 
   summary:
-    needs: [prepare, novelfull, freewebnovel, scribblehub]
+    needs: [prepare, novelfull, freewebnovel, readnovelfull, scribblehub]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -203,9 +224,10 @@ jobs:
         env:
           NOVELFULL: ${{ needs.novelfull.result }}
           FREEWEBNOVEL: ${{ needs.freewebnovel.result }}
+          READNOVELFULL: ${{ needs.readnovelfull.result }}
           SCRIBBLEHUB: ${{ needs.scribblehub.result }}
         run: |
-          for result in "$NOVELFULL" "$FREEWEBNOVEL" "$SCRIBBLEHUB"; do
+          for result in "$NOVELFULL" "$FREEWEBNOVEL" "$READNOVELFULL" "$SCRIBBLEHUB"; do
             if [[ "$result" == "failure" || "$result" == "cancelled" ]]; then
               echo "required=true" >> "$GITHUB_OUTPUT"
               echo "::notice::A child download failed or was cancelled; recovering completed novels."
@@ -292,6 +314,7 @@ jobs:
           PREPARE: ${{ needs.prepare.result }}
           NOVELFULL: ${{ needs.novelfull.result }}
           FREEWEBNOVEL: ${{ needs.freewebnovel.result }}
+          READNOVELFULL: ${{ needs.readnovelfull.result }}
           SCRIBBLEHUB: ${{ needs.scribblehub.result }}
           RECOVERY: ${{ steps.recovery.outcome }}
         run: |
@@ -301,6 +324,7 @@ jobs:
           echo "| Planning | $PREPARE |" >> "$GITHUB_STEP_SUMMARY"
           echo "| NovelFull | $NOVELFULL |" >> "$GITHUB_STEP_SUMMARY"
           echo "| FreeWebNovel | $FREEWEBNOVEL |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| ReadNovelFull | $READNOVELFULL |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Scribble Hub | $SCRIBBLEHUB |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Partial recovery | $RECOVERY |" >> "$GITHUB_STEP_SUMMARY"
           echo "Independently completed novels retain their original individual artefacts." >> "$GITHUB_STEP_SUMMARY"
@@ -315,6 +339,7 @@ jobs:
           if [[ "$PREPARE" == "failure" || "$PREPARE" == "cancelled" || \
                 "$NOVELFULL" == "failure" || "$NOVELFULL" == "cancelled" || \
                 "$FREEWEBNOVEL" == "failure" || "$FREEWEBNOVEL" == "cancelled" || \
+                "$READNOVELFULL" == "failure" || "$READNOVELFULL" == "cancelled" || \
                 "$SCRIBBLEHUB" == "failure" || "$SCRIBBLEHUB" == "cancelled" || \
                 "$RECOVERY" == "failure" ]]; then
             echo "::error::At least one grouped download failed or was cancelled."
