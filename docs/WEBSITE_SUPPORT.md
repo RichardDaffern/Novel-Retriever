@@ -16,7 +16,7 @@ Back to the [README](../README.md) · [Detailed download guide](DOWNLOAD_GUIDE.m
 | **Royal Road** (`royalroad.com`) | **No enabled website-download workflow** | Convert an already-authorised local EPUB; offline saved-page feasibility | [Local EPUB importer](../tools/import_local_epub.py) |
 | **WTR-Lab** (`wtr-lab.com`) | **No** | Convert an already-authorised local EPUB; offline saved-page feasibility | [Local EPUB importer](../tools/import_local_epub.py) |
 | **Novel Fire** (`novelfire.net`) | **No** | Offline analysis of saved HTML (book, index and up to two chapters) | [Feasibility tool](../tools/source_feasibility.py) |
-| **Light Novel Pub** (`lightnovelpub.com`) | **No** | Offline analysis of saved HTML where suitable | [Feasibility tool](../tools/source_feasibility.py) |
+| **Light Novel Pub** (`lightnovelpub.com`) | **No, service shut down** | Historical **saved HTML only**; successor NovelCodex does not host chapters | [Updated research](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) |
 
 **Meaning of “Yes”:** an actual chapter-fetching and complete-book assembly workflow exists in this repository. It does **not** mean all titles are currently reachable, have consecutive readable chapters, or are authorised for archiving. In particular, FreeWebNovel's original public two-chapter test was verified on 10 November 2026; a complete live full-book run was **not established by that test**.
 
@@ -125,14 +125,14 @@ The URL is illustrative identity metadata; the command does **not** download tha
 
 **WTR-Lab:** no automated downloader is enabled. Its published rules restrict automated requests and copying, and some chapters are locked. Offline import is possible for a user-supplied, authorised EPUB only, not for automatically collected site text.
 
-For source-policy detail, examples and offline page analysis, see [experimental-sources.md](experimental-sources.md).
+For source-policy detail, examples, [completed 15 November 2026 GitHub-runner diagnostics](ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md) and offline page analysis, see [experimental-sources.md](experimental-sources.md).
 
 ### Novel Fire and Light Novel Pub
 
 These sites have **offline feasibility analysis only**. [`tools/source_feasibility.py`](../tools/source_feasibility.py) can parse book information, saved chapter-index HTML and up to two saved chapters; it performs no website requests and does not produce a complete EPUB.
 
 - **Novel Fire** (`novelfire.net`): catalogue routes have been studied, but published terms prohibit scraping/crawling without relevant permission. No chapter-download workflow exists.
-- **Light Novel Pub** (`lightnovelpub.com`): older indexed book pages can be analysed offline, but current technical access and download permissions are unverified. No chapter-download workflow exists.
+- **Light Novel Pub** (`lightnovelpub.com`): **the live novel-hosting platform has shut down**. Its root now leads to a shutdown announcement; [NovelCodex](https://www.novelcodex.com/) explicitly says it does not host novels or chapters. Old saved HTML fixtures can still be analysed offline, but no live chapter-download workflow should be added.
 - **Light Novel World / `lightnovelpub.org`** is not equivalent to `lightnovelpub.com`; the older site has been reported shut down. It is not supported here.
 
 The detailed feasibility research, format observations and acceptance requirements are in [experimental-sources.md](experimental-sources.md).
