@@ -146,6 +146,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/the-place-you-called-from",
+      "title": "The Place You Called From",
+      "author": "Sugaru Miaki (Fafoo)",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 15,
+          "run_id": 43734410920,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920",
+          "artifact_id": 14176111528,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14176111528",
+          "completed_at_utc": "2026-11-15T19:02:16Z",
+          "expires_at_utc": "2026-11-22T19:02:16Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/three-days-of-happiness",
       "title": "Three Days of Happiness",
       "author": "Sugaru Miaki (Fafoo)",
