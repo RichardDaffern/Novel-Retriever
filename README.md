@@ -11,6 +11,7 @@ A Python toolkit for downloading **authorised** web novels, assembling complete 
 | [NovelFull](https://novelfull.com/) | **Yes**, using FanFicFare and verified chapter batches | **Library - Bulk Download** |
 | [FreeWebNovel](https://freewebnovel.com/) | **Yes**, for accessible public chapters, with chapter-by-chapter validation | **Library - Bulk Download** |
 | [ReadNovelFull](https://readnovelfull.com/) | **Yes, newly implemented**; full AJAX chapter catalogue, verified EPUB/TXT chapters. Live full-book success not yet established | **Library - Bulk Download** |
+| [WuxiaClick](https://wuxia.click/) | **Bounded, authorised ranges only (1-20 chapters per run)**; no unattended full-book export or bypass of the site's daily download allowance | **WuxiaClick - Download** or **Library - Bulk Download** |
 
 Other sources have restricted or specialised options, not general-purpose website downloaders:
 
@@ -29,7 +30,7 @@ Other sources have restricted or specialised options, not general-purpose websit
 
 **[Open Library - Bulk Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/library-bulk-download.yml)**, select **Run workflow**, then:
 
-1. Paste **one or more novel links** into **Novel links**. Separate links with spaces, commas or semicolons. You can mix NovelFull, FreeWebNovel and ReadNovelFull freely.
+1. Paste **one or more novel links** into **Novel links**. Separate links with spaces, commas or semicolons. You can mix NovelFull, FreeWebNovel and ReadNovelFull freely, and include WuxiaClick links for an authorised bounded chapter range.
 2. Optionally enter saved novel titles, choose a chapter range or select **Force** to redownload.
 3. Click **Run workflow**. The downloader identifies the website for **each** link and routes every book automatically. **No website dropdown or manual grouping.**
 
@@ -39,9 +40,10 @@ Example links for the one field (illustrative):
 https://novelfull.com/the-world-online.html
 https://freewebnovel.com/novel/the-first-order
 https://readnovelfull.com/cultivation-online-v3.html
+https://wuxia.click/novel/martial-world
 ~~~
 
-**One link also works.** The supported-source list is limited: unsupported links are rejected before scheduling. A verified Scribble Hub author cross-post can be included by URL, provided you tick the existing **Confirm rights** checkbox and leave Chapter range blank. The earlier ten-novel cap is removed; GitHub allows up to **256 scheduled novel jobs** per run.
+**One link also works.** The supported-source list is limited: unsupported links are rejected before scheduling. A verified Scribble Hub author cross-post can be included by URL, provided you tick **Confirm rights** and leave Chapter range blank. For **WuxiaClick**, you must tick **Confirm rights** and specify a range of at most **20 chapters**; across multiple WuxiaClick links in a bulk run, the total selected WuxiaClick chapters cannot exceed 20. Because the site imposes an offline download allowance, do not run repeated jobs to exceed your daily quota. **Full-book WuxiaClick export is disabled** until separately authorised. The earlier ten-novel cap is removed; GitHub allows up to **256 scheduled novel jobs** per run.
 
 If a book fails, other completed books retain their own downloadable artefacts. On partial failure, an additional `bulk-successful-novels-<run-id>` recovery bundle and a retry-only manifest are produced. Successful runs skip unnecessary repackaging. Artefacts remain available for seven days. The workflow also reports timings.
 
