@@ -31,7 +31,7 @@ Go to [Actions](https://github.com/RichardDaffern/Novel_Library/actions) and run
 - **NovelFull - Download**: download a single NovelFull book.
 - **FreeWebNovel - Download**: download a single FreeWebNovel book.
 - **Scribble Hub - Download**: download the verified same-author FanFiction.net cross-post of Scribble Hub series `445037` via FicHub; confirm rights before running.
-- **Library - Bulk Download**: the **only bulk workflow**, supporting NovelFull, FreeWebNovel and **verified Scribble Hub cross-posts**. Select All or a website; enter saved names or exact URLs. No ten-novel limit; GitHub's platform allows up to **256 scheduled jobs per run**.
+- **Library - Bulk Download**: the **only bulk workflow**, supporting NovelFull, FreeWebNovel and **verified Scribble Hub cross-posts**. Select All or a website; enter saved names or exact URLs. No ten-novel limit; GitHub's platform allows up to **256 scheduled jobs per run**. To rerun only failed/missing novels, enter the earlier run ID in **Retry from previous run** (for runs with the new retry manifest).
 - **Covers - Download**: download **images only**, not chapter text.
 
 For novel downloads, provide a source URL (or saved titles for bulk), optionally choose a chapter range and use **Force** only to intentionally redownload. Scribble Hub requires explicit archiving-rights confirmation and whole-book selection. **If some bulk jobs fail, completed books remain in their own artefacts and in a `bulk-successful-novels-<run-id>` recovery artefact**, with one ZIP per verified novel plus a results manifest. Artefacts are retained for **seven days**.

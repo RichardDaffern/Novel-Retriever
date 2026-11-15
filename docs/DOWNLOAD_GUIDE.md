@@ -154,6 +154,12 @@ missing and rejected books. A failed/incomplete chapter batch is never included
 as a completed novel. Original independent completed artefacts are not deleted
 during recovery, and remain available if recovery packaging itself fails.
 
+**Retry only failed or missing books:** in **Library - Bulk Download**, set **Retry from previous run ID** to the numeric ID at the end of the earlier workflow URL, such as `43609729867`. Leave **Website = All**, saved names, novel URLs and chapter range blank, and leave **Force** unticked. If the missing list includes a Scribble Hub cross-post, tick the usual permission checkbox. The workflow downloads the previous run's small `bulk-recovery-manifest-<run-id>` artefact (not the large book ZIPs), validates that it belongs to that run, rebuilds the exact missing-novel URLs and original chapter range, and skips anything independently completed since then. Successful books are **never redownloaded merely because the previous overall run failed**.
+
+Retry manifests are available for **seven days** and only for bulk runs created *after* this feature is released. Earlier manifests lack reliable range and run-ID details, so the tool refuses to guess them. If the original summary/recovery job never produced a manifest, use a fresh bulk submission with the remaining URLs instead. A run with no missing work reports that explicitly.
+
+**Synthetic load testing:** `python -m tools.bulk_stress` checks 20, 50 and 100 selections, mixed website matrices, duplicates and registry skips without contacting novel websites; it also confirms 256 jobs are accepted and 257 are rejected.
+
 The recovery bundle and individual novel artefacts are retained for seven days.
 A large recovery bundle is bounded by a 1.75 GiB packaging safety limit; books
 not included because of this limit remain individually retrievable.
