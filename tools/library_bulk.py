@@ -22,12 +22,13 @@ from tools.download_registry import (
     website_name,
 )
 from tools.freewebnovel_probe import validate_book_url
+from tools.readnovelfull_source import validate_book_url as validate_readnovelfull_url
 from tools.verified_crosspost_download import _verified_record
 
 # This is GitHub's actual matrix execution limit, not an artificial ten-book
 # restriction. Only *scheduled* downloads count, not cached/skipped books.
 MAX_MATRIX_JOBS = 256
-SITES = ("NovelFull", "FreeWebNovel", "Scribble Hub")
+SITES = ("NovelFull", "FreeWebNovel", "ReadNovelFull", "Scribble Hub")
 WEBSITE_CHOICES = ("All",) + SITES
 DEFAULT_CATALOGUE = Path("novel_sources.json")
 
@@ -41,6 +42,8 @@ def _validated_url(value: str) -> tuple[str, str]:
     site = website_name(url)
     if site == "FreeWebNovel":
         return site, validate_book_url(url)
+    if site == "ReadNovelFull":
+        return site, validate_readnovelfull_url(url)
     if site == "Scribble Hub":
         # Uses only verified same-author cross-posts; never try direct
         # Scribble Hub chapter scraping for arbitrary series URLs.
@@ -252,6 +255,7 @@ def write_actions(plan: dict) -> None:
     for site, prefix in (
         ("NovelFull", "novelfull"),
         ("FreeWebNovel", "freewebnovel"),
+        ("ReadNovelFull", "readnovelfull"),
         ("Scribble Hub", "scribblehub"),
     ):
         group = plan["groups"][site]
