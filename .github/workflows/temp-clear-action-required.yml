@@ -1,23 +1,20 @@
-name: Temporary - Clear obsolete registry approvals
-
+name: Temporary - Retire obsolete workflow registrations
 on:
   push:
     branches:
       - chore/clear-registry-action-required-20261115
     paths:
       - .github/workflows/temp-clear-action-required.yml
-
 permissions:
   actions: write
   contents: read
-
 jobs:
-  delete-obsolete-no-job-runs:
+  retire:
     if: github.repository == 'RichardDaffern/Novel_Library'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
-      - name: Remove only finished bot registry PR checks that never executed
+      - name: Delete bot-only no-job failures and disable stale workflow registrations
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -30,88 +27,143 @@ jobs:
           import urllib.request
 
           REPO = "RichardDaffern/Novel_Library"
-          BRANCH = "refs/heads/chore/clear-registry-action-required-20261115"
-          # Frozen maximum from the user's original Action required list.
-          MAX_RUN_ID = 43740907597
-          WORKFLOW_ID = 410274135
-          TOKEN = os.environ.get("GH_TOKEN")
-          if (not TOKEN or os.environ.get("GITHUB_REPOSITORY") != REPO
-                  or os.environ.get("GITHUB_REF") != BRANCH
+          REF = "refs/heads/chore/clear-registry-action-required-20261115"
+          SAFE_MAX_RUN_ID = 43742705835
+          REGISTRY_CI_ID = 410274135
+          # These paths are NOT on main. This exact allowlist comes from
+          # the prior read-only inventory; regular download and CI are kept.
+          STALE = {
+              419278646: ".github/workflows/approved-novels-20261115.yml",
+              419006001: ".github/workflows/readnovelfull-metadata-probe.yml",
+              419217920: ".github/workflows/research-http200-scenarios.yml",
+              419203341: ".github/workflows/research-source-metadata-probe.yml",
+              419219327: ".github/workflows/research-wuxiaclick-catalogue.yml",
+              419220234: ".github/workflows/research-wuxiaclick-toc-pages.yml",
+              419347050: ".github/workflows/temp-workflow-inventory.yml",
+              419234199: ".github/workflows/wuxiaclick-dom-probe.yml",
+              419245442: ".github/workflows/wuxiaclick-live-index-test.yml",
+              # Do this last: the running one-off cleanup action itself.
+              419345162: ".github/workflows/temp-clear-action-required.yml",
+          }
+          if (os.environ.get("GITHUB_REPOSITORY") != REPO
+                  or os.environ.get("GITHUB_REF") != REF
                   or os.environ.get("GITHUB_EVENT_NAME") != "push"):
-              raise SystemExit("Unexpected repository, branch or authentication")
-
+              raise SystemExit("Refusing cleanup outside exact authorised branch")
+          token = os.environ["GH_TOKEN"]
           def api(path, method="GET"):
               req = urllib.request.Request(
                   "https://api.github.com/repos/" + REPO + path,
                   method=method,
                   headers={
-                      "Authorization": "Bearer " + TOKEN,
+                      "Authorization": "Bearer " + token,
                       "Accept": "application/vnd.github+json",
                       "X-GitHub-Api-Version": "2022-11-28",
-                      "User-Agent": "NovelLibrary-ActionRequired-HistoryCleanup/1.0",
-                  },
-              )
-              with urllib.request.urlopen(req, timeout=25) as res:
-                  if method == "DELETE":
-                      if res.status != 204:
-                          raise RuntimeError("Unexpected DELETE result")
+                      "User-Agent": "NovelLibrary-Explicit-Workflow-Retirement",
+                  })
+              with urllib.request.urlopen(req, timeout=25) as response:
+                  if method in ("PUT","DELETE"):
+                      if response.status != 204:
+                          raise RuntimeError("Unexpected action result")
                       return None
-                  return json.load(res)
+                  return json.load(response)
 
-          history = api("/actions/runs?status=action_required&per_page=100")
-          if history.get("total_count", 0) > 100:
-              raise SystemExit("Over 100 pending records; refuse partial cleanup")
-          runs = history.get("workflow_runs", [])
+          # All currently active main-branch workflows must be protected.
+          main_files = {
+              x["path"] for x in api("/contents/.github/workflows?ref=main")
+              if x.get("type") == "file"
+          }
+          if len(main_files) < 9:
+              raise SystemExit("Cannot verify all production main workflows")
+          registered = {
+              x["id"]: x for x in api("/actions/workflows?per_page=100")["workflows"]
+          }
+          for wid, path in STALE.items():
+              x = registered.get(wid)
+              if not x or x["path"] != path or path in main_files:
+                  raise SystemExit(
+                      f"Refuse workflow retirement; identity/main mismatch {wid} {path}"
+                  )
+          print("MAIN_WORKFLOWS_KEPT", len(main_files), sorted(main_files), flush=True)
+
+          # Clean only historically failed bot-generated PR checks which ran
+          # *zero jobs*, never actual test failures or data-producing runs.
+          all_failed = []
+          for page in range(1, 11):
+              d = api(f"/actions/runs?status=failure&per_page=100&page={page}")
+              part = d.get("workflow_runs", [])
+              all_failed.extend(part)
+              if len(part) < 100:
+                  break
+          else:
+              raise SystemExit("Too many failed runs to audit safely")
           candidates = [
-              run for run in runs
-              if (isinstance(run.get("id"), int)
-                  and run["id"] <= MAX_RUN_ID
-                  and run.get("workflow_id") == WORKFLOW_ID
-                  and run.get("status") == "completed"
-                  and run.get("conclusion") == "action_required"
-                  and run.get("event") == "pull_request"
-                  and run.get("name") in ("CI", "Test novel library")
-                  and (run.get("actor") or {}).get("login") == "github-actions[bot]"
-                  and str(run.get("head_branch") or "").startswith("registry/download-"))
+              x for x in all_failed
+              if (isinstance(x.get("id"), int)
+                  and x["id"] <= SAFE_MAX_RUN_ID
+                  and x.get("workflow_id") == REGISTRY_CI_ID
+                  and x.get("status") == "completed"
+                  and x.get("conclusion") == "failure"
+                  and x.get("event") == "pull_request"
+                  and (x.get("actor") or {}).get("login") == "github-actions[bot]"
+                  and str(x.get("head_branch") or "").startswith("registry/download-")
+                  and str(x.get("display_title") or "").startswith("Track completed novel download #")
+                  and x.get("name") in ("CI", "Test novel library"))
           ]
-          print(
-              "Historical action_required:", len(runs),
-              "safely eligible bot-only registry checks:", len(candidates),
-              "excluded:", len(runs)-len(candidates),
-              flush=True,
-          )
-          deleted = []
-          skipped_nonempty = []
-          failed = []
-          for run in candidates:
-              run_id = run["id"]
-              jobs = api(f"/actions/runs/{run_id}/jobs?per_page=1")
+          print("BOT_REGISTRY_FAILED_CANDIDATES",len(candidates),flush=True)
+          deleted, skipped, failed = [], [], []
+          for x in candidates:
+              rid=x["id"]
+              jobs=api(f"/actions/runs/{rid}/jobs?per_page=1")
               if jobs.get("total_count", -1) != 0:
-                  skipped_nonempty.append(run_id)
-                  print("SKIP jobs exist:", run_id, flush=True)
+                  skipped.append(rid)
+                  print("SKIP_HAS_JOBS",rid,flush=True)
                   continue
               try:
-                  api(f"/actions/runs/{run_id}", method="DELETE")
-                  deleted.append(run_id)
-                  print("DELETED obsolete action_required run", run_id, flush=True)
-                  time.sleep(0.25)
+                  api(f"/actions/runs/{rid}",method="DELETE")
+                  deleted.append(rid)
+                  print("DELETED_ZERO_JOB_BOT_FAILURE",rid,flush=True)
+                  time.sleep(0.10)
               except (urllib.error.HTTPError, urllib.error.URLError, RuntimeError) as exc:
-                  failed.append((run_id, str(exc)))
-                  print("FAILED", run_id, str(exc), flush=True)
-
-          summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
-          if summary_path:
-              with open(summary_path, "a", encoding="utf-8") as out:
-                  out.write(
-                      "## Historical registry CI cleanup\n\n"
-                      f"- Deleted obsolete bot-only \`action_required\` runs: **{len(deleted)}**\n"
-                      f"- Kept other/unmatched runs: **{len(runs)-len(candidates)}**\n"
-                      f"- Skipped because jobs existed: **{len(skipped_nonempty)}**\n"
-                      f"- API deletion failures: **{len(failed)}**\n\n"
-                      "Only completed GitHub Actions bot-created registry PR checks "
-                      "with zero jobs were eligible. Successful/failed workflows, "
-                      "download runs and artefacts were not touched.\n"
-                  )
+                  failed.append((rid,str(exc)))
+                  print("DELETE_ERROR",rid,str(exc),flush=True)
           if failed:
-              raise SystemExit(f"{len(failed)} deletions failed; see diagnostics")
+              raise SystemExit(f"Could not delete {len(failed)} zero-job bot failures")
+
+          # Disable obsolete Actions registrations. The definitions have
+          # already been removed from main, but GitHub retains them as
+          # selectable 'active' workflows because runs exist on old branches.
+          disabled = []
+          left_active = []
+          for wid, path in STALE.items():
+              x=registered[wid]
+              if x["state"] != "active":
+                  print("ALREADY_INACTIVE",wid,x["state"],flush=True)
+                  continue
+              if wid != 419345162:
+                  queued=api(f"/actions/workflows/{wid}/runs?status=queued&per_page=1")
+                  running=api(f"/actions/workflows/{wid}/runs?status=in_progress&per_page=1")
+                  if queued.get("total_count", 0) or running.get("total_count", 0):
+                      left_active.append(wid)
+                      print("SKIP_ACTIVE_RUNS",wid,flush=True)
+                      continue
+              api(f"/actions/workflows/{wid}/disable",method="PUT")
+              disabled.append(wid)
+              print("DISABLED_OBSOLETE_WORKFLOW",wid,path,flush=True)
+
+          summary=os.environ.get("GITHUB_STEP_SUMMARY")
+          if summary:
+              with open(summary,"a",encoding="utf-8") as out:
+                  out.write(
+                      "## Obsolete Actions cleanup\n\n"
+                      f"- Main-branch workflow definitions protected: **{len(main_files)}**\n"
+                      f"- Deleted zero-job bot registry failures: **{len(deleted)}**\n"
+                      f"- Failed checks with jobs preserved: **{len(skipped)}**\n"
+                      f"- Retired stale workflow registrations: **{len(disabled)}**\n"
+                      f"- Kept while a run is queued/running: **{len(left_active)}**\n\n"
+                      "All successful/failing real tests, download runs, associated "
+                      "artefacts and retained source evidence were preserved.\n"
+                  )
+          print("DONE", "deleted_failures",len(deleted),
+                "disabled_workflows",len(disabled),
+                "remaining_stale_running",left_active,flush=True)
           PY
