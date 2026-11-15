@@ -119,7 +119,10 @@ def book_metadata(page: str, url: str) -> dict:
         if raw.lower().startswith("author"):
             author = raw.split(":", 1)[-1].strip()[:240] or "Unknown"
             break
-    description_node = soup.select_one(".desc-text, .desc, [itemprop='description']")
+    # Select by priority, not DOM order: .desc is an earlier book-title panel.
+    description_node = next((soup.select_one(selector) for selector in
+                             (".desc-text", "#tab-description", "[itemprop='description']")
+                             if soup.select_one(selector)), None)
     description = description_node.get_text(" ", strip=True) if description_node else ""
     genres: list[str] = []
     status = ""
@@ -198,8 +201,11 @@ def extract_chapter(page: str, *, number: int, title: str) -> dict:
     page_title = soup.title.get_text(" ", strip=True).casefold() if soup.title else ""
     if any(x in page_title for x in ("just a moment", "attention required", "access denied")):
         raise SourceError("Access challenge returned instead of chapter")
-    header = soup.select_one(".chapter-title, h1, h2, h3")
-    heading = header.get_text(" ", strip=True) if header else ""
+    # A chapter page often has an h1 *book* title and an h2 chapter title.
+    headings = [h.get_text(" ", strip=True) for h in
+                soup.select(".chapter-title, h1, h2, h3")]
+    heading = next((h for h in headings if re.search(
+        r"\bchapter\s+([1-9][0-9]*)\b", h, re.I)), "")
     m = re.search(r"\bchapter\s+([1-9][0-9]*)\b", heading, re.I)
     if m and int(m.group(1)) != number:
         raise SourceError(f"Expected Chapter {number}, received Chapter {m.group(1)}")
