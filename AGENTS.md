@@ -60,7 +60,7 @@ Conceptual data flow:
 ~~~text
 Authorised source book / user-supplied EPUB / user-supplied PDF
                |
-               +--> NovelFull via FanFicFare + fanficfare_progress_runner.py
+               +--> NovelFull via FanFicFare + tools/fanficfare_progress_runner.py
                |       |
                |       +--> individual verified chapter-range jobs
                |       +--> cached complete range reuse (when available)
@@ -107,7 +107,7 @@ This section is a navigation map, not an exhaustive list of every test.
 | `README.md` | Main user guide and up-to-date operational instructions | Update when behaviour or commands change |
 | `AGENTS.md` | This detailed agent/contributor reference | Keep aligned with executable source |
 | `novel_downloader.py` | Main FanFicFare-backed direct downloader; EPUB spine parsing, chapters, staging and identity safety | High: common library functions used by several tools |
-| `fanficfare_progress_runner.py` | FanFicFare callback wrapper for chapter progress and temporary chapter checkpoints | High: partial-download resilience |
+| `tools/fanficfare_progress_runner.py` | FanFicFare callback wrapper for chapter progress and temporary chapter checkpoints | High: partial-download resilience |
 | `tools/chunked_download.py` | NovelFull range planning, caching, batch validation, EPUB assembly | High: completeness, ordering, metadata and artifact reuse |
 | `tools/freewebnovel_downloader.py` | Separate public-page sequential FreeWebNovel range downloader | High: site restrictions and fail-closed parser |
 | `tools/freewebnovel_chunks.py` | FreeWebNovel workflow orchestration using shared batch APIs | High: keep independent from NovelFull |
@@ -318,7 +318,7 @@ Important flags: `--list-only` (FanFicFare metadata discovery), `--chapter-range
 
 ### Progress reporting
 
-`fanficfare_progress_runner.py` observes FanFicFare's chapter completion callback, rather than interpreting every console progress dot as one chapter. It produces chapter counts/progress percentages and writes temporary chapter text checkpoints as individual chapters finish.
+`tools/fanficfare_progress_runner.py` observes FanFicFare's chapter completion callback, rather than interpreting every console progress dot as one chapter. It produces chapter counts/progress percentages and writes temporary chapter text checkpoints as individual chapters finish.
 
 Do not delete checkpoints or advertise a partial output as complete after exceptions. Tests in `tests/test_novel_downloader.py` exercise progress and checkpoint behaviour.
 
@@ -852,7 +852,7 @@ When time is constrained, prioritise:
 | --- | --- | --- |
 | “A downloaded book has wrong chapters or a missing range” | `novel_downloader.py`, `tools/chunked_download.py`, `tools/download_registry.py` | Exact source/range identity, every position, EPUB spine, source metadata |
 | “My previous EPUB was overwritten or the wrong book reused” | `novel_downloader.py` | Collision tests, failed forced refresh, rollback |
-| “A large NovelFull download times out” | `.github/workflows/download-novel.yml`, `tools/chunked_download.py`, `fanficfare_progress_runner.py` | Resume/reuse valid ranges; incomplete batches never register |
+| “A large NovelFull download times out” | `.github/workflows/download-novel.yml`, `tools/chunked_download.py`, `tools/fanficfare_progress_runner.py` | Resume/reuse valid ranges; incomplete batches never register |
 | “FreeWebNovel gives the wrong chapter” | `tools/freewebnovel_downloader.py`, `tools/freewebnovel_source.py` | Number/title/body checks; no auto bypass |
 | “Add another bulk option” | `tools/mixed_source_bulk.py`, `.github/workflows/library-bulk-download.yml` | Reuse single grouped bulk menu; no duplicate workflow |
 | “Why is a book not in DOWNLOADED_NOVELS.md?” | `tools/publish_registry.py`, `tools/download_registry.py` | Check artefact success versus registry PR state |

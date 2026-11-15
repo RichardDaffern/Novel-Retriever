@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LINK = re.compile(r"\]\(([^\s)]+)(?:\s+[^)]*)?\)")
 PUBLIC_ENTRYPOINTS = (
     "novel_downloader.py",
+    "tools/fanficfare_progress_runner.py",
     "Download-All-Novels.cmd",
     "PDF-to-Novel/Convert-PDFs.cmd",
     "DOWNLOADED_NOVELS.md",
@@ -52,6 +53,13 @@ class RepositoryNamingTests(unittest.TestCase):
                                   link=raw):
                     self.assertTrue(target.exists(),
                                     f"Broken local link: {document.relative_to(ROOT)} -> {raw}")
+
+    def test_internal_fanficfare_runner_is_in_tools(self):
+        runner = ROOT / "tools" / "fanficfare_progress_runner.py"
+        self.assertTrue(runner.is_file())
+        self.assertFalse((ROOT / "fanficfare_progress_runner.py").exists())
+        source = (ROOT / "novel_downloader.py").read_text(encoding="utf-8")
+        self.assertIn('"tools" / "fanficfare_progress_runner.py"', source)
 
     def test_guides_and_research_are_in_docs(self):
         core = ("download-guide.md", "metadata-guide.md",

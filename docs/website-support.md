@@ -32,7 +32,7 @@ Back to the [README](../README.md) · [Detailed download guide](download-guide.m
 - **Single-book Action:** **NovelFull - Download**
 - **Bulk Action:** **Library - Bulk Download** (NovelFull links auto-detected)
 - **Direct CLI:** `python -u novel_downloader.py "<authorised-https-book-url>" --confirm-rights`
-- **Implementation:** [`novel_downloader.py`](../novel_downloader.py), [`fanficfare_progress_runner.py`](../fanficfare_progress_runner.py), [`tools/chunked_download.py`](../tools/chunked_download.py).
+- **Implementation:** [`novel_downloader.py`](../novel_downloader.py), [`tools/fanficfare_progress_runner.py`](../tools/fanficfare_progress_runner.py), [`tools/chunked_download.py`](../tools/chunked_download.py).
 
 FanFicFare supplies a supported-site book reader. The Actions pipeline discovers the chapter count, splits the selected inclusive range into normally **200-chapter batches**, and adapts concurrency up to six workers. Only complete, source-matched pieces with all expected positions and valid chapter hashes may be reused or assembled. The final EPUB is checked against the TXT chapter collection.
 
