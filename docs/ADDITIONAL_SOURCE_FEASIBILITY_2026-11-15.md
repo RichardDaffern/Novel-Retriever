@@ -10,14 +10,14 @@ This is the consolidated source-of-truth for the next candidate websites in [Nov
 
 - Reviewed WuxiaClick, AO3, Light Novel Pub/NovelCodex, Royal Road, LibRead, NovelBin and its lookalikes, BoxNovel, NovelGo, NovelArrow/NovelPing, NovelHi, NovelBuddy, Novel Fire, WTR-Lab, official Wuxiaworld and WebNovel.
 - Inspected accessible book metadata, public chapter indexes, up to one publicly viewable sample chapter through web research, published source rules, current service status and available first-party export options.
-- Ran **two metadata-only GitHub Actions experiments from Ubuntu runners**: [robots + HEAD #43724193316](https://github.com/RichardDaffern/Novel_Library/actions/runs/43724193316) and [robots + HEAD + one book/homepage GET #43724354923](https://github.com/RichardDaffern/Novel_Library/actions/runs/43724354923).
+- Ran **two metadata-only GitHub Actions experiments from Ubuntu runners**: [robots + HEAD #43724193316 (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md) and [robots + HEAD + one book/homepage GET #43724354923 (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md).
 - For each candidate, the runner checked its robots file first. When robots explicitly disallowed the planned probe or robots could not be verified, the runner **stopped**. One site-homepage/book GET was allowed only when robots permitted it. No login, CAPTCHA, locked chapters or challenges were bypassed.
 - For the second experiment, redirects were **not followed**. At most the first 12 KB of a public **book or homepage**, not a chapter, were inspected transiently to extract a title. No body text or EPUB was saved, uploaded or printed. Site availability is time-dependent. This is **not a licensed archiving or full-book download test**.
 - Browser/web retrieval and a GitHub-hosted request are distinct tests. A 200 HEAD or GET does not imply public chapter downloads work or are permitted.
 
 ## Actual GitHub-runner observations
 
-The following came from the second live [runner probe #43724354923](https://github.com/RichardDaffern/Novel_Library/actions/runs/43724354923), not guesses about GitHub networking:
+The following came from the second live [runner probe #43724354923 (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md), not guesses about GitHub networking:
 
 | Site and target | Robots result | HEAD | GET | Conclusion |
 | --- | --- | --- | --- | --- |

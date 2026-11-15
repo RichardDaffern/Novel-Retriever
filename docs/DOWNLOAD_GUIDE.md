@@ -116,7 +116,7 @@ Use [WuxiaClick - Download](https://github.com/RichardDaffern/Novel_Library/acti
 
 The implementation validates all paginated `#chapters` index pages, reading order, unique exact chapter links, text headings, readable body and missing/duplicate entries before assembling an EPUB, numbered TXT chapters, metadata, manifest and optional cover. Not every URL suffix matches its displayed chapter number: for example the first URL of *Martial World* has an in-text Chapter 0, and the final chapter URL suffix may be greater than the number of indexed entries. Requests are serial, paced, robots-aware, and never bypass access controls. Failed batches preserve validated checkpoints.
 
-**[Live catalogue verification](https://github.com/RichardDaffern/Novel_Library/actions/runs/43729861621):** 2,276 indexed *Martial World* chapters and 1,709 indexed *True Martial World* chapters passed. This verifies metadata catalogue consistency, not an authorised live EPUB download. Content download acceptance depends on the user's permission and site rules.
+**[Live catalogue verification (archived)](SOURCE_TEST_EVIDENCE_ARCHIVE.md):** 2,276 indexed *Martial World* chapters and 1,709 indexed *True Martial World* chapters passed. This verifies metadata catalogue consistency, not an authorised live EPUB download. Content download acceptance depends on the user's permission and site rules.
 
 Local authorised example:
 
