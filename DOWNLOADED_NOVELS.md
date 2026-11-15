@@ -12,7 +12,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Shrouding the Heavens](https://freewebnovel.com/novel/shrouding-the-heavens) | all | 323 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14172118221) | 2026-11-22T17:24:06Z |
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 
-## NovelFull (93 novels)
+## NovelFull (94 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -65,6 +65,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [My Cold and Elegant CEO Wife](https://novelfull.com/my-cold-and-elegant-ceo-wife.html) | all | 2513 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13658274180) | 2026-11-16T08:18:34Z |
 | [My Dad Is the Galaxy’s Prince Charming](https://novelfull.com/my-dad-is-the-galaxys-prince-charming.html) | all | 198 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14170023682) | 2026-11-22T16:39:54Z |
 | [My Genes Can Evolve Limitlessly](https://novelfull.com/my-genes-can-evolve-limitlessly.html) | all | 780 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13635190766) | 2026-11-15T21:19:00Z |
+| [My Senior Brother is Too Steady](https://novelfull.com/my-senior-brother-is-too-steady.html) | all | 765 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14172685201) | 2026-11-22T17:27:22Z |
 | [Myriad Paths of the Dragon Emperor](https://novelfull.com/myriad-paths-of-the-dragon-emperor.html) | all | 6012 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13644198039) | 2026-11-16T01:59:56Z |
 | [Nine Star Hegemon Body Art](https://novelfull.com/nine-star-hegemon-body-art.html) | all | 7318 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13647110995) | 2026-11-16T03:06:52Z |
 | [Nine Sun God King](https://novelfull.com/nine-sun-god-king.html) | all | 1154 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13643655544) | 2026-11-16T01:26:29Z |
