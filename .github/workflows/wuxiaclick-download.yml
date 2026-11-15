@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       chapter_range:
-        description: 'Optional inclusive chapter range (e.g. 1-30; blank for all)'
+        description: 'Inclusive range of 1-20 chapters (e.g. 1-2); blank only for books with 20 or fewer chapters'
         required: false
         type: string
       force:
@@ -29,7 +29,7 @@ on:
         required: true
         type: string
       chapter_range:
-        description: 'Optional inclusive chapter range; blank means all'
+        description: 'Inclusive chapter range (max 20); blank only when book has 20 or fewer chapters'
         required: false
         type: string
         default: ''
@@ -111,7 +111,7 @@ jobs:
         if: steps.registry.outputs.skip != 'true'
         run: python -m pip install -r requirements.lock
 
-      - name: Index chapters and calculate batches
+      - name: Index exact public catalogue and calculate one bounded batch
         id: make_plan
         if: steps.registry.outputs.skip != 'true'
         env:
