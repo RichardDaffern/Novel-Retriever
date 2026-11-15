@@ -98,15 +98,26 @@ The dedicated FreeWebNovel workflow handles a single novel; the unified bulk wor
 
 Read the full [FreeWebNovel capability and limitations](WEBSITE_SUPPORT.md#freewebnovel) before running it.
 
+## ReadNovelFull - Download
+
+Use [ReadNovelFull - Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/readnovelfull-download.yml) for an authorised novel URL such as `https://readnovelfull.com/cultivation-online-v3.html`. Leave **Chapter range** blank for the whole novel, or enter `1-2` for two chapters. The workflow discovers the complete chapter list via the site's public AJAX chapter archive (the initial book page exposes only a subset), then uses the exact chapter links, never guessed slugs.
+
+Each chapter range is downloaded sequentially with a one-second delay between chapter requests; batches are at most **100 chapters**, with at most **two batches per book**. The unified bulk workflow schedules at most **one ReadNovelFull novel at a time**. Missing or mismatched chapters, access challenges and invalid EPUBs stop publication. Complete verified chapter-batch artefacts can be reused; failed chapters remain recoverable by rerunning. Output has the same EPUB/TXT/manifests/cover layout as the other websites.
+
+**Important:** The parser is covered by offline tests, but a complete live download has not yet been proven. Website layout and access restrictions can change. No login, Cloudflare or CAPTCHA bypass is performed. The Action is for content you have permission to archive. For local authorised ranges, after installing `requirements.lock`, run:
+
+~~~powershell
+python -m tools.readnovelfull_downloader "https://readnovelfull.com/cultivation-online-v3.html" --chapter-range 1-2 --confirm-rights
+~~~
 
 ## GitHub Actions: Library - Bulk Download
 
 Use **Actions > Library - Bulk Download > Run workflow** for downloads from
-NovelFull, FreeWebNovel and verified Scribble Hub author cross-posts. **This is the only bulk workflow**; choose All or a specific website from the dropdown. Separate site-specific
+NovelFull, FreeWebNovel, ReadNovelFull and verified Scribble Hub author cross-posts. **This is the only bulk workflow**; choose All or a specific website from the dropdown. Separate site-specific
 bulk menus are unnecessary. The workflow groups download jobs by website,
 without changing the existing site-specific downloaders.
 
-- **Website group:** All, NovelFull, FreeWebNovel or Scribble Hub.
+- **Website group:** All, NovelFull, FreeWebNovel, ReadNovelFull or Scribble Hub.
 - **Saved novel names:** Type names listed in
   [DOWNLOADED_NOVELS.md](../DOWNLOADED_NOVELS.md), separated by commas or
   semicolons. Example: `The World Online; The First Order`. Use semicolons
@@ -138,7 +149,7 @@ rejected before downloading. The artificial **ten-novel cap is removed**.
 GitHub Actions currently permits at most **256 matrix jobs per workflow run**;
 the planner rejects a larger scheduled selection with an explicit explanation,
 so split it over separate runs. Cached/skipped novels do not count towards
-scheduled jobs. Up to three NovelFull books, two FreeWebNovel books and one
+scheduled jobs. Up to three NovelFull books, two FreeWebNovel books, one ReadNovelFull book and one
 Scribble Hub cross-post can run concurrently. Existing per-book chapter
 validation and registered download status checks remain unchanged.
 
