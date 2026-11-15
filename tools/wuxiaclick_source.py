@@ -152,8 +152,8 @@ def _catalogue_section(page: str, book_url: str):
     book_title = soup.select_one("h1")
     if book_title is None or not book_title.get_text(" ", strip=True):
         raise SourceError("Book identity is missing")
-    # The site places first/latest navigation above this section. Select only
-    # actual chapter-row links inside #chapters dl dd, not all chapter anchors.
+    # The site places first/latest navigation above this section. Its chapter
+    # rows are in an ordered list; never mix other site navigation into the TOC.
     return soup, section, book_title.get_text(" ", strip=True)
 
 
@@ -203,7 +203,7 @@ def _index_rows(page: str, book_url: str) -> tuple[str, list[dict], set[int]]:
     soup, section, book_title = _catalogue_section(page, book_url)
     result = []
     used = set()
-    for anchor in section.select("dl dd a[href]"):
+    for anchor in section.select("ol li a[href]"):
         absolute = urljoin(book_url, anchor["href"])
         canonical, source_number = validate_chapter_url(absolute, slug)
         if canonical in used:
@@ -212,9 +212,12 @@ def _index_rows(page: str, book_url: str) -> tuple[str, list[dict], set[int]]:
         label = anchor.get_text(" ", strip=True)
         if not label:
             raise SourceError("Empty chapter label")
-        # Chapter list renders 'Chapter <URL-suffix>: <actual chapter title>'.
-        # Actual chapter may be numbered 0, and an epilogue may be unnumbered.
-        title = re.sub(r"(?i)^chapter\s+\d+\s*:\s*", "", label).strip()
+        # The public TOC renders 'Chapter <source-id> , <actual title> DATE'.
+        # Chapter 0 may be source URL -1, and an afterword may be unnumbered.
+        title = re.sub(r"(?i)^chapter\s+\d+\s*[,;:]\s*", "", label).strip()
+        title = re.sub(
+            r"\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+            r"\s+[0-9]{1,2},\s+[0-9]{4}$", "", title, flags=re.I).strip()
         if not title or len(title) > 260:
             raise SourceError("Invalid chapter title in index")
         result.append({"source_number": source_number, "url": canonical, "title": title})
