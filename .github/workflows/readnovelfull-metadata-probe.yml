@@ -23,8 +23,31 @@ jobs:
           cache: pip
       - name: Install pinned dependencies
         run: python -m pip install -r requirements.lock
-      - name: Validate public ReadNovelFull catalogue without chapter prose
+      - name: Inspect synopsis and first chapter selectors without saving text
         run: |
-          python -m tools.readnovelfull_downloader \
-            "https://readnovelfull.com/cultivation-online-v3.html" \
-            --list-only --confirm-rights
+          python - <<'PY'
+          from bs4 import BeautifulSoup
+          from tools.readnovelfull_source import (
+              fetch_public_html, extract_chapter,
+          )
+          book = "https://readnovelfull.com/cultivation-online-v3.html"
+          html = fetch_public_html(book)
+          soup = BeautifulSoup(html, "html.parser")
+          for selector in (".desc-text", ".desc", ".desc-text p", "#tab-description",
+                           "#tab-description .desc-text", ".book-desc",
+                           ".desc-text + p", ".desc-text + div", ".description"):
+              nodes = soup.select(selector)
+              examples = [(len(n.get_text(" ", strip=True)),
+                           n.get_text(" ", strip=True)[:70]) for n in nodes[:3]]
+              print("Book selector", selector, "nodes", len(nodes), "samples", examples)
+          chapter = "https://readnovelfull.com/cultivation-online/chapter-1-cultivation-online.html"
+          page = fetch_public_html(chapter)
+          chapter_soup = BeautifulSoup(page, "html.parser")
+          for selector in ("#chr-content", ".chr-c", ".chapter-content",
+                           ".chapter-title", "h1", "h2"):
+              nodes = chapter_soup.select(selector)
+              print("Chapter selector", selector, "count", len(nodes),
+                    "lengths", [len(n.get_text(" ", strip=True)) for n in nodes[:2]])
+          verified = extract_chapter(page, number=1, title="Chapter 1")
+          print("First chapter extraction valid; characters:", len(verified["text"]))
+          PY
