@@ -11,7 +11,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Big Life](https://freewebnovel.com/novel/big-life) | all | 304 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14171863992) | 2026-11-22T17:21:51Z |
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 
-## NovelFull (92 novels)
+## NovelFull (93 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -98,6 +98,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Ocean Lord Is Unusually Powerful](https://novelfull.com/the-ocean-lord-is-unusually-powerful.html) | all | 855 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13624069033) | 2026-11-15T16:09:39Z |
 | [The Second Coming of Gluttony](https://novelfull.com/the-second-coming-of-gluttony.html) | all | 550 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13626140911) | 2026-11-15T16:56:44Z |
 | [The Surgeon’s Studio](https://novelfull.com/the-surgeons-studio.html) | all | 2977 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627346622) | 2026-11-15T17:31:08Z |
+| [The Villainess Reverses the Hourglass](https://novelfull.com/the-villainess-reverses-the-hourglass.html) | all | 288 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14171899046) | 2026-11-22T17:23:44Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368375482/artifacts/13575943777) | 2026-11-14T13:31:01Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627465520) | 2026-11-15T17:27:24Z |
 | [Throne of Magical Arcana](https://novelfull.com/throne-of-magical-arcana.html) | all | 910 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627324316) | 2026-11-15T17:49:19Z |
