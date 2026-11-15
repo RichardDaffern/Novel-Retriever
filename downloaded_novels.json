@@ -20,6 +20,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/overlord-of-blood-and-iron-novel",
+      "title": "Overlord of Blood and Iron",
+      "author": "Dam Hwa Gong",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 355,
+          "run_id": 43734404117,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117",
+          "artifact_id": 14172990861,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14172990861",
+          "completed_at_utc": "2026-11-15T17:38:41Z",
+          "expires_at_utc": "2026-11-22T17:38:41Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/shrouding-the-heavens",
       "title": "Shrouding the Heavens",
       "author": "Chen Dong",
