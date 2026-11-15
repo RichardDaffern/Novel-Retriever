@@ -911,6 +911,7 @@ When changing a subsystem, also consult the relevant living guide:
 - `PDF-to-Novel/README.md` and `docs/PDF_TO_NOVEL.md`: one-click Windows conversion, boundary overrides and validation reports.
 - `docs/experimental-sources.md`: historical/offline analysis for Novel Fire, Light Novel Pub, WTR-Lab and Royal Road.
 - `docs/ADDITIONAL_SOURCE_FEASIBILITY_2026-11-15.md`: complete, evidence-linked 15 November 2026 candidate matrix with GitHub Actions robots-first reachability runs, blockers and required rights gates. Do not re-enable shut-down/restricted domains or silently add new website options.
+- `docs/HTTP200_LIVE_SCENARIOS_2026-11-15.md`: exact HTTP-200 GitHub-hosted real book/chapter checks for WuxiaClick, LibRead redirects and NovelBin.cc HTTP 429, including catalogue pagination and reported count versus URL suffix. Use indexed reading positions rather than assumed sequential numeric paths.
 - `tools/FREEWEBNOVEL_FEASIBILITY.md`: initial FreeWebNovel two-chapter compatibility research.
 - `tools/WEBNOVEL_BROWSER_PROBE.md`: ordinary browser feasibility and challenge stop conditions.
 - `tools/WEBNOVEL_PUBLIC_TWO_CHAPTER.md`: bounded public chapter probe.
