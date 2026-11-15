@@ -128,10 +128,14 @@ class PerformanceTests(unittest.TestCase):
         self.assertIn("compression-level: 0", bulk)
         self.assertIn("bulk-performance-$" + "{{ github.run_id }}", bulk)
 
-
     def test_successful_bulk_skips_duplicate_recovery_but_keeps_failure_safety(self):
         bulk = Path(".github/workflows/library-bulk-download.yml").read_text(
             encoding="utf-8")
+        self.assertIn(
+            "name: Checkout bulk summary tools\\n"
+            "        if: always() && needs.prepare.result == 'success'",
+            bulk,
+        )
         gate = bulk.split(
             "      - name: Decide whether partial recovery is needed", 1
         )[1].split("      - name: Retrieve selected novel plan", 1)[0]
