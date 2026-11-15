@@ -2,6 +2,24 @@
   "version": 1,
   "novels": [
     {
+      "url": "https://freewebnovel.com/novel/big-life",
+      "title": "Big Life",
+      "author": "JIHO",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 304,
+          "run_id": 43734388839,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839",
+          "artifact_id": 14171863992,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14171863992",
+          "completed_at_utc": "2026-11-15T17:21:51Z",
+          "expires_at_utc": "2026-11-22T17:21:51Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/three-days-of-happiness",
       "title": "Three Days of Happiness",
       "author": "Sugaru Miaki (Fafoo)",
