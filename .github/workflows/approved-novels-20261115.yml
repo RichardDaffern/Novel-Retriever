@@ -1,0 +1,64 @@
+name: Approved Novels - One-Off Locator and Download Launch
+on:
+  push:
+    branches:
+      - automation/approved-novels-20261115
+    paths:
+      - .github/workflows/approved-novels-20261115.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  approved-only-campaign:
+    if: github.repository == 'RichardDaffern/Novel_Library'
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout isolated campaign branch
+        uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements.lock
+          python -m pip install requests beautifulsoup4
+      - name: Decode and verify temporary campaign runner
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64,hashlib,pathlib,zlib
+          src=pathlib.Path('automation/approved_campaign_script_20261115.b64').read_text().strip()
+          body=zlib.decompress(base64.b64decode(src))
+          expected='c17ba0afd16d8d741b47a8d199b15a4261f0cd0559ab396ec305f966ab50b515'
+          assert hashlib.sha256(body).hexdigest()==expected, 'Campaign runner integrity check failed'
+          pathlib.Path('automation/approved_campaign_20261115.py').write_bytes(body)
+          print('Campaign runner verified, bytes:',len(body))
+          PY
+          python -m py_compile automation/approved_campaign_20261115.py
+      - name: Discover exact matching novel URLs and dispatch approved bulk batches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONUNBUFFERED: '1'
+        run: python -u automation/approved_campaign_20261115.py
+      - name: Download covers for matched, approved-only titles
+        if: always()
+        shell: bash
+        run: |
+          if test -f campaign_output/approved_cover_index.md && grep -qE '^\| \[' campaign_output/approved_cover_index.md; then
+            python -m tools.download_covers --index campaign_output/approved_cover_index.md --output-dir campaign_output/covers --website All --limit 0 --confirm-rights --delay 1.5 || echo 'Some approved covers failed; available covers and manifest are retained.'
+          else
+            echo 'No approved-only cover index is ready. Not using historical all-novel index.'
+          fi
+      - name: Upload complete candidate catalogue, missing list and successful covers
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: approved-novel-campaign-${{ github.run_id }}
+          path: campaign_output/
+          retention-days: 30
+          if-no-files-found: warn
