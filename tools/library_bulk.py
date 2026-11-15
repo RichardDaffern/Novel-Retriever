@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Plan validated multi-website novel downloads by saved names or exact URLs.
 
-GitHub's manual workflow has no dynamic multi-select input. Accept a
-comma/semicolon/newline-separated name list and a static website choice.
-Names are resolved only from the verified registry or explicitly curated
-sources; unknown and ambiguous names fail instead of guessing URLs.
+GitHub's manual workflow accepts mixed-site novel URLs separated by commas,
+semicolons, spaces or newlines, plus optional saved names. The source of each
+link is detected from its validated host and path: no website selection is
+needed. Names resolve only from verified registry or curated records; unknown
+or ambiguous titles fail instead of guessing URLs.
 """
 from __future__ import annotations
 
@@ -128,7 +129,7 @@ def selection_plan(
         if len(unique) > 1:
             raise ValueError(
                 f"Ambiguous novel name {name!r} matches multiple URLs. "
-                "Choose a specific website or use the novel's URL."
+                "Paste the novel's exact URL instead."
             )
         item = next(iter(unique.values()))
         chosen[item["url"]] = item
@@ -289,8 +290,14 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("plan", "list"))
     parser.add_argument("--names", default="", help="Comma, semicolon or newline separated saved novel names")
-    parser.add_argument("--urls", default="", help="Optional new novel URLs")
-    parser.add_argument("--website", default="All", choices=WEBSITE_CHOICES)
+    parser.add_argument(
+        "--urls", default="",
+        help="Novel URLs from any supported source, separated by commas or whitespace",
+    )
+    # Retain this optional legacy CLI filter for existing scripts; the
+    # GitHub Actions bulk form does not display or pass a website selector.
+    parser.add_argument("--website", default="All", choices=WEBSITE_CHOICES,
+                        help="Optional legacy CLI-only source filter")
     parser.add_argument("--chapter-range", default="")
     parser.add_argument("--force", action="store_true")
     parser.add_argument(

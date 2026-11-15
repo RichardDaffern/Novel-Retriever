@@ -22,8 +22,10 @@ from tools.library_bulk import MAX_MATRIX_JOBS, selection_plan, write_actions
 def synthetic_urls(n: int) -> list[str]:
     return [
         (f"https://novelfull.com/synthetic-stress-{i:04d}.html"
-         if i % 2 == 0
-         else f"https://freewebnovel.com/novel/synthetic-stress-{i:04d}")
+         if i % 3 == 0 else
+         f"https://freewebnovel.com/novel/synthetic-stress-{i:04d}"
+         if i % 3 == 1 else
+         f"https://readnovelfull.com/synthetic-stress-{i:04d}.html")
         for i in range(n)
     ]
 
@@ -49,7 +51,7 @@ def run_stress(sizes: tuple[int, ...] = (20, 50, 100)) -> list[dict]:
         ]}
         curated = {"version": 1, "novels": []}
         started = time.monotonic()
-        plan = selection_plan(registry, curated, "", raw, "All")
+        plan = selection_plan(registry, curated, "", raw)
         with tempfile.TemporaryDirectory() as folder:
             out = Path(folder) / "output"
             summary = Path(folder) / "summary.md"
@@ -68,7 +70,7 @@ def run_stress(sizes: tuple[int, ...] = (20, 50, 100)) -> list[dict]:
             assert len(combined) == requested - 3
             assert len(set(combined)) == len(combined)
             assert records["has_scribblehub"] == "false"
-            assert not matrices[2]
+            assert matrices[2], "ReadNovelFull links must be auto-routed"
             assert "skipped (artifact available): 3" in summary.read_text()
         elapsed = round(time.monotonic() - started, 3)
         results.append({
@@ -79,12 +81,12 @@ def run_stress(sizes: tuple[int, ...] = (20, 50, 100)) -> list[dict]:
     # Boundary test: 256 jobs accepted; 257 rejected *before* publishing output.
     upper = selection_plan({"version": 1, "novels": []},
                            {"version": 1, "novels": []}, "",
-                           "\n".join(synthetic_urls(256)), "All")
+                           "\n".join(synthetic_urls(256)))
     assert sum(len(v) for v in upper["groups"].values()) == 256
     try:
         selection_plan({"version": 1, "novels": []},
                        {"version": 1, "novels": []}, "",
-                       "\n".join(synthetic_urls(257)), "All")
+                       "\n".join(synthetic_urls(257)))
     except ValueError as exc:
         assert "256 matrix jobs" in str(exc)
     else:

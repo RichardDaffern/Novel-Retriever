@@ -8,15 +8,15 @@ A Python toolkit for downloading **authorised** web novels, assembling complete 
 
 | Website | Download support | How to use |
 | --- | --- | --- |
-| [NovelFull](https://novelfull.com/) | **Yes**, using FanFicFare and verified chapter batches | **NovelFull - Download** or **Library - Bulk Download** |
-| [FreeWebNovel](https://freewebnovel.com/) | **Yes**, for accessible public chapters, with chapter-by-chapter validation | **FreeWebNovel - Download** or **Library - Bulk Download** |
-| [ReadNovelFull](https://readnovelfull.com/) | **Yes, newly implemented**; full AJAX chapter catalogue, verified EPUB/TXT chapters. Live full-book success not yet established | **ReadNovelFull - Download** or **Library - Bulk Download** |
+| [NovelFull](https://novelfull.com/) | **Yes**, using FanFicFare and verified chapter batches | **Library - Bulk Download** |
+| [FreeWebNovel](https://freewebnovel.com/) | **Yes**, for accessible public chapters, with chapter-by-chapter validation | **Library - Bulk Download** |
+| [ReadNovelFull](https://readnovelfull.com/) | **Yes, newly implemented**; full AJAX chapter catalogue, verified EPUB/TXT chapters. Live full-book success not yet established | **Library - Bulk Download** |
 
 Other sources have restricted or specialised options, not general-purpose website downloaders:
 
 | Website | Current capability |
 | --- | --- |
-| [Scribble Hub](https://www.scribblehub.com/) | **Scribble Hub - Download** Action for one verified author cross-post (series `445037`), via FicHub; other books need separate verification. Direct Scribble Hub requests remain blocked |
+| [Scribble Hub](https://www.scribblehub.com/) | **Library - Bulk Download** supports one verified author cross-post (series `445037`) through FicHub; other books need separate verification. Direct Scribble Hub requests remain blocked |
 | [WebNovel](https://www.webnovel.com/) | Limited public-page tests and offline import of chapters you have saved with permission; no full website downloader |
 | [Royal Road](https://www.royalroad.com/) | Offline conversion of an already-authorised local EPUB; no enabled site-download workflow |
 | [WTR-Lab](https://wtr-lab.com/) | Offline conversion of an already-authorised local EPUB; no enabled site-download workflow |
@@ -25,18 +25,26 @@ Other sources have restricted or specialised options, not general-purpose websit
 
 **[Website support guide](docs/WEBSITE_SUPPORT.md)** explains the supported URL formats, download limits, available workflows, current verification level and restrictions for **each** site. A working tool does not guarantee that a source currently permits or serves every novel.
 
-## Download a novel with GitHub Actions
+## Download novels using one workflow
 
-Go to [Actions](https://github.com/RichardDaffern/Novel_Library/actions) and run the appropriate workflow:
+**[Open Library - Bulk Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/library-bulk-download.yml)**, select **Run workflow**, then:
 
-- **NovelFull - Download**: download a single NovelFull book.
-- **FreeWebNovel - Download**: download a single FreeWebNovel book.
-- **ReadNovelFull - Download**: download a single ReadNovelFull book from a `/book-slug.html` URL.
-- **Scribble Hub - Download**: download the verified same-author FanFiction.net cross-post of Scribble Hub series `445037` via FicHub; confirm rights before running.
-- **Library - Bulk Download**: the **only bulk workflow**, supporting NovelFull, FreeWebNovel, ReadNovelFull and **verified Scribble Hub cross-posts**. Select All or a website; enter saved names or exact URLs. No ten-novel limit; GitHub's platform allows up to **256 scheduled jobs per run**. To rerun only failed/missing novels, enter the earlier run ID in **Retry from previous run** (for runs with the new retry manifest).
-- **Covers - Download**: download **images only**, not chapter text.
+1. Paste **one or more novel links** into **Novel links**. Separate links with spaces, commas or semicolons. You can mix NovelFull, FreeWebNovel and ReadNovelFull freely.
+2. Optionally enter saved novel titles, choose a chapter range or select **Force** to redownload.
+3. Click **Run workflow**. The downloader identifies the website for **each** link and routes every book automatically. **No website dropdown or manual grouping.**
 
-For novel downloads, provide a source URL (or saved titles for bulk), optionally choose a chapter range and use **Force** only to intentionally redownload. Scribble Hub requires explicit archiving-rights confirmation and whole-book selection. **If some bulk jobs fail, completed books remain in their own artefacts and in a `bulk-successful-novels-<run-id>` recovery artefact**, with one ZIP per verified novel plus a results manifest. **When all child downloads succeed, individual book artefacts remain available and redundant recovery repackaging is skipped** to reduce runtime and data transfers. Artefacts are retained for **seven days**. The bulk run also publishes a **`bulk-performance-<run-id>`** JSON report showing phase timings, separate from overall elapsed time.
+Example links for the one field (illustrative):
+
+~~~text
+https://novelfull.com/the-world-online.html
+https://freewebnovel.com/novel/the-first-order
+https://readnovelfull.com/cultivation-online-v3.html
+~~~
+
+**One link also works.** The supported-source list is limited: unsupported links are rejected before scheduling. A verified Scribble Hub author cross-post can be included by URL, provided you tick the existing **Confirm rights** checkbox and leave Chapter range blank. The earlier ten-novel cap is removed; GitHub allows up to **256 scheduled novel jobs** per run.
+
+If a book fails, other completed books retain their own downloadable artefacts. On partial failure, an additional `bulk-successful-novels-<run-id>` recovery bundle and a retry-only manifest are produced. Successful runs skip unnecessary repackaging. Artefacts remain available for seven days. The workflow also reports timings.
+
 
 [Detailed downloading and GitHub Actions guide](docs/DOWNLOAD_GUIDE.md)
 
@@ -60,7 +68,7 @@ Use a real supported book URL in place of the illustrative URL. For verified ful
 
 ## Download the verified Scribble Hub cross-post
 
-For the author's *The Adventurous Gamer Ninja - Daichi Hekima* (series `445037`), use **[Actions > Scribble Hub - Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/scribblehub-download.yml)**. Paste the series URL, check the authorisation box, and click **Run workflow**. The Action produces the same single-novel ZIP structure and registry entry as NovelFull, retrievable through `Download-All-Novels.cmd`. No local EPUB is needed.
+For the author's *The Adventurous Gamer Ninja - Daichi Hekima* (series `445037`), use **[Library - Bulk Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/library-bulk-download.yml)**. Paste its series URL alongside any other supported links, tick **Confirm rights**, leave Chapter range blank, and click **Run workflow**. The Action produces the same single-novel ZIP structure and registry entry as NovelFull, retrievable through `Download-All-Novels.cmd`. No local EPUB is needed.
 
 The equivalent local command is:
 

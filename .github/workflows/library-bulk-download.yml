@@ -3,23 +3,12 @@ name: Library - Bulk Download
 on:
   workflow_dispatch:
     inputs:
-      website:
-        description: 'Website group'
-        required: true
-        type: choice
-        options:
-          - All
-          - NovelFull
-          - FreeWebNovel
-          - ReadNovelFull
-          - Scribble Hub
-        default: All
-      novel_names:
-        description: 'Saved novel names separated by comma or semicolon'
+      novel_urls:
+        description: 'Novel links from any supported website (comma, space or semicolon separated)'
         required: false
         type: string
-      novel_urls:
-        description: 'Optional new novel URLs, separated by commas or spaces'
+      novel_names:
+        description: 'Optional saved novel titles, separated by comma or semicolon'
         required: false
         type: string
       chapter_range:
@@ -74,7 +63,6 @@ jobs:
         if: ${{ inputs.retry_run_id != '' }}
         env:
           RETRY_RUN_ID: ${{ inputs.retry_run_id }}
-          WEBSITE: ${{ inputs.website }}
           NAMES: ${{ inputs.novel_names }}
           URLS: ${{ inputs.novel_urls }}
           CHAPTER_RANGE: ${{ inputs.chapter_range }}
@@ -87,13 +75,12 @@ jobs:
           value = os.environ["RETRY_RUN_ID"]
           if not re.fullmatch(r"[1-9][0-9]{0,19}", value):
               raise SystemExit("Retry run ID must be a numeric GitHub Actions run ID.")
-          if (os.environ["WEBSITE"] != "All" or os.environ["NAMES"].strip()
-                  or os.environ["URLS"].strip()
+          if (os.environ["NAMES"].strip() or os.environ["URLS"].strip()
                   or os.environ["CHAPTER_RANGE"].strip()
                   or os.environ["FORCE"] == "true"):
               raise SystemExit(
-                  "To retry a previous run, leave website=All, title/URL/range "
-                  "fields blank and Force off."
+                  "To retry a previous run, leave novel links, saved titles, "
+                  "chapter range blank and Force off."
               )
           PY
 
@@ -106,10 +93,9 @@ jobs:
           github-token: ${{ github.token }}
           path: previous_recovery
 
-      - name: Resolve selected names, validate sites and check registry
+      - name: Automatically detect source for each link and check registry
         id: plan
         env:
-          WEBSITE: ${{ inputs.website }}
           NOVEL_NAMES: ${{ inputs.novel_names }}
           NOVEL_URLS: ${{ inputs.novel_urls }}
           CHAPTER_RANGE: ${{ inputs.chapter_range }}
@@ -118,7 +104,7 @@ jobs:
           RETRY_RUN_ID: ${{ inputs.retry_run_id }}
         run: |
           args=(python -m tools.library_bulk plan \
-            --website "$WEBSITE" --names "$NOVEL_NAMES" --urls "$NOVEL_URLS" \
+            --names "$NOVEL_NAMES" --urls "$NOVEL_URLS" \
             --chapter-range "$CHAPTER_RANGE")
           if [[ "$FORCE" == "true" ]]; then args+=(--force); fi
           if [[ "$CONFIRM_RIGHTS" == "true" ]]; then args+=(--confirm-rights); fi

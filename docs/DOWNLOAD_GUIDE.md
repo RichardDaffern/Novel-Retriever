@@ -112,26 +112,22 @@ python -m tools.readnovelfull_downloader "https://readnovelfull.com/cultivation-
 
 ## GitHub Actions: Library - Bulk Download
 
-Use **Actions > Library - Bulk Download > Run workflow** for downloads from
-NovelFull, FreeWebNovel, ReadNovelFull and verified Scribble Hub author cross-posts. **This is the only bulk workflow**; choose All or a specific website from the dropdown. Separate site-specific
-bulk menus are unnecessary. The workflow groups download jobs by website,
-without changing the existing site-specific downloaders.
+Use **[Library - Bulk Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/library-bulk-download.yml) > Run workflow** for downloads from NovelFull, FreeWebNovel, ReadNovelFull and verified Scribble Hub author cross-posts. **This is the only bulk workflow.** Paste multiple links into one field. The website is detected automatically from each URL; no dropdown or manual grouping is required. The workflow internally groups each link into its compatible downloader.
 
-- **Website group:** All, NovelFull, FreeWebNovel, ReadNovelFull or Scribble Hub.
+- **Novel links:** Paste one or more complete HTTPS novel URLs from any supported sites. Separate with a comma, space, semicolon or newline. Mixed websites can be submitted together.
 - **Saved novel names:** Type names listed in
   [DOWNLOADED_NOVELS.md](../DOWNLOADED_NOVELS.md), separated by commas or
   semicolons. Example: `The World Online; The First Order`. Use semicolons
   when a novel's title itself contains a comma.
-- **New novel URLs:** Optionally supply HTTPS source URLs for books not yet
-  recorded. Names and URLs can be mixed.
+- **New titles:** Paste their exact URLs into Novel links. Saved names and new URLs can be mixed in the same submission.
 - **Chapter range:** Optional; blank requests a whole novel.
 - **Force:** Redownload even if a completed artifact is still available.
 - **Confirm rights:** Required when the selection includes Scribble Hub. Only registered, same-author cross-posts are supported; other Scribble Hub series are rejected. For these books, chapter range must be blank because only whole-novel exports are verified.
 
 GitHub Actions lacks a dynamic multi-select field, so saved names are entered
-as multi-value text rather than selected with checkboxes. Example: select
-NovelFull and enter `True Martial World; The World Online`. The planner
-resolves their saved URLs automatically. To list recognised titles, run:
+as multi-value text rather than selected with checkboxes. Example: enter
+`True Martial World; The World Online` under Saved novel names. The planner
+resolves their URLs automatically. To list recognised titles, run:
 
 ~~~powershell
 python -m tools.library_bulk list
@@ -143,9 +139,10 @@ the tested FreeWebNovel example. For a brand-new title, enter its exact URL;
 after a successful download and registry update, that title is available by
 name. You can also add a title/URL to the curated JSON list beforehand.
 
-Unknown or ambiguous titles, URLs from unsupported or mismatched sites, and
-Scribble Hub series without an explicitly verified author cross-post are
-rejected before downloading. The artificial **ten-novel cap is removed**.
+Unknown or ambiguous titles, invalid or unsupported URLs, and Scribble Hub
+series without an explicitly verified author cross-post are rejected before
+downloading. A URL from an otherwise supported site must still match that
+site's recognised book URL format. The artificial **ten-novel cap is removed**.
 GitHub Actions currently permits at most **256 matrix jobs per workflow run**;
 the planner rejects a larger scheduled selection with an explicit explanation,
 so split it over separate runs. Cached/skipped novels do not count towards
@@ -168,7 +165,7 @@ missing and rejected books. A failed/incomplete chapter batch is never included
 as a completed novel. Original independent completed artefacts are not deleted
 during recovery, and remain available if recovery packaging itself fails.
 
-**Retry only failed or missing books:** in **Library - Bulk Download**, set **Retry from previous run ID** to the numeric ID at the end of the earlier workflow URL, such as `43609729867`. Leave **Website = All**, saved names, novel URLs and chapter range blank, and leave **Force** unticked. If the missing list includes a Scribble Hub cross-post, tick the usual permission checkbox. The workflow downloads the previous run's small `bulk-recovery-manifest-<run-id>` artefact (not the large book ZIPs), validates that it belongs to that run, rebuilds the exact missing-novel URLs and original chapter range, and skips anything independently completed since then. Successful books are **never redownloaded merely because the previous overall run failed**.
+**Retry only failed or missing books:** in **Library - Bulk Download**, set **Retry from previous run ID** to the numeric ID at the end of the earlier workflow URL, such as `43609729867`. Leave novel links, saved names and chapter range blank, and leave **Force** unticked. If the missing list includes a Scribble Hub cross-post, tick the usual permission checkbox. The workflow downloads the previous run's small `bulk-recovery-manifest-<run-id>` artefact (not the large book ZIPs), validates that it belongs to that run, rebuilds the exact missing-novel URLs and original chapter range, and skips anything independently completed since then. Successful books are **never redownloaded merely because the previous overall run failed**.
 
 Retry manifests are available for **seven days** and only for bulk runs created *after* this feature is released. Earlier manifests lack reliable range and run-ID details, so the tool refuses to guess them. If the original summary/recovery job never produced a manifest, use a fresh bulk submission with the remaining URLs instead. A run with no missing work reports that explicitly.
 
