@@ -123,7 +123,7 @@ class VerifiedActionsArtifactTests(unittest.TestCase):
         self.assertIn("tools.publish_registry", workflow)
         self.assertIn("upload-artifact@", workflow)
         self.assertIn("path: downloads/", workflow)
-        self.assertIn("retention-days: 7", workflow)
+        self.assertIn("retention-days: 90", workflow)
         self.assertIn("if-no-files-found: error", workflow)
         self.assertIn("          ref: main", workflow)
         self.assertIn("scribblehub-download.yml", bulk)
