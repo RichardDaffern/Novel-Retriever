@@ -138,7 +138,7 @@ jobs:
         with:
           name: novel-${{ github.run_id }}-scribblehub-${{ steps.source.outputs.series_id }}
           path: downloads/
-          retention-days: 7
+          retention-days: 90
           if-no-files-found: error
           compression-level: 6
 
