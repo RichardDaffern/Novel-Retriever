@@ -4,7 +4,7 @@ A Python toolkit for downloading **authorised** web novels, assembling complete 
 
 ## Websites and download support
 
-**Full-novel website downloading is implemented for these three sources:**
+**Website downloading is implemented for the sources below. WuxiaClick supports only authorised bounded ranges, not full-book export:**
 
 | Website | Download support | How to use |
 | --- | --- | --- |
