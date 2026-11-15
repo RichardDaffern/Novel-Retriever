@@ -111,7 +111,7 @@ jobs:
         run: |
           python -u -m tools.readnovelfull_chunks plan \
             --url "$NOVEL_URL" --chapter-range "$CHAPTER_RANGE" \
-            --chunk-size 50 --plan-file chapter_plan.json
+            --chunk-size 100 --plan-file chapter_plan.json
 
       - name: Save chapter plan for final assembly
         if: steps.registry.outputs.skip != 'true'
