@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (8 novels)
+## FreeWebNovel (9 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -14,6 +14,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Overlord of Blood and Iron](https://freewebnovel.com/novel/overlord-of-blood-and-iron-novel) | all | 355 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14172990861) | 2026-11-22T17:38:41Z |
 | [Shrouding the Heavens](https://freewebnovel.com/novel/shrouding-the-heavens) | all | 323 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14172118221) | 2026-11-22T17:24:06Z |
 | [Spirit Cultivation](https://freewebnovel.com/novel/spirit-cultivation) | all | 546 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14173503709) | 2026-11-22T18:10:33Z |
+| [Still, Wait For Me](https://freewebnovel.com/novel/still-wait-for-me) | all | 692 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14174809663) | 2026-11-22T18:40:09Z |
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 

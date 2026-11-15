@@ -110,6 +110,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/still-wait-for-me",
+      "title": "Still, Wait For Me",
+      "author": "Xiang Tingsheng",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 692,
+          "run_id": 43734410920,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920",
+          "artifact_id": 14174809663,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14174809663",
+          "completed_at_utc": "2026-11-15T18:40:09Z",
+          "expires_at_utc": "2026-11-22T18:40:09Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/three-days-of-happiness",
       "title": "Three Days of Happiness",
       "author": "Sugaru Miaki (Fafoo)",
