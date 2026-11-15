@@ -2,6 +2,24 @@
   "version": 1,
   "novels": [
     {
+      "url": "https://freewebnovel.com/novel/three-days-of-happiness",
+      "title": "Three Days of Happiness",
+      "author": "Sugaru Miaki (Fafoo)",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 16,
+          "run_id": 43734417289,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289",
+          "artifact_id": 14170286767,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767",
+          "completed_at_utc": "2026-11-15T16:22:11Z",
+          "expires_at_utc": "2026-11-22T16:22:11Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/abe-the-wizard.html",
       "title": "Abe the Wizard",
       "author": "The Mass Of Eating Melon Seeds",

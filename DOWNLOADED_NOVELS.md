@@ -4,12 +4,18 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
+## FreeWebNovel (1 novels)
+
+| Novel | Range | Chapters | Artifact | Expiry (UTC) |
+|---|---|---:|---|---|
+| [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
+
 ## NovelFull (89 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
-| [Abe the Wizard](https://novelfull.com/abe-the-wizard.html) | all | 1512 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42393126629/artifacts/13592251409) | 2026-11-14T21:53:01Z |
-| [Chaotic Sword God](https://novelfull.com/chaotic-sword-god.html) | all | 4035 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42466652147/artifacts/13619781585) | 2026-11-15T13:43:07Z |
+| [Abe the Wizard](https://novelfull.com/abe-the-wizard.html) | all | 1512 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42393126629/artifacts/13592251409) | 2026-11-14T21:53:01Z |
+| [Chaotic Sword God](https://novelfull.com/chaotic-sword-god.html) | all | 4035 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42466652147/artifacts/13619781585) | 2026-11-15T13:43:07Z |
 | [Crazy Detective](https://novelfull.com/crazy-detective.html) | all | 2686 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13636899276) | 2026-11-15T22:35:59Z |
 | [Cultivation Online](https://novelfull.com/cultivation-online.html) | all | 2701 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13636934179) | 2026-11-15T22:36:34Z |
 | [Cultivation! My Augmented Statuses Have Unlimited Duration](https://novelfull.com/cultivation-my-augmented-statuses-have-unlimited-duration.html) | all | 904 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13636307740) | 2026-11-15T22:04:49Z |
@@ -32,7 +38,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [I Alone Level-Up](https://novelfull.com/i-alone-level-up.html) | all | 270 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13634103379) | 2026-11-15T21:14:14Z |
 | [I am a Gao Fushuai Villain](https://novelfull.com/i-am-a-gao-fushuai-villain.html) | all | 650 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13655021841) | 2026-11-16T06:53:24Z |
 | [I am the Monarch](https://novelfull.com/i-am-the-monarch.html) | all | 336 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13634498595) | 2026-11-15T21:18:11Z |
-| [I Can Track Everything](https://novelfull.com/i-can-track-everything.html) | all | 907 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368776684/artifacts/13574863593) | 2026-11-14T12:55:20Z |
+| [I Can Track Everything](https://novelfull.com/i-can-track-everything.html) | all | 907 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368776684/artifacts/13574863593) | 2026-11-14T12:55:20Z |
 | [I Cultivate Passively](https://novelfull.com/i-cultivate-passively.html) | all | 657 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13634707533) | 2026-11-15T21:18:45Z |
 | [I Have the Alchemy Emperor in My Head](https://novelfull.com/i-have-the-alchemy-emperor-in-my-head.html) | all | 2555 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13636831037) | 2026-11-15T22:13:06Z |
 | [Immortal Devil Transformation](https://novelfull.com/immortal-devil-transformation.html) | all | 869 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13645170874) | 2026-11-16T02:11:51Z |
@@ -72,7 +78,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Renegade Immortal](https://novelfull.com/renegade-immortal.html) | all | 2093 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13652597481) | 2026-11-16T05:44:54Z |
 | [Returning from the Immortal World](https://novelfull.com/returning-from-the-immortal-world.html) | all | 1443 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13653522551) | 2026-11-16T06:14:20Z |
 | [Scholar’s Advanced Technological System](https://novelfull.com/scholars-advanced-technological-system.html) | all | 1682 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13657099613) | 2026-11-16T07:54:20Z |
-| [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368620891/artifacts/13574785699) | 2026-11-14T12:28:22Z |
+| [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368620891/artifacts/13574785699) | 2026-11-14T12:28:22Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13634379248) | 2026-11-15T21:18:06Z |
 | [So Pure, So Flirtatious](https://novelfull.com/so-pure-so-flirtatious.html) | all | 1621 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13636208314) | 2026-11-15T22:05:35Z |
 | [Sovereign of the Three Realms](https://novelfull.com/sovereign-of-the-three-realms.html) | all | 2376 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13643540730) | 2026-11-16T01:25:45Z |
@@ -83,12 +89,12 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Talisman Emperor](https://novelfull.com/talisman-emperor.html) | all | 2251 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13652776298) | 2026-11-16T05:44:35Z |
 | [The Great Thief](https://novelfull.com/the-great-thief.html) | all | 1976 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13656896239) | 2026-11-16T07:30:13Z |
 | [The Human Emperor](https://novelfull.com/the-human-emperor.html) | all | 2467 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13644389821) | 2026-11-16T02:16:03Z |
-| [The Legendary Moonlight Sculptor](https://novelfull.com/the-legendary-moonlight-sculptor.html) | all | 710 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13624187862) | 2026-11-15T16:03:05Z |
+| [The Legendary Moonlight Sculptor](https://novelfull.com/the-legendary-moonlight-sculptor.html) | all | 710 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13624187862) | 2026-11-15T16:03:05Z |
 | [The Lord’s Empire](https://novelfull.com/the-lords-empire.html) | all | 1729 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13625076323) | 2026-11-15T16:28:03Z |
-| [The Ocean Lord Is Unusually Powerful](https://novelfull.com/the-ocean-lord-is-unusually-powerful.html) | all | 855 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13624069033) | 2026-11-15T16:09:39Z |
+| [The Ocean Lord Is Unusually Powerful](https://novelfull.com/the-ocean-lord-is-unusually-powerful.html) | all | 855 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13624069033) | 2026-11-15T16:09:39Z |
 | [The Second Coming of Gluttony](https://novelfull.com/the-second-coming-of-gluttony.html) | all | 550 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13626140911) | 2026-11-15T16:56:44Z |
 | [The Surgeon’s Studio](https://novelfull.com/the-surgeons-studio.html) | all | 2977 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627346622) | 2026-11-15T17:31:08Z |
-| [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368375482/artifacts/13575943777) | 2026-11-14T13:31:01Z |
+| [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368375482/artifacts/13575943777) | 2026-11-14T13:31:01Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627465520) | 2026-11-15T17:27:24Z |
 | [Throne of Magical Arcana](https://novelfull.com/throne-of-magical-arcana.html) | all | 910 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627324316) | 2026-11-15T17:49:19Z |
 | [Top Student: Experience Infinite Occupations](https://novelfull.com/top-student-experience-infinite-occupations.html) | all | 348 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13628605600) | 2026-11-15T18:00:49Z |
@@ -96,7 +102,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [TranXending Vision](https://novelfull.com/tranxending-vision.html) | all | 1201 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629356718) | 2026-11-15T18:34:08Z |
 | [True Martial World](https://novelfull.com/true-martial-world.html) | all | 1710 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625147182) | 2026-11-15T16:29:28Z |
 | [Unrivaled Medicine God](https://novelfull.com/unrivaled-medicine-god.html) | all | 3120 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625248157) | 2026-11-15T16:37:41Z |
-| [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
+| [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
 | [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
 | [When I Saw The Returns, I Invested In My Future Wife First](https://novelfull.com/when-i-saw-the-returns-i-invested-in-my-future-wife-first.html) | all | 450 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13626582748) | 2026-11-15T17:13:00Z |
 
