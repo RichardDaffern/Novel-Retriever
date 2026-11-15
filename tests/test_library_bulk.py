@@ -81,7 +81,7 @@ class LibraryBulkTests(unittest.TestCase):
     def test_auto_detects_mixed_source_urls_without_website_choice(self):
         # One pasted field can contain links from all supported download sites.
         # The actions workflow always uses this default unfiltered routing.
-        raw = f"{NOVELFULL}; {FREE}\\n{READ}, {SCRIBBLE}; {READ}"
+        raw = f"{NOVELFULL}; {FREE}\n{READ}, {SCRIBBLE}; {READ}"
         plan = selection_plan(
             {"version": 1, "novels": []}, {"version": 1, "novels": []},
             "", raw, confirm_rights=True,
@@ -109,7 +109,7 @@ class LibraryBulkTests(unittest.TestCase):
         workflow = Path(
             ".github/workflows/library-bulk-download.yml"
         ).read_text(encoding="utf-8")
-        inputs = workflow.split("    inputs:", 1)[1].split("\\npermissions:", 1)[0]
+        inputs = workflow.split("    inputs:", 1)[1].split("\npermissions:", 1)[0]
         self.assertIn("      novel_urls:", inputs)
         self.assertNotIn("      website:", inputs)
         self.assertNotIn("type: choice", inputs)
