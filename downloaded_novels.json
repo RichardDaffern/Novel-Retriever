@@ -20,6 +20,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/devouring-the-heavens",
+      "title": "Devouring The Heavens",
+      "author": "Xiami Xl",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 362,
+          "run_id": 43734388839,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839",
+          "artifact_id": 14175172715,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14175172715",
+          "completed_at_utc": "2026-11-15T18:46:57Z",
+          "expires_at_utc": "2026-11-22T18:46:57Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/lucifers-descendant-system",
       "title": "Lucifer's Descendant System",
       "author": "Zhanye",
