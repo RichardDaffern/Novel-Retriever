@@ -25,6 +25,8 @@ jobs:
           import urllib.robotparser
           import ssl
           import time
+          import re
+          import html
 
           USER_AGENT = "NovelLibraryFeasibility/1.0 (metadata-only; github.com/RichardDaffern/Novel_Library)"
           TARGETS = (
@@ -39,19 +41,27 @@ jobs:
               ("novelbin.cc", "https://novelbin.cc/"),
               ("lightnovelpub.com", "https://lightnovelpub.com/"),
           )
-          def fetch(url, method="GET", maxbytes=12000):
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  return None
+
+          opener_no_redirect = urllib.request.build_opener(NoRedirect())
+          def fetch(url, method="GET", maxbytes=12000, follow=True):
               req = urllib.request.Request(url, method=method, headers={
                   "User-Agent": USER_AGENT,
                   "Accept": "text/plain" if url.endswith("/robots.txt") else "text/html",
               })
               try:
-                  with urllib.request.urlopen(req, timeout=8) as res:
+                  with (urllib.request.urlopen(req, timeout=8) if follow
+                        else opener_no_redirect.open(req, timeout=8)) as res:
                       status, final = res.status, res.geturl()
                       typ = (res.headers.get("content-type") or "").split(";")[0]
                       data = res.read(maxbytes) if method == "GET" else b""
                       return status, final, typ, data
               except urllib.error.HTTPError as exc:
-                  return exc.code, exc.geturl(), "", b""
+                  redirect = exc.headers.get("Location", "") if exc.headers else ""
+                  final = urllib.parse.urljoin(url, redirect) if redirect else exc.geturl()
+                  return exc.code, final, "", b""
               except (urllib.error.URLError, TimeoutError, ssl.SSLError) as exc:
                   return type(exc).__name__, url, "", b""
 
@@ -73,10 +83,21 @@ jobs:
               else:
                   print(f"SOURCE {name} HEAD skipped: robots status not verified")
                   continue
-              code, to, content_type, _ = fetch(book, method="HEAD")
+              code, to, content_type, _ = fetch(book, method="HEAD", follow=False)
               print(
                   f"SOURCE {name} HEAD {code} CONTENT_TYPE {content_type!r}"
                   f" FINAL_HOST {urllib.parse.urlsplit(to).hostname}"
               )
+              # One page only, no chapters or downloads, and never follow cross-site redirects.
+              code, to, content_type, body = fetch(book, method="GET", maxbytes=12000, follow=False)
+              if code == 200:
+                  titles = re.findall(
+                      rb"<title[^>]*>(.*?)</title>", body, flags=re.I | re.S,
+                  )
+                  title = html.unescape(re.sub(r"<[^>]+>", "", titles[0].decode(
+                      "utf-8", errors="replace")).strip())[:100] if titles else "(not in first 12KB)"
+                  print(f"SOURCE {name} GET {code} CONTENT_TYPE {content_type!r} TITLE {title!r} BYTES_SAMPLED {len(body)}")
+              else:
+                  print(f"SOURCE {name} GET {code} FINAL_HOST {urllib.parse.urlsplit(to).hostname} (no redirect followed)")
               time.sleep(0.5)
           PY
