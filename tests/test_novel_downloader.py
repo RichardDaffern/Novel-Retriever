@@ -8,7 +8,7 @@ from unittest.mock import patch
 import zipfile
 
 from novel_downloader import export_epub, epub_chapters, main, slugify, validate_url, run_fanficfare, parse_chapter_range
-from fff_progress_runner import _checkpoint_chapter, progress_reporter
+from fanficfare_progress_runner import _checkpoint_chapter, progress_reporter
 
 
 class NovelDownloaderTests(unittest.TestCase):
@@ -356,7 +356,7 @@ class NovelDownloaderTests(unittest.TestCase):
                 args = runner.call_args.args[0]
                 self.assertEqual(args[args.index("--begin")+1], "10")
                 self.assertEqual(args[args.index("--end")+1], "20")
-                self.assertIn("fff_progress_runner.py", str(args[1]))
+                self.assertIn("fanficfare_progress_runner.py", str(args[1]))
                 self.assertNotIn("--progressbar", args)
 
     def test_synthetic_end_to_end_invocation(self):
@@ -366,7 +366,7 @@ class NovelDownloaderTests(unittest.TestCase):
                 self.assertEqual(rc, 1)  # Mocked downloader does not write the EPUB
                 args = runner.call_args.args[0]
                 self.assertIn("http://test1.com?sid=123", args)
-                self.assertIn("fff_progress_runner.py", str(args[1]))
+                self.assertIn("fanficfare_progress_runner.py", str(args[1]))
                 self.assertNotIn("--progressbar", args)
 
 
