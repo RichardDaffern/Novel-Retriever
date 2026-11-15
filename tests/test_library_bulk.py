@@ -14,6 +14,7 @@ from tools.library_bulk import (
 NOVELFULL = "https://novelfull.com/the-world-online.html"
 COMMA = "https://novelfull.com/please-i-really-didnt-want-to-fall-in-love-with-my-master.html"
 FREE = "https://freewebnovel.com/novel/the-first-order"
+READ = "https://readnovelfull.com/cultivation-online-v3.html"
 SCRIBBLE = "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima/"
 
 
@@ -76,6 +77,79 @@ class LibraryBulkTests(unittest.TestCase):
         self.assertEqual([n["novel_url"] for n in plan["groups"]["NovelFull"]], [NOVELFULL])
         self.assertEqual([n["novel_url"] for n in plan["groups"]["FreeWebNovel"]], [FREE])
         self.assertEqual(plan["groups"]["NovelFull"][0]["chapter_range"], "1-2")
+
+    def test_auto_detects_mixed_source_urls_without_website_choice(self):
+        # One pasted field can contain links from all supported download sites.
+        # The actions workflow always uses this default unfiltered routing.
+        raw = f"{NOVELFULL}; {FREE}\\n{READ}, {SCRIBBLE}; {READ}"
+        plan = selection_plan(
+            {"version": 1, "novels": []}, {"version": 1, "novels": []},
+            "", raw, confirm_rights=True,
+        )
+        self.assertEqual(plan["selected_count"], 4)
+        self.assertEqual(plan["website"], "All")
+        for site, expected in (
+            ("NovelFull", NOVELFULL),
+            ("FreeWebNovel", FREE),
+            ("ReadNovelFull", READ),
+            ("Scribble Hub", SCRIBBLE),
+        ):
+            with self.subTest(site=site):
+                self.assertEqual(
+                    [x["novel_url"] for x in plan["groups"][site]], [expected],
+                )
+        # No partial submission if one of the pasted links is unsupported.
+        with self.assertRaisesRegex(ValueError, "Unsupported website"):
+            selection_plan(
+                sample_registry(), CURATED, "",
+                NOVELFULL + " https://unsupported.example/book.html",
+            )
+
+    def test_bulk_actions_form_requires_no_source_selection(self):
+        workflow = Path(
+            ".github/workflows/library-bulk-download.yml"
+        ).read_text(encoding="utf-8")
+        inputs = workflow.split("    inputs:", 1)[1].split("\\npermissions:", 1)[0]
+        self.assertIn("      novel_urls:", inputs)
+        self.assertNotIn("      website:", inputs)
+        self.assertNotIn("type: choice", inputs)
+        self.assertNotIn("inputs.website", workflow)
+        self.assertNotIn("          WEBSITE:", workflow)
+        self.assertNotIn("--website", workflow)
+        self.assertIn('--names "$NOVEL_NAMES" --urls "$NOVEL_URLS"', workflow)
+        for child in (
+            "download-novel.yml", "freewebnovel-download.yml",
+            "readnovelfull-download.yml", "scribblehub-download.yml",
+        ):
+            self.assertIn(f"uses: ./.github/workflows/{child}", workflow)
+
+    def test_cli_auto_routes_multiple_links_with_no_site_argument(self):
+        with TemporaryDirectory() as temp:
+            root = Path(temp)
+            registry = root / "registry.json"
+            catalogue = root / "sources.json"
+            outputs = root / "outputs.txt"
+            plan_file = root / "plan.json"
+            registry.write_text('{"version":1,"novels":[]}', encoding="utf-8")
+            catalogue.write_text('{"version":1,"novels":[]}', encoding="utf-8")
+            with patch.dict(os.environ, {"GITHUB_OUTPUT": str(outputs)}):
+                self.assertEqual(main([
+                    "plan", "--registry", str(registry),
+                    "--catalogue", str(catalogue),
+                    "--urls", f"{NOVELFULL};{FREE} {READ}",
+                    "--plan-file", str(plan_file),
+                ]), 0)
+            plan = json.loads(plan_file.read_text(encoding="utf-8"))
+            self.assertEqual(plan["selected_count"], 3)
+            for site in ("NovelFull", "FreeWebNovel", "ReadNovelFull"):
+                self.assertEqual(len(plan["groups"][site]), 1)
+            output = dict(
+                line.split("=", 1) for line in outputs.read_text().splitlines()
+            )
+            self.assertEqual(output["has_novelfull"], "true")
+            self.assertEqual(output["has_freewebnovel"], "true")
+            self.assertEqual(output["has_readnovelfull"], "true")
+            self.assertEqual(output["has_scribblehub"], "false")
 
     def test_specific_website_selection(self):
         plan = selection_plan(sample_registry(), CURATED, "the first order",
