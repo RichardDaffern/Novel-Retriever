@@ -20,6 +20,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/shrouding-the-heavens",
+      "title": "Shrouding the Heavens",
+      "author": "Chen Dong",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 323,
+          "run_id": 43734410920,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920",
+          "artifact_id": 14172118221,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14172118221",
+          "completed_at_utc": "2026-11-15T17:24:06Z",
+          "expires_at_utc": "2026-11-22T17:24:06Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/three-days-of-happiness",
       "title": "Three Days of Happiness",
       "author": "Sugaru Miaki (Fafoo)",
