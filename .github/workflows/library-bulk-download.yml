@@ -189,21 +189,41 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout recovery validator
-        if: needs.prepare.result == 'success'
+      - name: Checkout bulk summary tools
+        if: always() && needs.prepare.result == 'success'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: main
 
+      # A successful run already publishes each completed book independently.
+      # Download and repackage those large artefacts only after a child failure.
+      - name: Decide whether partial recovery is needed
+        id: recovery_gate
+        if: always() && needs.prepare.result == 'success'
+        env:
+          NOVELFULL: ${{ needs.novelfull.result }}
+          FREEWEBNOVEL: ${{ needs.freewebnovel.result }}
+          SCRIBBLEHUB: ${{ needs.scribblehub.result }}
+        run: |
+          for result in "$NOVELFULL" "$FREEWEBNOVEL" "$SCRIBBLEHUB"; do
+            if [[ "$result" == "failure" || "$result" == "cancelled" ]]; then
+              echo "required=true" >> "$GITHUB_OUTPUT"
+              echo "::notice::A child download failed or was cancelled; recovering completed novels."
+              exit 0
+            fi
+          done
+          echo "required=false" >> "$GITHUB_OUTPUT"
+          echo "::notice::No failed child downloads; each completed novel is already independently downloadable."
+
       - name: Retrieve selected novel plan
-        if: needs.prepare.result == 'success'
+        if: always() && steps.recovery_gate.outputs.required == 'true'
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: bulk-selection-${{ github.run_id }}
           path: saved_plan
 
       - name: Collect successful per-novel artefacts even if other downloads failed
-        if: needs.prepare.result == 'success'
+        if: always() && steps.recovery_gate.outputs.required == 'true'
         continue-on-error: true
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
@@ -213,7 +233,7 @@ jobs:
 
       - name: Validate and package all completed novels separately
         id: recovery
-        if: needs.prepare.result == 'success'
+        if: always() && steps.recovery_gate.outputs.required == 'true'
         run: |
           python -m tools.bulk_recovery \
             --plan saved_plan/library_bulk_plan.json \
@@ -231,7 +251,7 @@ jobs:
           if-no-files-found: error
 
       - name: Publish successful-novels recovery bundle even when the bulk run failed
-        if: always() && needs.prepare.result == 'success'
+        if: always() && steps.recovery.outcome == 'success'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: bulk-successful-novels-${{ github.run_id }}
@@ -284,8 +304,14 @@ jobs:
           echo "| Scribble Hub | $SCRIBBLEHUB |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Partial recovery | $RECOVERY |" >> "$GITHUB_STEP_SUMMARY"
           echo "Independently completed novels retain their original individual artefacts." >> "$GITHUB_STEP_SUMMARY"
-          echo "The bulk-successful-novels-$GITHUB_RUN_ID recovery artefact contains one portable ZIP per recovered book and a manifest, including on partial failure." >> "$GITHUB_STEP_SUMMARY"
-          echo "For retry-only runs, enter this run ID in the Retry from previous run field. A small bulk-recovery-manifest-$GITHUB_RUN_ID artefact holds the failed/missing selection." >> "$GITHUB_STEP_SUMMARY"
+          if [[ "$RECOVERY" == "success" ]]; then
+            echo "Partial failure: bulk-successful-novels-$GITHUB_RUN_ID contains one portable ZIP per recovered book." >> "$GITHUB_STEP_SUMMARY"
+            echo "To retry failed or missing books only, enter this run ID in Retry from previous run. The small bulk-recovery-manifest-$GITHUB_RUN_ID stores the missing selection." >> "$GITHUB_STEP_SUMMARY"
+          elif [[ "$RECOVERY" == "skipped" ]]; then
+            echo "All child groups succeeded or were skipped. Duplicate recovery downloads and ZIP packaging were omitted to save time and transfers." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Partial recovery failed; independently uploaded successful novel artefacts remain available." >> "$GITHUB_STEP_SUMMARY"
+          fi
           if [[ "$PREPARE" == "failure" || "$PREPARE" == "cancelled" || \
                 "$NOVELFULL" == "failure" || "$NOVELFULL" == "cancelled" || \
                 "$FREEWEBNOVEL" == "failure" || "$FREEWEBNOVEL" == "cancelled" || \
