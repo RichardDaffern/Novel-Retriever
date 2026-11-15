@@ -46,6 +46,9 @@ class ReadNovelFullTests(unittest.TestCase):
         self.assertEqual(validate_book_url(BOOK), BOOK)
         self.assertEqual(validate_book_url(BOOK.replace("https://", "https://www.")), BOOK)
         self.assertEqual(validate_chapter_url(CH1)[1], 1)
+        # A real public chapter archive contains this unusual but valid slug.
+        special = "https://readnovelfull.com/cultivation-online/chapter-1131sword-pagoda4.html"
+        self.assertEqual(validate_chapter_url(special)[1], 1131)
         for bad in (
             "https://readnovelfull.com/",
             BOOK + "?session=1",
