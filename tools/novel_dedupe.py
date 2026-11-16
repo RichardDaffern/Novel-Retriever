@@ -157,8 +157,8 @@ def _freshness(row: dict):
 
 
 def _rank(row: dict):
-    return (row["chapter_count"], _freshness(row),
-            row["cover_status"] == "available", row["zip_sha256"])
+    return (row["chapter_count"], row["cover_status"] == "available",
+            _freshness(row), row["zip_sha256"])
 
 
 def _copy_if_needed(src: Path, dest: Path) -> bool:
@@ -227,7 +227,16 @@ def consolidate(paths: list[Path], output: Path, *, provenance: dict | None = No
         for row in group:
             if row is preferred:
                 continue
-            if equivalent(row, preferred) or compatible_subset(row, preferred):
+            # A matching URL with conflicting book attribution cannot be
+            # silently treated as the same novel, even with matching TXT.
+            title_conflict = (bool(normalise(row["title"])) and
+                              bool(normalise(preferred["title"])) and
+                              normalise(row["title"]) != normalise(preferred["title"]))
+            author_conflict = (bool(normalise(row["author"])) and
+                               bool(normalise(preferred["author"])) and
+                               normalise(row["author"]) != normalise(preferred["author"]))
+            if not title_conflict and not author_conflict and (
+                    equivalent(row, preferred) or compatible_subset(row, preferred)):
                 duplicates.append({"file": row["path"], "preferred": preferred["path"],
                                    "reason": "equivalent_or_contained"})
             else:
@@ -270,7 +279,12 @@ def main(argv=None) -> int:
                         help="Directory containing old and new individual ZIPs")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
-    inputs = sorted(args.input.rglob("*.zip"))
+    if args.input.resolve() == args.output.resolve():
+        parser.error("Input and output directories must differ")
+    # On repeated runs, don't treat last run's own output as fresh input.
+    output_root = args.output.resolve()
+    inputs = sorted(path for path in args.input.rglob("*.zip")
+                    if not path.resolve().is_relative_to(output_root))
     if not inputs:
         parser.error("No ZIP files found in input directory")
     result = consolidate(inputs, args.output)
