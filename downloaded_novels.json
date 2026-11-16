@@ -2036,6 +2036,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/sevens.html",
+      "title": "Sevens",
+      "author": "Waka / Yume Yume",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 365,
+          "run_id": 43734404117,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117",
+          "artifact_id": 14241691888,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14241691888",
+          "completed_at_utc": "2026-11-16T15:55:48Z",
+          "expires_at_utc": "2026-11-23T15:55:48Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/she-is-from-the-countryside.html",
       "title": "She Is From The Countryside",
       "author": "Zi Xuan",
