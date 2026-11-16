@@ -2245,6 +2245,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-sword-dynasty.html",
+      "title": "The Sword Dynasty",
+      "author": "Wu Zui",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 739,
+          "run_id": 43819213500,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43819213500",
+          "artifact_id": 14211521628,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43819213500/artifacts/14211521628",
+          "completed_at_utc": "2026-11-16T09:09:23Z",
+          "expires_at_utc": "2026-11-23T09:09:23Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-villainess-reverses-the-hourglass.html",
       "title": "The Villainess Reverses the Hourglass",
       "author": "산소비",
