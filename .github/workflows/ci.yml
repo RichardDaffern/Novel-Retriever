@@ -10,6 +10,12 @@ on:
       - 'DOWNLOADED_NOVELS.md'
       - 'downloaded_novels.json'
 
+# Superseded pushes and PR updates should not queue full CI repeatedly.
+# The latest commit is always validated; main has its own independent group.
+concurrency:
+  group: ci-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
