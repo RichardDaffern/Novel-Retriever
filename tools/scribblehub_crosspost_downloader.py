@@ -34,7 +34,7 @@ REGISTRY_FILE = Path(__file__).with_name("scribblehub_verified_crossposts.json")
 API = "https://fichub.net/api/v0/epub"
 USER_AGENT = (
     "Novel_Library-Crosspost/1.0 "
-    "(+https://github.com/RichardDaffern/Novel_Library/issues)"
+    "(+https://github.com/RichardDaffern/Novel-Retriever/issues)"
 )
 
 
