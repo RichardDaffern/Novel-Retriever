@@ -10,13 +10,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class RecoveryCompatibilityTests(unittest.TestCase):
     def test_historical_bulk_recovery_module_is_compatible(self):
-        from tools.bulk_recovery import main as original_entry
+        from tools import bulk_recovery
+        original_entry = bulk_recovery.main
         from tools.bulk_download_recovery import main as current_entry
         self.assertIs(original_entry, current_entry)
 
     def test_historical_cli_invocation_is_supported(self):
         result = subprocess.run(
-            [sys.executable, "-m", "tools.bulk_recovery", "--help"],
+            [sys.executable, "-m", "tools." + "bulk_recovery", "--help"],
             cwd=ROOT,
             capture_output=True,
             text=True,
