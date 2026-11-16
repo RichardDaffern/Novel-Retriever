@@ -1,5 +1,9 @@
 """Offline tests for bounded NovelFull HTTPS transport; no live downloads."""
 import io
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
 import unittest
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
@@ -26,6 +30,19 @@ class Response:
 
 
 class TransportTests(unittest.TestCase):
+    def test_cli_runner_can_be_invoked_from_unrelated_directory(self):
+        runner = Path(__file__).resolve().parents[1] / "tools" / "fanficfare_progress_runner.py"
+        with tempfile.TemporaryDirectory() as cwd:
+            result = subprocess.run(
+                [sys.executable, str(runner), "--help"],
+                cwd=cwd,
+                capture_output=True,
+                text=True,
+                timeout=20,
+            )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Usage", result.stdout)
+
     def test_allowlist_blocks_other_hosts_and_http(self):
         self.assertTrue(novelfull_http._allowed(BOOK))
         for url in (
