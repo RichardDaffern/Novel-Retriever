@@ -38,6 +38,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/god-level-demon",
+      "title": "God Level Demon",
+      "author": "拉姆",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 137,
+          "run_id": 43734393507,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507",
+          "artifact_id": 14203602757,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14203602757",
+          "completed_at_utc": "2026-11-16T06:45:22Z",
+          "expires_at_utc": "2026-11-23T06:45:22Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/lucifers-descendant-system",
       "title": "Lucifer's Descendant System",
       "author": "Zhanye",
