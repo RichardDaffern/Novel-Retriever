@@ -2389,6 +2389,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-novels-extra.html",
+      "title": "The Novel's Extra",
+      "author": "Jee Gab Song",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 379,
+          "run_id": 43734410920,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920",
+          "artifact_id": 14241971738,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14241971738",
+          "completed_at_utc": "2026-11-16T15:57:09Z",
+          "expires_at_utc": "2026-11-23T15:57:09Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-ocean-lord-is-unusually-powerful.html",
       "title": "The Ocean Lord Is Unusually Powerful",
       "author": "Chenyu The Herder",
