@@ -20,6 +20,8 @@ import tempfile
 from urllib.parse import urlsplit, urlunsplit
 from zipfile import ZipFile, BadZipFile
 
+from tools.novel_covers import MAX_IMAGE_BYTES, CoverError, validate_image
+
 MAX_ZIP_BYTES = 950 * 1024 * 1024
 MAX_EPUB_BYTES = 120 * 1024 * 1024
 MAX_ENTRIES = 25000
@@ -59,8 +61,11 @@ def _safe_members(archive: ZipFile):
                 ((item.external_attr >> 16) & 0o170000) == 0o120000):
             raise ValueError("Unsafe ZIP member")
         paths.append(p)
-    if len(set(paths)) != len(paths):
-        raise ValueError("Duplicate ZIP members")
+    if len({str(path).casefold() for path in paths}) != len(paths):
+        raise ValueError("Duplicate or case-aliased ZIP members")
+    if any(item.file_size > max(item.compress_size, 1) * 10000
+           for item in members):
+        raise ValueError("Suspicious ZIP compression ratio")
     return members
 
 
@@ -110,6 +115,8 @@ def inspect(path: Path, *, original_artifact: str = "") -> dict:
         epub = archive.read(epub_files[0])
         with ZipFile(BytesIO(epub)) as ebook:
             if ("META-INF/container.xml" not in ebook.namelist() or
+                    "mimetype" not in ebook.namelist() or
+                    ebook.read("mimetype") != b"application/epub+zip" or
                     ebook.testzip() is not None):
                 raise ValueError("Invalid EPUB")
         if archive.testzip() is not None:
@@ -119,8 +126,17 @@ def inspect(path: Path, *, original_artifact: str = "") -> dict:
         if not book_url and (not normalise(title) or not normalise(author)):
             raise ValueError("Novel identity requires source URL or title and author")
         cover = meta.get("cover_image", "")
-        has_cover = bool(cover and (parent + "/" + cover if parent else cover) in names
-                         and cover in ("cover.jpg", "cover.png"))
+        cover_path = parent + "/" + cover if parent else cover
+        has_cover = False
+        if cover in ("cover.jpg", "cover.png", "cover.webp") and cover_path in names:
+            # Cover precedence requires a genuinely decodable image, not an
+            # arbitrary file labelled cover.jpg by an untrusted ZIP.
+            if archive.getinfo(cover_path).file_size <= MAX_IMAGE_BYTES:
+                try:
+                    validate_image(archive.read(cover_path))
+                    has_cover = True
+                except CoverError:
+                    pass
         content_hash = digest(json.dumps(list(zip(order, chapter_hashes)),
                                          separators=(",", ":")).encode("utf-8"))
         book_id = "url:" + book_url if book_url else "title:" + normalise(title) + "|author:" + normalise(author)
