@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (138 novels)
+## NovelFull (139 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -38,6 +38,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Bewitching Prince Spoils His Wife: Genius Doctor Unscrupulous Consort](https://novelfull.com/bewitching-prince-spoils-his-wife-genius-doctor-unscrupulous-consort.html) | all | 975 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14184935702) | 2026-11-22T22:54:24Z |
 | [Black Bellied Belle: Demon Lord, Bite the Bait Please](https://novelfull.com/black-bellied-belle-demon-lord-bite-the-bait-please.html) | all | 1074 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14186577524) | 2026-11-22T23:53:13Z |
 | [Black Iron’s Glory](https://novelfull.com/black-irons-glory.html) | all | 593 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14233217365) | 2026-11-23T14:08:17Z |
+| [Chaotic Lightning Cultivation](https://novelfull.com/chaotic-lightning-cultivation.html) | all | 293 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14241748246) | 2026-11-23T16:05:32Z |
 | [Chaotic Sword God](https://novelfull.com/chaotic-sword-god.html) | all | 4035 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42466652147/artifacts/13619781585) | 2026-11-15T13:43:07Z |
 | [Crazy Detective](https://novelfull.com/crazy-detective.html) | all | 2686 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13636899276) | 2026-11-15T22:35:59Z |
 | [Cultivation Online](https://novelfull.com/cultivation-online.html) | all | 2701 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13636934179) | 2026-11-15T22:36:34Z |
