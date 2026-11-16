@@ -114,6 +114,8 @@ def recover(plan: dict, artifact_root: Path, output_dir: Path,
     recovered = []
     rejected = []
     completed_urls = set()
+    duplicate_archives = []
+    conflicting_editions = []
     used_bytes = 0
     artifact_root = Path(artifact_root)
     artifacts = sorted(artifact_root.iterdir()) if artifact_root.is_dir() else []
@@ -139,13 +141,26 @@ def recover(plan: dict, artifact_root: Path, output_dir: Path,
             selected = scheduled.get(url)
             if selected is None:
                 raise RecoveryError("Not one of this batch's selected novels")
-            if url in completed_urls:
-                raise RecoveryError("Duplicate complete artefact for the same novel")
+            # Enrich only this recovered copy; network failures must never
+            # discard a previously successful chapter batch.
+            try:
+                from tools.cover_pipeline import finalise_book
+                finalise_book(book)
+            except Exception as exc:
+                print(f"WARNING: optional cover finalisation skipped: {exc}", flush=True)
             meta, chapters, filenames = _book_details(book, selected)
             filename = "novel-" + hashlib.sha256(
                 (url + "\n" + selected.get("chapter_range", "")).encode("utf-8")
             ).hexdigest()[:16] + ".zip"
-            dest = output_dir / filename
+            duplicate = url in completed_urls
+            if duplicate:
+                filename = filename[:-4] + "-" + hashlib.sha256(
+                    (artefact.name + str(len(chapters))).encode("utf-8")
+                ).hexdigest()[:10] + ".zip"
+                (output_dir / "review-conflicts").mkdir(exist_ok=True)
+                dest = output_dir / "review-conflicts" / filename
+            else:
+                dest = output_dir / filename
             if dest.exists():
                 raise RecoveryError("Duplicate recovery file identity")
             with ZipFile(dest, "w", compression=ZIP_DEFLATED, compresslevel=6) as z:
@@ -170,6 +185,22 @@ def recover(plan: dict, artifact_root: Path, output_dir: Path,
                     "artefact remains independently downloadable"
                 )
             used_bytes += size
+            if duplicate:
+                from tools.novel_dedupe import inspect, equivalent, compatible_subset
+                original = next(row for row in recovered if row["url"] == url)
+                original_book = inspect(output_dir / original["filename"])
+                alternative = inspect(dest)
+                if equivalent(original_book, alternative) or compatible_subset(alternative, original_book):
+                    dest.unlink()
+                    used_bytes -= size
+                    duplicate_archives.append({"url": url, "artifact": artefact.name})
+                else:
+                    conflicting_editions.append({
+                        "url": url, "artifact": artefact.name,
+                        "review_file": "review-conflicts/" + filename,
+                        "reason": "Materially different completed chapters",
+                    })
+                continue
             completed_urls.add(url)
             recovered.append({
                 "url": url, "title": meta.get("title", ""),
@@ -201,6 +232,8 @@ def recover(plan: dict, artifact_root: Path, output_dir: Path,
         "missing_or_failed": missing,
         "already_available": plan.get("skipped", []),
         "rejected_artifacts": rejected,
+        "duplicate_archives": duplicate_archives,
+        "conflicting_editions": conflicting_editions,
     }
     (output_dir / "bulk_recovery_manifest.json").write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
