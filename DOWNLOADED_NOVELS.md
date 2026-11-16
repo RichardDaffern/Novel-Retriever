@@ -24,7 +24,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (104 novels)
+## NovelFull (105 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -45,7 +45,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Dual Cultivation](https://novelfull.com/dual-cultivation.html) | all | 1148 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14173585699) | 2026-11-22T17:44:33Z |
 | [Dungeon Hunter](https://novelfull.com/dungeon-hunter.html) | all | 171 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14170676589) | 2026-11-22T16:39:21Z |
 | [Emperor’s Domination](https://novelfull.com/emperors-domination.html) | all | 7212 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13657994600) | 2026-11-16T08:16:29Z |
-| [Everyone Has Four Skills](https://novelfull.com/everyone-has-four-skills.html) | all | 615 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13653765829) | 2026-11-16T06:13:54Z |
+| [Everyone Has Four Skills](https://novelfull.com/everyone-has-four-skills.html) | all | 615 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13653765829) | 2026-11-16T06:13:54Z |
 | [Extraordinary Genius](https://novelfull.com/extraordinary-genius.html) | all | 1399 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13657526353) | 2026-11-16T07:46:15Z |
 | [From Soldier to Officer: A Game Addict's Journey](https://novelfull.com/from-soldier-to-officer-a-game-addicts-journey.html) | all | 440 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636196182) | 2026-11-15T21:50:28Z |
 | [Global Lord: 100% Drop Rate](https://novelfull.com/global-lord-100-drop-rate.html) | all | 1979 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636378607) | 2026-11-15T22:12:59Z |
@@ -65,7 +65,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Immortal Devil Transformation](https://novelfull.com/immortal-devil-transformation.html) | all | 869 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13645170874) | 2026-11-16T02:11:51Z |
 | [Imperial God Emperor](https://novelfull.com/imperial-god-emperor.html) | all | 1371 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13651502124) | 2026-11-16T05:12:15Z |
 | [In Different World with Naruto System](https://novelfull.com/in-different-world-with-naruto-system.html) | all | 382 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14175161600) | 2026-11-22T18:39:56Z |
-| [Invincible](https://novelfull.com/invincible.html) | all | 3753 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13653866052) | 2026-11-16T06:14:23Z |
+| [Invincible](https://novelfull.com/invincible.html) | all | 3753 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13653866052) | 2026-11-16T06:14:23Z |
 | [I’ll Add Points To All Things](https://novelfull.com/ill-add-points-to-all-things.html) | all | 945 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13641833043) | 2026-11-16T00:59:34Z |
 | [I’m Really a Superstar](https://novelfull.com/im-really-a-superstar.html) | all | 1696 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13643775900) | 2026-11-16T01:31:41Z |
 | [King of Gods](https://novelfull.com/king-of-gods.html) | all | 1585 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13652875528) | 2026-11-16T05:44:28Z |
@@ -77,13 +77,14 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Martial Immortality: Starting with the Spirit Beast Scroll](https://novelfull.com/martial-immortality-starting-with-the-spirit-beast-scroll.html) | all | 524 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13626848455) | 2026-11-15T17:27:56Z |
 | [Martial Peak](https://novelfull.com/martial-peak.html) | all | 6133 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13651454047) | 2026-11-16T05:35:13Z |
 | [Medical Master](https://novelfull.com/medical-master.html) | all | 2028 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13645342551) | 2026-11-16T02:29:39Z |
-| [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
+| [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
 | [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
 | [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
 | [Mr. CEO, Spoil me 100 Percent!](https://novelfull.com/mr-ceo-spoil-me-100-percent.html) | all | 992 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189786356) | 2026-11-23T01:01:07Z |
 | [Museum of Deadly Beasts](https://novelfull.com/museum-of-deadly-beasts.html) | all | 792 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189855601) | 2026-11-23T00:58:22Z |
 | [My Cold and Elegant CEO Wife](https://novelfull.com/my-cold-and-elegant-ceo-wife.html) | all | 2513 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13658274180) | 2026-11-16T08:18:34Z |
 | [My Dad Is the Galaxy’s Prince Charming](https://novelfull.com/my-dad-is-the-galaxys-prince-charming.html) | all | 198 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14170023682) | 2026-11-22T16:39:54Z |
+| [My Fusion System: Fusing a Thousand Chickens at the Start](https://novelfull.com/my-fusion-system-fusing-a-thousand-chickens-at-the-start.html) | all | 657 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14202581361) | 2026-11-23T06:19:06Z |
 | [My Genes Can Evolve Limitlessly](https://novelfull.com/my-genes-can-evolve-limitlessly.html) | all | 780 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13635190766) | 2026-11-15T21:19:00Z |
 | [My Senior Brother is Too Steady](https://novelfull.com/my-senior-brother-is-too-steady.html) | all | 765 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14172685201) | 2026-11-22T17:27:22Z |
 | [Myriad Paths of the Dragon Emperor](https://novelfull.com/myriad-paths-of-the-dragon-emperor.html) | all | 6012 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13644198039) | 2026-11-16T01:59:56Z |
@@ -102,7 +103,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Rebirth: How a Loser Became a Prince Charming](https://novelfull.com/rebirth-how-a-loser-became-a-prince-charming.html) | all | 1009 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13644466550) | 2026-11-16T02:00:06Z |
 | [Refining the Mountains and Rivers](https://novelfull.com/refining-the-mountains-and-rivers.html) | all | 2203 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13651824997) | 2026-11-16T05:40:38Z |
 | [Renegade Immortal](https://novelfull.com/renegade-immortal.html) | all | 2093 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13652597481) | 2026-11-16T05:44:54Z |
-| [Returning from the Immortal World](https://novelfull.com/returning-from-the-immortal-world.html) | all | 1443 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13653522551) | 2026-11-16T06:14:20Z |
+| [Returning from the Immortal World](https://novelfull.com/returning-from-the-immortal-world.html) | all | 1443 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13653522551) | 2026-11-16T06:14:20Z |
 | [Scholar’s Advanced Technological System](https://novelfull.com/scholars-advanced-technological-system.html) | all | 1682 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13657099613) | 2026-11-16T07:54:20Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368620891/artifacts/13574785699) | 2026-11-14T12:28:22Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13634379248) | 2026-11-15T21:18:06Z |
