@@ -217,6 +217,9 @@ def main():
     if not token:
         raise SystemExit("GITHUB_TOKEN must be supplied with actions:read")
     target = Path(args.output)
+    if target.exists() and any(target.iterdir()):
+        raise SystemExit("Export output directory is not empty; use a new --output path "
+                         "to prevent mixing snapshots or overwriting earlier ZIPs")
     novel_folder = target / "novels"
     novel_folder.mkdir(parents=True, exist_ok=True)
     cache = target.parent / ".novel-export-cache"
@@ -245,6 +248,7 @@ def main():
             failures.append({"run": run_id, "reason": str(exc)[:280]})
             print(f"WARNING: failed to list run {run_id}: {exc}", flush=True)
     export_rows = []
+    successfully_exported_keys = set()
     for key, options in sorted(candidates.items()):
         options.sort(key=lambda x: (x.get("created_at", ""), x["id"]), reverse=True)
         for item in options:
@@ -287,6 +291,7 @@ def main():
                     "github_artifact_id": item["id"],
                     "original_github_artifact": item["name"],
                 })
+                successfully_exported_keys.add(key)
                 print(f"EXPORTED {len(export_rows):3d}: {title} ({chapter_count} chapters)", flush=True)
                 # Inspect all available editions; deduplication decides
                 # whether an older completed artefact is equivalent or differs.
@@ -299,7 +304,7 @@ def main():
                 print(f"WARNING {item['name']}: {exc}", flush=True)
     missing_registry = [
         {"title": meta.get("title", ""), "source_url": meta.get("source_url", "")}
-        for key, meta in indexed.items() if key not in candidates
+        for key, meta in indexed.items() if key not in successfully_exported_keys
     ]
     # Compare every downloaded complete edition before publishing the final
     # upload directory. The original ZIPs survive in the local cache.
@@ -345,16 +350,17 @@ def main():
         for book in dedupe["novels"]:
             hashes.write(f"{book['zip_sha256']}  {book['file']}\n")
     (target / "README.txt").write_text(
-        "Taiyou's Novel Library - GitHub completed EPUB export\n"
+        "Novel Retriever - completed EPUB export for Taiyou's library\n"
         "Extract this outer ZIP first. Individual ready-to-import book ZIPs are "
         "inside the novels folder.\n"
         "Review review-conflicts/ before choosing among different editions.\n"
-        "Move the ZIPs into your Storage Controller upload folder and use "
-        "01_bulk_upload.cmd in preview mode before applying.\n"
+        "Move individual ZIPs into the Storage Controller's novels folder and "
+        "choose Windows menu option 12 for the opt-in duplicate-aware preview.\n"
         "Review manifest.json for counts, excluded/unavailable books, SHA256 "
         "and artefact provenance.\n"
         "Do not upload the outer ZIP as one novel.\n"
-        "Do not mix old and new archives in the Controller until its local deduplication PR is approved.\n"
+        "Old and new ZIPs may be previewed together with --dedupe-local; "
+        "conflicting editions block all writes.\n"
         "The six original campaigns may continue running after this snapshot.\n",
         encoding="utf-8",
     )
