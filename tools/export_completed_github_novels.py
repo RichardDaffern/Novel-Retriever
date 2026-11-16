@@ -191,15 +191,10 @@ def package_novel(original: Path, target: Path):
             if not safe_member(name):
                 raise ValueError("Unsafe path in source archive")
             compression = ZIP_STORED if name.lower().endswith((".epub", ".zip")) else ZIP_DEFLATED
-            with source.open(member) as inp, dest.open(name, "w", force_zip64=True) as out:
-                # ZipFile.open defaults to ZIP_STORED, so use writestr for text
-                # entries to keep size down without holding the whole archive.
-                if compression == ZIP_DEFLATED:
-                    content = inp.read()
-                    out.close()
-                    dest.writestr(name, content, compress_type=ZIP_DEFLATED, compresslevel=6)
-                else:
-                    shutil.copyfileobj(inp, out, 1024 * 1024)
+            info = __import__("zipfile").ZipInfo(name)
+            info.compress_type = compression
+            with source.open(member) as inp, dest.open(info, "w", force_zip64=True) as out:
+                shutil.copyfileobj(inp, out, 1024 * 1024)
     if target.stat().st_size > MAX_INNER_ZIP_BYTES:
         raise ValueError("Per-novel ZIP exceeds HF controller's 120 MiB limit")
     with ZipFile(target) as archive:
