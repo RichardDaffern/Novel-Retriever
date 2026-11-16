@@ -117,7 +117,7 @@ def publish(
                 check=False,
             )
             if created.returncode:
-                repo = os.environ.get("GITHUB_REPOSITORY", "RichardDaffern/Novel_Library")
+                repo = os.environ.get("GITHUB_REPOSITORY", "RichardDaffern/Novel-Retriever")
                 comparison = f"https://github.com/{repo}/compare/main...{branch}?expand=1"
                 append_summary(
                     "## Automatic registry PR could not be created\n"
