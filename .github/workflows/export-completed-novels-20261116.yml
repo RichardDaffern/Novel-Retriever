@@ -1,0 +1,77 @@
+name: Export Completed Novels - Hugging Face Upload Bundle
+
+on:
+  push:
+    branches:
+      - ops/export-completed-novels-20261116
+    paths:
+      - .github/workflows/export-completed-novels-20261116.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: export-completed-novels-snapshot
+  cancel-in-progress: false
+
+jobs:
+  export:
+    if: github.repository == 'RichardDaffern/Novel_Library'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Checkout export tools
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ops/export-completed-novels-20261116
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+
+      - name: Install export dependency
+        run: python -m pip install 'requests==2.34.2'
+
+      - name: Validate exporter against synthetic ZIPs
+        run: python -m unittest tests.test_export_completed_github_novels -v
+
+      - name: Gather unexpired complete novels and create HF-ready ZIPs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONUNBUFFERED: '1'
+        run: python -u -m tools.export_completed_github_novels --output export
+
+      - name: Print snapshot inventory
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f export/manifest.json ]]; then
+            python - <<'PY'
+          import json,os
+          from pathlib import Path
+          manifest=json.loads(Path('export/manifest.json').read_text(encoding='utf-8'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as f:
+              f.write('## HF-ready novel snapshot\n\n')
+              f.write(f"**Completed unique books:** {manifest['exported_novels']}\n\n")
+              f.write(f"**Currently unavailable registry books:** {len(manifest['unavailable_registry_books'])}\n\n")
+              f.write(f"**Warnings:** {len(manifest['warnings'])}\n\n")
+              f.write('Download the single ZIP artefact below, extract it, then give the individual ZIPs in novels/ to the HF Storage Controller.\n')
+          print('Exported:',manifest['exported_novels'])
+          print('Unavailable:',len(manifest['unavailable_registry_books']))
+          print('Warnings:',len(manifest['warnings']))
+          PY
+            du -sh export || true
+          fi
+
+      - name: Upload one consolidated novel snapshot
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: taiyou-completed-novels-${{ github.run_id }}
+          path: export/
+          compression-level: 0
+          retention-days: 90
+          if-no-files-found: error
