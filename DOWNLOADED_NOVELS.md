@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (122 novels)
+## NovelFull (123 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -151,6 +151,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Trial Marriage Husband: Need to Work Hard](https://novelfull.com/trial-marriage-husband-need-to-work-hard.html) | all | 1275 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14175858121) | 2026-11-22T19:13:16Z |
 | [True Martial World](https://novelfull.com/true-martial-world.html) | all | 1710 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625147182) | 2026-11-15T16:29:28Z |
 | [Unrivaled Medicine God](https://novelfull.com/unrivaled-medicine-god.html) | all | 3120 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625248157) | 2026-11-15T16:37:41Z |
+| [Valhalla Saga](https://novelfull.com/valhalla-saga.html) | all | 269 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14212677158) | 2026-11-23T09:30:55Z |
 | [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
 | [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
 | [When I Saw The Returns, I Invested In My Future Wife First](https://novelfull.com/when-i-saw-the-returns-i-invested-in-my-future-wife-first.html) | all | 450 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13626582748) | 2026-11-15T17:13:00Z |
