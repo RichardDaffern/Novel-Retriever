@@ -97,7 +97,7 @@ def _book_details(folder: Path, expected: dict) -> tuple[dict, list[dict], set[s
 
 
 def recover(plan: dict, artifact_root: Path, output_dir: Path,
-            *, run_id: str = "") -> dict:
+            *, run_id: str = "", resolve_covers: bool = False) -> dict:
     """Save every valid complete child artefact in a separate portable ZIP."""
     if output_dir.exists():
         raise RecoveryError("Recovery output already exists")
@@ -143,11 +143,12 @@ def recover(plan: dict, artifact_root: Path, output_dir: Path,
                 raise RecoveryError("Not one of this batch's selected novels")
             # Enrich only this recovered copy; network failures must never
             # discard a previously successful chapter batch.
-            try:
-                from tools.cover_pipeline import finalise_book
-                finalise_book(book)
-            except Exception as exc:
-                print(f"WARNING: optional cover finalisation skipped: {exc}", flush=True)
+            if resolve_covers:
+                try:
+                    from tools.cover_pipeline import finalise_book
+                    finalise_book(book)
+                except Exception as exc:
+                    print(f"WARNING: optional cover finalisation skipped: {exc}", flush=True)
             meta, chapters, filenames = _book_details(book, selected)
             filename = "novel-" + hashlib.sha256(
                 (url + "\n" + selected.get("chapter_range", "")).encode("utf-8")
@@ -262,11 +263,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--artifacts", type=Path, required=True)
     p.add_argument("--output", type=Path, default=Path("recovery_output"))
     p.add_argument("--run-id", default="")
+    p.add_argument("--resolve-covers", action="store_true")
     options = p.parse_args(argv)
     try:
         plan = json.loads(options.plan.read_text(encoding="utf-8"))
         report = recover(plan, options.artifacts, options.output,
-                         run_id=options.run_id)
+                         run_id=options.run_id, resolve_covers=options.resolve_covers)
     except (ValueError, OSError, KeyError, TypeError, BadZipFile) as exc:
         print(f"Bulk recovery preparation failed: {exc}", file=sys.stderr)
         return 1
