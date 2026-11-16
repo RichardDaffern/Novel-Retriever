@@ -219,6 +219,11 @@ def download_site_cover(book_url: str, *, html: str | None = None,
     for image_url in candidates[:5]:
         try:
             data, extension = validate_image(image_fetcher(image_url, book_url))
+            # Reject likely site logos/banners as external book covers. A
+            # missing cover is safer than attaching unrelated artwork.
+            with Image.open(BytesIO(data)) as image:
+                if image.width > image.height:
+                    raise CoverError("Landscape image is not a verified book cover")
             return data, extension, image_url
         except (CoverError, OSError) as exc:
             errors.append(str(exc))
