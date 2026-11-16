@@ -24,7 +24,7 @@ from zipfile import ZipFile, ZIP_DEFLATED, ZIP_STORED, BadZipFile
 
 import requests
 
-REPO = "RichardDaffern/Novel_Library"
+REPO = "RichardDaffern/Novel-Retriever"
 CAMPAIGN_RUN_IDS = (
     43734388839, 43734393507, 43734398943,
     43734404117, 43734410920, 43734417289, 43819213500,
@@ -86,7 +86,7 @@ class GitHub:
             "Authorization": "Bearer " + token,
             "Accept": "application/vnd.github+json",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "Novel-Library-Export/1.0",
+            "User-Agent": "Novel-Retriever-Export/1.0",
         })
 
     def get_json(self, url: str) -> dict:
@@ -134,7 +134,7 @@ class GitHub:
             raise RuntimeError("GitHub provided an invalid artefact download location")
         # Do not forward the GITHUB_TOKEN to the signed CDN.
         with requests.get(location, timeout=(25, 180), stream=True,
-                          headers={"User-Agent": "Novel-Library-Export/1.0"}) as stream:
+                          headers={"User-Agent": "Novel-Retriever-Export/1.0"}) as stream:
             stream.raise_for_status()
             written = 0
             with target.open("wb") as handle:
