@@ -2472,6 +2472,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/valhalla-saga.html",
+      "title": "Valhalla Saga",
+      "author": "Chwiryong",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 269,
+          "run_id": 43734417289,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289",
+          "artifact_id": 14212677158,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14212677158",
+          "completed_at_utc": "2026-11-16T09:30:55Z",
+          "expires_at_utc": "2026-11-23T09:30:55Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/very-pure-and-ambiguous-the-prequel.html",
       "title": "Very Pure and Ambiguous: The Prequel",
       "author": "Fishman The Second",
