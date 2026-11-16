@@ -69,7 +69,12 @@ def main(argv: list[str] | None = None):
     """Delegate site access, configuration and EPUB creation to FanFicFare."""
     from fanficfare import cli
     from fanficfare.writers.base_writer import BaseStoryWriter
-    from tools import novelfull_http
+    try:
+        from tools import novelfull_http
+    except ModuleNotFoundError:
+        # Invoked as a file from another working directory by the EPUB CLI.
+        import novelfull_http
+
 
     # Only the NovelFull host uses the bounded stdlib HTTPS fetcher.
     novelfull_http.enable()
