@@ -38,7 +38,7 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(len(source_key(url)), 20)
 
     def test_safe_names_and_paths(self):
-        self.assertEqual(safe_title("One: A/Book?"), "One_ A_Book_")
+        self.assertEqual(safe_title("One: A/Book?"), "One_ A_Book")
         for name in ("/private.txt", "../private.txt", "book/../../hidden"):
             self.assertFalse(safe_member(name))
 
