@@ -31,10 +31,11 @@ jobs:
           import json
           with open('story_metadata.json', encoding='utf-8') as file:
               data=json.load(file)
-          count=data.get('numChapters',len(data.get('zchapters',[])))
+          from tools.chunked_download import chapter_count_from_metadata
+          count=chapter_count_from_metadata(data)
           print('METADATA_TITLE',data.get('title'),flush=True)
           print('METADATA_CHAPTER_COUNT',count,flush=True)
-          assert int(count)>=10, 'Chapter index is incomplete'
+          assert count>=10, 'Chapter index is incomplete'
           PY
           python novel_downloader.py "$URL" --confirm-rights --chapter-range '1-2' --timeout-minutes 5 --output-dir smoke_novels
           python - <<'PY'
