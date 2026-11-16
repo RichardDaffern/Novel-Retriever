@@ -167,7 +167,8 @@ class DedupeTests(unittest.TestCase):
 
     def test_different_novels_not_merged_on_title_alone(self):
         original = self.archive("first")
-        other = self.archive("second", source="https://novelfull.com/another.html")
+        other = self.archive("second", source="https://novelfull.com/another.html",
+                             text="A different book sharing a common title")
         report = consolidate([original, other], self.root / "out")
         self.assertEqual(report["unique"], 2)
 
