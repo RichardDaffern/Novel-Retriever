@@ -224,6 +224,9 @@ jobs:
             --plan-file chapter_plan.json \
             --chunks-dir completed_batches --output-dir downloads
 
+      - name: Resolve verified cover and record provenance
+        run: python -u -m tools.cover_pipeline --directory downloads
+
       - name: Upload complete novel archive
         id: upload
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
