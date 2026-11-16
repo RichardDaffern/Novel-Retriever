@@ -29,7 +29,7 @@ CAMPAIGN_RUN_IDS = (
     43734388839, 43734393507, 43734398943,
     43734404117, 43734410920, 43734417289, 43819213500,
 )
-ARTIFACT_NAME = re.compile(r"^novel-([0-9]+)-([a-f0-9]{20})$")
+ARTIFACT_NAME = re.compile(r"^novel-([0-9]+)-([a-f0-9]{20}|scribblehub-[0-9]+)$")
 MAX_ARTIFACT_BYTES = 140 * 1024 * 1024
 MAX_INNER_ZIP_BYTES = 120 * 1024 * 1024
 MAX_UNCOMPRESSED_BYTES = 600 * 1024 * 1024
@@ -64,7 +64,10 @@ def index_registry(path: Path):
         url = book.get("url")
         if not isinstance(url, str) or not url.startswith("https://"):
             continue
-        key = source_key(url)
+        series = re.match(r"^/series/([0-9]+)(?:/|$)", urlsplit(url).path)
+        host = (urlsplit(url).hostname or "").lower().removeprefix("www.")
+        key = ("scribblehub-" + series.group(1)
+               if host == "scribblehub.com" and series else source_key(url))
         indexed[key] = {"title": book.get("title", ""), "source_url": url}
         for record in book.get("downloads", []):
             if record.get("status") != "complete":
@@ -255,9 +258,13 @@ def main():
                 metadata, chapter_count = check_archive(temporary)
                 source_url = metadata.get("source_url", "")
                 expected = indexed.get(key, {})
-                if source_url and source_key(source_url.rstrip("/")) != key:
-                    # Historic source URL normalisation varies; accept the
-                    # registry's exact URL only if it identifies this key.
+                matched = (source_key(source_url.rstrip("/")) == key)
+                if key.startswith("scribblehub-"):
+                    series = key.partition("-")[2]
+                    p = urlsplit(source_url)
+                    matched = (p.hostname or "").lower().removeprefix("www.") == "scribblehub.com" and bool(
+                        re.match(r"^/series/" + re.escape(series) + r"(?:/|$)", p.path))
+                if source_url and not matched:
                     if not expected or source_url.rstrip("/") != expected["source_url"].rstrip("/"):
                         raise ValueError("Novel metadata URL does not match artefact key")
                 title = str(metadata.get("title") or expected.get("title") or "Untitled")
