@@ -2011,6 +2011,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/supreme-uprising.html",
+      "title": "Supreme Uprising",
+      "author": "Jewelcat",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1260,
+          "run_id": 43734410920,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920",
+          "artifact_id": 14209250910,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14209250910",
+          "completed_at_utc": "2026-11-16T08:33:29Z",
+          "expires_at_utc": "2026-11-23T08:33:29Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/tales-of-demons-and-gods.html",
       "title": "Tales of Demons and Gods",
       "author": "Mad Snail",
