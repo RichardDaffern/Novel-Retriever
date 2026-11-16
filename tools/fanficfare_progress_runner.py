@@ -69,7 +69,10 @@ def main(argv: list[str] | None = None):
     """Delegate site access, configuration and EPUB creation to FanFicFare."""
     from fanficfare import cli
     from fanficfare.writers.base_writer import BaseStoryWriter
+    from tools import novelfull_http
 
+    # Only the NovelFull host uses the bounded stdlib HTTPS fetcher.
+    novelfull_http.enable()
     original = BaseStoryWriter.writeStory
 
     def patched(self, *args, **kwargs):
@@ -82,6 +85,7 @@ def main(argv: list[str] | None = None):
         cli.main(argv if argv is not None else sys.argv[1:])
     finally:
         BaseStoryWriter.writeStory = original
+        novelfull_http.disable()
 
 
 if __name__ == "__main__":
