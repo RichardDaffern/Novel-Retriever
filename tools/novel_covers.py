@@ -25,10 +25,11 @@ MAX_IMAGE_BYTES = 8 * 1024 * 1024
 MAX_HTML_BYTES = 3 * 1024 * 1024
 MAX_PIXELS = 20_000_000
 Image.MAX_IMAGE_PIXELS = MAX_PIXELS
-SOURCE_HOSTS = {"novelfull.com", "freewebnovel.com", "readnovelfull.com", "wuxia.click"}
+SOURCE_HOSTS = {"novelfull.com", "freewebnovel.com", "readnovelfull.com", "wuxia.click", "scribblehub.com"}
 BOOK_PATH = re.compile(r"^/novel/[a-z0-9]+(?:-[a-z0-9]+)*/?$")
 NOVELFULL_PATH = re.compile(r"^/[a-z0-9_-]+\.html$")
 WUXIACLICK_PATH = re.compile(r"^/novel/[a-z0-9]+(?:-[a-z0-9]+)*$")
+SCRIBBLEHUB_PATH = re.compile(r"^/series/[0-9]+(?:/[a-z0-9_-]+)?/?$")
 SUPPORTED = {"JPEG": ".jpg", "PNG": ".png"}
 
 
@@ -71,6 +72,8 @@ def validate_book_url(url: str) -> str:
         raise CoverError("Expected a FreeWebNovel /novel/book-title URL")
     if host == "wuxia.click" and not WUXIACLICK_PATH.fullmatch(p.path):
         raise CoverError("Expected a WuxiaClick /novel/book-title URL")
+    if host == "scribblehub.com" and not SCRIBBLEHUB_PATH.fullmatch(p.path):
+        raise CoverError("Expected a Scribble Hub /series/ID/ URL")
     return url
 
 
@@ -124,6 +127,8 @@ def _image_candidates(html: str, book_url: str) -> list[str]:
         ".novel-cover img", ".bookpic img", ".book-pic img",
         ".detail-cover img", ".details .cover img",
         ".book-intro img", "img.cover", "img[itemprop='image']",
+        ".fic_image img", ".fic_image > img", ".series-image img",
+        "img#series-image", ".fic-cover img",
     )
     for selector in selectors:
         for img in soup.select(selector):
