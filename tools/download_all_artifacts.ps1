@@ -2,7 +2,7 @@
 # No source-site scraping. Requires GitHub CLI (gh) and permission to archive.
 [CmdletBinding()]
 param(
-    [string]$Repository = 'RichardDaffern/Novel_Library',
+    [string]$Repository = 'RichardDaffern/Novel-Retriever',
     [string]$Destination = '',
     [ValidateRange(1,10)][int]$MaxAttempts = 3,
     [ValidateRange(0,10000)][int]$Limit = 0,
