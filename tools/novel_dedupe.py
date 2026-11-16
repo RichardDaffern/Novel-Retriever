@@ -156,8 +156,8 @@ def _freshness(row: dict):
 
 
 def _rank(row: dict):
-    return (row["chapter_count"], row["cover_status"] == "available",
-            _freshness(row), row["zip_sha256"])
+    return (row["chapter_count"], _freshness(row),
+            row["cover_status"] == "available", row["zip_sha256"])
 
 
 def _copy_if_needed(src: Path, dest: Path) -> bool:
@@ -199,6 +199,19 @@ def consolidate(paths: list[Path], output: Path, *, provenance: dict | None = No
             choices = url_names.get((normalise(row["title"]), normalise(row["author"])), set())
             if len(choices) == 1:
                 row["identity"] = next(iter(choices))
+    # Cross-site duplication is only automatic with identical verified
+    # EPUB/chapter content AND matching title and author, never title alone.
+    fingerprints = defaultdict(list)
+    for row in books:
+        name = (normalise(row["title"]), normalise(row["author"]))
+        if all(name):
+            fingerprints[(name, row["chapter_sha256"])].append(row)
+    for matching in fingerprints.values():
+        urls = sorted({row["identity"] for row in matching
+                       if row["identity"].startswith("url:")})
+        if urls:
+            for row in matching:
+                row["identity"] = urls[0]
     groups = defaultdict(list)
     for row in books:
         groups[row["identity"]].append(row)
