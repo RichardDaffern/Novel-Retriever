@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (113 novels)
+## NovelFull (114 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -84,7 +84,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Medical Master](https://novelfull.com/medical-master.html) | all | 2028 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13645342551) | 2026-11-16T02:29:39Z |
 | [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
 | [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
-| [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
+| [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
 | [Mr. CEO, Spoil me 100 Percent!](https://novelfull.com/mr-ceo-spoil-me-100-percent.html) | all | 992 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189786356) | 2026-11-23T01:01:07Z |
 | [Museum of Deadly Beasts](https://novelfull.com/museum-of-deadly-beasts.html) | all | 792 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189855601) | 2026-11-23T00:58:22Z |
 | [My Cold and Elegant CEO Wife](https://novelfull.com/my-cold-and-elegant-ceo-wife.html) | all | 2513 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13658274180) | 2026-11-16T08:18:34Z |
@@ -99,7 +99,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Otherworldly Evil Monarch](https://novelfull.com/otherworldly-evil-monarch.html) | all | 1277 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13651825998) | 2026-11-16T05:16:29Z |
 | [Painting of the Nine Immortals](https://novelfull.com/painting-of-the-nine-immortals.html) | all | 1003 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13652262814) | 2026-11-16T05:39:07Z |
 | [Peerless Battle Spirit](https://novelfull.com/peerless-battle-spirit.html) | all | 2347 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13655961833) | 2026-11-16T07:14:05Z |
-| [Peerless Martial God](https://novelfull.com/peerless-martial-god.html) | all | 2500 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13656579422) | 2026-11-16T07:41:29Z |
+| [Peerless Martial God](https://novelfull.com/peerless-martial-god.html) | all | 2500 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13656579422) | 2026-11-16T07:41:29Z |
 | [Peerless Martial God 2](https://novelfull.com/peerless-martial-god-2.html) | all | 1740 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13657212387) | 2026-11-16T07:46:27Z |
 | [Please, I Really Didn’t Want To Fall in Love With My Master!](https://novelfull.com/please-i-really-didnt-want-to-fall-in-love-with-my-master.html) | all | 381 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13658476779) | 2026-11-16T08:08:54Z |
 | [Pocket Hunting Dimension](https://novelfull.com/pocket-hunting-dimension.html) | all | 1331 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13636450844) | 2026-11-15T21:58:32Z |
@@ -138,6 +138,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Throne of Magical Arcana](https://novelfull.com/throne-of-magical-arcana.html) | all | 910 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13627324316) | 2026-11-15T17:49:19Z |
 | [Top Student: Experience Infinite Occupations](https://novelfull.com/top-student-experience-infinite-occupations.html) | all | 348 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13628605600) | 2026-11-15T18:00:49Z |
 | [Transcending the Nine Heavens](https://novelfull.com/transcending-the-nine-heavens.html) | all | 1510 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629491257) | 2026-11-15T18:34:37Z |
+| [Transmigrator Meets Reincarnator](https://novelfull.com/transmigrator-meets-reincarnator.html) | all | 709 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14206287674) | 2026-11-23T07:41:52Z |
 | [TranXending Vision](https://novelfull.com/tranxending-vision.html) | all | 1201 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13629356718) | 2026-11-15T18:34:08Z |
 | [Trial Marriage Husband: Need to Work Hard](https://novelfull.com/trial-marriage-husband-need-to-work-hard.html) | all | 1275 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14175858121) | 2026-11-22T19:13:16Z |
 | [True Martial World](https://novelfull.com/true-martial-world.html) | all | 1710 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494499443/artifacts/13625147182) | 2026-11-15T16:29:28Z |
