@@ -238,11 +238,28 @@ def finalise_archive(path: Path, *, allow_network: bool = True,
             entries = [item for item in archive.infolist() if not item.is_dir()]
             if len(entries) > MAX_FILES or sum(x.file_size for x in entries) > MAX_ZIP_BYTES:
                 raise ValueError("ZIP extraction budget exceeded")
+            # Reject duplicate names and aliasing before extracting anything.
+            # On Windows, case-insensitive paths would otherwise overwrite
+            # previously validated files or their provenance metadata.
+            names_seen = set()
+            for item in entries:
+                raw_name = item.filename.replace("\\", "/")
+                raw_parts = raw_name.split("/")
+                part = PurePosixPath(raw_name)
+                if (part.is_absolute() or not part.parts or
+                        any(component in ("", ".", "..") or ":" in component
+                            for component in raw_parts)):
+                    raise ValueError("Unsafe ZIP member")
+                key = part.as_posix().casefold()
+                if key in names_seen:
+                    raise ValueError("Duplicate ZIP member path")
+                names_seen.add(key)
+                if item.file_size > max(item.compress_size, 1) * 10000:
+                    raise ValueError("Suspicious ZIP compression ratio")
+            if archive.testzip() is not None:
+                raise ValueError("Original ZIP failed CRC verification")
             for item in entries:
                 part = PurePosixPath(item.filename.replace("\\", "/"))
-                if (part.is_absolute() or not part.parts or
-                        ".." in part.parts or "." in part.parts):
-                    raise ValueError("Unsafe ZIP member")
                 # Refuse Unix symbolic links and device entries.
                 if ((item.external_attr >> 16) & 0o170000) == 0o120000:
                     raise ValueError("ZIP contains a symbolic link")
