@@ -1,7 +1,7 @@
 """Compatibility entry point for workflow runs pinned to older source revisions.
 
-Historic bulk runs call `python -m tools.bulk_recovery`, while the
-implementation is `tools.bulk_download_recovery`.
+Historical bulk workflows invoke this filename; the maintained implementation
+lives in the bulk download recovery module.
 """
 from tools.bulk_download_recovery import main
 
