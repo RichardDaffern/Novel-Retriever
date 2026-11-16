@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (131 novels)
+## NovelFull (132 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -119,6 +119,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Rebirth Of The Urban Immortal Cultivator](https://novelfull.com/rebirth-of-the-urban-immortal-cultivator.html) | all | 1207 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14225276958) | 2026-11-23T12:22:03Z |
 | [Rebirth: How a Loser Became a Prince Charming](https://novelfull.com/rebirth-how-a-loser-became-a-prince-charming.html) | all | 1009 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13644466550) | 2026-11-16T02:00:06Z |
 | [Refining the Mountains and Rivers](https://novelfull.com/refining-the-mountains-and-rivers.html) | all | 2203 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13651824997) | 2026-11-16T05:40:38Z |
+| [Reincarnated As A Baby? My Cry Is A Dragon Roar!](https://novelfull.com/reincarnated-as-a-baby-my-cry-is-a-dragon-roar.html) | all | 505 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14227187773) | 2026-11-23T12:59:45Z |
 | [Renegade Immortal](https://novelfull.com/renegade-immortal.html) | all | 2093 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13652597481) | 2026-11-16T05:44:54Z |
 | [Returning from the Immortal World](https://novelfull.com/returning-from-the-immortal-world.html) | all | 1443 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13653522551) | 2026-11-16T06:14:20Z |
 | [Scholar’s Advanced Technological System](https://novelfull.com/scholars-advanced-technological-system.html) | all | 1682 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13657099613) | 2026-11-16T07:54:20Z |
