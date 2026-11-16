@@ -758,6 +758,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/god-like-extraction.html",
+      "title": "God-Like Extraction",
+      "author": "Fruit of Chaos",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 629,
+          "run_id": 43734393507,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507",
+          "artifact_id": 14213450890,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14213450890",
+          "completed_at_utc": "2026-11-16T09:38:24Z",
+          "expires_at_utc": "2026-11-23T09:38:24Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/god-of-cooking.html",
       "title": "God of Cooking",
       "author": "Yangchigi Jali",

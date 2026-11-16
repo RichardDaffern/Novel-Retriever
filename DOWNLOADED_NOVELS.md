@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (123 novels)
+## NovelFull (124 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -57,6 +57,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [God Emperor](https://novelfull.com/god-emperor.html) | all | 2622 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636968626) | 2026-11-15T22:32:56Z |
 | [God of Cooking](https://novelfull.com/god-of-cooking.html) | all | 651 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13641331757) | 2026-11-16T00:38:37Z |
 | [God Rank Upgrade System](https://novelfull.com/god-rank-upgrade-system.html) | all | 1479 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13644734351) | 2026-11-16T02:33:38Z |
+| [God-Like Extraction](https://novelfull.com/god-like-extraction.html) | all | 629 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14213450890) | 2026-11-23T09:38:24Z |
 | [Godly Model Creator](https://novelfull.com/godly-model-creator.html) | all | 1085 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13645836077) | 2026-11-16T02:36:42Z |
 | [Great Demon King](https://novelfull.com/great-demon-king.html) | all | 1028 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13650731871) | 2026-11-16T04:51:47Z |
 | [Heavenly Jewel Change](https://novelfull.com/heavenly-jewel-change.html) | all | 848 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13654852471) | 2026-11-16T06:45:33Z |
