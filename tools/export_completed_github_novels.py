@@ -15,6 +15,9 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+
+from tools.cover_pipeline import finalise_archive
+from tools.novel_dedupe import consolidate
 import time
 from urllib.parse import urlsplit
 from zipfile import ZipFile, ZIP_DEFLATED, ZIP_STORED, BadZipFile
@@ -247,7 +250,8 @@ def main():
             try:
                 if item.get("size_in_bytes", 0) > MAX_ARTIFACT_BYTES:
                     raise ValueError("Source artifact too large")
-                github.download(item, temporary)
+                if not temporary.exists():
+                    github.download(item, temporary)
                 metadata, chapter_count = check_archive(temporary)
                 source_url = metadata.get("source_url", "")
                 expected = indexed.get(key, {})
@@ -257,9 +261,12 @@ def main():
                     if not expected or source_url.rstrip("/") != expected["source_url"].rstrip("/"):
                         raise ValueError("Novel metadata URL does not match artefact key")
                 title = str(metadata.get("title") or expected.get("title") or "Untitled")
-                name = safe_title(title) + "__" + key + ".zip"
+                name = safe_title(title) + "__" + key + "__" + str(item["id"]) + ".zip"
                 path = novel_folder / name
                 package_novel(temporary, path)
+                finalise_archive(path, cache_dir=cache / "covers")
+                if path.stat().st_size > MAX_INNER_ZIP_BYTES:
+                    raise ValueError("Cover-enriched ZIP exceeds 120 MiB safety limit")
                 checksum = hashlib.sha256()
                 with path.open("rb") as archive:
                     for chunk in iter(lambda: archive.read(1024 * 1024), b""):
@@ -271,29 +278,54 @@ def main():
                     "bytes": path.stat().st_size,
                     "github_run_id": int(item["name"].split("-")[1]),
                     "github_artifact_id": item["id"],
+                    "original_github_artifact": item["name"],
                 })
                 print(f"EXPORTED {len(export_rows):3d}: {title} ({chapter_count} chapters)", flush=True)
-                break
+                # Inspect all available editions; deduplication decides
+                # whether an older completed artefact is equivalent or differs.
             except (Exception,) as exc:
                 failures.append({"artifact_id": item["id"], "name": item["name"],
                                  "reason": str(exc)[:280]})
                 if path is not None:
                     path.unlink(missing_ok=True)
-                print(f"WARNING {item['name']}: {exc}", flush=True)
-            finally:
                 temporary.unlink(missing_ok=True)
-
+                print(f"WARNING {item['name']}: {exc}", flush=True)
     missing_registry = [
         {"title": meta.get("title", ""), "source_url": meta.get("source_url", "")}
         for key, meta in indexed.items() if key not in candidates
     ]
+    # Compare every downloaded complete edition before publishing the final
+    # upload directory. The original ZIPs survive in the local cache.
+    dedupe = {"unique": 0, "duplicates": 0, "conflicts": 0,
+              "invalid": 0, "novels": [], "review_conflicts": []}
+    if export_rows:
+        provenance = {Path(row["file"]).name: row["original_github_artifact"]
+                      for row in export_rows}
+        staged = target / "_selected"
+        dedupe = consolidate(list(novel_folder.glob("*.zip")), staged,
+                             provenance=provenance)
+        backup = cache / "unfiltered-novels"
+        if backup.exists():
+            shutil.rmtree(backup)
+        novel_folder.rename(backup)
+        try:
+            (staged / "novels").rename(novel_folder)
+        except BaseException:
+            backup.rename(novel_folder)
+            raise
+        if (staged / "review-conflicts").is_dir():
+            (staged / "review-conflicts").rename(target / "review-conflicts")
+        shutil.rmtree(staged)
     manifest = {
-        "exported_novels": len(export_rows),
+        "exported_novels": dedupe["unique"],
         "registry_books": len(indexed),
         "scanned_live_artifacts": scanned,
         "unique_live_book_keys": len(candidates),
         "historical_runs_checked": run_ids,
-        "novels": export_rows,
+        "novels": dedupe["novels"],
+        "duplicates_skipped": dedupe["duplicates"],
+        "conflicting_editions": dedupe["review_conflicts"],
+        "invalid_archives": dedupe["invalid_archives"] if export_rows else [],
         "unavailable_registry_books": missing_registry,
         "warnings": failures,
         "note": ("Snapshot of completed-book artefacts, not unfinished chapter batches. "
@@ -303,21 +335,24 @@ def main():
     (target / "manifest.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     with (target / "SHA256SUMS.txt").open("w", encoding="utf-8") as hashes:
-        for book in export_rows:
-            hashes.write(f"{book['sha256']}  {book['file']}\n")
+        for book in dedupe["novels"]:
+            hashes.write(f"{book['zip_sha256']}  {book['file']}\n")
     (target / "README.txt").write_text(
         "Taiyou's Novel Library - GitHub completed EPUB export\n"
         "Extract this outer ZIP first. Individual ready-to-import book ZIPs are "
         "inside the novels folder.\n"
+        "Review review-conflicts/ before choosing among different editions.\n"
         "Move the ZIPs into your Storage Controller upload folder and use "
         "01_bulk_upload.cmd in preview mode before applying.\n"
         "Review manifest.json for counts, excluded/unavailable books, SHA256 "
         "and artefact provenance.\n"
         "Do not upload the outer ZIP as one novel.\n"
+        "Do not mix old and new archives in the Controller until its local deduplication PR is approved.\n"
         "The six original campaigns may continue running after this snapshot.\n",
         encoding="utf-8",
     )
-    print(f"EXPORT_RESULT {len(export_rows)} books; {len(missing_registry)} registry entries "
+    print(f"EXPORT_RESULT {dedupe['unique']} unique books, {dedupe['duplicates']} duplicates, "
+          f"{dedupe['conflicts']} conflicts; {len(missing_registry)} registry entries "
           f"unavailable; {len(failures)} warnings", flush=True)
     if not export_rows:
         raise SystemExit("No importable novel artefacts were found")
