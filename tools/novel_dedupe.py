@@ -136,9 +136,10 @@ def inspect(path: Path, *, original_artifact: str = "") -> dict:
 
 
 def equivalent(left: dict, right: dict) -> bool:
-    return (left["epub_sha256"] == right["epub_sha256"] or
-            (left["positions"] == right["positions"] and
-             left["chapter_hashes"] == right["chapter_hashes"]))
+    # A matching EPUB hash must not excuse contradictory TXT/manifest data.
+    # Those archives are conflicting editions (or a corrupted export).
+    return (left["positions"] == right["positions"] and
+            left["chapter_hashes"] == right["chapter_hashes"])
 
 
 def compatible_subset(short: dict, long: dict) -> bool:
