@@ -195,7 +195,10 @@ class WindowsNovelZipTests(unittest.TestCase):
                 "-File", str(SCRIPT), "-RegistryFile", str(registry),
                 "-Destination", str(destination), "-RepackOnly",
             ])
-            self.assertIn(str(new), result.stdout)
+            self.assertIn("skipping:", result.stdout)
+            self.assertIn(new.name, result.stdout)
+            # Windows resolves 8.3 short folder aliases in PowerShell, so
+            # compare the invariant ZIP filename instead of full temp paths.
             self.assertTrue(old.exists())
             self.assertTrue(new.exists())
 
