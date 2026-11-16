@@ -293,7 +293,7 @@ def write_cover(folder: Path, data: bytes, extension: str) -> str:
     target = folder / filename
     target.write_bytes(validated)
     # Keep only one canonical cover file in an existing chapter folder.
-    for other in ("cover.jpg", "cover.png"):
+    for other in ("cover.jpg", "cover.png", "cover.webp"):
         if other != filename:
             (folder / other).unlink(missing_ok=True)
     return filename

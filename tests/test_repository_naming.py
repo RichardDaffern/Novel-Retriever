@@ -71,6 +71,22 @@ class RepositoryNamingTests(unittest.TestCase):
         self.assertFalse(list((ROOT / "tools").glob("*.md")),
                          "Research notes must live in docs/research, not tools/")
 
+    def test_renamed_repo_guards_export_and_local_downloader(self):
+        from tools.export_completed_github_novels import REPO
+        self.assertEqual(REPO, "RichardDaffern/Novel-Retriever")
+        workflow = (ROOT / ".github/workflows/export-completed-novels-20261116.yml").read_text(encoding="utf-8")
+        self.assertIn("github.repository == 'RichardDaffern/Novel-Retriever'", workflow)
+        self.assertIn("tests.test_export_end_to_end", workflow)
+        downloader = (ROOT / "tools/download_all_artifacts.ps1").read_text(encoding="utf-8")
+        self.assertIn("RichardDaffern/Novel-Retriever", downloader)
+        from tools import download_registry, publish_registry
+        self.assertNotIn("RichardDaffern/Novel_Library",
+                         (ROOT / "tools/download_registry.py").read_text(encoding="utf-8"))
+        self.assertNotIn("RichardDaffern/Novel_Library",
+                         (ROOT / "tools/publish_registry.py").read_text(encoding="utf-8"))
+        self.assertNotIn("RichardDaffern/Novel_Library",
+                         (ROOT / "README.md").read_text(encoding="utf-8"))
+
     def test_no_obsolete_internal_module_references(self):
         old_names = (
             "fff_progress_runner",

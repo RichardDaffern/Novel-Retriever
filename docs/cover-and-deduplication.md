@@ -82,12 +82,12 @@ GitHub artifact ZIPs locally. Failed/expired artifacts are reported without
 discarding other successful downloads. Chapter-range checkpoints already
 support resuming without reacquiring complete verified batches.
 
-**Important:** The Storage Controller's existing safety gate still rejects
-multiple local ZIPs targeting the same novel. For now, upload only the
-reviewed packages in unique-novels/novels/, without adding older archives.
-The controller changes proposed in
-[Storage Controller handover](storage-controller-integration-handover.md)
-must be reviewed before allowing a mixed folder.
+**Important:** The Storage Controller's default strict mode still rejects
+multiple ZIPs targeting the same book. It now also offers an explicit
+`--dedupe-local` mode for mixed older and newer ZIPs (Windows menu option
+12). Preview first. Conflicting editions still block every remote write.
+See the [implemented Storage Controller integration](storage-controller-integration-handover.md).
+The Retriever's local consolidation never modifies any input archive.
 
 ## Compatibility
 

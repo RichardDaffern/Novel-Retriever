@@ -1,10 +1,10 @@
-# Novel_Library: Deep Technical Handbook for AI Agents and Contributors
+# Novel-Retriever: Deep Technical Handbook for AI Agents and Contributors
 
-> **Purpose:** A detailed, repository-specific orientation for an AI coding agent, developer, maintainer or auditor who needs to work safely and effectively on Novel_Library.
+> **Purpose:** A detailed, repository-specific orientation for an AI coding agent, developer, maintainer or auditor who needs to work safely and effectively on Novel-Retriever.
 >
-> **Scope:** Only the `RichardDaffern/Novel_Library` repository. This is a **download, acquisition, conversion, validation, packaging, metadata and local retrieval** project, **not** the web reader or the Hugging Face dataset controller.
+> **Scope:** Only the `RichardDaffern/Novel-Retriever` repository. This is a **download, acquisition, conversion, validation, packaging, metadata and local retrieval** project, **not** the web reader or the Hugging Face dataset controller.
 >
-> **Source baseline:** Reviewed against `main` at commit `24c2f1414a6a3d4ea9c76f31e8e74da728814053` (13 November 2026). This is a descriptive snapshot, **not a substitute for checking the latest code**.
+> **Historic source baseline:** Originally reviewed against `main` at commit `24c2f1414a6a3d4ea9c76f31e8e74da728814053` (13 November 2026). This is a descriptive snapshot, **not a substitute for checking the latest code**.
 >
 > **Precedence:** For actual behaviour, trust executable code and the current tests first; then inspect workflow YAML, the README and focused documentation. If a statement here conflicts with the repository, verify and update this file in the same change. Never silently assume a feature described as experimental is production-ready.
 
@@ -18,7 +18,7 @@
 
 ## 1. Mission, boundaries and design philosophy
 
-Novel_Library is a Python-centric, local-first toolkit for converting content a user is authorised to archive into consistent, inspectable novel artefacts. Its core output is an EPUB, UTF-8 text chapters and JSON metadata. It also supplies GitHub Actions workflows for fetching or assembling permitted chapter ranges, a metadata-only index of completed downloads, a Windows tool for retrieving completed GitHub Actions artefacts, and local PDF/EPUB import utilities.
+Novel-Retriever is a Python-centric, local-first toolkit for converting content a user is authorised to archive into consistent, inspectable novel artefacts. Its core output is an EPUB, UTF-8 text chapters and JSON metadata. It also supplies GitHub Actions workflows for fetching or assembling permitted chapter ranges, a metadata-only index of completed downloads, a Windows tool for retrieving completed GitHub Actions artefacts, and local PDF/EPUB import utilities.
 
 The project exists because long novels are frequently delivered as thousands of independently numbered chapters. A one-job scraper or one giant EPUB conversion can time out, lose progress, collide with another novel's files, or silently omit chapters. This repository favours bounded work, verifiable identities, recoverable checkpoints, strict manifests and explicit failures over optimistic “best effort” archives.
 

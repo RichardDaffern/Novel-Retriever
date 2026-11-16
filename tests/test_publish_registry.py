@@ -13,7 +13,7 @@ from tools.publish_registry import (
 
 URL_A = "https://example.org/story-a"
 URL_B = "https://example.org/story-b"
-ARTIFACT = "https://github.com/RichardDaffern/Novel_Library/actions/runs/123/artifacts/456"
+ARTIFACT = "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/123/artifacts/456"
 
 
 def mock_book(root: Path, url: str, title: str) -> Path:
@@ -69,7 +69,7 @@ class PublishRegistryTests(unittest.TestCase):
         def simulated(*args, check=True):
             calls.append(args)
             if args[:3] == ("gh", "pr", "create"):
-                return subprocess.CompletedProcess(args, 0, "https://github.com/RichardDaffern/Novel_Library/pull/10\n", "")
+                return subprocess.CompletedProcess(args, 0, "https://github.com/RichardDaffern/Novel-Retriever/pull/10\n", "")
             if args[:3] == ("gh", "pr", "merge"):
                 failure = merges.pop(0)
                 return subprocess.CompletedProcess(args, failure, "", "Base branch was updated" if failure else "")

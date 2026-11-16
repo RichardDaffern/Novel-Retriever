@@ -6,11 +6,13 @@ from io import BytesIO
 import json
 from pathlib import Path
 import tempfile
+import warnings
+import sys
 import unittest
 from unittest.mock import patch
 from zipfile import ZipFile
 
-from PIL import Image
+from PIL import Image, features
 
 from tools.cover_pipeline import finalise_archive, finalise_book
 from tools.novel_covers import CoverError, extract_epub_cover
@@ -121,6 +123,38 @@ class CoverPipelineTests(unittest.TestCase):
             finalise_book(self.book, verified_sources=verified)
         self.assertEqual(remote.call_count, 1)
 
+    def test_cover_enrichment_rejects_duplicate_member_paths(self):
+        path = make_zip(self.root / "ambiguous.zip", self.book)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            with ZipFile(path, "a") as archive:
+                archive.writestr("example/metadata.json", b'{"title":"forged"}')
+        with self.assertRaisesRegex(ValueError, "Duplicate ZIP member"):
+            finalise_archive(path, allow_network=False)
+        self.assertTrue(path.is_file(), "Invalid source ZIP must remain unchanged")
+
+    def test_cover_enrichment_rejects_unsafe_member_aliases(self):
+        path = make_zip(self.root / "unsafe.zip", self.book)
+        with ZipFile(path, "a") as archive:
+            archive.writestr("example/../forged.json", b'{"title":"forged"}')
+        with self.assertRaisesRegex(ValueError, "Unsafe ZIP member"):
+            finalise_archive(path, allow_network=False)
+
+    def test_existing_webp_cover_converts_without_network_and_removes_stale_file(self):
+        if not features.check("webp"):
+            self.skipTest("Pillow was built without WebP support")
+        image = BytesIO()
+        Image.new("RGB", (160, 240), (110, 64, 34)).save(image, "WEBP")
+        (self.book / "cover.webp").write_bytes(image.getvalue())
+        with patch("tools.cover_pipeline.covers.download_site_cover") as fetch:
+            meta = finalise_book(self.book, allow_network=False)
+        self.assertEqual(meta["cover_status"], "available")
+        self.assertEqual(meta["cover_image"], "cover.jpg")
+        self.assertEqual(meta["cover_provenance"]["method"], "existing_file")
+        self.assertFalse((self.book / "cover.webp").exists())
+        self.assertTrue((self.book / "cover.jpg").exists())
+        fetch.assert_not_called()
+
     def test_portable_zip_receives_cover_and_no_new_book_members(self):
         original = make_zip(self.root / "old-book.zip", self.book)
         with patch("tools.cover_pipeline.covers.download_site_cover",
@@ -171,6 +205,62 @@ class DedupeTests(unittest.TestCase):
                              text="A different book sharing a common title")
         report = consolidate([original, other], self.root / "out")
         self.assertEqual(report["unique"], 2)
+
+    def test_same_url_with_wrong_author_requires_review(self):
+        first = self.archive("original")
+        other_folder = self.root / "wrong-author-source"
+        fixture(other_folder)
+        metadata_path = other_folder / "metadata.json"
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        metadata["author"] = "A Different Author"
+        metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+        other = make_zip(self.root / "wrong-author.zip", other_folder)
+        result = consolidate([first, other], self.root / "review")
+        self.assertEqual(result["unique"], 1)
+        self.assertEqual(result["conflicts"], 1)
+        self.assertEqual(result["duplicates"], 0)
+
+    def test_covered_equivalent_preferred_over_newer_missing_cover(self):
+        old_book = self.root / "covered"
+        fixture(old_book, created="2026-11-01T12:00:00Z")
+        (old_book / "cover.jpg").write_bytes(jpeg())
+        meta_path = old_book / "metadata.json"
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        meta["cover_image"] = "cover.jpg"
+        meta_path.write_text(json.dumps(meta), encoding="utf-8")
+        old = make_zip(self.root / "covered-old.zip", old_book)
+        newer = self.archive("newer-uncovered", created="2026-11-16T12:00:00Z")
+        report = consolidate([old, newer], self.root / "preferred")
+        self.assertEqual(report["novels"][0]["zip_sha256"], inspect(old)["zip_sha256"])
+        self.assertEqual(report["duplicates"], 1)
+
+    def test_repeated_dedupe_does_not_treat_output_as_input(self):
+        from tools import novel_dedupe
+        input_dir = self.root / "mixed"
+        input_dir.mkdir()
+        folder = self.root / "novel-input"
+        fixture(folder)
+        make_zip(input_dir / "original.zip", folder)
+        output = input_dir / "deduplicated"
+        with patch.object(sys, "argv", ["dedupe", "--input", str(input_dir),
+                                        "--output", str(output)]):
+            self.assertEqual(novel_dedupe.main(), 0)
+            self.assertEqual(novel_dedupe.main(), 0)
+        self.assertEqual(len(list((output / "novels").glob("*.zip"))), 1)
+
+    def test_fake_cover_bytes_do_not_win_deduplication(self):
+        older = self.archive("older", created="2026-11-14T12:00:00Z")
+        book = self.root / "fake-image-source"
+        fixture(book, created="2026-11-15T12:00:00Z")
+        (book / "cover.jpg").write_bytes(b"not a real cover")
+        metadata_path = book / "metadata.json"
+        meta = json.loads(metadata_path.read_text(encoding="utf-8"))
+        meta["cover_image"] = "cover.jpg"
+        metadata_path.write_text(json.dumps(meta), encoding="utf-8")
+        invalid_cover = make_zip(self.root / "fake-image.zip", book)
+        report = consolidate([older, invalid_cover], self.root / "out")
+        self.assertEqual(report["duplicates"], 1)
+        self.assertEqual(inspect(invalid_cover)["cover_status"], "missing")
 
     def test_corrupt_zip_is_reported_without_erasing_valid(self):
         good = self.archive("good")

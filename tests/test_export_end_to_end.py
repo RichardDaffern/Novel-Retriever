@@ -57,5 +57,42 @@ class ConsolidatedExportIntegrationTests(unittest.TestCase):
             self.assertTrue((destination / "SHA256SUMS.txt").is_file())
 
 
+    def test_failed_book_is_reported_as_unavailable_even_with_live_candidate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            key = exporter.source_key("https://novelfull.com/example.html")
+            artifact = {"name": f"novel-100-{key}", "id": 987,
+                        "created_at": "2026-11-16T12:00:00Z", "size_in_bytes": 500}
+            target = root / "export"
+            with (patch.dict(os.environ, {"GH_TOKEN": "fake-token"}),
+                  patch.object(sys, "argv", ["export", "--output", str(target),
+                                             "--registry", str(root / "registry.json")]),
+                  patch.object(exporter, "index_registry", return_value=(
+                      {key: {"title": "Example Novel",
+                             "source_url": "https://novelfull.com/example.html"}}, [100])),
+                  patch.object(exporter, "GitHub") as github):
+                github.return_value.run_artifacts.return_value = [artifact]
+                github.return_value.download.side_effect = OSError("Not available")
+                with self.assertRaisesRegex(SystemExit, "No importable"):
+                    exporter.main()
+            manifest = json.loads((target / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["exported_novels"], 0)
+            self.assertEqual(len(manifest["unavailable_registry_books"]), 1)
+            self.assertEqual(len(manifest["warnings"]), 1)
+
+    def test_existing_export_snapshot_is_never_silently_overwritten(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            target = root / "export"
+            target.mkdir()
+            old = target / "original.zip"
+            old.write_bytes(b"valuable existing content")
+            with (patch.dict(os.environ, {"GH_TOKEN": "fake-token"}),
+                  patch.object(sys, "argv", ["export", "--output", str(target)])):
+                with self.assertRaisesRegex(SystemExit, "not empty"):
+                    exporter.main()
+            self.assertEqual(old.read_bytes(), b"valuable existing content")
+
+
 if __name__ == "__main__":
     unittest.main()

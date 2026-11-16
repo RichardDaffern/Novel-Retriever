@@ -28,10 +28,10 @@ This report preserves the measured findings, not novel chapter prose. The former
 
 The surviving repository's unit, Windows and ZIP tests and the merged implementation PRs remain the audit trail:
 
-- [WuxiaClick implementation PR #148](https://github.com/RichardDaffern/Novel_Library/pull/148), including synthetic pagination, EPUB, checkpoint and bulk-routing tests
-- [WuxiaClick post-merge CI](https://github.com/RichardDaffern/Novel_Library/actions/runs/43731066193), 3/3 passed
-- [Additional feasibility PR #146](https://github.com/RichardDaffern/Novel_Library/pull/146)
-- [HTTP-200 source checks PR #147](https://github.com/RichardDaffern/Novel_Library/pull/147)
+- [WuxiaClick implementation PR #148](https://github.com/RichardDaffern/Novel-Retriever/pull/148), including synthetic pagination, EPUB, checkpoint and bulk-routing tests
+- [WuxiaClick post-merge CI](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43731066193), 3/3 passed
+- [Additional feasibility PR #146](https://github.com/RichardDaffern/Novel-Retriever/pull/146)
+- [HTTP-200 source checks PR #147](https://github.com/RichardDaffern/Novel-Retriever/pull/147)
 
 The authorised download campaign's **one-off launch run #43733541073 was retained** because it contains an artefact referenced by active download monitoring. No completed novel-download runs or their artefacts were deleted as part of this clean-up.
 

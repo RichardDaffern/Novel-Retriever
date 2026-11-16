@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   export:
-    if: github.repository == 'RichardDaffern/Novel_Library'
+    if: github.repository == 'RichardDaffern/Novel-Retriever'
     runs-on: ubuntu-latest
     timeout-minutes: 300
     steps:
@@ -29,7 +29,7 @@ jobs:
         run: python -m pip install -r requirements.lock
 
       - name: Validate exporter and cover/dedupe fixtures
-        run: python -m unittest tests.test_export_completed_github_novels tests.test_cover_dedup_integration -v
+        run: python -m unittest tests.test_export_completed_github_novels tests.test_cover_dedup_integration tests.test_export_end_to_end -v
 
       - name: Gather unexpired complete novels and create HF-ready ZIPs
         env:

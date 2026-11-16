@@ -1,47 +1,35 @@
-# Proposed GitHub repository rename: Novel-Retriever
+# Repository rename: completed
 
-**Recommendation:** Novel-Retriever. It describes acquisition, conversion and
-packaging; this repository is not a reading library. Do not rename until the
-owner explicitly approves the final name.
+The owner renamed the GitHub repository from `RichardDaffern/Novel_Library`
+to **[RichardDaffern/Novel-Retriever](https://github.com/RichardDaffern/Novel-Retriever)**
+on 16 November 2026. This file is the compatibility record, not an
+instruction to rename again.
 
-## Preflight
+The follow-up maintenance change corrects the exporter’s GitHub repository
+guard, its API endpoint, the Windows artefact collector default, download
+registry links, main README and historic guide links. Existing workflow
+filenames, branches and completed run IDs remain unchanged. GitHub usually
+redirects old URLs, but newly generated links must always target the new
+repository directly.
 
-- Record the repository ID, default branch, active runs, open pull requests,
-  release tags and externally linked workflows.
-- Merge or coordinate in-flight feature branches; do not rename during a
-  long-running download/export campaign.
-- Identify every literal RichardDaffern/Novel_Library reference in Python,
-  PowerShell, workflow YAML and documentation; update these in one reviewed PR.
-  In particular, GitHub API URL constants in the consolidated exporter,
-  registry URLs, workflow repository guards, external actions workflow links
-  and Windows helper instructions need review.
-- Check the Hugging Face Storage Controller and the web reader for any
-  hardcoded integration URLs. This is a cross-repository check, not an
-  automatic mutation.
+For an existing local clone, run:
 
-## Migration sequence after approval
+~~~powershell
+git remote set-url origin https://github.com/RichardDaffern/Novel-Retriever.git
+git remote -v
+~~~
 
-1. Keep main and workflow filenames stable. Publish a compatibility
-   documentation change showing both old and new URLs.
-2. Rename the repository in GitHub Settings > General.
-3. Update repository description, topics, README headline, AGENTS.md
-   explanatory naming, workflows, scripts and integration documentation.
-4. Replace absolute GitHub repository URLs and API endpoints with the new
-   location. Prefer GITHUB_REPOSITORY in GitHub Actions where it is safe and
-   avoids future hardcoded repository names.
-5. Update local Git remotes:
-   git remote set-url origin https://github.com/RichardDaffern/Novel-Retriever.git
-6. Reconfirm GitHub App installation access, runner checkout branches,
-   Actions permissions and workflow links; run CI and a small authorised
-   smoke test. Verify cross-repository API consumers separately.
-7. Retain legacy compatibility notes for users with old scripts.
+For unattended scripts, use the new repository name explicitly. The
+consolidated export workflow is manual. Select **Actions > Export Completed
+Novels - Hugging Face Upload Bundle > Run workflow**, then download the
+resulting private-use archive. Do not assume expired GitHub artefacts can
+be recovered.
 
-GitHub generally redirects old repository and source URLs after a rename,
-but clients should not rely on redirects for API writes, webhook payloads,
-GitHub Actions run/artifact downloads or indefinite artefact retention.
-Old artefacts remain subject to their original expiration dates. Test these
-links explicitly and preserve release instructions for active campaigns.
+**External integration:** The [Taiyou Storage Controller](https://github.com/AdityaSreevatsaK/Taiyou-Novels-Storage-Controller)
+does not need the Retriever's repository name when uploading a local ZIP.
+Check any external links or bookmarked workflow URLs in other applications.
+Do not push ZIP archives or novel contents to this Git repository.
 
-**Current status:** Only this plan is committed. No repository settings,
-repository name, remote URLs, running jobs or pre-existing artefacts were
-modified by the rename proposal.
+**Verification:** Offline Linux and Windows CI covers code, ZIP packaging
+and the renamed workflow guard. Live source-site and private Hugging Face
+end-to-end validation must be separately performed with owner authorisation.

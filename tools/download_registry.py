@@ -208,7 +208,7 @@ def record_download(registry: dict, url: str, chapter_range: str, downloads_dir:
         "status": "complete",
         "chapter_count": len(rows),
         "run_id": int(run_id),
-        "run_url": f"https://github.com/RichardDaffern/Novel_Library/actions/runs/{run_id}",
+        "run_url": f"https://github.com/{os.environ.get('GITHUB_REPOSITORY', 'RichardDaffern/Novel-Retriever')}/actions/runs/{run_id}",
         "artifact_id": int(artifact_id),
         "artifact_url": artifact_url,
         "completed_at_utc": now.isoformat(timespec="seconds").replace("+00:00", "Z"),

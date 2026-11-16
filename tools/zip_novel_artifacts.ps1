@@ -1,5 +1,5 @@
 # Helper: store exactly one completed novel as a reader-compatible ZIP.
-# ZIP layout: <source-slug>/chapter_0001.txt, chapters.json, metadata.json, source.epub, optional cover.jpg/png.
+# ZIP layout: <source-slug>/chapter_0001.txt, chapters.json, metadata.json, source.epub, optional cover.jpg/png/webp.
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
@@ -11,6 +11,17 @@ function Get-NovelKey([string]$url) {
 }
 function Get-NovelSlug([string]$url) {
     return [System.IO.Path]::GetFileNameWithoutExtension(([uri]$url).AbsolutePath).ToLowerInvariant()
+}
+function Get-ZipEntrySha256($entry) {
+    $stream = $entry.Open()
+    $hasher = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        $digest = $hasher.ComputeHash($stream)
+        return [System.BitConverter]::ToString($digest).Replace('-', '').ToLowerInvariant()
+    } finally {
+        $stream.Dispose()
+        $hasher.Dispose()
+    }
 }
 function Get-ValidBook([string]$sourceDirectory, [string]$novelUrl) {
     $foundBooks = @()
@@ -36,12 +47,20 @@ function Get-ValidBook([string]$sourceDirectory, [string]$novelUrl) {
                 if ($name -notmatch '^chapter_[0-9]+\.txt$' -or -not $seen.Add($name)) { $valid = $false; break }
                 $path = Join-Path $dir $name
                 if (-not (Test-Path -LiteralPath $path -PathType Leaf) -or (Get-Item -LiteralPath $path).Length -le 0) { $valid = $false; break }
+                $expectedHash = ([string]$chapter.sha256).Trim().ToLowerInvariant()
+                if ($expectedHash) {
+                    if ($expectedHash -notmatch '^[a-f0-9]{64}$' -or
+                        (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expectedHash) {
+                        Write-Warning "Chapter content checksum mismatch: $path"
+                        $valid = $false; break
+                    }
+                }
                 $chapters.Add($path)
             }
             $coverPath = $null
             if ($valid -and $meta.cover_image) {
                 $coverName = [string]$meta.cover_image
-                if ($coverName -cnotin @('cover.jpg', 'cover.png')) { $valid = $false }
+                if ($coverName -cnotin @('cover.jpg', 'cover.png', 'cover.webp')) { $valid = $false }
                 else {
                     $coverPath = Join-Path $dir $coverName
                     if (-not (Test-Path -LiteralPath $coverPath -PathType Leaf) -or
@@ -80,7 +99,7 @@ function Test-NovelZip([string]$path, [string]$novelUrl) {
         $expected = $chapters.Count + 3
         if ($meta.cover_image) {
             $coverName = [string]$meta.cover_image
-            if ($coverName -cnotin @('cover.jpg', 'cover.png')) { return $false }
+            if ($coverName -cnotin @('cover.jpg', 'cover.png', 'cover.webp')) { return $false }
             $coverEntry = $archive.GetEntry($prefix + $coverName)
             if (-not $coverEntry -or $coverEntry.Length -lt 100) { return $false }
             $expected += 1
@@ -91,6 +110,11 @@ function Test-NovelZip([string]$path, [string]$novelUrl) {
             if ($file -notmatch '^chapter_[0-9]+\.txt$') { return $false }
             $entry = $archive.GetEntry($prefix + $file)
             if (-not $entry -or $entry.Length -le 0) { return $false }
+            $expectedHash = ([string]$chapter.sha256).Trim().ToLowerInvariant()
+            if ($expectedHash) {
+                if ($expectedHash -notmatch '^[a-f0-9]{64}$' -or
+                    (Get-ZipEntrySha256 $entry) -ne $expectedHash) { return $false }
+            }
         }
         return $true
     } catch { return $false } finally { if ($archive) { $archive.Dispose() } }
@@ -116,8 +140,15 @@ function Get-ExistingNovelZipIndex([string[]]$directories) {
                 $key = Get-NovelKey $sourceUrl
                 $archive.Dispose()
                 $archive = $null
-                if ($key -and -not $index.ContainsKey($key) -and (Test-NovelZip $file.FullName $sourceUrl)) {
-                    $index[$key] = $file.FullName
+                $chapterCount = [int]$details.chapter_count
+                if ($key -and $chapterCount -gt 0 -and
+                    ((-not $index.ContainsKey($key)) -or
+                     $chapterCount -gt [int]$index[$key].Count) -and
+                    (Test-NovelZip $file.FullName $sourceUrl)) {
+                    $index[$key] = [pscustomobject]@{
+                        Path = $file.FullName
+                        Count = $chapterCount
+                    }
                 }
             } catch {
                 Write-Warning "Cannot inspect local ZIP '$($file.FullName)': $($_.Exception.Message)"
