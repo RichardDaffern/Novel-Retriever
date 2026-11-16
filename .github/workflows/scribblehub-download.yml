@@ -131,6 +131,10 @@ jobs:
             --source-url "$NOVEL_URL" \
             --output-dir downloads
 
+      - name: Resolve verified cover and record provenance
+        if: steps.registry.outputs.skip != 'true'
+        run: python -u -m tools.cover_pipeline --directory downloads
+
       - name: Upload complete verified novel
         if: steps.registry.outputs.skip != 'true'
         id: upload
