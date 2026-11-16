@@ -25,7 +25,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (106 novels)
+## NovelFull (107 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -46,6 +46,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Dual Cultivation](https://novelfull.com/dual-cultivation.html) | all | 1148 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14173585699) | 2026-11-22T17:44:33Z |
 | [Dungeon Hunter](https://novelfull.com/dungeon-hunter.html) | all | 171 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14170676589) | 2026-11-22T16:39:21Z |
 | [Emperor’s Domination](https://novelfull.com/emperors-domination.html) | all | 7212 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13657994600) | 2026-11-16T08:16:29Z |
+| [Everyone Else is a Returnee](https://novelfull.com/everyone-else-is-a-returnee.html) | all | 355 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14203215661) | 2026-11-23T06:30:20Z |
 | [Everyone Has Four Skills](https://novelfull.com/everyone-has-four-skills.html) | all | 615 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13653765829) | 2026-11-16T06:13:54Z |
 | [Extraordinary Genius](https://novelfull.com/extraordinary-genius.html) | all | 1399 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13657526353) | 2026-11-16T07:46:15Z |
 | [From Soldier to Officer: A Game Addict's Journey](https://novelfull.com/from-soldier-to-officer-a-game-addicts-journey.html) | all | 440 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636196182) | 2026-11-15T21:50:28Z |
