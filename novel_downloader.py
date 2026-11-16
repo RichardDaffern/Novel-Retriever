@@ -290,14 +290,16 @@ def run_fanficfare(url: str, book_dir: Path, list_only: bool, start: int | None,
     executable = shutil.which("fanficfare")
     if not executable:
         raise RuntimeError("FanFicFare executable not found. Install requirements.txt first.")
+    # Use the same site-specific transport for metadata and chapter fetches.
+    runner = Path(__file__).resolve().parent / "tools" / "fanficfare_progress_runner.py"
     if list_only:
-        args = [executable, "--non-interactive", "--meta-only", "--json-meta", "--no-output", url]
+        args = [sys.executable, str(runner), "--non-interactive", "--meta-only",
+                "--json-meta", "--no-output", url]
         subprocess.run(args, check=True, timeout=timeout_minutes * 60)
         return
 
     # FanFicFare --progressbar prints dots per network fetch, not per chapter.
     # Run its CLI through the chapter-completion callback adapter.
-    runner = Path(__file__).resolve().parent / "tools" / "fanficfare_progress_runner.py"
     args = [sys.executable, str(runner), "--non-interactive", "-f", "epub", "-o", "output_filename=source.epub"]
     if start is not None:
         args += ["--begin", str(start)]
