@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (130 novels)
+## NovelFull (131 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -63,6 +63,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Great Demon King](https://novelfull.com/great-demon-king.html) | all | 1028 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13650731871) | 2026-11-16T04:51:47Z |
 | [Heavenly Jewel Change](https://novelfull.com/heavenly-jewel-change.html) | all | 848 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13654852471) | 2026-11-16T06:45:33Z |
 | [Heaven’s Devourer](https://novelfull.com/heavens-devourer.html) | all | 1829 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13654866424) | 2026-11-16T06:46:01Z |
+| [History’s Number 1 Founder](https://novelfull.com/historys-number-1-founder.html) | all | 1486 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14228270790) | 2026-11-23T12:53:55Z |
 | [I Alone Level-Up](https://novelfull.com/i-alone-level-up.html) | all | 270 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13634103379) | 2026-11-15T21:14:14Z |
 | [I am a Gao Fushuai Villain](https://novelfull.com/i-am-a-gao-fushuai-villain.html) | all | 650 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13655021841) | 2026-11-16T06:53:24Z |
 | [I am the Monarch](https://novelfull.com/i-am-the-monarch.html) | all | 336 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13634498595) | 2026-11-15T21:18:11Z |
