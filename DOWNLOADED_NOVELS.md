@@ -23,7 +23,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (101 novels)
+## NovelFull (102 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -48,7 +48,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [From Soldier to Officer: A Game Addict's Journey](https://novelfull.com/from-soldier-to-officer-a-game-addicts-journey.html) | all | 440 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636196182) | 2026-11-15T21:50:28Z |
 | [Global Lord: 100% Drop Rate](https://novelfull.com/global-lord-100-drop-rate.html) | all | 1979 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636378607) | 2026-11-15T22:12:59Z |
 | [God Emperor](https://novelfull.com/god-emperor.html) | all | 2622 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636968626) | 2026-11-15T22:32:56Z |
-| [God of Cooking](https://novelfull.com/god-of-cooking.html) | all | 651 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13641331757) | 2026-11-16T00:38:37Z |
+| [God of Cooking](https://novelfull.com/god-of-cooking.html) | all | 651 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13641331757) | 2026-11-16T00:38:37Z |
 | [God Rank Upgrade System](https://novelfull.com/god-rank-upgrade-system.html) | all | 1479 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13644734351) | 2026-11-16T02:33:38Z |
 | [Godly Model Creator](https://novelfull.com/godly-model-creator.html) | all | 1085 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13645836077) | 2026-11-16T02:36:42Z |
 | [Great Demon King](https://novelfull.com/great-demon-king.html) | all | 1028 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13650731871) | 2026-11-16T04:51:47Z |
@@ -78,6 +78,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
 | [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
 | [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
+| [Museum of Deadly Beasts](https://novelfull.com/museum-of-deadly-beasts.html) | all | 792 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189855601) | 2026-11-23T00:58:22Z |
 | [My Cold and Elegant CEO Wife](https://novelfull.com/my-cold-and-elegant-ceo-wife.html) | all | 2513 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13658274180) | 2026-11-16T08:18:34Z |
 | [My Dad Is the Galaxy’s Prince Charming](https://novelfull.com/my-dad-is-the-galaxys-prince-charming.html) | all | 198 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14170023682) | 2026-11-22T16:39:54Z |
 | [My Genes Can Evolve Limitlessly](https://novelfull.com/my-genes-can-evolve-limitlessly.html) | all | 780 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13635190766) | 2026-11-15T21:19:00Z |
