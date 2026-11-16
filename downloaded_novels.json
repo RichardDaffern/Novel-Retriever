@@ -560,6 +560,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/destroyer-of-ice-and-fire.html",
+      "title": "Destroyer of Ice and Fire",
+      "author": "Innocent",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 680,
+          "run_id": 43734388839,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839",
+          "artifact_id": 14254369238,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14254369238",
+          "completed_at_utc": "2026-11-16T17:57:25Z",
+          "expires_at_utc": "2026-11-23T17:57:25Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/devils-son-in-law.html",
       "title": "Devil’s Son-in-Law",
       "author": "点精灵",
