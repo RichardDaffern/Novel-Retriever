@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (127 novels)
+## NovelFull (128 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -115,6 +115,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Power and Wealth](https://novelfull.com/power-and-wealth.html) | all | 2030 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13636587131) | 2026-11-15T22:12:29Z |
 | [Re: Evolution Online](https://novelfull.com/re-evolution-online.html) | all | 1474 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13636850090) | 2026-11-15T22:09:50Z |
 | [Rebirth of the Thief Who Roamed the World](https://novelfull.com/rebirth-of-the-thief-who-roamed-the-world.html) | all | 995 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13644082254) | 2026-11-16T02:00:29Z |
+| [Rebirth Of The Urban Immortal Cultivator](https://novelfull.com/rebirth-of-the-urban-immortal-cultivator.html) | all | 1207 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14225276958) | 2026-11-23T12:22:03Z |
 | [Rebirth: How a Loser Became a Prince Charming](https://novelfull.com/rebirth-how-a-loser-became-a-prince-charming.html) | all | 1009 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13644466550) | 2026-11-16T02:00:06Z |
 | [Refining the Mountains and Rivers](https://novelfull.com/refining-the-mountains-and-rivers.html) | all | 2203 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13651824997) | 2026-11-16T05:40:38Z |
 | [Renegade Immortal](https://novelfull.com/renegade-immortal.html) | all | 2093 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13652597481) | 2026-11-16T05:44:54Z |
