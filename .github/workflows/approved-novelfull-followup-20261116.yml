@@ -1,0 +1,139 @@
+name: Approved NovelFull - Safe Transport Follow-up
+
+on:
+  push:
+    branches:
+      - automation/approved-novelfull-followup-20261116
+    paths:
+      - .github/workflows/approved-novelfull-followup-20261116.yml
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: approved-novelfull-followup-20261116
+  cancel-in-progress: false
+
+jobs:
+  verify-selection:
+    if: github.repository == 'RichardDaffern/Novel_Library'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      has_novels: ${{ steps.select.outputs.has_novels }}
+      matrix: ${{ steps.select.outputs.matrix }}
+    steps:
+      - name: Check out current downloader and registry
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+      - name: Restore approved-only selection from first bulk run
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: bulk-selection-43734388839
+          run-id: 43734388839
+          github-token: ${{ github.token }}
+          path: approved_sources/43734388839
+      - name: Restore approved-only selection from third bulk run
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: bulk-selection-43734398943
+          run-id: 43734398943
+          github-token: ${{ github.token }}
+          path: approved_sources/43734398943
+      - name: Restore approved-only selection from sixth bulk run
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: bulk-selection-43734417289
+          run-id: 43734417289
+          github-token: ${{ github.token }}
+          path: approved_sources/43734417289
+      - name: Verify exact approvals and exclude already-completed titles
+        id: select
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          # Each URL was taken from a failed NovelFull job in the
+          # original approved-only campaign's second attempt.
+          candidates = {
+              "43734388839": [
+                  "https://novelfull.com/48-hours-a-day.html",
+              ],
+              "43734398943": [
+                  "https://novelfull.com/immortal-and-martial-dual-cultivation.html",
+                  "https://novelfull.com/i-maximize-my-item-dropping-rate.html",
+                  "https://novelfull.com/i-have-a-special-cultivation-talent.html",
+              ],
+              "43734417289": [
+                  "https://novelfull.com/the-sword-dynasty.html",
+                  "https://novelfull.com/the-ultimate-evolution.html",
+              ],
+          }
+          registry = json.loads(Path("downloaded_novels.json").read_text(encoding="utf-8"))
+          completed = {
+              str(book.get("url", "")).rstrip("/")
+              for book in registry.get("novels", [])
+              if any(item.get("status") == "complete" for item in book.get("downloads", []))
+          }
+          include = []
+          seen = set()
+          for source_run, urls in candidates.items():
+              source = Path("approved_sources") / source_run / "library_bulk_plan.json"
+              plan = json.loads(source.read_text(encoding="utf-8"))
+              if plan.get("version") != 1:
+                  raise SystemExit("Unrecognised approved selection format: " + source_run)
+              approved = {
+                  row["novel_url"]: row
+                  for row in plan["groups"]["NovelFull"]
+              }
+              for url in urls:
+                  if url in seen:
+                      raise SystemExit("Duplicate candidate: " + url)
+                  seen.add(url)
+                  row = approved.get(url)
+                  if row is None:
+                      raise SystemExit("NOT in original approved selection: " + url)
+                  if row.get("force") or row.get("chapter_range"):
+                      raise SystemExit("Unsafe range or forced refresh: " + url)
+                  if url.rstrip("/") in completed:
+                      print("SKIP previously completed: " + url)
+                      continue
+                  include.append({
+                      "novel_url": url,
+                      "chapter_range": "",
+                      "force": False,
+                  })
+                  print("VERIFIED originally approved: " + url)
+          if len(include) > 6:
+              raise SystemExit("Unexpected number of follow-up downloads")
+          matrix = {"include": include}
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write("has_novels=" + str(bool(include)).lower() + "\n")
+              output.write("matrix=" + json.dumps(matrix, separators=(",", ":")) + "\n")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as output:
+              output.write("## Approved NovelFull transport follow-up\n\n")
+              output.write(f"**{len(include)}** novel(s) to start, from verified original campaign manifests.\n\n")
+              output.write("Existing six second-attempt bulk workflows were not cancelled or altered.\n")
+          PY
+
+  download-approved-novels:
+    needs: verify-selection
+    if: needs.verify-selection.outputs.has_novels == 'true'
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJSON(needs.verify-selection.outputs.matrix) }}
+    uses: ./.github/workflows/download-novel.yml
+    with:
+      novel_url: ${{ matrix.novel_url }}
+      chapter_range: ${{ matrix.chapter_range }}
+      force: ${{ matrix.force }}
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
