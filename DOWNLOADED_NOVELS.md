@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (111 novels)
+## NovelFull (112 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -64,6 +64,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [I am the Monarch](https://novelfull.com/i-am-the-monarch.html) | all | 336 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13634498595) | 2026-11-15T21:18:11Z |
 | [I Can Track Everything](https://novelfull.com/i-can-track-everything.html) | all | 907 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368776684/artifacts/13574863593) | 2026-11-14T12:55:20Z |
 | [I Cultivate Passively](https://novelfull.com/i-cultivate-passively.html) | all | 657 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13634707533) | 2026-11-15T21:18:45Z |
+| [I Have Countless Legendary Swords!](https://novelfull.com/i-have-countless-legendary-swords.html) | all | 806 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14206206831) | 2026-11-23T07:39:26Z |
 | [I Have the Alchemy Emperor in My Head](https://novelfull.com/i-have-the-alchemy-emperor-in-my-head.html) | all | 2555 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13636831037) | 2026-11-15T22:13:06Z |
 | [Immortal Devil Transformation](https://novelfull.com/immortal-devil-transformation.html) | all | 869 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13645170874) | 2026-11-16T02:11:51Z |
 | [Imperial God Emperor](https://novelfull.com/imperial-god-emperor.html) | all | 1371 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13651502124) | 2026-11-16T05:12:15Z |
@@ -82,7 +83,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Martial Peak](https://novelfull.com/martial-peak.html) | all | 6133 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13651454047) | 2026-11-16T05:35:13Z |
 | [Medical Master](https://novelfull.com/medical-master.html) | all | 2028 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13645342551) | 2026-11-16T02:29:39Z |
 | [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
-| [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
+| [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
 | [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
 | [Mr. CEO, Spoil me 100 Percent!](https://novelfull.com/mr-ceo-spoil-me-100-percent.html) | all | 992 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189786356) | 2026-11-23T01:01:07Z |
 | [Museum of Deadly Beasts](https://novelfull.com/museum-of-deadly-beasts.html) | all | 792 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189855601) | 2026-11-23T00:58:22Z |
@@ -97,7 +98,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Nine Sun God King](https://novelfull.com/nine-sun-god-king.html) | all | 1154 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13643655544) | 2026-11-16T01:26:29Z |
 | [Otherworldly Evil Monarch](https://novelfull.com/otherworldly-evil-monarch.html) | all | 1277 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13651825998) | 2026-11-16T05:16:29Z |
 | [Painting of the Nine Immortals](https://novelfull.com/painting-of-the-nine-immortals.html) | all | 1003 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13652262814) | 2026-11-16T05:39:07Z |
-| [Peerless Battle Spirit](https://novelfull.com/peerless-battle-spirit.html) | all | 2347 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13655961833) | 2026-11-16T07:14:05Z |
+| [Peerless Battle Spirit](https://novelfull.com/peerless-battle-spirit.html) | all | 2347 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13655961833) | 2026-11-16T07:14:05Z |
 | [Peerless Martial God](https://novelfull.com/peerless-martial-god.html) | all | 2500 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13656579422) | 2026-11-16T07:41:29Z |
 | [Peerless Martial God 2](https://novelfull.com/peerless-martial-god-2.html) | all | 1740 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13657212387) | 2026-11-16T07:46:27Z |
 | [Please, I Really Didn’t Want To Fall in Love With My Master!](https://novelfull.com/please-i-really-didnt-want-to-fall-in-love-with-my-master.html) | all | 381 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13658476779) | 2026-11-16T08:08:54Z |
@@ -122,7 +123,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Supreme Emperor of Swords](https://novelfull.com/supreme-emperor-of-swords.html) | all | 1336 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13650649288) | 2026-11-16T05:16:20Z |
 | [Tales of Demons and Gods](https://novelfull.com/tales-of-demons-and-gods.html) | all | 507 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13651083412) | 2026-11-16T05:10:53Z |
 | [Talisman Emperor](https://novelfull.com/talisman-emperor.html) | all | 2251 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13652776298) | 2026-11-16T05:44:35Z |
-| [The Great Thief](https://novelfull.com/the-great-thief.html) | all | 1976 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13656896239) | 2026-11-16T07:30:13Z |
+| [The Great Thief](https://novelfull.com/the-great-thief.html) | all | 1976 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13656896239) | 2026-11-16T07:30:13Z |
 | [The Human Emperor](https://novelfull.com/the-human-emperor.html) | all | 2467 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13644389821) | 2026-11-16T02:16:03Z |
 | [The Legendary Moonlight Sculptor](https://novelfull.com/the-legendary-moonlight-sculptor.html) | all | 710 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13624187862) | 2026-11-15T16:03:05Z |
 | [The Lord’s Empire](https://novelfull.com/the-lords-empire.html) | all | 1729 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42494513599/artifacts/13625076323) | 2026-11-15T16:28:03Z |
