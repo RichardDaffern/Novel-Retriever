@@ -130,8 +130,17 @@ function Get-ExistingNovelZipIndex([string[]]$directories) {
                 $key = Get-NovelKey $sourceUrl
                 $archive.Dispose()
                 $archive = $null
-                if ($key -and -not $index.ContainsKey($key) -and (Test-NovelZip $file.FullName $sourceUrl)) {
-                    $index[$key] = $file.FullName
+                $chapterCount = [int]$details.chapter_count
+                if ($key -and $chapterCount -gt 0 -and
+                    ((-not $index.ContainsKey($key)) -or
+                     $chapterCount -gt [int]$index[$key].Count) -and
+                    (Test-NovelZip $file.FullName $sourceUrl)) {
+                    # A partial or outdated local range must not shadow a
+                    # newer, more complete ZIP for the same source URL.
+                    $index[$key] = [pscustomobject]@{
+                        Path = $file.FullName
+                        Count = $chapterCount
+                    }
                 }
             } catch {
                 Write-Warning "Cannot inspect local ZIP '$($file.FullName)': $($_.Exception.Message)"
