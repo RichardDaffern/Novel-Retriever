@@ -25,7 +25,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (105 novels)
+## NovelFull (106 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -108,6 +108,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Scholar’s Advanced Technological System](https://novelfull.com/scholars-advanced-technological-system.html) | all | 1682 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13657099613) | 2026-11-16T07:54:20Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368620891/artifacts/13574785699) | 2026-11-14T12:28:22Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13634379248) | 2026-11-15T21:18:06Z |
+| [Shen Yin Wang Zuo](https://novelfull.com/shen-yin-wang-zuo.html) | all | 872 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14202590994) | 2026-11-23T06:20:09Z |
 | [Simplified Beast Evolution Path](https://novelfull.com/simplified-beast-evolution-path.html) | all | 439 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14172677173) | 2026-11-22T17:43:21Z |
 | [So Pure, So Flirtatious](https://novelfull.com/so-pure-so-flirtatious.html) | all | 1621 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13636208314) | 2026-11-15T22:05:35Z |
 | [Sovereign of the Three Realms](https://novelfull.com/sovereign-of-the-three-realms.html) | all | 2376 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13643540730) | 2026-11-16T01:25:45Z |
