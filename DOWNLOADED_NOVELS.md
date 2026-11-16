@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (140 novels)
+## NovelFull (141 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -97,6 +97,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
 | [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
 | [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
+| [Monarch of Time](https://novelfull.com/monarch-of-time.html) | all | 1087 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14248118413) | 2026-11-23T17:00:32Z |
 | [Mr. CEO, Spoil me 100 Percent!](https://novelfull.com/mr-ceo-spoil-me-100-percent.html) | all | 992 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189786356) | 2026-11-23T01:01:07Z |
 | [Museum of Deadly Beasts](https://novelfull.com/museum-of-deadly-beasts.html) | all | 792 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189855601) | 2026-11-23T00:58:22Z |
 | [My Cold and Elegant CEO Wife](https://novelfull.com/my-cold-and-elegant-ceo-wife.html) | all | 2513 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13658274180) | 2026-11-16T08:18:34Z |
