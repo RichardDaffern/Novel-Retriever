@@ -269,7 +269,8 @@ jobs:
             --plan saved_plan/library_bulk_plan.json \
             --artifacts collected_artifacts \
             --output recovery_output \
-            --run-id "$GITHUB_RUN_ID"
+            --run-id "$GITHUB_RUN_ID" \
+            --resolve-covers
 
       - name: Publish small retry manifest
         if: always() && needs.prepare.result == 'success' && steps.recovery.outcome == 'success'
