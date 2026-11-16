@@ -23,7 +23,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (102 novels)
+## NovelFull (103 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -64,7 +64,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Imperial God Emperor](https://novelfull.com/imperial-god-emperor.html) | all | 1371 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13651502124) | 2026-11-16T05:12:15Z |
 | [In Different World with Naruto System](https://novelfull.com/in-different-world-with-naruto-system.html) | all | 382 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14175161600) | 2026-11-22T18:39:56Z |
 | [Invincible](https://novelfull.com/invincible.html) | all | 3753 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13653866052) | 2026-11-16T06:14:23Z |
-| [I’ll Add Points To All Things](https://novelfull.com/ill-add-points-to-all-things.html) | all | 945 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13641833043) | 2026-11-16T00:59:34Z |
+| [I’ll Add Points To All Things](https://novelfull.com/ill-add-points-to-all-things.html) | all | 945 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13641833043) | 2026-11-16T00:59:34Z |
 | [I’m Really a Superstar](https://novelfull.com/im-really-a-superstar.html) | all | 1696 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13643775900) | 2026-11-16T01:31:41Z |
 | [King of Gods](https://novelfull.com/king-of-gods.html) | all | 1585 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13652875528) | 2026-11-16T05:44:28Z |
 | [Legend of Ling Tian](https://novelfull.com/legend-of-ling-tian.html) | all | 713 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13655317054) | 2026-11-16T06:57:51Z |
@@ -78,6 +78,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
 | [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
 | [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
+| [Mr. CEO, Spoil me 100 Percent!](https://novelfull.com/mr-ceo-spoil-me-100-percent.html) | all | 992 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189786356) | 2026-11-23T01:01:07Z |
 | [Museum of Deadly Beasts](https://novelfull.com/museum-of-deadly-beasts.html) | all | 792 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14189855601) | 2026-11-23T00:58:22Z |
 | [My Cold and Elegant CEO Wife](https://novelfull.com/my-cold-and-elegant-ceo-wife.html) | all | 2513 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513414021/artifacts/13658274180) | 2026-11-16T08:18:34Z |
 | [My Dad Is the Galaxy’s Prince Charming](https://novelfull.com/my-dad-is-the-galaxys-prince-charming.html) | all | 198 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14170023682) | 2026-11-22T16:39:54Z |
