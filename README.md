@@ -1,10 +1,10 @@
-# Novel Library
+# Novel Retriever
 
 Download and organise web novels you are authorised to archive. The toolkit builds **EPUBs, individual TXT chapters and validated ZIP archives**, with GitHub Actions for downloads and a Windows tool for collecting completed files.
 
 ## Download novels
 
-**[Library - Bulk Download](https://github.com/RichardDaffern/Novel_Library/actions/workflows/library-bulk-download.yml)** is the shared downloader for **all supported websites**. Paste one or more novel URLs into **Novel links** and select **Run workflow**. You can mix websites in the same request; the source is detected automatically. One link works too.
+**[Library - Bulk Download](https://github.com/RichardDaffern/Novel-Retriever/actions/workflows/library-bulk-download.yml)** is the shared downloader for **all supported websites**. Paste one or more novel URLs into **Novel links** and select **Run workflow**. You can mix websites in the same request; the source is detected automatically. One link works too.
 
 ### Dedicated website Actions
 
@@ -24,11 +24,11 @@ Prefer a dedicated Action when downloading from one particular website.
 
 Install [GitHub CLI](https://cli.github.com/) and run **[Download-All-Novels.cmd](Download-All-Novels.cmd)**. It saves one verified ZIP per novel in `Downloaded_Novels/` and skips valid files already present.
 
-## Covers, duplicate ZIPs and proposed rename
+## Covers and safe duplicate ZIP handling
 
 Every completed download now attempts to include a genuine cover and records its provenance. For older individual ZIPs and a consolidated export, use the [offline deduplication and cover guide](docs/cover-and-deduplication.md). Conflicting editions are retained for review, not silently replaced.
 
-The [Storage Controller coordination handover](docs/storage-controller-integration-handover.md) explains why mixing old and new ZIPs in its upload folder is **not yet safe without preflight**. The [Novel-Retriever rename plan](docs/repository-rename-plan.md) is a proposal only; no GitHub rename has been performed.
+The [Taiyou Storage Controller](https://github.com/AdityaSreevatsaK/Taiyou-Novels-Storage-Controller) now supports an **opt-in, duplicate-aware Smart Bulk Upload** (Windows menu option 12, or `--dedupe-local`). A conflict blocks all uploads. Keep originals and preview changes before applying. See the [integration guide](docs/storage-controller-integration-handover.md) and the [rename record](docs/repository-rename-plan.md).
 
 ## Run locally
 
