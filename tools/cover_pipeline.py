@@ -21,7 +21,7 @@ from zipfile import ZipFile, ZIP_DEFLATED, ZIP_STORED, BadZipFile
 from tools import novel_covers as covers
 from tools.download_registry import canonical_url
 
-COVER_FILES = ("cover.jpg", "cover.png")
+COVER_FILES = ("cover.jpg", "cover.png", "cover.webp")
 MAX_ZIP_BYTES = 950 * 1024 * 1024
 MAX_FILES = 25000
 
@@ -32,7 +32,9 @@ def _image_in_folder(folder: Path):
         if candidate.is_file() and not candidate.is_symlink():
             try:
                 data, ext = covers.validate_image(candidate.read_bytes())
-                if ext == candidate.suffix.lower():
+                if ext == candidate.suffix.lower() or (
+                        candidate.suffix.lower() == ".webp" and ext == ".jpg"):
+                    # WebP is converted to an EPUB2-compatible JPEG.
                     return data, ext
             except (OSError, covers.CoverError):
                 pass
