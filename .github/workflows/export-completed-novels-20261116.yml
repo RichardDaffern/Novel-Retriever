@@ -6,6 +6,8 @@ on:
       - ops/export-completed-novels-20261116
     paths:
       - .github/workflows/export-completed-novels-20261116.yml
+      - tools/export_completed_github_novels.py
+      - tests/test_export_completed_github_novels.py
   workflow_dispatch:
 
 permissions:
