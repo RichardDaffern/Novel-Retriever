@@ -26,11 +26,12 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (114 novels)
+## NovelFull (115 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
 | [12 Hours After](https://novelfull.com/12-hours-after.html) | all | 198 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14171010402) | 2026-11-22T16:39:40Z |
+| [48 Hours a Day](https://novelfull.com/48-hours-a-day.html) | all | 1449 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43819213500/artifacts/14206459587) | 2026-11-23T08:02:39Z |
 | [Abe the Wizard](https://novelfull.com/abe-the-wizard.html) | all | 1512 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42393126629/artifacts/13592251409) | 2026-11-14T21:53:01Z |
 | [Beware Mr. Officer, Tread Carefully!](https://novelfull.com/beware-mr-officer-tread-carefully.html) | all | 630 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14181789660) | 2026-11-22T22:06:22Z |
 | [Bewitching Prince Spoils His Wife: Genius Doctor Unscrupulous Consort](https://novelfull.com/bewitching-prince-spoils-his-wife-genius-doctor-unscrupulous-consort.html) | all | 975 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14184935702) | 2026-11-22T22:54:24Z |
@@ -49,7 +50,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Emperor’s Domination](https://novelfull.com/emperors-domination.html) | all | 7212 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13657994600) | 2026-11-16T08:16:29Z |
 | [Everyone Else is a Returnee](https://novelfull.com/everyone-else-is-a-returnee.html) | all | 355 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14203215661) | 2026-11-23T06:30:20Z |
 | [Everyone Has Four Skills](https://novelfull.com/everyone-has-four-skills.html) | all | 615 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13653765829) | 2026-11-16T06:13:54Z |
-| [Extraordinary Genius](https://novelfull.com/extraordinary-genius.html) | all | 1399 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13657526353) | 2026-11-16T07:46:15Z |
+| [Extraordinary Genius](https://novelfull.com/extraordinary-genius.html) | all | 1399 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513475192/artifacts/13657526353) | 2026-11-16T07:46:15Z |
 | [From Soldier to Officer: A Game Addict's Journey](https://novelfull.com/from-soldier-to-officer-a-game-addicts-journey.html) | all | 440 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636196182) | 2026-11-15T21:50:28Z |
 | [Global Lord: 100% Drop Rate](https://novelfull.com/global-lord-100-drop-rate.html) | all | 1979 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636378607) | 2026-11-15T22:12:59Z |
 | [God Emperor](https://novelfull.com/god-emperor.html) | all | 2622 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513447856/artifacts/13636968626) | 2026-11-15T22:32:56Z |
@@ -100,7 +101,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Painting of the Nine Immortals](https://novelfull.com/painting-of-the-nine-immortals.html) | all | 1003 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13652262814) | 2026-11-16T05:39:07Z |
 | [Peerless Battle Spirit](https://novelfull.com/peerless-battle-spirit.html) | all | 2347 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13655961833) | 2026-11-16T07:14:05Z |
 | [Peerless Martial God](https://novelfull.com/peerless-martial-god.html) | all | 2500 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13656579422) | 2026-11-16T07:41:29Z |
-| [Peerless Martial God 2](https://novelfull.com/peerless-martial-god-2.html) | all | 1740 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13657212387) | 2026-11-16T07:46:27Z |
+| [Peerless Martial God 2](https://novelfull.com/peerless-martial-god-2.html) | all | 1740 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13657212387) | 2026-11-16T07:46:27Z |
 | [Please, I Really Didn’t Want To Fall in Love With My Master!](https://novelfull.com/please-i-really-didnt-want-to-fall-in-love-with-my-master.html) | all | 381 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13658476779) | 2026-11-16T08:08:54Z |
 | [Pocket Hunting Dimension](https://novelfull.com/pocket-hunting-dimension.html) | all | 1331 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13636450844) | 2026-11-15T21:58:32Z |
 | [Power and Wealth](https://novelfull.com/power-and-wealth.html) | all | 2030 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13636587131) | 2026-11-15T22:12:29Z |
@@ -110,7 +111,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Refining the Mountains and Rivers](https://novelfull.com/refining-the-mountains-and-rivers.html) | all | 2203 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13651824997) | 2026-11-16T05:40:38Z |
 | [Renegade Immortal](https://novelfull.com/renegade-immortal.html) | all | 2093 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13652597481) | 2026-11-16T05:44:54Z |
 | [Returning from the Immortal World](https://novelfull.com/returning-from-the-immortal-world.html) | all | 1443 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13653522551) | 2026-11-16T06:14:20Z |
-| [Scholar’s Advanced Technological System](https://novelfull.com/scholars-advanced-technological-system.html) | all | 1682 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13657099613) | 2026-11-16T07:54:20Z |
+| [Scholar’s Advanced Technological System](https://novelfull.com/scholars-advanced-technological-system.html) | all | 1682 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13657099613) | 2026-11-16T07:54:20Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368620891/artifacts/13574785699) | 2026-11-14T12:28:22Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513348683/artifacts/13634379248) | 2026-11-15T21:18:06Z |
 | [Shen Yin Wang Zuo](https://novelfull.com/shen-yin-wang-zuo.html) | all | 872 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14202590994) | 2026-11-23T06:20:09Z |

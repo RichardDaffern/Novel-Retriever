@@ -326,6 +326,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/48-hours-a-day.html",
+      "title": "48 Hours a Day",
+      "author": "Little Bleary Zhao",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1449,
+          "run_id": 43819213500,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43819213500",
+          "artifact_id": 14206459587,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43819213500/artifacts/14206459587",
+          "completed_at_utc": "2026-11-16T08:02:39Z",
+          "expires_at_utc": "2026-11-23T08:02:39Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/abe-the-wizard.html",
       "title": "Abe the Wizard",
       "author": "The Mass Of Eating Melon Seeds",
