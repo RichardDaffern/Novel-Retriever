@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (126 novels)
+## NovelFull (127 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -111,6 +111,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Peerless Martial God 2](https://novelfull.com/peerless-martial-god-2.html) | all | 1740 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13657212387) | 2026-11-16T07:46:27Z |
 | [Please, I Really Didn’t Want To Fall in Love With My Master!](https://novelfull.com/please-i-really-didnt-want-to-fall-in-love-with-my-master.html) | all | 381 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513387437/artifacts/13658476779) | 2026-11-16T08:08:54Z |
 | [Pocket Hunting Dimension](https://novelfull.com/pocket-hunting-dimension.html) | all | 1331 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13636450844) | 2026-11-15T21:58:32Z |
+| [Poison Genius Consort](https://novelfull.com/poison-genius-consort.html) | all | 1365 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14216247264) | 2026-11-23T10:24:28Z |
 | [Power and Wealth](https://novelfull.com/power-and-wealth.html) | all | 2030 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13636587131) | 2026-11-15T22:12:29Z |
 | [Re: Evolution Online](https://novelfull.com/re-evolution-online.html) | all | 1474 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13636850090) | 2026-11-15T22:09:50Z |
 | [Rebirth of the Thief Who Roamed the World](https://novelfull.com/rebirth-of-the-thief-who-roamed-the-world.html) | all | 995 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513372924/artifacts/13644082254) | 2026-11-16T02:00:29Z |
