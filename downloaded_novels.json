@@ -596,6 +596,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/everyone-else-is-a-returnee.html",
+      "title": "Everyone Else is a Returnee",
+      "author": "Toika",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 355,
+          "run_id": 43734393507,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507",
+          "artifact_id": 14203215661,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734393507/artifacts/14203215661",
+          "completed_at_utc": "2026-11-16T06:30:20Z",
+          "expires_at_utc": "2026-11-23T06:30:20Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/everyone-has-four-skills.html",
       "title": "Everyone Has Four Skills",
       "author": "Li Xinsui",
