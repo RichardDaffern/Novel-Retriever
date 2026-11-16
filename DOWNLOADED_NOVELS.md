@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (15 novels)
+## FreeWebNovel (16 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -14,6 +14,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [My Enchanting System](https://freewebnovel.com/novel/my-enchanting-system) | all | 887 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14173391066) | 2026-11-22T17:43:00Z |
 | [Overlord of Blood and Iron](https://freewebnovel.com/novel/overlord-of-blood-and-iron-novel) | all | 355 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14172990861) | 2026-11-22T17:38:41Z |
 | [Pain, Pain, Go Away](https://freewebnovel.com/novel/pain-pain-go-away) | all | 11 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14201972631) | 2026-11-23T06:11:19Z |
+| [Path of Medicine With a System](https://freewebnovel.com/novel/path-of-medicine-with-a-system) | all | 315 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14202635894) | 2026-11-23T06:19:23Z |
 | [Peerless Genius System](https://freewebnovel.com/novel/peerless-genius-system) | all | 859 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14177902316) | 2026-11-22T19:48:44Z |
 | [Perfect Superstar](https://freewebnovel.com/novel/perfect-superstar) | all | 231 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734404117/artifacts/14177333229) | 2026-11-22T19:46:18Z |
 | [Shrouding the Heavens](https://freewebnovel.com/novel/shrouding-the-heavens) | all | 323 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14172118221) | 2026-11-22T17:24:06Z |
