@@ -24,6 +24,12 @@ Prefer a dedicated Action when downloading from one particular website.
 
 Install [GitHub CLI](https://cli.github.com/) and run **[Download-All-Novels.cmd](Download-All-Novels.cmd)**. It saves one verified ZIP per novel in `Downloaded_Novels/` and skips valid files already present.
 
+## Covers, duplicate ZIPs and proposed rename
+
+Every completed download now attempts to include a genuine cover and records its provenance. For older individual ZIPs and a consolidated export, use the [offline deduplication and cover guide](docs/cover-and-deduplication.md). Conflicting editions are retained for review, not silently replaced.
+
+The [Storage Controller coordination handover](docs/storage-controller-integration-handover.md) explains why mixing old and new ZIPs in its upload folder is **not yet safe without preflight**. The [Novel-Retriever rename plan](docs/repository-rename-plan.md) is a proposal only; no GitHub rename has been performed.
+
 ## Run locally
 
 Requires Python 3.12. From the repository root:
