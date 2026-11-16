@@ -1406,6 +1406,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/master-of-the-end-times.html",
+      "title": "Master of the End Times",
+      "author": "Little Word Qin",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1087,
+          "run_id": 43734398943,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943",
+          "artifact_id": 14233689388,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14233689388",
+          "completed_at_utc": "2026-11-16T14:26:52Z",
+          "expires_at_utc": "2026-11-23T14:26:52Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/medical-master.html",
       "title": "Medical Master",
       "author": "Walk The World",
