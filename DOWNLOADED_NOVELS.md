@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (141 novels)
+## NovelFull (142 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -43,6 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Crazy Detective](https://novelfull.com/crazy-detective.html) | all | 2686 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636899276) | 2026-11-15T22:35:59Z |
 | [Cultivation Online](https://novelfull.com/cultivation-online.html) | all | 2701 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636934179) | 2026-11-15T22:36:34Z |
 | [Cultivation! My Augmented Statuses Have Unlimited Duration](https://novelfull.com/cultivation-my-augmented-statuses-have-unlimited-duration.html) | all | 904 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636307740) | 2026-11-15T22:04:49Z |
+| [Damn it! You Call This Beast Taming?](https://novelfull.com/damn-it-you-call-this-beast-taming.html) | all | 593 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14250691539) | 2026-11-23T17:20:35Z |
 | [Devil’s Son-in-Law](https://novelfull.com/devils-son-in-law.html) | all | 1275 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13644028986) | 2026-11-16T01:59:32Z |
 | [Divine Beast Adventures](https://novelfull.com/divine-beast-adventures.html) | all | 581 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13645946310) | 2026-11-16T02:34:21Z |
 | [Douluo Dalu](https://novelfull.com/douluo-dalu.html) | all | 337 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14192730294) | 2026-11-23T02:12:20Z |
