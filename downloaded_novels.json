@@ -2191,6 +2191,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-amber-sword.html",
+      "title": "The Amber Sword",
+      "author": "Fei Yan",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 876,
+          "run_id": 43734410920,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920",
+          "artifact_id": 14224943698,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734410920/artifacts/14224943698",
+          "completed_at_utc": "2026-11-16T12:27:42Z",
+          "expires_at_utc": "2026-11-23T12:27:42Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-great-thief.html",
       "title": "The Great Thief",
       "author": "大盗贼",
