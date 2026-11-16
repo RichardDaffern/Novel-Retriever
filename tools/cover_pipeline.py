@@ -109,9 +109,13 @@ def embed_cover(epub: Path, data: bytes, ext: str) -> bool:
                 output.writestr(target, content, compress_type=ZIP_STORED)
             if _epub_cover(staged) != (content, extension):
                 raise covers.CoverError("Embedded EPUB cover failed verification")
-            staged.replace(epub)
-        finally:
+        except BaseException:
             staged.unlink(missing_ok=True)
+            raise
+    try:
+        staged.replace(epub)
+    finally:
+        staged.unlink(missing_ok=True)
     return True
 
 
@@ -237,8 +241,7 @@ def finalise_archive(path: Path, *, allow_network: bool = True,
             for item in entries:
                 part = PurePosixPath(item.filename.replace("\\", "/"))
                 if (part.is_absolute() or not part.parts or
-                        ".." in part.parts or "." in part.parts or
-                        item.is_symlink() if hasattr(item, "is_symlink") else False):
+                        ".." in part.parts or "." in part.parts):
                     raise ValueError("Unsafe ZIP member")
                 # Refuse Unix symbolic links and device entries.
                 if ((item.external_attr >> 16) & 0o170000) == 0o120000:
