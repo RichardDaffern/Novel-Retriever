@@ -26,7 +26,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (119 novels)
+## NovelFull (120 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -66,6 +66,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [I am the Monarch](https://novelfull.com/i-am-the-monarch.html) | all | 336 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13634498595) | 2026-11-15T21:18:11Z |
 | [I Can Track Everything](https://novelfull.com/i-can-track-everything.html) | all | 907 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42368776684/artifacts/13574863593) | 2026-11-14T12:55:20Z |
 | [I Cultivate Passively](https://novelfull.com/i-cultivate-passively.html) | all | 657 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13634707533) | 2026-11-15T21:18:45Z |
+| [I Have A Special Cultivation Talent](https://novelfull.com/i-have-a-special-cultivation-talent.html) | all | 1007 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43819213500/artifacts/14209343141) | 2026-11-23T08:49:25Z |
 | [I Have Countless Legendary Swords!](https://novelfull.com/i-have-countless-legendary-swords.html) | all | 806 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734398943/artifacts/14206206831) | 2026-11-23T07:39:26Z |
 | [I Have the Alchemy Emperor in My Head](https://novelfull.com/i-have-the-alchemy-emperor-in-my-head.html) | all | 2555 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/42513431015/artifacts/13636831037) | 2026-11-15T22:13:06Z |
 | [I Maximize My Item-dropping Rate](https://novelfull.com/i-maximize-my-item-dropping-rate.html) | all | 863 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43819213500/artifacts/14209040701) | 2026-11-23T08:24:15Z |
