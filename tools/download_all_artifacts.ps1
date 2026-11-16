@@ -209,12 +209,25 @@ foreach ($book in $books) {
         Expression = { [datetime]$_.completed_at_utc }; Descending = $true
     })
 
-    # Reuse locally valid ZIPs regardless of their filename or artifact ID.
+    # Reuse a local ZIP only if it is at least as complete as the
+    # known full-book registry artefact. A smaller chapter range may have
+    # passed structural validation but must never suppress a full download.
     $novelKey = Get-NovelKey $book.Url
+    $expectedFullChapters = 0
+    foreach ($candidate in $candidates) {
+        $declaredCount = [int]$candidate.chapter_count
+        if ($declaredCount -gt $expectedFullChapters) {
+            $expectedFullChapters = $declaredCount
+        }
+    }
     if ($novelKey -and $localZips.ContainsKey($novelKey)) {
-        Write-Host "  Already downloaded locally; skipping: $($localZips[$novelKey])" -ForegroundColor Green
-        $skipped++
-        continue
+        $existing = $localZips[$novelKey]
+        if ([int]$existing.Count -ge $expectedFullChapters) {
+            Write-Host "  Already downloaded locally; skipping: $($existing.Path)" -ForegroundColor Green
+            $skipped++
+            continue
+        }
+        Write-Warning "Existing ZIP has $($existing.Count) chapters; full registry has $expectedFullChapters. Retrieving complete copy without deleting local ZIP."
     }
 
     # Convert an old download from the previous folder-based version.
@@ -231,7 +244,10 @@ foreach ($book in $books) {
                 $zipPath = Get-FreeZipDestination $artifactId
                 New-NovelZip $legacy $book.Url $zipPath
                 Preserve-Legacy $legacy
-                $localZips[$novelKey] = $zipPath
+                $localZips[$novelKey] = [pscustomobject]@{
+                    Path = $zipPath
+                    Count = [int]$expectedFullChapters
+                }
                 $success++; $completed = $true
             } catch {
                 Write-Warning "Existing download could not be repacked: $($_.Exception.Message)"
@@ -269,7 +285,10 @@ foreach ($book in $books) {
                 if ($LASTEXITCODE -ne 0) { throw "GitHub CLI returned exit code $LASTEXITCODE" }
                 New-NovelZip $stage $book.Url $zipPath
                 Remove-Item -LiteralPath $stage -Recurse -Force
-                $localZips[$novelKey] = $zipPath
+                $localZips[$novelKey] = [pscustomobject]@{
+                    Path = $zipPath
+                    Count = [int]$expectedFullChapters
+                }
                 $success++; $completed = $true; break
             } catch {
                 Write-Warning "Attempt $attempt failed: $($_.Exception.Message)"
