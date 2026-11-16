@@ -596,6 +596,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/divine-brilliance.html",
+      "title": "Divine Brilliance",
+      "author": "Kai Huang",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1228,
+          "run_id": 43734388839,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839",
+          "artifact_id": 14252653694,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14252653694",
+          "completed_at_utc": "2026-11-16T17:40:47Z",
+          "expires_at_utc": "2026-11-23T17:40:47Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/douluo-dalu.html",
       "title": "Douluo Dalu",
       "author": "Tang Jia San Shao",
