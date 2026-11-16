@@ -2760,6 +2760,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/ze-tian-ji.html",
+      "title": "Ze Tian Ji",
+      "author": "Mao Ni",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1185,
+          "run_id": 43734417289,
+          "run_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289",
+          "artifact_id": 14241396863,
+          "artifact_url": "https://github.com/RichardDaffern/Novel_Library/actions/runs/43734417289/artifacts/14241396863",
+          "completed_at_utc": "2026-11-16T15:46:21Z",
+          "expires_at_utc": "2026-11-23T15:46:21Z"
+        }
+      ]
+    },
+    {
       "url": "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima",
       "title": "The Adventurous Gamer Ninja - Daichi Hekima",
       "author": "MonkWithAPen",
