@@ -5,6 +5,9 @@ on:
       - feature/novelfull-standard-http-20261116
     paths:
       - .github/workflows/novelfull-transport-smoke.yml
+      - tools/novelfull_http.py
+      - tools/fanficfare_progress_runner.py
+      - novel_downloader.py
 permissions:
   contents: read
 jobs:
