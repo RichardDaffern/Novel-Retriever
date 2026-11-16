@@ -144,6 +144,61 @@ class WindowsNovelZipTests(unittest.TestCase):
             self.assertIn("failed/unavailable=1", result.stdout)
             self.assertTrue(invalid_zip.exists(), "An invalid local ZIP must not be silently deleted")
 
+    def test_short_local_zip_cannot_suppress_complete_registry_download(self):
+        with tempfile.TemporaryDirectory(prefix="Novel Retriever Partial Local ") as temp:
+            root = Path(temp)
+            destination = root / "Downloaded_Novels"
+            destination.mkdir()
+            source = root / "short"
+            source.mkdir()
+            self.write_book(source, "True Martial World", "true-martial-world", 1)
+            existing = destination / "old-partial.zip"
+            self.make_zip(source, existing, "true-martial-world")
+            registry = root / "registry.json"
+            self.write_registry(registry, "True Martial World", "true-martial-world", 98765432101)
+            data = json.loads(registry.read_text(encoding="utf-8"))
+            data["novels"][0]["downloads"][0]["chapter_count"] = 4
+            registry.write_text(json.dumps(data), encoding="utf-8")
+            result = subprocess.run(
+                ["powershell.exe", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                 "-File", str(SCRIPT), "-RegistryFile", str(registry),
+                 "-Destination", str(destination), "-RepackOnly"],
+                cwd=ROOT, capture_output=True, text=True, errors="replace", timeout=180,
+            )
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("full registry has 4", result.stdout + result.stderr)
+            self.assertNotIn("Already downloaded locally; skipping", result.stdout)
+            self.assertTrue(existing.exists())
+
+    def test_largest_verified_local_zip_is_preferred(self):
+        with tempfile.TemporaryDirectory(prefix="Novel Retriever Multiple Local ") as temp:
+            root = Path(temp)
+            destination = root / "Downloaded_Novels"
+            destination.mkdir()
+            short = root / "short"
+            long = root / "long"
+            short.mkdir()
+            long.mkdir()
+            self.write_book(short, "True Martial World", "true-martial-world", 1)
+            self.write_book(long, "True Martial World", "true-martial-world", 3)
+            old = destination / "a-short.zip"
+            new = destination / "z-long.zip"
+            self.make_zip(short, old, "true-martial-world")
+            self.make_zip(long, new, "true-martial-world")
+            registry = root / "registry.json"
+            self.write_registry(registry, "True Martial World", "true-martial-world", 98765432101)
+            data = json.loads(registry.read_text(encoding="utf-8"))
+            data["novels"][0]["downloads"][0]["chapter_count"] = 3
+            registry.write_text(json.dumps(data), encoding="utf-8")
+            result = self.run_successfully([
+                "powershell.exe", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                "-File", str(SCRIPT), "-RegistryFile", str(registry),
+                "-Destination", str(destination), "-RepackOnly",
+            ])
+            self.assertIn(str(new), result.stdout)
+            self.assertTrue(old.exists())
+            self.assertTrue(new.exists())
+
     def test_modified_zip_chapter_cannot_be_skipped_as_existing(self):
         with tempfile.TemporaryDirectory(prefix="Novel Retriever Corrupt ZIP ") as temp:
             root = Path(temp)
