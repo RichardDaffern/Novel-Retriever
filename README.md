@@ -2,6 +2,9 @@
 
 Download and organise web novels you are authorised to archive. The toolkit builds **EPUBs, individual TXT chapters and validated ZIP archives**, with GitHub Actions for downloads and a Windows tool for collecting completed files.
 
+
+**WebNovel:** Authorised locally saved HTML/TXT chapters can be converted to EPUB and an integrity-checked Storage Controller ZIP with `python -m tools.webnovel_bulk_import --storage-zip --source-url <book-URL> --confirm-rights`. This is **not** a WebNovel website downloader or GitHub Action. [Instructions](docs/research/webnovel-bulk-import.md).
+
 ## Download novels
 
 **[Library - Bulk Download](https://github.com/RichardDaffern/Novel-Retriever/actions/workflows/library-bulk-download.yml)** is the shared downloader for **all supported websites**. Paste one or more novel URLs into **Novel links** and select **Run workflow**. You can mix websites in the same request; the source is detected automatically. One link works too.
