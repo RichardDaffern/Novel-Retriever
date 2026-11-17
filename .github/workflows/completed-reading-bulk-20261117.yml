@@ -1,0 +1,70 @@
+name: Completed Reading - Six Missing Novels
+
+on:
+  push:
+    branches:
+      - ops/completed-reading-bulk-20261117
+    paths:
+      - .github/workflows/completed-reading-bulk-20261117.yml
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: completed-reading-bulk-20261117
+  cancel-in-progress: false
+
+jobs:
+  download:
+    name: ${{ matrix.title }}
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - title: Battle Through the Heavens
+            url: https://novelfull.com/battle-through-the-heavens.html
+          - title: Coiling Dragon
+            url: https://novelfull.com/coiling-dragon.html
+          - title: Golden Time
+            url: https://novelfull.com/golden-time.html
+          - title: I Have A Martial Arts Panel
+            url: https://novelfull.com/i-have-a-martial-arts-panel.html
+          - title: Martial World
+            url: https://novelfull.com/martial-world.html
+          - title: The Book Eating Magician
+            url: https://novelfull.com/the-book-eating-magician.html
+    uses: ./.github/workflows/download-novel.yml
+    with:
+      novel_url: ${{ matrix.url }}
+      chapter_range: ''
+      force: false
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
+
+  summary:
+    name: Completed-books campaign summary
+    runs-on: ubuntu-latest
+    needs: download
+    if: always()
+    steps:
+      - name: Explain campaign and preservation
+        env:
+          CAMPAIGN_RESULT: ${{ needs.download.result }}
+        run: |
+          {
+            echo '## Completed Reading: New Novels'
+            echo ''
+            echo 'Six NovelFull books selected from the Completed status in Novels.xlsx.'
+            echo 'All already-HF novels and the unsupported one-shot were excluded.'
+            echo ''
+            echo "**Workflow group result:** $CAMPAIGN_RESULT"
+            echo ''
+            echo 'Each successful book publishes a separate verified GitHub Actions ZIP and updates the registry.'
+            echo 'If a book fails, keep its validated chapter-batch artefacts and retry only that book.'
+            echo 'Novel texts are not stored in Git history or automatically uploaded to Hugging Face.'
+          } >> "$GITHUB_STEP_SUMMARY"
