@@ -1,0 +1,93 @@
+name: Export 10 Additional Novels - HF Upload
+
+on:
+  push:
+    branches:
+      - ops/export-10-new-novels-20261117
+    paths:
+      - .github/workflows/export-10-new-novels-20261117.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: export-ten-additional-novels
+  cancel-in-progress: false
+
+jobs:
+  export:
+    if: github.repository == 'RichardDaffern/Novel-Retriever'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Check out approved export snapshot
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ops/export-10-new-novels-20261117
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+
+      - name: Install locked dependencies
+        run: python -m pip install -r requirements.lock
+
+      - name: Verify novel-export and cover/dedupe tests
+        run: python -m unittest tests.test_export_completed_github_novels tests.test_cover_dedup_integration tests.test_export_end_to_end -v
+
+      - name: Export only the ten previously omitted completed novels
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u -m tools.export_completed_github_novels \
+            --registry downloaded_novels.json \
+            --only-urls-file docs/exports/ten-new-novels-20261117.txt \
+            --output export
+
+      - name: Verify exact ten-book output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m = json.loads(Path('export/manifest.json').read_text(encoding='utf-8'))
+          expected = set(line.strip() for line in Path('docs/exports/ten-new-novels-20261117.txt').read_text(encoding='utf-8').splitlines() if line.strip() and not line.startswith('#'))
+          actual = {n['source_url'] for n in m['novels']}
+          assert len(expected) == 10 and len(m['novels']) == 10, (len(expected), len(m['novels']))
+          assert actual == expected, (sorted(expected - actual), sorted(actual - expected))
+          assert not m['conflicting_editions'], 'Unresolved alternate-edition conflicts'
+          for n in m['novels']:
+              assert (Path('export') / n['file']).is_file(), n['file']
+          print('Verified exactly 10 unique novels and matched 10 exact URLs')
+          PY
+
+      - name: Publish snapshot summary
+        if: always()
+        run: |
+          if [ -f export/manifest.json ]; then
+            python - <<'PY'
+          import json, os
+          from pathlib import Path
+          m = json.loads(Path('export/manifest.json').read_text(encoding='utf-8'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as out:
+              out.write('## Ten new novels for Taiyou\'s HF library\n\n')
+              out.write(f"**Exported:** {m['exported_novels']}/10\n\n")
+              out.write(f"**Errors:** {len(m['warnings'])}; **conflicts:** {len(m['conflicting_editions'])}\n\n")
+              out.write('Extract the outer artefact, then put the ZIPs under `novels/` into the HF Storage Controller.\n\n')
+              for n in m['novels']:
+                  out.write(f"- {n['title']}\n")
+          PY
+          fi
+
+      - name: Preserve downloaded books even if a later book fails
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: taiyou-10-additional-novels-${{ github.run_id }}
+          path: export/
+          compression-level: 0
+          retention-days: 90
+          if-no-files-found: warn
