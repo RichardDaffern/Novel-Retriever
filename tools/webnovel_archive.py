@@ -26,6 +26,8 @@ from tools.webnovel_probe import validate_book_url
 MAX_ZIP_BYTES = 120 * 1024 * 1024
 MAX_EPUB_BYTES = 100 * 1024 * 1024
 MAX_CHAPTER_BYTES = 5 * 1024 * 1024
+MAX_SOURCE_BYTES = 4 * 1024 * 1024
+MAX_EPUB_EXPANDED = 200 * 1024 * 1024
 OPF_NS = "http://www.idpf.org/2007/opf"
 
 
@@ -62,6 +64,11 @@ def _epub_bytes(path: Path, cover: bytes | None, extension: str | None) -> bytes
         raise WebNovelArchiveError("Missing or oversized generated EPUB")
     try:
         with ZipFile(path) as source:
+            infos = source.infolist()
+            if (len(infos) > 10500 or
+                    sum(item.file_size for item in infos) > MAX_EPUB_EXPANDED or
+                    any(item.file_size > MAX_CHAPTER_BYTES for item in infos)):
+                raise WebNovelArchiveError("EPUB exceeds safe extracted-size limits")
             if source.testzip() is not None:
                 raise WebNovelArchiveError("Generated EPUB CRC check failed")
             names = source.namelist()
@@ -144,7 +151,8 @@ def archive_saved_pages(import_dir: Path, source_url: str, *,
                 or not isinstance(checkpoint, dict)):
             raise WebNovelArchiveError(f"Chapter {number} has invalid source provenance")
         source_file = Path(input_directory) / source_name
-        if not source_file.is_file() or _hash(source_file.read_bytes()) != checkpoint.get("source_sha256"):
+        if (not source_file.is_file() or source_file.stat().st_size > MAX_SOURCE_BYTES
+                or _hash(source_file.read_bytes()) != checkpoint.get("source_sha256")):
             raise WebNovelArchiveError(f"Chapter {number} source changed since import")
         file = import_dir / expected_file
         if not file.is_file() or file.stat().st_size > MAX_CHAPTER_BYTES:
