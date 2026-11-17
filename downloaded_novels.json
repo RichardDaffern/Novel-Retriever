@@ -1532,6 +1532,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/martial-world.html",
+      "title": "Martial World",
+      "author": "Cocooned Cow",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 2276,
+          "run_id": 44104360128,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128",
+          "artifact_id": 14345670300,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14345670300",
+          "completed_at_utc": "2026-11-17T15:57:25Z",
+          "expires_at_utc": "2026-11-24T15:57:25Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/master-of-the-end-times.html",
       "title": "Master of the End Times",
       "author": "Little Word Qin",
