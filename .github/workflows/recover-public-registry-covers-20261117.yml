@@ -1,0 +1,74 @@
+name: One-shot - Recover Remaining Public Registry Covers
+on:
+  push:
+    branches:
+      - ops/run-cover-recovery-20261117
+    paths:
+      - .github/workflows/recover-public-registry-covers-20261117.yml
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: recover-public-registry-covers-20261117
+  cancel-in-progress: false
+jobs:
+  covers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out Novel Retriever
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - name: Install cover dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Retrieve existing completed cover campaign (public registry only)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh run download 42860330693 --name novel-cover-images --dir prior-public-covers
+      - name: Select only public registry novels not already covered by previous campaign
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.download_covers import read_markdown_novels
+          previous = json.loads(Path('prior-public-covers/covers_manifest.json').read_text(encoding='utf-8'))
+          covered = {r.get('source_url') for r in previous['results']
+                     if r.get('status') in ('downloaded', 'skipped') and r.get('cover_file')}
+          registered = read_markdown_novels(Path('DOWNLOADED_NOVELS.md'))
+          pending = [book for book in registered if book['url'] not in covered]
+          assert covered, 'Refusing to repeat prior successful cover campaign'
+          assert pending, 'No new public-registry covers to fetch'
+          index = Path('pending-covers.md')
+          index.write_text('# Previously uncovered public registry titles\n\n' +
+                           ''.join(f"| [{book['title']}]({book['url']}) | all |\n"
+                                   for book in pending), encoding='utf-8')
+          print(f"Public source registry: {len(registered)}; prior covers: {len(covered)}; new targets: {len(pending)}", flush=True)
+          PY
+      - name: Download genuine novel covers only (no EPUB or chapter downloads)
+        run: python -u -m tools.download_covers --index pending-covers.md --output-dir Downloaded_Covers --confirm-rights
+      - name: Print download totals
+        if: always()
+        run: |
+          if [ -f Downloaded_Covers/covers_manifest.json ]; then
+            python - <<'PY'
+          import json, os
+          from pathlib import Path
+          m=json.loads(Path('Downloaded_Covers/covers_manifest.json').read_text(encoding='utf-8'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+              f.write('## Cover-only recovery, no novels redownloaded\n\n')
+              f.write(f"**Downloaded:** {m['downloaded']} | **Skipped:** {m['skipped']} | **Failed:** {m['failed']}\n\n")
+              f.write('Download the artefact and preview it using Storage Controller option 10.\n')
+          PY
+          fi
+      - name: Save newly fetched cover images and failure manifest
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: newly-recovered-novel-covers-${{ github.run_id }}
+          path: Downloaded_Covers/
+          retention-days: 90
+          compression-level: 6
+          if-no-files-found: warn
