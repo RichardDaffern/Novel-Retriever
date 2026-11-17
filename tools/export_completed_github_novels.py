@@ -15,6 +15,7 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+import tempfile
 
 from tools.cover_pipeline import finalise_archive
 from tools.novel_dedupe import consolidate
@@ -46,13 +47,16 @@ def safe_title(title: str) -> str:
 
 
 def safe_member(name: str) -> bool:
-    path = PurePosixPath(name.replace("\\", "/"))
-    return not (
-        path.is_absolute()
-        or not path.parts
-        or any(part in ("..", ".", "") for part in path.parts)
-        or name.startswith("/")
-    )
+    raw = name.replace("\\", "/")
+    parts = raw.split("/")
+    path = PurePosixPath(raw)
+    # Check raw components: PurePosixPath collapses './' and repeated slashes.
+    # Colons, trailing dots/spaces and control characters alias on Windows.
+    return bool(name and not path.is_absolute() and all(
+        part and part not in (".", "..") and ":" not in part and
+        part.rstrip(" .") == part and all(ord(char) >= 32 for char in part)
+        for part in parts
+    ))
 
 
 def index_registry(path: Path):
@@ -133,18 +137,30 @@ class GitHub:
         if parts.scheme != "https" or not parts.hostname:
             raise RuntimeError("GitHub provided an invalid artefact download location")
         # Do not forward the GITHUB_TOKEN to the signed CDN.
-        with requests.get(location, timeout=(25, 180), stream=True,
-                          headers={"User-Agent": "Novel-Retriever-Export/1.0"}) as stream:
-            stream.raise_for_status()
-            written = 0
-            with target.open("wb") as handle:
-                for chunk in stream.iter_content(chunk_size=1024 * 1024):
-                    if not chunk:
-                        continue
-                    written += len(chunk)
-                    if written > MAX_ARTIFACT_BYTES:
-                        raise ValueError("Downloaded artefact exceeds safety limit")
-                    handle.write(chunk)
+        # Keep any existing verified cache entry intact if the network fails.
+        target.parent.mkdir(parents=True, exist_ok=True)
+        staged = None
+        try:
+            with tempfile.NamedTemporaryFile(prefix=".artifact-", suffix=".zip",
+                                             dir=target.parent, delete=False) as handle:
+                staged = Path(handle.name)
+                with requests.get(location, timeout=(25, 180), stream=True,
+                                  headers={"User-Agent": "Novel-Retriever-Export/1.0"}) as stream:
+                    stream.raise_for_status()
+                    written = 0
+                    for chunk in stream.iter_content(chunk_size=1024 * 1024):
+                        if not chunk:
+                            continue
+                        written += len(chunk)
+                        if written > MAX_ARTIFACT_BYTES:
+                            raise ValueError("Downloaded artefact exceeds safety limit")
+                        handle.write(chunk)
+                handle.flush()
+                os.fsync(handle.fileno())
+            staged.replace(target)
+        finally:
+            if staged is not None:
+                staged.unlink(missing_ok=True)
 
 
 def check_archive(path: Path):
@@ -154,6 +170,14 @@ def check_archive(path: Path):
             raise ValueError("Artefact ZIP is empty or contains too many entries")
         if any(not safe_member(x.filename) for x in items):
             raise ValueError("Artefact ZIP contains an unsafe path")
+        canonical = [x.filename.replace("\\", "/").casefold() for x in items]
+        if len(set(canonical)) != len(canonical):
+            raise ValueError("Artefact ZIP contains duplicate or case-aliased members")
+        if any(((x.external_attr >> 16) & 0o170000) in
+               (0o120000, 0o020000, 0o060000) for x in items):
+            raise ValueError("Artefact ZIP contains a link or device entry")
+        if any(x.file_size > max(x.compress_size, 1) * 10000 for x in items):
+            raise ValueError("Artefact ZIP contains a suspicious compression ratio")
         if sum(x.file_size for x in items) > MAX_UNCOMPRESSED_BYTES:
             raise ValueError("Artefact ZIP expanded size exceeds limit")
         epubs = [x for x in items if x.filename.rsplit("/", 1)[-1] == "source.epub"]
