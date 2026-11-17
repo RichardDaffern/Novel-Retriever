@@ -52,3 +52,13 @@ source or individual full-book download workflow has been enabled.
 If the author or platform provides an authorised EPUB or chapter export,
 the existing local importer and Storage Controller ZIP packager support it
 without contacting WebNovel or committing story text.
+
+## Verified GitHub runner outcome, 17 November 2026
+
+[Read-only GitHub Actions trial #44113781154](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44113781154) installed the pinned dependencies, passed all **12 offline regression tests**, and then made one ordinary HTTPS GET to the WebNovel book URL. WebNovel responded with **HTTP 403 Forbidden**. The diagnostic reported:
+
+~~~json
+{"outcome":"blocked","requested_samples":3,"samples":[],"reason":"HTTP_403_access_denied","complete_novel_download_verified":false}
+~~~
+
+Because the catalogue request failed, **no chapter requests were sent** from GitHub Actions. The workflow's green result means the *diagnostic handled the denial safely*, not that direct WebNovel downloading works. Do not restart this check repeatedly or work around the access restriction. For this book, only existing local saved-page import remains supported.
