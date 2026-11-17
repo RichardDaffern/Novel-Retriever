@@ -1,10 +1,13 @@
 name: CI
 
 on:
+  # Automated novel-completion updates modify only the two registry files.
+  # They are metadata-only and should not launch three CI jobs per update.
+  # Any change to real code, tests, workflows or documentation still runs CI.
   push:
-  # Download-registry PRs only change metadata. These are created by
-  # github-actions[bot] and can end up with "Action required" before CI runs.
-  # PRs changing any other file still receive the full Linux/Windows/ZIP CI.
+    paths-ignore:
+      - 'DOWNLOADED_NOVELS.md'
+      - 'downloaded_novels.json'
   pull_request:
     paths-ignore:
       - 'DOWNLOADED_NOVELS.md'
