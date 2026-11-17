@@ -18,8 +18,8 @@ def make_piece(root: Path, url: str, key: str, first: int, last: int) -> Path:
     rows = []
     for position in range(first, last + 1):
         filename = f"chapter_{position:04d}.txt"
-        text = (f"Chapter {position}\\n\\n"
-                f"Chapter {position} paragraph with synthetic content for validation.\\n")
+        text = (f"Chapter {position}\n\n"
+                f"Chapter {position} paragraph with synthetic content for validation.\n")
         (book / filename).write_text(text, encoding="utf-8")
         rows.append({"position": position, "chapter_number": position,
                      "title": f"Chapter {position}", "file": filename,
