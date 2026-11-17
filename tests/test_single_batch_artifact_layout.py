@@ -6,7 +6,37 @@ import tempfile
 import unittest
 
 from tools.chunked_download import assemble, chapter_plan
-from tests.test_chunked_download import URL, make_piece
+from hashlib import sha256
+
+URL = "https://example.org/very-long-story.html"
+
+
+def make_piece(root: Path, url: str, key: str, first: int, last: int) -> Path:
+    folder = root / f"chapter-batch-{key}-{first:05d}-{last:05d}"
+    book = folder / "book"
+    book.mkdir(parents=True)
+    rows = []
+    for position in range(first, last + 1):
+        filename = f"chapter_{position:04d}.txt"
+        text = (f"Chapter {position}\\n\\n"
+                f"Chapter {position} paragraph with synthetic content for validation.\\n")
+        (book / filename).write_text(text, encoding="utf-8")
+        rows.append({"position": position, "chapter_number": position,
+                     "title": f"Chapter {position}", "file": filename,
+                     "word_count": len(text.split()),
+                     "sha256": sha256(text.encode()).hexdigest()})
+    (book / "chapters.json").write_text(json.dumps(rows), encoding="utf-8")
+    (book / "metadata.json").write_text(json.dumps({
+        "source_url": url, "chapter_count": len(rows),
+        "title": "A Synthetic Very Long Story",
+        "author": "Synthetic Test Author", "language": "en",
+    }), encoding="utf-8")
+    (book / "source.epub").write_bytes(b"synthetic batch archive fixture")
+    (folder / "part.json").write_text(json.dumps({
+        "version": 1, "url": url, "key": key, "start": first, "end": last,
+    }), encoding="utf-8")
+    return folder
+
 
 
 class SingleBatchLayoutTests(unittest.TestCase):
