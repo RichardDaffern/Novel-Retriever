@@ -107,31 +107,31 @@ one-novel ZIP** for the Taiyou Storage Controller. It never logs in or visits
 WebNovel, uploads anything, or writes story text to Git. Only use pages or files
 you have authorisation to archive.
 
-First run a local \`--dry-run\` as described above. Then run:
+First run a local `--dry-run` as described above. Then run:
 
 ~~~powershell
-python -m tools.webnovel_bulk_import \`
-  --input-dir "C:\Novels\WebNovel-Saved\Platinum-Dragon-Wizard" \`
-  --output-dir "C:\Novels\WebNovel-Imports\Platinum-Dragon-Wizard" \`
-  --book-title "Harry Potter: Platinum Dragon Wizard" \`
-  --author "BlurryPinkSnake" \`
-  --chapter-range 1-2 \`
-  --source-url "https://www.webnovel.com/book/33422293300201205" \`
-  --storage-zip \`
+python -m tools.webnovel_bulk_import `
+  --input-dir "C:\Novels\WebNovel-Saved\Platinum-Dragon-Wizard" `
+  --output-dir "C:\Novels\WebNovel-Imports\Platinum-Dragon-Wizard" `
+  --book-title "Harry Potter: Platinum Dragon Wizard" `
+  --author "BlurryPinkSnake" `
+  --chapter-range 1-2 `
+  --source-url "https://www.webnovel.com/book/33422293300201205" `
+  --storage-zip `
   --confirm-rights
 ~~~
 
-An optional \`--cover "C:\Novels\Original-Cover.jpg"\` includes a locally
+An optional `--cover "C:\Novels\Original-Cover.jpg"` includes a locally
 provided, validated portrait cover in both EPUB and ZIP. **The tool cannot
 verify whether that image truly belongs to the novel.** It never substitutes
 generated cover artwork or makes network requests to fetch images.
 
-If the import was interrupted, repeat with \`--resume\` and the exact same
+If the import was interrupted, repeat with `--resume` and the exact same
 source/output folders. The completed chapter checkpoints are verified before
 archive publication. Keep the saved source pages until packaging completes.
 
-The ZIP is created in a sibling \`Downloaded_Novels/\` directory by default,
-or pass \`--archive-output-dir\` to choose another local directory. Its layout
+The ZIP is created in a sibling `Downloaded_Novels/` directory by default,
+or pass `--archive-output-dir` to choose another local directory. Its layout
 contains:
 
 ~~~text
@@ -152,8 +152,8 @@ uses the WebNovel numeric book ID, so different title slugs cannot silently
 produce different identities. Existing completed ZIPs are never overwritten.
 
 **Storage Controller limit:** archives must not exceed 120 MiB. The importer
-refuses oversized packages. The Storage Controller reads \`source.epub\`,
-\`metadata.json\` and \`chapters.json\` from these ZIPs. Use its normal **read-only
+refuses oversized packages. The Storage Controller reads `source.epub`,
+`metadata.json` and `chapters.json` from these ZIPs. Use its normal **read-only
 preview** to verify duplicates and conflicts; do not apply an upload until you
 have reviewed the plan.
 
