@@ -488,6 +488,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/coiling-dragon.html",
+      "title": "Coiling Dragon",
+      "author": "I Eat Tomatoes",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 808,
+          "run_id": 44104360128,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128",
+          "artifact_id": 14340223119,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340223119",
+          "completed_at_utc": "2026-11-17T15:14:34Z",
+          "expires_at_utc": "2026-11-24T15:14:34Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/crazy-detective.html",
       "title": "Crazy Detective",
       "author": "Kuang Hai Wang Hu",
