@@ -362,6 +362,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/battle-through-the-heavens.html",
+      "title": "Battle Through the Heavens",
+      "author": "Heavenly Silkworm Potato",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1648,
+          "run_id": 44104360128,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128",
+          "artifact_id": 14340373775,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340373775",
+          "completed_at_utc": "2026-11-17T15:18:37Z",
+          "expires_at_utc": "2026-11-24T15:18:37Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/be-happy-with-sports.html",
       "title": "Be Happy With Sports",
       "author": "Goodlion",
