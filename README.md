@@ -42,6 +42,29 @@ python novel_downloader.py --self-test --chapter-range 1-2
 
 The self-test uses invented chapters and makes no novel-site requests.
 
+## Verify a consolidated export without uploading
+
+Run [Export Completed Novels](.github/workflows/export-completed-novels-20261116.yml)
+manually in GitHub Actions. Download the resulting consolidated artefact,
+extract it locally, and inspect `manifest.json`, `SHA256SUMS.txt`, the
+`novels/` folder and any `review-conflicts/` entries. Verify the checksums
+before handing the **individual** ZIPs to the Storage Controller.
+
+Use Storage Controller Windows menu option 12 to preview duplicate/conflict
+handling. Resolve every conflict before approving a separate upload. This
+preview must not modify the private Hugging Face dataset. A successful CI run
+does not prove that live website covers or historical artefacts are available.
+
+## Security and dependency maintenance
+
+Use Python 3.12 and the committed `requirements.lock` for downloads, or
+`requirements-pdf.lock` for PDF conversion. CI checks the locked packages
+with `pip-audit` and scans high-severity Python patterns with `bandit`;
+Dependabot proposes weekly Python and GitHub Actions updates. Review proposed
+updates and regenerate the affected lock file with `pip-compile` before
+merging. Keep tokens in GitHub Actions secrets or local environment variables,
+not in repository files or command-line arguments.
+
 ## Other tools and guides
 
 - [PDF to novel ZIP](docs/pdf-to-novel.md) via [Convert-PDFs.cmd](PDF-to-Novel/Convert-PDFs.cmd)

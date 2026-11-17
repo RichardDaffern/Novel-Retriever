@@ -1,4 +1,5 @@
 import json
+from hashlib import sha256
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import tempfile
@@ -92,10 +93,13 @@ class DownloadRegistryTests(unittest.TestCase):
             (book / "metadata.json").write_text(json.dumps({
                 "title": "Sample", "author": "Anon", "source_url": url, "chapter_count": 2
             }))
-            (book / "chapters.json").write_text(json.dumps([
+            rows = [
                 {"position": 1, "file": "chapter_0001.txt"},
                 {"position": 2, "file": "chapter_0002.txt"},
-            ]))
+            ]
+            for row in rows:
+                row["sha256"] = sha256((book / row["file"]).read_bytes()).hexdigest()
+            (book / "chapters.json").write_text(json.dumps(rows))
             registry = {"version": 1, "novels": []}
             entry = record_download(
                 registry, url, "1-2", base / "downloads",
@@ -105,6 +109,13 @@ class DownloadRegistryTests(unittest.TestCase):
             self.assertEqual(entry["chapter_count"], 2)
             self.assertEqual(entry["range"], "1-2")
             self.assertEqual(registry["novels"][0]["author"], "Anon")
+            first = book / "chapter_0001.txt"
+            original = first.read_bytes()
+            first.write_bytes(b"corrupted chapter")
+            with self.assertRaisesRegex(ValueError, "checksum mismatch"):
+                record_download(registry, url, "1-2", base / "downloads",
+                                "9999", "url", "500", now=NOW)
+            first.write_bytes(original)
             (book / "chapter_0002.txt").unlink()
             with self.assertRaisesRegex(ValueError, "Missing chapter file"):
                 record_download(registry, url, "1-2", base / "downloads",

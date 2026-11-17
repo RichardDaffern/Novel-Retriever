@@ -9,9 +9,11 @@ from __future__ import annotations
 
 from io import BytesIO
 import ipaddress
+import os
 from pathlib import Path
 import posixpath
 import re
+import tempfile
 from urllib.error import HTTPError, URLError
 from urllib.parse import unquote, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -291,7 +293,23 @@ def write_cover(folder: Path, data: bytes, extension: str) -> str:
     folder.mkdir(parents=True, exist_ok=True)
     filename = "cover" + extension
     target = folder / filename
-    target.write_bytes(validated)
+    # Stage beside the destination so a failed write cannot corrupt an
+    # existing cover. Remove other formats only after successful publication.
+    staged = None
+    try:
+        with tempfile.NamedTemporaryFile(prefix=".cover-", suffix=extension,
+                                         dir=folder, delete=False) as handle:
+            staged = Path(handle.name)
+            handle.write(validated)
+            handle.flush()
+            os.fsync(handle.fileno())
+        _, staged_extension = validate_image(staged.read_bytes())
+        if staged_extension != extension:
+            raise CoverError("Staged cover format mismatch")
+        staged.replace(target)
+    finally:
+        if staged is not None:
+            staged.unlink(missing_ok=True)
     # Keep only one canonical cover file in an existing chapter folder.
     for other in ("cover.jpg", "cover.png", "cover.webp"):
         if other != filename:
