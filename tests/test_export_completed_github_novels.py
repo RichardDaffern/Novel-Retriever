@@ -97,9 +97,11 @@ class ExportTests(unittest.TestCase):
             cached = root / "cached.zip"
             cached.write_bytes(b"existing verified cache")
             github = GitHub("test-token")
-            with patch.object(github.api, "get", return_value=Redirect()), \\
-                    patch("tools.export_completed_github_novels.requests.get",
-                          return_value=BrokenStream()):
+            with (
+                patch.object(github.api, "get", return_value=Redirect()),
+                patch("tools.export_completed_github_novels.requests.get",
+                      return_value=BrokenStream()),
+            ):
                 with self.assertRaisesRegex(OSError, "connection interrupted"):
                     github.download({"id": 123}, cached)
             self.assertEqual(cached.read_bytes(), b"existing verified cache")
