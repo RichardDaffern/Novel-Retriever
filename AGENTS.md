@@ -129,9 +129,9 @@ This section is a navigation map, not an exhaustive list of every test.
 | `PDF-to-Novel/PDFs/` | Local PDF inputs; gitignored | Do not commit books |
 | `PDF-to-Novel/Novels/` | Local converted ZIPs and reports; gitignored | Do not commit books |
 | `docs/pdf-to-novel.md` | PDF structure, manual review, limitations | Read before changing PDF heuristics |
-| `docs/research/experimental-sources.md` | Source permissions and research decisions | Read before introducing new sites |
-| `tools/WEBNOVEL_*.md` | WebNovel feasibility and locally saved import instructions | Do not mistake prototypes for production scrapers |
-| `docs/research/freewebnovel-feasibility.md` | Early two-chapter public compatibility notes | The working full-range implementation lives elsewhere |
+| `docs/research/source-feasibility-2026-11-15.md` | Candidate-source permissions and blockers | Read before introducing new sites |
+| `docs/research/webnovel-bulk-import.md` | Offline saved-page import instructions | No live general WebNovel scraping |
+| `docs/research/source-test-evidence-archive.md` | Historical site-probe evidence | Never confuse a past HTTP 200 with present authorisation |
 | `downloaded_novels.json` | Metadata-only history of completed downloads and artefact links | Do not hand-edit concurrent updates without care |
 | `DOWNLOADED_NOVELS.md` | Generated human-readable registry index | Maintain synchronisation with JSON |
 | `curated_novels.json` | Small curated URL/title list for bulk name resolution | Not the downloaded content corpus |
@@ -139,7 +139,7 @@ This section is a navigation map, not an exhaustive list of every test.
 | `requirements.lock`, `requirements-pdf.lock` | Resolved Python 3.12 package versions used in CI | Install from these in routine CI/workflows |
 | `tests/` | Main offline unit tests, Windows packaging smoke, regressions | Extend alongside production changes |
 | `tests_pdf/` | Isolated offline PDF and Windows CMD regression tests | Keep both Windows and Ubuntu passing |
-| `.github/workflows/` | Six Actions workflows listed below | Check permissions, source restrictions and artifact retention |
+| `.github/workflows/` | Active download, recovery, export and CI workflows | Check permissions, source restrictions and artefact retention |
 
 Do not infer that a `tools/` file is automatically part of the regular production flow. Several modules are intentionally isolated feasibility stages.
 
@@ -863,7 +863,7 @@ When time is constrained, prioritise:
 | “New novels have no synopsis/genre” | `tools/epub_source_metadata.py`, `tools/chunked_download.py` | Source OPF metadata and final EPUB/JSON equality |
 | “Old novel ZIP is missing synopsis” | `tools/repair_synopsis.py` | Dry-run first; chapter-manifest preservation |
 | “Download only covers” | `tools/download_covers.py`, `tools/novel_covers.py` | Only images; no novel archive mutation |
-| “Automate downloading from WebNovel, WTR-Lab, Novel Fire etc.” | `docs/research/experimental-sources.md`, the specific feasibility modules | First verify permission; do not bypass site restrictions |
+| “Automate downloading from WebNovel, WTR-Lab, Novel Fire etc.” | `docs/research/source-feasibility-2026-11-15.md`, the specific feasibility modules | First verify permission; do not bypass site restrictions |
 | “CI failed on Windows” | `.github/workflows/ci.yml`, PowerShell scripts, Windows test files | PS5.1 parse/parameter rules, paths with spaces, exit status |
 
 ## 19. Troubleshooting and expected failure semantics
@@ -927,14 +927,14 @@ When changing a subsystem, also consult the relevant living guide:
 
 - `README.md`: general operation and latest end-user instructions.
 - `PDF-to-Novel/README.md` and `docs/pdf-to-novel.md`: one-click Windows conversion, boundary overrides and validation reports.
-- `docs/research/experimental-sources.md`: historical/offline analysis for Novel Fire, Light Novel Pub, WTR-Lab and Royal Road.
+- `docs/research/source-test-evidence-archive.md`: historical observations, rights limitations and safely archived GitHub-runner diagnostics.
 - `docs/research/source-feasibility-2026-11-15.md`: complete, evidence-linked 15 November 2026 candidate matrix with GitHub Actions robots-first reachability runs, blockers and required rights gates. Do not re-enable shut-down/restricted domains or silently add new website options.
-- `docs/research/live-http-200-source-tests-2026-11-15.md`: exact HTTP-200 GitHub-hosted real book/chapter checks for WuxiaClick, LibRead redirects and NovelBin.cc HTTP 429, including catalogue pagination and reported count versus URL suffix. Use indexed reading positions rather than assumed sequential numeric paths.
-- `docs/research/freewebnovel-feasibility.md`: initial FreeWebNovel two-chapter compatibility research.
+- `docs/research/source-test-evidence-archive.md`: archived WuxiaClick, LibRead and NovelBin technical observations; an HTTP 200 is not a full novel download approval.
+- `docs/website-support.md`: current FreeWebNovel and other supported website restrictions.
 - `docs/research/webnovel-browser-probe.md`: ordinary browser feasibility and challenge stop conditions.
 - `docs/research/webnovel-two-chapter-sample.md`: bounded public chapter probe.
-- `docs/research/webnovel-saved-page-import.md`: offline one/two saved HTML/TXT chapter input.
-- `docs/research/webnovel-export.md`: offline user-provided JSON-to-EPUB/TXT feasibility.
+- `tools/webnovel_saved_pages.py`: legacy one/two-chapter parser used by the current bulk importer.
+- `tools/webnovel_export.py`: legacy limited JSON-to-EPUB/TXT converter retained for local compatibility.
 - `docs/research/webnovel-bulk-import.md`: offline, validated/resumable bulk import of saved local chapters.
 - `DOWNLOADED_NOVELS.md`: generated historical registry view.
 
