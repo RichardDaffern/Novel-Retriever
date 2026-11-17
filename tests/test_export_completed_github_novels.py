@@ -4,10 +4,11 @@ import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 from zipfile import ZipFile, ZIP_STORED
 
 from tools.export_completed_github_novels import (
-    check_archive, package_novel, safe_member, safe_title, source_key,
+    GitHub, check_archive, package_novel, safe_member, safe_title, source_key,
 )
 
 
@@ -39,7 +40,10 @@ class ExportTests(unittest.TestCase):
 
     def test_safe_names_and_paths(self):
         self.assertEqual(safe_title("One: A/Book?"), "One_ A_Book")
-        for name in ("/private.txt", "../private.txt", "book/../../hidden"):
+        for name in ("/private.txt", "../private.txt", "book/../../hidden",
+                     "book/./metadata.json", "book//metadata.json",
+                     "C:/metadata.json", "book/name:stream",
+                     "book/name. ", "book/\\\\metadata.json"):
             self.assertFalse(safe_member(name))
 
     def test_novel_export_accepts_nested_complete_artifact(self):
@@ -59,6 +63,47 @@ class ExportTests(unittest.TestCase):
                 self.assertEqual(len(names), len(set(names)), "Duplicate ZIP entries")
                 self.assertEqual(sum(name.endswith("/source.epub") for name in names), 1)
                 self.assertEqual(sum(name.endswith("/metadata.json") for name in names), 1)
+
+    def test_reject_case_aliased_members(self):
+        with TemporaryDirectory() as directory:
+            source = Path(directory) / "aliased.zip"
+            sample_archive(source)
+            with ZipFile(source, "a") as archive:
+                archive.writestr("A-TEST-BOOK/METADATA.JSON", "{}")
+            with self.assertRaisesRegex(ValueError, "duplicate or case-aliased"):
+                check_archive(source)
+
+    def test_failed_artifact_download_preserves_existing_cache(self):
+        class BrokenStream:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_):
+                return False
+
+            def raise_for_status(self):
+                pass
+
+            def iter_content(self, chunk_size):
+                yield b"partial response"
+                raise OSError("connection interrupted")
+
+        class Redirect:
+            status_code = 302
+            headers = {"Location": "https://cdn.example.org/archive.zip"}
+
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            cached = root / "cached.zip"
+            cached.write_bytes(b"existing verified cache")
+            github = GitHub("test-token")
+            with patch.object(github.api, "get", return_value=Redirect()), \\
+                    patch("tools.export_completed_github_novels.requests.get",
+                          return_value=BrokenStream()):
+                with self.assertRaisesRegex(OSError, "connection interrupted"):
+                    github.download({"id": 123}, cached)
+            self.assertEqual(cached.read_bytes(), b"existing verified cache")
+            self.assertEqual(sorted(p.name for p in root.iterdir()), ["cached.zip"])
 
     def test_reject_incomplete_novel(self):
         with TemporaryDirectory() as d:
