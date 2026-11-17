@@ -103,7 +103,7 @@ jobs:
       - name: Check synthetic 20, 50 and 100-novel bulk planner load
         run: python -m tools.bulk_download_stress --json-output synthetic_bulk_stress.json
       - name: Publish synthetic bulk stress results
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: synthetic-bulk-stress-results
           path: synthetic_bulk_stress.json
@@ -112,7 +112,7 @@ jobs:
 
       - name: Upload two-chapter synthetic test output
         if: success()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: two-chapter-smoke-test
           path: smoke/
