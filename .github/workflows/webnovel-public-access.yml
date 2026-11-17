@@ -1,0 +1,36 @@
+name: WebNovel - Public Access Diagnostic
+
+on:
+  # A READ-ONLY feasibility check, not a WebNovel download workflow.
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - tools/webnovel_access_check.py
+      - tests/test_webnovel_access_check.py
+      - .github/workflows/webnovel-public-access.yml
+
+permissions:
+  contents: read
+
+jobs:
+  check-public-samples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install locked dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Run offline parser safety checks
+        run: python -m unittest tests.test_webnovel_access_check -v
+      - name: Check public readability of selected WebNovel samples
+        run: |
+          echo "READ-ONLY: no novel text, saved HTML, or EPUB will be stored or uploaded."
+          python -m tools.webnovel_access_check \
+            --book-url 'https://www.webnovel.com/book/33422293300201205' \
+            --sample '1=https://www.webnovel.com/book/33422293300201205/89735050081387238' \
+            --sample '400=https://www.webnovel.com/book/33422293300201205/94052948610440202' \
+            --sample '844=https://www.webnovel.com/book/33422293300201205/98111515671985466'
+          echo "Read the outcome field above. A green job does not indicate readable chapters."
