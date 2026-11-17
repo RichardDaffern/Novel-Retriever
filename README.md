@@ -28,7 +28,7 @@ Install [GitHub CLI](https://cli.github.com/) and run **[Download-All-Novels.cmd
 
 Every completed download now attempts to include a genuine cover and records its provenance. For older individual ZIPs and a consolidated export, use the [offline deduplication and cover guide](docs/cover-and-deduplication.md). Conflicting editions are retained for review, not silently replaced.
 
-The [Taiyou Storage Controller](https://github.com/AdityaSreevatsaK/Taiyou-Novels-Storage-Controller) now supports an **opt-in, duplicate-aware Smart Bulk Upload** (Windows menu option 12, or `--dedupe-local`). A conflict blocks all uploads. Keep originals and preview changes before applying. See the [integration guide](docs/storage-controller-integration-handover.md) and the [rename record](docs/repository-rename-plan.md).
+The [Taiyou Storage Controller](https://github.com/AdityaSreevatsaK/Taiyou-Novels-Storage-Controller) now supports an **opt-in, duplicate-aware Smart Bulk Upload** (Windows menu option 12, or `--dedupe-local`). A conflict blocks all uploads. Keep originals and preview changes before applying. See the [safe upload and deduplication guide](docs/cover-and-deduplication.md). The repository is now [Novel-Retriever](https://github.com/RichardDaffern/Novel-Retriever); existing clones can update their remote with `git remote set-url origin https://github.com/RichardDaffern/Novel-Retriever.git`.
 
 ## Run locally
 
