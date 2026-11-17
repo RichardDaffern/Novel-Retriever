@@ -98,6 +98,17 @@ class RepositoryNamingTests(unittest.TestCase):
         self.assertNotIn("RichardDaffern/Novel_Library",
                          (ROOT / "README.md").read_text(encoding="utf-8"))
 
+    def test_ci_does_not_run_on_generated_registry_only_changes(self):
+        workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
+        triggers = workflow.split("\non:\n", 1)[1].split("\nconcurrency:", 1)[0]
+        for event in ("push", "pull_request"):
+            pattern = rf"(?m)^  {event}:\n    paths-ignore:\n      - 'DOWNLOADED_NOVELS.md'\n      - 'downloaded_novels.json'"
+            self.assertRegex(triggers, pattern)
+        # The default CI checks still cover ordinary source or workflow pushes.
+        self.assertIn("jobs:", workflow)
+        self.assertIn("windows-smoke:", workflow)
+        self.assertIn("zip-archive-smoke:", workflow)
+
     def test_no_obsolete_internal_module_references(self):
         old_names = (
             "fff_progress_runner",
