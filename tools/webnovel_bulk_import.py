@@ -289,20 +289,36 @@ def main(argv=None):
     parser.add_argument("--confirm-rights", action="store_true")
     parser.add_argument("--resume", action="store_true", help="Reuse validated chapters from interrupted import")
     parser.add_argument("--dry-run", action="store_true", help="Validate names and ordering without creating files")
+    parser.add_argument("--storage-zip", action="store_true", help="Package the imported chapters as a Storage Controller ZIP")
+    parser.add_argument("--source-url", help="Canonical WebNovel book URL for ZIP provenance; no network access")
+    parser.add_argument("--cover", type=Path, help="Optional user-provided portrait cover for the ZIP and EPUB")
+    parser.add_argument("--archive-output-dir", type=Path, help="Local folder for completed Storage Controller ZIPs")
     args = parser.parse_args(argv)
     try:
+        if args.storage_zip and not args.source_url:
+            raise BulkImportError("--source-url is required with --storage-zip")
+        if (args.cover or args.archive_output_dir) and not args.storage_zip:
+            raise BulkImportError("--cover and --archive-output-dir require --storage-zip")
         result = bulk_import(
             args.input_dir, args.output_dir, args.book_title, args.author,
             chapter_range=args.chapter_range, confirm_rights=args.confirm_rights,
             resume=args.resume, dry_run=args.dry_run,
         )
+        archive_path = None
+        if args.storage_zip and not args.dry_run:
+            from tools.webnovel_archive import archive_saved_pages
+            archive_path = archive_saved_pages(
+                args.output_dir, args.source_url, output_dir=args.archive_output_dir,
+                cover_path=args.cover, confirm_rights=args.confirm_rights,
+            )
         print(json.dumps(result if args.dry_run else {
             "title": result["title"], "author": result["author"],
             "chapter_count": result["chapter_count"],
             "first_chapter": result["chapters"][0]["position"],
             "last_chapter": result["chapters"][-1]["position"],
             "output_dir": str(args.output_dir),
-            "epub": "book.epub", "text": "book.txt"
+            "epub": "book.epub", "text": "book.txt",
+            "storage_zip": str(archive_path) if archive_path else None,
         }, indent=2, ensure_ascii=False))
         return 0
     except (BulkImportError, OSError, ValueError) as exc:
