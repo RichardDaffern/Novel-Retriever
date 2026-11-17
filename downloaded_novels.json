@@ -992,6 +992,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/golden-time.html",
+      "title": "Golden Time",
+      "author": "JungYong",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 155,
+          "run_id": 44104360128,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128",
+          "artifact_id": 14361818541,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14361818541",
+          "completed_at_utc": "2026-11-17T19:33:04Z",
+          "expires_at_utc": "2026-11-24T19:33:04Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/great-demon-king.html",
       "title": "Great Demon King",
       "author": "Ni Cang Tian",
