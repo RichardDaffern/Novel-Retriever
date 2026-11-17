@@ -212,6 +212,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--registry", default="downloaded_novels.json")
     parser.add_argument("--output", default="export")
+    parser.add_argument("--only-urls-file", type=Path,
+                        help="Optional exact approved source-URL allowlist; export only these books")
     args = parser.parse_args()
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if not token:
@@ -226,6 +228,22 @@ def main():
     cache.mkdir(parents=True, exist_ok=True)
 
     indexed, run_ids = index_registry(Path(args.registry))
+    if args.only_urls_file:
+        requested = [row.strip() for row in args.only_urls_file.read_text(encoding="utf-8").splitlines()
+                     if row.strip() and not row.lstrip().startswith("#")]
+        if not requested or len(requested) != len(set(requested)):
+            raise SystemExit("Allowlist must contain unique non-empty source URLs")
+        unknown = set(requested) - {row["source_url"] for row in indexed.values()}
+        if unknown:
+            raise SystemExit("Allowlist contains unknown registry URLs: " + ", ".join(sorted(unknown)))
+        selected = set(requested)
+        indexed = {key: row for key, row in indexed.items() if row["source_url"] in selected}
+        records = json.loads(Path(args.registry).read_text(encoding="utf-8"))["novels"]
+        run_ids = sorted({int(download["run_id"]) for book in records
+                          if book.get("url") in selected for download in book.get("downloads", [])
+                          if download.get("status") == "complete" and download.get("run_id")})
+        if not run_ids or len(indexed) != len(requested):
+            raise SystemExit("No completed registry records for the exact requested books")
     print(f"Registry: {len(indexed)} unique books; checking {len(run_ids)} historical/current runs",
           flush=True)
     github = GitHub(token)
@@ -241,7 +259,9 @@ def main():
                     failures.append({"run": run_id, "reason": "Artefact run-name mismatch",
                                      "artifact_id": item["id"]})
                     continue
-                candidates.setdefault(match.group(2), []).append(item)
+                key = match.group(2)
+                if key in indexed:
+                    candidates.setdefault(key, []).append(item)
             scanned += len(artifacts)
             print(f"Scanned {run_id}: {len(artifacts)} live complete-book artefacts", flush=True)
         except Exception as exc:
@@ -364,6 +384,9 @@ def main():
         "The six original campaigns may continue running after this snapshot.\n",
         encoding="utf-8",
     )
+    if args.only_urls_file and dedupe["unique"] != len(indexed):
+        raise SystemExit(f"Incomplete allowlisted export: {dedupe['unique']}/{len(indexed)} books; "
+                         f"review manifest.json and retry. Partial ZIPs are preserved.")
     print(f"EXPORT_RESULT {dedupe['unique']} unique books, {dedupe['duplicates']} duplicates, "
           f"{dedupe['conflicts']} conflicts; {len(missing_registry)} registry entries "
           f"unavailable; {len(failures)} warnings", flush=True)
