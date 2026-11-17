@@ -8,6 +8,7 @@ count as an available download, even though its history remains recorded.
 from __future__ import annotations
 
 import argparse
+import hashlib
 from datetime import datetime, timedelta, timezone
 import json
 import os
@@ -187,12 +188,32 @@ def record_download(registry: dict, url: str, chapter_range: str, downloads_dir:
         expected = list(range(first, last + 1))
         if [item.get("position") for item in rows] != expected:
             raise ValueError("Chapter positions do not cover the requested inclusive range")
+    positions = []
     for item in rows:
+        if not isinstance(item, dict) or type(item.get("position")) is not int:
+            raise ValueError("Invalid chapter position in manifest")
+        positions.append(item["position"])
         filename = item.get("file", "")
-        if not filename or Path(filename).name != filename:
+        if not isinstance(filename, str) or not re.fullmatch(
+                r"chapter_[A-Za-z0-9_-]+\\.txt", filename):
             raise ValueError("Invalid chapter filename in manifest")
-        if not (metadata_path.parent / filename).is_file():
+        chapter = metadata_path.parent / filename
+        if not chapter.is_file():
             raise ValueError(f"Missing chapter file {filename}")
+        expected_hash = item.get("sha256")
+        if expected_hash is not None:
+            if not isinstance(expected_hash, str) or not re.fullmatch(
+                    r"[a-fA-F0-9]{64}", expected_hash):
+                raise ValueError(f"Invalid chapter checksum in manifest: {filename}")
+            checksum = hashlib.sha256()
+            with chapter.open("rb") as source:
+                for chunk in iter(lambda: source.read(1024 * 1024), b""):
+                    checksum.update(chunk)
+            if checksum.hexdigest() != expected_hash.lower():
+                raise ValueError(f"Chapter checksum mismatch: {filename}")
+    if (any(position < 1 for position in positions) or
+            positions != sorted(set(positions))):
+        raise ValueError("Duplicate or unordered chapter positions")
     if not (metadata_path.parent / "source.epub").is_file():
         raise ValueError("Missing source EPUB")
     now = now or datetime.now(timezone.utc)
