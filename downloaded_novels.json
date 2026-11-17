@@ -2479,6 +2479,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-book-eating-magician.html",
+      "title": "The Book Eating Magician",
+      "author": "McEnroe",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 400,
+          "run_id": 44104360128,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128",
+          "artifact_id": 14347011139,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14347011139",
+          "completed_at_utc": "2026-11-17T16:15:28Z",
+          "expires_at_utc": "2026-11-24T16:15:28Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-great-thief.html",
       "title": "The Great Thief",
       "author": "大盗贼",
