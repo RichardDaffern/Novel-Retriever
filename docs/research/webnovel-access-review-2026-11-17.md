@@ -24,7 +24,7 @@
   Generic WebNovel Q&A answers about unrelated e-reader applications are not
   proof of a native export feature. Mobile-app encrypted/offline files were not
   inspected or decrypted. A device-level app test remains unverified.
-- No new chapter-text request or mass-download experiment was performed.
+- No automated chapter-text request through Novel Retriever or mass-download experiment was performed.
   In particular, a public page appearing in a search engine cannot verify that
   its returned HTML contains a complete, correctly ordered chapter from the
   user's own session. No API, cookie or undocumented endpoint was probed.
@@ -39,7 +39,7 @@
 | WebNovel mobile app | In-app reading/offline support does not imply export permission; native export unverified |
 | Full website downloading | Not enabled; rights and operational reliability not demonstrated |
 | Local saved HTML/TXT | Existing resumable 10,000-chapter importer retained and expanded with a separately verifiable ZIP path |
-| Covers | Optional genuine local image only, with format/dimensions validated and provenance clearly flagged as user supplied |
+| Covers | Optional user-supplied image only, with format/dimensions validated; authenticity not independently verified |
 | GitHub Actions | No misleading remote download workflow or public chapter artefact upload |
 | Private Storage Controller | ZIP layout matches its actual original.zip reader's expected source.epub, metadata.json and chapters.json, with chapter hashes and cover |
 
@@ -48,8 +48,8 @@
 1. Obtain authorised local HTML/TXT pages through a normal supported method;
    WebNovel's offline app cache is not an interchangeable file export.
 2. Preview and import consecutive saved chapters with
-   \`python -m tools.webnovel_bulk_import --dry-run\`, then import normally.
-3. Use \`--storage-zip --source-url https://www.webnovel.com/book/<id>\` to build
+   `python -m tools.webnovel_bulk_import --dry-run`, then import normally.
+3. Use `--storage-zip --source-url https://www.webnovel.com/book/<id>` to build
    a validated one-book ZIP in a local Downloaded_Novels directory.
 4. Run the Storage Controller's **read-only preview**. Do not automatically
    upload to Hugging Face or commit the resulting copyrighted content to Git.
