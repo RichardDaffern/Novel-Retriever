@@ -5,6 +5,8 @@ Download and organise web novels you are authorised to archive. The toolkit buil
 
 **WebNovel:** Authorised locally saved HTML/TXT chapters can be converted to EPUB and an integrity-checked Storage Controller ZIP with `python -m tools.webnovel_bulk_import --storage-zip --source-url <book-URL> --confirm-rights`. This is **not** a WebNovel website downloader or GitHub Action. [Instructions](docs/research/webnovel-bulk-import.md).
 
+**WebNovel local browser check (Windows):** Run [`WebNovel-Check-Local-Browser.cmd`](WebNovel-Check-Local-Browser.cmd) to test three selected public chapters for *Harry Potter: Platinum Dragon Wizard*. This is a **read-only** Chromium check, not a download: it never saves chapter text or uses your existing Chrome account. Install optional Playwright separately as explained in the [browser trial guide](docs/research/webnovel-access-review-2026-11-17.md).
+
 ## Download novels
 
 **[Library - Bulk Download](https://github.com/RichardDaffern/Novel-Retriever/actions/workflows/library-bulk-download.yml)** is the shared downloader for **all supported websites**. Paste one or more novel URLs into **Novel links** and select **Run workflow**. You can mix websites in the same request; the source is detected automatically. One link works too.

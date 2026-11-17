@@ -131,3 +131,38 @@ without contacting WebNovel or committing story text.
 ~~~
 
 Because the catalogue request failed, **no chapter requests were sent** from GitHub Actions. The workflow's green result means the *diagnostic handled the denial safely*, not that direct WebNovel downloading works. Do not restart this check repeatedly or work around the access restriction. For this book, only existing local saved-page import remains supported.
+
+
+## Windows local-browser feasibility check (read-only)
+
+Run [`WebNovel-Check-Local-Browser.cmd`](../../WebNovel-Check-Local-Browser.cmd)
+**on your own Windows computer** using the current Novel-Retriever checkout.
+This is not a GitHub Actions workflow and was not run on the user's Windows PC.
+
+Install optional browser dependencies once from the repository root:
+
+```powershell
+py -m pip install playwright
+py -m playwright install chromium
+```
+
+The launcher opens unmodified, visible Chromium with a fresh temporary context.
+It checks the book listing and three explicitly validated public chapters
+(1, 400 and 844), and returns only public metadata, per-chapter word/character
+counts, and an explicit `outcome` code. It requests no more than four pages;
+any HTTP 403/429, challenge, redirect, locked or unreadable page stops the
+trial immediately. No chapters, HTML, cookies, screenshots or ZIPs are saved;
+no existing browser profile, login, proxies, hidden APIs, CAPTCHA-solving
+or retry loops are used.
+
+The tool can also be invoked for another book using the command:
+
+```powershell
+py -m tools.webnovel_local_browser_diagnostic --book-url "https://www.webnovel.com/book/33422293300201205" --sample "1=https://www.webnovel.com/book/33422293300201205/89735050081387238"
+```
+
+`sampled_public_readable` means only that the selected pages were readable
+in this temporary browser on that computer. It does **not** verify that 884
+chapters are free, that an automatic downloader works, or that reproduction
+of any chapter is permitted. The website's terms govern use of materials.
+If any access restriction occurs, stop: do not attempt to bypass it.
