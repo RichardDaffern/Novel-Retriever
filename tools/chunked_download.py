@@ -354,15 +354,41 @@ def assembled_title(title: str, first_chunk: dict) -> str:
     return (suffix.sub("", title.strip()) or title).strip()
 
 
+def _batch_folder(plan: dict, chunks_dir: Path, piece: dict) -> Path:
+    """Support both GitHub download-artifact extraction layouts.
+
+    With a single matching artifact, download-artifact may extract its contents
+    straight into chunks_dir rather than an artifact-named child directory.
+    The fallback is allowed ONLY for exactly one expected batch; validate_piece
+    still checks the source identity, range, EPUB, chapters and hashes.
+    """
+    key = plan["key"]
+    name = f"chapter-batch-{key}-{piece['start']:05d}-{piece['end']:05d}"
+    named = chunks_dir / name
+    flat_manifest = chunks_dir / "part.json"
+    named_manifest = named / "part.json"
+    if flat_manifest.is_file():
+        if len(plan["pieces"]) != 1:
+            raise ValueError("Flat chapter artifact is unsafe for multi-batch assembly")
+        if named_manifest.is_file():
+            raise ValueError("Ambiguous flat and named chapter batch artifacts")
+        return chunks_dir
+    return named
+
+
 def assemble(plan: dict, chunks_dir: Path, output_dir: Path) -> Path:
     key, url = plan["key"], plan["url"]
     if key != identity(url):
         raise ValueError("Invalid assembled-novel identity")
+    # Resolve once so source metadata and covers use the same verified paths.
+    folders = {
+        (piece["start"], piece["end"]): _batch_folder(plan, chunks_dir, piece)
+        for piece in plan["pieces"]
+    }
     all_rows: list[dict] = []
     titles: list[dict] = []
     for piece in plan["pieces"]:
-        artifact_name = f"chapter-batch-{key}-{piece['start']:05d}-{piece['end']:05d}"
-        chunk = chunks_dir / artifact_name
+        chunk = folders[piece["start"], piece["end"]]
         validated = validate_piece(chunk, url, key, piece["start"], piece["end"])
         titles.append(validated["metadata"])
         for row in validated["chapters"]:
@@ -402,9 +428,7 @@ def assemble(plan: dict, chunks_dir: Path, output_dir: Path) -> Path:
     for piece in plan["pieces"]:
         if genres and description and status:
             break
-        batch = chunks_dir / (
-            f"chapter-batch-{key}-{piece['start']:05d}-{piece['end']:05d}"
-        ) / "book" / "source.epub"
+        batch = folders[piece["start"], piece["end"]] / "book" / "source.epub"
         try:
             source_metadata = read_source_metadata(batch)
         except (OSError, ValueError, zipfile.BadZipFile, KeyError) as exc:
@@ -425,9 +449,7 @@ def assemble(plan: dict, chunks_dir: Path, output_dir: Path) -> Path:
         )
     cover_name = ""
     for piece in plan["pieces"]:
-        folder = chunks_dir / (
-            f"chapter-batch-{key}-{piece['start']:05d}-{piece['end']:05d}"
-        ) / "book"
+        folder = folders[piece["start"], piece["end"]] / "book"
         candidate_name = next((
             meta.get("cover_image") for meta in titles
             if meta.get("cover_image") in ("cover.jpg", "cover.png")
