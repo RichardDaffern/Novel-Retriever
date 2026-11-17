@@ -295,23 +295,21 @@ def write_cover(folder: Path, data: bytes, extension: str) -> str:
     target = folder / filename
     # Stage beside the destination so a failed write cannot corrupt an
     # existing cover. Remove other formats only after successful publication.
-    with tempfile.NamedTemporaryFile(prefix=".cover-", suffix=extension,
-                                     dir=folder, delete=False) as handle:
-        staged = Path(handle.name)
-        try:
+    staged = None
+    try:
+        with tempfile.NamedTemporaryFile(prefix=".cover-", suffix=extension,
+                                         dir=folder, delete=False) as handle:
+            staged = Path(handle.name)
             handle.write(validated)
             handle.flush()
             os.fsync(handle.fileno())
-        except BaseException:
-            staged.unlink(missing_ok=True)
-            raise
-    try:
         _, staged_extension = validate_image(staged.read_bytes())
         if staged_extension != extension:
             raise CoverError("Staged cover format mismatch")
         staged.replace(target)
     finally:
-        staged.unlink(missing_ok=True)
+        if staged is not None:
+            staged.unlink(missing_ok=True)
     # Keep only one canonical cover file in an existing chapter folder.
     for other in ("cover.jpg", "cover.png", "cover.webp"):
         if other != filename:
