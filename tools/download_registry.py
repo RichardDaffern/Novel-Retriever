@@ -195,7 +195,7 @@ def record_download(registry: dict, url: str, chapter_range: str, downloads_dir:
         positions.append(item["position"])
         filename = item.get("file", "")
         if not isinstance(filename, str) or not re.fullmatch(
-                r"chapter_[A-Za-z0-9_-]+\\.txt", filename):
+                r"chapter_[A-Za-z0-9_-]+\.txt", filename):
             raise ValueError("Invalid chapter filename in manifest")
         chapter = metadata_path.parent / filename
         if not chapter.is_file():
