@@ -13,7 +13,7 @@ Back to the [README](../README.md) · [Download guide](download-guide.md) · [So
 | **ReadNovelFull** (`readnovelfull.com`) | **Implemented, live full-book test pending** | Exact AJAX chapter catalogue; verified single/range/bulk EPUB downloads | [ReadNovelFull workflow](../.github/workflows/readnovelfull-download.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
 | **WuxiaClick** (`wuxia.click`) | **Bounded downloads only (max 20 chapters per run)** | Paginated exact TOC, rights gate, verified EPUB/TXT ranges; full-book archiving disabled | [WuxiaClick workflow](../.github/workflows/wuxiaclick-download.yml), [bulk workflow](../.github/workflows/library-bulk-download.yml) |
 | **Scribble Hub** (`scribblehub.com`) | **One verified cross-post via GitHub Actions**, not general Scribble Hub website access | [Scribble Hub - Download](../.github/workflows/scribblehub-download.yml) or the [unified bulk workflow](../.github/workflows/library-bulk-download.yml), for registered same-author cross-posts only; authorised offline EPUB import | [Cross-post details](#scribble-hub) |
-| **WebNovel** (`webnovel.com`) | **No** | Book metadata probe, at most two public test chapters where accessible; offline saved-HTML/TXT/JSON imports | [WebNovel probes and import tools](#webnovel) |
+| **WebNovel** (`webnovel.com`) | **Saved pages only, no website downloader** | Authorised offline HTML/TXT range import, resumable EPUB and validated Storage Controller ZIP; no automatic locked/public chapter scraping | [WebNovel saved-page instructions](research/webnovel-bulk-import.md) |
 | **Royal Road** (`royalroad.com`) | **No enabled website-download workflow** | Convert an already-authorised local EPUB; offline saved-page feasibility | [Local EPUB importer](../tools/import_local_epub.py) |
 | **WTR-Lab** (`wtr-lab.com`) | **No** | Convert an already-authorised local EPUB; offline saved-page feasibility | [Local EPUB importer](../tools/import_local_epub.py) |
 | **Novel Fire** (`novelfire.net`) | **No** | Offline analysis of saved HTML (book, index and up to two chapters) | [Feasibility tool](../tools/source_feasibility.py) |
@@ -154,6 +154,8 @@ These sites have **offline feasibility analysis only**. [`tools/source_feasibili
 The consolidated source research, limitations and acceptance requirements are in the [source feasibility assessment](research/source-feasibility-2026-11-15.md).
 
 ### WebNovel
+
+**17 November 2026 update:** The local saved-chapter importer can now produce a verified Storage Controller ZIP through `--storage-zip --source-url <WebNovel-book-URL>`, with optional validated local cover. It remains offline-only; GitHub Actions cannot ingest local saved pages without explicitly uploading copyrighted content. See [current access review](research/webnovel-access-review-2026-11-17.md) and [usage](research/webnovel-bulk-import.md).
 
 **WebNovel is not a full-book website-download source in this repository.** Its public book metadata pages may expose titles, authors and chapter counts, but this does not permit automated chapter archiving. Paid/locked chapters, login sessions and access-control bypasses are outside the supported scope.
 
