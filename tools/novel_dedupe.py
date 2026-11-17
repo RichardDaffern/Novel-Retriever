@@ -31,6 +31,15 @@ def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def file_digest(path: Path) -> str:
+    """Hash a ZIP without loading up to 950 MiB into memory."""
+    checksum = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            checksum.update(chunk)
+    return checksum.hexdigest()
+
+
 def identity_url(value: str) -> str:
     try:
         p = urlsplit(value.strip())
@@ -56,9 +65,18 @@ def _safe_members(archive: ZipFile):
         raise ValueError("Unsafe archive size or entry count")
     paths = []
     for item in members:
-        p = PurePosixPath(item.filename.replace("\\", "/"))
-        if (p.is_absolute() or ".." in p.parts or "." in p.parts or
-                ((item.external_attr >> 16) & 0o170000) == 0o120000):
+        raw = item.filename.replace("\\", "/")
+        components = raw.split("/")
+        p = PurePosixPath(raw)
+        # PurePosixPath silently normalises '.' and repeated separators, so
+        # inspect the original components before comparing canonical names.
+        if (p.is_absolute() or
+                any(not part or part in (".", "..") or ":" in part or
+                    part.rstrip(" .") != part or
+                    any(ord(char) < 32 for char in part)
+                    for part in components) or
+                ((item.external_attr >> 16) & 0o170000) in
+                (0o120000, 0o020000, 0o060000)):
             raise ValueError("Unsafe ZIP member")
         paths.append(p)
     if len({str(path).casefold() for path in paths}) != len(paths):
@@ -144,7 +162,7 @@ def inspect(path: Path, *, original_artifact: str = "") -> dict:
             "path": str(path), "title": title, "author": author, "source_url": book_url,
             "identity": book_id, "chapter_count": len(rows), "positions": order,
             "chapter_hashes": chapter_hashes, "chapter_sha256": content_hash,
-            "epub_sha256": digest(epub), "zip_sha256": digest(path.read_bytes()),
+            "epub_sha256": digest(epub), "zip_sha256": file_digest(path),
             "cover_status": "available" if has_cover else "missing",
             "created_at_utc": str(meta.get("created_at_utc") or ""),
             "original_github_artifact": original_artifact,
@@ -178,12 +196,28 @@ def _rank(row: dict):
 
 
 def _copy_if_needed(src: Path, dest: Path) -> bool:
+    """Publish only complete, checksum-verified copies; preserve existing ZIPs."""
+    source_hash = file_digest(src)
     if dest.is_file():
-        if digest(dest.read_bytes()) == digest(src.read_bytes()):
+        if file_digest(dest) == source_hash:
             return False
         raise ValueError(f"Refusing to replace existing different output: {dest}")
-    shutil.copy2(src, dest)
-    return True
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(prefix=".novel-", suffix=".zip",
+                                     dir=dest.parent, delete=False) as handle:
+        staged = Path(handle.name)
+    try:
+        shutil.copy2(src, staged)
+        if file_digest(staged) != source_hash:
+            raise OSError("Staged ZIP differs from verified source")
+        if dest.exists():
+            if dest.is_file() and file_digest(dest) == source_hash:
+                return False
+            raise ValueError(f"Refusing to replace existing different output: {dest}")
+        staged.replace(dest)
+        return True
+    finally:
+        staged.unlink(missing_ok=True)
 
 
 def consolidate(paths: list[Path], output: Path, *, provenance: dict | None = None) -> dict:
