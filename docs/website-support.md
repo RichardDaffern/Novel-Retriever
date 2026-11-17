@@ -155,7 +155,7 @@ The consolidated source research, limitations and acceptance requirements are in
 
 ### WebNovel
 
-**Selected free-access trial (17 November 2026):** The publicly visible catalogue for *Harry Potter: Platinum Dragon Wizard* (884 chapters) and sampled Chapters 1, 2, 400, 844 and 884 were inspected. The samples appeared freely readable, but complete-book free access and automated archiving permission remain unverified. [Evidence and optional GitHub runner diagnostic](research/webnovel-free-access-trial-33422293300201205.md).
+**Selected free-access trial (17 November 2026):** The publicly visible catalogue for *Harry Potter: Platinum Dragon Wizard* (884 chapters) and sampled Chapters 1, 2, 400, 844 and 884 were inspected. The samples appeared freely readable, but complete-book free access and automated archiving permission remain unverified. [Evidence and optional GitHub runner diagnostic](research/webnovel-access-review-2026-11-17.md).
 
 **17 November 2026 update:** The local saved-chapter importer can now produce a verified Storage Controller ZIP through `--storage-zip --source-url <WebNovel-book-URL>`, with optional validated local cover. It remains offline-only; GitHub Actions cannot ingest local saved pages without explicitly uploading copyrighted content. See [current access review](research/webnovel-access-review-2026-11-17.md) and [usage](research/webnovel-bulk-import.md).
 
