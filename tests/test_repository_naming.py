@@ -67,7 +67,18 @@ class RepositoryNamingTests(unittest.TestCase):
         for name in core:
             self.assertTrue((ROOT / "docs" / name).is_file(), name)
         research = ROOT / "docs" / "research"
-        self.assertGreaterEqual(len(list(research.glob("*.md"))), 10)
+        # Historical investigations are consolidated rather than retained
+        # as many outdated standalone guides.
+        expected = ("source-feasibility-2026-11-15.md",
+                    "source-test-evidence-archive.md",
+                    "webnovel-browser-probe.md",
+                    "webnovel-bulk-import.md",
+                    "webnovel-two-chapter-sample.md")
+        for name in expected:
+            with self.subTest(name=name):
+                self.assertTrue((research / name).is_file(), name)
+        self.assertLessEqual(len(list(research.glob("*.md"))), 6,
+                             "Keep source research consolidated and navigable")
         self.assertFalse(list((ROOT / "tools").glob("*.md")),
                          "Research notes must live in docs/research, not tools/")
 

@@ -2,7 +2,7 @@
 
 > **Maintained against the Novel-Retriever implementation, 15 November 2026.** This page describes **which sources this repository can download from**, versus which it can only investigate or import from pre-existing files. Website access and authorisation can change; the presence of code is not a guarantee that a particular live novel downloads successfully.
 
-Back to the [README](../README.md) · [Detailed download guide](download-guide.md) · [Experimental source research](research/experimental-sources.md) · [New-source feasibility](research/source-feasibility-2026-11-15.md) · [Live HTTP-200 tests](research/live-http-200-source-tests-2026-11-15.md)
+Back to the [README](../README.md) · [Download guide](download-guide.md) · [Source feasibility](research/source-feasibility-2026-11-15.md) · [Archived test evidence](research/source-test-evidence-archive.md)
 
 ## At a glance
 
@@ -125,7 +125,7 @@ python -m tools.scribblehub_crosspost_downloader "https://www.scribblehub.com/se
 - **Scope:** this is a **specific author-verified cross-post**, not general Scribble Hub coverage. A FicHub cache may be temporarily unavailable or stale, and FicHub's API is explicitly unstable; a valid EPUB can only be claimed once the generated archive actually passes the full downloader's checks. Other Scribble Hub works require their own verifiable author cross-post and explicit registration in [scribblehub_verified_crossposts.json](../tools/scribblehub_verified_crossposts.json), or an EPUB you independently hold with permission.
 - **Decision:** retain direct Scribble Hub **website downloading** as feasibility only. Do **not** enable arbitrary Scribble Hub series in the unified bulk downloader, launch chapter downloads, or create a production workflow on the strength of an adapter being present. A future implementation needs verified permitted access, reliable metadata and chapter discovery, two authorised chapter fixtures, and all normal archive-integrity tests. If the site refuses automated access, stop instead of attempting to evade protections.
 
-For development background see [experimental source research](research/experimental-sources.md#scribble-hub-feasibility).
+For source restrictions and background, see the [source feasibility assessment](research/source-feasibility-2026-11-15.md).
 
 ### Royal Road and WTR-Lab
 
@@ -141,7 +141,7 @@ The URL is illustrative identity metadata; the command does **not** download tha
 
 **WTR-Lab:** no automated downloader is enabled. Its published rules restrict automated requests and copying, and some chapters are locked. Offline import is possible for a user-supplied, authorised EPUB only, not for automatically collected site text.
 
-For source-policy detail, examples, [completed 15 November 2026 GitHub-runner diagnostics](research/source-feasibility-2026-11-15.md) and offline page analysis, see [experimental-sources.md](research/experimental-sources.md).
+For source-policy detail, examples, [completed 15 November 2026 GitHub-runner diagnostics](research/source-feasibility-2026-11-15.md) and offline page analysis, see the [source feasibility assessment](research/source-feasibility-2026-11-15.md).
 
 ### Novel Fire and Light Novel Pub
 
@@ -151,7 +151,7 @@ These sites have **offline feasibility analysis only**. [`tools/source_feasibili
 - **Light Novel Pub** (`lightnovelpub.com`): **the live novel-hosting platform has shut down**. Its root now leads to a shutdown announcement; [NovelCodex](https://www.novelcodex.com/) explicitly says it does not host novels or chapters. Old saved HTML fixtures can still be analysed offline, but no live chapter-download workflow should be added.
 - **Light Novel World / `lightnovelpub.org`** is not equivalent to `lightnovelpub.com`; the older site has been reported shut down. It is not supported here.
 
-The detailed feasibility research, format observations and acceptance requirements are in [experimental-sources.md](research/experimental-sources.md).
+The consolidated source research, limitations and acceptance requirements are in the [source feasibility assessment](research/source-feasibility-2026-11-15.md).
 
 ### WebNovel
 
@@ -177,7 +177,7 @@ python -m tools.webnovel_probe "https://www.webnovel.com/book/22196546206090805"
 
 It does not download chapter bodies, and ordinary scripted requests have previously encountered site challenges. Offline saved-page imports require user-held files and permission; they never bypass an access restriction.
 
-See [WebNovel browser probe](research/webnovel-browser-probe.md), [saved-page import](research/webnovel-saved-page-import.md), [bulk local import](research/webnovel-bulk-import.md), [two-chapter public probe](research/webnovel-two-chapter-sample.md), and [JSON import](research/webnovel-export.md).
+See the [WebNovel browser probe](research/webnovel-browser-probe.md), [maintained offline bulk import](research/webnovel-bulk-import.md) and [two-chapter public probe](research/webnovel-two-chapter-sample.md). Legacy saved-page and JSON converters remain in `tools/` for compatibility; no general live WebNovel downloader is enabled.
 
 ## Outputs, rights and changes to site support
 

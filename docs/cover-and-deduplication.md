@@ -86,7 +86,7 @@ support resuming without reacquiring complete verified batches.
 multiple ZIPs targeting the same book. It now also offers an explicit
 `--dedupe-local` mode for mixed older and newer ZIPs (Windows menu option
 12). Preview first. Conflicting editions still block every remote write.
-See the [implemented Storage Controller integration](storage-controller-integration-handover.md).
+See the [merged Storage Controller implementation (PR #28)](https://github.com/AdityaSreevatsaK/Taiyou-Novels-Storage-Controller/pull/28). Existing remote novel IDs and personal reader metadata are preserved. The first real mixed-ZIP upload still requires a read-only preview.
 The Retriever's local consolidation never modifies any input archive.
 
 ## Compatibility
