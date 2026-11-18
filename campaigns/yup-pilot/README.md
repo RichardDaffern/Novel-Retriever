@@ -1,4 +1,4 @@
-# Approved Yup pilot: three separate small download pipelines
+# Approved Yup campaign: small independent download pipelines
 
 This is a limited pilot, not an attempt to download the entire Excel list in one workflow.
 
@@ -6,13 +6,17 @@ This is a limited pilot, not an attempt to download the entire Excel list in one
 
 The reviewed Excel filtering audit identified 173 still-missing **Yup** titles and excluded 90 Dropped or red-highlighted titles from the wider campaign. None of those exclusions is selected here.
 
-This pilot selects **six** titles, all marked **Started** in the original Excel's Yup sheet, in **three separate two-novel workflows**. The verified source page URLs are stored in the explicit allowlist at campaigns/yup-pilot/verified-urls.json. Requests are divided across batch-01.json, batch-02.json and batch-03.json.
+The first wave selected **six** Started titles in three separate two-novel workflows (batch-01 through batch-03). It completed three titles and exposed source chapter-number discrepancies in others. These discrepancies remain tracked in [issue #257](https://github.com/RichardDaffern/Novel-Retriever/issues/257); do not automatically restart those books.
+
+The second wave adds **four more** Started titles in two independent NovelFull workflows (batch-04 and batch-05): *I Am A Prodigy*, *Night Ranger*, *The Strongest Gene* and *Warlock Of Magus World*. All four are in the original approved Yup list, outside the red/Dropped exclusions, and had no prior completed URL in the downloader registry when queued.
+
+The verified public source-page links are stored in `campaigns/yup-pilot/verified-urls.json`. Each wave contains fresh `requests/batch-XX.json` files. The workflow dispatches only **new files** added in the merged commit, never all historic batches again. Each source carries its own usage and rights restrictions. This campaign does not claim that all other books are verified or that all will finish on the day they are queued.
 
 Do not guess a URL slug from a novel title. The existing bulk downloader resolves names only from the verified registry or curated list, so this pilot supplies independently checked direct URLs.
 
 ## Automatic small-batch dispatcher
 
-Merging the pilot PR adds three new request files on main. The narrowly scoped push workflow, .github/workflows/yup-pilot-dispatch.yml, sees only newly added requests in that push, validates the entire group, checks the completed download registry, and dispatches one independent Library - Bulk Download workflow for each nonempty request.
+Each separately reviewed campaign merge adds only its new request files on main. The narrowly scoped push workflow, .github/workflows/yup-pilot-dispatch.yml, sees only newly added requests in that push, validates the entire group, checks the completed download registry, and dispatches one independent Library - Bulk Download workflow for each nonempty request.
 
 - At most three new requests per push, with at most two books per request.
 - Each title and HTTPS source URL must exactly match the explicitly reviewed allowlist.
