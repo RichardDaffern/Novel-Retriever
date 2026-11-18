@@ -40,7 +40,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (187 novels)
+## NovelFull (188 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -136,6 +136,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Invincible Divine Dragon’s Cultivation System](https://novelfull.com/invincible-divine-dragons-cultivation-system.html) | all | 4613 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44414511058/artifacts/14481007062) | 2026-11-25T23:21:15Z |
 | [I’ll Add Points To All Things](https://novelfull.com/ill-add-points-to-all-things.html) | all | 945 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13641833043) | 2026-11-16T00:59:34Z |
 | [I’m Really a Superstar](https://novelfull.com/im-really-a-superstar.html) | all | 1696 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13643775900) | 2026-11-16T01:31:41Z |
+| [Joy of Life](https://novelfull.com/joy-of-life.html) | all | 746 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44416451269/artifacts/14482795312) | 2026-11-25T23:33:47Z |
 | [King of Gods](https://novelfull.com/king-of-gods.html) | all | 1585 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13652875528) | 2026-11-16T05:44:28Z |
 | [Legend of Ling Tian](https://novelfull.com/legend-of-ling-tian.html) | all | 713 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13655317054) | 2026-11-16T06:57:51Z |
 | [Lord of All Realms](https://novelfull.com/lord-of-all-realms.html) | all | 1823 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13636640990) | 2026-11-15T22:12:32Z |

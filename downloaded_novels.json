@@ -2216,6 +2216,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/joy-of-life.html",
+      "title": "Joy of Life",
+      "author": "Mao Ni",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 746,
+          "run_id": 44416451269,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44416451269",
+          "artifact_id": 14482795312,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44416451269/artifacts/14482795312",
+          "completed_at_utc": "2026-11-18T23:33:47Z",
+          "expires_at_utc": "2026-11-25T23:33:47Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/king-of-gods.html",
       "title": "King of Gods",
       "author": "Fast Food Resturant",
