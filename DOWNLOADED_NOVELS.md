@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (21 novels)
+## FreeWebNovel (22 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -13,6 +13,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Big Life](https://freewebnovel.com/novel/big-life) | all | 304 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14171863992) | 2026-11-22T17:21:51Z |
 | [Devouring The Heavens](https://freewebnovel.com/novel/devouring-the-heavens) | all | 362 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14175172715) | 2026-11-22T18:46:57Z |
 | [God Level Demon](https://freewebnovel.com/novel/god-level-demon) | all | 137 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14203602757) | 2026-11-23T06:45:22Z |
+| [Konoha's Medical Ninja: One Punch to beat up Madara](https://freewebnovel.com/novel/konohas-medical-ninja-one-punch-to-beat-up-madara) | all | 444 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44379388243/artifacts/14462633408) | 2026-11-25T19:35:32Z |
 | [Lucifer's Descendant System](https://freewebnovel.com/novel/lucifers-descendant-system) | all | 407 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14172519667) | 2026-11-22T17:43:55Z |
 | [My Enchanting System](https://freewebnovel.com/novel/my-enchanting-system) | all | 887 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14173391066) | 2026-11-22T17:43:00Z |
 | [Naruto: I am Uchiha Shirou](https://freewebnovel.com/novel/naruto-i-am-uchiha-shirou) | all | 448 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249/artifacts/14463647756) | 2026-11-25T19:32:04Z |

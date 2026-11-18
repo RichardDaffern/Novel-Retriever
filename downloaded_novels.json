@@ -92,6 +92,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/konohas-medical-ninja-one-punch-to-beat-up-madara",
+      "title": "Konoha's Medical Ninja: One Punch to beat up Madara",
+      "author": "INeedRest",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 444,
+          "run_id": 44379388243,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44379388243",
+          "artifact_id": 14462633408,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44379388243/artifacts/14462633408",
+          "completed_at_utc": "2026-11-18T19:35:32Z",
+          "expires_at_utc": "2026-11-25T19:35:32Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/lucifers-descendant-system",
       "title": "Lucifer's Descendant System",
       "author": "Zhanye",
