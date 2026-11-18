@@ -92,6 +92,34 @@ For automatic PR creation and merging, the repository owner must enable **Settin
 
 **Important:** Your repository is currently public. GitHub Actions artifacts may be accessible to other users of public repositories. Making a repository private limits exposure but does not grant permission to redistribute copyrighted content.
 
+## FreeWebNovel transient network recovery
+
+FreeWebNovel chapter downloads now retry **only** bounded temporary transport
+interruptions: connection closed/reset/aborted, read timeout, and HTTP
+408/500/502/503/504. Each affected **same page** gets at most two additional
+attempts, after 4 and 12 seconds. Valid chapters already saved in the current
+batch retain their checksum-verified checkpoint; they are not redownloaded
+within that batch.
+
+**No retry** is allowed for HTTP 403/404/429, rate limits and access
+challenges, chapters which are missing/locked/too short, mismatched chapter
+numbers, invalid source pages or corrupted content. These require investigation,
+not automatic repetition. If the transient error persists after three attempts,
+the batch still fails and publishes its existing partial-checkpoint artefact.
+
+The 18 November 2026 pilot demonstrated both categories. A temporary
+connection closure while fetching the chapter after 488, and a socket timeout,
+were appropriate retry candidates; a returned page for Chapter 469 when
+Chapter 468 was requested was a strict integrity failure and **must not** be
+retried or silently accepted.
+
+The bounded retry is inside the downloader, so a newly dispatched workflow
+using the updated `main` code gets the fix without repeating the entire
+book from the start. Existing completed chapter-batch artefacts are reused
+where current cache policy permits. A failed checkpoint from a previous
+runner is retained as an artefact but is not automatically restored to a
+different runner. Avoid restarting a whole successful novel unnecessarily.
+
 ## FreeWebNovel - Download
 
 The dedicated FreeWebNovel workflow handles a single novel; the unified bulk workflow handles multiple titles from NovelFull, FreeWebNovel and explicitly verified Scribble Hub author cross-posts. This is **not** the NovelFull FanFicFare adapter. Its Actions workflow splits work into normally 50-chapter batches, accepts only publicly readable chapters, verifies chapter content and positions, and does not bypass access challenges.
