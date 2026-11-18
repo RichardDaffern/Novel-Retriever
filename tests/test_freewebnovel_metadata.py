@@ -11,7 +11,19 @@ from tools.chunked_download import assemble, cache_has_synopsis_support, identit
 from tools.freewebnovel_downloader import book_details, download_range
 from tools.freewebnovel_metadata import extract_book_metadata
 from tools.freewebnovel_chunks import fetch_batch, plan_download
-from tests.test_freewebnovel_downloader import chapter_html
+
+TEST_BODY = (
+    "An entirely invented story about a quiet village and its local bookshop. "
+    "One morning the protagonist meets a visitor bearing a mysterious letter, "
+    "and they discuss a voyage while the sky changes colours outside. "
+) * 4
+
+
+def chapter_html(number: int) -> str:
+    return (f'<html><title>Chapter {number} - An Example</title>'
+            f'<h1>Chapter {number} - An Example</h1>'
+            f'<div class="txt"><p>{TEST_BODY} Chapter {number}.</p>'
+            f'<p>{TEST_BODY[::-1]}</p></div></html>')
 
 BOOK = "https://freewebnovel.com/novel/big-life"
 SYNOPSIS = (
