@@ -1604,6 +1604,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/grasping-evil.html",
+      "title": "Grasping Evil",
+      "author": "I'm Ink",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1544,
+          "run_id": 44406854446,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44406854446",
+          "artifact_id": 14476458663,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44406854446/artifacts/14476458663",
+          "completed_at_utc": "2026-11-18T22:22:24Z",
+          "expires_at_utc": "2026-11-25T22:22:24Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/great-demon-king.html",
       "title": "Great Demon King",
       "author": "Ni Cang Tian",
