@@ -524,6 +524,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/badge-in-azure.html",
+      "title": "Badge in Azure",
+      "author": "Deathstate",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1553,
+          "run_id": 44381093390,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381093390",
+          "artifact_id": 14465551332,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381093390/artifacts/14465551332",
+          "completed_at_utc": "2026-11-18T19:55:14Z",
+          "expires_at_utc": "2026-11-25T19:55:14Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/battle-through-the-heavens.html",
       "title": "Battle Through the Heavens",
       "author": "Heavenly Silkworm Potato",
