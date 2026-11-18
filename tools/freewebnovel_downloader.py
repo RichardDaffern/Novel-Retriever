@@ -2,7 +2,9 @@
 """Archive explicitly authorised public FreeWebNovel chapter ranges.
 
 Separate from FanFicFare and NovelFull. No login, paywall/Cloudflare bypass,
-rotating proxies, concurrent requests within one batch or automatic retries.
+rotating proxies or concurrent requests within one batch. Transient connection
+failures get up to two paced retries of the SAME page only; 403, 404, 429,
+challenge pages, missing content and chapter mismatches stop immediately.
 Each invocation is capped at 100 consecutive numbered chapters. The Github
 workflow partitions full books and validates every chapter before assembly.
 """
@@ -24,13 +26,14 @@ from novel_downloader import epub_chapters, slugify
 from tools.chunked_download import _epub
 from tools.freewebnovel_metadata import extract_book_metadata
 from tools.freewebnovel_source import (
-    ProbeError, BODY_SELECTORS, LOCK_TEXT, chapter_url,
+    ProbeError, TransientFetchError, BODY_SELECTORS, LOCK_TEXT, chapter_url,
     fetch_public_html, parse_catalogue, validate_book_url,
 )
 
 MAX_PER_RUN = 100
 MAX_TOTAL = 50000
 MIN_BODY_CHARS = 200
+RETRY_DELAYS_SECONDS = (4, 12)
 CHAPTER_HEADER = re.compile(r"\bchapter\s*([0-9]+)\b", re.IGNORECASE)
 
 
@@ -137,6 +140,35 @@ def _validate_saved_row(book: Path, row: dict, number: int) -> bool:
     )
 
 
+def _fetch_with_retry(url: str, *, fetcher, sleeper) -> str:
+    """Retry only transient transport failures, never invalid chapter content.
+
+    The caller's existing per-chapter pacing still happens before this
+    function. A failed request gets at most two additional attempts, with
+    4s and 12s cool-downs. A hard-stop ProbeError, including HTTP 403/404/429,
+    is never caught here. No chapter is marked saved until it passes parsing
+    and hashing, so an interrupted response cannot be published.
+    """
+    for attempt in range(len(RETRY_DELAYS_SECONDS) + 1):
+        try:
+            return fetcher(url)
+        except TransientFetchError as exc:
+            if attempt == len(RETRY_DELAYS_SECONDS):
+                raise TransientFetchError(
+                    f"Transient transport failure after {attempt + 1} "
+                    f"attempts; last error: {exc}"
+                ) from exc
+            delay = RETRY_DELAYS_SECONDS[attempt]
+            print(
+                f"Temporary network interruption (attempt {attempt+1}/"
+                f"{len(RETRY_DELAYS_SECONDS)+1}); retrying same page "
+                f"after {delay}s: {exc}",
+                flush=True,
+            )
+            sleeper(delay)
+    raise AssertionError("Exhausted all retry attempts")
+
+
 def download_range(
     url: str, first: int, last: int, output_dir: Path, *,
     confirm_rights=False, fetcher=fetch_public_html, sleeper=time.sleep,
@@ -147,7 +179,7 @@ def download_range(
     url = validate_book_url(url)
     if first < 1 or last < first or last - first + 1 > MAX_PER_RUN:
         raise DownloadError("A batch must contain 1 to 100 consecutive chapters")
-    html = fetcher(url)
+    html = _fetch_with_retry(url, fetcher=fetcher, sleeper=sleeper)
     details = book_details(html, url)
     if last > details["numChapters"]:
         raise DownloadError(
@@ -195,9 +227,12 @@ def download_range(
             written[number] = prior[number]
             print(f"[{number-first+1}/{last-first+1}] reused Chapter {number}", flush=True)
             continue
-        # One sequential public request per chapter; no automatic retries.
+        # One sequential public chapter at a time, with tightly bounded
+        # retries only for transport interruptions. Checkpoints remain intact.
         sleeper(1)
-        chapter_html = fetcher(f"{url}/chapter-{number}")
+        chapter_html = _fetch_with_retry(
+            f"{url}/chapter-{number}", fetcher=fetcher, sleeper=sleeper
+        )
         item = extract_chapter(
             chapter_html, number, expected_titles.get(number, f"Chapter {number}")
         )
