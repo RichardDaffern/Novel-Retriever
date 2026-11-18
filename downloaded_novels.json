@@ -2551,6 +2551,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-desolate-era.html",
+      "title": "The Desolate Era",
+      "author": "I Eat Tomatoes",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1451,
+          "run_id": 44347886492,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44347886492",
+          "artifact_id": 14453459463,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44347886492/artifacts/14453459463",
+          "completed_at_utc": "2026-11-18T17:35:14Z",
+          "expires_at_utc": "2026-11-25T17:35:14Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-great-thief.html",
       "title": "The Great Thief",
       "author": "大盗贼",
