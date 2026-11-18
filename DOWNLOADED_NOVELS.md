@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (29 novels)
+## FreeWebNovel (30 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -20,6 +20,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Hogwarts' John Wick](https://freewebnovel.com/novel/hogwarts-john-wick) | all | 703 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742/artifacts/14469106672) | 2026-11-25T20:31:59Z |
 | [Hogwarts: I'm Truly a Model Wizard](https://freewebnovel.com/novel/hogwarts-im-truly-a-model-wizard) | all | 1004 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381959077/artifacts/14464369346) | 2026-11-25T19:51:40Z |
 | [HP: A Magical Journey](https://freewebnovel.com/novel/hp-a-magical-journey) | all | 439 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381959077/artifacts/14465975343) | 2026-11-25T19:49:14Z |
+| [I Beg You All, Please Shut Up](https://freewebnovel.com/novel/i-beg-you-all-please-shut-up) | all | 377 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44409430288/artifacts/14476139126) | 2026-11-25T22:24:55Z |
 | [Lucifer's Descendant System](https://freewebnovel.com/novel/lucifers-descendant-system) | all | 407 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14172519667) | 2026-11-22T17:43:55Z |
 | [My Enchanting System](https://freewebnovel.com/novel/my-enchanting-system) | all | 887 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14173391066) | 2026-11-22T17:43:00Z |
 | [Naruto: I am Uchiha Shirou](https://freewebnovel.com/novel/naruto-i-am-uchiha-shirou) | all | 448 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249/artifacts/14463647756) | 2026-11-25T19:32:04Z |

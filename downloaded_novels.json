@@ -218,6 +218,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/i-beg-you-all-please-shut-up",
+      "title": "I Beg You All, Please Shut Up",
+      "author": "The Cycles Of Heaven Doesn't Exist",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 377,
+          "run_id": 44409430288,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44409430288",
+          "artifact_id": 14476139126,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44409430288/artifacts/14476139126",
+          "completed_at_utc": "2026-11-18T22:24:55Z",
+          "expires_at_utc": "2026-11-25T22:24:55Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/lucifers-descendant-system",
       "title": "Lucifer's Descendant System",
       "author": "Zhanye",
