@@ -46,7 +46,10 @@ def _book_url(value: object) -> str:
 
 
 def _read_json(path: Path) -> dict:
-    if not path.is_file() or path.stat().st_size > 30_000:
+    # The downloader registry is significantly larger than the tiny, strictly
+    # bounded campaign/request JSON files. Do not reject a healthy registry.
+    byte_limit = 2_000_000 if path.resolve() == REGISTRY.resolve() else 30_000
+    if not path.is_file() or path.stat().st_size > byte_limit:
         raise CampaignError("Missing or oversized campaign file")
     doc = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(doc, dict):
