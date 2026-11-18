@@ -16,7 +16,7 @@ The original **90 red-highlighted/Dropped titles** are recorded in excluded-90.j
 
 Adding start-20261119.json to main activates the job **once**. Editing the activation or rerunning the workflow cannot create duplicate dispatches.
 
-1. **Source discovery:** Checks only ordinary public NovelFull/FreeWebNovel BOOK listings, up to 500 requests spaced at least two seconds apart. Does not save chapter text. A 403, 429 or access challenge disables the affected source for the rest of that run. No credentials, redirects, browser tricks, proxies or bypass.
+1. **Source discovery:** Prefer **NovelFull first** for every title. Only if its public book listing is unavailable or not an exact title match, consider FreeWebNovel. Check no more than 500 public requests, spaced at least two seconds apart. Do not save chapter text. A 403, 429 or access challenge disables the affected source for the rest of that run. No credentials, redirects, browser tricks, proxies or bypass.
 2. **Yup dispatch:** Queues verified titles in independent two-book Library - Bulk Download pipelines first, at most four active bulk workflows, spacing dispatches by 150 seconds.
 3. **Idk dispatch:** Then queues verified Idk titles under the same limits.
 4. **Audit artifacts:** Source verification, unresolved titles and dispatched/held groups are saved for follow-up. Any unverified title remains a research task, not a secretly invented link.
