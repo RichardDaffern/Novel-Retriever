@@ -60,6 +60,21 @@ class OvernightQueueTests(unittest.TestCase):
             "The Great Storyteller", "<h1>The Great Storyteller</h1>"
         ))
 
+    def test_discovery_prefers_verified_novelfull_without_fallback_request(self):
+        title = "Preferred Novel"
+        calls = []
+
+        def fetch(url):
+            calls.append(url)
+            return "<h1>Preferred Novel</h1>", "ok"
+
+        with patch.object(q, "manifests", return_value=(
+            [title], [], set(), set()
+        )):
+            result = q.discover(fetcher=fetch, sleeper=lambda _: None)
+        self.assertEqual(calls, [q.candidate_urls(title)[0]])
+        self.assertEqual(result["verified"][0]["url"], q.candidate_urls(title)[0])
+
     def test_discovery_prioritises_yup_and_respects_host_denials(self):
         calls = []
         def fetch(url):
