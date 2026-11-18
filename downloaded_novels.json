@@ -146,6 +146,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/naruto-kurotsuchi-mayuri",
+      "title": "Naruto: Kurotsuchi Mayuri",
+      "author": "PirateKing24",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 524,
+          "run_id": 44378935249,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249",
+          "artifact_id": 14463808054,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249/artifacts/14463808054",
+          "completed_at_utc": "2026-11-18T19:34:00Z",
+          "expires_at_utc": "2026-11-25T19:34:00Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/overlord-of-blood-and-iron-novel",
       "title": "Overlord of Blood and Iron",
       "author": "Dam Hwa Gong",
