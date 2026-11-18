@@ -2749,6 +2749,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-strongest-gene.html",
+      "title": "The Strongest Gene",
+      "author": "-90°",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 880,
+          "run_id": 44363052288,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44363052288",
+          "artifact_id": 14457039833,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44363052288/artifacts/14457039833",
+          "completed_at_utc": "2026-11-18T18:30:12Z",
+          "expires_at_utc": "2026-11-25T18:30:12Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-strongest-system.html",
       "title": "The Strongest System",
       "author": "Xin Feng",
