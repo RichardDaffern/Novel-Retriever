@@ -398,6 +398,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/alchemy-emperor-of-the-divine-dao.html",
+      "title": "Alchemy Emperor of the Divine Dao",
+      "author": "Flying Alone",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 4934,
+          "run_id": 44365497391,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365497391",
+          "artifact_id": 14460650199,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365497391/artifacts/14460650199",
+          "completed_at_utc": "2026-11-18T18:42:59Z",
+          "expires_at_utc": "2026-11-25T18:42:59Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/battle-through-the-heavens.html",
       "title": "Battle Through the Heavens",
       "author": "Heavenly Silkworm Potato",
