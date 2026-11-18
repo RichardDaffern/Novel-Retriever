@@ -110,6 +110,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/genius-sword-immortal",
+      "title": "Genius Sword Immortal",
+      "author": "Feng Yin Zi Chen",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1496,
+          "run_id": 44401668198,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44401668198",
+          "artifact_id": 14473184455,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44401668198/artifacts/14473184455",
+          "completed_at_utc": "2026-11-18T21:51:22Z",
+          "expires_at_utc": "2026-11-25T21:51:22Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/global-dungeon-my-support-is-too-strong",
       "title": "Global Dungeon: My Support Is Too Strong",
       "author": "dogecoin",

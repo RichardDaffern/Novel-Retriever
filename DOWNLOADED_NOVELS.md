@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (28 novels)
+## FreeWebNovel (29 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -14,6 +14,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Big Life](https://freewebnovel.com/novel/big-life) | all | 304 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14171863992) | 2026-11-22T17:21:51Z |
 | [Devouring The Heavens](https://freewebnovel.com/novel/devouring-the-heavens) | all | 362 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14175172715) | 2026-11-22T18:46:57Z |
 | [Divine God Against The Heavens](https://freewebnovel.com/novel/divine-god-against-the-heavens) | all | 1132 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44393940766/artifacts/14471151281) | 2026-11-25T21:01:04Z |
+| [Genius Sword Immortal](https://freewebnovel.com/novel/genius-sword-immortal) | all | 1496 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44401668198/artifacts/14473184455) | 2026-11-25T21:51:22Z |
 | [Global Dungeon: My Support Is Too Strong](https://freewebnovel.com/novel/global-dungeon-my-support-is-too-strong) | all | 776 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44402544974/artifacts/14473053682) | 2026-11-25T21:45:24Z |
 | [God Level Demon](https://freewebnovel.com/novel/god-level-demon) | all | 137 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14203602757) | 2026-11-23T06:45:22Z |
 | [Hogwarts' John Wick](https://freewebnovel.com/novel/hogwarts-john-wick) | all | 703 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742/artifacts/14469106672) | 2026-11-25T20:31:59Z |
