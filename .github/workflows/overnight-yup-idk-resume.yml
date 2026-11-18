@@ -1,0 +1,94 @@
+name: Overnight - Resume verified Yup and Idk downloads
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'campaigns/overnight/resume-20261119.json'
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: overnight-resume-20261119
+  cancel-in-progress: false
+
+jobs:
+  dispatch-yup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Only accept a newly ADDED resume activation
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git diff --diff-filter=A --name-only "$BEFORE_SHA" "$HEAD_SHA" -- \
+            'campaigns/overnight/resume-20261119.json' | grep -qx \
+            'campaigns/overnight/resume-20261119.json'
+      - name: Restore SUCCESSFUL source discovery, never rescrape
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 44374654975 --name overnight-discovery-44374654975 --dir .
+          test -s overnight-discovery.json
+          python -c "import json;d=json.load(open('overnight-discovery.json'));assert d['summary']['verified'] == 158;assert d['summary']['global_exclusions_checked'] == 90"
+      - name: Queue source-verified Yup books with global cap
+        if: github.run_attempt == 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python -u -m tools.overnight_queue dispatch \
+            --tier Yup --sources overnight-discovery.json \
+            --out overnight-yup-resumed.json --minutes 275
+      - name: Save queued and held Yup groups
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: overnight-yup-resumed-${{ github.run_id }}
+          path: overnight-yup-resumed.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  dispatch-idk:
+    needs: [dispatch-yup]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - name: Restore same verified source report
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 44374654975 --name overnight-discovery-44374654975 --dir .
+          test -s overnight-discovery.json
+          python -c "import json;d=json.load(open('overnight-discovery.json'));assert d['summary']['verified'] == 158"
+      - name: Queue source-verified Idk books (after Yup)
+        if: github.run_attempt == 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python -u -m tools.overnight_queue dispatch \
+            --tier Idk --sources overnight-discovery.json \
+            --out overnight-idk-resumed.json --minutes 275
+      - name: Save queued and held Idk groups
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: overnight-idk-resumed-${{ github.run_id }}
+          path: overnight-idk-resumed.json
+          retention-days: 90
+          if-no-files-found: warn
