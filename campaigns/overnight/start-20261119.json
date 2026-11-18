@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "campaign": "yup-idk-overnight-20261119",
+  "requested_scope": "all remaining eligible Yup and Idk novels",
+  "activate_once": true,
+  "global_excluded_novels": 90,
+  "priority": [
+    "Yup",
+    "Idk"
+  ],
+  "max_active_bulk_workflows": 4,
+  "requires_exact_source_listing_verification": true,
+  "force_redownload": false,
+  "automatic_private_storage_upload": false
+}
