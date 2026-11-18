@@ -27,7 +27,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (151 novels)
+## NovelFull (152 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -155,6 +155,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Talisman Emperor](https://novelfull.com/talisman-emperor.html) | all | 2251 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13652776298) | 2026-11-16T05:44:35Z |
 | [The Amber Sword](https://novelfull.com/the-amber-sword.html) | all | 876 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14224943698) | 2026-11-23T12:27:42Z |
 | [The Book Eating Magician](https://novelfull.com/the-book-eating-magician.html) | all | 400 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14347011139) | 2026-11-24T16:15:28Z |
+| [The Desolate Era](https://novelfull.com/the-desolate-era.html) | all | 1451 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44347886492/artifacts/14453459463) | 2026-11-25T17:35:14Z |
 | [The Great Thief](https://novelfull.com/the-great-thief.html) | all | 1976 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13656896239) | 2026-11-16T07:30:13Z |
 | [The Human Emperor](https://novelfull.com/the-human-emperor.html) | all | 2467 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13644389821) | 2026-11-16T02:16:03Z |
 | [The Legendary Moonlight Sculptor](https://novelfull.com/the-legendary-moonlight-sculptor.html) | all | 710 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13624187862) | 2026-11-15T16:03:05Z |
