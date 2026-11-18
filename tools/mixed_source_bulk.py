@@ -130,11 +130,20 @@ def selection_plan(
                 f"Add it to curated_novels.json or paste its exact URL.{suffix}"
             )
         if len(unique) > 1:
-            raise ValueError(
-                f"Ambiguous novel name {name!r} matches multiple URLs. "
-                "Paste the novel's exact URL instead."
-            )
-        item = next(iter(unique.values()))
+            # A verified NovelFull listing wins over alternate-source
+            # catalogue records. Never invent a URL or guess between two
+            # different NovelFull records for the same title.
+            novelfull = [item for item in unique.values()
+                         if item["site"] == "NovelFull"]
+            if len(novelfull) == 1:
+                item = novelfull[0]
+            else:
+                raise ValueError(
+                    f"Ambiguous novel name {name!r} matches multiple URLs. "
+                    "Paste the novel's exact URL instead."
+                )
+        else:
+            item = next(iter(unique.values()))
         chosen[item["url"]] = item
     for raw in requested_urls:
         site, url = _validated_url(raw)
