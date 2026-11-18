@@ -4,10 +4,11 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (18 novels)
+## FreeWebNovel (19 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
+| [A New Snake In The Shinobi World](https://freewebnovel.com/novel/a-new-snake-in-the-shinobi-world) | all | 423 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378479201/artifacts/14464695010) | 2026-11-25T19:28:43Z |
 | [All My Disciples Suck!](https://freewebnovel.com/novel/all-my-disciples-suck) | all | 773 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44348388296/artifacts/14449120241) | 2026-11-25T16:45:43Z |
 | [Big Life](https://freewebnovel.com/novel/big-life) | all | 304 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14171863992) | 2026-11-22T17:21:51Z |
 | [Devouring The Heavens](https://freewebnovel.com/novel/devouring-the-heavens) | all | 362 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14175172715) | 2026-11-22T18:46:57Z |

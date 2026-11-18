@@ -2,6 +2,24 @@
   "version": 1,
   "novels": [
     {
+      "url": "https://freewebnovel.com/novel/a-new-snake-in-the-shinobi-world",
+      "title": "A New Snake In The Shinobi World",
+      "author": "JD_787",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 423,
+          "run_id": 44378479201,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378479201",
+          "artifact_id": 14464695010,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378479201/artifacts/14464695010",
+          "completed_at_utc": "2026-11-18T19:28:43Z",
+          "expires_at_utc": "2026-11-25T19:28:43Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/all-my-disciples-suck",
       "title": "All My Disciples Suck!",
       "author": "Rotating Hot Pot",
