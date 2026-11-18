@@ -164,6 +164,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/god-tier-farm",
+      "title": "God-tier Farm",
+      "author": "Gentleness In A Steel Gun",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 3892,
+          "run_id": 44403206970,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44403206970",
+          "artifact_id": 14479655034,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44403206970/artifacts/14479655034",
+          "completed_at_utc": "2026-11-18T22:36:38Z",
+          "expires_at_utc": "2026-11-25T22:36:38Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/hogwarts-im-truly-a-model-wizard",
       "title": "Hogwarts: I'm Truly a Model Wizard",
       "author": "BlurryDream",
