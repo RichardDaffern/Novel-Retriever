@@ -2,6 +2,24 @@
   "version": 1,
   "novels": [
     {
+      "url": "https://freewebnovel.com/novel/all-my-disciples-suck",
+      "title": "All My Disciples Suck!",
+      "author": "Rotating Hot Pot",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 773,
+          "run_id": 44348388296,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44348388296",
+          "artifact_id": 14449120241,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44348388296/artifacts/14449120241",
+          "completed_at_utc": "2026-11-18T16:45:43Z",
+          "expires_at_utc": "2026-11-25T16:45:43Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/big-life",
       "title": "Big Life",
       "author": "JIHO",
