@@ -2324,6 +2324,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/limitless-sword-god.html",
+      "title": "Limitless Sword God",
+      "author": "Fire God",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1569,
+          "run_id": 44420472250,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44420472250",
+          "artifact_id": 14482084508,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44420472250/artifacts/14482084508",
+          "completed_at_utc": "2026-11-18T23:49:14Z",
+          "expires_at_utc": "2026-11-25T23:49:14Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/lord-of-all-realms.html",
       "title": "Lord of All Realms",
       "author": "Ni Cang Tian",
