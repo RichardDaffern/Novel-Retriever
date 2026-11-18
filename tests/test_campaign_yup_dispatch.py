@@ -19,8 +19,8 @@ class SmallYupPilotTests(unittest.TestCase):
             for i in (1, 2, 3)
         ]
 
-    def test_only_six_explicitly_allowlisted_yup_books(self):
-        self.assertEqual(len(self.entries), 6)
+    def test_only_ten_explicitly_allowlisted_yup_books(self):
+        self.assertEqual(len(self.entries), 10)
         self.assertNotIn("The First Order", self.entries)
         self.assertNotIn("Nine Sun God King", self.entries)
         self.assertNotIn("Devil’s Son-in-Law", self.entries)
@@ -31,7 +31,11 @@ class SmallYupPilotTests(unittest.TestCase):
              "A Record Of Mortal’s Journey To Immortality",
              "Archean Eon Art",
              "All My Disciples Suck!",
-             "Ancient Godly Monarch"},
+             "Ancient Godly Monarch",
+             "I Am A Prodigy",
+             "Night Ranger",
+             "The Strongest Gene",
+             "Warlock Of Magus World"},
         )
 
     def test_three_independent_two_book_requests_preflight(self):
@@ -42,6 +46,18 @@ class SmallYupPilotTests(unittest.TestCase):
         )
         self.assertEqual([len(urls) for _, urls in groups], [2, 2, 2])
         self.assertEqual(len({url for _, urls in groups for url in urls}), 6)
+
+    def test_wave_two_has_two_separate_two_novel_batches(self):
+        paths = [
+            "campaigns/yup-pilot/requests/batch-04.json",
+            "campaigns/yup-pilot/requests/batch-05.json",
+        ]
+        groups = tool.prepare_batches(
+            paths, tool._read_json(tool.MANIFEST), {"novels": []}
+        )
+        self.assertEqual([len(urls) for _, urls in groups], [2, 2])
+        self.assertEqual(len({url for _, urls in groups for url in urls}), 4)
+        self.assertTrue(all("novelfull.com" in url for _, urls in groups for url in urls))
 
     def test_source_urls_must_be_direct_https_book_links(self):
         for bad in (
