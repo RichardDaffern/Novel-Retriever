@@ -107,7 +107,7 @@ class FanfictionCampaignTests(unittest.TestCase):
         with patch.object(fanfic, "active_bulk_runs", side_effect=fake_active):
             # one published slot after first polling pause, then stop the
             # subsequent cycle at the bounded deadline
-            now = iter([0, 0, 0, 0, 10000])
+            now = iter([0, 0, 0, 10000])
             report = fanfic.dispatch(runner=runner, sleeper=slept.append,
                                      clock=lambda: next(now, 10000), minutes=1)
         self.assertEqual(len(report["submitted"]), 1)
