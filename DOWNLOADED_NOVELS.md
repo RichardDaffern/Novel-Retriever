@@ -27,12 +27,13 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (153 novels)
+## NovelFull (154 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
 | [12 Hours After](https://novelfull.com/12-hours-after.html) | all | 198 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14171010402) | 2026-11-22T16:39:40Z |
 | [48 Hours a Day](https://novelfull.com/48-hours-a-day.html) | all | 1449 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43819213500/artifacts/14206459587) | 2026-11-23T08:02:39Z |
+| [A Will Eternal](https://novelfull.com/a-will-eternal.html) | all | 1315 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365259574/artifacts/14458662644) | 2026-11-25T18:28:17Z |
 | [Abe the Wizard](https://novelfull.com/abe-the-wizard.html) | all | 1512 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42393126629/artifacts/13592251409) | 2026-11-14T21:53:01Z |
 | [Battle Through the Heavens](https://novelfull.com/battle-through-the-heavens.html) | all | 1648 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340373775) | 2026-11-24T15:18:37Z |
 | [Be Happy With Sports](https://novelfull.com/be-happy-with-sports.html) | all | 597 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14228769646) | 2026-11-23T13:24:15Z |
