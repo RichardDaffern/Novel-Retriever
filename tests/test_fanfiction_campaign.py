@@ -32,7 +32,19 @@ class FanfictionCampaignTests(unittest.TestCase):
 
     def test_already_downloaded_gamer_ninja_not_rescheduled(self):
         chosen, held = fanfic.eligible_entries(self.catalogue, self.registry)
-        self.assertEqual(len(chosen), 10)
+        # The production registry grows as downloads finish. Test its current
+        # deduplication behaviour rather than assuming all ten are pending.
+        completed = {
+            record["url"] for record in self.registry["novels"]
+            if any(d.get("range") == "all" and d.get("status") == "complete"
+                   for d in record.get("downloads", []))
+        }
+        self.assertTrue(all(item["url"] not in completed for item in chosen))
+        self.assertEqual(
+            len(chosen) + sum(item["reason"] == "already_in_complete_registry"
+                              for item in held),
+            10,
+        )
         self.assertIn(
             ("The Adventurous Gamer Ninja - Daichi Hekima", "already_downloaded"),
             [(x["title"], x["reason"]) for x in held]
@@ -80,8 +92,14 @@ class FanfictionCampaignTests(unittest.TestCase):
             if cmd[:2] == ["gh", "api"]:
                 return SimpleNamespace(stdout=json.dumps({"workflow_runs": []}))
             return SimpleNamespace()
-        with patch.dict(os.environ, {"GITHUB_REPOSITORY": "RichardDaffern/Novel-Retriever",
-                                     "GITHUB_ACTIONS": "false"}):
+        # Exercise the full ten-source queue with an empty synthetic registry,
+        # independently of downloads completed by live production workflows.
+        with patch.object(fanfic, "read_json", side_effect=lambda path: (
+            {"novels": []} if path == fanfic.REGISTRY else self.catalogue
+        )), patch.dict(os.environ, {
+            "GITHUB_REPOSITORY": "RichardDaffern/Novel-Retriever",
+            "GITHUB_ACTIONS": "false",
+        }):
             report = fanfic.dispatch(runner=runner, sleeper=slept.append,
                                      clock=lambda: 0, minutes=1)
         actions = [row for row in sent if row[:3] == ["gh", "workflow", "run"]]
