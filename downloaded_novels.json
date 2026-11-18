@@ -110,6 +110,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/hogwarts-john-wick",
+      "title": "Hogwarts' John Wick",
+      "author": "Dragonel23",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 703,
+          "run_id": 44389807742,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742",
+          "artifact_id": 14469106672,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742/artifacts/14469106672",
+          "completed_at_utc": "2026-11-18T20:31:59Z",
+          "expires_at_utc": "2026-11-25T20:31:59Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/hp-a-magical-journey",
       "title": "HP: A Magical Journey",
       "author": "FictionOnlyReader",
