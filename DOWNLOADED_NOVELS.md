@@ -27,7 +27,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (157 novels)
+## NovelFull (158 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -187,6 +187,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Valhalla Saga](https://novelfull.com/valhalla-saga.html) | all | 269 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14212677158) | 2026-11-23T09:30:55Z |
 | [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
 | [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
+| [Warlock of the Magus World](https://novelfull.com/warlock-of-the-magus-world.html) | all | 1201 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44363052288/artifacts/14459705677) | 2026-11-25T18:36:09Z |
 | [When I Saw The Returns, I Invested In My Future Wife First](https://novelfull.com/when-i-saw-the-returns-i-invested-in-my-future-wife-first.html) | all | 450 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13626582748) | 2026-11-15T17:13:00Z |
 | [Witcher: I Can Extract Everything](https://novelfull.com/witcher-i-can-extract-everything.html) | all | 393 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14225912094) | 2026-11-23T12:28:11Z |
 | [Ze Tian Ji](https://novelfull.com/ze-tian-ji.html) | all | 1185 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14241396863) | 2026-11-23T15:46:21Z |
