@@ -36,7 +36,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (168 novels)
+## NovelFull (169 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -64,6 +64,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [City of Sin](https://novelfull.com/city-of-sin.html) | all | 1419 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44385661877/artifacts/14468143532) | 2026-11-25T20:41:27Z |
 | [Coiling Dragon](https://novelfull.com/coiling-dragon.html) | all | 808 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340223119) | 2026-11-24T15:14:34Z |
 | [Commanding Wind and Cloud](https://novelfull.com/commanding-wind-and-cloud.html) | all | 731 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530/artifacts/14468455280) | 2026-11-25T20:20:57Z |
+| [Complete Martial Arts Attributes](https://novelfull.com/complete-martial-arts-attributes.html) | all | 4963 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530/artifacts/14471386807) | 2026-11-25T21:04:56Z |
 | [Crazy Detective](https://novelfull.com/crazy-detective.html) | all | 2686 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636899276) | 2026-11-15T22:35:59Z |
 | [Cultivation Online](https://novelfull.com/cultivation-online.html) | all | 2701 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636934179) | 2026-11-15T22:36:34Z |
 | [Cultivation! My Augmented Statuses Have Unlimited Duration](https://novelfull.com/cultivation-my-augmented-statuses-have-unlimited-duration.html) | all | 904 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636307740) | 2026-11-15T22:04:49Z |
