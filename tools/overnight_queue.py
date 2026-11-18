@@ -19,7 +19,6 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parent.parent
 OVERNIGHT = ROOT / "campaigns" / "overnight"
@@ -139,6 +138,11 @@ def candidate_urls(title: str) -> list[str]:
 
 
 def page_titles(html: str) -> list[str]:
+    # Only the public-listing discovery job needs BeautifulSoup.
+    # Dispatch jobs intentionally use stdlib only and do not install
+    # the source-fetch dependencies.
+    from bs4 import BeautifulSoup
+
     soup = BeautifulSoup(html, "html.parser")
     title_tag = soup.title.get_text(" ", strip=True) if soup.title else ""
     if any(text in title_tag.casefold() for text in (
