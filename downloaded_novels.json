@@ -2749,6 +2749,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-strongest-system.html",
+      "title": "The Strongest System",
+      "author": "Xin Feng",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1159,
+          "run_id": 44365733484,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365733484",
+          "artifact_id": 14457004662,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365733484/artifacts/14457004662",
+          "completed_at_utc": "2026-11-18T18:28:31Z",
+          "expires_at_utc": "2026-11-25T18:28:31Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-surgeons-studio.html",
       "title": "The Surgeon’s Studio",
       "author": "Black Ursa Prime",

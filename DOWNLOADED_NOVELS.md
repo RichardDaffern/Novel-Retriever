@@ -27,7 +27,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (154 novels)
+## NovelFull (155 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -166,6 +166,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Ocean Lord Is Unusually Powerful](https://novelfull.com/the-ocean-lord-is-unusually-powerful.html) | all | 855 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13624069033) | 2026-11-15T16:09:39Z |
 | [The Second Coming of Gluttony](https://novelfull.com/the-second-coming-of-gluttony.html) | all | 550 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13626140911) | 2026-11-15T16:56:44Z |
 | [The Strongest Dan God](https://novelfull.com/the-strongest-dan-god.html) | all | 601 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14247235889) | 2026-11-23T16:37:54Z |
+| [The Strongest System](https://novelfull.com/the-strongest-system.html) | all | 1159 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365733484/artifacts/14457004662) | 2026-11-25T18:28:31Z |
 | [The Surgeon’s Studio](https://novelfull.com/the-surgeons-studio.html) | all | 2977 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13627346622) | 2026-11-15T17:31:08Z |
 | [The Sweetest Medicine](https://novelfull.com/the-sweetest-medicine.html) | all | 857 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14202727534) | 2026-11-23T06:34:18Z |
 | [The Sword Dynasty](https://novelfull.com/the-sword-dynasty.html) | all | 739 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43819213500/artifacts/14211521628) | 2026-11-23T09:09:23Z |
