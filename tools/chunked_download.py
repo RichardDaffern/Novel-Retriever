@@ -189,6 +189,10 @@ def cache_has_synopsis_support(metadata: dict, url: str) -> bool:
     host = (urlsplit(url).hostname or "").lower().removeprefix("www.")
     if host == "novelfull.com" and metadata.get("synopsis_pipeline_version") != 2:
         return False
+    # Older FreeWebNovel chapter batches never parsed the book-page synopsis,
+    # genres or publication status. They must not contaminate new bulk EPUBs.
+    if host == "freewebnovel.com" and metadata.get("source_metadata_pipeline_version") != 1:
+        return False
     if host in {"novelfull.com", "freewebnovel.com", "readnovelfull.com"}:
         return metadata.get("cover_pipeline_version") == 1
     return True
