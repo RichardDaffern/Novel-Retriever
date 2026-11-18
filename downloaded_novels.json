@@ -1172,6 +1172,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/i-am-a-prodigy.html",
+      "title": "I Am A Prodigy",
+      "author": "Rugao Under The Bridge",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 795,
+          "run_id": 44362822717,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44362822717",
+          "artifact_id": 14458683038,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44362822717/artifacts/14458683038",
+          "completed_at_utc": "2026-11-18T18:31:44Z",
+          "expires_at_utc": "2026-11-25T18:31:44Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/i-am-the-monarch.html",
       "title": "I am the Monarch",
       "author": "Cheol Jonggeum",
