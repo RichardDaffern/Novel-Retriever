@@ -40,7 +40,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (183 novels)
+## NovelFull (184 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -113,6 +113,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Hedonist Sovereign](https://novelfull.com/hedonist-sovereign.html) | all | 490 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44407279522/artifacts/14477201666) | 2026-11-25T22:12:13Z |
 | [Hidden Marriage](https://novelfull.com/hidden-marriage.html) | all | 2167 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44409007210/artifacts/14478006982) | 2026-11-25T22:37:29Z |
 | [History’s Number 1 Founder](https://novelfull.com/historys-number-1-founder.html) | all | 1486 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14228270790) | 2026-11-23T12:53:55Z |
+| [History’s Strongest Senior Brother](https://novelfull.com/historys-strongest-senior-brother.html) | all | 1836 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44409007210/artifacts/14479198673) | 2026-11-25T22:57:06Z |
 | [I Alone Level-Up](https://novelfull.com/i-alone-level-up.html) | all | 270 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13634103379) | 2026-11-15T21:14:14Z |
 | [I am a Gao Fushuai Villain](https://novelfull.com/i-am-a-gao-fushuai-villain.html) | all | 650 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13655021841) | 2026-11-16T06:53:24Z |
 | [I am the Monarch](https://novelfull.com/i-am-the-monarch.html) | all | 336 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13634498595) | 2026-11-15T21:18:11Z |
