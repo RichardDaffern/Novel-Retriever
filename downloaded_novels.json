@@ -2108,6 +2108,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/infinite-mana-in-the-oasis.html",
+      "title": "Infinite Mana In The Oasis",
+      "author": "Grayback",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 275,
+          "run_id": 44414511058,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44414511058",
+          "artifact_id": 14480070435,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44414511058/artifacts/14480070435",
+          "completed_at_utc": "2026-11-18T22:53:56Z",
+          "expires_at_utc": "2026-11-25T22:53:56Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/invincible.html",
       "title": "Invincible",
       "author": "Shen Jian",
