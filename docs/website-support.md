@@ -42,6 +42,17 @@ Each successful novel produces a temporary GitHub Actions artefact and a **metad
 
 ### FreeWebNovel
 
+**Metadata:** Direct chapter-range and single/bulk Actions use the same
+book-page parser. The first public catalogue response is also used for an
+optional synopsis, source genres and publication status. These values go to
+both `metadata.json` and the final EPUB metadata, including assembled
+multi-batch books. The parser restricts genres/status to the book's header,
+never the site's genre navigation or related-novel cards. Missing values
+are not invented. Older reusable chapter-batch artefacts without a
+`source_metadata_pipeline_version` marker are skipped, so new
+downloads regenerate metadata instead of inheriting empty fields.
+
+
 - **Website:** https://freewebnovel.com/
 - **Typical book URL:** `https://freewebnovel.com/novel/<title-slug>`
 - **Single-book Action:** **FreeWebNovel - Download**
