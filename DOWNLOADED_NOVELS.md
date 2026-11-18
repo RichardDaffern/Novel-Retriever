@@ -36,7 +36,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (169 novels)
+## NovelFull (171 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -74,6 +74,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Devil’s Son-in-Law](https://novelfull.com/devils-son-in-law.html) | all | 1275 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13644028986) | 2026-11-16T01:59:32Z |
 | [Divine Beast Adventures](https://novelfull.com/divine-beast-adventures.html) | all | 581 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13645946310) | 2026-11-16T02:34:21Z |
 | [Divine Brilliance](https://novelfull.com/divine-brilliance.html) | all | 1228 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14252653694) | 2026-11-23T17:40:47Z |
+| [Dominating Sword Immortal](https://novelfull.com/dominating-sword-immortal.html) | all | 913 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44394387715/artifacts/14471454257) | 2026-11-25T21:19:56Z |
 | [Douluo Dalu](https://novelfull.com/douluo-dalu.html) | all | 337 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14192730294) | 2026-11-23T02:12:20Z |
 | [Dragon King’s Son-In-Law](https://novelfull.com/dragon-kings-son-in-law.html) | all | 790 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13644867109) | 2026-11-16T02:11:20Z |
 | [Dragon-Marked War God](https://novelfull.com/dragon-marked-war-god.html) | all | 3460 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13651743399) | 2026-11-16T05:40:11Z |
