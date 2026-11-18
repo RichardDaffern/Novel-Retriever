@@ -1,5 +1,8 @@
 """Offline unit and integration tests for FreeWebNovel's isolated archive flow."""
 from hashlib import sha256
+from http.client import RemoteDisconnected
+from urllib.error import HTTPError, URLError
+from types import SimpleNamespace
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import json
@@ -11,6 +14,9 @@ from tools.freewebnovel_downloader import (
     DownloadError, book_details, download_range, extract_chapter,
 )
 from tools.freewebnovel_chunks import plan_download, fetch_batch, plan_bulk
+from tools.freewebnovel_source import (
+    ProbeError, TransientFetchError, fetch_public_html
+)
 from tools.chunked_download import (
     identity, validate_piece, assemble,
 )
@@ -126,6 +132,144 @@ class FreeWebNovelDownloaderTests(unittest.TestCase):
                 fetcher=second_fetch, sleeper=lambda _: None)
             self.assertEqual(resumed, [BOOK, CH2])
             self.assertEqual(result["chapter_count"], 2)
+
+    def test_temporary_remote_disconnect_retries_only_failed_chapter(self):
+        with TemporaryDirectory() as tmp:
+            calls, pauses = [], []
+            fails = 0
+
+            def fetch(url):
+                nonlocal fails
+                calls.append(url)
+                if url == CH2 and fails < 2:
+                    fails += 1
+                    raise TransientFetchError("Remote end closed connection")
+                return {BOOK: CATALOG, CH1: chapter_html(1), CH2: chapter_html(2)}[url]
+
+            result = download_range(
+                BOOK, 1, 2, Path(tmp), confirm_rights=True,
+                fetcher=fetch, sleeper=pauses.append,
+            )
+            self.assertEqual(result["chapter_count"], 2)
+            self.assertEqual(calls, [BOOK, CH1, CH2, CH2, CH2])
+            self.assertEqual(pauses, [1, 1, 4, 12])
+            self.assertFalse(list(Path(tmp).rglob(".progress.json")))
+            self.assertEqual(len(list(Path(tmp).rglob("source.epub"))), 1)
+
+    def test_retry_exhaustion_saves_checkpoint_and_resume_skips_valid_chapter(self):
+        with TemporaryDirectory() as tmp:
+            calls = []
+
+            def drops(url):
+                calls.append(url)
+                if url == CH2:
+                    raise TransientFetchError("Temporary network disconnection")
+                return {BOOK: CATALOG, CH1: chapter_html(1)}[url]
+
+            with self.assertRaisesRegex(TransientFetchError, "after 3 attempts"):
+                download_range(
+                    BOOK, 1, 2, Path(tmp), confirm_rights=True,
+                    fetcher=drops, sleeper=lambda _: None,
+                )
+            self.assertEqual(calls, [BOOK, CH1, CH2, CH2, CH2])
+            self.assertEqual(len(list(Path(tmp).rglob(".progress.json"))), 1)
+            self.assertEqual(list(Path(tmp).rglob("source.epub")), [])
+
+            resumed = []
+
+            def resumed_fetch(url):
+                resumed.append(url)
+                return {BOOK: CATALOG, CH2: chapter_html(2)}[url]
+
+            repaired = download_range(
+                BOOK, 1, 2, Path(tmp), confirm_rights=True,
+                fetcher=resumed_fetch, sleeper=lambda _: None,
+            )
+            self.assertEqual(resumed, [BOOK, CH2])
+            self.assertEqual(repaired["chapter_count"], 2)
+
+    def test_403_404_429_and_wrong_chapter_never_retry(self):
+        for error in (
+            ProbeError("Site returned HTTP 403; stopped"),
+            ProbeError("Site returned HTTP 404; stopped"),
+            ProbeError("Site returned HTTP 429; stopped"),
+        ):
+            with self.subTest(error=str(error)), TemporaryDirectory() as tmp:
+                calls = []
+
+                def fetch(url):
+                    calls.append(url)
+                    if url == CH2:
+                        raise error
+                    return {BOOK: CATALOG, CH1: chapter_html(1)}[url]
+
+                with self.assertRaises(ProbeError):
+                    download_range(
+                        BOOK, 1, 2, Path(tmp), confirm_rights=True,
+                        fetcher=fetch, sleeper=lambda _: None,
+                    )
+                self.assertEqual(calls, [BOOK, CH1, CH2])
+                self.assertEqual(len(list(Path(tmp).rglob(".progress.json"))), 1)
+
+        with TemporaryDirectory() as tmp:
+            calls = []
+
+            def wrong_page(url):
+                calls.append(url)
+                return {BOOK: CATALOG, CH1: chapter_html(1),
+                        CH2: chapter_html(3)}[url]
+
+            with self.assertRaisesRegex(DownloadError, "Expected Chapter 2"):
+                download_range(
+                    BOOK, 1, 2, Path(tmp), confirm_rights=True,
+                    fetcher=wrong_page, sleeper=lambda _: None,
+                )
+            self.assertEqual(calls, [BOOK, CH1, CH2])
+
+    def test_temporary_catalogue_failure_is_paced(self):
+        with TemporaryDirectory() as tmp:
+            calls, pauses = [], []
+
+            def fetch(url):
+                calls.append(url)
+                if url == BOOK and calls.count(BOOK) == 1:
+                    raise TransientFetchError("Temporary HTTP 503")
+                return {BOOK: CATALOG, CH1: chapter_html(1), CH2: chapter_html(2)}[url]
+
+            result = download_range(
+                BOOK, 1, 2, Path(tmp), confirm_rights=True,
+                fetcher=fetch, sleeper=pauses.append,
+            )
+            self.assertEqual(result["chapter_count"], 2)
+            self.assertEqual(calls, [BOOK, BOOK, CH1, CH2])
+            self.assertEqual(pauses, [4, 1, 1])
+
+    def test_transport_exception_classification_does_not_retry_in_probe(self):
+        from unittest.mock import Mock
+        for error, transient in (
+            (RemoteDisconnected("Remote end closed connection without response"), True),
+            (TimeoutError("The read operation timed out"), True),
+            (ConnectionResetError("Connection reset by peer"), True),
+            (HTTPError(BOOK, 503, "Unavailable", {}, None), True),
+            (HTTPError(BOOK, 502, "Bad gateway", {}, None), True),
+            (HTTPError(BOOK, 429, "Too many requests", {}, None), False),
+            (HTTPError(BOOK, 404, "Not found", {}, None), False),
+            (HTTPError(BOOK, 403, "Forbidden", {}, None), False),
+            (URLError(ConnectionResetError("reset")), True),
+            (URLError("Name or service not known"), False),
+        ):
+            with self.subTest(error=str(error)):
+                opener = SimpleNamespace(open=Mock(side_effect=error))
+                with patch("tools.freewebnovel_source.build_opener",
+                           return_value=opener):
+                    if transient:
+                        with self.assertRaises(TransientFetchError):
+                            fetch_public_html(BOOK)
+                    else:
+                        with self.assertRaises(ProbeError) as ctx:
+                            fetch_public_html(BOOK)
+                        self.assertNotIsInstance(ctx.exception, TransientFetchError)
+                opener.open.assert_called_once()
 
     def test_existing_archive_skips_chapter_downloads(self):
         with TemporaryDirectory() as tmp:

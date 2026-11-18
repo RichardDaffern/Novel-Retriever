@@ -351,6 +351,28 @@ The default parallelism is adaptive, not “always six”. Large jobs may run co
 
 Some source EPUBs legitimately have no description or cover. The code must retain a warning/absence, **not** invent a synopsis or reject the book solely because its source supplied no cover.
 
+### Selective FreeWebNovel request retries (18 November 2026)
+
+`freewebnovel_source.fetch_public_html` distinguishes a
+`TransientFetchError` subclass from the ordinary fail-closed
+`ProbeError`. Retryable: HTTP 408, 500, 502, 503, 504 and positively
+identified connection resets, abrupt remote disconnects, incomplete reads
+or timeouts. Not retryable: 403, 404, 429, unrecognised redirects, site
+challenges, DNS failures, bad URLs, denied content, missing/short bodies,
+mismatched chapter numbers or any integrity check. The feasibility probe
+remains non-retrying.
+
+`freewebnovel_downloader._fetch_with_retry` retries only those explicitly
+classified transient fetch exceptions, at most twice more for the **same**
+URL, using 4-second and 12-second pauses. Existing 1-second interchapter
+pacing and at-most-two concurrent batches per novel remain unchanged.
+Downloaded chapters are checkpointed only after body/identity/hash checks;
+exhaustion stops with a recoverable partial artefact. Never retry
+`DownloadError` after a body or chapter-number mismatch, and never broaden
+the catch-all to every `ProbeError`/`OSError`. Synthetic regression tests
+exercise both retryable transport and nonretryable access/integrity failures.
+See `docs/download-guide.md`.
+
 ## 7. FreeWebNovel: separate production path with restricted requests
 
 **FreeWebNovel is not a FanFicFare adapter in this project.** Do not send it through `novel_downloader.py` as a substitute for the dedicated implementation.
