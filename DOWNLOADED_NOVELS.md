@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (30 novels)
+## FreeWebNovel (31 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -17,6 +17,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Genius Sword Immortal](https://freewebnovel.com/novel/genius-sword-immortal) | all | 1496 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44401668198/artifacts/14473184455) | 2026-11-25T21:51:22Z |
 | [Global Dungeon: My Support Is Too Strong](https://freewebnovel.com/novel/global-dungeon-my-support-is-too-strong) | all | 776 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44402544974/artifacts/14473053682) | 2026-11-25T21:45:24Z |
 | [God Level Demon](https://freewebnovel.com/novel/god-level-demon) | all | 137 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14203602757) | 2026-11-23T06:45:22Z |
+| [God-tier Farm](https://freewebnovel.com/novel/god-tier-farm) | all | 3892 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44403206970/artifacts/14479655034) | 2026-11-25T22:36:38Z |
 | [Hogwarts' John Wick](https://freewebnovel.com/novel/hogwarts-john-wick) | all | 703 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742/artifacts/14469106672) | 2026-11-25T20:31:59Z |
 | [Hogwarts: I'm Truly a Model Wizard](https://freewebnovel.com/novel/hogwarts-im-truly-a-model-wizard) | all | 1004 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381959077/artifacts/14464369346) | 2026-11-25T19:51:40Z |
 | [HP: A Magical Journey](https://freewebnovel.com/novel/hp-a-magical-journey) | all | 439 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381959077/artifacts/14465975343) | 2026-11-25T19:49:14Z |
