@@ -29,6 +29,16 @@ Prefer a dedicated Action when downloading from one particular website.
 
 Install [GitHub CLI](https://cli.github.com/) and run **[Download-All-Novels.cmd](Download-All-Novels.cmd)**. It saves one verified ZIP per novel in `Downloaded_Novels/` and skips valid files already present.
 
+## FreeWebNovel source metadata
+
+Both **FreeWebNovel - Download** and **Library - Bulk Download** now read
+a novel's synopsis, genre tags and publication status from its own public
+book page. Where present, these fields are embedded in `source.epub`
+and written to `metadata.json`; absent source fields remain absent.
+Older cached chapter batches lacking metadata extraction support are not
+reused in new runs. This does not modify previously uploaded Hugging Face
+books or their personal metadata.
+
 ## Covers and safe duplicate ZIP handling
 
 Every completed download now attempts to include a genuine cover and records its provenance. For older individual ZIPs and a consolidated export, use the [offline deduplication and cover guide](docs/cover-and-deduplication.md). Conflicting editions are retained for review, not silently replaced.
