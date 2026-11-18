@@ -27,7 +27,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (150 novels)
+## NovelFull (151 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -36,6 +36,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Abe the Wizard](https://novelfull.com/abe-the-wizard.html) | all | 1512 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42393126629/artifacts/13592251409) | 2026-11-14T21:53:01Z |
 | [Battle Through the Heavens](https://novelfull.com/battle-through-the-heavens.html) | all | 1648 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340373775) | 2026-11-24T15:18:37Z |
 | [Be Happy With Sports](https://novelfull.com/be-happy-with-sports.html) | all | 597 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14228769646) | 2026-11-23T13:24:15Z |
+| [Before I Died, I Forcibly Kissed The Heroine](https://novelfull.com/before-i-died-i-forcibly-kissed-the-heroine.html) | all | 333 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44347886492/artifacts/14448607308) | 2026-11-25T16:51:11Z |
 | [Beware Mr. Officer, Tread Carefully!](https://novelfull.com/beware-mr-officer-tread-carefully.html) | all | 630 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14181789660) | 2026-11-22T22:06:22Z |
 | [Bewitching Prince Spoils His Wife: Genius Doctor Unscrupulous Consort](https://novelfull.com/bewitching-prince-spoils-his-wife-genius-doctor-unscrupulous-consort.html) | all | 975 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14184935702) | 2026-11-22T22:54:24Z |
 | [Black Bellied Belle: Demon Lord, Bite the Bait Please](https://novelfull.com/black-bellied-belle-demon-lord-bite-the-bait-please.html) | all | 1074 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14186577524) | 2026-11-22T23:53:13Z |
