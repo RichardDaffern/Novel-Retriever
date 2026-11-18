@@ -1874,6 +1874,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/night-ranger.html",
+      "title": "Night Ranger",
+      "author": "Dark Blue Coconut Milk",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 735,
+          "run_id": 44362822717,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44362822717",
+          "artifact_id": 14458087307,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44362822717/artifacts/14458087307",
+          "completed_at_utc": "2026-11-18T18:24:40Z",
+          "expires_at_utc": "2026-11-25T18:24:40Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/nine-star-hegemon-body-art.html",
       "title": "Nine Star Hegemon Body Art",
       "author": "Ordinary Magician",
