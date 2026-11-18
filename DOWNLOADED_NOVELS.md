@@ -40,7 +40,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (180 novels)
+## NovelFull (181 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -110,6 +110,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Heavenly Jewel Change](https://novelfull.com/heavenly-jewel-change.html) | all | 848 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13654852471) | 2026-11-16T06:45:33Z |
 | [Heaven’s Devourer](https://novelfull.com/heavens-devourer.html) | all | 1829 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13654866424) | 2026-11-16T06:46:01Z |
 | [Hedonist Sovereign](https://novelfull.com/hedonist-sovereign.html) | all | 490 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44407279522/artifacts/14477201666) | 2026-11-25T22:12:13Z |
+| [Hidden Marriage](https://novelfull.com/hidden-marriage.html) | all | 2167 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44409007210/artifacts/14478006982) | 2026-11-25T22:37:29Z |
 | [History’s Number 1 Founder](https://novelfull.com/historys-number-1-founder.html) | all | 1486 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14228270790) | 2026-11-23T12:53:55Z |
 | [I Alone Level-Up](https://novelfull.com/i-alone-level-up.html) | all | 270 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13634103379) | 2026-11-15T21:14:14Z |
 | [I am a Gao Fushuai Villain](https://novelfull.com/i-am-a-gao-fushuai-villain.html) | all | 650 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13655021841) | 2026-11-16T06:53:24Z |
