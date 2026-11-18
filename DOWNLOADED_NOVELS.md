@@ -32,7 +32,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (162 novels)
+## NovelFull (163 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -41,6 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [A Will Eternal](https://novelfull.com/a-will-eternal.html) | all | 1315 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365259574/artifacts/14458662644) | 2026-11-25T18:28:17Z |
 | [Abe the Wizard](https://novelfull.com/abe-the-wizard.html) | all | 1512 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42393126629/artifacts/13592251409) | 2026-11-14T21:53:01Z |
 | [Alchemy Emperor of the Divine Dao](https://novelfull.com/alchemy-emperor-of-the-divine-dao.html) | all | 4934 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365497391/artifacts/14460650199) | 2026-11-25T18:42:59Z |
+| [Ancient Strengthening Technique](https://novelfull.com/ancient-strengthening-technique.html) | all | 2492 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44379747509/artifacts/14466418980) | 2026-11-25T20:13:43Z |
 | [Awakening The Weakest Talent: Only I Level Up](https://novelfull.com/awakening-the-weakest-talent-only-i-level-up.html) | all | 1152 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381093390/artifacts/14465111168) | 2026-11-25T19:52:38Z |
 | [Badge in Azure](https://novelfull.com/badge-in-azure.html) | all | 1553 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381093390/artifacts/14465551332) | 2026-11-25T19:55:14Z |
 | [Battle Through the Heavens](https://novelfull.com/battle-through-the-heavens.html) | all | 1648 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340373775) | 2026-11-24T15:18:37Z |
