@@ -33,7 +33,7 @@ jobs:
           python -m tools.overnight_queue preflight \
             --out overnight-preflight.json
       - name: Read public BOOK listings only, recording exact-title matches
-        if: env.GITHUB_RUN_ATTEMPT == '1'
+        if: github.run_attempt == 1
         run: |
           python -u -m tools.overnight_queue discover \
             --out overnight-discovery.json --request-budget 500
