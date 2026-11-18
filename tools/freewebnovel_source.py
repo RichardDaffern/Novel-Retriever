@@ -3,12 +3,15 @@
 
 This is deliberately not a complete-novel downloader. It checks ordinary
 public pages only, prints non-content diagnostics and does not save prose.
-No login, browser sessions, proxies, CAPTCHA solving, paywall bypass or
-unattended retries. Existing NovelFull workflows are not involved.
+No login, browser sessions, proxies, CAPTCHA solving or paywall bypass.
+The archive downloader may retry only classified transient transport errors;
+this stand-alone read-only feasibility probe never retries itself.
+Existing NovelFull workflows are not involved.
 """
 from __future__ import annotations
 
 import argparse
+from http.client import RemoteDisconnected, IncompleteRead
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -36,6 +39,29 @@ MAX_BYTES = 3 * 1024 * 1024
 
 class ProbeError(ValueError):
     """The site could not be checked without crossing an access boundary."""
+
+
+class TransientFetchError(ProbeError):
+    """A transport interruption for which a limited, paced retry may help."""
+
+
+_TRANSIENT_HTTP = frozenset({408, 500, 502, 503, 504})
+_TRANSIENT_IO = (RemoteDisconnected, IncompleteRead, TimeoutError,
+                 ConnectionResetError, ConnectionAbortedError, BrokenPipeError)
+
+
+def _temporary_url_error(reason: object) -> bool:
+    """Be selective: DNS, TLS, refusal, permission and 429 are NOT retryable."""
+    if isinstance(reason, _TRANSIENT_IO):
+        return True
+    if isinstance(reason, str):
+        reason = reason.lower()
+        return any(marker in reason for marker in (
+            "timed out", "connection reset by peer",
+            "remote end closed connection without response",
+            "connection aborted by remote host",
+        ))
+    return False
 
 
 class RefuseRedirect(HTTPRedirectHandler):
@@ -161,9 +187,23 @@ def fetch_public_html(url: str) -> str:
                 raise ProbeError("HTML response exceeds 3 MiB; stopped")
             return data.decode("utf-8-sig", errors="replace")
     except HTTPError as exc:
+        if exc.code in _TRANSIENT_HTTP:
+            raise TransientFetchError(
+                f"Temporary HTTP {exc.code} from public page"
+            ) from exc
+        # 403/challenges/404/429 are deliberate hard stops. Do not repeatedly
+        # request blocked, missing or rate-limited content.
         raise ProbeError(f"Site returned HTTP {exc.code}; stopped") from exc
     except URLError as exc:
+        if _temporary_url_error(exc.reason):
+            raise TransientFetchError(
+                f"Temporary transport failure: {type(exc.reason).__name__}"
+            ) from exc
         raise ProbeError(f"Could not access public page: {exc.reason}") from exc
+    except _TRANSIENT_IO as exc:
+        raise TransientFetchError(
+            f"Temporary transport failure: {type(exc).__name__}"
+        ) from exc
 
 
 def probe(book_url, *, confirm_rights=False, catalog_only=False,
