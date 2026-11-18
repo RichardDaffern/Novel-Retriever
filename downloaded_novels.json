@@ -92,6 +92,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/hp-a-magical-journey",
+      "title": "HP: A Magical Journey",
+      "author": "FictionOnlyReader",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 439,
+          "run_id": 44381959077,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381959077",
+          "artifact_id": 14465975343,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381959077/artifacts/14465975343",
+          "completed_at_utc": "2026-11-18T19:49:14Z",
+          "expires_at_utc": "2026-11-25T19:49:14Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/lucifers-descendant-system",
       "title": "Lucifer's Descendant System",
       "author": "Zhanye",
