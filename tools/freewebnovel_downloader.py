@@ -22,6 +22,7 @@ from bs4 import BeautifulSoup
 
 from novel_downloader import epub_chapters, slugify
 from tools.chunked_download import _epub
+from tools.freewebnovel_metadata import extract_book_metadata
 from tools.freewebnovel_source import (
     ProbeError, BODY_SELECTORS, LOCK_TEXT, chapter_url,
     fetch_public_html, parse_catalogue, validate_book_url,
@@ -67,6 +68,7 @@ def book_details(html: str, url: str) -> dict:
         "source_url": url,
         "first_two_links": first["chapters"],
         "count_basis": "largest numbered chapter link in public catalogue",
+        **extract_book_metadata(html, first["title"]),
     }
 
 
@@ -227,17 +229,27 @@ def download_range(
                for number, row in zip(range(first, last+1), rows)):
         raise DownloadError("Chapter checksum verification failed before EPUB assembly")
     _epub(book, rows, details["title"], details["author"], "en", url,
+          description=details.get("description", ""),
+          genres=details.get("genres", []), status=details.get("status", ""),
           cover_path=(book / cover_name if cover_name else None))
-    _, chapters = epub_chapters(book / "source.epub")
+    book_metadata, chapters = epub_chapters(book / "source.epub")
     if len(chapters) != len(rows):
         raise DownloadError("EPUB verification failed: missing chapter pages")
+    for field in ("description", "genres", "status"):
+        expected = details.get(field)
+        if expected and book_metadata.get(field) != expected:
+            raise DownloadError(f"EPUB verification failed: missing source {field}")
     metadata = {
         "title": details["title"], "author": details["author"],
         "language": "en", "source_url": url, "chapter_count": len(rows),
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "format": "epub", "chapter_files": "UTF-8 TXT",
         "cover_pipeline_version": 1,
+        "source_metadata_pipeline_version": 1,
     }
+    for field in ("description", "synopsis", "genres", "status"):
+        if details.get(field):
+            metadata[field] = details[field]
     if cover_name:
         metadata["cover_image"] = cover_name
     _write_json(book / "chapters.json", rows)
