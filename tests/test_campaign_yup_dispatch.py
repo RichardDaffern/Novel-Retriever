@@ -19,8 +19,8 @@ class SmallYupPilotTests(unittest.TestCase):
             for i in (1, 2, 3)
         ]
 
-    def test_only_ten_explicitly_allowlisted_yup_books(self):
-        self.assertEqual(len(self.entries), 10)
+    def test_only_sixteen_explicitly_allowlisted_yup_books(self):
+        self.assertEqual(len(self.entries), 16)
         self.assertNotIn("The First Order", self.entries)
         self.assertNotIn("Nine Sun God King", self.entries)
         self.assertNotIn("Devil’s Son-in-Law", self.entries)
@@ -35,7 +35,13 @@ class SmallYupPilotTests(unittest.TestCase):
              "I Am A Prodigy",
              "Night Ranger",
              "The Strongest Gene",
-             "Warlock Of Magus World"},
+             "Warlock Of Magus World",
+             "A Will Eternal",
+             "Solo Levelling",
+             "Alchemy Emperor of The Divine Dao",
+             "I Shall Seal The Heavens",
+             "Swallowed Star",
+             "The Strongest System"},
         )
 
     def test_three_independent_two_book_requests_preflight(self):
@@ -58,6 +64,43 @@ class SmallYupPilotTests(unittest.TestCase):
         self.assertEqual([len(urls) for _, urls in groups], [2, 2])
         self.assertEqual(len({url for _, urls in groups for url in urls}), 4)
         self.assertTrue(all("novelfull.com" in url for _, urls in groups for url in urls))
+
+    def test_wave_three_has_three_separate_two_novel_batches(self):
+        paths = [
+            f"campaigns/yup-pilot/requests/batch-{i:02d}.json"
+            for i in (6, 7, 8)
+        ]
+        groups = tool.prepare_batches(
+            paths, tool._read_json(tool.MANIFEST), {"novels": []}
+        )
+        self.assertEqual([len(urls) for _, urls in groups], [2, 2, 2])
+        self.assertEqual(len({url for _, urls in groups for url in urls}), 6)
+        self.assertTrue(all("novelfull.com" in url for _, urls in groups for url in urls))
+
+    def test_remaining_163_backlog_tracks_every_title_without_personal_status(self):
+        backlog = tool._read_json(tool.ROOT / "campaigns/yup-pilot/backlog-163.json")
+        self.assertEqual(backlog["version"], 1)
+        self.assertEqual(backlog["campaign"], tool.CAMPAIGN)
+        items = backlog["entries"]
+        self.assertEqual(len(items), 163)
+        titles = [item["title"] for item in items]
+        self.assertEqual(len(titles), len(set(titles)))
+        self.assertNotIn("Devil’s Son-in-Law", titles)
+        self.assertNotIn("Nine Sun God King", titles)
+        # Previously dispatched waves 1 & 2 are not in this remaining backlog.
+        self.assertNotIn("Before I Died, I Forcibly Kissed The Heroine", titles)
+        self.assertNotIn("Warlock Of Magus World", titles)
+        wave3 = {item["title"] for item in items
+                 if item["state"] == "wave3_requested"}
+        self.assertEqual(wave3, {
+            "A Will Eternal", "Solo Levelling",
+            "Alchemy Emperor of The Divine Dao", "I Shall Seal The Heavens",
+            "Swallowed Star", "The Strongest System"
+        })
+        self.assertEqual(
+            sum(item["state"] == "needs_source_verification" for item in items), 157
+        )
+        self.assertTrue(all(set(item) == {"title", "state"} for item in items))
 
     def test_source_urls_must_be_direct_https_book_links(self):
         for bad in (
