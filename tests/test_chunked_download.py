@@ -289,8 +289,12 @@ class ChapterBatchTests(unittest.TestCase):
         self.assertFalse(cache_has_synopsis_support(
             old, "https://freewebnovel.com/novel/the-first-order"
         ))
-        self.assertTrue(cache_has_synopsis_support(
+        self.assertFalse(cache_has_synopsis_support(
             modern, "https://freewebnovel.com/novel/the-first-order"
+        ))
+        self.assertTrue(cache_has_synopsis_support(
+            {**modern, "source_metadata_pipeline_version": 1},
+            "https://freewebnovel.com/novel/the-first-order",
         ))
 
     def test_legacy_cache_candidate_is_ignored_before_copying_into_download(self):
