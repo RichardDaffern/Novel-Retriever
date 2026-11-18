@@ -2072,6 +2072,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/immortal-mortal.html",
+      "title": "Immortal Mortal",
+      "author": "Goose Five",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1230,
+          "run_id": 44413334054,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44413334054",
+          "artifact_id": 14478834384,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44413334054/artifacts/14478834384",
+          "completed_at_utc": "2026-11-18T23:00:34Z",
+          "expires_at_utc": "2026-11-25T23:00:34Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/imperial-god-emperor.html",
       "title": "Imperial God Emperor",
       "author": "Luan Shi Kuang Dao",
