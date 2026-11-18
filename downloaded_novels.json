@@ -38,6 +38,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/ancient-godly-monarch",
+      "title": "Ancient Godly Monarch",
+      "author": "Jing Wu Hen",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 2053,
+          "run_id": 44348388296,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44348388296",
+          "artifact_id": 14469162858,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44348388296/artifacts/14469162858",
+          "completed_at_utc": "2026-11-18T20:40:31Z",
+          "expires_at_utc": "2026-11-25T20:40:31Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/big-life",
       "title": "Big Life",
       "author": "JIHO",
