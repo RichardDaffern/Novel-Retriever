@@ -1694,6 +1694,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/hail-the-king.html",
+      "title": "Hail the King",
+      "author": "Mad Blade During Troubled Times",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1634,
+          "run_id": 44406854446,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44406854446",
+          "artifact_id": 14477908258,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44406854446/artifacts/14477908258",
+          "completed_at_utc": "2026-11-18T22:43:20Z",
+          "expires_at_utc": "2026-11-25T22:43:20Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/heavenly-jewel-change.html",
       "title": "Heavenly Jewel Change",
       "author": "Tang Jia San Shao",
