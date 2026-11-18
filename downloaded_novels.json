@@ -776,6 +776,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/commanding-wind-and-cloud.html",
+      "title": "Commanding Wind and Cloud",
+      "author": "Skyscraper",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 731,
+          "run_id": 44386095530,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530",
+          "artifact_id": 14468455280,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530/artifacts/14468455280",
+          "completed_at_utc": "2026-11-18T20:20:57Z",
+          "expires_at_utc": "2026-11-25T20:20:57Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/crazy-detective.html",
       "title": "Crazy Detective",
       "author": "Kuang Hai Wang Hu",
