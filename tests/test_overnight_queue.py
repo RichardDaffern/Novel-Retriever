@@ -29,6 +29,18 @@ class OvernightQueueTests(unittest.TestCase):
         self.assertLessEqual(len(idk), 82)
         self.assertLessEqual(len(yup), 157)
 
+    def test_dispatch_script_imports_without_third_party_source_parser(self):
+        # The discovery job installs bs4, but the separate dispatcher does
+        # not. Keep this import safe on a clean Python stdlib-only runner.
+        import subprocess
+        import sys
+        result = subprocess.run(
+            [sys.executable, "-S", "-c", "import tools.overnight_queue"],
+            cwd=q.ROOT, capture_output=True, text=True,
+            timeout=20, check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_generated_candidates_never_count_as_verified(self):
         self.assertEqual(q.candidate_urls("The Great Storyteller"), [
             "https://novelfull.com/the-great-storyteller.html",
