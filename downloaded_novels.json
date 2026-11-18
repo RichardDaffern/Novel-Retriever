@@ -362,6 +362,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/the-fool-in-hogwarts",
+      "title": "The Fool in Hogwarts",
+      "author": "Junkdog_787",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 333,
+          "run_id": 44389807742,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742",
+          "artifact_id": 14469501148,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742/artifacts/14469501148",
+          "completed_at_utc": "2026-11-18T20:31:09Z",
+          "expires_at_utc": "2026-11-25T20:31:09Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/the-place-you-called-from",
       "title": "The Place You Called From",
       "author": "Sugaru Miaki (Fafoo)",
