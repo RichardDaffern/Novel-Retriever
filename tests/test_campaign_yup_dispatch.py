@@ -35,7 +35,11 @@ class SmallYupPilotTests(unittest.TestCase):
         )
 
     def test_three_independent_two_book_requests_preflight(self):
-        groups = tool.prepare_batches(self.paths, tool._read_json(tool.MANIFEST), self.registry)
+        # The live registry is updated by successful jobs throughout this
+        # campaign; this structural test must not depend on current downloads.
+        groups = tool.prepare_batches(
+            self.paths, tool._read_json(tool.MANIFEST), {"novels": []}
+        )
         self.assertEqual([len(urls) for _, urls in groups], [2, 2, 2])
         self.assertEqual(len({url for _, urls in groups for url in urls}), 6)
 
