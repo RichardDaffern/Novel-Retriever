@@ -191,6 +191,23 @@ class LibraryBulkTests(unittest.TestCase):
             *CURATED["novels"],
             {"title": "The World Online", "url": FREE},
         ]}
+        # Prefer an existing verified NovelFull record over an alternate
+        # source when selecting a title by name with no site filter.
+        preferred = selection_plan(sample_registry(), doubled, "The World Online", "", "All")
+        self.assertEqual(preferred["selected_count"], 1)
+        self.assertFalse(preferred["groups"]["FreeWebNovel"])
+        self.assertEqual(preferred["skipped"][0]["novel_url"], NOVELFULL)
+
+        # An explicit site filter still selects that site's recorded URL.
+        fallback = selection_plan(sample_registry(), doubled, "The World Online",
+                                  "", "FreeWebNovel")
+        self.assertEqual(fallback["groups"]["FreeWebNovel"][0]["novel_url"], FREE)
+
+        # Two distinct NovelFull records are ambiguous, not safe to guess.
+        doubled["novels"].append({
+            "title": "The World Online",
+            "url": "https://novelfull.com/the-world-online-alt.html",
+        })
         with self.assertRaisesRegex(ValueError, "Ambiguous"):
             selection_plan(sample_registry(), doubled, "The World Online", "", "All")
 
