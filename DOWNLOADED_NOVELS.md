@@ -36,7 +36,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (168 novels)
+## NovelFull (169 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -65,6 +65,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Coiling Dragon](https://novelfull.com/coiling-dragon.html) | all | 808 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340223119) | 2026-11-24T15:14:34Z |
 | [Commanding Wind and Cloud](https://novelfull.com/commanding-wind-and-cloud.html) | all | 731 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530/artifacts/14468455280) | 2026-11-25T20:20:57Z |
 | [Crazy Detective](https://novelfull.com/crazy-detective.html) | all | 2686 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636899276) | 2026-11-15T22:35:59Z |
+| [Cultivation Chat Group](https://novelfull.com/cultivation-chat-group.html) | all | 3165 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44392181245/artifacts/14470292399) | 2026-11-25T21:04:59Z |
 | [Cultivation Online](https://novelfull.com/cultivation-online.html) | all | 2701 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636934179) | 2026-11-15T22:36:34Z |
 | [Cultivation! My Augmented Statuses Have Unlimited Duration](https://novelfull.com/cultivation-my-augmented-statuses-have-unlimited-duration.html) | all | 904 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636307740) | 2026-11-15T22:04:49Z |
 | [Damn it! You Call This Beast Taming?](https://novelfull.com/damn-it-you-call-this-beast-taming.html) | all | 593 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14250691539) | 2026-11-23T17:20:35Z |
