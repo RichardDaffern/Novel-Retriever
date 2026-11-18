@@ -2515,6 +2515,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/swallowed-star.html",
+      "title": "Swallowed Star",
+      "author": "I Eat Tomatoes",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1485,
+          "run_id": 44365733484,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365733484",
+          "artifact_id": 14459132893,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365733484/artifacts/14459132893",
+          "completed_at_utc": "2026-11-18T18:30:39Z",
+          "expires_at_utc": "2026-11-25T18:30:39Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/tales-of-demons-and-gods.html",
       "title": "Tales of Demons and Gods",
       "author": "Mad Snail",
