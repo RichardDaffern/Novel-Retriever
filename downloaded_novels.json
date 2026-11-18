@@ -722,6 +722,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/castle-of-black-iron.html",
+      "title": "Castle of Black Iron",
+      "author": "Drunken Tiger",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 2014,
+          "run_id": 44385661877,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44385661877",
+          "artifact_id": 14468470711,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44385661877/artifacts/14468470711",
+          "completed_at_utc": "2026-11-18T20:23:43Z",
+          "expires_at_utc": "2026-11-25T20:23:43Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/chaotic-lightning-cultivation.html",
       "title": "Chaotic Lightning Cultivation",
       "author": "WordPad",
