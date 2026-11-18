@@ -92,6 +92,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/divine-god-against-the-heavens",
+      "title": "Divine God Against The Heavens",
+      "author": "RazaKarim",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1132,
+          "run_id": 44393940766,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44393940766",
+          "artifact_id": 14471151281,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44393940766/artifacts/14471151281",
+          "completed_at_utc": "2026-11-18T21:01:04Z",
+          "expires_at_utc": "2026-11-25T21:01:04Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/god-level-demon",
       "title": "God Level Demon",
       "author": "拉姆",
