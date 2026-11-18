@@ -14,6 +14,38 @@ The verified public source-page links are stored in `campaigns/yup-pilot/verifie
 
 Do not guess a URL slug from a novel title. The existing bulk downloader resolves names only from the verified registry or curated list, so this pilot supplies independently checked direct URLs.
 
+## Full Yup remainder tracked and wave 3 selected
+
+The 18 November filtered Yup comparison contained 173 missing titles after
+excluding Dropped/red-highlighted entries. Waves 1 and 2 already attempted
+or queued 10 of them. The remaining **163 original titles** are now recorded in
+`backlog-163.json`, including 157 with `needs_source_verification` and six
+with `wave3_requested`. Only title and campaign review state are published,
+not personal reading progress, ratings or private Hugging Face data.
+
+Wave 3 selects six further matching public NovelFull book-page listings:
+
+| Batch | Approved Yup titles | Source note |
+|---|---|---|
+| 06 | A Will Eternal; Solo Levelling | Solo Levelling is listed by NovelFull as **I Alone Level-Up**, with Solo Leveling as an alternative title |
+| 07 | Alchemy Emperor of The Divine Dao; I Shall Seal The Heavens | Exact public book pages |
+| 08 | Swallowed Star; The Strongest System | Exact public book pages |
+
+The novel URL and identity must match the source listing, not a guessed
+slug. Matching source pages are not proof of permission to archive or
+share the chapter text through GitHub Actions. Operators must respect the
+sites' access and reuse conditions. This campaign does not attempt
+restricted sources or bypass access controls.
+
+**Why not dispatch the other 157 immediately?** Their public source
+identity and availability are not yet verified. Sending unverified names
+to `Library - Bulk Download` would fail the name resolver; inventing
+slugs or bypassing site restrictions is unacceptable. They remain
+explicitly tracked for careful source verification, title alias review
+and small follow-on requests. A record in `backlog-163.json` is a
+research task, **not** a running download or a claim of completion.
+Existing first-wave chapter-number mismatches remain blocked in #257.
+
 ## Automatic small-batch dispatcher
 
 Each separately reviewed campaign merge adds only its new request files on main. The narrowly scoped push workflow, .github/workflows/yup-pilot-dispatch.yml, sees only newly added requests in that push, validates the entire group, checks the completed download registry, and dispatches one independent Library - Bulk Download workflow for each nonempty request.
