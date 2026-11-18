@@ -1,0 +1,363 @@
+{
+  "version": 1,
+  "campaign": "hp-naruto-webnovel-fanfics-20261119",
+  "screenshot_count": 11,
+  "entry_count": 43,
+  "source": "User-supplied ZIP of WebNovel library screenshots",
+  "entries": [
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "The Adventurous Gamer Ninja - Daichi Hekima",
+      "webnovel_author": "MonkWithAPen",
+      "screenshot": 1,
+      "review_state": "already_downloaded",
+      "registry_url": "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Uchiha's Genjutsu Demon",
+      "webnovel_author": "lazarus898",
+      "screenshot": 1,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Reborn into Naruto World with T…",
+      "webnovel_author": "Alex_Clive",
+      "screenshot": 1,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: My Unique System",
+      "webnovel_author": "Cloe23",
+      "screenshot": 1,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: The Wind Calamity",
+      "webnovel_author": "Devil_Hex",
+      "screenshot": 2,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "Naruto: The Wind Calamity",
+      "source_url": "https://freewebnovel.com/novel/naruto-the-wind-calamity",
+      "source_site": "FreeWebNovel"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Chronicles of a Fire Ninja",
+      "webnovel_author": "FirstHokage",
+      "screenshot": 2,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: This Ninja is Obviously …",
+      "webnovel_author": "nyawdao2",
+      "screenshot": 2,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Life of a Villain in The Naruto Wo…",
+      "webnovel_author": "IHaveNoNamingSense",
+      "screenshot": 2,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Binding Uchiha Sasuke, …",
+      "webnovel_author": "tambeerg",
+      "screenshot": 3,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "A New Snake In The Shinobi World",
+      "webnovel_author": "Junkdog_787",
+      "screenshot": 3,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "A New Snake In The Shinobi World",
+      "source_url": "https://freewebnovel.com/novel/a-new-snake-in-the-shinobi-world",
+      "source_site": "FreeWebNovel"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: With Favorability System",
+      "webnovel_author": "NahinS77",
+      "screenshot": 3,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Transmigrated as an Uc…",
+      "webnovel_author": "NoviceAuthor",
+      "screenshot": 3,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto Birdcage",
+      "webnovel_author": "DeCakraWnloverz",
+      "screenshot": 4,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: The Hyuga Mastermind",
+      "webnovel_author": "NahinS77",
+      "screenshot": 4,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Becoming the Soul King",
+      "webnovel_author": "Junkdog",
+      "screenshot": 4,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Starting With Creating A …",
+      "webnovel_author": "SweetestDeath",
+      "screenshot": 4,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Konoha's Trickster, Start…",
+      "webnovel_author": "PinkSnake",
+      "screenshot": 5,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: I am Uchiha Shirou",
+      "webnovel_author": "AbsoluteCode",
+      "screenshot": 5,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "Naruto: I am Uchiha Shirou",
+      "source_url": "https://freewebnovel.com/novel/naruto-i-am-uchiha-shirou",
+      "source_site": "FreeWebNovel"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Talent System In The Naruto Uni…",
+      "webnovel_author": "Rashita",
+      "screenshot": 5,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Konoha's Genius is a bit …",
+      "webnovel_author": "SaintXI",
+      "screenshot": 5,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Konoha: Gu Master",
+      "webnovel_author": "HyppoTL",
+      "screenshot": 6,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Reborn in Konoha; I Think I’m C…",
+      "webnovel_author": "HyppoTL",
+      "screenshot": 6,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Naruto: Kurotsuchi Mayuri",
+      "webnovel_author": "PirateKing24",
+      "screenshot": 6,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "Naruto: Kurotsuchi Mayuri",
+      "source_url": "https://freewebnovel.com/novel/naruto-kurotsuchi-mayuri",
+      "source_site": "FreeWebNovel"
+    },
+    {
+      "franchise": "Naruto",
+      "title_as_shown": "Konoha's Medical Ninja: One Pu…",
+      "webnovel_author": "INeedRest",
+      "screenshot": 6,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "Konoha's Medical Ninja: One Punch to beat up Madara",
+      "source_url": "https://freewebnovel.com/novel/konohas-medical-ninja-one-punch-to-beat-up-madara",
+      "source_site": "FreeWebNovel",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Hogwarts: The Unscientific Wiza…",
+      "webnovel_author": "Crazy_DarkSide_Cat",
+      "screenshot": 7,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "The Arcane Thief",
+      "webnovel_author": "Snollygoster",
+      "screenshot": 7,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "HP: The Arcane Thief",
+      "source_url": "https://freewebnovel.com/novel/hp-the-arcane-thief",
+      "source_site": "FreeWebNovel"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Hogwarts: Bloodline Wizard",
+      "webnovel_author": "Innocent Angel",
+      "screenshot": 7,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Harry Potter: Cael Vale's journe…",
+      "webnovel_author": "16622800",
+      "screenshot": 8,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "HP: A Magical Journey [Complete]",
+      "webnovel_author": "FictionOnlyReader",
+      "screenshot": 8,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "HP: A Magical Journey",
+      "source_url": "https://freewebnovel.com/novel/hp-a-magical-journey",
+      "source_site": "FreeWebNovel"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Hogwarts: I'm Truly a Model Wiz…",
+      "webnovel_author": "BlurryPinkSnake",
+      "screenshot": 8,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "Hogwarts: I'm Truly a Model Wizard",
+      "source_url": "https://freewebnovel.com/novel/hogwarts-im-truly-a-model-wizard",
+      "source_site": "FreeWebNovel",
+      "source_note": "Same Chinese novel and English title; mirror credits translator BlurryDream, WebNovel screenshots credit BlurryPinkSnake; edition variation",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Succubus System At Hogwarts",
+      "webnovel_author": "Dragonel23",
+      "screenshot": 8,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Harry Potter: I, Tom Riddle, am n…",
+      "webnovel_author": "ElvenKing20",
+      "screenshot": 9,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Hogwarts: Transmigrated as the …",
+      "webnovel_author": "Hyperbeeam",
+      "screenshot": 9,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Harry Potter: Platinum Dragon …",
+      "webnovel_author": "BlurryPinkSnake",
+      "screenshot": 9,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Harry Potter: The Duelist of Hog…",
+      "webnovel_author": "MeowthTL",
+      "screenshot": 9,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Harry Potter: The Healer",
+      "webnovel_author": "TheRedSpell",
+      "screenshot": 10,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "There Will Be No Third Dark Lor…",
+      "webnovel_author": "mrfanfiction140",
+      "screenshot": 10,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Hogwarts' John Wick",
+      "webnovel_author": "Dragonel23",
+      "screenshot": 10,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "Hogwarts' John Wick",
+      "source_url": "https://freewebnovel.com/novel/hogwarts-john-wick",
+      "source_site": "FreeWebNovel"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "The Fool in Hogwarts",
+      "webnovel_author": "Junkdog_787",
+      "screenshot": 10,
+      "review_state": "public_source_listing_matched",
+      "matched_title": "The Fool in Hogwarts",
+      "source_url": "https://freewebnovel.com/novel/the-fool-in-hogwarts",
+      "source_site": "FreeWebNovel"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Harry Potter: The Bard of Hogwa…",
+      "webnovel_author": "Dark_Peace",
+      "screenshot": 11,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Harry Potter: The Flaw of Slytherin",
+      "webnovel_author": "Ghidorah_7074",
+      "screenshot": 11,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "Hogwarts: I Started as the Fool",
+      "webnovel_author": "ulquiorra_cifer_1152",
+      "screenshot": 11,
+      "review_state": "needs_source_verification"
+    },
+    {
+      "franchise": "Harry Potter",
+      "title_as_shown": "The Most Fortunate Malfoy in Ha…",
+      "webnovel_author": "Devilsatan",
+      "screenshot": 11,
+      "review_state": "needs_source_verification",
+      "title_truncated_in_screenshot": true
+    }
+  ]
+}
