@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (20 novels)
+## FreeWebNovel (21 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -16,6 +16,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Lucifer's Descendant System](https://freewebnovel.com/novel/lucifers-descendant-system) | all | 407 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14172519667) | 2026-11-22T17:43:55Z |
 | [My Enchanting System](https://freewebnovel.com/novel/my-enchanting-system) | all | 887 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14173391066) | 2026-11-22T17:43:00Z |
 | [Naruto: I am Uchiha Shirou](https://freewebnovel.com/novel/naruto-i-am-uchiha-shirou) | all | 448 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249/artifacts/14463647756) | 2026-11-25T19:32:04Z |
+| [Naruto: Kurotsuchi Mayuri](https://freewebnovel.com/novel/naruto-kurotsuchi-mayuri) | all | 524 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249/artifacts/14463808054) | 2026-11-25T19:34:00Z |
 | [Overlord of Blood and Iron](https://freewebnovel.com/novel/overlord-of-blood-and-iron-novel) | all | 355 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14172990861) | 2026-11-22T17:38:41Z |
 | [Pain, Pain, Go Away](https://freewebnovel.com/novel/pain-pain-go-away) | all | 11 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14201972631) | 2026-11-23T06:11:19Z |
 | [Path of Medicine With a System](https://freewebnovel.com/novel/path-of-medicine-with-a-system) | all | 315 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14202635894) | 2026-11-23T06:19:23Z |
