@@ -1442,6 +1442,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/god-and-devil-world.html",
+      "title": "God and Devil World",
+      "author": "Zi Chan Bao Zeng",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1216,
+          "run_id": 44402544974,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44402544974",
+          "artifact_id": 14475085834,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44402544974/artifacts/14475085834",
+          "completed_at_utc": "2026-11-18T21:56:24Z",
+          "expires_at_utc": "2026-11-25T21:56:24Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/god-emperor.html",
       "title": "God Emperor",
       "author": "Flying Fish",
