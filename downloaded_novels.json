@@ -4765,6 +4765,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-gate-of-good-fortune.html",
+      "title": "The Gate Of Good Fortune",
+      "author": "Goose Five",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1073,
+          "run_id": 44480435284,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44480435284",
+          "artifact_id": 14508334484,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44480435284/artifacts/14508334484",
+          "completed_at_utc": "2026-11-19T07:54:03Z",
+          "expires_at_utc": "2026-11-26T07:54:03Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-great-storyteller.html",
       "title": "The Great Storyteller",
       "author": "임한백",
