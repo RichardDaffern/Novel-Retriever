@@ -4632,6 +4632,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/unscientific-beast-taming.html",
+      "title": "Unscientific Beast Taming",
+      "author": "Sounding Stream",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1962,
+          "run_id": 44452774179,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452774179",
+          "artifact_id": 14497512003,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452774179/artifacts/14497512003",
+          "completed_at_utc": "2026-11-19T04:04:14Z",
+          "expires_at_utc": "2026-11-26T04:04:14Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/valhalla-saga.html",
       "title": "Valhalla Saga",
       "author": "Chwiryong",
