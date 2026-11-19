@@ -1,5 +1,6 @@
 """Offline tests for bounded NovelFull HTTPS transport; no live downloads."""
 import io
+from http.client import RemoteDisconnected
 from pathlib import Path
 import subprocess
 import sys
@@ -7,7 +8,7 @@ import tempfile
 import unittest
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 
 from tools import novelfull_http
 
@@ -61,6 +62,58 @@ class TransportTests(unittest.TestCase):
         self.assertEqual(data, b"<html>Valid story page</html>")
         self.assertEqual(url, BOOK)
         self.assertEqual(opener.open.call_args.kwargs["timeout"], 8)
+
+    def test_transient_remote_disconnect_gets_only_one_paced_retry(self):
+        opener = Mock()
+        opener.open.side_effect = [
+            RemoteDisconnected("Connection dropped"),
+            Response(b"<html>Valid chapter</html>"),
+        ]
+        with patch.object(novelfull_http, "build_opener", return_value=opener), \
+                patch.object(novelfull_http.time, "sleep") as sleeper:
+            data, url = novelfull_http._get_bytes(BOOK, {}, 8)
+        self.assertEqual((data, url), (b"<html>Valid chapter</html>", BOOK))
+        self.assertEqual(opener.open.call_count, 2)
+        sleeper.assert_called_once_with(novelfull_http.TRANSIENT_RETRY_DELAY_SECONDS)
+
+    def test_wrapped_transient_timeout_is_retried_once(self):
+        opener = Mock()
+        opener.open.side_effect = [
+            URLError(TimeoutError("Read timed out")),
+            Response(b"<html>Valid chapter</html>"),
+        ]
+        with patch.object(novelfull_http, "build_opener", return_value=opener), \
+                patch.object(novelfull_http.time, "sleep") as sleeper:
+            data, _ = novelfull_http._get_bytes(BOOK, {}, 8)
+        self.assertEqual(data, b"<html>Valid chapter</html>")
+        self.assertEqual(opener.open.call_count, 2)
+        sleeper.assert_called_once()
+
+    def test_repeated_connection_loss_stops_after_two_attempts(self):
+        opener = Mock()
+        opener.open.side_effect = RemoteDisconnected("Connection dropped")
+        with patch.object(novelfull_http, "build_opener", return_value=opener), \
+                patch.object(novelfull_http.time, "sleep") as sleeper:
+            with self.assertRaises(RemoteDisconnected):
+                novelfull_http._get_bytes(BOOK, {}, 8)
+        self.assertEqual(opener.open.call_count, 2)
+        sleeper.assert_called_once()
+
+    def test_http_429_and_nontransient_network_errors_never_retry(self):
+        from fanficfare.exceptions import HTTPErrorFFF
+        for failure, error in (
+            (HTTPError(BOOK, 429, "Too Many Requests", {}, None), HTTPErrorFFF),
+            (URLError("DNS lookup failed"), URLError),
+        ):
+            with self.subTest(error=error.__name__):
+                opener = Mock()
+                opener.open.side_effect = failure
+                with patch.object(novelfull_http, "build_opener", return_value=opener), \
+                        patch.object(novelfull_http.time, "sleep") as sleeper:
+                    with self.assertRaises(error):
+                        novelfull_http._get_bytes(BOOK, {}, 8)
+                self.assertEqual(opener.open.call_count, 1)
+                sleeper.assert_not_called()
 
     def test_explicit_cloudflare_challenge_fails_closed(self):
         from fanficfare.exceptions import HTTPErrorFFF
