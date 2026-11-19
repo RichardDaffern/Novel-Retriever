@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (282 novels)
+## NovelFull (283 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -299,6 +299,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Rise of Otaku](https://novelfull.com/the-rise-of-otaku.html) | all | 410 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489265432/artifacts/14513641738) | 2026-11-26T09:00:56Z |
 | [The Sacred Ruins](https://novelfull.com/the-sacred-ruins.html) | all | 1645 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489265432/artifacts/14513562641) | 2026-11-26T09:04:34Z |
 | [The Second Coming of Gluttony](https://novelfull.com/the-second-coming-of-gluttony.html) | all | 550 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13626140911) | 2026-11-15T16:56:44Z |
+| [The Strong, The Few, True Cultivators on Campus](https://novelfull.com/the-strong-the-few-true-cultivators-on-campus.html) | all | 309 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489990459/artifacts/14514187498) | 2026-11-26T09:13:10Z |
 | [The Strongest Dan God](https://novelfull.com/the-strongest-dan-god.html) | all | 601 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14247235889) | 2026-11-23T16:37:54Z |
 | [The Strongest Gene](https://novelfull.com/the-strongest-gene.html) | all | 880 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44363052288/artifacts/14457039833) | 2026-11-25T18:30:12Z |
 | [The Strongest System](https://novelfull.com/the-strongest-system.html) | all | 1159 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365733484/artifacts/14457004662) | 2026-11-25T18:28:31Z |
