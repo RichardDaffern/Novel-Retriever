@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (263 novels)
+## NovelFull (264 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -260,6 +260,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Sovereign of the Three Realms](https://novelfull.com/sovereign-of-the-three-realms.html) | all | 2376 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13643540730) | 2026-11-16T01:25:45Z |
 | [Spirit Realm](https://novelfull.com/spirit-realm.html) | all | 1840 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13643386308) | 2026-11-16T01:26:02Z |
 | [Spirit Vessel](https://novelfull.com/spirit-vessel.html) | all | 1261 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44474812059/artifacts/14506882657) | 2026-11-26T07:11:50Z |
+| [Starting With 3 S-Class Talents](https://novelfull.com/starting-with-3-s-class-talents.html) | all | 632 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477317064/artifacts/14508460234) | 2026-11-26T07:29:07Z |
 | [Stellar Transformations](https://novelfull.com/stellar-transformations.html) | all | 682 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14206741015) | 2026-11-23T07:40:17Z |
 | [Strongest Abandoned Son](https://novelfull.com/strongest-abandoned-son.html) | all | 2265 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13643883402) | 2026-11-16T02:01:51Z |
 | [Supreme Emperor of Swords](https://novelfull.com/supreme-emperor-of-swords.html) | all | 1336 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13650649288) | 2026-11-16T05:16:20Z |
