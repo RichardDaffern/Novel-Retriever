@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (268 novels)
+## NovelFull (269 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -272,6 +272,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Tales of Demons and Gods](https://novelfull.com/tales-of-demons-and-gods.html) | all | 507 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13651083412) | 2026-11-16T05:10:53Z |
 | [Tales of Herding Gods](https://novelfull.com/tales-of-herding-gods.html) | all | 1842 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477964147/artifacts/14508362062) | 2026-11-26T07:40:01Z |
 | [Talisman Emperor](https://novelfull.com/talisman-emperor.html) | all | 2251 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13652776298) | 2026-11-16T05:44:35Z |
+| [Taming Master](https://novelfull.com/taming-master.html) | all | 599 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477964147/artifacts/14509700161) | 2026-11-26T07:52:55Z |
 | [The Amber Sword](https://novelfull.com/the-amber-sword.html) | all | 876 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14224943698) | 2026-11-23T12:27:42Z |
 | [The Avalon Of Five Elements](https://novelfull.com/the-avalon-of-five-elements.html) | all | 715 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452173627/artifacts/14495964574) | 2026-11-26T03:53:54Z |
 | [The Beautiful Wife of the Whirlwind Marriage](https://novelfull.com/the-beautiful-wife-of-the-whirlwind-marriage.html) | all | 1583 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44479280337/artifacts/14508793174) | 2026-11-26T07:49:12Z |
