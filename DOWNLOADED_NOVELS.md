@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (250 novels)
+## NovelFull (251 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -210,6 +210,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Myriad Paths of the Dragon Emperor](https://novelfull.com/myriad-paths-of-the-dragon-emperor.html) | all | 6012 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13644198039) | 2026-11-16T01:59:56Z |
 | [National School Prince Is A Girl](https://novelfull.com/national-school-prince-is-a-girl.html) | all | 1782 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44444477580/artifacts/14493119599) | 2026-11-26T02:53:15Z |
 | [Night Ranger](https://novelfull.com/night-ranger.html) | all | 735 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44362822717/artifacts/14458087307) | 2026-11-25T18:24:40Z |
+| [Nine Star Burden](https://novelfull.com/nine-star-burden.html) | all | 1272 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44469675311/artifacts/14504284652) | 2026-11-26T06:28:50Z |
 | [Nine Star Hegemon Body Art](https://novelfull.com/nine-star-hegemon-body-art.html) | all | 7318 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13647110995) | 2026-11-16T03:06:52Z |
 | [Nine Sun God King](https://novelfull.com/nine-sun-god-king.html) | all | 1154 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13643655544) | 2026-11-16T01:26:29Z |
 | [Oh My God! Earthlings are Insane!](https://novelfull.com/oh-my-god-earthlings-are-insane.html) | all | 1963 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44444477580/artifacts/14494356344) | 2026-11-26T02:53:46Z |
