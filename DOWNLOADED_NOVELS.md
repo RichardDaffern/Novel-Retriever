@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (32 novels)
+## FreeWebNovel (33 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -36,6 +36,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Spirit Cultivation](https://freewebnovel.com/novel/spirit-cultivation) | all | 546 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14173503709) | 2026-11-22T18:10:33Z |
 | [Still, Wait For Me](https://freewebnovel.com/novel/still-wait-for-me) | all | 692 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14174809663) | 2026-11-22T18:40:09Z |
 | [Sword Pilgrim](https://freewebnovel.com/novel/sword-pilgrim) | all | 281 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14175901918) | 2026-11-22T19:04:09Z |
+| [The Brilliant Fighting Master](https://freewebnovel.com/novel/the-brilliant-fighting-master) | all | 1730 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452173627/artifacts/14496804239) | 2026-11-26T03:58:57Z |
 | [The Fool in Hogwarts](https://freewebnovel.com/novel/the-fool-in-hogwarts) | all | 333 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742/artifacts/14469501148) | 2026-11-25T20:31:09Z |
 | [The Place You Called From](https://freewebnovel.com/novel/the-place-you-called-from) | all | 15 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14176111528) | 2026-11-22T19:02:16Z |
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
