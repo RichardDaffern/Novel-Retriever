@@ -2558,6 +2558,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/mechanical-god-emperor.html",
+      "title": "Mechanical God Emperor",
+      "author": "Assets Exploding",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1569,
+          "run_id": 44423515325,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423515325",
+          "artifact_id": 14484702287,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423515325/artifacts/14484702287",
+          "completed_at_utc": "2026-11-19T00:11:39Z",
+          "expires_at_utc": "2026-11-26T00:11:39Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/medical-master.html",
       "title": "Medical Master",
       "author": "Walk The World",
