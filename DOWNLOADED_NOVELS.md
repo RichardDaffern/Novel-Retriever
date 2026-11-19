@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (206 novels)
+## NovelFull (207 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -106,6 +106,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Global Cultivation: First-time Top-up for the Ultimate Destiny Treasure](https://novelfull.com/global-cultivation-first-time-top-up-for-the-ultimate-destiny-treasure.html) | all | 355 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14210436324) | 2026-11-23T08:48:04Z |
 | [Global Descent: 100×Reward](https://novelfull.com/global-descent-100reward.html) | all | 1160 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44435959139/artifacts/14489747661) | 2026-11-26T01:43:08Z |
 | [Global Lord: 100% Drop Rate](https://novelfull.com/global-lord-100-drop-rate.html) | all | 1979 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13636378607) | 2026-11-15T22:12:59Z |
+| [Global Reincarnation: Becoming A God With My Unlimited Revive](https://novelfull.com/global-reincarnation-becoming-a-god-with-my-unlimited-revive.html) | all | 470 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44435959139/artifacts/14490526760) | 2026-11-26T01:46:40Z |
 | [God and Devil World](https://novelfull.com/god-and-devil-world.html) | all | 1216 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44402544974/artifacts/14475085834) | 2026-11-25T21:56:24Z |
 | [God Emperor](https://novelfull.com/god-emperor.html) | all | 2622 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13636968626) | 2026-11-15T22:32:56Z |
 | [God of Cooking](https://novelfull.com/god-of-cooking.html) | all | 651 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13641331757) | 2026-11-16T00:38:37Z |
