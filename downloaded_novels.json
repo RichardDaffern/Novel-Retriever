@@ -4214,6 +4214,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/seized-by-the-system.html",
+      "title": "Seized by the System",
+      "author": "Mu Heng",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1166,
+          "run_id": 44473708436,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44473708436",
+          "artifact_id": 14507851678,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44473708436/artifacts/14507851678",
+          "completed_at_utc": "2026-11-19T07:22:37Z",
+          "expires_at_utc": "2026-11-26T07:22:37Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/sevens.html",
       "title": "Sevens",
       "author": "Waka / Yume Yume",
