@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (255 novels)
+## NovelFull (256 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -224,6 +224,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Peerless Martial God](https://novelfull.com/peerless-martial-god.html) | all | 2500 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13656579422) | 2026-11-16T07:41:29Z |
 | [Peerless Martial God 2](https://novelfull.com/peerless-martial-god-2.html) | all | 1740 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13657212387) | 2026-11-16T07:46:27Z |
 | [Perfect Secret Love: The Bad New Wife is a Little Sweet](https://novelfull.com/perfect-secret-love-the-bad-new-wife-is-a-little-sweet.html) | all | 2490 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44471214855/artifacts/14506037029) | 2026-11-26T06:46:59Z |
+| [Perfect World](https://novelfull.com/perfect-world.html) | all | 2015 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44471525347/artifacts/14505254914) | 2026-11-26T06:47:20Z |
 | [Please, I Really Didn’t Want To Fall in Love With My Master!](https://novelfull.com/please-i-really-didnt-want-to-fall-in-love-with-my-master.html) | all | 381 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13658476779) | 2026-11-16T08:08:54Z |
 | [Pocket Hunting Dimension](https://novelfull.com/pocket-hunting-dimension.html) | all | 1331 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13636450844) | 2026-11-15T21:58:32Z |
 | [Poison Genius Consort](https://novelfull.com/poison-genius-consort.html) | all | 1365 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14216247264) | 2026-11-23T10:24:28Z |
