@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (284 novels)
+## NovelFull (286 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -320,6 +320,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [True Martial World](https://novelfull.com/true-martial-world.html) | all | 1710 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13625147182) | 2026-11-15T16:29:28Z |
 | [Ultimate Scheming System](https://novelfull.com/ultimate-scheming-system.html) | all | 1900 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44491462850/artifacts/14514224517) | 2026-11-26T09:30:23Z |
 | [Unrivaled Medicine God](https://novelfull.com/unrivaled-medicine-god.html) | all | 3120 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13625248157) | 2026-11-15T16:37:41Z |
+| [Unrivaled Tang Sect](https://novelfull.com/unrivaled-tang-sect.html) | all | 1587 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44493335597/artifacts/14514429358) | 2026-11-26T09:31:19Z |
 | [Unscientific Beast Taming](https://novelfull.com/unscientific-beast-taming.html) | all | 1962 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452774179/artifacts/14497512003) | 2026-11-26T04:04:14Z |
 | [Upgrade Specialist in Another World](https://novelfull.com/upgrade-specialist-in-another-world.html) | all | 1357 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44493335597/artifacts/14514913779) | 2026-11-26T09:30:19Z |
 | [Valhalla Saga](https://novelfull.com/valhalla-saga.html) | all | 269 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14212677158) | 2026-11-23T09:30:55Z |

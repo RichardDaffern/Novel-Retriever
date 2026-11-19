@@ -5514,6 +5514,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/unrivaled-tang-sect.html",
+      "title": "Unrivaled Tang Sect",
+      "author": "Tang Jia San Shao",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1587,
+          "run_id": 44493335597,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44493335597",
+          "artifact_id": 14514429358,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44493335597/artifacts/14514429358",
+          "completed_at_utc": "2026-11-19T09:31:19Z",
+          "expires_at_utc": "2026-11-26T09:31:19Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/unscientific-beast-taming.html",
       "title": "Unscientific Beast Taming",
       "author": "Sounding Stream",
