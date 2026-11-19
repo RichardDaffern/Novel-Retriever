@@ -1,0 +1,91 @@
+name: Export - 104 completed novels for Storage Controller
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'campaigns/controller-handoff/request-export-20261119.json'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: completed-104-export-20261119
+  cancel-in-progress: false
+
+jobs:
+  export:
+    if: github.repository == 'RichardDaffern/Novel-Retriever'
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Require one-time activation addition
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git diff --diff-filter=A --name-only "$BEFORE_SHA" "$HEAD_SHA" -- \
+            'campaigns/controller-handoff/request-export-20261119.json' | grep -qx \
+            'campaigns/controller-handoff/request-export-20261119.json'
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Validate exact completed-book input snapshot
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('campaigns/controller-handoff/completed-20261119.json')
+          rows=json.loads(p.read_text(encoding='utf-8'))['novels']
+          assert len(rows)==104, f'Expected 104 books, got {len(rows)}'
+          assert len({r['url'] for r in rows})==104, 'Duplicate book URLs in snapshot'
+          assert all(r.get('downloads') and all(
+              d['status']=='complete' and d['range']=='all'
+              and d.get('run_id') and d.get('artifact_id')
+              for d in r['downloads']) for r in rows), 'Incomplete artefact selected'
+          print(f'Validated {len(rows)} fully registered books; no partial chapters')
+          PY
+      - name: Prepare and validate complete per-book ZIPs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u -m tools.export_completed_github_novels \
+            --registry campaigns/controller-handoff/completed-20261119.json \
+            --only-listed --output export
+      - name: Report how many books are in the downloadable ZIP
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f export/manifest.json ]]; then
+            python - <<'PY'
+          import json,os
+          from pathlib import Path
+          m=json.loads(Path('export/manifest.json').read_text(encoding='utf-8'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as f:
+              f.write(f"## Consolidated novel download\n\n**Individual novel ZIPs packaged:** {m['exported_novels']} / 104\n\n")
+              f.write(f"**Unavailable registry books:** {len(m['unavailable_registry_books'])}\n\n")
+              f.write(f"**Conflicting editions:** {len(m['conflicting_editions'])}\n\n")
+              f.write("Download the single GitHub Actions artefact ZIP below, extract it, and put the individual `novels/*.zip` files into the Storage Controller's `novels/` folder. Preview before uploading.\n")
+          print('Exported:',m['exported_novels'],'/ 104')
+          print('Unavailable:',len(m['unavailable_registry_books']))
+          print('Conflicting:',len(m['conflicting_editions']))
+          PY
+          fi
+      - name: Package one downloadable ZIP for all completed books
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: taiyou-completed-104-${{ github.run_id }}
+          path: export/
+          compression-level: 0
+          retention-days: 90
+          if-no-files-found: error
