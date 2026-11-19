@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (228 novels)
+## NovelFull (229 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -231,6 +231,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Shura’s Wrath](https://novelfull.com/shuras-wrath.html) | all | 853 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14203451178) | 2026-11-23T06:33:41Z |
 | [Simplified Beast Evolution Path](https://novelfull.com/simplified-beast-evolution-path.html) | all | 439 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14172677173) | 2026-11-22T17:43:21Z |
 | [So Pure, So Flirtatious](https://novelfull.com/so-pure-so-flirtatious.html) | all | 1621 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13636208314) | 2026-11-15T22:05:35Z |
+| [Soaring of Galaxia](https://novelfull.com/soaring-of-galaxia.html) | all | 937 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44450975207/artifacts/14496936789) | 2026-11-26T03:45:05Z |
 | [Sovereign of the Three Realms](https://novelfull.com/sovereign-of-the-three-realms.html) | all | 2376 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13643540730) | 2026-11-16T01:25:45Z |
 | [Spirit Realm](https://novelfull.com/spirit-realm.html) | all | 1840 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13643386308) | 2026-11-16T01:26:02Z |
 | [Stellar Transformations](https://novelfull.com/stellar-transformations.html) | all | 682 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14206741015) | 2026-11-23T07:40:17Z |

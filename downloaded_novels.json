@@ -3919,6 +3919,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/soaring-of-galaxia.html",
+      "title": "Soaring of Galaxia",
+      "author": "Li Tian",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 937,
+          "run_id": 44450975207,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44450975207",
+          "artifact_id": 14496936789,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44450975207/artifacts/14496936789",
+          "completed_at_utc": "2026-11-19T03:45:05Z",
+          "expires_at_utc": "2026-11-26T03:45:05Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/sovereign-of-the-three-realms.html",
       "title": "Sovereign of the Three Realms",
       "author": "Li Tian",
