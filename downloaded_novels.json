@@ -4855,6 +4855,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-great-ruler.html",
+      "title": "The Great Ruler",
+      "author": "Heavenly Silkworm Potato",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1566,
+          "run_id": 44483233580,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44483233580",
+          "artifact_id": 14511114470,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44483233580/artifacts/14511114470",
+          "completed_at_utc": "2026-11-19T08:42:38Z",
+          "expires_at_utc": "2026-11-26T08:42:38Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-great-storyteller.html",
       "title": "The Great Storyteller",
       "author": "임한백",
