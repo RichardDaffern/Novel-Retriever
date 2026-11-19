@@ -1856,6 +1856,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/gods-song.html",
+      "title": "God’s Song",
+      "author": "Song of God",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 283,
+          "run_id": 44439000913,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44439000913",
+          "artifact_id": 14490679178,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44439000913/artifacts/14490679178",
+          "completed_at_utc": "2026-11-19T02:03:22Z",
+          "expires_at_utc": "2026-11-26T02:03:22Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/golden-time.html",
       "title": "Golden Time",
       "author": "JungYong",
