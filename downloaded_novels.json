@@ -4657,6 +4657,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/taming-master.html",
+      "title": "Taming Master",
+      "author": "Park Taesuk",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 599,
+          "run_id": 44477964147,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477964147",
+          "artifact_id": 14509700161,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477964147/artifacts/14509700161",
+          "completed_at_utc": "2026-11-19T07:52:55Z",
+          "expires_at_utc": "2026-11-26T07:52:55Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-amber-sword.html",
       "title": "The Amber Sword",
       "author": "Fei Yan",
