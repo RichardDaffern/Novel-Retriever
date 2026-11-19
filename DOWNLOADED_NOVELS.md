@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (216 novels)
+## NovelFull (217 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -136,6 +136,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [I am the Monarch](https://novelfull.com/i-am-the-monarch.html) | all | 336 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13634498595) | 2026-11-15T21:18:11Z |
 | [I Can Track Everything](https://novelfull.com/i-can-track-everything.html) | all | 907 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42368776684/artifacts/13574863593) | 2026-11-14T12:55:20Z |
 | [I Cultivate Passively](https://novelfull.com/i-cultivate-passively.html) | all | 657 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13634707533) | 2026-11-15T21:18:45Z |
+| [I Found A Planet](https://novelfull.com/i-found-a-planet.html) | all | 493 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44440246704/artifacts/14492338973) | 2026-11-26T02:33:13Z |
 | [I Have A City In An Alternate World](https://novelfull.com/i-have-a-city-in-an-alternate-world.html) | all | 4831 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44409430288/artifacts/14482368441) | 2026-11-25T23:42:22Z |
 | [I Have a Mansion in the Post-apocalyptic World](https://novelfull.com/i-have-a-mansion-in-the-post-apocalyptic-world.html) | all | 1609 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44413334054/artifacts/14482210606) | 2026-11-25T23:22:09Z |
 | [I Have A Martial Arts Panel](https://novelfull.com/i-have-a-martial-arts-panel.html) | all | 369 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14343980584) | 2026-11-24T15:36:30Z |

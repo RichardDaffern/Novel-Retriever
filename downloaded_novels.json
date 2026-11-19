@@ -2216,6 +2216,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/i-found-a-planet.html",
+      "title": "I Found A Planet",
+      "author": "Ming Jian",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 493,
+          "run_id": 44440246704,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44440246704",
+          "artifact_id": 14492338973,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44440246704/artifacts/14492338973",
+          "completed_at_utc": "2026-11-19T02:33:13Z",
+          "expires_at_utc": "2026-11-26T02:33:13Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/i-have-a-city-in-an-alternate-world.html",
       "title": "I Have A City In An Alternate World",
       "author": "Han Mubai",
