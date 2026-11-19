@@ -5874,6 +5874,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/zhan-long.html",
+      "title": "Zhan Long",
+      "author": "Shi Luo Ye",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1395,
+          "run_id": 44497656162,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162",
+          "artifact_id": 14521375062,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14521375062",
+          "completed_at_utc": "2026-11-19T10:37:34Z",
+          "expires_at_utc": "2026-11-26T10:37:34Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/zhanxian.html",
       "title": "Zhanxian",
       "author": "Ren Yuan",
