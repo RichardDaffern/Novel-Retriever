@@ -40,7 +40,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (195 novels)
+## NovelFull (196 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -150,6 +150,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Lord Xue Ying](https://novelfull.com/lord-xue-ying.html) | all | 1384 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423161140/artifacts/14485215156) | 2026-11-26T00:07:48Z |
 | [Martial Arts Master](https://novelfull.com/martial-arts-master.html) | all | 753 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13634841071) | 2026-11-15T21:19:32Z |
 | [Martial God Asura](https://novelfull.com/martial-god-asura.html) | all | 6742 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13651388224) | 2026-11-16T05:17:01Z |
+| [Martial God Space](https://novelfull.com/martial-god-space.html) | all | 951 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423515325/artifacts/14485145679) | 2026-11-26T00:08:17Z |
 | [Martial Immortality: Starting with the Spirit Beast Scroll](https://novelfull.com/martial-immortality-starting-with-the-spirit-beast-scroll.html) | all | 524 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13626848455) | 2026-11-15T17:27:56Z |
 | [Martial Peak](https://novelfull.com/martial-peak.html) | all | 6133 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13651454047) | 2026-11-16T05:35:13Z |
 | [Martial World](https://novelfull.com/martial-world.html) | all | 2276 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14345670300) | 2026-11-24T15:57:25Z |
