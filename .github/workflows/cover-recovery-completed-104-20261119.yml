@@ -1,0 +1,73 @@
+name: Covers - Recover 104 from completed EPUB archives
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'campaigns/controller-handoff/request-cover-recovery-20261119.json'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: cover-recovery-completed-104-20261119
+  cancel-in-progress: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Require new one-time cover-recovery activation
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --diff-filter=A --name-only "$BEFORE_SHA" "$HEAD_SHA" -- \
+            'campaigns/controller-handoff/request-cover-recovery-20261119.json' | grep -qx \
+            'campaigns/controller-handoff/request-cover-recovery-20261119.json'
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install locked offline cover utilities
+        run: python -m pip install -r requirements.lock
+      - name: Test existing cover extraction and source identity
+        run: python -m unittest tests.test_recover_covers_from_export -v
+      - name: Retrieve the completed 104-book GitHub ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 44466510737 --repo "$GITHUB_REPOSITORY" \
+            --name taiyou-completed-104-44466510737 --dir incoming
+          test -d incoming/novels
+      - name: Recover only existing validated cover images, no websites
+        run: |
+          python -u -m tools.recover_covers_from_export \
+            --novels incoming/novels \
+            --registry campaigns/controller-handoff/completed-20261119.json \
+            --output Downloaded_Covers
+      - name: Publish Controller-compatible cover ZIP
+        if: success()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: novel-cover-images
+          path: Downloaded_Covers/
+          retention-days: 90
+          compression-level: 6
+          if-no-files-found: error
+      - name: Publish unresolved-cover report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cover-recovery-report-${{ github.run_id }}
+          path: Downloaded_Covers/cover-recovery-report.json
+          retention-days: 90
+          if-no-files-found: warn
