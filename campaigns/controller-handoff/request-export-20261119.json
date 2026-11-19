@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "campaign": "taiyou-completed-20261119",
+  "input": "campaigns/controller-handoff/completed-20261119.json",
+  "completed_books": 104,
+  "mode": "package_download_only",
+  "purpose": "Generate one GitHub Actions ZIP containing all 104 verified complete-book archives, for transfer to the private Taiyou Storage Controller",
+  "one_time": true
+}
