@@ -1640,6 +1640,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/global-descent-100reward.html",
+      "title": "Global Descent: 100×Reward",
+      "author": "The Sky Wishes to Clear Up",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1160,
+          "run_id": 44435959139,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44435959139",
+          "artifact_id": 14489747661,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44435959139/artifacts/14489747661",
+          "completed_at_utc": "2026-11-19T01:43:08Z",
+          "expires_at_utc": "2026-11-26T01:43:08Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/global-lord-100-drop-rate.html",
       "title": "Global Lord: 100% Drop Rate",
       "author": "A Green Bird",
