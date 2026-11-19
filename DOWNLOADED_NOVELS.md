@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (292 novels)
+## NovelFull (293 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -340,6 +340,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Worlds’ Apocalypse Online](https://novelfull.com/worlds-apocalypse-online.html) | all | 1850 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44455931593/artifacts/14500152397) | 2026-11-26T04:52:09Z |
 | [You Cannot Afford To Offend My Woman](https://novelfull.com/you-cannot-afford-to-offend-my-woman.html) | all | 1573 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44455931593/artifacts/14500295991) | 2026-11-26T04:49:26Z |
 | [Ze Tian Ji](https://novelfull.com/ze-tian-ji.html) | all | 1185 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14241396863) | 2026-11-23T15:46:21Z |
+| [Zhan Long](https://novelfull.com/zhan-long.html) | all | 1395 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14521375062) | 2026-11-26T10:37:34Z |
 | [Zhanxian](https://novelfull.com/zhanxian.html) | all | 1187 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14518591797) | 2026-11-26T10:16:40Z |
 
 ## Scribble Hub (1 novels)
