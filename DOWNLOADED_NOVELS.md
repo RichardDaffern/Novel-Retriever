@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (214 novels)
+## NovelFull (215 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -152,6 +152,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Infinite Mana In The Oasis](https://novelfull.com/infinite-mana-in-the-oasis.html) | all | 275 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44414511058/artifacts/14480070435) | 2026-11-25T22:53:56Z |
 | [Invincible](https://novelfull.com/invincible.html) | all | 3753 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13653866052) | 2026-11-16T06:14:23Z |
 | [Invincible Divine Dragon’s Cultivation System](https://novelfull.com/invincible-divine-dragons-cultivation-system.html) | all | 4613 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44414511058/artifacts/14481007062) | 2026-11-25T23:21:15Z |
+| [Invincible Uncle-Grandmaster](https://novelfull.com/invincible-uncle-grandmaster.html) | all | 432 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44441331070/artifacts/14492632408) | 2026-11-26T02:26:37Z |
 | [I’ll Add Points To All Things](https://novelfull.com/ill-add-points-to-all-things.html) | all | 945 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13641833043) | 2026-11-16T00:59:34Z |
 | [I’m Really a Superstar](https://novelfull.com/im-really-a-superstar.html) | all | 1696 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13643775900) | 2026-11-16T01:31:41Z |
 | [Journey To Become A True God](https://novelfull.com/journey-to-become-a-true-god.html) | all | 4631 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44416451269/artifacts/14481704714) | 2026-11-25T23:44:22Z |
