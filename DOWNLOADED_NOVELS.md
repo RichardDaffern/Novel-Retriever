@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (226 novels)
+## NovelFull (227 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -217,6 +217,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Rebirth: How a Loser Became a Prince Charming](https://novelfull.com/rebirth-how-a-loser-became-a-prince-charming.html) | all | 1009 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13644466550) | 2026-11-16T02:00:06Z |
 | [Refining the Mountains and Rivers](https://novelfull.com/refining-the-mountains-and-rivers.html) | all | 2203 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13651824997) | 2026-11-16T05:40:38Z |
 | [Reincarnated As A Baby? My Cry Is A Dragon Roar!](https://novelfull.com/reincarnated-as-a-baby-my-cry-is-a-dragon-roar.html) | all | 505 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14227187773) | 2026-11-23T12:59:45Z |
+| [Reincarnation Of The Strongest Sword God](https://novelfull.com/reincarnation-of-the-strongest-sword-god.html) | all | 3956 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44447952317/artifacts/14496140831) | 2026-11-26T03:31:19Z |
 | [Renegade Immortal](https://novelfull.com/renegade-immortal.html) | all | 2093 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13652597481) | 2026-11-16T05:44:54Z |
 | [Returning from the Immortal World](https://novelfull.com/returning-from-the-immortal-world.html) | all | 1443 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13653522551) | 2026-11-16T06:14:20Z |
 | [Reverend Insanity](https://novelfull.com/reverend-insanity.html) | all | 2334 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44447952317/artifacts/14495363062) | 2026-11-26T03:25:13Z |
