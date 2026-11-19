@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (290 novels)
+## NovelFull (291 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -335,6 +335,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Witch: Accumulate Experience Through The Knight Breathing Technique](https://novelfull.com/witch-accumulate-experience-through-the-knight-breathing-technique.html) | all | 3223 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44455333629/artifacts/14499506217) | 2026-11-26T04:39:29Z |
 | [Witcher: I Can Extract Everything](https://novelfull.com/witcher-i-can-extract-everything.html) | all | 393 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14225912094) | 2026-11-23T12:28:11Z |
 | [Womanizing Mage](https://novelfull.com/womanizing-mage.html) | all | 683 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44494502486/artifacts/14515084177) | 2026-11-26T09:34:44Z |
+| [World Defying Dan God](https://novelfull.com/world-defying-dan-god.html) | all | 3818 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497262281/artifacts/14517322752) | 2026-11-26T10:04:23Z |
 | [World of Cultivation](https://novelfull.com/world-of-cultivation.html) | all | 918 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44455333629/artifacts/14498945971) | 2026-11-26T04:22:38Z |
 | [Worlds’ Apocalypse Online](https://novelfull.com/worlds-apocalypse-online.html) | all | 1850 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44455931593/artifacts/14500152397) | 2026-11-26T04:52:09Z |
 | [You Cannot Afford To Offend My Woman](https://novelfull.com/you-cannot-afford-to-offend-my-woman.html) | all | 1573 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44455931593/artifacts/14500295991) | 2026-11-26T04:49:26Z |
