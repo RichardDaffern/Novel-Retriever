@@ -3728,6 +3728,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/second-life-ranker.html",
+      "title": "Second Life Ranker",
+      "author": "Sadoyeon",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 867,
+          "run_id": 44448231280,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44448231280",
+          "artifact_id": 14495043600,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44448231280/artifacts/14495043600",
+          "completed_at_utc": "2026-11-19T03:21:45Z",
+          "expires_at_utc": "2026-11-26T03:21:45Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/sevens.html",
       "title": "Sevens",
       "author": "Waka / Yume Yume",
