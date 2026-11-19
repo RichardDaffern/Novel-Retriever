@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (224 novels)
+## NovelFull (225 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -220,6 +220,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Renegade Immortal](https://novelfull.com/renegade-immortal.html) | all | 2093 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13652597481) | 2026-11-16T05:44:54Z |
 | [Returning from the Immortal World](https://novelfull.com/returning-from-the-immortal-world.html) | all | 1443 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13653522551) | 2026-11-16T06:14:20Z |
 | [Scholar’s Advanced Technological System](https://novelfull.com/scholars-advanced-technological-system.html) | all | 1682 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13657099613) | 2026-11-16T07:54:20Z |
+| [Second Life Ranker](https://novelfull.com/second-life-ranker.html) | all | 867 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44448231280/artifacts/14495043600) | 2026-11-26T03:21:45Z |
 | [Sevens](https://novelfull.com/sevens.html) | all | 365 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14241691888) | 2026-11-23T15:55:48Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42368620891/artifacts/13574785699) | 2026-11-14T12:28:22Z |
 | [She Is From The Countryside](https://novelfull.com/she-is-from-the-countryside.html) | all | 624 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13634379248) | 2026-11-15T21:18:06Z |
