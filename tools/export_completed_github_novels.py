@@ -59,11 +59,11 @@ def safe_member(name: str) -> bool:
     ))
 
 
-def index_registry(path: Path):
+def index_registry(path: Path, *, include_historical: bool = True):
     data = json.loads(path.read_text(encoding="utf-8"))
     books = data.get("novels", [])
     indexed = {}
-    known_runs = set(CAMPAIGN_RUN_IDS)
+    known_runs = set(CAMPAIGN_RUN_IDS) if include_historical else set()
     for book in books:
         url = book.get("url")
         if not isinstance(url, str) or not url.startswith("https://"):
@@ -236,6 +236,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--registry", default="downloaded_novels.json")
     parser.add_argument("--output", default="export")
+    parser.add_argument("--only-listed", action="store_true",
+                        help="Export only completed books in the supplied registry snapshot")
     args = parser.parse_args()
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if not token:
@@ -249,7 +251,8 @@ def main():
     cache = target.parent / ".novel-export-cache"
     cache.mkdir(parents=True, exist_ok=True)
 
-    indexed, run_ids = index_registry(Path(args.registry))
+    indexed, run_ids = index_registry(Path(args.registry),
+                                     include_historical=not args.only_listed)
     print(f"Registry: {len(indexed)} unique books; checking {len(run_ids)} historical/current runs",
           flush=True)
     github = GitHub(token)
@@ -264,6 +267,8 @@ def main():
                 if int(match.group(1)) != run_id:
                     failures.append({"run": run_id, "reason": "Artefact run-name mismatch",
                                      "artifact_id": item["id"]})
+                    continue
+                if args.only_listed and match.group(2) not in indexed:
                     continue
                 candidates.setdefault(match.group(2), []).append(item)
             scanned += len(artifacts)
