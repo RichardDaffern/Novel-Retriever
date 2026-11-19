@@ -506,6 +506,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/the-brilliant-fighting-master",
+      "title": "The Brilliant Fighting Master",
+      "author": "张牧之",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1730,
+          "run_id": 44452173627,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452173627",
+          "artifact_id": 14496804239,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452173627/artifacts/14496804239",
+          "completed_at_utc": "2026-11-19T03:58:57Z",
+          "expires_at_utc": "2026-11-26T03:58:57Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/the-fool-in-hogwarts",
       "title": "The Fool in Hogwarts",
       "author": "Junkdog_787",
