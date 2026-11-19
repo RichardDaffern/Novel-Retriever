@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (265 novels)
+## NovelFull (266 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -264,6 +264,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Stellar Transformations](https://novelfull.com/stellar-transformations.html) | all | 682 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14206741015) | 2026-11-23T07:40:17Z |
 | [Strongest Abandoned Son](https://novelfull.com/strongest-abandoned-son.html) | all | 2265 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13643883402) | 2026-11-16T02:01:51Z |
 | [Summoning the Holy Sword](https://novelfull.com/summoning-the-holy-sword.html) | all | 1381 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477317064/artifacts/14507354771) | 2026-11-26T07:31:32Z |
+| [Super Detective in the Fictional World](https://novelfull.com/super-detective-in-the-fictional-world.html) | all | 2232 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477637179/artifacts/14507664926) | 2026-11-26T07:37:16Z |
 | [Supreme Emperor of Swords](https://novelfull.com/supreme-emperor-of-swords.html) | all | 1336 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13650649288) | 2026-11-16T05:16:20Z |
 | [Supreme Uprising](https://novelfull.com/supreme-uprising.html) | all | 1260 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14209250910) | 2026-11-23T08:33:29Z |
 | [Swallowed Star](https://novelfull.com/swallowed-star.html) | all | 1485 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365733484/artifacts/14459132893) | 2026-11-25T18:30:39Z |
