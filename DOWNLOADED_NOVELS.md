@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (276 novels)
+## NovelFull (277 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -286,6 +286,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Great Storyteller](https://novelfull.com/the-great-storyteller.html) | all | 394 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452473069/artifacts/14498770475) | 2026-11-26T04:14:03Z |
 | [The Great Thief](https://novelfull.com/the-great-thief.html) | all | 1976 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13656896239) | 2026-11-16T07:30:13Z |
 | [The Human Emperor](https://novelfull.com/the-human-emperor.html) | all | 2467 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13644389821) | 2026-11-16T02:16:03Z |
+| [The Legend of Futian](https://novelfull.com/the-legend-of-futian.html) | all | 2969 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484588674/artifacts/14512052689) | 2026-11-26T08:42:26Z |
 | [The Legendary Moonlight Sculptor](https://novelfull.com/the-legendary-moonlight-sculptor.html) | all | 710 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13624187862) | 2026-11-15T16:03:05Z |
 | [The Lord’s Empire](https://novelfull.com/the-lords-empire.html) | all | 1729 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13625076323) | 2026-11-15T16:28:03Z |
 | [The Magus Era](https://novelfull.com/the-magus-era.html) | all | 1902 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484588674/artifacts/14511158321) | 2026-11-26T08:30:25Z |
