@@ -40,7 +40,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (194 novels)
+## NovelFull (195 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -147,6 +147,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Long Live Summons](https://novelfull.com/long-live-summons.html) | all | 1054 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423161140/artifacts/14483672730) | 2026-11-26T00:07:16Z |
 | [Lord of All Realms](https://novelfull.com/lord-of-all-realms.html) | all | 1823 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13636640990) | 2026-11-15T22:12:32Z |
 | [Lord Of The World: I Become The Lord Of The Desert From The Start](https://novelfull.com/lord-of-the-world-i-become-the-lord-of-the-desert-from-the-start.html) | all | 1156 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13636770906) | 2026-11-15T22:10:19Z |
+| [Lord Xue Ying](https://novelfull.com/lord-xue-ying.html) | all | 1384 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423161140/artifacts/14485215156) | 2026-11-26T00:07:48Z |
 | [Martial Arts Master](https://novelfull.com/martial-arts-master.html) | all | 753 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13634841071) | 2026-11-15T21:19:32Z |
 | [Martial God Asura](https://novelfull.com/martial-god-asura.html) | all | 6742 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13651388224) | 2026-11-16T05:17:01Z |
 | [Martial Immortality: Starting with the Spirit Beast Scroll](https://novelfull.com/martial-immortality-starting-with-the-spirit-beast-scroll.html) | all | 524 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13626848455) | 2026-11-15T17:27:56Z |
