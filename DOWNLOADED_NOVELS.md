@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (213 novels)
+## NovelFull (214 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -159,6 +159,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [King of Gods](https://novelfull.com/king-of-gods.html) | all | 1585 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13652875528) | 2026-11-16T05:44:28Z |
 | [Last Wish System](https://novelfull.com/last-wish-system.html) | all | 1137 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44420098027/artifacts/14482083981) | 2026-11-25T23:45:41Z |
 | [Legend of Ling Tian](https://novelfull.com/legend-of-ling-tian.html) | all | 713 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13655317054) | 2026-11-16T06:57:51Z |
+| [Legendary Armament Canon](https://novelfull.com/legendary-armament-canon.html) | all | 1506 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44442121142/artifacts/14492806257) | 2026-11-26T02:24:43Z |
 | [Let Me Game in Peace](https://novelfull.com/let-me-game-in-peace.html) | all | 1905 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44420472250/artifacts/14484940209) | 2026-11-26T00:03:10Z |
 | [Limitless Sword God](https://novelfull.com/limitless-sword-god.html) | all | 1569 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44420472250/artifacts/14482084508) | 2026-11-25T23:49:14Z |
 | [Long Live Summons](https://novelfull.com/long-live-summons.html) | all | 1054 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423161140/artifacts/14483672730) | 2026-11-26T00:07:16Z |
