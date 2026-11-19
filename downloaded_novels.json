@@ -4675,6 +4675,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/terror-infinity.html",
+      "title": "Terror Infinity",
+      "author": "Zhttty",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 829,
+          "run_id": 44479280337,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44479280337",
+          "artifact_id": 14510016793,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44479280337/artifacts/14510016793",
+          "completed_at_utc": "2026-11-19T08:04:12Z",
+          "expires_at_utc": "2026-11-26T08:04:12Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-amber-sword.html",
       "title": "The Amber Sword",
       "author": "Fei Yan",
