@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (245 novels)
+## NovelFull (246 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -195,6 +195,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Mr. CEO, Spoil me 100 Percent!](https://novelfull.com/mr-ceo-spoil-me-100-percent.html) | all | 992 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14189786356) | 2026-11-23T01:01:07Z |
 | [Museum of Deadly Beasts](https://novelfull.com/museum-of-deadly-beasts.html) | all | 792 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14189855601) | 2026-11-23T00:58:22Z |
 | [My Abilities Come with Special Effects](https://novelfull.com/my-abilities-come-with-special-effects.html) | all | 644 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44444163095/artifacts/14493695888) | 2026-11-26T02:46:05Z |
+| [My Beautiful Teacher](https://novelfull.com/my-beautiful-teacher.html) | all | 453 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44467179875/artifacts/14502888816) | 2026-11-26T06:05:01Z |
 | [My Cold and Elegant CEO Wife](https://novelfull.com/my-cold-and-elegant-ceo-wife.html) | all | 2513 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13658274180) | 2026-11-16T08:18:34Z |
 | [My Dad Is the Galaxy’s Prince Charming](https://novelfull.com/my-dad-is-the-galaxys-prince-charming.html) | all | 198 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14170023682) | 2026-11-22T16:39:54Z |
 | [My Fusion System: Fusing a Thousand Chickens at the Start](https://novelfull.com/my-fusion-system-fusing-a-thousand-chickens-at-the-start.html) | all | 657 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14202581361) | 2026-11-23T06:19:06Z |
