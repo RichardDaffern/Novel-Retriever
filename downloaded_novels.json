@@ -4927,6 +4927,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-magus-era.html",
+      "title": "The Magus Era",
+      "author": "Blood Red",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1902,
+          "run_id": 44484588674,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484588674",
+          "artifact_id": 14511158321,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484588674/artifacts/14511158321",
+          "completed_at_utc": "2026-11-19T08:30:25Z",
+          "expires_at_utc": "2026-11-26T08:30:25Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-nine-cauldrons.html",
       "title": "The Nine Cauldrons",
       "author": "I Eat Tomatoes",
