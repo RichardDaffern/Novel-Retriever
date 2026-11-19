@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (211 novels)
+## NovelFull (212 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -123,6 +123,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Great Demon King](https://novelfull.com/great-demon-king.html) | all | 1028 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13650731871) | 2026-11-16T04:51:47Z |
 | [Great Doctor Ling Ran](https://novelfull.com/great-doctor-ling-ran.html) | all | 1445 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44439000913/artifacts/14491064335) | 2026-11-26T02:06:56Z |
 | [Hail the King](https://novelfull.com/hail-the-king.html) | all | 1634 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44406854446/artifacts/14477908258) | 2026-11-25T22:43:20Z |
+| [Heavenly Dao Rankings: I Am Exposed As The Sword God](https://novelfull.com/heavenly-dao-rankings-i-am-exposed-as-the-sword-god.html) | all | 512 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44439629523/artifacts/14492865894) | 2026-11-26T02:20:06Z |
 | [Heavenly Jewel Change](https://novelfull.com/heavenly-jewel-change.html) | all | 848 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13654852471) | 2026-11-16T06:45:33Z |
 | [Heaven’s Devourer](https://novelfull.com/heavens-devourer.html) | all | 1829 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13654866424) | 2026-11-16T06:46:01Z |
 | [Hedonist Sovereign](https://novelfull.com/hedonist-sovereign.html) | all | 490 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44407279522/artifacts/14477201666) | 2026-11-25T22:12:13Z |
