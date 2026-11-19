@@ -4549,6 +4549,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/supreme-magus.html",
+      "title": "Supreme Magus",
+      "author": "Legion20",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 4613,
+          "run_id": 44477637179,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477637179",
+          "artifact_id": 14512400922,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477637179/artifacts/14512400922",
+          "completed_at_utc": "2026-11-19T08:37:01Z",
+          "expires_at_utc": "2026-11-26T08:37:01Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/supreme-uprising.html",
       "title": "Supreme Uprising",
       "author": "Jewelcat",
