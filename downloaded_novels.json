@@ -4621,6 +4621,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/tales-of-herding-gods.html",
+      "title": "Tales of Herding Gods",
+      "author": "Pig Nerd",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1842,
+          "run_id": 44477964147,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477964147",
+          "artifact_id": 14508362062,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44477964147/artifacts/14508362062",
+          "completed_at_utc": "2026-11-19T07:40:01Z",
+          "expires_at_utc": "2026-11-26T07:40:01Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/talisman-emperor.html",
       "title": "Talisman Emperor",
       "author": "Xiao Jinyu",
