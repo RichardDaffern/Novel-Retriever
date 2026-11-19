@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (246 novels)
+## NovelFull (248 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -191,6 +191,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [MMORPG: The Elementalist](https://novelfull.com/mmorpg-the-elementalist.html) | all | 709 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466326150/artifacts/14503143183) | 2026-11-26T05:58:32Z |
 | [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
 | [Monarch of Time](https://novelfull.com/monarch-of-time.html) | all | 1087 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14248118413) | 2026-11-23T17:00:32Z |
+| [Monster Synthesis Master](https://novelfull.com/monster-synthesis-master.html) | all | 1078 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466606941/artifacts/14504221496) | 2026-11-26T06:09:58Z |
 | [Mr Fu, I Really Love You](https://novelfull.com/mr-fu-i-really-love-you.html) | all | 1461 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466606941/artifacts/14504155771) | 2026-11-26T06:03:42Z |
 | [Mr. CEO, Spoil me 100 Percent!](https://novelfull.com/mr-ceo-spoil-me-100-percent.html) | all | 992 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14189786356) | 2026-11-23T01:01:07Z |
 | [Museum of Deadly Beasts](https://novelfull.com/museum-of-deadly-beasts.html) | all | 792 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14189855601) | 2026-11-23T00:58:22Z |
