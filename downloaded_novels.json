@@ -4081,6 +4081,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/sword-among-us.html",
+      "title": "Sword Among Us",
+      "author": "Black Swordsman Online",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1268,
+          "run_id": 44450975207,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44450975207",
+          "artifact_id": 14496843876,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44450975207/artifacts/14496843876",
+          "completed_at_utc": "2026-11-19T04:06:08Z",
+          "expires_at_utc": "2026-11-26T04:06:08Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/tales-of-demons-and-gods.html",
       "title": "Tales of Demons and Gods",
       "author": "Mad Snail",
