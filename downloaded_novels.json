@@ -3512,6 +3512,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/mystical-journey.html",
+      "title": "Mystical Journey",
+      "author": "Get Lost",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1375,
+          "run_id": 44469675311,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44469675311",
+          "artifact_id": 14505405442,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44469675311/artifacts/14505405442",
+          "completed_at_utc": "2026-11-19T06:29:13Z",
+          "expires_at_utc": "2026-11-26T06:29:13Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/national-school-prince-is-a-girl.html",
       "title": "National School Prince Is A Girl",
       "author": "Warring Young Seven",

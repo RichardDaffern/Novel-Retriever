@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (251 novels)
+## NovelFull (252 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -208,6 +208,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [My Two-sided Cultivation: Starting From Collecting Experiences](https://novelfull.com/my-two-sided-cultivation-starting-from-collecting-experiences.html) | all | 684 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44467179875/artifacts/14503666856) | 2026-11-26T06:05:01Z |
 | [My Vampire System](https://novelfull.com/my-vampire-system.html) | all | 2545 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44444163095/artifacts/14493094917) | 2026-11-26T02:54:06Z |
 | [Myriad Paths of the Dragon Emperor](https://novelfull.com/myriad-paths-of-the-dragon-emperor.html) | all | 6012 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13644198039) | 2026-11-16T01:59:56Z |
+| [Mystical Journey](https://novelfull.com/mystical-journey.html) | all | 1375 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44469675311/artifacts/14505405442) | 2026-11-26T06:29:13Z |
 | [National School Prince Is A Girl](https://novelfull.com/national-school-prince-is-a-girl.html) | all | 1782 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44444477580/artifacts/14493119599) | 2026-11-26T02:53:15Z |
 | [Night Ranger](https://novelfull.com/night-ranger.html) | all | 735 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44362822717/artifacts/14458087307) | 2026-11-25T18:24:40Z |
 | [Nine Star Burden](https://novelfull.com/nine-star-burden.html) | all | 1272 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44469675311/artifacts/14504284652) | 2026-11-26T06:28:50Z |
