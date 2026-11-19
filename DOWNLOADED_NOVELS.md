@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (33 novels)
+## FreeWebNovel (34 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -39,6 +39,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Brilliant Fighting Master](https://freewebnovel.com/novel/the-brilliant-fighting-master) | all | 1730 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452173627/artifacts/14496804239) | 2026-11-26T03:58:57Z |
 | [The Fool in Hogwarts](https://freewebnovel.com/novel/the-fool-in-hogwarts) | all | 333 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742/artifacts/14469501148) | 2026-11-25T20:31:09Z |
 | [The Place You Called From](https://freewebnovel.com/novel/the-place-you-called-from) | all | 15 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14176111528) | 2026-11-22T19:02:16Z |
+| [The Whole World Awakened: My Clones Are Everywhere](https://freewebnovel.com/novel/the-whole-world-awakened-my-clones-are-everywhere) | all | 205 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489990459/artifacts/14513275650) | 2026-11-26T08:51:28Z |
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
