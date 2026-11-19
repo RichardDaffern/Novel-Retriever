@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (221 novels)
+## NovelFull (222 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -192,6 +192,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [My Genes Can Evolve Limitlessly](https://novelfull.com/my-genes-can-evolve-limitlessly.html) | all | 780 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13635190766) | 2026-11-15T21:19:00Z |
 | [My Gu Can Cultivate on Their Own](https://novelfull.com/my-gu-can-cultivate-on-their-own.html) | all | 273 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14203267965) | 2026-11-23T06:44:42Z |
 | [My Senior Brother is Too Steady](https://novelfull.com/my-senior-brother-is-too-steady.html) | all | 765 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14172685201) | 2026-11-22T17:27:22Z |
+| [My Vampire System](https://novelfull.com/my-vampire-system.html) | all | 2545 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44444163095/artifacts/14493094917) | 2026-11-26T02:54:06Z |
 | [Myriad Paths of the Dragon Emperor](https://novelfull.com/myriad-paths-of-the-dragon-emperor.html) | all | 6012 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513387437/artifacts/13644198039) | 2026-11-16T01:59:56Z |
 | [National School Prince Is A Girl](https://novelfull.com/national-school-prince-is-a-girl.html) | all | 1782 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44444477580/artifacts/14493119599) | 2026-11-26T02:53:15Z |
 | [Night Ranger](https://novelfull.com/night-ranger.html) | all | 735 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44362822717/artifacts/14458087307) | 2026-11-25T18:24:40Z |
