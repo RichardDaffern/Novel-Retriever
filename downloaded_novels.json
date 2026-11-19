@@ -1388,6 +1388,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/dragonborn-saga.html",
+      "title": "Dragonborn Saga",
+      "author": "El_Don",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 777,
+          "run_id": 44432975021,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44432975021",
+          "artifact_id": 14489445658,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44432975021/artifacts/14489445658",
+          "completed_at_utc": "2026-11-19T01:17:53Z",
+          "expires_at_utc": "2026-11-26T01:17:53Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/dual-cultivation.html",
       "title": "Dual Cultivation",
       "author": "MyLittleBrother",
