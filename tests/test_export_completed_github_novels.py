@@ -8,7 +8,7 @@ from unittest.mock import patch
 from zipfile import ZipFile, ZIP_STORED
 
 from tools.export_completed_github_novels import (
-    GitHub, check_archive, package_novel, safe_member, safe_title, source_key,
+    GitHub, check_archive, index_registry, package_novel, safe_member, safe_title, source_key,
 )
 
 
@@ -37,6 +37,23 @@ class ExportTests(unittest.TestCase):
         url = "https://novelfull.com/test-book.html"
         self.assertEqual(source_key(url), source_key(url))
         self.assertEqual(len(source_key(url)), 20)
+
+    def test_strict_snapshot_exports_only_its_completed_runs(self):
+        url = "https://novelfull.com/test-book.html"
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "completed.json"
+            path.write_text(json.dumps({"version": 1, "novels": [
+                {"title": "Test Book", "url": url, "downloads": [
+                    {"range": "all", "status": "complete", "run_id": 12345},
+                    {"range": "1-2", "status": "partial", "run_id": 23456},
+                ]},
+            ]}), encoding="utf-8")
+            indexed, runs = index_registry(path, include_historical=False)
+            self.assertEqual(runs, [12345])
+            self.assertEqual(indexed[source_key(url)]["title"], "Test Book")
+            _, with_historical = index_registry(path)
+            self.assertIn(12345, with_historical)
+            self.assertGreater(len(with_historical), 1)
 
     def test_safe_names_and_paths(self):
         self.assertEqual(safe_title("One: A/Book?"), "One_ A_Book")
