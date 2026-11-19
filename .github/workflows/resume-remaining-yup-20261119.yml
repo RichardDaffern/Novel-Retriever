@@ -1,0 +1,68 @@
+name: Campaign - Resume remaining verified Yup downloads
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'campaigns/overnight/resume-yup-remaining-20261119.json'
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: yup-remaining-one-shot-20261119
+  cancel-in-progress: false
+
+jobs:
+  dispatch-remaining:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Require one-time ADDED activation file
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git diff --diff-filter=A --name-only "$BEFORE_SHA" "$HEAD_SHA" -- \
+            'campaigns/overnight/resume-yup-remaining-20261119.json' | grep -qx \
+            'campaigns/overnight/resume-yup-remaining-20261119.json'
+      - name: Retrieve original discovery and held-book reports
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 44374654975 --name overnight-discovery-44374654975 --dir .
+          gh run download 44379714549 --name overnight-yup-resumed-44379714549 --dir .
+          test -s overnight-discovery.json
+          test -s overnight-yup-resumed.json
+      - name: Verify source provenance and skip completed titles
+        run: |
+          python -m tools.yup_remaining_resume \
+            --source overnight-discovery.json \
+            --previous overnight-yup-resumed.json \
+            --out remaining-yup-verified.json
+      - name: Dispatch remaining verified Yup books with global cap
+        if: github.run_attempt == 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python -u -m tools.overnight_queue dispatch \
+            --tier Yup --sources remaining-yup-verified.json \
+            --out remaining-yup-dispatch-report.json --minutes 285
+      - name: Retain exact queued and held audit reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: remaining-yup-dispatch-${{ github.run_id }}
+          path: |
+            remaining-yup-verified.json
+            remaining-yup-dispatch-report.json
+          retention-days: 90
+          if-no-files-found: warn
