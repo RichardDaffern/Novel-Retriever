@@ -2522,6 +2522,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/invincible-uncle-grandmaster.html",
+      "title": "Invincible Uncle-Grandmaster",
+      "author": "Nine Cuts",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 432,
+          "run_id": 44441331070,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44441331070",
+          "artifact_id": 14492632408,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44441331070/artifacts/14492632408",
+          "completed_at_utc": "2026-11-19T02:26:37Z",
+          "expires_at_utc": "2026-11-26T02:26:37Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/invincible.html",
       "title": "Invincible",
       "author": "Shen Jian",
