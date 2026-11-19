@@ -4909,6 +4909,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-legend-of-futian.html",
+      "title": "The Legend of Futian",
+      "author": "Jing Wu Hen",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 2969,
+          "run_id": 44484588674,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484588674",
+          "artifact_id": 14512052689,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484588674/artifacts/14512052689",
+          "completed_at_utc": "2026-11-19T08:42:26Z",
+          "expires_at_utc": "2026-11-26T08:42:26Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-legendary-moonlight-sculptor.html",
       "title": "The Legendary Moonlight Sculptor",
       "author": "NAM Heesung",
