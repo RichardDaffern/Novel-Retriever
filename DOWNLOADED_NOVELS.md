@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (205 novels)
+## NovelFull (206 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -104,6 +104,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Gate of God](https://novelfull.com/gate-of-god.html) | all | 1117 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44398343644/artifacts/14473244549) | 2026-11-25T21:52:26Z |
 | [Gate of Revelation](https://novelfull.com/gate-of-revelation.html) | all | 906 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44401668198/artifacts/14476491840) | 2026-11-25T22:10:06Z |
 | [Global Cultivation: First-time Top-up for the Ultimate Destiny Treasure](https://novelfull.com/global-cultivation-first-time-top-up-for-the-ultimate-destiny-treasure.html) | all | 355 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14210436324) | 2026-11-23T08:48:04Z |
+| [Global Descent: 100×Reward](https://novelfull.com/global-descent-100reward.html) | all | 1160 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44435959139/artifacts/14489747661) | 2026-11-26T01:43:08Z |
 | [Global Lord: 100% Drop Rate](https://novelfull.com/global-lord-100-drop-rate.html) | all | 1979 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13636378607) | 2026-11-15T22:12:59Z |
 | [God and Devil World](https://novelfull.com/god-and-devil-world.html) | all | 1216 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44402544974/artifacts/14475085834) | 2026-11-25T21:56:24Z |
 | [God Emperor](https://novelfull.com/god-emperor.html) | all | 2622 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13636968626) | 2026-11-15T22:32:56Z |
