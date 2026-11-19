@@ -1532,6 +1532,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/fatal-shot.html",
+      "title": "Fatal Shot",
+      "author": "Shi Yao",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 718,
+          "run_id": 44433623661,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44433623661",
+          "artifact_id": 14490675578,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44433623661/artifacts/14490675578",
+          "completed_at_utc": "2026-11-19T01:41:31Z",
+          "expires_at_utc": "2026-11-26T01:41:31Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/found-100-million-in-my-rented-apartment.html",
       "title": "Found 100 Million In My Rented Apartment",
       "author": "Supreme Yi Fan",
