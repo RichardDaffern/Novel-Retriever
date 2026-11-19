@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (242 novels)
+## NovelFull (243 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -185,6 +185,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Medical Master](https://novelfull.com/medical-master.html) | all | 2028 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13645342551) | 2026-11-16T02:29:39Z |
 | [Miracle Throne](https://novelfull.com/miracle-throne.html) | all | 658 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44463514975/artifacts/14501354808) | 2026-11-26T05:40:07Z |
 | [MMORPG: Divine Monster Transmuter](https://novelfull.com/mmorpg-divine-monster-transmuter.html) | all | 1041 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44463814747/artifacts/14502661212) | 2026-11-26T05:36:43Z |
+| [MMORPG: Martial Gamer](https://novelfull.com/mmorpg-martial-gamer.html) | all | 1601 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44463814747/artifacts/14502871244) | 2026-11-26T05:43:09Z |
 | [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
 | [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
 | [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
