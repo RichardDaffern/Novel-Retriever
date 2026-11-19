@@ -4405,6 +4405,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/spirit-vessel.html",
+      "title": "Spirit Vessel",
+      "author": "Jiu Dang Jia",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1261,
+          "run_id": 44474812059,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44474812059",
+          "artifact_id": 14506882657,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44474812059/artifacts/14506882657",
+          "completed_at_utc": "2026-11-19T07:11:50Z",
+          "expires_at_utc": "2026-11-26T07:11:50Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/stellar-transformations.html",
       "title": "Stellar Transformations",
       "author": "I Eat Tomatoes",
