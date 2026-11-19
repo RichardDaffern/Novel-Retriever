@@ -3710,6 +3710,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/reverend-insanity.html",
+      "title": "Reverend Insanity",
+      "author": "Gu Zhen Ren",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 2334,
+          "run_id": 44447952317,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44447952317",
+          "artifact_id": 14495363062,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44447952317/artifacts/14495363062",
+          "completed_at_utc": "2026-11-19T03:25:13Z",
+          "expires_at_utc": "2026-11-26T03:25:13Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/scholars-advanced-technological-system.html",
       "title": "Scholar’s Advanced Technological System",
       "author": "Morning Star LL",
