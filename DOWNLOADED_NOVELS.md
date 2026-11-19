@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (222 novels)
+## NovelFull (223 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -144,6 +144,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [I Have Countless Legendary Swords!](https://novelfull.com/i-have-countless-legendary-swords.html) | all | 806 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14206206831) | 2026-11-23T07:39:26Z |
 | [I Have the Alchemy Emperor in My Head](https://novelfull.com/i-have-the-alchemy-emperor-in-my-head.html) | all | 2555 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13636831037) | 2026-11-15T22:13:06Z |
 | [I Maximize My Item-dropping Rate](https://novelfull.com/i-maximize-my-item-dropping-rate.html) | all | 863 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43819213500/artifacts/14209040701) | 2026-11-23T08:24:15Z |
+| [I Told You To Manage The Reserve Unit For Me Instead Of Turning It Into A Special Troop](https://novelfull.com/i-told-you-to-manage-the-reserve-unit-for-me-instead-of-turning-it-into-a-special-troop.html) | all | 1523 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44440246704/artifacts/14493573469) | 2026-11-26T02:58:21Z |
 | [Immortal and Martial Dual Cultivation](https://novelfull.com/immortal-and-martial-dual-cultivation.html) | all | 2382 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43819213500/artifacts/14208866175) | 2026-11-23T08:23:39Z |
 | [Immortal Devil Transformation](https://novelfull.com/immortal-devil-transformation.html) | all | 869 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13645170874) | 2026-11-16T02:11:51Z |
 | [Immortal Mortal](https://novelfull.com/immortal-mortal.html) | all | 1230 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44413334054/artifacts/14478834384) | 2026-11-25T23:00:34Z |
