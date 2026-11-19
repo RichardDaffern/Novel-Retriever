@@ -3062,6 +3062,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/miracle-throne.html",
+      "title": "Miracle Throne",
+      "author": "Half-Drunk Wanderer",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 658,
+          "run_id": 44463514975,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44463514975",
+          "artifact_id": 14501354808,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44463514975/artifacts/14501354808",
+          "completed_at_utc": "2026-11-19T05:40:07Z",
+          "expires_at_utc": "2026-11-26T05:40:07Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/mmorpg-divine-monster-transmuter.html",
       "title": "MMORPG: Divine Monster Transmuter",
       "author": "Qing Yan Yi Ye",
