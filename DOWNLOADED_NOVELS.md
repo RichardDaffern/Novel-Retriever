@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (283 novels)
+## NovelFull (284 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -320,6 +320,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [True Martial World](https://novelfull.com/true-martial-world.html) | all | 1710 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13625147182) | 2026-11-15T16:29:28Z |
 | [Unrivaled Medicine God](https://novelfull.com/unrivaled-medicine-god.html) | all | 3120 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13625248157) | 2026-11-15T16:37:41Z |
 | [Unscientific Beast Taming](https://novelfull.com/unscientific-beast-taming.html) | all | 1962 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452774179/artifacts/14497512003) | 2026-11-26T04:04:14Z |
+| [Upgrade Specialist in Another World](https://novelfull.com/upgrade-specialist-in-another-world.html) | all | 1357 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44493335597/artifacts/14514913779) | 2026-11-26T09:30:19Z |
 | [Valhalla Saga](https://novelfull.com/valhalla-saga.html) | all | 269 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14212677158) | 2026-11-23T09:30:55Z |
 | [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
 | [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
