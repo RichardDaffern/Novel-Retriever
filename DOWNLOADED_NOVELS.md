@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (289 novels)
+## NovelFull (290 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -325,6 +325,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Upgrade Specialist in Another World](https://novelfull.com/upgrade-specialist-in-another-world.html) | all | 1357 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44493335597/artifacts/14514913779) | 2026-11-26T09:30:19Z |
 | [Valhalla Saga](https://novelfull.com/valhalla-saga.html) | all | 269 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14212677158) | 2026-11-23T09:30:55Z |
 | [Very Pure and Ambiguous: The Prequel](https://novelfull.com/very-pure-and-ambiguous-the-prequel.html) | all | 746 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13623663134) | 2026-11-15T16:02:24Z |
+| [Vile Evil Hides Under The Veil](https://novelfull.com/vile-evil-hides-under-the-veil.html) | all | 2018 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44494109125/artifacts/14515577936) | 2026-11-26T09:39:08Z |
 | [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
 | [Warlock of the Magus World](https://novelfull.com/warlock-of-the-magus-world.html) | all | 1201 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44363052288/artifacts/14459705677) | 2026-11-25T18:36:09Z |
 | [WARNING! Tsundere President](https://novelfull.com/warning-tsundere-president.html) | all | 1182 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44494109125/artifacts/14515302531) | 2026-11-26T09:33:32Z |
