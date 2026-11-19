@@ -4160,6 +4160,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/seeking-the-flying-sword-path.html",
+      "title": "Seeking the Flying Sword Path",
+      "author": "I Eat Tomatoes",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 739,
+          "run_id": 44473708436,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44473708436",
+          "artifact_id": 14505349709,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44473708436/artifacts/14505349709",
+          "completed_at_utc": "2026-11-19T06:59:51Z",
+          "expires_at_utc": "2026-11-26T06:59:51Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/sevens.html",
       "title": "Sevens",
       "author": "Waka / Yume Yume",
