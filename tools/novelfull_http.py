@@ -8,7 +8,8 @@ CAPTCHAs, use proxies, fake session cookies, or retry blocked requests.
 from __future__ import annotations
 
 import time
-from urllib.error import HTTPError
+from http.client import IncompleteRead, RemoteDisconnected
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import (
     HTTPRedirectHandler,
@@ -18,6 +19,10 @@ from urllib.request import (
 
 MIN_INTERVAL_SECONDS = 1.5
 MAX_RESPONSE_BYTES = 8 * 1024 * 1024
+# Retry one interrupted connection, never an HTTP denial or invalid content.
+TRANSIENT_RETRY_DELAY_SECONDS = 4
+MAX_TRANSIENT_ATTEMPTS = 2
+TRANSIENT_ERRORS = (RemoteDisconnected, ConnectionResetError, TimeoutError, IncompleteRead)
 _ORIGINAL_REQUEST = None
 
 
@@ -49,24 +54,35 @@ def _get_bytes(url: str, headers: dict, timeout: float) -> tuple[bytes, str]:
     request_headers.setdefault("Accept", "text/html")
     request = Request(url, headers=request_headers, method="GET")
     opener = build_opener(_DomainRedirects())
-    try:
-        with opener.open(request, timeout=timeout) as response:
-            if not _allowed(response.url):
-                raise ValueError("NovelFull redirect left the approved HTTPS host")
-            if response.headers.get("cf-mitigated") == "challenge":
-                raise HTTPErrorFFF(url, 403, "Site requested an access challenge")
-            content = response.read(MAX_RESPONSE_BYTES + 1)
-            if len(content) > MAX_RESPONSE_BYTES:
-                raise ValueError("NovelFull HTTP response exceeded size limit")
-            return content, response.url
-    except HTTPError as exc:
-        # Never attempt to work around an explicit Cloudflare/site denial.
-        message = (
-            "Site requested an access challenge"
-            if exc.headers.get("cf-mitigated") == "challenge"
-            else f"HTTP {exc.code}: {exc.reason}"
-        )
-        raise HTTPErrorFFF(url, exc.code, message) from exc
+    for attempt in range(MAX_TRANSIENT_ATTEMPTS):
+        try:
+            with opener.open(request, timeout=timeout) as response:
+                if not _allowed(response.url):
+                    raise ValueError("NovelFull redirect left the approved HTTPS host")
+                if response.headers.get("cf-mitigated") == "challenge":
+                    raise HTTPErrorFFF(url, 403, "Site requested an access challenge")
+                content = response.read(MAX_RESPONSE_BYTES + 1)
+                if len(content) > MAX_RESPONSE_BYTES:
+                    raise ValueError("NovelFull HTTP response exceeded size limit")
+                return content, response.url
+        except HTTPError as exc:
+            # HTTP errors, including 403/429, are never retried.
+            message = (
+                "Site requested an access challenge"
+                if exc.headers.get("cf-mitigated") == "challenge"
+                else f"HTTP {exc.code}: {exc.reason}"
+            )
+            raise HTTPErrorFFF(url, exc.code, message) from exc
+        except TRANSIENT_ERRORS:
+            if attempt + 1 == MAX_TRANSIENT_ATTEMPTS:
+                raise
+        except URLError as exc:
+            # urllib can wrap a socket timeout/reset in URLError.
+            if (not isinstance(exc.reason, TRANSIENT_ERRORS)
+                    or attempt + 1 == MAX_TRANSIENT_ATTEMPTS):
+                raise
+        time.sleep(TRANSIENT_RETRY_DELAY_SECONDS)
+    raise AssertionError("Unreachable: attempts exhausted")
 
 
 def enable() -> None:
