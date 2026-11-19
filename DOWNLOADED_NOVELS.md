@@ -41,7 +41,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (209 novels)
+## NovelFull (210 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -116,6 +116,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [God Rank Upgrade System](https://novelfull.com/god-rank-upgrade-system.html) | all | 1479 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13644734351) | 2026-11-16T02:33:38Z |
 | [God-Like Extraction](https://novelfull.com/god-like-extraction.html) | all | 629 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14213450890) | 2026-11-23T09:38:24Z |
 | [Godly Model Creator](https://novelfull.com/godly-model-creator.html) | all | 1085 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13645836077) | 2026-11-16T02:36:42Z |
+| [God’s Song](https://novelfull.com/gods-song.html) | all | 283 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44439000913/artifacts/14490679178) | 2026-11-26T02:03:22Z |
 | [Golden Time](https://novelfull.com/golden-time.html) | all | 155 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14361818541) | 2026-11-24T19:33:04Z |
 | [Gourmet of Another World](https://novelfull.com/gourmet-of-another-world.html) | all | 1851 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44403206970/artifacts/14476574535) | 2026-11-25T22:23:37Z |
 | [Grasping Evil](https://novelfull.com/grasping-evil.html) | all | 1544 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44406854446/artifacts/14476458663) | 2026-11-25T22:22:24Z |
