@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "purpose": "Recover standalone and EPUB-embedded cover art from previously exported 104 complete novels for a separate private-HF covers upload",
+  "source_run_id": 44466510737,
+  "source_artifact": "taiyou-completed-104-44466510737",
+  "registry": "campaigns/controller-handoff/completed-20261119.json",
+  "mode": "cover_only_offline",
+  "no_novel_reupload": true,
+  "no_hf_write": true
+}
