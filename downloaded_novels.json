@@ -560,6 +560,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/the-whole-world-awakened-my-clones-are-everywhere",
+      "title": "The Whole World Awakened: My Clones Are Everywhere",
+      "author": "Urban Cloning Power",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 205,
+          "run_id": 44489990459,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489990459",
+          "artifact_id": 14513275650,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489990459/artifacts/14513275650",
+          "completed_at_utc": "2026-11-19T08:51:28Z",
+          "expires_at_utc": "2026-11-26T08:51:28Z"
+        }
+      ]
+    },
+    {
       "url": "https://freewebnovel.com/novel/three-days-of-happiness",
       "title": "Three Days of Happiness",
       "author": "Sugaru Miaki (Fafoo)",
