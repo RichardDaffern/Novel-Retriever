@@ -42,7 +42,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (273 novels)
+## NovelFull (274 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -287,6 +287,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Human Emperor](https://novelfull.com/the-human-emperor.html) | all | 2467 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13644389821) | 2026-11-16T02:16:03Z |
 | [The Legendary Moonlight Sculptor](https://novelfull.com/the-legendary-moonlight-sculptor.html) | all | 710 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13624187862) | 2026-11-15T16:03:05Z |
 | [The Lord’s Empire](https://novelfull.com/the-lords-empire.html) | all | 1729 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13625076323) | 2026-11-15T16:28:03Z |
+| [The Nine Cauldrons](https://novelfull.com/the-nine-cauldrons.html) | all | 621 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484945178/artifacts/14511161966) | 2026-11-26T08:28:51Z |
 | [The Novel's Extra](https://novelfull.com/the-novels-extra.html) | all | 379 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14241971738) | 2026-11-23T15:57:09Z |
 | [The Ocean Lord Is Unusually Powerful](https://novelfull.com/the-ocean-lord-is-unusually-powerful.html) | all | 855 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13624069033) | 2026-11-15T16:09:39Z |
 | [The Second Coming of Gluttony](https://novelfull.com/the-second-coming-of-gluttony.html) | all | 550 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13626140911) | 2026-11-15T16:56:44Z |
