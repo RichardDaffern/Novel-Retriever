@@ -776,6 +776,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/beauty-and-the-beasts.html",
+      "title": "Beauty and the Beasts",
+      "author": "White-Headed Dream",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1661,
+          "run_id": 44426646813,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44426646813",
+          "artifact_id": 14487462095,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44426646813/artifacts/14487462095",
+          "completed_at_utc": "2026-11-19T00:54:46Z",
+          "expires_at_utc": "2026-11-26T00:54:46Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/becoming-an-ancestor-in-another-world-from-this-day-on.html",
       "title": "Becoming An Ancestor In Another World From This Day On",
       "author": "Magic Principal",
