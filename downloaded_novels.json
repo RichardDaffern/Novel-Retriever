@@ -5316,6 +5316,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/this-earth-is-a-bit-fearsome.html",
+      "title": "This Earth Is A Bit Fearsome",
+      "author": "Fu Xiaochen",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1292,
+          "run_id": 44490362946,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44490362946",
+          "artifact_id": 14514216300,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44490362946/artifacts/14514216300",
+          "completed_at_utc": "2026-11-19T09:09:33Z",
+          "expires_at_utc": "2026-11-26T09:09:33Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/throne-of-magical-arcana.html",
       "title": "Throne of Magical Arcana",
       "author": "Cuttlefish That Loves Diving",

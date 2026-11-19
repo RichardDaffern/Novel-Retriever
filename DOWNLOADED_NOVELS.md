@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (281 novels)
+## NovelFull (282 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -309,6 +309,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Villainess Reverses the Hourglass](https://novelfull.com/the-villainess-reverses-the-hourglass.html) | all | 288 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14171899046) | 2026-11-22T17:23:44Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42368375482/artifacts/13575943777) | 2026-11-14T13:31:01Z |
 | [The World Online](https://novelfull.com/the-world-online.html) | all | 1356 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13627465520) | 2026-11-15T17:27:24Z |
+| [This Earth Is A Bit Fearsome](https://novelfull.com/this-earth-is-a-bit-fearsome.html) | all | 1292 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44490362946/artifacts/14514216300) | 2026-11-26T09:09:33Z |
 | [Throne of Magical Arcana](https://novelfull.com/throne-of-magical-arcana.html) | all | 910 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13627324316) | 2026-11-15T17:49:19Z |
 | [Top Student: Experience Infinite Occupations](https://novelfull.com/top-student-experience-infinite-occupations.html) | all | 348 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13628605600) | 2026-11-15T18:00:49Z |
 | [Transcending the Nine Heavens](https://novelfull.com/transcending-the-nine-heavens.html) | all | 1510 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13629491257) | 2026-11-15T18:34:37Z |
