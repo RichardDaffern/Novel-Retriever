@@ -4117,6 +4117,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-avalon-of-five-elements.html",
+      "title": "The Avalon Of Five Elements",
+      "author": "Fang Xiang",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 715,
+          "run_id": 44452173627,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452173627",
+          "artifact_id": 14495964574,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452173627/artifacts/14495964574",
+          "completed_at_utc": "2026-11-19T03:53:54Z",
+          "expires_at_utc": "2026-11-26T03:53:54Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-book-eating-magician.html",
       "title": "The Book Eating Magician",
       "author": "McEnroe",
