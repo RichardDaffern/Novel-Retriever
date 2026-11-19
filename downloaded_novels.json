@@ -4927,6 +4927,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-nine-cauldrons.html",
+      "title": "The Nine Cauldrons",
+      "author": "I Eat Tomatoes",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 621,
+          "run_id": 44484945178,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484945178",
+          "artifact_id": 14511161966,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484945178/artifacts/14511161966",
+          "completed_at_utc": "2026-11-19T08:28:51Z",
+          "expires_at_utc": "2026-11-26T08:28:51Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-novels-extra.html",
       "title": "The Novel's Extra",
       "author": "Jee Gab Song",
