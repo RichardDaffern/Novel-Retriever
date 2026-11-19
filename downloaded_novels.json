@@ -3548,6 +3548,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/nine-star-burden.html",
+      "title": "Nine Star Burden",
+      "author": "Birth",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1272,
+          "run_id": 44469675311,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44469675311",
+          "artifact_id": 14504284652,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44469675311/artifacts/14504284652",
+          "completed_at_utc": "2026-11-19T06:28:50Z",
+          "expires_at_utc": "2026-11-26T06:28:50Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/nine-star-hegemon-body-art.html",
       "title": "Nine Star Hegemon Body Art",
       "author": "Ordinary Magician",
