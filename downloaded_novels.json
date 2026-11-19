@@ -4207,6 +4207,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-great-storyteller.html",
+      "title": "The Great Storyteller",
+      "author": "임한백",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 394,
+          "run_id": 44452473069,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452473069",
+          "artifact_id": 14498770475,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452473069/artifacts/14498770475",
+          "completed_at_utc": "2026-11-19T04:14:03Z",
+          "expires_at_utc": "2026-11-26T04:14:03Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-great-thief.html",
       "title": "The Great Thief",
       "author": "大盗贼",
