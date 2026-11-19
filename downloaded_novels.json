@@ -686,6 +686,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/apocalypse-of-all-races.html",
+      "title": "Apocalypse Of All Races",
+      "author": "Eagle Eats Chicks",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 3792,
+          "run_id": 44425947238,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44425947238",
+          "artifact_id": 14486694281,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44425947238/artifacts/14486694281",
+          "completed_at_utc": "2026-11-19T00:59:12Z",
+          "expires_at_utc": "2026-11-26T00:59:12Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/astral-pet-store.html",
       "title": "Astral Pet Store",
       "author": "Ancient Xi",
