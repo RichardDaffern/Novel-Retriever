@@ -40,7 +40,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (196 novels)
+## NovelFull (197 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -155,6 +155,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Martial Peak](https://novelfull.com/martial-peak.html) | all | 6133 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13651454047) | 2026-11-16T05:35:13Z |
 | [Martial World](https://novelfull.com/martial-world.html) | all | 2276 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14345670300) | 2026-11-24T15:57:25Z |
 | [Master of the End Times](https://novelfull.com/master-of-the-end-times.html) | all | 1087 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14233689388) | 2026-11-23T14:26:52Z |
+| [Mechanical God Emperor](https://novelfull.com/mechanical-god-emperor.html) | all | 1569 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423515325/artifacts/14484702287) | 2026-11-26T00:11:39Z |
 | [Medical Master](https://novelfull.com/medical-master.html) | all | 2028 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13645342551) | 2026-11-16T02:29:39Z |
 | [MMORPG: Rebirth as an Alchemist](https://novelfull.com/mmorpg-rebirth-as-an-alchemist.html) | all | 913 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13654005044) | 2026-11-16T06:13:37Z |
 | [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
