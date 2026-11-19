@@ -5874,6 +5874,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/zhanxian.html",
+      "title": "Zhanxian",
+      "author": "Ren Yuan",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1187,
+          "run_id": 44497656162,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162",
+          "artifact_id": 14518591797,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14518591797",
+          "completed_at_utc": "2026-11-19T10:16:40Z",
+          "expires_at_utc": "2026-11-26T10:16:40Z"
+        }
+      ]
+    },
+    {
       "url": "https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima",
       "title": "The Adventurous Gamer Ninja - Daichi Hekima",
       "author": "MonkWithAPen",
