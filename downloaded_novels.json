@@ -3152,6 +3152,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/mmorpg-the-elementalist.html",
+      "title": "MMORPG: The Elementalist",
+      "author": "Internet's Dark Knight",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 709,
+          "run_id": 44466326150,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466326150",
+          "artifact_id": 14503143183,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466326150/artifacts/14503143183",
+          "completed_at_utc": "2026-11-19T05:58:32Z",
+          "expires_at_utc": "2026-11-26T05:58:32Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/monarch-of-evernight.html",
       "title": "Monarch of Evernight",
       "author": "Misty South",
