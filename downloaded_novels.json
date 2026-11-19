@@ -4106,6 +4106,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/rise-of-humanity.html",
+      "title": "Rise of Humanity",
+      "author": "Pig Nerd",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1183,
+          "run_id": 44472607680,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44472607680",
+          "artifact_id": 14506226565,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44472607680/artifacts/14506226565",
+          "completed_at_utc": "2026-11-19T06:52:51Z",
+          "expires_at_utc": "2026-11-26T06:52:51Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/scholars-advanced-technological-system.html",
       "title": "Scholar’s Advanced Technological System",
       "author": "Morning Star LL",
