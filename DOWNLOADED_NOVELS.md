@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (288 novels)
+## NovelFull (289 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -328,6 +328,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [War Sovereign Soaring The Heavens](https://novelfull.com/war-sovereign-soaring-the-heavens.html) | all | 4718 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13627871965) | 2026-11-15T17:57:23Z |
 | [Warlock of the Magus World](https://novelfull.com/warlock-of-the-magus-world.html) | all | 1201 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44363052288/artifacts/14459705677) | 2026-11-25T18:36:09Z |
 | [WARNING! Tsundere President](https://novelfull.com/warning-tsundere-president.html) | all | 1182 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44494109125/artifacts/14515302531) | 2026-11-26T09:33:32Z |
+| [Way of the Devil](https://novelfull.com/way-of-the-devil.html) | all | 772 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44494502486/artifacts/14516165946) | 2026-11-26T09:35:45Z |
 | [When I Saw The Returns, I Invested In My Future Wife First](https://novelfull.com/when-i-saw-the-returns-i-invested-in-my-future-wife-first.html) | all | 450 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13626582748) | 2026-11-15T17:13:00Z |
 | [White-Robed Chief](https://novelfull.com/white-robed-chief.html) | all | 1215 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452774179/artifacts/14497168748) | 2026-11-26T04:01:00Z |
 | [Witch: Accumulate Experience Through The Knight Breathing Technique](https://novelfull.com/witch-accumulate-experience-through-the-knight-breathing-technique.html) | all | 3223 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44455333629/artifacts/14499506217) | 2026-11-26T04:39:29Z |
