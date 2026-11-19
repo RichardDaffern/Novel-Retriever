@@ -5107,6 +5107,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/the-sacred-ruins.html",
+      "title": "The Sacred Ruins",
+      "author": "Chen Dong",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1645,
+          "run_id": 44489265432,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489265432",
+          "artifact_id": 14513562641,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489265432/artifacts/14513562641",
+          "completed_at_utc": "2026-11-19T09:04:34Z",
+          "expires_at_utc": "2026-11-26T09:04:34Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/the-second-coming-of-gluttony.html",
       "title": "The Second Coming of Gluttony",
       "author": "Ro Yu-jin",
