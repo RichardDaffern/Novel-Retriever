@@ -3566,6 +3566,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/realm-of-myths-and-legends.html",
+      "title": "Realm of Myths and Legends",
+      "author": "DaoistZenFeng",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1332,
+          "run_id": 44447664286,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44447664286",
+          "artifact_id": 14494468831,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44447664286/artifacts/14494468831",
+          "completed_at_utc": "2026-11-19T03:17:53Z",
+          "expires_at_utc": "2026-11-26T03:17:53Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/rebirth-how-a-loser-became-a-prince-charming.html",
       "title": "Rebirth: How a Loser Became a Prince Charming",
       "author": "Erbao Angel",
