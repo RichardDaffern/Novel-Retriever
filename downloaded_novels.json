@@ -3206,6 +3206,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/monster-paradise.html",
+      "title": "Monster Paradise",
+      "author": "Nuclear Warhead Cooked in Wine",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1935,
+          "run_id": 44466326150,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466326150",
+          "artifact_id": 14504337352,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466326150/artifacts/14504337352",
+          "completed_at_utc": "2026-11-19T06:17:38Z",
+          "expires_at_utc": "2026-11-26T06:17:38Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/monster-synthesis-master.html",
       "title": "Monster Synthesis Master",
       "author": "Zhuge Wanjun",
