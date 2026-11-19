@@ -40,7 +40,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (199 novels)
+## NovelFull (200 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -75,6 +75,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Cultivation Chat Group](https://novelfull.com/cultivation-chat-group.html) | all | 3165 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44392181245/artifacts/14470292399) | 2026-11-25T21:04:59Z |
 | [Cultivation Online](https://novelfull.com/cultivation-online.html) | all | 2701 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636934179) | 2026-11-15T22:36:34Z |
 | [Cultivation! My Augmented Statuses Have Unlimited Duration](https://novelfull.com/cultivation-my-augmented-statuses-have-unlimited-duration.html) | all | 904 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636307740) | 2026-11-15T22:04:49Z |
+| [Cultivation: I Can Add Descriptors To My Body](https://novelfull.com/cultivation-i-can-add-descriptors-to-my-body.html) | all | 202 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44427178280/artifacts/14486677776) | 2026-11-26T00:48:12Z |
 | [Damn it! You Call This Beast Taming?](https://novelfull.com/damn-it-you-call-this-beast-taming.html) | all | 593 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14250691539) | 2026-11-23T17:20:35Z |
 | [Destroyer of Ice and Fire](https://novelfull.com/destroyer-of-ice-and-fire.html) | all | 680 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14254369238) | 2026-11-23T17:57:25Z |
 | [Devil’s Son-in-Law](https://novelfull.com/devils-son-in-law.html) | all | 1275 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13644028986) | 2026-11-16T01:59:32Z |
