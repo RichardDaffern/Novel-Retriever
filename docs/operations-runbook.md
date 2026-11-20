@@ -83,6 +83,41 @@ Implementation:
 
 **Launch review checklist:** Verify permission and exact source; verify title is not red, blocked, complete or active; compare the proposed URL/edition and chapter index; check current active jobs; review the request diff and CI; merge only approved code; verify a **new** dispatcher run appears; examine each child run and eventual final ZIP.
 
+## 5A. Preferred new approach: verify book links before launching the bulk workflow
+
+**New source policy, 20 November 2026:** Treat the large-wave website-discovery job as a historic experiment, not the default for future downloads. Agents should do the source research directly, record evidence and **submit exact verified URLs**. The GitHub dispatcher must not research titles, guess slugs, crawl search pages or silently switch to a different edition.
+
+1. Reconcile Yup/Idk/fanfiction requests with the complete download registry by canonical source URL, reviewed book identity and documented aliases. Do not infer that a fuzzy-title match proves the same book. Remove 90 globally Dropped/red titles, 14 known unrepaired full-book failures and books currently running in any child workflow.
+2. Search only supported book sources, in preference order: **NovelFull**, **ReadNovelFull**, then **FreeWebNovel**. Read actual book-page title, author, alternative names, table of contents and apparent availability. Reject unsupported or ambiguously matched editions. WuxiaClick and Scribble Hub require their existing special rights/restriction gates; they are **not** silently included in automatic bulk campaigns.
+3. Preserve the chosen canonical `https://...` **book-page URL**, requested title, on-site title, domain and evidence in a reviewed Git JSON file. Example: `campaigns/overnight/curated-book-links-20261120-night.json`. No invented URLs, chapter-page links, query strings or redirects into another domain.
+4. Before download, run `tools/dispatch_curated_bulk.py` validation against the approved Yup/Idk inputs, excluded/blocked title manifests and completed registry. If the global two-active-bulk-run cap is reached, wait for capacity. No site search happens in this step.
+5. Submit all approved links as the `novel_urls` input of the **existing** `Library - Bulk Download` workflow with `chapter_range=` and `force=false`. The workflow itself chooses the supported adapter based on each URL and independently checks live registry availability. Avoid a separate bulk menu.
+6. Record the **actual new child run ID**, then inspect its source prepare, bounded chapter checks, full-book EPUB assembly and registry publication. Mixed-site bulk runs may partly fail; completed independent book ZIPs remain usable.
+7. The 20 November eight-title mixed-site batch is an example, **not** a continuously reusable activation. Never rerun the one-time workflow marker or auto-retry deterministic chapter mismatches.
+
+**Reproducible input shape** (actual reviewed URL evidence is required):
+
+```json
+{
+  "schema_version": 1,
+  "campaign": "manual-source-curated-yup-20261120-night",
+  "method": "operator-reviewed-book-pages-no-runtime-website-search",
+  "priority": ["NovelFull", "ReadNovelFull", "FreeWebNovel"],
+  "max_parallel_bulk_runs": 2,
+  "books": [
+    {
+      "title": "Requested approved title",
+      "source_title": "Verified on-site book title",
+      "site": "ReadNovelFull",
+      "url": "https://readnovelfull.com/verified-book-v1.html",
+      "evidence": "Verified actual author, aliases and public book page"
+    }
+  ]
+}
+```
+
+Do not use the example's fabricated URL as a real source. Replace it only with a directly verified, supported book page. Never claim that source-page verification is proof of permission to download copyrighted work.
+
 ## 6. Safe recovery matrix
 
 | Failure or warning | Action | Forbidden shortcut |
