@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "campaign": "verified-yup-overnight-20261120",
+  "one_time": true,
+  "source_reviewed_at": "2026-11-20",
+  "books": [
+    {
+      "title": "My Fury Will Burn The Heavens",
+      "source_title": "Fury Towards The Burning Heaven",
+      "url": "https://novelfull.com/fury-towards-the-burning-heaven.html",
+      "basis": "NovelFull listing explicitly states My Fury Will Burn The Heavens as an alternative title"
+    },
+    {
+      "title": "Levelling Up And Becoming Undefeated",
+      "source_title": "Leveling Up And Becoming Undefeatable",
+      "url": "https://novelfull.com/leveling-up-and-becoming-undefeatable.html",
+      "basis": "Reviewed American spelling and Undefeatable translation of the requested cultivation-system novel"
+    },
+    {
+      "title": "Evil Dragon Against The Heaven",
+      "source_title": "Online Game: Evil Dragon Against The Heaven",
+      "url": "https://novelfull.com/online-game-evil-dragon-against-the-heaven.html",
+      "basis": "Reviewed listing for source-title with Online Game subtitle"
+    }
+  ]
+}
