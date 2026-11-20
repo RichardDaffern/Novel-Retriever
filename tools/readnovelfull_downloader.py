@@ -86,7 +86,8 @@ def download_range(url: str, first: int, last: int, output_dir: Path, *,
             written[position] = prior[position]
             continue
         sleeper(1)
-        item = extract_chapter(fetcher(chapter["url"]), number=position,
+        item = extract_chapter(fetcher(chapter["url"]),
+                               number=chapter.get("chapter_number", position),
                                title=chapter["title"])
         content = f"{item['title']}\n\n{item['text'].strip()}\n"
         digest = sha256(content.encode("utf-8")).hexdigest()
@@ -95,7 +96,8 @@ def download_range(url: str, first: int, last: int, output_dir: Path, *,
         name = f"chapter_{position:05d}.txt"
         (folder / name).write_bytes(content.encode("utf-8"))
         written[position] = {
-            "position": position, "chapter_number": position,
+            "position": position,
+            "chapter_number": chapter.get("chapter_number", position),
             "title": item["title"], "file": name,
             "word_count": len(item["text"].split()), "sha256": digest,
         }
