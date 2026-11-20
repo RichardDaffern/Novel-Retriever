@@ -2270,6 +2270,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/i-am-a-prodigy.html",
+      "title": "I Am A Prodigy",
+      "author": "Rugao Under The Bridge",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 795,
+          "run_id": 44780760719,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44780760719",
+          "artifact_id": 14652716800,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44780760719/artifacts/14652716800",
+          "completed_at_utc": "2026-11-20T17:19:53Z",
+          "expires_at_utc": "2026-11-27T17:19:53Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/i-am-loaded-with-passive-skills.html",
       "title": "I Am Loaded with Passive Skills",
       "author": "Eat Apples Late at Night",
