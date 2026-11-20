@@ -704,6 +704,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/advent-of-the-archmage.html",
+      "title": "Advent of the Archmage",
+      "author": "Mo Xiang",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 726,
+          "run_id": 44762457914,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44762457914",
+          "artifact_id": 14646628278,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44762457914/artifacts/14646628278",
+          "completed_at_utc": "2026-11-20T16:02:15Z",
+          "expires_at_utc": "2026-11-27T16:02:15Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/alchemy-emperor-of-the-divine-dao.html",
       "title": "Alchemy Emperor of the Divine Dao",
       "author": "Flying Alone",
