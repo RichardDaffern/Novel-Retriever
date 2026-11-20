@@ -15,6 +15,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 HOST = "readnovelfull.com"
 BOOK = re.compile(r"/([a-z0-9][a-z0-9_-]*)\.html\Z")
 CHAPTER = re.compile(r"/([a-z0-9][a-z0-9_-]*)/chapter-([1-9][0-9]*)(?:[a-z_-][a-z0-9_-]*)?\.html\Z")
+PROLOGUE = re.compile(r"/([a-z0-9][a-z0-9_-]*)/prologue\.html\Z")
 ARCHIVE = "/ajax/chapter-archive"
 MAX_HTML = 12 * 1024 * 1024
 MAX_CHAPTERS = 20000
@@ -49,12 +50,16 @@ def validate_book_url(url: str) -> str:
 
 def validate_chapter_url(url: str, *, book_prefix: str = "") -> tuple[str, int, str]:
     p = _parts(url)
-    matched = CHAPTER.fullmatch(p.path)
-    if not matched or p.query:
+    numbered = CHAPTER.fullmatch(p.path)
+    prologue = PROLOGUE.fullmatch(p.path)
+    if p.query or (numbered is None and prologue is None):
         raise SourceError("Invalid ReadNovelFull chapter URL")
-    if book_prefix and matched.group(1) != book_prefix:
+    prefix = numbered.group(1) if numbered else prologue.group(1)
+    if book_prefix and prefix != book_prefix:
         raise SourceError("Chapter link belongs to another novel")
-    return "https://" + HOST + p.path, int(matched.group(2)), matched.group(1)
+    # A verified standalone /prologue.html is part of the story, not Chapter 1.
+    return ("https://" + HOST + p.path,
+            int(numbered.group(2)) if numbered else 0, prefix)
 
 
 def archive_url(novel_id: str) -> str:
@@ -76,7 +81,8 @@ def fetch_public_html(url: str) -> str:
         if set(qs) != {"novelId"} or len(qs["novelId"]) != 1:
             raise SourceError("Unexpected AJAX query parameters")
         archive_url(qs["novelId"][0])
-    elif p.query or (not BOOK.fullmatch(p.path) and not CHAPTER.fullmatch(p.path)):
+    elif p.query or (not BOOK.fullmatch(p.path) and not CHAPTER.fullmatch(p.path)
+                     and not PROLOGUE.fullmatch(p.path)):
         raise SourceError("Refusing non-novel ReadNovelFull URL")
     headers = {"User-Agent": "NovelLibraryReadNovelFull/1.0", "Accept": "text/html"}
     if is_archive:
@@ -159,7 +165,7 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
         if not chapter_prefix:
             chapter_prefix = prefix
         title = anchor.get("title") or anchor.get_text(" ", strip=True)
-        title = title.strip()[:240] or f"Chapter {position}"
+        title = title.strip()[:240] or ("Prologue" if position == 0 else f"Chapter {position}")
         if position in seen:
             if seen[position]["url"] != canonical:
                 raise SourceError(f"Duplicate Chapter {position} links in archive")
@@ -167,9 +173,21 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
         seen[position] = {"position": position, "title": title, "url": canonical}
         if len(seen) > MAX_CHAPTERS:
             raise SourceError("Chapter archive exceeds 20,000-chapter limit")
-    if not seen or sorted(seen) != list(range(1, max(seen) + 1)):
-        raise SourceError("Chapter archive is missing or misnumbering chapters")
-    return [seen[n] for n in sorted(seen)]
+    numbered = sorted(n for n in seen if n > 0)
+    missing = ([n for n in range(1, numbered[-1] + 1) if n not in seen]
+               if numbered else [])
+    if not numbered or missing:
+        example = ", ".join(str(n) for n in missing[:8])
+        detail = (f"{len(missing)} missing numbered chapters, first: {example}"
+                  if missing else "no numbered chapters")
+        raise SourceError(f"Chapter archive is missing or misnumbering chapters: {detail}")
+    # Position is the reading/EPUB order; chapter_number is the printed number.
+    # Preserve a genuine prologue without renumbering the source's Chapter 1.
+    ordered = ([seen[0]] if 0 in seen else []) + [seen[n] for n in numbered]
+    for position, row in enumerate(ordered, 1):
+        row["chapter_number"] = row["position"]
+        row["position"] = position
+    return ordered
 
 
 def discover(book_url: str, *, fetcher=fetch_public_html) -> dict:
@@ -183,13 +201,14 @@ def discover(book_url: str, *, fetcher=fetch_public_html) -> dict:
     visible = {}
     for a in soup.select(".list-chapter a[href], #list-chapter a[href]"):
         try:
-            canonical, pos, _ = validate_chapter_url(urljoin(book_url, a["href"]))
+            canonical, number, _ = validate_chapter_url(urljoin(book_url, a["href"]))
         except SourceError:
             continue
-        if pos in (1, 2):
-            visible[pos] = canonical
-    for pos, candidate in visible.items():
-        if pos > len(rows) or rows[pos - 1]["url"] != candidate:
+        if number in (0, 1, 2):
+            visible[number] = canonical
+    by_number = {row["chapter_number"]: row["url"] for row in rows}
+    for number, candidate in visible.items():
+        if by_number.get(number) != candidate:
             raise SourceError("Book page and AJAX archive chapter links disagree")
     metadata["numChapters"] = len(rows)
     metadata["chapters"] = rows
@@ -207,6 +226,8 @@ def extract_chapter(page: str, *, number: int, title: str) -> dict:
     heading = next((h for h in headings if re.search(
         r"\bchapter\s+([1-9][0-9]*)\b", h, re.I)), "")
     m = re.search(r"\bchapter\s+([1-9][0-9]*)\b", heading, re.I)
+    if number == 0 and not any(re.search(r"\bprologue\b", h, re.I) for h in headings):
+        raise SourceError("Expected prologue heading")
     if m and int(m.group(1)) != number:
         raise SourceError(f"Expected Chapter {number}, received Chapter {m.group(1)}")
     node = next((soup.select_one(selector) for selector in BODY_SELECTORS
