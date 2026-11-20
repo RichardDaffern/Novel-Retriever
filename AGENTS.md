@@ -976,6 +976,10 @@ When changing a subsystem, also consult the relevant living guide:
 
 This section documents behaviour added after the handbook's original 13 November architecture baseline. For precise procedures and dated facts, consult the [runbook](docs/operations-runbook.md) and [status](docs/current-status.md).
 
+### Curated source URLs are preferred to website discovery (20 November 2026)
+
+**New default for user-requested downloads:** Identify missing approved Yup/Idk/fanfiction titles first; look up and manually verify each exact, supported public **book page**, preferring **NovelFull**, then **ReadNovelFull**, then **FreeWebNovel**. Reconcile title/author/source aliases, the 90 global red/Dropped exclusions, 14 prior deterministic failures, the canonical completed registry and every currently active workflow. Record real source URLs plus title, on-site title, platform and verification evidence in a reviewed JSON manifest. Submit the **full verified URL list directly** through existing `Library - Bulk Download`, not through the old runtime source-search dispatcher. The one-time source-reviewed launcher `tools/dispatch_curated_bulk.py` and [operations runbook](docs/operations-runbook.md) demonstrate the pattern; the launcher's **only job** is validation, duplicate prevention, capacity gating and submitting the literal URLs with `force=false`. It must not search websites, generate guessed slugs, bypass source restrictions or mix original and derived titles without evidence. A source link does not itself grant reproduction rights or prove chapter completion. The previously activated search-based large wave remains historical; do not rerun its marker or silently re-enable runtime discovery.
+
 ### Source-verified campaigns and throughput
 
 - `campaigns/overnight/excluded-90.json` is a **global denial list**, not merely a scoring preference. Keep all 90 red/Dropped titles out of both Yup and Idk campaigns, including cross-sheet duplicates. Never bypass this with a guessed alternate title.
