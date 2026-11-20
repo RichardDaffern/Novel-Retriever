@@ -7,9 +7,41 @@ This wrapper uses FanFicFare's chapter-completion notification callback.
 
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 from bs4 import BeautifulSoup
+
+
+# The original author never published ISSTH Chapter 690. The public page
+# explicitly labels it "The Chapter that Never Was" and says 689 jumps to 691.
+# Only this exact, publicly verified missing-number entry may be represented by
+# a transparent editorial note when FanFicFare returns genuinely blank HTML.
+# Do not introduce generic empty-chapter tolerance.
+VERIFIED_SKIP_URL = "https://novelfull.com/i-shall-seal-the-heavens/chapter-690.html"
+VERIFIED_SKIP_NOTE = (
+    "<p>Editorial numbering note: The original author deliberately omitted "
+    "Chapter 690, moving directly from Chapter 689 to Chapter 691. "
+    "No story text was published for this numbered chapter.</p>"
+)
+
+
+def _preserve_verified_editorial_skip(url: str, index: int, title: str,
+                                      html: str | bytes) -> str | bytes:
+    if index != 689 or not re.search(r"\\bchapter\\s+690\\b", title, re.I):
+        return html
+    parsed = urlsplit(url)
+    if (parsed.scheme != "https" or parsed.hostname not in
+            ("novelfull.com", "www.novelfull.com") or parsed.port is not None
+            or parsed.username or parsed.password or parsed.query or parsed.fragment
+            or parsed.path != "/i-shall-seal-the-heavens/chapter-690.html"):
+        return html
+    if BeautifulSoup(html, "html.parser").get_text(" ", strip=True):
+        return html
+    print("Verified author-omitted ISSTH Chapter 690: preserving editorial note",
+          flush=True)
+    return VERIFIED_SKIP_NOTE
 
 
 def _checkpoint_chapter(folder: Path, index: int, title: str, html: str | bytes) -> Path:
@@ -51,6 +83,7 @@ def progress_reporter(writer):
             html = original_fetch(url, index)
             if first <= index <= last:
                 heading = adapter.chapterInfos[index].get("title", f"Chapter {index+1}")
+                html = _preserve_verified_editorial_skip(url, index, heading, html)
                 file = _checkpoint_chapter(checkpoint_dir, index, heading, html)
                 print(f"Saved checkpoint: {file.name}", flush=True)
             return html
