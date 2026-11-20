@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (297 novels)
+## NovelFull (298 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -96,6 +96,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Dragon-Marked War God](https://novelfull.com/dragon-marked-war-god.html) | all | 3460 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13651743399) | 2026-11-16T05:40:11Z |
 | [Dragonborn Saga](https://novelfull.com/dragonborn-saga.html) | all | 777 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44432975021/artifacts/14489445658) | 2026-11-26T01:17:53Z |
 | [Dual Cultivation](https://novelfull.com/dual-cultivation.html) | all | 1148 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14173585699) | 2026-11-22T17:44:33Z |
+| [Dungeon Defense](https://novelfull.com/dungeon-defense.html) | all | 46 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44780760719/artifacts/14651783788) | 2026-11-27T17:16:45Z |
 | [Dungeon Hunter](https://novelfull.com/dungeon-hunter.html) | all | 171 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14170676589) | 2026-11-22T16:39:21Z |
 | [Emperor’s Domination](https://novelfull.com/emperors-domination.html) | all | 7212 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13657994600) | 2026-11-16T08:16:29Z |
 | [Enchantress Amongst Alchemists: Ghost King’s Wife](https://novelfull.com/enchantress-amongst-alchemists-ghost-kings-wife.html) | all | 1195 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44433291468/artifacts/14490233466) | 2026-11-26T02:00:44Z |
