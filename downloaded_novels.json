@@ -758,6 +758,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/assassins-chronicle.html",
+      "title": "Assassin's Chronicle",
+      "author": "Hit The Southern Wall",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 580,
+          "run_id": 44762457914,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44762457914",
+          "artifact_id": 14645485186,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44762457914/artifacts/14645485186",
+          "completed_at_utc": "2026-11-20T15:41:19Z",
+          "expires_at_utc": "2026-11-27T15:41:19Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/astral-pet-store.html",
       "title": "Astral Pet Store",
       "author": "Ancient Xi",
