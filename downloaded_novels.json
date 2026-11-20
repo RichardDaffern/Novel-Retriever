@@ -1496,6 +1496,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/dungeon-defense.html",
+      "title": "Dungeon Defense",
+      "author": "Yoo Heonhwa",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 46,
+          "run_id": 44780760719,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44780760719",
+          "artifact_id": 14651783788,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44780760719/artifacts/14651783788",
+          "completed_at_utc": "2026-11-20T17:16:45Z",
+          "expires_at_utc": "2026-11-27T17:16:45Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/dungeon-hunter.html",
       "title": "Dungeon Hunter",
       "author": "Onhu",
