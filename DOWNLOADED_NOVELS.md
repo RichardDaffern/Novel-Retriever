@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (304 novels)
+## NovelFull (305 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -299,6 +299,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Great Thief](https://novelfull.com/the-great-thief.html) | all | 1976 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513348683/artifacts/13656896239) | 2026-11-16T07:30:13Z |
 | [The Human Emperor](https://novelfull.com/the-human-emperor.html) | all | 2467 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513372924/artifacts/13644389821) | 2026-11-16T02:16:03Z |
 | [The Immortal's Wine Store](https://novelfull.com/the-immortals-wine-store.html) | all | 583 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44762670118/artifacts/14646883532) | 2026-11-27T16:20:05Z |
+| [The Invincible Dragon Emperor](https://novelfull.com/the-invincible-dragon-emperor.html) | all | 1295 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44791453169/artifacts/14661016528) | 2026-11-27T19:12:02Z |
 | [The Legend of Futian](https://novelfull.com/the-legend-of-futian.html) | all | 2969 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44484588674/artifacts/14512052689) | 2026-11-26T08:42:26Z |
 | [The Legendary Moonlight Sculptor](https://novelfull.com/the-legendary-moonlight-sculptor.html) | all | 710 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13624187862) | 2026-11-15T16:03:05Z |
 | [The Lord’s Empire](https://novelfull.com/the-lords-empire.html) | all | 1729 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13625076323) | 2026-11-15T16:28:03Z |
