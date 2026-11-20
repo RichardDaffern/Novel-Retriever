@@ -29,7 +29,7 @@ VERIFIED_SKIP_NOTE = (
 
 def _preserve_verified_editorial_skip(url: str, index: int, title: str,
                                       html: str | bytes) -> str | bytes:
-    if index != 689 or not re.search(r"\\bchapter\\s+690\\b", title, re.I):
+    if index != 689 or not re.search(r"\bchapter\s+690\b", title, re.I):
         return html
     parsed = urlsplit(url)
     if (parsed.scheme != "https" or parsed.hostname not in
