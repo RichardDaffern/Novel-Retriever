@@ -1,5 +1,7 @@
 # Approved Yup campaign: small independent download pipelines
 
+**Wave-four update, 20 November 2026:** The original two-title Yup pilot was extended by reviewed [PR #432](https://github.com/RichardDaffern/Novel-Retriever/pull/432), which added verified `batch-09.json` (Advent of Archmage; Assassin's Chronicle) and `batch-10.json` (Charm Of Soul Pet; The Immortal's Wine Store). These were started as separate child workflows and must not be automatically requeued while active. The former 157 `needs_source_verification` baseline within `backlog-163.json` is now **153**, plus **6 wave-three** and **4 wave-four** reviewed request entries. New large batches use [the large-wave campaign](../../.github/workflows/large-verified-waves-20261120.yml), **not** a widened version of this two-title pilot. Verify live run results from the [dated status](../../docs/current-status.md).
+
 This is a limited pilot, not an attempt to download the entire Excel list in one workflow.
 
 ## Selection and exclusions
