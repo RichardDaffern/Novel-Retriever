@@ -1,0 +1,68 @@
+name: Campaign - Submit manually reviewed NovelFull and ReadNovelFull URLs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'campaigns/overnight/curated-book-links-20261120-night.json'
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: curated-source-links-20261120-night
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    if: github.repository == 'RichardDaffern/Novel-Retriever'
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Require one-time addition of the exact reviewed URL file
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$RUN_ATTEMPT" != 1 ]]; then
+            echo "::error::Do not rerun a one-shot bulk dispatch"
+            exit 1
+          fi
+          git diff --diff-filter=A --name-only "$BEFORE_SHA" "$HEAD_SHA" -- \
+            'campaigns/overnight/curated-book-links-20261120-night.json' | grep -qx \
+            'campaigns/overnight/curated-book-links-20261120-night.json'
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned offline catalogue dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Validate reviewed links and exclusion safeguards offline
+        run: python -m unittest tests.test_dispatch_curated_bulk -v
+      - name: Pass exact approved URLs to Library Bulk Download, without searching
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ATTEMPT: ${{ github.run_attempt }}
+          GITHUB_ACTIONS: 'true'
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python -u -m tools.dispatch_curated_bulk \
+            --manifest campaigns/overnight/curated-book-links-20261120-night.json \
+            --out curated-bulk-launch-report.json
+      - name: Publish reviewed URL and dispatch status (metadata only)
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: curated-bulk-launch-${{ github.run_id }}
+          path: curated-bulk-launch-report.json
+          retention-days: 90
+          if-no-files-found: warn
