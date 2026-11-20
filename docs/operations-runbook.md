@@ -93,7 +93,7 @@ Implementation:
 4. Before download, run `tools/dispatch_curated_bulk.py` validation against the approved Yup/Idk inputs, excluded/blocked title manifests and completed registry. If the global two-active-bulk-run cap is reached, wait for capacity. No site search happens in this step.
 5. Submit all approved links as the `novel_urls` input of the **existing** `Library - Bulk Download` workflow with `chapter_range=` and `force=false`. The workflow itself chooses the supported adapter based on each URL and independently checks live registry availability. Avoid a separate bulk menu.
 6. Record the **actual new child run ID**, then inspect its source prepare, bounded chapter checks, full-book EPUB assembly and registry publication. Mixed-site bulk runs may partly fail; completed independent book ZIPs remain usable.
-7. The 20 November seven-title mixed-site batch is an example, **not** a continuously reusable activation. Never rerun the one-time workflow marker or auto-retry deterministic chapter mismatches.
+7. The 20 November eight-title mixed-site batch is an example, **not** a continuously reusable activation. Never rerun the one-time workflow marker or auto-retry deterministic chapter mismatches.
 
 **Reproducible input shape** (actual reviewed URL evidence is required):
 
