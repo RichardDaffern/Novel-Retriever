@@ -23,6 +23,12 @@ Novel Retriever is the **acquisition and packaging component**, not the web read
 
 **Current campaign model:** The legacy Yup pilot used two-title requests. The newer source-verified bulk campaign can select **up to 40** eligible Yup-first titles in **10-title batches**, respecting a **two-active-bulk-workflow limit**. This is a one-time, separately reviewed workflow, **not** a general unlimited download button. Check its actual run before claiming any novel is completed. Never queue excluded/red titles, bypass site restrictions, or force-retry an incomplete book with a known chapter-index issue. See the runbook for exact commands and constraints.
 
+## Curated bulk downloads (preferred workflow)
+
+**Discover and verify sources before dispatch, not inside GitHub Actions.** A maintainer or AI agent checks outstanding books against the completed registry and the original approved Yup/Idk lists, then confirms the actual **book pages** on supported sources, preferring **NovelFull**, then **ReadNovelFull**, then FreeWebNovel where appropriate. Review aliases, the 90 red/Dropped exclusions, 14 known broken full-book retries, site permissions and the presently active runs. Save an evidence-backed URL list, then send those exact URLs through the existing [Library - Bulk Download](.github/workflows/library-bulk-download.yml), with `force=false`.
+
+The historical automatic search-based large-wave dispatcher is **not the preferred entry point** for new campaigns. Its 20 November discovery selected only four eligible URLs and all four were blocked by deterministic FreeWebNovel chapter-number issues. A reusable manually curated URL launcher is implemented in `tools/dispatch_curated_bulk.py`; see [Operations Runbook](docs/operations-runbook.md) for workflow and one-shot activation details. A verified public book page proves **identity**, not authorisation to copy, chapter completeness or upload readiness.
+
 ## Download novels
 
 **[Library - Bulk Download](https://github.com/RichardDaffern/Novel-Retriever/actions/workflows/library-bulk-download.yml)** is the shared downloader for **all supported websites**. Paste one or more novel URLs into **Novel links** and select **Run workflow**. You can mix websites in the same request; the source is detected automatically. One link works too.
