@@ -95,7 +95,7 @@ def manifests() -> tuple[list[str], list[str], set[str], set[str]]:
     yup_entries = yup["entries"]
     if any(set(row) != {"title", "state"} for row in yup_entries):
         raise QueueError("Unexpected Yup entry schema")
-    if any(row["state"] not in {"wave3_requested", "needs_source_verification"}
+    if any(row["state"] not in {"wave3_requested", "wave4_requested", "needs_source_verification"}
            for row in yup_entries):
         raise QueueError("Unrecognised Yup status; review it manually")
     yup_all = [row["title"] for row in yup_entries]
