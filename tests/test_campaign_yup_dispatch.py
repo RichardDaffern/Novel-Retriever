@@ -81,7 +81,7 @@ class SmallYupPilotTests(unittest.TestCase):
         self.assertEqual(len({url for _, urls in groups for url in urls}), 6)
         self.assertTrue(all("novelfull.com" in url for _, urls in groups for url in urls))
 
-    def test_wave_four_has_two_two-book_batches(self):
+    def test_wave_four_has_two_two_book_batches(self):
         paths = [
             "campaigns/yup-pilot/requests/batch-09.json",
             "campaigns/yup-pilot/requests/batch-10.json",
