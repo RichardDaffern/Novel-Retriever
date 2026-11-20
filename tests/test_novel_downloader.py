@@ -8,7 +8,9 @@ from unittest.mock import patch
 import zipfile
 
 from novel_downloader import export_epub, epub_chapters, main, slugify, validate_url, run_fanficfare, parse_chapter_range
-from tools.fanficfare_progress_runner import _checkpoint_chapter, progress_reporter
+from tools.fanficfare_progress_runner import (_checkpoint_chapter, progress_reporter,
+                                             _preserve_verified_editorial_skip,
+                                             VERIFIED_SKIP_URL)
 
 
 class NovelDownloaderTests(unittest.TestCase):
@@ -453,6 +455,54 @@ class CheckpointTests(unittest.TestCase):
                 self.assertIn("Second paragraph", checkpoint.read_text(encoding="utf-8"))
                 self.assertIn("100.0%", output.getvalue())
                 self.assertFalse((Path(tmp) / "source.epub").exists())
+            finally:
+                os.chdir(previous)
+
+    def test_author_omitted_issth_690_is_an_explicit_editorial_note(self):
+        # Verified public NovelFull page explains there is no story Chapter
+        # 690; FanFicFare may return an empty HTML body for this one position.
+        note = _preserve_verified_editorial_skip(
+            VERIFIED_SKIP_URL, 689, "Chapter 690", "<html><body></body></html>"
+        )
+        self.assertIn("No story text was published", note)
+        for url, index, title, html in (
+            (VERIFIED_SKIP_URL, 688, "Chapter 689", ""),
+            (VERIFIED_SKIP_URL, 689, "Chapter 691", ""),
+            (VERIFIED_SKIP_URL, 689, "Chapter 690", "<p>Actual story</p>"),
+            ("https://novelfull.com/another-novel/chapter-690.html",
+             689, "Chapter 690", ""),
+            ("https://novelfull.com/i-shall-seal-the-heavens/chapter-690.html?x=1",
+             689, "Chapter 690", ""),
+        ):
+            with self.subTest(url=url, index=index, title=title):
+                self.assertEqual(
+                    _preserve_verified_editorial_skip(url, index, title, html),
+                    html,
+                )
+
+        # The amended HTML goes to BOTH the checkpoint and FanFicFare's EPUB
+        # writer; other empty chapters remain strict failures.
+        import os
+        from types import SimpleNamespace
+        with tempfile.TemporaryDirectory() as tmp:
+            previous = Path.cwd()
+            try:
+                os.chdir(tmp)
+                adapter = SimpleNamespace(
+                    chapterInfos=[{"title": f"Chapter {i+1}"} for i in range(690)],
+                    chapterFirst=689, chapterLast=689,
+                    getChapterTextNum=lambda url, index: "",
+                )
+                progress_reporter(SimpleNamespace(adapter=adapter))
+                html = adapter.getChapterTextNum(VERIFIED_SKIP_URL, 689)
+                self.assertIn("Editorial numbering note", html)
+                checkpoint = Path("chapters_in_progress/chapter_00690.txt")
+                self.assertTrue(checkpoint.is_file())
+                self.assertIn("No story text", checkpoint.read_text(encoding="utf-8"))
+                with self.assertRaisesRegex(ValueError, "empty"):
+                    adapter.getChapterTextNum(
+                        "https://novelfull.com/other/chapter-690.html", 689
+                    )
             finally:
                 os.chdir(previous)
 
