@@ -19,8 +19,8 @@ class SmallYupPilotTests(unittest.TestCase):
             for i in (1, 2, 3)
         ]
 
-    def test_only_sixteen_explicitly_allowlisted_yup_books(self):
-        self.assertEqual(len(self.entries), 16)
+    def test_only_twenty_explicitly_allowlisted_yup_books(self):
+        self.assertEqual(len(self.entries), 20)
         self.assertNotIn("The First Order", self.entries)
         self.assertNotIn("Nine Sun God King", self.entries)
         self.assertNotIn("Devil’s Son-in-Law", self.entries)
@@ -41,7 +41,11 @@ class SmallYupPilotTests(unittest.TestCase):
              "Alchemy Emperor of The Divine Dao",
              "I Shall Seal The Heavens",
              "Swallowed Star",
-             "The Strongest System"},
+             "The Strongest System",
+             "Advent of Archmage",
+             "Assassin's Chronicle",
+             "Charm Of Soul Pet",
+             "The Immortal's Wine Store"},
         )
 
     def test_three_independent_two_book_requests_preflight(self):
@@ -77,6 +81,18 @@ class SmallYupPilotTests(unittest.TestCase):
         self.assertEqual(len({url for _, urls in groups for url in urls}), 6)
         self.assertTrue(all("novelfull.com" in url for _, urls in groups for url in urls))
 
+    def test_wave_four_has_two_two_book_batches(self):
+        paths = [
+            "campaigns/yup-pilot/requests/batch-09.json",
+            "campaigns/yup-pilot/requests/batch-10.json",
+        ]
+        groups = tool.prepare_batches(
+            paths, tool._read_json(tool.MANIFEST), {"novels": []}
+        )
+        self.assertEqual([len(urls) for _, urls in groups], [2, 2])
+        self.assertEqual(len({url for _, urls in groups for url in urls}), 4)
+        self.assertTrue(all("novelfull.com" in url for _, urls in groups for url in urls))
+
     def test_remaining_163_backlog_tracks_every_title_without_personal_status(self):
         backlog = tool._read_json(tool.ROOT / "campaigns/yup-pilot/backlog-163.json")
         self.assertEqual(backlog["version"], 1)
@@ -97,8 +113,14 @@ class SmallYupPilotTests(unittest.TestCase):
             "Alchemy Emperor of The Divine Dao", "I Shall Seal The Heavens",
             "Swallowed Star", "The Strongest System"
         })
+        wave4 = {item["title"] for item in items
+                 if item["state"] == "wave4_requested"}
+        self.assertEqual(wave4, {
+            "Advent of Archmage", "Assassin's Chronicle",
+            "Charm Of Soul Pet", "The Immortal's Wine Store",
+        })
         self.assertEqual(
-            sum(item["state"] == "needs_source_verification" for item in items), 157
+            sum(item["state"] == "needs_source_verification" for item in items), 153
         )
         self.assertTrue(all(set(item) == {"title", "state"} for item in items))
 
