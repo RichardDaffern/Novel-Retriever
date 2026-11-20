@@ -354,6 +354,12 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Zhan Long](https://novelfull.com/zhan-long.html) | all | 1395 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14521375062) | 2026-11-26T10:37:34Z |
 | [Zhanxian](https://novelfull.com/zhanxian.html) | all | 1187 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14518591797) | 2026-11-26T10:16:40Z |
 
+## ReadNovelFull (1 novels)
+
+| Novel | Range | Chapters | Artifact | Expiry (UTC) |
+|---|---|---:|---|---|
+| [Archean Eon Art](https://readnovelfull.com/archean-eon-art-v1.html) | all | 766 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44791453169/artifacts/14656214990) | 2026-11-27T18:29:37Z |
+
 ## Scribble Hub (1 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
