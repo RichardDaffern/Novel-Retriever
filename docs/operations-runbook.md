@@ -43,7 +43,9 @@ A workflow's green conclusion may merely mean the **dispatcher succeeded**. Conf
 ```powershell
 gh repo view RichardDaffern/Novel-Retriever
 gh run list --repo RichardDaffern/Novel-Retriever --limit 30
-gh run view RUN_ID --repo RichardDaffern/Novel-Retriever --json status,conclusion,jobs,artifacts
+gh run view RUN_ID --repo RichardDaffern/Novel-Retriever --json status,conclusion,jobs
+# Artefact availability is a separate API query:
+gh api repos/RichardDaffern/Novel-Retriever/actions/runs/RUN_ID/artifacts
 gh pr list --repo RichardDaffern/Novel-Retriever --state open
 gh issue list --repo RichardDaffern/Novel-Retriever --state open
 ```
