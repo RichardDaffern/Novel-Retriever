@@ -19,7 +19,7 @@ class OvernightQueueTests(unittest.TestCase):
         self.assertEqual(len(q.read_json(q.IDK)["entries"]), 82)
         self.assertEqual(len(q.read_json(q.YUP)["entries"]), 163)
         self.assertEqual(len([x for x in q.read_json(q.YUP)["entries"]
-                              if x["state"] == "needs_source_verification"]), 157)
+                              if x["state"] == "needs_source_verification"]), 153)
         self.assertNotIn(q.norm("The First Order"), {q.norm(x) for x in yup + idk})
         self.assertNotIn(q.norm("Devil’s Son-in-Law"), {q.norm(x) for x in yup + idk})
         self.assertNotIn(q.norm("Fantasy Simulator"), {q.norm(x) for x in yup + idk})
@@ -27,7 +27,7 @@ class OvernightQueueTests(unittest.TestCase):
                          {q.norm(x) for x in idk})  # A Will Eternal already queued
         self.assertTrue(all(q.norm(x) not in denied for x in yup + idk))
         self.assertLessEqual(len(idk), 82)
-        self.assertLessEqual(len(yup), 157)
+        self.assertLessEqual(len(yup), 153)
 
     def test_dispatch_script_imports_without_third_party_source_parser(self):
         # The discovery job installs bs4, but the separate dispatcher does
