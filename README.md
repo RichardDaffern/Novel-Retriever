@@ -7,6 +7,22 @@ Download and organise web novels you are authorised to archive. The toolkit buil
 
 **WebNovel local browser check (Windows):** Run [`WebNovel-Check-Local-Browser.cmd`](WebNovel-Check-Local-Browser.cmd) to test three selected public chapters for *Harry Potter: Platinum Dragon Wizard*. This is a **read-only** Chromium check, not a download: it never saves chapter text or uses your existing Chrome account. Install optional Playwright separately as explained in the [browser trial guide](docs/research/webnovel-access-review-2026-11-17.md).
 
+## Project architecture and agent handover
+
+Novel Retriever is the **acquisition and packaging component**, not the web reader or the private Hugging Face Storage Controller. It produces complete, identity-verified EPUB/TXT/ZIP artefacts and a metadata-only download registry. GitHub Actions artefacts are temporary. Private cloud import and front-end reading state belong to the separate [Taiyou Storage Controller](https://github.com/AdityaSreevatsaK/Taiyou-Novels-Storage-Controller) and [Novel Library](https://github.com/AdityaSreevatsaK/Taiyous-Personal-Library).
+
+**Future AI agents and maintainers, begin here:**
+
+| Resource | Read for |
+| --- | --- |
+| [Agent technical handbook](AGENTS.md) | Architecture, files, contracts, security and code-review rules |
+| [Operations and recovery runbook](docs/operations-runbook.md) | Checking live runs, larger download batches, selective recovery, safe export and HF handover |
+| [Current status (dated snapshot)](docs/current-status.md) | Yup/Idk and fanfiction backlog, active run IDs, known failures, registry and cover recovery |
+| [Agent session handover template](docs/agent-handover-template.md) | Reproducible evidence and exact next-step checklist |
+| [Changelog](CHANGELOG.md) | Operator-relevant modifications and confirmed milestones |
+
+**Current campaign model:** The legacy Yup pilot used two-title requests. The newer source-verified bulk campaign can select **up to 40** eligible Yup-first titles in **10-title batches**, respecting a **two-active-bulk-workflow limit**. This is a one-time, separately reviewed workflow, **not** a general unlimited download button. Check its actual run before claiming any novel is completed. Never queue excluded/red titles, bypass site restrictions, or force-retry an incomplete book with a known chapter-index issue. See the runbook for exact commands and constraints.
+
 ## Download novels
 
 **[Library - Bulk Download](https://github.com/RichardDaffern/Novel-Retriever/actions/workflows/library-bulk-download.yml)** is the shared downloader for **all supported websites**. Paste one or more novel URLs into **Novel links** and select **Run workflow**. You can mix websites in the same request; the source is detected automatically. One link works too.
