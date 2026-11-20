@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (299 novels)
+## NovelFull (300 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -56,6 +56,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Alchemy Emperor of the Divine Dao](https://novelfull.com/alchemy-emperor-of-the-divine-dao.html) | all | 4934 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365497391/artifacts/14460650199) | 2026-11-25T18:42:59Z |
 | [Ancient Strengthening Technique](https://novelfull.com/ancient-strengthening-technique.html) | all | 2492 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44379747509/artifacts/14466418980) | 2026-11-25T20:13:43Z |
 | [Apocalypse Of All Races](https://novelfull.com/apocalypse-of-all-races.html) | all | 3792 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44425947238/artifacts/14486694281) | 2026-11-26T00:59:12Z |
+| [Arifureta Shokugyou de Sekai Saikyou (WN)](https://novelfull.com/arifureta-shokugyou-de-sekai-saikyou-wn.html) | all | 575 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44780760719/artifacts/14654073379) | 2026-11-27T17:49:45Z |
 | [Assassin's Chronicle](https://novelfull.com/assassins-chronicle.html) | all | 580 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44762457914/artifacts/14645485186) | 2026-11-27T15:41:19Z |
 | [Astral Pet Store](https://novelfull.com/astral-pet-store.html) | all | 1581 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44426646813/artifacts/14486117386) | 2026-11-26T00:39:04Z |
 | [Awakening The Weakest Talent: Only I Level Up](https://novelfull.com/awakening-the-weakest-talent-only-i-level-up.html) | all | 1152 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381093390/artifacts/14465111168) | 2026-11-25T19:52:38Z |
