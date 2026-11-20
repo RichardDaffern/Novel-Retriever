@@ -76,6 +76,56 @@ class ReadNovelFullTests(unittest.TestCase):
         self.assertEqual(details["status"], "Ongoing")
         self.assertEqual(details["description"], "An invented synopsis for offline tests.")
 
+    def test_genuine_prologue_is_saved_before_numbered_chapters(self):
+        # ReadNovelFull publishes books with a /prologue.html that precedes
+        # its Chapter 1. It must not overwrite Chapter 1 or be dropped.
+        prologue = "https://readnovelfull.com/cultivation-online/prologue.html"
+        self.assertEqual(validate_chapter_url(prologue)[1], 0)
+        prologue_link = (
+            '<li><a href="/cultivation-online/prologue.html">Prologue</a></li>'
+        )
+        page = PAGE.replace(
+            '<ul class="list-chapter">',
+            '<ul class="list-chapter">' + prologue_link,
+        )
+        index = INDEX.replace(
+            '<ul class="list-chapter">',
+            '<ul class="list-chapter">' + prologue_link,
+        )
+        pages = {
+            BOOK: page,
+            AJAX: index,
+            prologue: ('<html><title>Prologue</title><h2>Prologue</h2>'
+                       '<div id="chr-content"><p>' + TEXT +
+                       ' The genuine prologue appears first.</p></div></html>'),
+            CH1: html_chapter(1),
+            CH2: html_chapter(2),
+        }
+        discovered = discover(BOOK, fetcher=pages.__getitem__)
+        self.assertEqual(discovered["numChapters"], 3)
+        self.assertEqual([row["position"] for row in discovered["chapters"]],
+                         [1, 2, 3])
+        self.assertEqual([row["chapter_number"] for row in discovered["chapters"]],
+                         [0, 1, 2])
+        self.assertEqual([row["url"] for row in discovered["chapters"]],
+                         [prologue, CH1, CH2])
+        with TemporaryDirectory() as tmp:
+            result = download_range(
+                BOOK, 1, 3, Path(tmp), confirm_rights=True,
+                fetcher=pages.__getitem__, sleeper=lambda _: None,
+            )
+            book = Path(result["output_dir"])
+            rows = json.loads((book / "chapters.json").read_text())
+            self.assertEqual([row["chapter_number"] for row in rows], [0, 1, 2])
+            self.assertEqual([row["position"] for row in rows], [1, 2, 3])
+            self.assertEqual(len(epub_chapters(book / "source.epub")[1]), 3)
+        with self.assertRaisesRegex(SourceError, "prologue heading"):
+            extract_chapter(html_chapter(1), number=0, title="Prologue")
+        with self.assertRaisesRegex(SourceError, "Invalid"):
+            validate_chapter_url(
+                "https://readnovelfull.com/cultivation-online/intro.html"
+            )
+
     def test_refuse_invalid_archive_or_wrong_identity(self):
         with self.assertRaisesRegex(SourceError, "missing"):
             chapter_index(INDEX.replace("chapter-1-cultivation-online", "chapter-3-cultivation-online"), BOOK)
