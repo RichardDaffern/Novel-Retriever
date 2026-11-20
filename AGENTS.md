@@ -8,6 +8,18 @@
 >
 > **Precedence:** For actual behaviour, trust executable code and the current tests first; then inspect workflow YAML, the README and focused documentation. If a statement here conflicts with the repository, verify and update this file in the same change. Never silently assume a feature described as experimental is production-ready.
 
+## Start here: agent navigation (updated 20 November 2026)
+
+**Do not re-read old conversations to reconstruct live download status.** Use the following *living, source-linked* documents in order:
+
+1. [README.md](README.md): end-user purpose, supported sources and entry points.
+2. [docs/operations-runbook.md](docs/operations-runbook.md): operational checks, GitHub Actions monitoring, safe retries, export and downstream import.
+3. [docs/current-status.md](docs/current-status.md): **timestamped** Yup/Idk, fanfiction, backlog, child-run, registry-PR and cover-repair state. It is a snapshot, **not** an auto-updating monitor; re-check the live repository and workflows.
+4. [docs/agent-handover-template.md](docs/agent-handover-template.md): mandatory evidence and next-step checklist for handing work to another agent.
+5. [CHANGELOG.md](CHANGELOG.md): dated operator-visible changes; not a substitute for Git history.
+
+**Absolute operational distinctions:** A successful dispatcher is not a complete child download; a complete registry row is not a durable or imported book; a cover embedded in an EPUB is not necessarily a standalone private-library thumbnail. Do not collapse these stages or promise automatic work outside a running GitHub workflow.
+
 ## Repository naming conventions
 
 - Python modules and test files use `snake_case.py`; tests start with `test_` and identify the component under test.
@@ -959,6 +971,36 @@ When changing a subsystem, also consult the relevant living guide:
 - `tools/webnovel_export.py`: legacy limited JSON-to-EPUB/TXT converter retained for local compatibility.
 - `docs/research/webnovel-bulk-import.md`: offline, validated/resumable bulk import of saved local chapters.
 - `DOWNLOADED_NOVELS.md`: generated historical registry view.
+
+## Operational addendum: campaigns, handovers and later AI sessions (20 November 2026)
+
+This section documents behaviour added after the handbook's original 13 November architecture baseline. For precise procedures and dated facts, consult the [runbook](docs/operations-runbook.md) and [status](docs/current-status.md).
+
+### Source-verified campaigns and throughput
+
+- `campaigns/overnight/excluded-90.json` is a **global denial list**, not merely a scoring preference. Keep all 90 red/Dropped titles out of both Yup and Idk campaigns, including cross-sheet duplicates. Never bypass this with a guessed alternate title.
+- `campaigns/yup-pilot/backlog-163.json` and `campaigns/overnight/idk-82.json` are **campaign tracking snapshots**, not the user's full live HF inventory. On 20 November the 163 Yup entries were categorised as six wave-three requests, four wave-four requests and 153 requiring source verification. Do not mistake `needs_source_verification` for `ready_to_download`.
+- The reviewed first waves use `tools/campaign_yup_dispatch.py` and new `campaigns/yup-pilot/requests/batch-XX.json` files, traditionally two books per child job. Wave four added batches 09 and 10. Do not re-submit their URLs while those jobs are running.
+- `.github/workflows/large-verified-waves-20261120.yml` and `tools/large_batch_dispatch.py` implement a **one-time** larger campaign: live read-only exact-title discovery, Yup before Idk, **up to 40** approved titles, **10 titles per child bulk run**, no more than **two active** `Library - Bulk Download` runs, plus controlled dispatch pacing. Code limits permit at most 12 titles per batch or 48 in a different reviewed invocation; they are **not** automatic targets.
+- `campaigns/overnight/blocked-full-retries-20261120.json` excludes **14** specific unresolved failure cases. Handle their real chapter-numbering, absent-content, timeouts or transient network faults individually under [issue #371](https://github.com/RichardDaffern/Novel-Retriever/issues/371); do **not** add a force flag, disable a source index check or automatically restart every batch.
+- One-time workflows are activated by an **added** marker file. An existing marker, workflow rerun or code-only doc change does not authorise a second campaign. New work requires a new, reviewed, uniquely named request and duplicate/source/rights checks.
+- Before altering `large_batch_dispatch.py`, `overnight_queue.py` or pilot request logic, run `tests/test_large_batch_dispatch.py`, `tests/test_overnight_queue.py`, `tests/test_campaign_yup_dispatch.py` and the relevant full suite. Keep source-title, registry, denied-title and in-flight workflow tests.
+
+### Fanfiction is separate, with explicit source limits
+
+- User-selected fanfiction catalogue: `campaigns/fanfiction/webnovel-favourites-43.json` and `campaigns/fanfiction/source-verification-round-1-20261119.md`. The **43 Naruto/Harry Potter titles** and credited authors are work identities, not a blanket source permission.
+- At the dated 20 November snapshot, **8** were registry-complete, **3** had supported source matches but no complete registry entry and **32** still required supported-source verification. Read the status and live registry for any later change.
+- A screenshot-truncated title, WebNovel listing, alternate translator, mirror or other author's edition must not be silently equated with the user's requested work. No unapproved WebNovel scraping, account bypass or speculative slug construction.
+- Fix known source page chapter-number mismatches as integrity problems, not retryable errors. A completed EPUB artefact but open metadata-only registry PR should be reconciled through the publisher and exact evidence, not acquired again.
+- Keep fanfiction queues independent of the Yup/Idk campaign while respecting the **shared** active-workflow cap.
+
+### Hand-off, storage and operator claims
+
+- A successful per-novel ZIP is a **source acquisition artefact**. The [Storage Controller](https://github.com/AdityaSreevatsaK/Taiyou-Novels-Storage-Controller) separately validates/imports to private HF and preserves personal reading fields. Never make a private dataset write from the Retriever repo as a side effect of completing a GitHub Action.
+- The historical 104-book export and authentic 104-cover recovery have already been completed and individually verified, including the downstream cover-only import. See [current status](docs/current-status.md). Do not re-upload originals or revive one-shot repair workflows merely because a fresh run sees old evidence.
+- For bulk export, put **only individual novel ZIPs** into the Storage Controller's input `novels/`. Keep outer export ZIP, `manifest.json`, `SHA256SUMS.txt`, README and `review-conflicts/` outside it.
+- **Every substantial agent session ends** with the [handover template](docs/agent-handover-template.md): exact branch/SHA, PRs, checked-at timestamp, dispatcher and child run IDs, counts at each stage, artefact expiry, remaining failures, tests, rights limitations and the one safe next action. Update [current status](docs/current-status.md) only with evidence.
+- Never say that monitoring, downloads or merges will continue on their own unless a real scheduled automation or GitHub workflow is already active and confirmed. Never claim a reader refresh or private HF repair succeeded solely from Retriever logs.
 
 ## 22. Concise final rules for coding agents
 

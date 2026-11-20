@@ -1,5 +1,7 @@
 # Overnight download queue: Yup first, then Idk
 
+**Historical campaign documentation, last reviewed 20 November 2026.** The 19 November figures and one-shot activation instructions below describe the original queue, **not** live pending books. Four additional Yup sources are now marked `wave4_requested`, leaving **153** in `needs_source_verification` within the historical 163-title Yup backlog. The newer [large-wave workflow](../../.github/workflows/large-verified-waves-20261120.yml) requests up to 40 newly verified Yup-first/Idk books in ten-title child batches with a two-active-workflow cap. The already-added 20 November activation must **not** be re-run. Read the [current status](../../docs/current-status.md) and [operations runbook](../../docs/operations-runbook.md) before starting any new work. The **90 red/Dropped exclusions still apply globally**.
+
 **Start:** 19 November 2026 (IST). **Source:** filtered original Excel audit and the private Hugging Face comparison.
 
 The original **90 red-highlighted/Dropped titles** are recorded in excluded-90.json, a global denial list across BOTH worksheets. All five cross-sheet conflicts remain excluded, even if another worksheet says Started.
