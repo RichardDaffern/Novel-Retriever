@@ -43,7 +43,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (301 novels)
+## NovelFull (302 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -80,6 +80,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Commanding Wind and Cloud](https://novelfull.com/commanding-wind-and-cloud.html) | all | 731 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530/artifacts/14468455280) | 2026-11-25T20:20:57Z |
 | [Complete Martial Arts Attributes](https://novelfull.com/complete-martial-arts-attributes.html) | all | 4963 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530/artifacts/14471386807) | 2026-11-25T21:04:56Z |
 | [Crazy Detective](https://novelfull.com/crazy-detective.html) | all | 2686 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636899276) | 2026-11-15T22:35:59Z |
+| [Crazy Leveling System](https://novelfull.com/crazy-leveling-system.html) | all | 1456 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44780760719/artifacts/14656332390) | 2026-11-27T18:14:39Z |
 | [Cultivating In Secret Beside A Demoness](https://novelfull.com/cultivating-in-secret-beside-a-demoness.html) | all | 2139 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44427178280/artifacts/14486728948) | 2026-11-26T00:57:09Z |
 | [Cultivation Chat Group](https://novelfull.com/cultivation-chat-group.html) | all | 3165 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44392181245/artifacts/14470292399) | 2026-11-25T21:04:59Z |
 | [Cultivation Online](https://novelfull.com/cultivation-online.html) | all | 2701 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636934179) | 2026-11-15T22:36:34Z |
