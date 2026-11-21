@@ -4,7 +4,7 @@
 >
 > **Scope:** Only the `RichardDaffern/Novel-Retriever` repository. This is a **download, acquisition, conversion, validation, packaging, metadata and local retrieval** project, **not** the web reader or the Hugging Face dataset controller.
 >
-> **Documentation validation point:** The handbook was rechecked against `main` at `72aa1ae839501cd4ea1552deddaa4d6e689bf044` on 22 November 2026. The live source, Actions, registry and artefact state was checked again at 03:27 IST; this remains a dated audit reference, **not** a live-state guarantee.
+> **Documentation validation point:** The handbook was rechecked against `main` at `72aa1ae839501cd4ea1552deddaa4d6e689bf044` on 22 November 2026. Documentation/data PR #464 has green CI run #44956229460 and remains unmerged. The live source, Actions, registry and artefact state was checked again at 03:27 IST; this remains a dated audit reference, **not** a live-state guarantee.
 >
 > **Precedence:** For actual behaviour, trust the checked-out implementation and tests first, then active workflow definitions and observed run outputs, then current registry/campaign data, then focused documentation and Git history. Previous conversations, assistant summaries and old status snapshots are leads only. If documentation conflicts with current evidence, investigate and update it in the same change. Never silently treat experimental or historical code as production-ready.
 
