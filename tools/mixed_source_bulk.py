@@ -193,6 +193,11 @@ def selection_plan(
         else:
             groups[item["site"]].append(payload)
     scheduled = sum(len(group) for group in groups.values())
+    if scheduled and not confirm_rights:
+        raise ValueError(
+            "Full-text downloads require explicit permission to archive and publish "
+            "the artefact at this repository's visibility"
+        )
     if scheduled > MAX_MATRIX_JOBS:
         raise ValueError(
             f"GitHub Actions permits at most {MAX_MATRIX_JOBS} matrix jobs per "
