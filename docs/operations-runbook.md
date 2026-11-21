@@ -106,7 +106,7 @@ The one-time [source-audit workflow](https://github.com/RichardDaffern/Novel-Ret
 - It considered 91 eligible campaign entries (54 Yup, 37 IDK), after checking the 90 global exclusions and existing known records.
 - It made 336 public book-page requests across NovelFull, ReadNovelFull and FreeWebNovel. It found 26 exact listings (18 Yup, 8 IDK); 65 had no exact match at the tested URL patterns (36 Yup, 29 IDK). No source host was blocked.
 - This was a **listing-only audit**. It did not fetch chapter text, prove author/edition identity for every match, establish copying rights or launch a download.
-- The full matched URL table and exact 65-title unresolved list are preserved in [source-audit-2026-11-21.md](research/source-audit-2026-11-21.md). The GitHub Actions artefact is temporary; the committed report is the durable record.
+- The full matched URL table and exact 65-title unresolved list are preserved in [source-audit-2026-11-21.md](../campaigns/overnight/source-audit-report-20261121.md). The GitHub Actions artefact is temporary; the committed report is the durable record.
 
 ### Five-book table-of-contents preflight
 
