@@ -4430,6 +4430,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/seoul-stations-necromancer.html",
+      "title": "Seoul Station’s Necromancer",
+      "author": "진설우",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 209,
+          "run_id": 44922285166,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44922285166",
+          "artifact_id": 14714778249,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44922285166/artifacts/14714778249",
+          "completed_at_utc": "2026-11-21T16:22:43Z",
+          "expires_at_utc": "2026-11-28T16:22:43Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/sevens.html",
       "title": "Sevens",
       "author": "Waka / Yume Yume",
