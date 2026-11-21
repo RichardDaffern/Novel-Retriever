@@ -2,6 +2,9 @@
 
 **Checked:** 22 November 2026, 01:56 IST  
 **Repository head:** [72aa1ae839501cd4ea1552deddaa4d6e689bf044](https://github.com/RichardDaffern/Novel-Retriever/commit/72aa1ae839501cd4ea1552deddaa4d6e689bf044)  
+
+> **Historical first-pass snapshot.** Round 3 corrected the table count and reclassified the FreeWebNovel *This Ninja is Obviously …* author mismatch as a second near-match. Use [round 3](source-verification-round-3-20261122.md) for the current result: 5 exact listings, 2 near/variant matches and 25 with no exact supported-host listing. The original round-2 evidence is retained below for audit history.
+
 **Scope:** the 32 entries still marked `needs_source_verification` in [the immutable 43-title catalogue](webnovel-favourites-43.json): 18 Naruto and 14 Harry Potter. Search was restricted to exact title/credited-author matches on the supported NovelFull, ReadNovelFull and FreeWebNovel families. Screenshot fragments are preserved as captured; no screenshots were requested again.
 
 ## Result
