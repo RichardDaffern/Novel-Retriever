@@ -90,7 +90,7 @@ Before any external download or publication, re-check user authorisation, source
 - Internal modules distinguish **sequential novel bulk execution** (`tools/sequential_bulk_download.py`) from **mixed-site bulk orchestration** (`tools/mixed_source_bulk.py`). Site adapters and their tests use recognisable website names.
 - Human-readable guides use lowercase `kebab-case.md`. Source investigations and experimental notes belong in `docs/research/`, not inside executable `tools/`.
 - Keep **public entry points stable**: `novel_downloader.py`, `Download-All-Novels.cmd`, `PDF-to-Novel/Convert-PDFs.cmd`, all existing `.github/workflows/*.yml` names, `DOWNLOADED_NOVELS.md` and `downloaded_novels.json`. Their paths are consumed by users, GitHub Actions and storage workflows.
-- When renaming an internal file, update imports, test names, workflow invocations, documentation links, JSON file paths and Windows commands together. The current tree has no dedicated repository-naming test; when changing paths, verify every affected workflow invocation, command, import and relative Markdown link.
+- When renaming an internal file, update imports, test names, workflow invocations, documentation links, JSON file paths and Windows commands together. `tests/test_repository_naming.py` checks the public entry points and local Markdown links; update its expected paths when intentionally renaming a stable entry point.
 
 ## 1. Mission, boundaries and design philosophy
 
@@ -211,7 +211,7 @@ This section is a navigation map, not an exhaustive list of every test.
 | `PDF-to-Novel/Novels/` | Local converted ZIPs and reports; gitignored | Do not commit books |
 | `docs/pdf-to-novel.md` | PDF structure, manual review, limitations | Read before changing PDF heuristics |
 | `docs/project-history-and-decisions.md` | Original requirements, architectural decisions, failure lessons and roadmap | Historical rationale; verify current implementation separately |
-| `docs/research/source-audit-2026-11-21.md` | Durable 26-match/65-unresolved Yup/IDK source audit and five-title TOC preflight | Discovery/index evidence only; not rights or download completion |
+| `campaigns/overnight/source-audit-report-20261121.md` | Durable 26-match/65-unresolved Yup/IDK source audit and five-title TOC preflight | Discovery/index evidence only; not rights or download completion |
 | `docs/research/source-feasibility-2026-11-15.md` | Candidate-source permissions and blockers | Read before introducing new sites |
 | `docs/research/webnovel-bulk-import.md` | Offline saved-page import instructions | No live general WebNovel scraping |
 | `docs/research/source-test-evidence-archive.md` | Historical site-probe evidence | Never confuse a past HTTP 200 with present authorisation |
