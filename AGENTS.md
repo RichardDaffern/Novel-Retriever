@@ -4,7 +4,7 @@
 >
 > **Scope:** Only the `RichardDaffern/Novel-Retriever` repository. This is a **download, acquisition, conversion, validation, packaging, metadata and local retrieval** project, **not** the web reader or the Hugging Face dataset controller.
 >
-> **Documentation validation point:** The handbook was rechecked against `main` at `72aa1ae839501cd4ea1552deddaa4d6e689bf044` on 22 November 2026. Documentation/data PR #464 has green CI run #44956229460 and remains unmerged. The live source, Actions, registry and artefact state was checked again at 04:00 IST; this remains a dated audit reference, **not** a live-state guarantee.
+> **Documentation validation point:** The handbook was rechecked against `main` at `72aa1ae839501cd4ea1552deddaa4d6e689bf044` on 22 November 2026. Documentation/data PR #464 is at `045da759d889b396147df59fcde8bf514b0f0546`; latest CI run #44957603782 passed all four jobs and the PR remains unmerged. The live source, Actions, registry and artefact state was checked again at 04:07 IST; this remains a dated audit reference, **not** a live-state guarantee.
 >
 > **Precedence:** For actual behaviour, trust the checked-out implementation and tests first, then active workflow definitions and observed run outputs, then current registry/campaign data, then focused documentation and Git history. Previous conversations, assistant summaries and old status snapshots are leads only. If documentation conflicts with current evidence, investigate and update it in the same change. Never silently treat experimental or historical code as production-ready.
 
@@ -1103,7 +1103,7 @@ This section documents behaviour added after the handbook's original 13 November
 - A public listing, English label, translator credit, Patreon page or complete-looking first TOC page is not permission to archive copyrighted text. No account bypass, guessed slug, paywall scrape or access-control workaround.
 - After the fanfiction first-pass search was completed, the 65 Yup/IDK alternatives were investigated. Four title aliases already match completed registry entries, leaving 61 distinct titles. The first sweep found **12 exact supported-host listing candidates**, **3 near/variant matches**, and **46 with no exact supported listing**; **0 rights-cleared sources and 0 download runs**. See [alternative-source research](campaigns/overnight/alternative-source-research-20261122.md).
 - The 26 source-audit listings and the 65 unresolved Yup/IDK entries remain separate from the 343 completed registry records. The alias set is: Invincible Conqueror=Invincible; Xian Ni=Renegade Immortal; Records of the Human Emperor=The Human Emperor; School Prince is a Girl=National School Prince Is A Girl; A Thought Through Eternity=A Will Eternal.
-- Keep the shared bulk-workflow cap at **two active runs** and **no more than ten titles per batch**. No queued or in-progress bulk workflow was active at the 22 November 04:00 IST check.
+- Keep the shared bulk-workflow cap at **two active runs** and **no more than ten titles per batch**. No queued or in-progress workflow was active at the 22 November 04:07 IST check.
 
 ### Hand-off, storage and operator claims
 
