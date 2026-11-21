@@ -4,7 +4,7 @@
 >
 > **Scope:** Only the `RichardDaffern/Novel-Retriever` repository. This is a **download, acquisition, conversion, validation, packaging, metadata and local retrieval** project, **not** the web reader or the Hugging Face dataset controller.
 >
-> **Documentation validation point:** The handbook was rechecked against `main` at `72aa1ae839501cd4ea1552deddaa4d6e689bf044` on 22 November 2026. Documentation/data PR #464 has green CI run #44956229460 and remains unmerged. The live source, Actions, registry and artefact state was checked again at 03:27 IST; this remains a dated audit reference, **not** a live-state guarantee.
+> **Documentation validation point:** The handbook was rechecked against `main` at `72aa1ae839501cd4ea1552deddaa4d6e689bf044` on 22 November 2026. Documentation/data PR #464 has green CI run #44956229460 and remains unmerged. The live source, Actions, registry and artefact state was checked again at 04:00 IST; this remains a dated audit reference, **not** a live-state guarantee.
 >
 > **Precedence:** For actual behaviour, trust the checked-out implementation and tests first, then active workflow definitions and observed run outputs, then current registry/campaign data, then focused documentation and Git history. Previous conversations, assistant summaries and old status snapshots are leads only. If documentation conflicts with current evidence, investigate and update it in the same change. Never silently treat experimental or historical code as production-ready.
 
@@ -63,6 +63,17 @@ State the evidence and checked-at date. A README statement, open issue, workflow
 For novel acquisition, keep these states separate: requested; public listing found; title/author/edition verified; chapter index verified; rights to archive confirmed; selected; dispatched; chapter batches validated; final EPUB/ZIP assembled; registry complete; artefact still available; exported locally; imported into private Hugging Face; visible in the reader. A source audit or TOC preflight does **not** fetch chapter prose and does not establish copying rights. A green dispatcher does not prove its child downloads completed.
 
 Before any external download or publication, re-check user authorisation, source restrictions, the 90 global red/Dropped exclusions, known failure cases, canonical completed registry, active/queued runs, one-shot activation markers and public artefact visibility. Use `force=false` unless a separately reviewed recovery requires otherwise. Do not re-run consumed campaign markers.
+
+### User-approved backlog priority (22 November 2026)
+
+The order below is binding for acquisition work. A previous first-pass search of a later tier does not authorise skipping unfinished work in an earlier tier.
+
+1. **Triage the 26 exact public listings from source audit #44924359606 first.** This triage and the read-only five-book TOC preflight #44926984233 are complete. Keep the 12 older #371 failures and nine #452 source/index failures blocked until their exact root causes are fixed and covered by regression tests. Of the five fresh candidates, only *Doom Lord* (155 entries) and *Girl, I'll Teach You Cultivation* (283 entries) passed the structural TOC check; all five still have rights_verified=false. The audit and preflight fetched no chapter prose.
+2. **Next, complete source research for the original 43 fanfictions before doing more work on the 65 unmatched Yup/IDK titles.** The immutable catalogue is 24 Naruto + 19 Harry Potter. Track 8 registry-complete, 3 separately blocked/source-matched and 32 source-research targets. Resolve exact title, credited author, underlying original author where different, edition, English language and complete index. The five supported-host listings and two near matches are not ready downloads. Revisit the three blocked works only after fixing the specific index/identity issue; Konoha Medical also has unresolved author/rights and a publicly available artifact. Never request the original screenshots again.
+3. **Only after fanfiction source research is complete, continue alternative-source investigation of the 65 unmatched Yup/IDK rows** (36 Yup, 29 IDK). First deduplicate the four completed-registry aliases; preserve the 90 global exclusions. A 404 from four attempted URL patterns is not evidence of worldwide unavailability.
+4. **Dispatch only when every gate passes:** exact author/work/edition, English text, complete ordered chapter index, explicit lawful permission to archive and the correct private/non-public output route. Public listings, translator credits, Patreon pages and TOCs are not permission. Use reviewed code/campaign changes with green CI, at most 10 titles per batch, at most two bulk workflows active, force=false, and no complete-title duplicates.
+
+Keep requested, source-listed, identity-verified, TOC-verified, rights-cleared, dispatched, chapter-complete, assembled, registered, artifact-available and private-HF-imported counts separate.
 
 ### Keep the state model current
 
@@ -1092,7 +1103,7 @@ This section documents behaviour added after the handbook's original 13 November
 - A public listing, English label, translator credit, Patreon page or complete-looking first TOC page is not permission to archive copyrighted text. No account bypass, guessed slug, paywall scrape or access-control workaround.
 - After the fanfiction first-pass search was completed, the 65 Yup/IDK alternatives were investigated. Four title aliases already match completed registry entries, leaving 61 distinct titles. The first sweep found **12 exact supported-host listing candidates**, **3 near/variant matches**, and **46 with no exact supported listing**; **0 rights-cleared sources and 0 download runs**. See [alternative-source research](campaigns/overnight/alternative-source-research-20261122.md).
 - The 26 source-audit listings and the 65 unresolved Yup/IDK entries remain separate from the 343 completed registry records. The alias set is: Invincible Conqueror=Invincible; Xian Ni=Renegade Immortal; Records of the Human Emperor=The Human Emperor; School Prince is a Girl=National School Prince Is A Girl; A Thought Through Eternity=A Will Eternal.
-- Keep the shared bulk-workflow cap at **two active runs** and **no more than ten titles per batch**. No bulk workflow was active at the 22 November 03:27 IST check.
+- Keep the shared bulk-workflow cap at **two active runs** and **no more than ten titles per batch**. No queued or in-progress bulk workflow was active at the 22 November 04:00 IST check.
 
 ### Hand-off, storage and operator claims
 
