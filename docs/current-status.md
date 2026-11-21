@@ -85,7 +85,7 @@ The corrected exact title/credited-author pass across NovelFull, ReadNovelFull a
 ### Three blocked fanfiction sources
 
 - **Naruto: The Wind Calamity:** the FreeWebNovel chapter labels/URL numbering are non-linear. PR #463 makes the adapter fail closed instead of guessing. No retry without a complete one-to-one map and rights clearance.
-- **Konoha's Medical Ninja: One Punch to beat up Madara:** 444-chapter archive technically assembled and validated, but it is not registered; metadata-only PR #275 remains open. Its GitHub Actions artifact is public and rights are unresolved. Do not merge, re-download, link or create another public archive without permission.
+- **Konoha's Medical Ninja: One Punch to beat up Madara:** 444-chapter archive technically assembled and validated, but it is not registered; metadata-only PR #275 remains open. Its GitHub Actions archive artifact is `14462633408` (expires `2027-02-16T19:20:05Z`) and is public; rights are unresolved. Do not merge, re-download, link or create another public archive without permission.
 - **HP: The Arcane Thief:** 254-chapter source index has a consistent +1 URL offset. PR #463 merged the narrow fix and regression test. No targeted retry until rights are verified.
 
 ### Eight completed entries and artifact state
