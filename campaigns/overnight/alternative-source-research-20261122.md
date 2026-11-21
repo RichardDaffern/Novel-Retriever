@@ -24,7 +24,7 @@
 
 A listing match is not a complete TOC, a verified edition or permission to archive. Candidate TOCs below have not all been fully validated.
 
-## 13 exact title/author listing candidates
+## 12 exact title/author listing candidates
 
 | Tier | Catalogue title | Supported host | Public listing evidence | TOC/edition note |
 |---|---|---|---|---|
@@ -64,4 +64,4 @@ These do not count as supported-host matches and must not be fed to the download
 
 ## Safe next step
 
-For each of the 13 exact listing candidates, independently verify author, edition, English language, full ordered chapter index and explicit lawful archiving permission before adding a campaign URL. Do not retry *Apotheosis*, the numbered-index mismatch cases or any previous deterministic failure unchanged. Do not publish unlicensed novel archives as public GitHub Actions artifacts. Keep Yup and IDK progress separate from fanfiction and from private-HF import counts.
+For each of the 12 exact listing candidates, independently verify author, edition, English language, full ordered chapter index and explicit lawful archiving permission before adding a campaign URL. Do not retry *Apotheosis*, the numbered-index mismatch cases or any previous deterministic failure unchanged. Do not publish unlicensed novel archives as public GitHub Actions artifacts. Keep Yup and IDK progress separate from fanfiction and from private-HF import counts.
