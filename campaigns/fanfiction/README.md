@@ -4,7 +4,7 @@
 
 **Input:** 11 screenshots inside the user's WhatsApp ZIP, recording 43 visible WebNovel titles and authors: **24 Naruto**, **19 Harry Potter**. This public file contains book titles and author names only, not the private screenshots, user profile, personal ratings or reading progress.
 
-**Current user priority:** work on these Harry Potter/Naruto fanfiction sources and recoveries **before** the 65 unresolved Yup/IDK titles from the 21 November source audit. Keep this catalogue, counts and download batches separate from the Yup/IDK campaigns. See [current status](../../docs/current-status.md), [source-audit report](../../docs/research/source-audit-2026-11-21.md) and [issue #456](https://github.com/RichardDaffern/Novel-Retriever/issues/456).
+**Current user priority:** work on these Harry Potter/Naruto fanfiction sources and recoveries **before** the 65 unresolved Yup/IDK titles from the 21 November source audit. Keep this catalogue, counts and download batches separate from the Yup/IDK campaigns. See [current status](../../docs/current-status.md), [source-audit report](../overnight/source-audit-report-20261121.md) and [issue #456](https://github.com/RichardDaffern/Novel-Retriever/issues/456).
 
 ## Source availability
 
