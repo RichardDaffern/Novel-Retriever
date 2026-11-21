@@ -36,7 +36,7 @@ A public listing, English-language label, translator credit or complete-looking 
 | Work | Current evidence | Safe state |
 |---|---|---|
 | Naruto: The Wind Calamity | FreeWebNovel's chapter labels and URL numbering are non-linear; the source adapter now fails closed rather than guessing chapter mappings. | No retry until a complete one-to-one source map and rights clearance exist. |
-| Konoha's Medical Ninja: One Punch to beat up Madara | A 444-chapter archive was technically assembled and validated, but it is not registered; metadata-only PR #275 remains open. The existing GitHub Actions artifact is public and rights are unresolved. | Do not merge PR #275, re-download, link or create another public archive without permission. |
+| Konoha's Medical Ninja: One Punch to beat up Madara | A 444-chapter archive was technically assembled and validated, but it is not registered; metadata-only PR #275 remains open. The existing GitHub Actions archive artifact `14462633408` (expires `2027-02-16T19:20:05Z`) is public and rights are unresolved. | Do not merge PR #275, re-download, link or create another public archive without permission. |
 | HP: The Arcane Thief | 254-chapter source index has a consistent +1 URL offset. PR #463 merged the narrow fix and regression test at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`. | No targeted retry until rights are verified. |
 
 ## Completed fanfiction registry and artifact reconciliation
