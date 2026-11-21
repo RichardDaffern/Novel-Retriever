@@ -6,6 +6,8 @@
 
 The audit considered **91 eligible campaign entries** after the global exclusion and known-record preflight: 54 Yup and 37 IDK. It made **336 public book-page requests** across NovelFull, ReadNovelFull (standard and `-v1` URL patterns) and FreeWebNovel. No source host was disabled during the run.
 
+**Preflight count semantics:** the preflight field `previously_known=349` is not the completed registry count. It is the distinct union of 343 titles in `downloaded_novels.json` and 21 titles in `campaigns/yup-pilot/verified-urls.json`, with 15 overlaps. Six verified-URL rows are not in the completed registry: Desolate Era, A Record Of Mortal’s Journey To Immortality, Warlock Of Magus World, Solo Levelling, Advent of Archmage and Charm Of Soul Pet. They are prior source-URL records, not extra completed downloads or private-HF imports. The completed registry remains 343; the user's separately confirmed private-HF import count remains 70.
+
 | Result | Yup | IDK | Total |
 |---|---:|---:|---:|
 | Exact public listing found | 18 | 8 | **26** |
