@@ -40,6 +40,7 @@ The source audit [#44924359606](https://github.com/RichardDaffern/Novel-Retrieve
 - **65 unresolved:** 36 Yup and 29 IDK.
 - The audit was read-only: it did not fetch chapter prose, create EPUB/ZIP files or establish rights.
 - None of the 26 listing matches is already in the 343-record completed registry. The 90 red/Dropped exclusions remain separate.
+- **Preflight count clarification:** `previously_known=349` is the distinct union of 343 titles in `downloaded_novels.json` and 21 rows in `campaigns/yup-pilot/verified-urls.json`, with 15 overlaps. The six verified-URL-only titles are Desolate Era, A Record Of Mortal’s Journey To Immortality, Warlock Of Magus World, Solo Levelling, Advent of Archmage and Charm Of Soul Pet. They are prior verified source URLs, **not** six extra completed registry downloads or HF imports. The completed registry remains 343; the separately user-confirmed private-HF import count remains 70.
 
 ### Five-book TOC preflight
 
