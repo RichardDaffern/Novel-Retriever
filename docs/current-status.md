@@ -38,7 +38,7 @@ The read-only [source audit #44924359606](https://github.com/RichardDaffern/Nove
 | Exact public book listings found | 18 | 8 | **26** |
 | No exact listing at tested URL patterns | 36 | 29 | **65** |
 
-It made 336 public book-page requests across NovelFull, ReadNovelFull (standard and `-v1` patterns) and FreeWebNovel; no source host was blocked. The result is preserved in [source-audit-2026-11-21.md](research/source-audit-2026-11-21.md).
+It made 336 public book-page requests across NovelFull, ReadNovelFull (standard and `-v1` patterns) and FreeWebNovel; no source host was blocked. The result is preserved in [source-audit-2026-11-21.md](../campaigns/overnight/source-audit-report-20261121.md).
 
 **Interpretation:** the 26 are public listing matches, not a download queue. The audit did not fetch chapter prose, establish exact edition/author for every work, or verify permission to archive. The 65 are unresolved by this bounded search, not proven unavailable online. The 26 include previous integrity failures; do not retry unchanged URLs.
 
