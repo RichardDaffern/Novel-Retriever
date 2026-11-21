@@ -1,7 +1,7 @@
 # Novel Retriever: Operations and Recovery Runbook
 
 **Audience:** AI coding agents, technical maintainers and authorised operators.
-**Maintained:** 20 November 2026. Read [current status](current-status.md) for a dated snapshot; refresh live GitHub state before every operation.
+**Maintained:** 21 November 2026. Read [current status](current-status.md) for a dated snapshot; refresh live GitHub and local-worktree state before every substantial operation.
 
 This is the **operational companion** to [AGENTS.md](../AGENTS.md), not a replacement. Source code and current tests govern actual behaviour. Never treat this document as proof that a queued download, external source or private dataset import succeeded.
 
@@ -31,18 +31,35 @@ A workflow's green conclusion may merely mean the **dispatcher succeeded**. Conf
 
 ## 3. First five minutes of any new session
 
-1. Read `AGENTS.md`, `README.md`, this runbook, [dated status](current-status.md) and [handover checklist](agent-handover-template.md).
-2. Check `main` SHA, open PRs, [GitHub Actions](https://github.com/RichardDaffern/Novel-Retriever/actions), outstanding issues, pending registration PRs and the metadata registry. Read the latest run's **jobs and steps**, not only the run title.
-3. Inspect `campaigns/overnight/excluded-90.json`, `campaigns/overnight/blocked-full-retries-20261120.json`, `campaigns/yup-pilot/backlog-163.json`, `campaigns/overnight/idk-82.json`, `campaigns/fanfiction/webnovel-favourites-43.json` and `campaigns/yup-pilot/verified-urls.json`.
-4. Determine whether the request is investigation, code change, download dispatch, retry, export or **private dataset write**. Keep these distinct, and confirm the relevant requested action.
-5. Make a fresh plan avoiding overlaps with active child runs, previously complete source URLs, rejected titles, already-submitted groups and known failures.
-6. Follow `main` and currently verified workflow definitions, not stale examples or an earlier GitHub Actions run ID.
+1. Read [AGENTS.md](../AGENTS.md), especially its **Mandatory dynamic project-state inspection**, then this runbook, [current status](current-status.md), [project history](project-history-and-decisions.md) and the focused component guide.
+2. If a local clone exists, inspect it before editing:
+   ```bash
+   git status --short --branch
+   git branch --show-current
+   git rev-parse HEAD
+   git remote -v
+   git fetch origin
+   git status --short --branch
+   git log -15 --date=iso-strict --pretty=format:'%h %ad %d %s'
+   git diff --stat
+   git diff --cached --stat
+   ```
+   Inspect every dirty/untracked change. Never reset, clean, stash, overwrite or switch away from work you did not create. If there is no local clone, explicitly say that local working-tree status cannot be inspected.
+3. Verify current `main` SHA, recent commits and changed paths, open PRs/reviews/checks, open issues/comments, and queued/in-progress Actions. For relevant recent runs inspect job and step conclusions, logs, artefacts and expiry. A run name or green dispatcher alone is not sufficient.
+4. Re-read the canonical data: `downloaded_novels.json`, `campaigns/overnight/excluded-90.json`, Yup and IDK input manifests, the fanfiction catalogue, the historical blocked-title list and any current source-audit/preflight evidence. Compare by canonical URL and verified author/edition, not fuzzy title alone.
+5. Classify the affected capability as implemented/active, live-verification-incomplete, partial/experimental, planned, deprecated/retired/one-shot, or historical. Record evidence and checked-at date. Treat old assistant summaries and status snapshots as leads only.
+6. Determine whether the request is investigation, code change, source audit, download dispatch, retry, export or private dataset write. Keep them distinct. The user's current acquisition order is **Harry Potter/Naruto fanfiction first**, then the **65 unresolved Yup/IDK titles** from the 21 November audit.
+7. Make a fresh plan that excludes completed, active, rejected, unresolved-permission and known deterministic-failure cases. Check one-shot marker files and current workflow concurrency before any launch.
 
 **Read-only GitHub CLI examples** (after `gh auth status`):
 
 ```powershell
 gh repo view RichardDaffern/Novel-Retriever
+git status --short --branch
+git log -15 --oneline --decorate
 gh run list --repo RichardDaffern/Novel-Retriever --limit 30
+gh run list --repo RichardDaffern/Novel-Retriever --status in_progress
+gh run list --repo RichardDaffern/Novel-Retriever --status queued
 gh run view RUN_ID --repo RichardDaffern/Novel-Retriever --json status,conclusion,jobs
 # Artefact availability is a separate API query:
 gh api repos/RichardDaffern/Novel-Retriever/actions/runs/RUN_ID/artifacts
@@ -50,7 +67,7 @@ gh pr list --repo RichardDaffern/Novel-Retriever --state open
 gh issue list --repo RichardDaffern/Novel-Retriever --state open
 ```
 
-The above examples are observation only. Do not run a download workflow, rerun jobs or write to HF merely to collect status.
+The examples above are observations only. Do not run a download workflow, rerun jobs or write to Hugging Face merely to collect status. If no local clone exists, omit Git commands rather than implying a clean worktree.
 
 ## 4. Workflow selection
 
@@ -59,6 +76,9 @@ The above examples are observation only. Do not run a download workflow, rerun j
 | One or several known, approved sources | `.github/workflows/library-bulk-download.yml` | `novel_urls` or known names; default `force=false`; avoid already active URLs |
 | One NovelFull book | `.github/workflows/download-novel.yml` | Strict chapter index, bounded ranges, complete assembly |
 | One FreeWebNovel book | `.github/workflows/freewebnovel-download.yml` | Source identity, chapter numbering, bounded retries only for transient errors |
+| One ReadNovelFull book | `.github/workflows/readnovelfull-download.yml` | AJAX TOC validation, exact chapter URLs and bounded batches |
+| One WuxiaClick book | `.github/workflows/wuxiaclick-download.yml` | Explicit rights gate and maximum 20 chapters per run; no whole-book quota bypass |
+| One allowlisted Scribble Hub cross-post | `.github/workflows/scribblehub-download.yml` | Explicit rights gate and one verified same-author cross-post only |
 | Previously reviewed pilot sources | `.github/workflows/yup-pilot-dispatch.yml` | Newly added `batch-XX.json` files; legacy two-title pilot |
 | Larger Yup/Idk source-verified campaign | `.github/workflows/large-verified-waves-20261120.yml` | **One-time activation already consumed**; see Section 5 |
 | Historical source verification/dispatch | `.github/workflows/overnight-yup-idk*.yml` | One-time activation already consumed; do not rerun blindly |
@@ -70,53 +90,43 @@ The above examples are observation only. Do not run a download workflow, rerun j
 
 **Do not add a competing second bulk-download UI.** Existing mixed-site workflow groups by supported source. Keep the original workflows and their caller contracts intact.
 
-## 5. Large-batch operations, 20 November 2026
+## 5. Source discovery, curated campaigns and one-shot workflows
 
-Implementation:
-- `tools/overnight_queue.py discover` checks **public book listings only**: exact-title match, NovelFull first, then supported FreeWebNovel where permitted. This is not a licence check and does not fetch chapter text.
-- `tools/large_batch_dispatch.py` selects **Yup first**, then Idk, and uses the approved discovery result. Current one-time workflow requests **up to 40** eligible titles in **batches of 10**. The utility bounds individual batches at 12 and campaign totals at 48, but these are code safeguards, **not evidence 40 were selected**.
-- Dispatcher caps the number of concurrently active `Library - Bulk Download` workflows at **two**, with a 90-second delay between new submissions and 75-second polling when slots are full. Per-site child workers retain their own limits.
-- The globally excluded 90 red/Dropped titles and 14 known unrepaired failures must not be selected. The validated registry and approved source identity prevent completed books being forced.
-- A discovery result may contain fewer than 40 eligible books, and may stop early due to access restrictions. Submit only verified ones. Unresolved items stay unresolved.
-- The activation file `campaigns/overnight/activate-large-waves-20261120.json` is **one-shot**: changing it or pressing 'Re-run jobs' must not dispatch duplicate downloads. Create any genuinely new campaign as a distinct, reviewed request with new source evidence and deduplication.
-- Track the live [large-wave run #44764626782](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44764626782) as a **dated example**, not a perpetual active run. Its discovery and dispatch results must be rechecked before reporting completion.
+### Historical campaign mechanics
 
-**Launch review checklist:** Verify permission and exact source; verify title is not red, blocked, complete or active; compare the proposed URL/edition and chapter index; check current active jobs; review the request diff and CI; merge only approved code; verify a **new** dispatcher run appears; examine each child run and eventual final ZIP.
+- The 19 November Yup/IDK dispatcher and 20 November large-wave campaign are **one-shot historical activations**. The 20 November wave was configured for up to 40 eligible titles, ten-title child runs, Yup-first ordering and at most two active bulk workflows. Its marker was consumed; do not rerun it or infer that 40 books were selected or downloaded.
+- The old `tools/overnight_queue.py` discovery path is read-only when invoked with `discover`; its separate `dispatch` command can submit downloads. Never call dispatch just to inspect sources. Current discovery checks NovelFull, ReadNovelFull (standard and `-v1` URL patterns) and FreeWebNovel, rejects redirects and unrelated title pages, and does not fetch chapter prose.
+- `campaigns/overnight/blocked-full-retries-20261120.json` is a historical 14-title safety manifest. Reconcile each row against later fixes, PRs, run logs and final artefacts before classifying it as still blocked. It is not a blanket instruction to redownload those titles.
+- `tools/dispatch_curated_bulk.py` validates a reviewed manifest of literal source URLs; it does **not** search websites or guess slugs. Its current code has a 24-book campaign ceiling and a two-active-bulk-run cap. The user has previously requested batches of up to ten; honour that smaller operational target unless the user changes it. Inspect the current code and workflow before using it.
 
-## 5A. Preferred new approach: verify book links before launching the bulk workflow
+### 21 November three-source source audit
 
-**New source policy, 20 November 2026:** Treat the large-wave website-discovery job as a historic experiment, not the default for future downloads. Agents should do the source research directly, record evidence and **submit exact verified URLs**. The GitHub dispatcher must not research titles, guess slugs, crawl search pages or silently switch to a different edition.
+The one-time [source-audit workflow](https://github.com/RichardDaffern/Novel-Retriever/actions/workflows/source-audit-20261121.yml) was activated by adding `campaigns/overnight/source-audit-20261121.json` and completed as [run #44924359606](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44924359606).
 
-1. Reconcile Yup/Idk/fanfiction requests with the complete download registry by canonical source URL, reviewed book identity and documented aliases. Do not infer that a fuzzy-title match proves the same book. Remove 90 globally Dropped/red titles, 14 known unrepaired full-book failures and books currently running in any child workflow.
-2. Search only supported book sources, in preference order: **NovelFull**, **ReadNovelFull**, then **FreeWebNovel**. Read actual book-page title, author, alternative names, table of contents and apparent availability. Reject unsupported or ambiguously matched editions. WuxiaClick and Scribble Hub require their existing special rights/restriction gates; they are **not** silently included in automatic bulk campaigns.
-3. Preserve the chosen canonical `https://...` **book-page URL**, requested title, on-site title, domain and evidence in a reviewed Git JSON file. Example: `campaigns/overnight/curated-book-links-20261120-night.json`. No invented URLs, chapter-page links, query strings or redirects into another domain.
-4. Before download, run `tools/dispatch_curated_bulk.py` validation against the approved Yup/Idk inputs, excluded/blocked title manifests and completed registry. If the global two-active-bulk-run cap is reached, wait for capacity. No site search happens in this step.
-5. Submit all approved links as the `novel_urls` input of the **existing** `Library - Bulk Download` workflow with `chapter_range=` and `force=false`. The workflow itself chooses the supported adapter based on each URL and independently checks live registry availability. Avoid a separate bulk menu.
-6. Record the **actual new child run ID**, then inspect its source prepare, bounded chapter checks, full-book EPUB assembly and registry publication. Mixed-site bulk runs may partly fail; completed independent book ZIPs remain usable.
-7. The 20 November eight-title mixed-site batch is an example, **not** a continuously reusable activation. Never rerun the one-time workflow marker or auto-retry deterministic chapter mismatches.
+- It considered 91 eligible campaign entries (54 Yup, 37 IDK), after checking the 90 global exclusions and existing known records.
+- It made 336 public book-page requests across NovelFull, ReadNovelFull and FreeWebNovel. It found 26 exact listings (18 Yup, 8 IDK); 65 had no exact match at the tested URL patterns (36 Yup, 29 IDK). No source host was blocked.
+- This was a **listing-only audit**. It did not fetch chapter text, prove author/edition identity for every match, establish copying rights or launch a download.
+- The full matched URL table and exact 65-title unresolved list are preserved in [source-audit-2026-11-21.md](../campaigns/overnight/source-audit-report-20261121.md). The GitHub Actions artefact is temporary; the committed report is the durable record.
 
-**Reproducible input shape** (actual reviewed URL evidence is required):
+### Five-book table-of-contents preflight
 
-```json
-{
-  "schema_version": 1,
-  "campaign": "manual-source-curated-yup-20261120-night",
-  "method": "operator-reviewed-book-pages-no-runtime-website-search",
-  "priority": ["NovelFull", "ReadNovelFull", "FreeWebNovel"],
-  "max_parallel_bulk_runs": 2,
-  "books": [
-    {
-      "title": "Requested approved title",
-      "source_title": "Verified on-site book title",
-      "site": "ReadNovelFull",
-      "url": "https://readnovelfull.com/verified-book-v1.html",
-      "evidence": "Verified actual author, aliases and public book page"
-    }
-  ]
-}
-```
+The one-time [five-book TOC workflow](https://github.com/RichardDaffern/Novel-Retriever/actions/workflows/five-book-toc-preflight-20261121.yml) completed as [run #44926984233](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984233). It fetched only book metadata and the public chapter index: zero chapter bodies and `rights_verified=false`.
 
-Do not use the example's fabricated URL as a real source. Replace it only with a directly verified, supported book page. Never claim that source-page verification is proof of permission to download copyrighted work.
+- Index passed: *Doom Lord* (155 chapters) and *Girl, I'll Teach You Cultivation* (283 chapters).
+- Index failed: *Beast Piercing The Heavens* (duplicate Chapter 11 links), *Godly Student* (invalid chapter URL), and *The Military Female Soldier With Unwavering Stubbornness* (2,104 missing numbered chapters).
+- A passed index is not an archive-rights decision or a completed book. A failed index must be fixed at source/adapter level before retry.
+
+### Current acquisition priority and launch gate
+
+1. Research and recover the **43 Harry Potter/Naruto fanfiction requests first** (24 Naruto, 19 Harry Potter). The catalogue contains eight registry-complete works, three source-matched incomplete works and 32 requiring source verification. Verify exact title, author and edition; screenshot-truncated names are unresolved identities, not slug-generation prompts.
+2. Then research the **65 unresolved Yup/IDK titles** from the audit. First reconcile alternate titles and completed editions against the current registry. The 65 are unresolved by one bounded search, not proven unavailable online.
+3. Reassess the 26 matched pages individually. Most overlap known failure cases; only five were fresh at the time of review, and only two of those passed the TOC preflight.
+4. Before a new download, verify the exact source and edition, consecutive complete chapter index, the operator's right to archive/store the work, the target artefact visibility, global exclusions, completed registry, open metadata PRs, known failures and active/queued runs.
+5. Dispatch only approved literal URLs through the existing **Library - Bulk Download** workflow with `force=false`. Keep groups to at most ten titles and no more than two active bulk runs where applicable. Verify every child run, assembled EPUB/ZIP, registry record and artefact expiry separately.
+
+The 21 November source-audit and TOC-preflight marker files have already been added and consumed. Do not re-add them or rerun their one-shot jobs. The user's latest priority and the dated counts are also recorded in [current status](current-status.md).
+
+**Launch review checklist:** exact work/author/edition; source-page evidence; TOC and chapter positions; archive permission; not red/Dropped; not complete or active; not a deterministic known failure; current capacity; reviewed manifest diff; CI; new child run IDs; final artefact and registry verification.
 
 ## 6. Safe recovery matrix
 

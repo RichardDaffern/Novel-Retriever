@@ -2,6 +2,16 @@
 
 Changes listed here are **operational/documentation milestones**, not a full commit history. Consult [Git history](https://github.com/RichardDaffern/Novel-Retriever/commits/main), [open issues](https://github.com/RichardDaffern/Novel-Retriever/issues) and [current status](docs/current-status.md) for verified evidence and evolving campaigns. A successful dispatcher or CI run is **not** proof of a completed novel.
 
+## 21 November 2026
+
+### Dynamic state awareness and project documentation
+- Expanded `AGENTS.md` with a mandatory live-state reconnaissance protocol: local Git status/branch/HEAD/diff, remote-only fallback, current PRs/issues/Actions/artefacts, explicit implementation-state classification and evidence precedence.
+- Added [Project History and Decisions](docs/project-history-and-decisions.md), preserving the original scope, architectural evolution, user constraints, key failure lessons and current roadmap without relying on previous conversations.
+- Replaced the stale 20 November [Current Status](docs/current-status.md) snapshot with the 21 November registry, campaign, source-audit, fanfiction, PR and workflow evidence.
+- Added the durable [21 November source-audit report](campaigns/overnight/source-audit-report-20261121.md), including 26 matched URLs, 65 unresolved titles and the five-book TOC preflight results.
+- Updated the [Operations Runbook](docs/operations-runbook.md), website support, campaign notes and handover template. Corrected the ReadNovelFull support statement using the verified 766-chapter *Archean Eon Art* run.
+- Latest checked main CI [#44926984222](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984222) passed all four jobs. The read-only source audit [#44924359606](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44924359606) and five-title index preflight [#44926984233](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984233) completed successfully; neither downloaded chapter prose.
+
 ## 20 November 2026
 
 ### Documentation and AI-agent handover
