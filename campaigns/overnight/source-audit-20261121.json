@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "campaign": "remaining-novel-source-audit-20261121",
+  "mode": "read-only",
+  "tier_order": [
+    "Yup",
+    "Idk"
+  ],
+  "sources": [
+    "novelfull.com",
+    "readnovelfull.com",
+    "freewebnovel.com"
+  ],
+  "request_budget": 500,
+  "repeat": false,
+  "notes": "One-time source-listing check only; no chapter downloads, uploads or rights assumptions."
+}
