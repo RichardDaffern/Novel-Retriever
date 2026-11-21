@@ -17,7 +17,7 @@
 | Latest single-title completion | *Seoul Station’s Necromancer*, 209 chapters, [run #44922285166](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44922285166), artifact `14714778249` | All chapter batches and final EPUB/TXT validation passed |
 | PR #463 | Merged at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; CI [run #44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) green | Arcane Thief offset regression test and Wind Calamity fail-closed mapping |
 | Open PRs | #265 and #275 remain metadata-only; #275 is held for Konoha Medical rights/public-artifact handling. [PR #464](https://github.com/RichardDaffern/Novel-Retriever/pull/464) records this audit and expiry reconciliation; CI #44956229460 is green, not merged. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275), [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464) |
-| Active workflows | **0** queued/in-progress at 04:00 IST; no new bulk run dispatched | Live Actions run list |
+| Bulk download workflows | **0** queued/in-progress at 05:23 IST; no new download run dispatched. PR #464 documentation CI is separate. | Live Actions run list |
 
 The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`; the registry value was stale and has been corrected in the accompanying branch. The seven still-present fanfiction artifacts also had stale registry expiry values; those are corrected to the live API dates in the same branch.
 
@@ -85,7 +85,7 @@ The corrected exact title/credited-author pass across NovelFull, ReadNovelFull a
 - The five exact listings are *Naruto: Chronicles of a Fire Ninja*, *Reborn into Naruto World with Tenseigan*, *Naruto: Starting With Creating A Genius Persona*, *Harry Potter: The Healer* and *There Will Be No Third Dark Lord At Hogwarts!!!*. See [round 3](../campaigns/fanfiction/source-verification-round-3-20261122.md).
 - The two near matches are *Talent System In The Naruto Universe* (Rashta vs catalogue Rashita) and *Naruto: This Ninja is Obviously …* (FreeWebNovel author Wu Mian Qi Liang vs selected WebNovel author nyawdao2). Do not substitute either.
 - The [identity ledger](../campaigns/fanfiction/source-identity-resolution-20261122.md) resolves full title/credited-author references for all 32 without changing the original JSON strings or requesting screenshots.
-- Round 5 added alternate-host metadata for 21 title records, including raw-title/translator distinctions, author pen-name links and cross-site chapter-count differences. It found **0 new exact supported-host listings**, **0 explicit archiving permissions** and dispatched no download. See [round 5](../campaigns/fanfiction/source-verification-round-5-20261122.md).
+- Round 5 added alternate-host metadata for 21 title records, including raw-title/translator distinctions, author pen-name links and cross-site chapter-count differences. It found **0 new exact supported-host listings**, **0 explicit archiving permissions** and dispatched no download. See [round 5](../campaigns/fanfiction/source-verification-round-5-20261122.md). The blocked-source follow-up confirms Devil_Hex as the selected Wind Calamity author but does not fix its non-linear index; Konoha Medical's credited editor explicitly says they are not the original writer; Arcane Thief remains 183 FanFiction.net chapters versus 254 FreeWebNovel entries.
 
 ### Three blocked fanfiction sources
 
@@ -119,7 +119,7 @@ Run #44378479201 failed overall because *The Wind Calamity* batches failed. *A N
 - **ReadNovelFull:** PR #453 added genuine prologue handling, but *The Alchemist God* still failed with an invalid chapter URL after that merge. Do not loosen URL validation or retry until the exact invalid TOC URL is captured and tested.
 - **Konoha Medical:** PR #275 is metadata-only and held; the 444-chapter artifact is public and rights are unresolved. The repository connector used here cannot revoke that existing artifact. Do not expose its link or create another public copy.
 - **Artifact metadata:** the seven present fanfiction artifacts and Seoul Station's Necromancer now have expiry fields corrected to the live Actions API dates in the accompanying branch. The one expired fanfiction artifact remains historical.
-- **Throughput:** keep no more than two bulk workflows active and no more than ten titles per batch. No queued or in-progress workflows were active at the 05:23 IST check. Never treat a source-audit or TOC-preflight run as a chapter download.
+- **Throughput:** keep no more than two bulk workflows active and no more than ten titles per batch. No bulk download workflow was queued or in progress at the 05:23 IST check; PR #464 documentation CI is separate and is not a download run. Never treat a source-audit or TOC-preflight run as a chapter download.
 
 ## 6. Historical downstream handover
 
