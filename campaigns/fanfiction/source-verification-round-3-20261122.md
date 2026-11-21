@@ -41,7 +41,7 @@ A public listing, English-language label, translator credit or complete-looking 
 
 ## Completed fanfiction registry and artifact reconciliation
 
-The canonical registry still contains **8 completed fanfiction entries**. Seven artifacts are currently present; *The Adventurous Gamer Ninja - Daichi Hekima*'s artifact expired on 21 November 2026 and is no longer listed by the Actions API. Do not count artifact availability as private-HF import.
+The canonical registry still contains **8 completed fanfiction entries**. Seven artifacts are currently present and publicly accessible with rights unverified; *The Adventurous Gamer Ninja - Daichi Hekima*'s artifact expired on 21 November 2026 and is no longer listed by the Actions API. Do not link, download or create another public copy. The connected GitHub operations do not expose artifact revocation. Do not count artifact availability as private-HF import.
 
 | Completed work | Chapters | Run | Artifact | Current artifact state |
 |---|---:|---:|---:|---|
