@@ -52,3 +52,10 @@
 ## Decision
 
 The 32-title source-identity research remains open. This round found no new exact supported-host source and no explicit permission to archive. Continue fanfiction identity/edition research and the three blocked-source investigations before extending the historical 65-title Yup/IDK alternative-source sweep. Do not fetch chapter prose, use Patreon-only chapters, or publish another public archive without explicit rights.
+
+
+## Blocked-source evidence refinement
+
+- **Naruto: The Wind Calamity:** the [WebNovel original catalogue](https://www.webnovel.com/book/19921530006000505/catalog) credits Devil_Hex and lists 951 entries, including three auxiliary-volume entries before the numbered story chapters. The [author profile](https://www.webnovel.com/profile/4306287378) identifies Devil_Hex as the author and links Patreon support. This confirms the selected work/author, but it does not provide a replacement one-to-one map for FreeWebNovel's non-linear chapter URLs or permission to archive. A third-party NovelCodex/NovelLunar/NovelTrust count is not a supported source and must not be substituted.
+- **Konoha's Medical Ninja: One Punch to beat up Madara:** the [WebNovel page](https://www.webnovel.com/book/29703350508171905) explicitly says INeedRest is not the original writer and that the posted work was edited by them; it advertises up to 30 Patreon advance chapters. The underlying writer is not identified on the page. This is a direct stop condition for rights verification, not merely an unresolved translator credit.
+- **HP: The Arcane Thief:** the [FanFiction.net author listing](https://www.fanfiction.net/u/4394977/StrawberryButterfly7) credits Snollygoster and reports 183 chapters / 472,396 words, whereas the FreeWebNovel source index has 254 entries. The same credited name is not enough to reconcile the edition or justify a retry.
