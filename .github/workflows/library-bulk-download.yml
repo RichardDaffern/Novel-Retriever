@@ -21,7 +21,7 @@ on:
         type: boolean
         default: false
       confirm_rights:
-        description: 'WuxiaClick/Scribble Hub: I have rights to archive and share artefacts'
+        description: "I have explicit rights to archive the selected full text and publish its artefact at this repository's visibility"
         required: false
         type: boolean
         default: false
