@@ -56,6 +56,58 @@ class FreeWebNovelDownloaderTests(unittest.TestCase):
         self.assertEqual(meta["author"], "The Speaking Pork Trotter")
         self.assertEqual(meta["first_two_links"][0]["position"], 1)
 
+    def test_book_details_maps_auxiliary_links_and_uses_displayed_count(self):
+        offset_catalogue = """<html><h1>HP: The Arcane Thief</h1>
+<a href="/author/snollygoster">Snollygoster</a>
+<a href="/novel/the-first-order/chapter-255">Chapter 254: Latest</a>
+<a href="/novel/the-first-order/chapter-1">Auxiliary Chapter (Read First)</a>
+<a href="/novel/the-first-order/chapter-2">Chapter 1: Opening</a>
+<a href="/novel/the-first-order/chapter-3">Chapter 2: Arrival</a>
+</html>"""
+        meta = book_details(offset_catalogue, BOOK)
+        self.assertEqual(meta["numChapters"], 254)
+        self.assertEqual(meta["chapter_url_offset"], 1)
+        self.assertEqual(
+            [x["url"] for x in meta["first_two_links"]],
+            [BOOK + "/chapter-2", BOOK + "/chapter-3"],
+        )
+
+    def test_book_details_stops_on_non_linear_source_index(self):
+        non_linear = """<html><h1>Naruto: The Wind Calamity</h1>
+<a href="/novel/the-first-order/chapter-4">Chapter 1: Opening</a>
+<a href="/novel/the-first-order/chapter-5">Chapter 2: Orphanage</a>
+<a href="/novel/the-first-order/chapter-950">Chapter 948 - 941: Latest</a>
+</html>"""
+        with self.assertRaisesRegex(ProbeError, "Non-linear chapter URL mapping"):
+            book_details(non_linear, BOOK)
+
+    def test_download_uses_catalogue_url_offset_not_chapter_number_as_slug(self):
+        offset_catalogue = """<html><h1>HP: The Arcane Thief</h1>
+<a href="/author/snollygoster">Snollygoster</a>
+<a href="/novel/the-first-order/chapter-255">Chapter 254: Latest</a>
+<a href="/novel/the-first-order/chapter-1">Auxiliary Chapter (Read First)</a>
+<a href="/novel/the-first-order/chapter-2">Chapter 1: Opening</a>
+<a href="/novel/the-first-order/chapter-3">Chapter 2: Arrival</a>
+</html>"""
+        pages = {
+            BOOK: offset_catalogue,
+            BOOK + "/chapter-2": chapter_html(1),
+            BOOK + "/chapter-3": chapter_html(2),
+        }
+        calls = []
+        def fetch(url):
+            calls.append(url)
+            return pages[url]
+        with TemporaryDirectory() as tmp:
+            result = download_range(
+                BOOK, 1, 2, Path(tmp), confirm_rights=True,
+                fetcher=fetch, sleeper=lambda _: None,
+            )
+        self.assertEqual(result["chapter_count"], 2)
+        self.assertEqual(calls, [
+            BOOK, BOOK + "/chapter-2", BOOK + "/chapter-3",
+        ])
+
     def test_chapter_title_and_body_number_match(self):
         value = extract_chapter(chapter_html(2), 2)
         self.assertIn("Chapter 2", value["title"])
