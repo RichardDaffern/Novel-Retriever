@@ -11,7 +11,7 @@
 | Snapshot main SHA | `46d0786e6f9250621efafc96c865f8ffba374e31` | [Commit](https://github.com/RichardDaffern/Novel-Retriever/commit/46d0786e6f9250621efafc96c865f8ffba374e31) |
 | Completed registry records | **343** rows with `range: all` and `status: complete`; not a count of currently downloadable artefacts or private-HF books | `downloaded_novels.json`, checked after PR #458 |
 | Latest main CI | **Success**, all four jobs: security audit, tests, Windows smoke and ZIP archive smoke | [Run #44926984222](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984222) |
-| Queued / in-progress Actions | **None observed** at the last API check | Actions API, 21 November |
+| Acquisition runs queued / in progress | **None observed** at the operational check (22:23 IST); the later documentation PR validation is separate | Actions API, 21 November |
 | Open PRs | #265 and #275, both metadata-only registry updates | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275) |
 | Private Hugging Face inventory | **Not checked in this snapshot** | Separate Storage Controller source of truth |
 
