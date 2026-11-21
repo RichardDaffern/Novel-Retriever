@@ -29,6 +29,7 @@ BOOK_PATH = re.compile(r"^/novel/(?P<slug>[a-z0-9]+(?:-[a-z0-9]+)*)/?$")
 CHAPTER_PATH = re.compile(
     r"^/novel/(?P<slug>[a-z0-9]+(?:-[a-z0-9]+)*)/chapter-(?P<number>[1-9][0-9]*)/?$"
 )
+CHAPTER_LABEL = re.compile(r"\bchapter\s*([1-9][0-9]*)\b", re.IGNORECASE)
 BODY_SELECTORS = (".txt", "#chapter-content", ".chapter-content")
 LOCK_TEXT = (
     "unlock this chapter", "subscribe to unlock",
@@ -107,7 +108,15 @@ def chapter_url(url: str, book_url: str):
     )
 
 
-def parse_catalogue(html: str, book_url: str) -> dict:
+def chapter_catalogue(html: str, book_url: str) -> dict:
+    """Map displayed chapter numbers to verified same-book chapter URLs.
+
+    FreeWebNovel can place auxiliary pages before Chapter 1 and can use a
+    different numeric URL ID from the displayed chapter number. Ignore
+    non-chapter labels, then require one consistent URL offset across the
+    visible opening and latest chapter links. A non-linear index is a hard
+    stop rather than a reason to guess or probe neighbouring URLs.
+    """
     book_url = validate_book_url(book_url)
     soup = BeautifulSoup(html, "html.parser")
     heading = soup.find("h1")
@@ -115,26 +124,54 @@ def parse_catalogue(html: str, book_url: str) -> dict:
     if not title or len(title) > 250:
         raise ProbeError("Novel title not found in ordinary catalogue page")
     chapters = {}
+    offsets = set()
     for anchor in soup.select("a[href]"):
         absolute = urljoin(book_url + "/", anchor["href"])
         try:
-            link, number = chapter_url(absolute, book_url)
+            link, source_number = chapter_url(absolute, book_url)
         except ProbeError:
             continue
-        if number not in (1, 2):
+        label = anchor.get_text(" ", strip=True)
+        match = CHAPTER_LABEL.search(label)
+        if not match:
             continue
-        label = anchor.get_text(" ", strip=True) or f"Chapter {number}"
+        number = int(match.group(1))
+        offset = source_number - number
         if number in chapters and chapters[number]["url"] != link:
             raise ProbeError(f"Conflicting Chapter {number} catalogue links")
         chapters[number] = {"position": number, "title": label, "url": link}
-    if set(chapters) != {1, 2}:
+        offsets.add(offset)
+    if 1 not in chapters or 2 not in chapters:
         raise ProbeError(
-            "Chapters 1 and 2 not found in the initial catalogue HTML. "
-            "The site may require another page or an updated parser."
+            "Chapters 1 and 2 not found by their displayed labels in the "
+            "initial catalogue HTML. The site may require another page or "
+            "an updated parser."
         )
-    return {"title": title, "book_url": book_url, "chapters": [
-        chapters[1], chapters[2],
-    ]}
+    if len(offsets) != 1:
+        observed = ", ".join(str(value) for value in sorted(offsets))
+        raise ProbeError(
+            "Non-linear chapter URL mapping in public catalogue "
+            f"(observed URL offsets: {observed}); stopped without guessing"
+        )
+    return {
+        "title": title,
+        "book_url": book_url,
+        "chapters": chapters,
+        "chapter_url_offset": next(iter(offsets)),
+    }
+
+
+def parse_catalogue(html: str, book_url: str) -> dict:
+    catalogue = chapter_catalogue(html, book_url)
+    return {
+        "title": catalogue["title"],
+        "book_url": catalogue["book_url"],
+        "chapters": [
+            catalogue["chapters"][1],
+            catalogue["chapters"][2],
+        ],
+        "chapter_url_offset": catalogue["chapter_url_offset"],
+    }
 
 
 def inspect_chapter(html: str, *, position: int) -> dict:
