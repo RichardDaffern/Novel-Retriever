@@ -26,8 +26,8 @@ from novel_downloader import epub_chapters, slugify
 from tools.chunked_download import _epub
 from tools.freewebnovel_metadata import extract_book_metadata
 from tools.freewebnovel_source import (
-    ProbeError, TransientFetchError, BODY_SELECTORS, LOCK_TEXT, chapter_url,
-    fetch_public_html, parse_catalogue, validate_book_url,
+    ProbeError, TransientFetchError, BODY_SELECTORS, LOCK_TEXT,
+    chapter_catalogue, fetch_public_html, validate_book_url,
 )
 
 MAX_PER_RUN = 100
@@ -42,36 +42,30 @@ class DownloadError(ValueError):
 
 
 def book_details(html: str, url: str) -> dict:
-    """Read a public catalogue without mistaking other novels for chapters."""
+    """Read chapter labels and URL mapping from the public catalogue."""
     url = validate_book_url(url)
-    first = parse_catalogue(html, url)
+    catalogue = chapter_catalogue(html, url)
     soup = BeautifulSoup(html, "html.parser")
-    numbers = set()
-    for anchor in soup.select("a[href]"):
-        absolute = urljoin(url + "/", anchor.get("href", ""))
-        try:
-            _, number = chapter_url(absolute, url)
-        except ProbeError:
-            continue
-        numbers.add(number)
-    if 1 not in numbers or 2 not in numbers:
-        raise DownloadError("Public catalogue does not include the opening chapters")
-    total = max(numbers)
+    total = max(catalogue["chapters"])
     if total < 2 or total > MAX_TOTAL:
         raise DownloadError("Published chapter count outside supported range")
-    # The site displays the latest six chapter links before the first 40.
-    # Their highest number provides an upper bound for sequential chapter URLs.
-    # We verify every chosen chapter page; missing chapters fail, never skip.
+    # The page exposes the opening chapters and latest chapters. A consistent
+    # URL offset is required before the downloader can safely address the
+    # intervening chapters; non-linear indexes are rejected during parsing.
     author_node = soup.select_one('a[href*="/author/"]')
     author = author_node.get_text(" ", strip=True) if author_node else "Unknown"
     return {
-        "title": first["title"],
+        "title": catalogue["title"],
         "author": author[:240] or "Unknown",
         "numChapters": total,
         "source_url": url,
-        "first_two_links": first["chapters"],
-        "count_basis": "largest numbered chapter link in public catalogue",
-        **extract_book_metadata(html, first["title"]),
+        "first_two_links": [
+            catalogue["chapters"][1],
+            catalogue["chapters"][2],
+        ],
+        "chapter_url_offset": catalogue["chapter_url_offset"],
+        "count_basis": "largest displayed chapter label with consistent public URL offset",
+        **extract_book_metadata(html, catalogue["title"]),
     }
 
 
@@ -231,7 +225,8 @@ def download_range(
         # retries only for transport interruptions. Checkpoints remain intact.
         sleeper(1)
         chapter_html = _fetch_with_retry(
-            f"{url}/chapter-{number}", fetcher=fetcher, sleeper=sleeper
+            f"{url}/chapter-{number + details['chapter_url_offset']}",
+            fetcher=fetcher, sleeper=sleeper
         )
         item = extract_chapter(
             chapter_html, number, expected_titles.get(number, f"Chapter {number}")
