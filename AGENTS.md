@@ -1080,11 +1080,12 @@ This section documents behaviour added after the handbook's original 13 November
 
 ### Fanfiction is separate, with explicit source limits
 
-- User-selected fanfiction catalogue: `campaigns/fanfiction/webnovel-favourites-43.json` and `campaigns/fanfiction/source-verification-round-1-20261119.md`. The **43 Naruto/Harry Potter titles** and credited authors are work identities, not a blanket source permission.
-- At the dated 20 November snapshot, **8** were registry-complete, **3** had supported source matches but no complete registry entry and **32** still required supported-source verification. Read the status and live registry for any later change.
-- A screenshot-truncated title, WebNovel listing, alternate translator, mirror or other author's edition must not be silently equated with the user's requested work. No unapproved WebNovel scraping, account bypass or speculative slug construction.
-- Fix known source page chapter-number mismatches as integrity problems, not retryable errors. A completed EPUB artefact but open metadata-only registry PR should be reconciled through the publisher and exact evidence, not acquired again.
-- Keep fanfiction queues independent of the Yup/Idk campaign while respecting the **shared** active-workflow cap.
+- User-selected fanfiction catalogue: `campaigns/fanfiction/webnovel-favourites-43.json`; retain the historical first pass and use [source verification round 2](campaigns/fanfiction/source-verification-round-2-20261122.md) for the 22 November evidence. The **43 Naruto/Harry Potter titles** and credited authors are work identities, not blanket source permission.
+- The catalogue still has **8 registry-complete** works, **3 separately blocked/source-matched** works and **32 titles requiring source research**. Round 2 found five exact title+author FreeWebNovel listings among those 32, but none passed the complete edition, chapter-index and rights gate; one author spelling mismatch was rejected and 26 had no exact supported listing in that pass.
+- A screenshot-truncated title, WebNovel listing, alternate translator, mirror or other author's edition must not be silently equated with the requested work. No unapproved WebNovel scraping, account bypass, speculative slug construction or Patreon/advance-chapter access.
+- PR #463 is merged: HP: The Arcane Thief's consistent +1 URL offset is covered by regression tests; Naruto: The Wind Calamity's non-linear mapping now hard-stops. Do not retry either without a complete source map and rights clearance.
+- Konoha's Medical Ninja has a validated 444-chapter archive and an open metadata-only PR #275, but the artifact is public and rights are unresolved; hold the PR and do not re-download or expose another artifact until permission is confirmed or the existing artifact is removed.
+- Keep fanfiction queues independent of Yup/Idk while respecting the **shared** active-workflow cap. Do not search the 65 unmatched Yup/Idk titles until the fanfiction research pass is complete.
 
 ### Hand-off, storage and operator claims
 
