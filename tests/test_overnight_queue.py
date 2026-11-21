@@ -44,6 +44,8 @@ class OvernightQueueTests(unittest.TestCase):
     def test_generated_candidates_never_count_as_verified(self):
         self.assertEqual(q.candidate_urls("The Great Storyteller"), [
             "https://novelfull.com/the-great-storyteller.html",
+            "https://readnovelfull.com/the-great-storyteller.html",
+            "https://readnovelfull.com/the-great-storyteller-v1.html",
             "https://freewebnovel.com/novel/the-great-storyteller",
         ])
         self.assertFalse(q.matches_public_book_page(
@@ -99,8 +101,41 @@ class OvernightQueueTests(unittest.TestCase):
         self.assertEqual(result["summary"]["eligible_idk"], 1)
         self.assertEqual(result["summary"]["source_hosts_blocked"],
                          ["novelfull.com"])
-        self.assertEqual(result["summary"]["public_book_requests"], 4)
-        self.assertTrue(all("novelfull.com" not in url for url in calls[2:]))
+        self.assertEqual(result["summary"]["public_book_requests"], 10)
+        self.assertTrue(all(not url.startswith("https://novelfull.com/") for url in calls[1:]))
+
+    def test_readnovelfull_fallback_accepts_exact_book_v1_only(self):
+        title = "ReadNovelFull Title"
+        urls = q.candidate_urls(title)
+        self.assertEqual(len(urls), 4)
+        self.assertEqual(urls[1], "https://readnovelfull.com/readnovelfull-title.html")
+        self.assertEqual(urls[2], "https://readnovelfull.com/readnovelfull-title-v1.html")
+        visited = []
+
+        def fetch(url):
+            visited.append(url)
+            if url == urls[2]:
+                return "<html><h1>ReadNovelFull Title</h1></html>", "ok"
+            return None, "HTTP_404"
+
+        with patch.object(q, "manifests", return_value=(
+            [title], [], set(), set()
+        )):
+            result = q.discover(fetcher=fetch, sleeper=lambda _: None)
+        self.assertEqual(visited, urls[:3])
+        self.assertEqual(result["verified"][0]["url"], urls[2])
+
+    def test_readnovelfull_mismatched_book_is_not_accepted(self):
+        title = "Requested Book"
+        urls = q.candidate_urls(title)
+        with patch.object(q, "manifests", return_value=(
+            [title], [], set(), set()
+        )):
+            result = q.discover(fetcher=lambda url: (
+                "<html><h1>Entirely Different Book</h1></html>", "ok"
+            ), sleeper=lambda _: None)
+        self.assertEqual(result["verified"], [])
+        self.assertEqual(result["summary"]["public_book_requests"], len(urls))
 
     def test_discovery_never_uses_unsupported_or_locked_html(self):
         with patch.object(q, "manifests", return_value=(
