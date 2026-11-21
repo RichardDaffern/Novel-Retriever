@@ -48,9 +48,9 @@ It made 336 public book-page requests across NovelFull, ReadNovelFull (standard 
 
 | Title | Result |
 |---|---|
-| *Doom Lord* | <badge color="success">Index passed</badge> Exact title, 155 chapters |
+| *Doom Lord* | **Index passed** Exact title, 155 chapters |
 | *Girl, I’ll Teach You Cultivation* | <badge color="success">Index passed</badge> Exact title, 283 chapters |
-| *Beast Piercing The Heavens* | <badge color="danger">Failed</badge> Duplicate Chapter 11 links |
+| *Beast Piercing The Heavens* | **Failed** Duplicate Chapter 11 links |
 | *Godly Student* | <badge color="danger">Failed</badge> Invalid ReadNovelFull chapter URL |
 | *The Military Female Soldier With Unwavering Stubbornness* | <badge color="danger">Failed</badge> 2,104 missing numbered chapters |
 
