@@ -19,8 +19,8 @@ class SmallYupPilotTests(unittest.TestCase):
             for i in (1, 2, 3)
         ]
 
-    def test_only_twenty_explicitly_allowlisted_yup_books(self):
-        self.assertEqual(len(self.entries), 20)
+    def test_only_explicitly_allowlisted_yup_books(self):
+        self.assertEqual(len(self.entries), 21)
         self.assertNotIn("The First Order", self.entries)
         self.assertNotIn("Nine Sun God King", self.entries)
         self.assertNotIn("Devil’s Son-in-Law", self.entries)
@@ -45,7 +45,8 @@ class SmallYupPilotTests(unittest.TestCase):
              "Advent of Archmage",
              "Assassin's Chronicle",
              "Charm Of Soul Pet",
-             "The Immortal's Wine Store"},
+             "The Immortal's Wine Store",
+             "Seoul Station's Necromancer"},
         )
 
     def test_three_independent_two_book_requests_preflight(self):
