@@ -1,6 +1,6 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 04:00 IST.
+**Snapshot:** 22 November 2026, 04:07 IST.
 **This is a dated snapshot, not a live dashboard.** The checked `main` base is `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; the accompanying documentation branch contains the updates described below. Re-check live Actions, PRs and artefacts before acting. Re-check the live repository, Actions, PRs, registry and artefact expiry before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
@@ -118,7 +118,7 @@ Run #44378479201 failed overall because *The Wind Calamity* batches failed. *A N
 - **ReadNovelFull:** PR #453 added genuine prologue handling, but *The Alchemist God* still failed with an invalid chapter URL after that merge. Do not loosen URL validation or retry until the exact invalid TOC URL is captured and tested.
 - **Konoha Medical:** PR #275 is metadata-only and held; the 444-chapter artifact is public and rights are unresolved. The repository connector used here cannot revoke that existing artifact. Do not expose its link or create another public copy.
 - **Artifact metadata:** the seven present fanfiction artifacts and Seoul Station's Necromancer now have expiry fields corrected to the live Actions API dates in the accompanying branch. The one expired fanfiction artifact remains historical.
-- **Throughput:** keep no more than two bulk workflows active and no more than ten titles per batch. No queued or in-progress workflows were active at the 04:00 IST check. Never treat a source-audit or TOC-preflight run as a chapter download.
+- **Throughput:** keep no more than two bulk workflows active and no more than ten titles per batch. No queued or in-progress workflows were active at the 04:07 IST check. Never treat a source-audit or TOC-preflight run as a chapter download.
 
 ## 6. Historical downstream handover
 
