@@ -36,7 +36,7 @@ RUN_DELAY = 150
 POLL_DELAY = 75
 # Explicit aliases already queued in a prior wave. Do not download twice.
 ALIASES = {"A Thought Through Eternity": "A Will Eternal"}
-HOSTS = ("novelfull.com", "freewebnovel.com")
+HOSTS = ("novelfull.com", "readnovelfull.com", "freewebnovel.com")
 MAX_PAGE_BYTES = 3_000_000
 
 
@@ -133,6 +133,8 @@ def candidate_urls(title: str) -> list[str]:
         return []
     return [
         f"https://novelfull.com/{key}.html",
+        f"https://readnovelfull.com/{key}.html",
+        f"https://readnovelfull.com/{key}-v1.html",
         f"https://freewebnovel.com/novel/{key}",
     ]
 
@@ -155,7 +157,7 @@ def page_titles(html: str) -> list[str]:
         if value and len(value) < 245:
             titles.append(value.strip())
     if title_tag:
-        titles.append(re.split(r"\s+[-|]\s+(?:NovelFull|Read|FreeWebNovel)", title_tag,
+        titles.append(re.split(r"\s+[-|]\s+(?:NovelFull|ReadNovelFull|FreeWebNovel|Read)", title_tag,
                                maxsplit=1, flags=re.I)[0])
     return titles
 
