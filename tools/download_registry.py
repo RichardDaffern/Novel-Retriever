@@ -169,7 +169,7 @@ def write_registry(registry: dict, json_path: Path, md_path: Path) -> None:
 
 def record_download(registry: dict, url: str, chapter_range: str, downloads_dir: Path,
                     run_id: str, artifact_url: str, artifact_id: str,
-                    retention_days: int = 7,
+                    retention_days: int = 90,
                     now: datetime | None = None) -> dict:
     url = canonical_url(url)
     chapter_range = normalise_range(chapter_range if chapter_range != "all" else "")
