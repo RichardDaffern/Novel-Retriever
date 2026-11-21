@@ -188,11 +188,17 @@ This section is a navigation map, not an exhaustive list of every test.
 | `tools/chunked_download.py` | NovelFull range planning, caching, batch validation, EPUB assembly | High: completeness, ordering, metadata and artifact reuse |
 | `tools/freewebnovel_downloader.py` | Separate public-page sequential FreeWebNovel range downloader | High: site restrictions and fail-closed parser |
 | `tools/freewebnovel_chunks.py` | FreeWebNovel workflow orchestration using shared batch APIs | High: keep independent from NovelFull |
+| `tools/readnovelfull_source.py` | ReadNovelFull book URL and AJAX chapter-index validation | Reject invalid, duplicate or non-consecutive chapter links |
+| `tools/readnovelfull_downloader.py`, `tools/readnovelfull_chunks.py` | ReadNovelFull single/range downloader and bounded batch assembly | Preserve source identity, prologues and chapter-index checks |
+| `tools/wuxiaclick_source.py`, `tools/wuxiaclick_downloader.py`, `tools/wuxiaclick_chunks.py` | WuxiaClick's bounded 20-chapter-per-run source and batch path | Do not bypass daily allowance or enable full-book export |
+| `tools/scribblehub_crosspost_downloader.py`, `tools/scribblehub_crosspost_artifact.py` | One allowlisted same-author Scribble Hub/FanFiction.net cross-post | No general Scribble Hub scraping or guessed cross-posts |
 | `tools/download_registry.py` | Canonical URLs, ranges, availability, registry records and Markdown rendering | High: previously downloaded book selection |
 | `tools/publish_registry.py` | Retryable optimistic registry PR publishing on the latest `main` | High: concurrent download completion |
+| `tools/export_completed_github_novels.py` | Metadata-driven export of completed novel artefacts into a controller-ready bundle | Artefacts expire; validate each ZIP and manifest before downstream handover |
 | `tools/mixed_source_bulk.py` | Single consolidated bulk workflow planning by names or URLs, grouped by site | High: avoid incorrect title-to-URL guessing |
 | `tools/overnight_queue.py` | Read-only public book-page discovery and legacy paced Yup/IDK dispatcher | Keep discovery and dispatch separate; source matches do not prove rights |
 | `tools/dispatch_curated_bulk.py` | Validates and submits operator-reviewed literal source URLs | No web search or guessed slugs; enforce exclusions and active-run cap |
+| `tools/large_batch_dispatch.py`, `tools/dispatch_verified_yup_wave.py` | Legacy reviewed campaign grouping and bounded dispatcher helpers | One-shot campaign code; inspect marker and current run state before any invocation |
 | `tools/fanfiction_campaign.py` | One-shot queue for the 43 reviewed Naruto/Harry Potter works | Exact title/author identity; no WebNovel chapter scraping |
 | `tools/five_book_toc_preflight.py` | Read-only chapter-index check for a reviewed five-book manifest | Does not fetch chapter prose or verify archiving rights |
 | `tools/sequential_bulk_download.py` | General local/multiple-URL planning and execution utilities | Maintain tests even if a newer workflow path is preferred |
