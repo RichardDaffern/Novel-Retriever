@@ -42,7 +42,7 @@ Prefer a dedicated Action when downloading from one particular website.
 | --- | --- | --- |
 | [NovelFull](https://novelfull.com/) | [NovelFull - Download](.github/workflows/download-novel.yml) | Full novels and chapter ranges |
 | [FreeWebNovel](https://freewebnovel.com/) | [FreeWebNovel - Download](.github/workflows/freewebnovel-download.yml) | Accessible public chapters |
-| [ReadNovelFull](https://readnovelfull.com/) | [ReadNovelFull - Download](.github/workflows/readnovelfull-download.yml) | EPUB/TXT supported; live full-book verification pending |
+| [ReadNovelFull](https://readnovelfull.com/) | [ReadNovelFull - Download](.github/workflows/readnovelfull-download.yml) | One live full-book success verified; per-title index and access still vary |
 | [WuxiaClick](https://wuxia.click/) | [WuxiaClick - Download](.github/workflows/wuxiaclick-download.yml) | Authorised ranges of up to **20 chapters**; full-book export disabled |
 | [Scribble Hub](https://www.scribblehub.com/) | [Scribble Hub - Download](.github/workflows/scribblehub-download.yml) | Only the verified author cross-post, series `445037` |
 
