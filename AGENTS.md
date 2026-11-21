@@ -4,11 +4,74 @@
 >
 > **Scope:** Only the `RichardDaffern/Novel-Retriever` repository. This is a **download, acquisition, conversion, validation, packaging, metadata and local retrieval** project, **not** the web reader or the Hugging Face dataset controller.
 >
-> **Historic source baseline:** Originally reviewed against `main` at commit `24c2f1414a6a3d4ea9c76f31e8e74da728814053` (13 November 2026). This is a descriptive snapshot, **not a substitute for checking the latest code**.
+> **Documentation validation point:** The handbook was rechecked against `main` at `46d0786e6f9250621efafc96c865f8ffba374e31` on 21 November 2026, before this documentation update. This is an audit reference, **not** a live-state guarantee.
 >
-> **Precedence:** For actual behaviour, trust executable code and the current tests first; then inspect workflow YAML, the README and focused documentation. If a statement here conflicts with the repository, verify and update this file in the same change. Never silently assume a feature described as experimental is production-ready.
+> **Precedence:** For actual behaviour, trust the checked-out implementation and tests first, then active workflow definitions and observed run outputs, then current registry/campaign data, then focused documentation and Git history. Previous conversations, assistant summaries and old status snapshots are leads only. If documentation conflicts with current evidence, investigate and update it in the same change. Never silently treat experimental or historical code as production-ready.
 
-## Start here: agent navigation (updated 20 November 2026)
+## Mandatory dynamic project-state inspection
+
+**This is required before every substantial task, not an optional orientation step.** Historical documentation, issue comments, saved handovers and prior assistant summaries can become stale within hours when downloads, PRs or campaigns run.
+
+### If a local clone/worktree is available
+
+Run and inspect these commands before editing or dispatching anything:
+
+```bash
+git status --short --branch
+git branch --show-current
+git rev-parse HEAD
+git remote -v
+git fetch origin
+git status --short --branch
+git log -15 --date=iso-strict --pretty=format:'%h %ad %d %s'
+git diff --stat
+git diff --cached --stat
+```
+
+- Read the actual dirty/untracked diff before touching files. Do not reset, clean, stash, overwrite or switch away from another agent's work.
+- Confirm whether the task branch is based on current `origin/main`; inspect changed files and the complete diff, not only commit messages.
+- Inspect relevant source, tests, configuration, workflows and data manifests at the checked-out SHA. Do not infer implementation from a filename or a historical PR title.
+
+### If working through GitHub/API tools without a local clone
+
+Record that local working-tree status is **not observable**. Inspect, at minimum:
+
+1. Repository default branch and exact current `main` SHA; recursive file tree and relevant source/docs at that SHA.
+2. Recent commits and changed paths; open PRs, their base/head SHAs, reviews and required checks.
+3. Queued and in-progress Actions runs; then recent completed runs, job/step conclusions, logs, artefacts and expiry.
+4. Open issues and recent comments for the affected subsystem.
+5. The canonical registry and campaign manifests, with exact identity/alias matching and current exclusions.
+6. Relevant source, tests, workflow inputs/triggers/permissions and downstream file contracts.
+
+Never describe a remote repository inspection as a clean local `git status`.
+
+### Classify project state explicitly
+
+For every feature, workflow, source integration or campaign that materially affects the task, classify it as one of:
+
+- **Implemented and active:** present in current code/configuration, covered by current tests, and available through a live entry point.
+- **Implemented, live verification incomplete:** code and offline tests exist, but current source/site or end-to-end behaviour is not confirmed.
+- **Partial / experimental:** limited proof, constrained path, fixture-only support or a specific allowlist; do not generalise it.
+- **Planned:** discussed or documented but no current implementation.
+- **Deprecated / retired / one-shot consumed:** code or workflow may remain in the tree, but must not be invoked without a new explicit review.
+- **Historical:** evidence of an earlier run or design, not a statement of current availability.
+
+State the evidence and checked-at date. A README statement, open issue, workflow filename or past green run alone does not prove a feature is active.
+
+### Operational evidence must not be conflated
+
+For novel acquisition, keep these states separate: requested; public listing found; title/author/edition verified; chapter index verified; rights to archive confirmed; selected; dispatched; chapter batches validated; final EPUB/ZIP assembled; registry complete; artefact still available; exported locally; imported into private Hugging Face; visible in the reader. A source audit or TOC preflight does **not** fetch chapter prose and does not establish copying rights. A green dispatcher does not prove its child downloads completed.
+
+Before any external download or publication, re-check user authorisation, source restrictions, the 90 global red/Dropped exclusions, known failure cases, canonical completed registry, active/queued runs, one-shot activation markers and public artefact visibility. Use `force=false` unless a separately reviewed recovery requires otherwise. Do not re-run consumed campaign markers.
+
+### Keep the state model current
+
+- Refresh `docs/current-status.md` only from live, timestamped evidence; label it as a snapshot, never a dashboard.
+- Update `docs/operations-runbook.md` when procedures or recovery rules change, `docs/website-support.md` when source capability evidence changes, and `CHANGELOG.md` for operator-visible changes.
+- Record important rationale and failure lessons in [Project History and Decisions](docs/project-history-and-decisions.md), linking to the implementation/tests/issues rather than duplicating the handbook.
+- If a fact cannot be verified, write **unknown / not checked**. Do not fill gaps with model inference.
+
+## Start here: agent navigation (updated 21 November 2026)
 
 **Do not re-read old conversations to reconstruct live download status.** Use the following *living, source-linked* documents in order:
 
@@ -26,7 +89,7 @@
 - Internal modules distinguish **sequential novel bulk execution** (`tools/sequential_bulk_download.py`) from **mixed-site bulk orchestration** (`tools/mixed_source_bulk.py`). Site adapters and their tests use recognisable website names.
 - Human-readable guides use lowercase `kebab-case.md`. Source investigations and experimental notes belong in `docs/research/`, not inside executable `tools/`.
 - Keep **public entry points stable**: `novel_downloader.py`, `Download-All-Novels.cmd`, `PDF-to-Novel/Convert-PDFs.cmd`, all existing `.github/workflows/*.yml` names, `DOWNLOADED_NOVELS.md` and `downloaded_novels.json`. Their paths are consumed by users, GitHub Actions and storage workflows.
-- When renaming an internal file, update imports, test names, workflow invocations, documentation links, JSON file paths and Windows commands together. `tests/test_repository_naming.py` checks the public entry points and local Markdown links.
+- When renaming an internal file, update imports, test names, workflow invocations, documentation links, JSON file paths and Windows commands together. The current tree has no dedicated repository-naming test; when changing paths, verify every affected workflow invocation, command, import and relative Markdown link.
 
 ## 1. Mission, boundaries and design philosophy
 
@@ -745,10 +808,11 @@ Before writing any live downloader:
 | `.github/workflows/freewebnovel-download.yml` | Manual and reusable call | Prepare, bounded chapter batches, assemble, report | Temporary book artefacts and metadata registry PR |
 | `.github/workflows/readnovelfull-download.yml` | Manual and reusable call | Discover AJAX chapter list, paced 100-chapter batches, verified EPUB assembly, publish registry | Temporary verified novel artefact; no website workaround |
 | `.github/workflows/wuxiaclick-download.yml` | Manual and reusable call | Exact 100-entry paginated book TOC, single <=20-chapter confirmed-rights batch, verified EPUB and recovery | Bounded temporary source artefact only; no whole-book quota evasion |
-| `.github/workflows/scribblehub-download.yml` | Manual and reusable call | Explicit rights gate, verified same-author FicHub cross-post, archive verification | Temporary complete novel artefact and metadata-only registry PR |
-| `.github/workflows/scribblehub-download.yml` | Manual only | Verify rights and registered author cross-post, FicHub export, ZIP validation, artefact assembly and metadata registry | Seven-day complete-novel artefact and metadata-only registry PR; only allowlisted same-author cross-posts |
+| `.github/workflows/scribblehub-download.yml` | Manual and reusable call | Explicit rights gate, verified same-author FicHub cross-post, archive verification | Seven-day complete novel artefact and metadata-only registry PR; only allowlisted same-author cross-posts |
 | `.github/workflows/library-bulk-download.yml` | Manual, one recommended download form | Accept mixed novel URLs and names, auto-detect sites, call five reusable workflows, always-run summary with failure-gated recovery | No website dropdown; avoids duplicate recovery transfers on success; preserves partial-failure artefacts and retry manifest |
 | `.github/workflows/download-covers.yml` | Manual | Cover-only job | 30-day cover-image artefact; no chapter or registry edits |
+
+The repository also retains one-shot or campaign-specific workflows (Yup/Idk discovery and dispatch, fanfiction queueing, curated waves, source audit, five-book TOC preflight, targeted retries and historical exports). Their presence in `.github/workflows/` does **not** mean they are currently active or safe to rerun. Inspect each workflow's trigger/path filter, marker-file guard, current run history and artifact before use. In particular, the 21 November source audit and five-book TOC preflight were read-only and have completed; neither downloaded chapter text.
 
 Security/operational expectations:
 
@@ -780,6 +844,8 @@ Security/operational expectations:
 | `tests/test_import_local_epub.py` | Offline, verified EPUB-to-ZIP import |
 | `tests/test_repair_synopsis.py` | Synopsis repair integrity and dry run/apply |
 | `tests/test_source_feasibility.py` | Offline parsing for investigated sources |
+| `tests/test_readnovelfull.py`, `tests/test_wuxiaclick.py` | ReadNovelFull and WuxiaClick source/index/download contracts |
+| `tests/test_overnight_queue.py`, `tests/test_five_book_toc_preflight.py`, `tests/test_fanfiction_campaign.py` | Source discovery, read-only TOC preflight and fanfiction campaign identity/queue safeguards |
 | `tests/test_webnovel_*.py` | Separate WebNovel restricted/authorised import and feasibility behaviour |
 | `tests/test_zip_packaging_windows.py`, `tests/cover_zip_smoke.ps1` | Portable ZIP compatibility, Windows processing, covers |
 | `tests_pdf/test_pdf_to_novel.py` | PDF heading extraction, source fidelity, hashes, ZIP/EPUB integrity, source budgets |
@@ -975,6 +1041,13 @@ When changing a subsystem, also consult the relevant living guide:
 ## Operational addendum: campaigns, handovers and later AI sessions (20 November 2026)
 
 This section documents behaviour added after the handbook's original 13 November architecture baseline. For precise procedures and dated facts, consult the [runbook](docs/operations-runbook.md) and [status](docs/current-status.md).
+
+### Three-source source audit and follow-up preflight (21 November 2026)
+
+- `tools/overnight_queue.py` now probes NovelFull, ReadNovelFull (standard and `-v1` book-page variants) and FreeWebNovel. The one-time [source audit run #44924359606](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44924359606) checked 91 eligible Yup/Idk titles using 336 public book-page requests: 26 exact public listings (18 Yup, 8 Idk), 65 unresolved (36 Yup, 29 Idk), and no source host was disabled. This is **listing discovery only**; it did not fetch chapter prose or verify archiving rights.
+- The five-title [TOC preflight #44926984233](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984233) was also read-only: *Doom Lord* (155 chapters) and *Girl, I'll Teach You Cultivation* (283) passed exact-title index validation; *Beast Piercing The Heavens* failed on duplicate Chapter 11 links, *Godly Student* on an invalid chapter URL, and *The Military Female Soldier With Unwavering Stubbornness* on a large missing-number range. No chapter text was downloaded and `rights_verified=false`.
+- The 26 URLs are candidates, not a 26-book download queue. Most overlap known failures; only five were fresh at the time of review and just two passed the TOC check. Reconcile the report artefact, current registry, issue #452/#448 and permission evidence before selecting any title.
+- The user's current acquisition priority is **Harry Potter and Naruto fanfiction source research/recovery first**, then the 65 unresolved Yup/Idk titles. Keep fanfiction separate from Yup/Idk campaign counts. See [current status](docs/current-status.md) and the [source-audit report](docs/research/source-audit-2026-11-21.md).
 
 ### Curated source URLs are preferred to website discovery (20 November 2026)
 
