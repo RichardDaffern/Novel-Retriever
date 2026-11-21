@@ -108,6 +108,8 @@ class DownloadRegistryTests(unittest.TestCase):
             )
             self.assertEqual(entry["chapter_count"], 2)
             self.assertEqual(entry["range"], "1-2")
+            expected_expiry = (NOW + timedelta(days=90)).isoformat(timespec="seconds").replace("+00:00", "Z")
+            self.assertEqual(entry["expires_at_utc"], expected_expiry)
             self.assertEqual(registry["novels"][0]["author"], "Anon")
             first = book / "chapter_0001.txt"
             original = first.read_bytes()
