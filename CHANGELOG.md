@@ -10,6 +10,7 @@ Changes listed here are **operational/documentation milestones**, not a full com
 - Replaced the stale 20 November [Current Status](docs/current-status.md) snapshot with the 21 November registry, campaign, source-audit, fanfiction, PR and workflow evidence.
 - Added the durable [21 November source-audit report](campaigns/overnight/source-audit-report-20261121.md), including 26 matched URLs, 65 unresolved titles and the five-book TOC preflight results.
 - Updated the [Operations Runbook](docs/operations-runbook.md), website support, campaign notes and handover template. Corrected the ReadNovelFull support statement using the verified 766-chapter *Archean Eon Art* run.
+- Follow-up consistency pass corrected the detailed download guide and dated source-feasibility report so neither implies that ReadNovelFull has no full-book success; the 15 November report remains explicitly historical.
 - Latest checked main CI [#44926984222](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984222) passed all four jobs. The read-only source audit [#44924359606](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44924359606) and five-title index preflight [#44926984233](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984233) completed successfully; neither downloaded chapter prose.
 
 ## 20 November 2026
