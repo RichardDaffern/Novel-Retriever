@@ -20,17 +20,22 @@ This is a **copy-and-fill template**, not a live status report. Use for any subs
 | Item | Exact value / evidence |
 | --- | --- |
 | Branch | |
+| Local working-tree status (or state that no local clone was available) | |
+| Current main SHA and local HEAD SHA | |
+| Recent commits / changed paths inspected | |
 | PR and status | |
 | Base/head SHA | |
 | Merged to `main`? | |
 | Modified files and why | |
 | New or changed entry points / data contracts | |
+| State classification for affected features (active / live-unverified / partial / planned / retired / historical) and evidence | |
 | Tests executed, operating systems and observed conclusions | |
 | Secrets, authorisation or permissions required (names only, **never values**) | |
 | One-time activation file used? | |
 | Cleanup due after a one-time operation | |
 
 If CI is pending, say **pending**. If an Action dispatched but did not complete its child book jobs, say **dispatch successful, books unverified**.
+If no local clone was available, explicitly say that the working tree and uncommitted changes were not inspected. Do not report it as clean. Historical status snapshots and prior AI summaries are not current-state evidence.
 
 ### C. Download state: do not collapse stages
 
