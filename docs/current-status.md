@@ -90,7 +90,7 @@ The corrected exact title/credited-author pass across NovelFull, ReadNovelFull a
 
 ### Eight completed entries and artifact state
 
-Seven artifacts are currently present; *The Adventurous Gamer Ninja - Daichi Hekima*'s artifact expired on 21 November 2026.
+Seven artifacts are currently present and publicly accessible; rights are unverified. Do not link, download or create another public copy. The connected GitHub operations do not expose artifact revocation. *The Adventurous Gamer Ninja - Daichi Hekima*'s artifact expired on 21 November 2026.
 
 | Work | Chapters | Run | Artifact | Current API expiry |
 |---|---:|---:|---:|---|
