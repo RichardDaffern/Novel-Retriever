@@ -59,6 +59,22 @@ The audit considered **91 eligible campaign entries** after the global exclusion
 
 Only *Doom Lord* and *Girl, I’ll Teach You Cultivation* passed this index check. A pass is not rights approval or a completed novel.
 
+## Five-candidate author and edition review (22 November 2026)
+
+The ReadNovelFull book-page matches were compared with author/title metadata and country-of-origin chapter counts. None is rights-cleared.
+
+| Candidate | Author and original-edition evidence | Decision |
+|---|---|---|
+| Beast Piercing The Heavens | Original title 兽破苍穹; author Yao Ye (妖夜); original publisher Zongheng; 1,445 chapters, complete. Novel Updates records Licensed=No and Completely Translated=No. The ReadNovelFull/WuxiaClick mirror exposes only 224 chapters and the preflight found duplicate Chapter 11 links. | Reject current mirror: index is invalid and edition is far short of the original. No permission. |
+| Doom Lord | Original title 末日领主; author Wishing For A Pillow To Sleep With (想枕头的瞌睡); original publisher Qidian; 856 chapters, complete. Full Novels records Licensed=No and Fully Translated=No. The ReadNovelFull TOC passed only 155 entries. | A 155-entry TOC is not the complete 856-chapter edition. Hold; no permission. |
+| Godly Student | Original title 神级插班生; author Such Ink-like Blood (如墨似血); original publisher 17k; 2,783 chapters, ongoing. AsianReads records Licensed=No. The ReadNovelFull preflight failed on an invalid chapter URL. | Do not retry unchanged; invalid index and no permission. |
+| Girl, I'll Teach You Cultivation | Original title 妹子，我教你修仙; author Watchdog (看门狗); original publisher Heiyan; 812 chapters, complete. Novel Updates has Licensed=N/A. The ReadNovelFull/WuxiaWorldEU 283-entry TOC passed structurally but is only a partial edition against the 812-chapter original. | Do not treat the 283-entry pass as a complete novel or as permission. Hold. |
+| The Military Female Soldier With Unwavering Stubbornness | Original title 万里红星不辜负; original author 直上青云. FanMTL lists 5,707 chapters; the WebNovel uploader Mistyfox is not the original-author identity. ReadNovelFull failed with a large missing-number range. | Author identity resolved, index incomplete and no permission. Do not retry unchanged. |
+
+Evidence: [Novel Updates: Beast Piercing](https://www.novelupdates.com/series/beast-piercing-the-heavens/1000/), [Full Novels: Doom Lord](https://fullnovels.com/doom-lord/), [AsianReads: Godly Student](https://asianreads.com/novel/gs/), [Novel Updates: Girl, I'll Teach You Cultivation](https://www.novelupdates.com/series/girl-ill-teach-you-cultivation/), [FanMTL: The Military Female Soldier](https://www.fanmtl.com/novel/the-military-female-soldier-with-unwavering-stubbornness.html).
+
+**Outcome:** 2 structural TOC passes do not represent complete editions; 3 TOC failures remain blocked; 0 lawful archiving permissions; 0 download runs. Do not add any of these five to a download manifest.
+
 ## The 65 unresolved titles
 
 The following exact campaign titles had no exact match at the tested URL patterns. They remain in the original campaign files and must be rechecked against the current completed registry, aliases and source evidence before further work.
