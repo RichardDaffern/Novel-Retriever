@@ -16,12 +16,13 @@ Novel Retriever is the **acquisition and packaging component**, not the web read
 | Resource | Read for |
 | --- | --- |
 | [Agent technical handbook](AGENTS.md) | Architecture, files, contracts, security and code-review rules |
+| [Project history and decisions](docs/project-history-and-decisions.md) | Original requirements, design evolution, failure lessons and roadmap |
 | [Operations and recovery runbook](docs/operations-runbook.md) | Checking live runs, larger download batches, selective recovery, safe export and HF handover |
 | [Current status (dated snapshot)](docs/current-status.md) | Yup/Idk and fanfiction backlog, active run IDs, known failures, registry and cover recovery |
 | [Agent session handover template](docs/agent-handover-template.md) | Reproducible evidence and exact next-step checklist |
 | [Changelog](CHANGELOG.md) | Operator-relevant modifications and confirmed milestones |
 
-**Current campaign model:** The legacy Yup pilot used two-title requests. The newer source-verified bulk campaign can select **up to 40** eligible Yup-first titles in **10-title batches**, respecting a **two-active-bulk-workflow limit**. This is a one-time, separately reviewed workflow, **not** a general unlimited download button. Check its actual run before claiming any novel is completed. Never queue excluded/red titles, bypass site restrictions, or force-retry an incomplete book with a known chapter-index issue. See the runbook for exact commands and constraints.
+**Current campaign model (checked 21 November 2026):** the 20 November 40-title Yup/Idk large-wave activation is historical and must not be re-run. The 21 November read-only three-source audit found **26 public book listings from 91 eligible titles** (18 Yup, 8 Idk) and left **65 unresolved**. A follow-up five-title chapter-index check passed only *Doom Lord* (155 chapters) and *Girl, I'll Teach You Cultivation* (283); three indexes failed. These checks did not fetch chapter text or establish rights to archive. The user's current research priority is **Harry Potter and Naruto fanfiction first**, then the 65 unresolved Yup/Idk titles. Review [Current Status](docs/current-status.md), [Project History and Decisions](docs/project-history-and-decisions.md), and [Operations Runbook](docs/operations-runbook.md) before launching any download. Submit only exact, permitted, chapter-verified source URLs through the existing **Library - Bulk Download** workflow with `force=false`; never rerun a consumed one-shot marker, include the 90 global red/Dropped exclusions, or force-retry deterministic index failures.
 
 ## Curated bulk downloads (preferred workflow)
 
@@ -109,5 +110,6 @@ not in repository files or command-line arguments.
 - [Download guide, chapter batching and troubleshooting](docs/download-guide.md)
 - [Source research and unsupported sites](docs/research/source-feasibility-2026-11-15.md)
 - [Technical handbook for contributors and AI agents](AGENTS.md)
+- [Project history, architectural decisions and roadmap](docs/project-history-and-decisions.md)
 
 Only archive material you have permission to store **and share through GitHub Actions artefacts**. The toolkit does not bypass website access restrictions. Never commit novel text, EPUBs or secrets.
