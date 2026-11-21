@@ -1,21 +1,25 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 01:56 IST.
-**This is a dated snapshot, not a live dashboard.** It was checked against `main` at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`. Re-check the live repository, Actions, PRs, registry and artefact expiry before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 03:27 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` base is `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; the accompanying documentation branch contains the updates described below. Re-check live Actions, PRs and artefacts before acting. Re-check the live repository, Actions, PRs, registry and artefact expiry before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
 | Item | Verified state | Evidence |
 |---|---|---|
-| Canonical repository / branch | `RichardDaffern/Novel-Retriever`, `main` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
-| Snapshot main SHA | `46d0786e6f9250621efafc96c865f8ffba374e31` | [Commit](https://github.com/RichardDaffern/Novel-Retriever/commit/46d0786e6f9250621efafc96c865f8ffba374e31) |
-| Completed registry records | **343** rows with `range: all` and `status: complete`; not a count of currently downloadable artefacts or private-HF books | `downloaded_novels.json`, checked after PR #458 |
-| Latest main CI | **Success**, all four jobs: security audit, tests, Windows smoke and ZIP archive smoke | [Run #44926984222](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984222) |
-| Named acquisition runs | Source audit #44924359606, TOC preflight #44926984233 and single-title #44922285166 are complete; no new bulk run was dispatched in this update | Live jobs/artifacts checked 22 November; the full Actions queue was not re-enumerated |
-| Open PRs | #265 and #275, both metadata-only registry updates | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275) |
-| Private Hugging Face inventory | **70 user-confirmed imports**; not independently verified in this Retriever check and not included in the 343 registry rows | Separate Storage Controller source of truth |
+| Canonical repository / checked main base | `RichardDaffern/Novel-Retriever`, `main` at `72aa1ae839501cd4ea1552deddaa4d6e689bf044` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
+| Completed registry | **343** complete records in `downloaded_novels.json`; this is not a count of currently available artifacts or private-HF imports | Current registry, reconciled 22 November |
+| User-confirmed private-HF imports | **70**, user-confirmed but not independently queried in this Retriever run | Separate Storage Controller source of truth |
+| Global exclusions | **90** red/Dropped titles; remain excluded from Yup and IDK campaigns | `campaigns/overnight/excluded-90.json` |
+| CI baseline | The 21-entry expansion test fix `df57557958e1ba56d4082f25f20d06b697ab1996` is covered by [run #44926984222](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984222), all four jobs green | GitHub Actions |
+| Read-only source audit | [Run #44924359606](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44924359606), artifact `14714644436`; no chapter text | Source-audit report |
+| Read-only five-book preflight | [Run #44926984233](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984233), artifact `14715652405`; no chapter text | Five-book TOC report |
+| Latest single-title completion | *Seoul Station’s Necromancer*, 209 chapters, [run #44922285166](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44922285166), artifact `14714778249` | All chapter batches and final EPUB/TXT validation passed |
+| PR #463 | Merged at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; CI [run #44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) green | Arcane Thief offset regression test and Wind Calamity fail-closed mapping |
+| Open PRs | #265 and #275 remain metadata-only; #275 is held for Konoha Medical rights/public-artifact handling | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275) |
+| Active workflows | **0** queued/in-progress at 03:27 IST; no new bulk run dispatched | Live Actions run list |
 
-The newest registered completion is *Seoul Station’s Necromancer*: 209 chapters, run [#44922285166](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44922285166), artifact ID `14714778249`. All two chapter batches, final EPUB/TXT assembly and validation steps passed. The live artifact API reports expiry `2027-02-19T16:01:42Z`, while the registry row says `2026-11-28T16:22:43Z`; the registry expiry is stale/inconsistent and must not be treated as authoritative. *Archean Eon Art* remains recorded complete at 766 chapters from run #44791453169; verify its live artifact state before reuse.
+The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`; the registry value was stale and has been corrected in the accompanying branch. The seven still-present fanfiction artifacts also had stale registry expiry values; those are corrected to the live API dates in the same branch.
 
 ## 2. Campaign inputs and exclusions
 
@@ -28,57 +32,89 @@ The newest registered completion is *Seoul Station’s Necromancer*: 209 chapter
 
 The old 173-title Yup gap and older 62-Yup/36-IDK pending estimates are historical baselines, not current missing-from-library counts. Reconcile canonical source URL, author/edition aliases, the completed registry and the private Storage Controller inventory before quoting a live gap. Never bypass the 90 global exclusions.
 
-## 3. 21 November Yup/IDK source audit
+## 3. 21 November Yup/IDK source audit and preflight
 
-The read-only [source audit #44924359606](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44924359606) completed successfully.
+The source audit [#44924359606](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44924359606) used 336 public book-page requests across 91 eligible rows:
 
-| Result | Yup | IDK | Total |
-|---|---:|---:|---:|
-| Eligible after preflight | 54 | 37 | 91 |
-| Exact public book listings found | 18 | 8 | **26** |
-| No exact listing at tested URL patterns | 36 | 29 | **65** |
-
-It made 336 public book-page requests across NovelFull, ReadNovelFull (standard and `-v1` patterns) and FreeWebNovel; host split among the 26 listings was ReadNovelFull 16, FreeWebNovel 8 and NovelFull 2. Report artifact ID `14714644436` expires `2026-12-21T16:36:47Z`. The result is preserved in [source-audit-2026-11-21.md](../campaigns/overnight/source-audit-report-20261121.md).
-
-**Interpretation:** the 26 are public listing matches, not a download queue. The audit did not fetch chapter prose, establish exact edition/author for every work, or verify permission to archive. The 65 are unresolved by this bounded search, not proven unavailable online. The 26 include previous integrity failures; do not retry unchanged URLs.
+- **26 exact public listings:** 18 Yup and 8 IDK.
+- **65 unresolved:** 36 Yup and 29 IDK.
+- The audit was read-only: it did not fetch chapter prose, create EPUB/ZIP files or establish rights.
+- None of the 26 listing matches is already in the 343-record completed registry. The 90 red/Dropped exclusions remain separate.
 
 ### Five-book TOC preflight
 
-[Run #44926984233](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984233) completed successfully as a read-only check. It fetched book metadata and chapter indexes only; `full_chapter_downloads=0` and `rights_verified=false`.
+[Run #44926984233](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984233) was also read-only:
 
-| Title | Result |
-|---|---|
-| *Doom Lord* | **Index passed** Exact title, 155 chapters |
-| *Girl, I’ll Teach You Cultivation* | <badge color="success">Index passed</badge> Exact title, 283 chapters |
-| *Beast Piercing The Heavens* | **Failed** Duplicate Chapter 11 links |
-| *Godly Student* | <badge color="danger">Failed</badge> Invalid ReadNovelFull chapter URL |
-| *The Military Female Soldier With Unwavering Stubbornness* | <badge color="danger">Failed</badge> 2,104 missing numbered chapters |
+| Candidate | TOC result | Rights |
+|---|---|---|
+| Doom Lord | Passed, 155 chapters | `rights_verified=false` |
+| Girl, I'll Teach You Cultivation | Passed, 283 chapters | `rights_verified=false` |
+| Beast Piercing The Heavens | Failed: duplicate Chapter 11 links | `rights_verified=false` |
+| Godly Student | Failed: invalid chapter URL | `rights_verified=false` |
+| The Military Female Soldier With Unwavering Stubbornness | Failed: large missing-number range | `rights_verified=false` |
 
-Only two of the five passed index validation. Neither pass is an authorisation or full-book download. No bulk download was launched by either audit.
+The 26 public matches are grouped as 12 older blocked titles from #371, nine titles with 20-Nov source/TOC failures, and five fresh candidates. They are not a download queue.
 
-## 4. Fanfiction workstream: highest research priority
+### Exact #452 failure evidence
 
-The original 43-title catalogue remains `campaigns/fanfiction/webnovel-favourites-43.json`; the 11 screenshot-derived title/author records are preserved and were not requested again.
+- *Past Life Returner*: FreeWebNovel stopped with `Expected Chapter 501, but the page identifies Chapter 500`.
+- *This MC Is Kickass*: FreeWebNovel stopped with `Expected Chapter 101, but the page identifies Chapter 102`.
+- *Martial Arts System*, *Path to Heaven* and *Weapon Master*: ReadNovelFull preparation exited during URL validation with no useful exception surfaced in the job log. Do not retry the same URLs unchanged.
+- *The Alchemist God* and *The Mightiest Leveling System*: ReadNovelFull stopped with `Invalid ReadNovelFull chapter URL`.
+- The #44769541580 child dispatch submitted four URLs, but only the *Past Life Returner* and *This MC Is Kickass* matrix jobs ran. *Tomb Raider King* and *World Domination System* have no chapter logs from that run; they were not attempted by that child. The current bulk workflow uses `fail-fast: false` to prevent one matrix failure cancelling later titles.
+- The targeted *The Alchemist God* retry #44804318431 ran on PR #453's merged commit and still failed during indexing with `Invalid ReadNovelFull chapter URL`. PR #453 added strict genuine-prologue support but did not resolve this different URL shape. Identify the actual offending TOC URL and add a regression test before retry.
 
-- **8** fanfiction works remain complete in the canonical registry.
-- **3** other source-matched works remain blocked/recovery items:
-  - *Naruto: The Wind Calamity*: exact FreeWebNovel author/title match, 951 chapters, but non-linear chapter URL mapping; PR #463 now hard-stops instead of guessing.
-  - *Konoha’s Medical Ninja: One Punch to Beat Up Madara*: 444 chapters assembled and validated in run #44379388243, but metadata-only PR #275 remains open/non-mergeable. Its public artifact is a rights blocker; the WebNovel page says the credited editor is not the original writer.
-  - *HP: The Arcane Thief*: 254 chapters, consistent +1 URL offset; PR #463 fixed the adapter and passed CI. No targeted retry has been run.
-- **32** titles were researched in round 2. Five exact title+credited-author FreeWebNovel listings were located, but none passed full edition/index/rights verification. One author spelling mismatch was rejected; 26 titles had no exact supported listing in this search pass. See [round 2 evidence](../campaigns/fanfiction/source-verification-round-2-20261122.md).
-- A similar-title FreeWebNovel page for *This Ninja is Obviously …* has a different author and is a false positive. Do not substitute it.
-- No fanfiction source has documented permission to archive or publish its full text. Public listing, English label, translator credit or Patreon page is not permission. Do not publish unlicensed novel text in public Actions artifacts.
+The 12 older #371 matches remain deterministic blocked cases. Do not weaken source identity or chapter-index checks, force a retry, or treat a public listing as permission.
 
-**Order:** complete the fanfiction source/identity and blocked-source research before searching the 65 unresolved Yup/IDK titles. Keep the 8 complete registry entries, 3 blocked items, 32 research items and 70 user-confirmed private-HF imports as separate counts.
-## 5. Known failures and registration follow-up
+## 4. Fanfiction workstream: first-pass source research complete
 
-- [Issue #456](https://github.com/RichardDaffern/Novel-Retriever/issues/456) is the current combined acquisition tracker for Yup, IDK and fanfiction.
-- [Issue #452](https://github.com/RichardDaffern/Novel-Retriever/issues/452) records six ReadNovelFull preparation/index failures: *Apotheosis*, *Martial Arts System*, *Path to Heaven*, *The Alchemist God*, *The Mightiest Leveling System* and *Weapon Master*. It also records an *I Shall Seal the Heavens* empty Chapter 690 failure. The latter was subsequently addressed by [PR #454](https://github.com/RichardDaffern/Novel-Retriever/pull/454) and retry run [#44805071470](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44805071470); do not count it as still blocked without checking the current registry and artefact.
-- [Issue #448](https://github.com/RichardDaffern/Novel-Retriever/issues/448) separately tracks the *Apotheosis* ReadNovelFull archive gap.
-- The older 14-title `blocked-full-retries-20261120.json` is a historical safety list. Reconcile every entry against later fixes, PRs, child runs and final artefacts before treating it as still blocked or retrying it.
-- [PR #463](https://github.com/RichardDaffern/Novel-Retriever/pull/463) merged as `72aa1ae`; CI run [#44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) passed Windows smoke, security audit, tests and ZIP archive smoke. It fixes HP: The Arcane Thief's +1 URL offset and rejects Naruto: The Wind Calamity's non-linear mapping.
-- Test-fix commit [`df575579`](https://github.com/RichardDaffern/Novel-Retriever/commit/df57557958e1ba56d4082f25f20d06b697ab1996) raised the explicit Yup allowlist test from 20 to 21; main CI [#44926984222](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984222) passed all four jobs.
-- Open [PR #265](https://github.com/RichardDaffern/Novel-Retriever/pull/265) and [PR #275](https://github.com/RichardDaffern/Novel-Retriever/pull/275) are metadata-only and non-mergeable. PR #275's 444-chapter Konoha Medical artifact is already public; do not merge or re-download until rights and public artifact handling are resolved. Its API expiry and PR-recorded expiry disagree.
+The immutable catalogue has **43 titles**: 24 Naruto and 19 Harry Potter. It remains separate from Yup/IDK and from the user's **70 separately confirmed private-HF imports**.
+
+| State | Count | Evidence |
+|---|---:|---|
+| Completed in registry | 8 | `downloaded_novels.json` |
+| Source-matched but blocked/incomplete | 3 | Wind Calamity, Konoha's Medical Ninja, HP: The Arcane Thief |
+| Requiring source research | 32 | `webnovel-favourites-43.json` |
+
+The corrected exact title/credited-author pass across NovelFull, ReadNovelFull and FreeWebNovel found **5 exact supported-host listings**, **2 near/variant matches**, and **25 with no exact supported-host listing**. None passed the complete edition, full-index and rights gate. No new fanfiction download run was dispatched.
+
+- The five exact listings are *Naruto: Chronicles of a Fire Ninja*, *Reborn into Naruto World with Tenseigan*, *Naruto: Starting With Creating A Genius Persona*, *Harry Potter: The Healer* and *There Will Be No Third Dark Lord At Hogwarts!!!*. See [round 3](../campaigns/fanfiction/source-verification-round-3-20261122.md).
+- The two near matches are *Talent System In The Naruto Universe* (Rashta vs catalogue Rashita) and *Naruto: This Ninja is Obviously …* (FreeWebNovel author Wu Mian Qi Liang vs selected WebNovel author nyawdao2). Do not substitute either.
+- The [identity ledger](../campaigns/fanfiction/source-identity-resolution-20261122.md) resolves full title/credited-author references for all 32 without changing the original JSON strings or requesting screenshots.
+
+### Three blocked fanfiction sources
+
+- **Naruto: The Wind Calamity:** the FreeWebNovel chapter labels/URL numbering are non-linear. PR #463 makes the adapter fail closed instead of guessing. No retry without a complete one-to-one map and rights clearance.
+- **Konoha's Medical Ninja: One Punch to beat up Madara:** 444-chapter archive technically assembled and validated, but it is not registered; metadata-only PR #275 remains open. Its GitHub Actions artifact is public and rights are unresolved. Do not merge, re-download, link or create another public archive without permission.
+- **HP: The Arcane Thief:** 254-chapter source index has a consistent +1 URL offset. PR #463 merged the narrow fix and regression test. No targeted retry until rights are verified.
+
+### Eight completed entries and artifact state
+
+Seven artifacts are currently present; *The Adventurous Gamer Ninja - Daichi Hekima*'s artifact expired on 21 November 2026.
+
+| Work | Chapters | Run | Artifact | Current API expiry |
+|---|---:|---:|---:|---|
+| The Adventurous Gamer Ninja - Daichi Hekima | 432 | #43589834773 | 14111234860 | Expired 2026-11-21T11:24:36Z |
+| A New Snake In The Shinobi World | 423 | #44378479201 | 14464695010 | 2027-02-16T19:14:59Z |
+| Naruto: I am Uchiha Shirou | 448 | #44378935249 | 14463647756 | 2027-02-16T19:17:32Z |
+| Naruto: Kurotsuchi Mayuri | 524 | #44378935249 | 14463808054 | 2027-02-16T19:17:32Z |
+| HP: A Magical Journey | 439 | #44381959077 | 14465975343 | 2027-02-16T19:35:15Z |
+| Hogwarts: I'm Truly a Model Wizard | 1,004 | #44381959077 | 14464369346 | 2027-02-16T19:35:15Z |
+| Hogwarts' John Wick | 703 | #44389807742 | 14469106672 | 2027-02-16T20:19:28Z |
+| The Fool in Hogwarts | 333 | #44389807742 | 14469501148 | 2027-02-16T20:19:28Z |
+
+Run #44378479201 failed overall because *The Wind Calamity* batches failed. *A New Snake*'s own chapter batches 1–423 succeeded and its archive artifact is present; do not mark that novel failed solely from the shared run conclusion. The expired *Adventurous Gamer Ninja* artifact cannot be re-inspected. No archive contents were downloaded or redistributed during this check.
+
+## 5. Known failures, aliases and registration follow-up
+
+- **Yup/IDK registry:** 343 completed records. The 26 public listing matches are not in this registry. The user's 70 private-HF imports are a separate, user-confirmed count and must not be added to the registry total.
+- **Aliases already in the registry:** Invincible Conqueror = Invincible; Xian Ni = Renegade Immortal; Records of the Human Emperor = The Human Emperor; School Prince is a Girl = National School Prince Is A Girl; A Thought Through Eternity = A Will Eternal. The first four appear among the 65 unresolved audit rows and should be treated as aliases, not new downloads.
+- **Alternative-source sweep of the 65:** after the four registry aliases, 61 distinct titles were searched (33 Yup and 28 IDK). It found **13 exact supported-host listing candidates**, **3 near/variant matches**, and **45 with no exact supported listing**. No candidate has documented lawful archiving permission; no download run was dispatched. See [alternative-source research](../campaigns/overnight/alternative-source-research-20261122.md).
+- **Thirteen candidate listings are not thirteen ready downloads.** Several have incomplete/mismatched indexes: *Eternal Martial Sovereign* (140 linked pages but numbering to 191), *Hidden Marriage* (six gaps), *Lonely Loser* (60 pages vs 58 original chapters), *My Plain-looking Fiance* (46 vs 56), *The Gloomy Me* (75 vs 111), plus the known *Apotheosis* failure. No unchanged retries.
+- **ReadNovelFull:** PR #453 added genuine prologue handling, but *The Alchemist God* still failed with an invalid chapter URL after that merge. Do not loosen URL validation or retry until the exact invalid TOC URL is captured and tested.
+- **Konoha Medical:** PR #275 is metadata-only and held; the 444-chapter artifact is public and rights are unresolved. The repository connector used here cannot revoke that existing artifact. Do not expose its link or create another public copy.
+- **Artifact metadata:** the seven present fanfiction artifacts and Seoul Station's Necromancer now have expiry fields corrected to the live Actions API dates in the accompanying branch. The one expired fanfiction artifact remains historical.
+- **Throughput:** keep no more than two bulk workflows active and no more than ten titles per batch. No bulk workflows were active at the 03:27 IST check. Never treat a source-audit or TOC-preflight run as a chapter download.
 
 ## 6. Historical downstream handover
 
@@ -92,11 +128,13 @@ Do not reactivate one-time repair workflows or assume a new Retriever registry r
 
 ## 7. Next actions, in order
 
-1. Finish the **32-title fanfiction source research** and the three blocked-source recoveries. Only proceed from exact title+author+edition identity, a complete chapter index and documented archiving rights.
-2. After fanfiction research is complete, investigate the **65 unresolved Yup/IDK titles** using full-title, author and documented alias searches; do not treat four failed URL patterns as global unavailability.
-3. Reconcile the 26 Yup/IDK public listings against completed/blocked records and the 90 exclusions; dispatch only rights-cleared, complete-index titles in batches of at most 10, with no more than two bulk runs active.
-4. Reconcile issues #452/#448 and metadata PRs #265/#275; retry only after root-cause repair and exact evidence.
-5. Keep source-verified, rights-cleared, TOC-validated, dispatched, assembled, registered, artifact-available, exported and privately imported counts separate.
+1. Continue the 61-title alternative-source review from the [dated research report](../campaigns/overnight/alternative-source-research-20261122.md), starting with the 13 exact supported-host candidates. Validate author, edition, English language, complete ordered TOC and explicit lawful archiving permission before any campaign entry.
+2. Investigate the 12 older #371 blocked titles and nine #452 names with exact logs. Repair only proven adapter/root causes with regression tests; do not retry deterministic failures unchanged.
+3. Continue the 25 unresolved fanfiction supported-source searches and resolve the two near matches only with exact author/edition evidence. Keep the three blocked fanfiction works on hold until rights and index integrity are clear.
+4. Dispatch only rights-cleared titles through the existing resumable bulk workflow: at most ten titles per batch, no more than two active workflows, no complete-title duplicates, no force unless separately justified.
+5. Keep source-verified, rights-cleared, TOC-validated, dispatched, chapter-complete, assembled, registered, artifact-available, exported and privately imported counts separate.
+
+
 
 ## 8. Refresh procedure
 
