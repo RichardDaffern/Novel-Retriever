@@ -6,13 +6,16 @@
 
 **Current user priority:** work on these Harry Potter/Naruto fanfiction sources and recoveries **before** the 65 unresolved Yup/IDK titles from the 21 November source audit. Keep this catalogue, counts and download batches separate from the Yup/IDK campaigns. See [current status](../../docs/current-status.md), [source-audit report](../overnight/source-audit-report-20261121.md) and [issue #456](https://github.com/RichardDaffern/Novel-Retriever/issues/456).
 
-## Source availability
+## Source availability and round 2 research
 
-- **10** book-title matches found on the supported FreeWebNovel website, with the matched title, source URL and any translation/edition caveat recorded in [webnovel-favourites-43.json](webnovel-favourites-43.json).
-- **1** is already in Novel Retriever's completed registry: *The Adventurous Gamer Ninja - Daichi Hekima*, so it is **not** re-downloaded.
-- **32** still lack a verified listing on currently supported sources; no invented URLs, unsupported sites or WebNovel scraping.
-- Some titles were visibly truncated in the screenshots; those strings are recorded exactly as observed with an ellipsis. They must not be treated as complete work identities until independently verified.
-- **Hogwarts: I'm Truly a Model Wizard** is listed by a different translator on FreeWebNovel (BlurryDream; same original work), versus BlurryPinkSnake on WebNovel. Treat source text as an edition and do not overwrite a different text silently.
+- The original source pass identified **10** FreeWebNovel listings; **8** works are complete in the registry (including *The Adventurous Gamer Ninja - Daichi Hekima*), while **3** other source-matched works remain blocked or unresolved in registration: *Naruto: The Wind Calamity*, *Konoha's Medical Ninja: One Punch to beat up Madara* and *HP: The Arcane Thief*.
+- The 22 November exact title+author search of the remaining **32** found **5 additional public FreeWebNovel listings**: *Naruto: Chronicles of a Fire Ninja*, *Reborn into Naruto World with Tenseigan*, *Naruto: Starting With Creating A Genius Persona*, *Harry Potter: The Healer* and *There Will Be No Third Dark Lord At Hogwarts!!!*. None passed the full edition, complete-index and rights gate.
+- One near-match was rejected because *Talent System In The Naruto Universe* is credited to **Rashta** on the surfaced source, while the catalogue says **Rashita**. A similar-title *This Ninja is Obviously …* listing is credited to a different author and is not the selected work.
+- **26** of the 32 had no exact supported NovelFull/ReadNovelFull/FreeWebNovel title+author listing in this pass. This is not a claim that the works are unavailable worldwide.
+- No new fanfiction download was dispatched; no title has documented permission to archive or publish its full text. Public listing, translator credit, an English label or Patreon page is not permission.
+- Full title/author evidence, TOC/edition caveats and the three blocked-source findings are recorded in [source verification round 2](source-verification-round-2-20261122.md).
+- Some titles were visibly truncated in the original screenshots; the exact captured strings remain unchanged. Never guess missing words or silently substitute another author/translator edition.
+- *Hogwarts: I'm Truly a Model Wizard* remains a distinct translation/edition on FreeWebNovel (BlurryDream) versus the selected WebNovel credit (BlurryPinkSnake); do not overwrite a different text silently.
 
 ## Overnight downloads
 
