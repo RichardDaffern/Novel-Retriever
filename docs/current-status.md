@@ -1,6 +1,6 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 04:07 IST.
+**Snapshot:** 22 November 2026, 05:23 IST.
 **This is a dated snapshot, not a live dashboard.** The checked `main` base is `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; the accompanying documentation branch contains the updates described below. Re-check live Actions, PRs and artefacts before acting. Re-check the live repository, Actions, PRs, registry and artefact expiry before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
@@ -85,6 +85,7 @@ The corrected exact title/credited-author pass across NovelFull, ReadNovelFull a
 - The five exact listings are *Naruto: Chronicles of a Fire Ninja*, *Reborn into Naruto World with Tenseigan*, *Naruto: Starting With Creating A Genius Persona*, *Harry Potter: The Healer* and *There Will Be No Third Dark Lord At Hogwarts!!!*. See [round 3](../campaigns/fanfiction/source-verification-round-3-20261122.md).
 - The two near matches are *Talent System In The Naruto Universe* (Rashta vs catalogue Rashita) and *Naruto: This Ninja is Obviously …* (FreeWebNovel author Wu Mian Qi Liang vs selected WebNovel author nyawdao2). Do not substitute either.
 - The [identity ledger](../campaigns/fanfiction/source-identity-resolution-20261122.md) resolves full title/credited-author references for all 32 without changing the original JSON strings or requesting screenshots.
+- Round 5 added alternate-host metadata for 21 title records, including raw-title/translator distinctions, author pen-name links and cross-site chapter-count differences. It found **0 new exact supported-host listings**, **0 explicit archiving permissions** and dispatched no download. See [round 5](../campaigns/fanfiction/source-verification-round-5-20261122.md).
 
 ### Three blocked fanfiction sources
 
@@ -118,7 +119,7 @@ Run #44378479201 failed overall because *The Wind Calamity* batches failed. *A N
 - **ReadNovelFull:** PR #453 added genuine prologue handling, but *The Alchemist God* still failed with an invalid chapter URL after that merge. Do not loosen URL validation or retry until the exact invalid TOC URL is captured and tested.
 - **Konoha Medical:** PR #275 is metadata-only and held; the 444-chapter artifact is public and rights are unresolved. The repository connector used here cannot revoke that existing artifact. Do not expose its link or create another public copy.
 - **Artifact metadata:** the seven present fanfiction artifacts and Seoul Station's Necromancer now have expiry fields corrected to the live Actions API dates in the accompanying branch. The one expired fanfiction artifact remains historical.
-- **Throughput:** keep no more than two bulk workflows active and no more than ten titles per batch. No queued or in-progress workflows were active at the 04:07 IST check. Never treat a source-audit or TOC-preflight run as a chapter download.
+- **Throughput:** keep no more than two bulk workflows active and no more than ten titles per batch. No queued or in-progress workflows were active at the 05:23 IST check. Never treat a source-audit or TOC-preflight run as a chapter download.
 
 ## 6. Historical downstream handover
 
@@ -134,7 +135,7 @@ Do not reactivate one-time repair workflows or assume a new Retriever registry r
 
 The first 26-match source triage is complete. The five-book TOC preflight is complete and read-only: only *Doom Lord* (155) and *Girl, I'll Teach You Cultivation* (283) passed structural checks, but all five candidates still have rights_verified=false. Do not launch them without explicit lawful archiving permission.
 
-1. **Finish the fanfiction source research before doing more work on the 65 unmatched Yup/IDK titles.** The 43-title catalogue remains 24 Naruto + 19 Harry Potter: 8 registry-complete, 3 separately blocked/source-matched and 32 requiring source research. The first supported-host pass found 5 exact listings, 2 near/variant matches and 25 with no exact supported-host listing. Round 4 added author-facing identity and alternate-mirror evidence, but found no new exact supported-host listing and no archiving permission. Continue resolving exact title, credited author, underlying original author, edition, English language and complete index. Never request the screenshots again.
+1. **Finish the fanfiction source research before doing more work on the 65 unmatched Yup/IDK titles.** The 43-title catalogue remains 24 Naruto + 19 Harry Potter: 8 registry-complete, 3 separately blocked/source-matched and 32 requiring source research. The first supported-host pass found 5 exact listings, 2 near/variant matches and 25 with no exact supported-host listing. Round 4 added author-facing identity and alternate-mirror evidence, but found no new exact supported-host listing and no archiving permission. Round 5 added further title/author/edition metadata for 21 records, with no new exact supported-host listing or permission. Continue resolving exact title, credited author, underlying original author, edition, English language and complete index. Never request the screenshots again.
 2. **Resolve the three blocked fanfiction works without unchanged retries.** *Naruto: The Wind Calamity* has non-linear chapter mapping and now fails closed; *Konoha's Medical Ninja* has a technically complete 444-chapter archive but unresolved underlying-author rights and a public artifact; *HP: The Arcane Thief* has a 254-entry +1 URL offset fix in merged PR #463, but its index/edition and rights still need review. Do not re-download or create another public artifact.
 3. **Only after the fanfiction research is complete, continue the 65 unmatched Yup/IDK alternative-source investigation** (36 Yup, 29 IDK). Four completed-registry aliases leave 61 distinct titles. The first sweep found 12 exact supported-host listing candidates, 3 near/variant matches and 46 with no exact supported listing; none has documented archiving permission. Do not treat four 404 URL patterns as worldwide unavailability.
 4. **Then dispatch only fully cleared titles.** Require exact work/author/edition, English language, a complete ordered TOC and explicit lawful permission to archive, with a safe non-public output route. Fix #371/#452 adapter issues only with exact root-cause evidence and regression tests. Use the existing resumable bulk workflow, at most 10 titles per batch and at most two active runs, no complete-title duplicates and force=false.
