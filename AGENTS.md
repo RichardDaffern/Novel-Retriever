@@ -79,7 +79,8 @@ Before any external download or publication, re-check user authorisation, source
 2. [docs/operations-runbook.md](docs/operations-runbook.md): operational checks, GitHub Actions monitoring, safe retries, export and downstream import.
 3. [docs/current-status.md](docs/current-status.md): **timestamped** Yup/Idk, fanfiction, backlog, child-run, registry-PR and cover-repair state. It is a snapshot, **not** an auto-updating monitor; re-check the live repository and workflows.
 4. [docs/agent-handover-template.md](docs/agent-handover-template.md): mandatory evidence and next-step checklist for handing work to another agent.
-5. [CHANGELOG.md](CHANGELOG.md): dated operator-visible changes; not a substitute for Git history.
+5. [Project History and Decisions](docs/project-history-and-decisions.md): original requirements, design evolution, failure lessons and roadmap.
+6. [CHANGELOG.md](CHANGELOG.md): dated operator-visible changes; not a substitute for Git history.
 
 **Absolute operational distinctions:** A successful dispatcher is not a complete child download; a complete registry row is not a durable or imported book; a cover embedded in an EPUB is not necessarily a standalone private-library thumbnail. Do not collapse these stages or promise automatic work outside a running GitHub workflow.
 
@@ -101,6 +102,7 @@ The project exists because long novels are frequently delivered as thousands of 
 
 - Acquire authorised books from **NovelFull** using the established **FanFicFare** integration and its site adapter.
 - Acquire authorised, publicly readable **FreeWebNovel** chapter ranges through a separate, deliberately conservative downloader.
+- Acquire authorised ReadNovelFull books through its separate AJAX chapter-index parser and bounded chapter batches; live full-book success is verified for one book, while per-title index failures remain possible.
 - Split large books into independent, bounded batches; reuse only validated complete batches; assemble one verified EPUB and its chapter TXT collection.
 - Export directly imported EPUBs, package authorised local EPUBs, convert locally supplied selectable-text PDFs, extract optional covers and preserve sourced metadata.
 - Track completed GitHub Actions artefacts in a readable metadata-only registry.
@@ -124,7 +126,7 @@ The project exists because long novels are frequently delivered as thousands of 
 3. **Non-destructive by default.** Existing ZIPs or complete books must not be overwritten through ordinary retries.
 4. **Checkpoints are not completions.** Keep recoverable partial work separate from published completed artefacts.
 5. **Reproducible, offline-first CI.** Synthetic fixtures and deterministic installs must remain the required checks; any live metadata smoke is supplementary.
-6. **Site adapters remain isolated.** Changes to experimental sites must not regress NovelFull, FreeWebNovel, existing manifests, or Windows packaging.
+6. **Site adapters remain isolated.** Changes to site adapters must not regress NovelFull, FreeWebNovel, ReadNovelFull, existing manifests, or Windows packaging.
 7. **Respect operator boundaries.** Destructive data operations, external downloads, API credentials and publication are separate actions requiring the correct permissions and safeguards.
 8. **Never invent book metadata.** Missing synopsis, cover, genre or publication status should be absent or explicitly reported, not guessed.
 
@@ -189,6 +191,10 @@ This section is a navigation map, not an exhaustive list of every test.
 | `tools/download_registry.py` | Canonical URLs, ranges, availability, registry records and Markdown rendering | High: previously downloaded book selection |
 | `tools/publish_registry.py` | Retryable optimistic registry PR publishing on the latest `main` | High: concurrent download completion |
 | `tools/mixed_source_bulk.py` | Single consolidated bulk workflow planning by names or URLs, grouped by site | High: avoid incorrect title-to-URL guessing |
+| `tools/overnight_queue.py` | Read-only public book-page discovery and legacy paced Yup/IDK dispatcher | Keep discovery and dispatch separate; source matches do not prove rights |
+| `tools/dispatch_curated_bulk.py` | Validates and submits operator-reviewed literal source URLs | No web search or guessed slugs; enforce exclusions and active-run cap |
+| `tools/fanfiction_campaign.py` | One-shot queue for the 43 reviewed Naruto/Harry Potter works | Exact title/author identity; no WebNovel chapter scraping |
+| `tools/five_book_toc_preflight.py` | Read-only chapter-index check for a reviewed five-book manifest | Does not fetch chapter prose or verify archiving rights |
 | `tools/sequential_bulk_download.py` | General local/multiple-URL planning and execution utilities | Maintain tests even if a newer workflow path is preferred |
 | `tools/epub_source_metadata.py` | Recover source EPUB description, genres and publication status from OPF | Preserve data instead of deriving it from novel prose |
 | `tools/novel_covers.py` | Image detection, public URL restrictions, image limits, EPUB cover extraction | Covers are optional and untrusted image input |
@@ -204,6 +210,8 @@ This section is a navigation map, not an exhaustive list of every test.
 | `PDF-to-Novel/PDFs/` | Local PDF inputs; gitignored | Do not commit books |
 | `PDF-to-Novel/Novels/` | Local converted ZIPs and reports; gitignored | Do not commit books |
 | `docs/pdf-to-novel.md` | PDF structure, manual review, limitations | Read before changing PDF heuristics |
+| `docs/project-history-and-decisions.md` | Original requirements, architectural decisions, failure lessons and roadmap | Historical rationale; verify current implementation separately |
+| `docs/research/source-audit-2026-11-21.md` | Durable 26-match/65-unresolved Yup/IDK source audit and five-title TOC preflight | Discovery/index evidence only; not rights or download completion |
 | `docs/research/source-feasibility-2026-11-15.md` | Candidate-source permissions and blockers | Read before introducing new sites |
 | `docs/research/webnovel-bulk-import.md` | Offline saved-page import instructions | No live general WebNovel scraping |
 | `docs/research/source-test-evidence-archive.md` | Historical site-probe evidence | Never confuse a past HTTP 200 with present authorisation |
@@ -738,6 +746,7 @@ Different sites have different technical and permission restrictions. A parser e
 | --- | --- | --- |
 | NovelFull | Production FanFicFare-backed bounded downloader | Authorised HTTPS source, verified range assembly |
 | FreeWebNovel | Separate production public-page range downloader | Sequential requests, restrictions respected, missing chapters fail closed |
+| ReadNovelFull | Production AJAX-index downloader with bounded chapter batches | One complete live book verified; each title still needs exact, consecutive TOC validation |
 | WuxiaClick | **Bounded** public page source (20 chapters per run max) | Exact paginated TOC, rights gate, daily allowance awareness, no full-book harvest or quota evasion |
 | Royal Road | Offline feasibility and authorised local EPUB import | No enabled live GitHub bulk downloader here |
 | WTR-Lab | Offline feasibility and authorised local EPUB import | No automated website downloader enabled |
