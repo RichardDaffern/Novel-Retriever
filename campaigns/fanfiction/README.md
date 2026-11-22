@@ -1,6 +1,6 @@
 # Harry Potter and Naruto fanfictions, 19 November 2026
 
-**Checked 22 November 2026, 09:59 IST:** The 43-title catalogue is historical input and not an auto-refreshing completion tracker. Comparing the source-matched URLs with the current complete download registry identified **8 completed**, **3 source-matched but incomplete/not yet registered** and **32 needing compatible supported-source verification**. Among the 32, *Naruto: Chronicles of a Fire Ninja* has a possible supported listing but chapter identity remains unverified. The section named 'Tomorrow' below records the original plan, **not an active background task**. For current evidence, outstanding download blockers and source verification, use [the dated status](../../docs/current-status.md) and [operations runbook](../../docs/operations-runbook.md).
+**Checked 22 November 2026, 17:53 IST:** The 43-title catalogue is historical input and not an auto-refreshing completion tracker. The current registry and round-18 source review identify **8 completed**, **3 blocked** and **32 unresolved after the completed supported-source research pass**. Among the 32, *Naruto: Chronicles of a Fire Ninja* has a possible supported listing but chapter identity remains unverified. The section named 'Tomorrow' below records the original plan, **not an active background task**. For current evidence, outstanding download blockers and source verification, use [the dated status](../../docs/current-status.md) and [operations runbook](../../docs/operations-runbook.md).
 
 **Input:** 11 screenshots inside the user's WhatsApp ZIP, recording 43 visible WebNovel titles and authors: **24 Naruto**, **19 Harry Potter**. This public file contains book titles and author names only, not the private screenshots, user profile, personal ratings or reading progress.
 
@@ -8,7 +8,7 @@
 
 ## Current source research (22 November 2026)
 
-- The 43-title catalogue remains **8 registry-complete**, **3 source-matched but blocked/incomplete**, and **32 requiring source research**. Keep these counts separate from Yup/IDK and from the user's separately confirmed 70 private-HF imports.
+- The 43-title catalogue remains **8 registry-complete**, **3 source-matched but blocked/incomplete**, and **32 unresolved after the completed source-research pass**. Keep these counts separate from Yup/IDK and from the user's separately confirmed 70 private-HF imports.
 - The corrected 32-title supported-host pass found **5 exact title+credited-author listings**, **2 near/variant matches**, and **25 with no exact supported listing**. None passed the complete edition, full-index and lawful-rights gate. No new fanfiction run was dispatched.
 - The 5 exact listings are *Naruto: Chronicles of a Fire Ninja*, *Reborn into Naruto World with Tenseigan*, *Naruto: Starting With Creating A Genius Persona*, *Harry Potter: The Healer* and *There Will Be No Third Dark Lord At Hogwarts!!!*. All have chapter-count/edition caveats; see [source verification round 3](source-verification-round-3-20261122.md).
 - The two near matches are *Talent System In The Naruto Universe* (Rashta vs catalogue Rashita) and *Naruto: This Ninja is Obviously …* (FreeWebNovel credits Wu Mian Qi Liang, not the selected WebNovel credit nyawdao2). Do not silently substitute either.
@@ -54,13 +54,9 @@ These are **reviewed source listings**, not a guarantee of complete and authoris
 
 **Copyright and permission:** An accessible public page does not establish permission to make a personal archive or publish a GitHub Actions artefact. Run archiving only where you are authorised to do so; never bypass access controls or rate limits. Fanfiction translations/editions can have separate rights.
 
-## Tomorrow
+## Original follow-up plan (historical)
 
-1. Inspect the fanfiction dispatcher run for `fanfiction-dispatch-<run-id>` and identify queued/held titles.
-2. Inspect each new **Library - Bulk Download** run's successfully verified archive and any failed-source recovery manifest.
-3. Use existing recovery tools for transient issues; investigate wrong chapter mappings instead of forcing a download.
-4. Review the 32 unmatched titles with author and full-title checks before selecting other sources or importing user-saved pages.
-
+The broad fanfiction source-research stage is complete for the current search scope. Do not repeat all 32 searches without new evidence. Keep the three blocked works held until their exact TOC and rights requirements are satisfied. The next campaign tier, the 65 unmatched Yup/IDK rows, has been investigated separately; see [the IDK report](../overnight/idk-alternative-source-research-20261122.md) and [issue #456](https://github.com/RichardDaffern/Novel-Retriever/issues/456).
 
 ## Fanfiction source research round 17 (22 November 2026, 15:56 IST)
 
