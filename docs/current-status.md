@@ -363,7 +363,7 @@ Full findings and source links: [Yup/IDK alternative-source round 3](../campaign
 - *Addicted Pampering You* has 586 original chapters and no verified complete English edition; *The Kind Death God* has conflicting translation metadata and no verified complete English edition; *I'm in Hollywood* has 1,198 completed original chapters but the FreeWebNovel mirror exposes a stale 345-entry index ending visibly at Chapter 335.
 - **0 explicit permissions, 0 rights-cleared titles, 0 download runs.** No chapter prose or archive bytes fetched. The 52 distinct non-alias rows remain unresolved, not globally unavailable.
 - Full report: [alternative-source research round 4](../campaigns/overnight/alternative-source-research-round-4-20261122.md).
-- PR #481's updated head CI [#45034989175](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45034989175) and push CI [#45034984616](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45034984616) both passed 4/4. PR remains open and unmerged.
+- PR #481's first updated-head CI [#45034989175](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45034989175) and push CI [#45034984616](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45034984616) passed 4/4; the PR was subsequently extended, passed final CI [#45035608529](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45035608529) and [#45035604024](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45035604024) 4/4, and merged as `3b5ec2dc9e79a081dd3268c24db08b6500da7f10`.
 
 ## Post-merge rights-gate and artifact inventory (22 November 2026)
 
