@@ -21,7 +21,7 @@ The Seoul Station artifact is publicly available. The run, chapter batches, asse
 | Merged acquisition-research PRs | #464–#466 merged; #467 post-merge status and #468 round-9 research also merged. Post-merge main CI [#44982872309](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44982872309) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468) |
 | Bulk download workflows | **0** queued/in-progress at 09:59 IST; no new download run dispatched. Main CI #44982872309 passed all four jobs and is not a download workflow. | Live Actions run list |
 
-The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`; the registry value was stale and has been corrected in the accompanying branch. The seven still-present fanfiction artifacts also had stale registry expiry values; those are corrected to the live API dates in the same branch.
+The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`, matching the registry. The seven still-present fanfiction final-artifact expiry values also match the live API; *The Adventurous Gamer Ninja* artifact expired on 21 November 2026 and no longer appears in the run’s artifact list. No registry expiry change was needed in this branch.
 
 ## 2. Campaign inputs and exclusions
 
