@@ -9,7 +9,7 @@ from unittest.mock import patch
 from tools.download_registry import website_name, write_registry, read_registry
 from tools.mixed_source_bulk import (
     catalogue_entries, main, parse_names, read_curated,
-    selection_plan as _selection_plan,
+    retry_selection_plan, selection_plan as _selection_plan,
 )
 
 
@@ -252,6 +252,18 @@ class LibraryBulkTests(unittest.TestCase):
         )
         with self.assertRaisesRegex(ValueError, "limited to 10 new novel titles"):
             selection_plan(sample_registry(), CURATED, "", eleven_urls, "NovelFull")
+
+    def test_retry_run_is_limited_to_ten_missing_novels(self):
+        missing = [
+            {"url": f"https://novelfull.com/novel-{n}.html",
+             "site": "NovelFull", "chapter_range": "all", "force": False}
+            for n in range(11)
+        ]
+        manifest = {"version": 1, "run_id": 123, "missing_or_failed": missing}
+        with self.assertRaisesRegex(ValueError, "limited to 10 missing novels"):
+            retry_selection_plan(
+                sample_registry(), CURATED, manifest, confirm_rights=True
+            )
 
     def test_all_supported_sources_require_public_archive_rights(self):
         empty_registry = {"version": 1, "novels": []}
