@@ -44,7 +44,7 @@
 ### Konoha's Medical Ninja: One Punch to beat up Madara
 
 - The [WebNovel listing](https://www.webnovel.com/book/29703350508171905) says INeedRest is not the original writer.
-- Run #44379388243 assembled 444 verified TXT chapters and an EPUB, but registry publication failed because PR #275 could not merge after repeated base-branch conflicts.
+- Run #44379388243's nine chapter-batch jobs succeeded for 444 chapters and the workflow uploaded final novel artifact #14462633408. The assemble job then failed during registry publication: it opened PR #275 and six merge attempts failed after the base branch changed and the PR remained unmergeable. The artifact contents were not fetched or independently verified because rights remain unresolved.
 - Public archive artifact #14462633408 remains available and rights-unverified. PR #275 remains open/unmergeable. Do not re-download, register, link or create another public copy.
 
 ### HP: The Arcane Thief
