@@ -1273,3 +1273,6 @@ Round 6 rechecked six Yup-side candidates. It found no new exact supported-host 
 The blocked fanfiction recheck confirms: Konoha Medical's credited WebNovel editor says they are not the original writer; Arcane Thief's 254 numbered chapters plus auxiliary entry are visible only through a paginated TOC whose last page returned HTTP 403; Wind Calamity's author-note page returned HTTP 403 and no permission response is recorded. Do not bypass access controls or retry any of these works.
 
 Counts remain 343 completed registry, 70 separately user-confirmed private-HF imports and 90 exclusions. No new download runs; no active bulk workflows at 21:35 IST. Preserve Yup-before-IDK order, 10-title batch limit, two-workflow concurrency limit, and explicit rights plus complete-index gate. Do not publicly distribute unlicensed archives.
+
+
+Round-6 addendum: *I Told You I'm Not 〇〇!!* now has an exact non-supported WuxiaClick/WuxiaWorldEU listing under NaHCO3 (96 entries, latest labelled Chapter 97); Novel Updates records 99 Japanese web-novel chapters on hiatus and no English publisher. This is not a supported complete English edition or archive permission. See the round-6 report. No download.
