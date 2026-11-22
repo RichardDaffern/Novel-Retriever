@@ -49,3 +49,9 @@ The 65 audit rows (36 Yup, 29 IDK) were re-compared by title, author and edition
 New alternative listings include *Addicted Pampering You* (incomplete index), *Attack Of The Adorable Kid* (2,612-page-reported commercial WebNovel edition; rights not cleared), *Hidden Marriage Sweet Pampering* (major chapter-count mismatch), *Bringing The Nation's Husband Home* (official Apple Books edition), *Eternal Martial Sovereign* (licensed Gravity Tales translation; incomplete WuxiaClick index), *Mad God* and *The Kind Death God*. None has explicit archiving permission. No new download run was dispatched.
 
 The fanfiction-first stage remains complete for the current scope. Continue Yup/IDK source and rights verification only after that stage; keep the 90 exclusions and all completed registry aliases out of acquisition batches.
+
+## Alternative-source follow-up round 3 (22 November 2026)
+
+Two additional exact FreeWebNovel pages were identified for *I'm in Hollywood* (Just Do, 345 paginated entries, Qidian original) and *The Beautiful Time With You* (Ye Fei Ye, 1,129 completed chapters, commercial WebNovel translation). Eighteen other alternative metadata leads were recorded, including *Man Huang Feng Bao*, *Omni-Magician*, *My Daoist Life*, *The Nine Godheads*, *Shen Mu*, *Warrior's Promise*, *Skirt-Chasing Young Monarch*, *Top Quality Beauty Cultivation System* and *Savage Divinity*. Several have index mismatches, incomplete translations, unresolved author/edition identity or are different formats.
+
+See [round-3 report](alternative-source-research-round-3-20261122.md). None has explicit archiving permission. No download run was dispatched.

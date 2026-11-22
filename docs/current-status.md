@@ -1,7 +1,7 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 18:56 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `74a0981a426981b0d407001856103e0887cb3242`; PR #478 is merged, and main CI [#45026586978](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45026586978) passed 4/4. PR #479 is open with the round-2 Yup/IDK reconciliation and CI concurrency correction; push CI [#45027400435](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45027400435) and PR CI [#45027405087](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45027405087) both passed 4/4. PRs #475 and #477 are closed. The source audit and five-book preflight were read-only and fetched no chapter text. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 19:05 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `9cb3ea3a6d2ae75e46748736f3da1c5dfee6ada7`; PR #479 is merged, and post-merge main CI [#45027813882](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45027813882) passed 4/4. PR #478 is also merged. The 65-row alternative-source follow-up has 12 completed-registry aliases and one excluded alias, leaving 52 distinct non-alias titles. Round 3 found two additional exact FreeWebNovel pages and 18 other alternative metadata leads; none has explicit archiving permission. The source audit and five-book preflight were read-only and fetched no chapter text. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
@@ -338,3 +338,11 @@ The 65 rows have now been reconciled against the 343-record `downloaded_novels.j
 Alternative listings were found for *Addicted Pampering You*, *Attack Of The Adorable Kid*, *Hidden Marriage Sweet Pampering*, *Bringing The Nation's Husband Home*, *Eternal Martial Sovereign* and several shorter Japanese/Korean works. These are metadata leads only: chapter indexes are incomplete or inconsistent, some editions are commercially licensed, and **no explicit lawful archiving permission was found**. *Invincible Levelling King* is a separate MTL title, not *Invincible*. The distinct *Hidden Marriage*, *Witcher: I Can Extract Everything* and *Very Pure and Ambiguous: The Prequel* registry records must not be mistaken for the requested titles.
 
 Current decision: **0 rights-cleared titles, 0 new download runs, 0 active bulk workflows**. Keep the 52 distinct titles under research; do not call them globally unavailable. Do not repeat unchanged #371/#452 failures or rerun the one-shot source audit.
+
+## 7. Yup/IDK alternative-source follow-up round 3
+
+The round-2 alias reconciliation is now followed by a broader alternative-source pass over the 52 distinct non-alias rows. Two additional exact FreeWebNovel listings were found: *I'm in Hollywood* (345 paginated entries, author Just Do, Qidian original, ongoing/stale page) and *The Beautiful Time With You* (1,129 completed chapters, author Ye Fei Ye, commercial WebNovel translation). Eighteen further metadata/source leads include *Man Huang Feng Bao*, *Omni-Magician*, *My Daoist Life*, *The Nine Godheads*, *Shen Mu*, *Warrior's Promise*, *Skirt-Chasing Young Monarch*, *Top Quality Beauty Cultivation System*, *Savage Divinity*, and several short Japanese/Korean works. Several have incomplete or mismatched indexes, different formats or unresolved authors.
+
+Full findings and source links: [Yup/IDK alternative-source round 3](../campaigns/overnight/alternative-source-research-round-3-20261122.md).
+
+**Acquisition decision remains 0 rights-cleared titles and 0 new download runs.** Do not treat these public pages or catalogue metadata as permission to archive. The 52 rows are not globally unavailable; this is an evidence-limited search.
