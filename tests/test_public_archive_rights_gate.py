@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from tools.rights_gate import validate_rights_evidence
 
@@ -23,6 +26,15 @@ class PublicArchiveRightsGateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "public book listing"):
             validate_rights_evidence("true", source, source)
 
+    def test_rejects_listing_url_with_tracking_query_as_evidence(self):
+        source = "https://novelfull.com/example-novel.html?utm_source=feed"
+        with self.assertRaisesRegex(ValueError, "public book listing"):
+            validate_rights_evidence(
+                "true",
+                "https://novelfull.com/example-novel.html",
+                source,
+            )
+
     def test_accepts_separate_https_permission_page(self):
         evidence = validate_rights_evidence(
             "true",
@@ -30,6 +42,24 @@ class PublicArchiveRightsGateTests(unittest.TestCase):
             "https://novelfull.com/example-novel.html",
         )
         self.assertEqual(evidence, "https://author.example/permissions/archive")
+
+    def test_plan_file_urls_are_checked_after_name_resolution(self):
+        plan = {
+            "groups": {
+                "NovelFull": [{"novel_url": "https://novelfull.com/example-novel.html"}]
+            },
+            "skipped": [],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "plan.json"
+            path.write_text(json.dumps(plan), encoding="utf-8")
+            from tools.rights_gate import _urls_from_plan
+            with self.assertRaisesRegex(ValueError, "public book listing"):
+                validate_rights_evidence(
+                    "true",
+                    "https://novelfull.com/example-novel.html?from=menu",
+                    _urls_from_plan(path),
+                )
 
 
 if __name__ == "__main__":
