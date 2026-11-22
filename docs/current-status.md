@@ -1,13 +1,13 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 19:05 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `9cb3ea3a6d2ae75e46748736f3da1c5dfee6ada7`; PR #479 is merged, and post-merge main CI [#45027813882](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45027813882) passed 4/4. PR #478 is also merged. The 65-row alternative-source follow-up has 12 completed-registry aliases and one excluded alias, leaving 52 distinct non-alias titles. Round 3 found two additional exact FreeWebNovel pages and 18 other alternative metadata leads; none has explicit archiving permission. The source audit and five-book preflight were read-only and fetched no chapter text. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 23 November 2026, 00:45 IST.
+**This is a dated snapshot, not a live dashboard.** Checked `main` head `fa459a271677aab8748d7342d4d3a2f6737e4b37`; PR #488 is merged and post-merge main CI [#45059462078](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45059462078) passed 4/4. The 26 exact source matches are triaged (18 Yup, 8 IDK); the five new candidates have two structural TOC passes and three failures, but zero rights clearances. The 43-title fanfiction research pass is complete through round 18 (8 complete, 3 blocked, 32 researched but rights-unresolved). The 65 unmatched rows (36 Yup, 29 IDK) have completed their first alternative-source pass. A new alias maps `Very Pure And Ambiguous` to already-registered `So Pure, So Flirtatious`, leaving 51 distinct non-alias titles (23 Yup, 28 IDK) after 13 registry aliases and one excluded alias. The source audit was read-only. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
 | Item | Verified state | Evidence |
 |---|---|---|
-| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `f1891f1cbcf632e973aa51702c8b034df8492cef` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
+| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `fa459a271677aab8748d7342d4d3a2f6737e4b37` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
 | Completed registry | **343** complete records in `downloaded_novels.json`; this is not a count of currently available artifacts or private-HF imports | Current registry, reconciled 22 November |
 | User-confirmed private-HF imports | **70**, user-confirmed but not independently queried in this Retriever run | Separate Storage Controller source of truth |
 | Global exclusions | **90** red/Dropped titles; remain excluded from Yup and IDK campaigns | `campaigns/overnight/excluded-90.json` |
@@ -414,3 +414,21 @@ A safety PR now enforces the user-approved dispatch limits in code: at most 10 n
 
 
 The bulk workflow now has a prepare-stage guard that rejects a third active run (counts other active runs and excludes the current run); the paced dispatcher also checks the active-run count before submitting. Planner and retry planner enforce the ten-new-title batch cap.
+
+## Yup alternative-source research round 8 (23 November 2026, 00:45 IST)
+
+See [round-8 report](../campaigns/overnight/yup-alternative-source-research-round-8-20261123.md). Seven Yup-side title/identity leads were rechecked. The main correction is a new registry alias: `Very Pure And Ambiguous` resolves to `So Pure, So Flirtatious` (Fishman The Second), already registered at 1,621 chapters in run #42513348683; its artifact #13636208314 expired 15 November. The original has 2,385 completed chapters, is marked licensed with Gravity Tales as English publisher, and is not fully translated. Do not duplicate or treat the incomplete mirror as a new acquisition.
+
+Other findings: `Man Huang Feng Bao` / `Storm in the Wilderness` has a 695-chapter Gravity Tales listing and a 696-entry WuxiaWorldEU index numbered through 703; `My Daoist Life` / `My Monastic Life` has 352 original chapters but a conflicting 76-entry WuxiaClick page under a different credited author; `Top Quality Beauty Cultivation System` has a 707-chapter original with licence marked No and incomplete translation; `Savage Divinity` is free to read on author-controlled sites but has no archive permission; `About the Reckless Girl` is a Japanese one-shot/three-volume light-novel identity with no English publisher; and `Rise Of The Demon King` surfaced as manhua, not a novel. `Addicted Pampering You` by Jiu Mo Li is distinct from the excluded `Addicted to Boundlessly Pampering You` by Jing Lan.
+
+**Round outcome:** 7 Yup rows checked, 1 new registry alias, 1 non-supported alternative listing, 0 explicit archive permissions, 0 rights-cleared titles and 0 download runs. The 65 rows now reconcile to 13 completed-registry aliases + one excluded alias, leaving 51 distinct non-alias titles (23 Yup, 28 IDK). Continue Yup first, then IDK. Preserve 343 registry records, 70 separately user-confirmed private-HF imports and 90 exclusions. Fanfiction remains 8 complete, 3 blocked and 32 researched but rights-unresolved.
+
+## Live execution and artefact reconciliation (23 November 2026, 00:45 IST)
+
+- PR #488 merged as `fa459a271677aab8748d7342d4d3a2f6737e4b37`; main CI #45059462078 passed 4/4. Its 10-title batch, two-active-workflow and per-title archive/public-distribution rights gates are live.
+- Source-audit run #44924359606 completed with one read-only audit job and metadata artifact #14714644436 (expires 21 December 2026). It fetched no chapter text.
+- Run #44922285166 completed successfully: Seoul Station's Necromancer, 209 chapters, final artifact #14714778249 (expires 19 February 2027). The workflow recorded `confirm_rights=false`; do not redistribute the public artifact.
+- Run #44379388243 has 22 unexpired artifacts through 16 February 2027, including #14462633408. Konoha Medical chapter batches succeeded but assemble/report failed; Arcane Thief chapter batches failed. Treat the artefacts as public, rights-unverified exposure, not verified completed downloads.
+- Run #44378479201 has 35 unexpired artifacts through 16 February 2027, including partial Wind Calamity batches and the separate successful A New Snake package. Wind Calamity remains failed. Do not count its partials as a completed download.
+- `So Pure, So Flirtatious` artifact #13636208314 expired 15 November 2026; the registry record remains complete.
+- Latest Actions query: zero queued/in-progress workflows and zero active bulk downloads. New download runs this round: **0**. No chapter prose or archive bytes fetched.
