@@ -62,7 +62,9 @@ def _diagnostic_source_url(url: str | None) -> str:
         return "<unparseable source URL>"
 
 
-def _checkpoint_chapter(folder: Path, index: int, title: str, html: str | bytes,\n                      source_url: str | None = None) -> Path:\n    """Save a successfully fetched chapter before EPUB creation."""
+def _checkpoint_chapter(folder: Path, index: int, title: str, html: str | bytes,
+                      source_url: str | None = None) -> Path:
+    """Save a successfully fetched chapter before EPUB creation."""
     soup = BeautifulSoup(html, "html.parser")
     for el in soup.select("script, style"):
         el.decompose()
@@ -70,8 +72,10 @@ def _checkpoint_chapter(folder: Path, index: int, title: str, html: str | bytes,
     lines = [p for p in lines if p]
     body = "\n\n".join(lines) if lines else soup.get_text("\n", strip=True)
     if not body.strip():
-        raise ValueError(\n            f"Downloaded chapter {index+1} ({str(title)[:160]!r}) was empty at "
-            f"{_diagnostic_source_url(source_url)}"\n        )
+        raise ValueError(
+            f"Downloaded chapter {index+1} ({str(title)[:160]!r}) was empty at "
+            f"{_diagnostic_source_url(source_url)}"
+        )
     folder.mkdir(parents=True, exist_ok=True)
     destination = folder / f"chapter_{index+1:05d}.txt"
     temporary = destination.with_suffix(".txt.tmp")
