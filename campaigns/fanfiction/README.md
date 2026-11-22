@@ -71,3 +71,13 @@ See [round 17](source-verification-round-17-20261122.md).
 - Fresh metadata reinforces edition/rights blockers: Tenseigan's FreeWebNovel labels are non-linear and differ from WebNovel's 967-chapter snapshot; Chronicles of a Fire Ninja shows a displayed/internal chapter split and advertises Patreon-only advance chapters; Starting With Creating A Genius Persona has 527 FreeWebNovel versus 487 CHERREADS chapters.
 - The three blocked works remain held. Wind Calamity's author has publicly objected to unauthorised translations and its TOC remains non-linear; Konoha Medical's credited editor says they are not the original writer and artifact #14462633408 remains public/unregistered/rights-unverified; Arcane Thief remains a distinct 254-chapter FreeWebNovel edition with incomplete full-TOC validation and no archive permission.
 - No screenshots, chapter prose or archive bytes were fetched. Keep the 65 unmatched Yup/IDK rows deferred.
+
+
+## Fanfiction source and rights research round 18 (22 November 2026, 16:50 IST)
+
+See [round 18](source-verification-round-18-20261122.md).
+
+- Additional author/translator and rights checks found **0 new exact supported-host listings, 0 explicit archive permissions, 0 rights-cleared titles and 0 download runs**.
+- The 32 unresolved entries have now had exact title/credited-author and supported-source searches across the documented rounds. They remain unresolved, not worldwide-unavailable.
+- Wind Calamity, Konoha Medical and Arcane Thief remain blocked. Do not retry or publish them without the documented chapter-map/index and rights conditions.
+- The next research priority is the 65 unmatched Yup/IDK rows, after registry, exclusion and alias reconciliation. No download is authorised by public listing alone.

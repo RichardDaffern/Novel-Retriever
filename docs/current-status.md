@@ -1,7 +1,7 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 14:44 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `650c4e85a5093b5ef4ee7df08b1dec12d374c2b2`; PRs #464–#474 are merged. PR #474 CI #44999685899 and post-merge main CI #44999833864 both passed all four jobs. PR #475's prior head passed all four jobs in #45006455608; round-16 additions are pending CI. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 16:50 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `ee9db0edda2b1e0f777fcc64ce8ab81e47510dc9`; PRs #464–#476 are merged. PR #474 CI #44999685899 and post-merge main CI #44999833864 both passed all four jobs. PR #475's prior head passed all four jobs in #45006455608; round-16 additions are pending CI. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
@@ -304,3 +304,14 @@ The 26 exact source-audit listings are 18 Yup and 8 IDK. Do not classify every p
 - Tomb Raider King and World Domination System had no child jobs in dispatch #44769541580, so no chapter failure can be claimed for them.
 
 No affected title was retried. Capture exact public TOC href/index evidence on the merged diagnostic code, add offline regression fixtures, and fix the root cause before any targeted retry. See the corrected [source-audit report](../campaigns/overnight/source-audit-report-20261121.md) and [issue #371](https://github.com/RichardDaffern/Novel-Retriever/issues/371).
+
+
+## Fanfiction source and rights research round 18 (22 November 2026, 16:50 IST)
+
+See [round 18](../campaigns/fanfiction/source-verification-round-18-20261122.md).
+
+- Additional author/translator and rights checks found **0 new exact supported-host listings, 0 explicit archive permissions, 0 rights-cleared titles and 0 download runs**. The 43-title catalogue remains 8 complete, 3 blocked and 32 unresolved.
+- The three blocked works remain held: Wind Calamity needs author permission and a complete one-to-one TOC map; Konoha Medical's credited editor is not the original writer and artifact #14462633408 remains public and rights-unverified; Arcane Thief still needs complete paginated TOC validation and archive permission.
+- The exact title/credited-author and supported-source search for all 32 unresolved fanfiction entries is complete for the current search scope. No rights-cleared source was found. Do not treat search absence as worldwide unavailability.
+- The next research priority is the 65 unmatched Yup/IDK rows (36 Yup, 29 IDK), after reconciling the 343 registry, 70 separately user-confirmed private-HF imports, 90 exclusions and title aliases. Do not retry known failures unchanged or dispatch downloads without explicit rights and a complete edition index.
+- Live Actions at 16:50 IST: **0 queued/in-progress workflows and 0 active bulk-download workflows**. No download run was dispatched.
