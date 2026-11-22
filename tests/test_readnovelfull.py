@@ -139,6 +139,28 @@ class ReadNovelFullTests(unittest.TestCase):
                 AJAX: INDEX,
             }.__getitem__)
 
+    def test_invalid_archive_href_is_reported_without_rewriting(self):
+        bad_href = "/cultivation-online/intro.html?source=archive"
+        archive = INDEX.replace(
+            "</ul>",
+            f'<li><a href="{bad_href}">Unexpected intro</a></li></ul>',
+        )
+        with self.assertRaises(SourceError) as caught:
+            chapter_index(archive, BOOK)
+        self.assertIn(bad_href, str(caught.exception))
+        self.assertIn(BOOK, str(caught.exception))
+
+    def test_duplicate_archive_error_reports_both_exact_urls(self):
+        duplicate = "/cultivation-online/chapter-2-alt.html"
+        archive = INDEX + (
+            f'<ul class="list-chapter"><li><a href="{duplicate}">'
+            'Chapter 2 duplicate</a></li></ul>'
+        )
+        with self.assertRaises(SourceError) as caught:
+            chapter_index(archive, BOOK)
+        self.assertIn(CH2, str(caught.exception))
+        self.assertIn(duplicate, str(caught.exception))
+
     def test_extract_rejects_ads_short_challenges_and_wrong_numbers(self):
         found = extract_chapter(html_chapter(1), number=1, title="Chapter 1")
         self.assertNotIn("ADVERTISEMENT", found["text"])
