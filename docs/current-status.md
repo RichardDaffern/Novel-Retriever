@@ -1,7 +1,7 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 14:28 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `650c4e85a5093b5ef4ee7df08b1dec12d374c2b2`; PRs #464–#474 are merged. PR #474 CI #44999685899 and post-merge main CI #44999833864 both passed all four jobs. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 14:44 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `650c4e85a5093b5ef4ee7df08b1dec12d374c2b2`; PRs #464–#474 are merged. PR #474 CI #44999685899 and post-merge main CI #44999833864 both passed all four jobs. PR #475's prior head passed all four jobs in #45006455608; round-16 additions are pending CI. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
@@ -19,8 +19,8 @@
 The Seoul Station artifact is publicly available. The run, chapter batches, assembly and registry entry are technically verified, but no explicit public-archiving permission is recorded in this repository. Treat artifact `14714778249` as rights-unverified; do not create additional public novel artifacts without documented permission. If public redistribution is not authorised, repository-owner deletion/revocation is required.
 | PR #463 | Merged at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; CI [run #44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) green | Arcane Thief offset regression test and Wind Calamity fail-closed mapping |
 | Merged acquisition-research PRs | #464–#474 merged. PR #474 CI [#44999685899](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44999685899) and post-merge main CI [#44999833864](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44999833864) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469), [#470](https://github.com/RichardDaffern/Novel-Retriever/pull/470), [#471](https://github.com/RichardDaffern/Novel-Retriever/pull/471), [#472](https://github.com/RichardDaffern/Novel-Retriever/pull/472), [#473](https://github.com/RichardDaffern/Novel-Retriever/pull/473) |
-| Open PRs | #265 and #275 are open. #275 remains held and unmergeable for Konoha Medical. PR #475 proposes the round-15 documentation update and awaits CI. Do not merge or republish the Konoha Medical artifact while rights are unresolved. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275), [#475](https://github.com/RichardDaffern/Novel-Retriever/pull/475) |
-| Bulk download workflows | **0** queued/in-progress at 14:28 IST; no new download run dispatched. Main CI #44999833864 passed all four jobs and is not a download workflow. | Live Actions run list |
+| Open PRs | #265 and #275 are open. #275 remains held and unmergeable for Konoha Medical. PR #475 contains the round-15/16 documentation updates; round-16 CI is pending. Do not merge or republish the Konoha Medical artifact while rights are unresolved. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275), [#475](https://github.com/RichardDaffern/Novel-Retriever/pull/475) |
+| Bulk download workflows | **0** queued/in-progress at 14:44 IST; no new download run dispatched. Main CI #44999833864 passed all four jobs and is not a download workflow. | Live Actions run list |
 
 The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`, matching the registry. The seven still-present fanfiction final-artifact expiry values also match the live API; *The Adventurous Gamer Ninja* artifact expired on 21 November 2026 and no longer appears in the run’s artifact list. No registry expiry change was needed in this branch.
 
@@ -269,3 +269,14 @@ The metadata-only report is [round 15](../campaigns/fanfiction/source-verificati
 - Additional mirror snapshots for *Harry Potter: I, Tom Riddle, am not the Dark Lord* range from 237 to 702 chapters; the *Duelist of Hogwarts* listing is an edited translation with paid advance access. Neither is a supported source or permission grant.
 - The three blocked works remain held: Wind Calamity needs author permission and a complete chapter map; Konoha Medical's credited editor is not the original writer and its public artifact remains rights-unverified; Arcane Thief still needs full TOC validation and rights.
 - Live Actions check: **0 queued/in-progress runs**, **0 active bulk workflows**. No new download run was dispatched. The 65 unmatched Yup/IDK rows remain deferred.
+
+
+## 6. Fanfiction source research round 16 (22 November 2026, 14:44 IST)
+
+See [round 16](../campaigns/fanfiction/source-verification-round-16-20261122.md).
+
+- Fifteen exact title/credited-author searches and three blocked-work metadata rechecks found **0 new exact NovelFull, ReadNovelFull or FreeWebNovel listings, 0 explicit archive permissions, 0 rights-cleared titles and 0 download runs**.
+- New identity evidence: SaintXI's *Naruto: Konoha's Genius is a bit Ordinary* is a translation whose author disclaims Naruto rights; *Harry Potter: Cael Vale's Journey to Hogwarts* is by 16622800 and has a third-party FICOOL listing; *Hogwarts: Bloodline Wizard* is a completed 1,049-chapter translation credited to Innocent Angel/Atlas Studios; NoviceAuthor's *Naruto: Transmigrated as an Uchiha* has 327 WebNovel vs 326 Xnovel chapters; and Ghidorah1707/Ghidorah_7074 is the cross-post identity for *The Flaw of Slytherin*.
+- Wind Calamity still requires author contact and a complete chapter map. Konoha Medical's credited editor says they are not the original writer; its artifact #14462633408 remains public and rights-unverified. Arcane Thief's FanFiction.net 183-chapter cross-post differs from the 254-chapter FreeWebNovel edition.
+- No screenshots, chapter prose or archive bytes were fetched. No download run was dispatched. Keep the 65 unmatched Yup/IDK entries deferred.
+- At 14:44 IST, live Actions showed 0 queued/in-progress workflows and 0 active bulk download workflows.
