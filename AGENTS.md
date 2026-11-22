@@ -1128,7 +1128,7 @@ The latest round-9 report is [campaigns/fanfiction/source-verification-round-9-2
 
 Important author/rights findings:
 - DevilHex explicitly requires prospective translators to ask permission first for *Naruto: The Wind Calamity*. No permission grant was found; keep its non-linear FreeWebNovel mapping fail-closed.
-- INeedRest states they are not the original writer of *Konoha's Medical Ninja*. The 444-chapter EPUB/TXT was assembled, but registry publication failed; public artifact #14462633408 remains rights-unverified. Do not re-download, register, link or create another public copy.
+- INeedRest states they are not the original writer of *Konoha's Medical Ninja*. Run #44379388243's nine chapter-batch jobs succeeded for 444 chapters and the workflow uploaded final novel artifact #14462633408. The assemble job then failed during registry publication: it opened registry PR #275 and six merge attempts failed after the base branch changed and the PR remained unmergeable. The artifact contents were not fetched or independently verified because rights remain unresolved. Artifact #14462633408 remains rights-unverified. Do not re-download, register, link or create another public copy.
 - *HP: The Arcane Thief* remains a 254-numbered-chapter FreeWebNovel edition plus an auxiliary entry; the 183-chapter FanFiction.net cross-post is a separate edition. PR #463's +1 offset fix is merged, but no archive permission was found.
 
 Do not change the immutable 43-title catalogue, do not request screenshots, do not start the deferred 65-title Yup/IDK sweep, and do not dispatch or publish a download without exact work/author, English edition, complete ordered TOC and explicit lawful archiving permission.
