@@ -1,7 +1,7 @@
 # Novel Retriever: Current Operational Status
 
 **Snapshot:** 22 November 2026, 10:50 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `d7019a2d6072edd0218d6818610109432293a5b6`; PRs #464–#468 are merged. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `87cbeca671423abce00be7002d1f613142d0eea3`; PRs #464–#469 are merged. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
@@ -20,7 +20,7 @@ The Seoul Station artifact is publicly available. The run, chapter batches, asse
 | PR #463 | Merged at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; CI [run #44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) green | Arcane Thief offset regression test and Wind Calamity fail-closed mapping |
 | Merged acquisition-research PRs | #464–#469 merged. PR #469 CI [#44986219817](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44986219817) and post-merge main CI [#44986296039](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44986296039) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469) |
 | Open PRs | #265 and #275 remain open. #275 is held and unmergeable for Konoha Medical; do not merge while rights/public-artifact handling is unresolved. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275) |
-| Bulk download workflows | **0** queued/in-progress at 10:50 IST; no new download run dispatched. Main CI #44982872309 passed all four jobs and is not a download workflow. | Live Actions run list |
+| Bulk download workflows | **0** queued/in-progress at 10:50 IST; no new download run dispatched. Post-merge main CI #44986296039 passed all four jobs and is not a download workflow. | Live Actions run list |
 
 The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`, matching the registry. The seven still-present fanfiction final-artifact expiry values also match the live API; *The Adventurous Gamer Ninja* artifact expired on 21 November 2026 and no longer appears in the run’s artifact list. No registry expiry change was needed in this branch.
 
