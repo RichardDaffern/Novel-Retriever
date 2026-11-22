@@ -15,6 +15,23 @@
 
 Search absence is not proof that a work is unavailable worldwide. It only means this pass did not surface a new exact listing on the three supported hosts.
 
+## Fanfiction registry reconciliation
+
+The immutable catalogue's `review_state` is a source-research state, not the download-completion state. Its counts are 1 `already_downloaded`, 10 `public_source_listing_matched` and 32 `needs_source_verification`. Of those 10 source-matched rows, seven are already complete in `downloaded_novels.json` and three remain blocked. Together with the first row, this reconciles to **8 registry-complete, 3 blocked and 32 requiring research**. The registry is the source of truth for completion:
+
+| Completed fanfiction | Chapters | Run | Final archive artifact | Artifact state at check |
+|---|---:|---:|---:|---|
+| The Adventurous Gamer Ninja - Daichi Hekima | 432 | [#43589834773](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43589834773) | `14111234860` | Expired 21 November 2026; no longer returned by the run artefact API |
+| A New Snake In The Shinobi World | 423 | [#44378479201](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378479201) | `14464695010` | Present; expires 16 February 2027 19:14:59 UTC |
+| Naruto: I am Uchiha Shirou | 448 | [#44378935249](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249) | `14463647756` | Present; expires 16 February 2027 19:17:32 UTC |
+| Naruto: Kurotsuchi Mayuri | 524 | [#44378935249](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249) | `14463808054` | Present; expires 16 February 2027 19:17:32 UTC |
+| HP: A Magical Journey | 439 | [#44381959077](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381959077) | `14465975343` | Present; expires 16 February 2027 19:35:15 UTC |
+| Hogwarts: I'm Truly a Model Wizard | 1,004 | [#44381959077](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381959077) | `14464369346` | Present; expires 16 February 2027 19:35:15 UTC |
+| Hogwarts' John Wick | 703 | [#44389807742](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742) | `14469106672` | Present; expires 16 February 2027 20:19:28 UTC |
+| The Fool in Hogwarts | 333 | [#44389807742](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44389807742) | `14469501148` | Present; expires 16 February 2027 20:19:28 UTC |
+
+The seven present fanfiction archives remain publicly accessible and rights-unverified. Do not link, download, or create additional public copies. The expired artifact is historical. The user's **70 private-HF imports** remain a separate user-confirmed count and were not changed or re-queried in this run.
+
 ## Additional title and edition evidence
 
 | Selected work | Public metadata evidence | Acquisition decision |
