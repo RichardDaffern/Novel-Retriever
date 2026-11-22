@@ -71,4 +71,4 @@ No archive permission. Hold.
 - New download runs: **0**.
 - Chapter prose/archive bytes fetched: **0**.
 
-The deeper IDK pass is now **14/28 investigated**, with 14 distinct IDK rows remaining. The 65 audit rows still reconcile to 13 completed-registry aliases plus one excluded alias, leaving **51 distinct titles (23 Yup, 28 IDK)**. The deeper Yup pass is complete. The 32 outstanding fanfiction source-research targets were investigated through round 18 before this alternative-source phase; keep the three blocked fanfiction works held. Four URL-pattern 404s do not establish worldwide unavailability.
+The deeper IDK pass is now **21/28 investigated**, with 7 distinct IDK rows remaining. The 65 audit rows still reconcile to 13 completed-registry aliases plus one excluded alias, leaving **51 distinct titles (23 Yup, 28 IDK)**. The deeper Yup pass is complete. The 32 outstanding fanfiction source-research targets were investigated through round 18 before this alternative-source phase; keep the three blocked fanfiction works held. Four URL-pattern 404s do not establish worldwide unavailability.
