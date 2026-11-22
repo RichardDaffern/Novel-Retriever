@@ -50,11 +50,13 @@ The `previously_known=349` value is **not** the completed registry count. In `to
 
 The six manifest-only entries are:
 - Five aliases of registry titles: Desolate Era → The Desolate Era; Warlock Of Magus World → Warlock of the Magus World; Solo Levelling → I Alone Level-Up; Advent of Archmage → Advent of the Archmage; Charm Of Soul Pet → The Charm of Soul Pets.
-- One known source URL not in the registry: **A Record Of Mortal’s Journey To Immortality**. It is a verified URL entry, not a completed/downloaded registry title. Do not count it among the 343 completed records.
+- One known source URL not in the registry: **A Record Of Mortal’s Journey To Immortality**. It is a verified URL entry, not a completed/downloaded registry title. The author is Wang Yu; Novel Updates records it as licensed and fully translated by Wuxiaworld, and Wuxiaworld identifies Yuewen as licensor. The stored FreeWebNovel URL is an unofficial mirror, not archive permission. Do not count it among the 343 completed records.
 
 Therefore there is no six-record registry discrepancy. Keep **343** as the completed registry count; use **349** only for the audit's deduplication set, preserving the separate source-URL/alias distinction. This reconciles the preflight count without changing any completion totals.
 
 Other reconciled counts remain 70 separately user-confirmed private-HF imports and 90 red/Dropped exclusions. The 65 unmatched rows remain 36 Yup + 29 IDK; 12 completed-registry aliases plus one excluded alias leave 52 distinct non-alias titles. The 43-fanfiction state remains 8 registry-complete, 3 blocked and 32 source-researched but rights-unresolved.
+
+The known URL-only *A Record Of Mortal’s Journey To Immortality* is also not a download candidate: the authorised English edition is hosted by Wuxiaworld, licensed from Yuewen; the stored FreeWebNovel mirror URL does not grant archive rights. See [Wuxiaworld official listing](https://www.wuxiaworld.com/novel/rmji) and [Novel Updates licence metadata](https://www.novelupdates.com/series/a-record-of-a-mortals-journey-to-immortality/).
 
 ## Run and artifact evidence
 
