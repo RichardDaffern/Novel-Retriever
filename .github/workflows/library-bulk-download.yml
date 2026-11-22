@@ -165,6 +165,8 @@ jobs:
       novel_url: ${{ matrix.novel_url }}
       chapter_range: ${{ matrix.chapter_range }}
       force: ${{ matrix.force }}
+      confirm_rights: ${{ inputs.confirm_rights }}
+      rights_evidence_url: ${{ inputs.rights_evidence_url }}
     permissions:
       contents: write
       pull-requests: write
@@ -221,6 +223,7 @@ jobs:
       novel_url: ${{ matrix.novel_url }}
       force: ${{ matrix.force }}
       confirm_rights: ${{ inputs.confirm_rights }}
+      rights_evidence_url: ${{ inputs.rights_evidence_url }}
     permissions:
       contents: write
       pull-requests: write
