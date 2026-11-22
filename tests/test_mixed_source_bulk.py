@@ -9,7 +9,7 @@ from unittest.mock import patch
 from tools.download_registry import website_name, write_registry, read_registry
 from tools.mixed_source_bulk import (
     catalogue_entries, main, parse_names, read_curated,
-    selection_plan as _selection_plan,
+    retry_selection_plan, selection_plan as _selection_plan,
 )
 
 
@@ -124,6 +124,12 @@ class LibraryBulkTests(unittest.TestCase):
         self.assertNotIn("          WEBSITE:", workflow)
         self.assertNotIn("--website", workflow)
         self.assertIn("confirm_rights:", inputs)
+        self.assertIn("Enforce at most two active bulk runs", workflow)
+        self.assertIn("actions/workflows/library-bulk-download.yml/runs?per_page=100", workflow)
+        self.assertIn("active_other_runs", workflow)
+        self.assertIn("select(.status !=", workflow)
+        self.assertIn("GITHUB_RUN_ID", workflow)
+        self.assertIn("MAX_BATCH_TITLES = 10", Path("tools/mixed_source_bulk.py").read_text(encoding="utf-8"))
         self.assertIn("required: true", inputs)
         self.assertEqual(workflow.count("confirm_rights: ${{ inputs.confirm_rights }}"), 5)
         self.assertIn('--names "$NOVEL_NAMES" --urls "$NOVEL_URLS"', workflow)
@@ -240,18 +246,30 @@ class LibraryBulkTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "range"):
             selection_plan(sample_registry(), CURATED, "The First Order", "", "All", "3-1")
 
-    def test_over_ten_novels_allowed_and_platform_limit_explained(self):
-        urls = " ".join(
-            f"https://novelfull.com/novel-{n}.html" for n in range(30)
+    def test_bulk_workflow_run_is_limited_to_ten_new_titles(self):
+        ten_urls = " ".join(
+            f"https://novelfull.com/novel-{n}.html" for n in range(10)
         )
-        plan = selection_plan(sample_registry(), CURATED, "", urls, "NovelFull")
-        self.assertEqual(plan["selected_count"], 30)
-        self.assertEqual(len(plan["groups"]["NovelFull"]), 30)
-        very_large = " ".join(
-            f"https://novelfull.com/novel-{n}.html" for n in range(257)
+        plan = selection_plan(sample_registry(), CURATED, "", ten_urls, "NovelFull")
+        self.assertEqual(plan["selected_count"], 10)
+        self.assertEqual(len(plan["groups"]["NovelFull"]), 10)
+        eleven_urls = " ".join(
+            f"https://novelfull.com/novel-{n}.html" for n in range(11)
         )
-        with self.assertRaisesRegex(ValueError, "256 matrix jobs"):
-            selection_plan(sample_registry(), CURATED, "", very_large, "NovelFull")
+        with self.assertRaisesRegex(ValueError, "limited to 10 new novel titles"):
+            selection_plan(sample_registry(), CURATED, "", eleven_urls, "NovelFull")
+
+    def test_retry_run_is_limited_to_ten_missing_novels(self):
+        missing = [
+            {"url": f"https://novelfull.com/novel-{n}.html",
+             "site": "NovelFull", "chapter_range": "all", "force": False}
+            for n in range(11)
+        ]
+        manifest = {"version": 1, "run_id": 123, "missing_or_failed": missing}
+        with self.assertRaisesRegex(ValueError, "limited to 10 missing novels"):
+            retry_selection_plan(
+                sample_registry(), CURATED, manifest, confirm_rights=True
+            )
 
     def test_all_supported_sources_require_public_archive_rights(self):
         empty_registry = {"version": 1, "novels": []}

@@ -406,3 +406,11 @@ Seven unresolved Yup rows were rechecked. Four are title/edition collisions with
 ## IDK alternative-source research round 8 (22 November 2026, 23:06 IST)
 
 Seven IDK rows checked. One exact supported-host listing was found for *Warrior's Promise* on FreeWebNovel: Baili Longxia, 3,336 page-reported chapters, ongoing. Only the first 40 TOC entries were visible in the fetched page, so full index validation remains outstanding. FreeWebNovel and WebNovel terms do not grant this project off-platform archive rights. Six other checks produced unsupported or incomplete leads: Legend of Mythological Genes (520), Super Doctor (1,126 third-party vs 1,215 original), The Nine Godheads (12 Chinese chapters, hiatus), The Entertainment Circle is Mine (101 vs 169+3), The Reincarnated Cop Who Strikes With Wealth (novel/manhwa mismatch) and Those Years When I Opened a Chinese Medicine Shop (28 catalogue chapters; author unresolved). Outcome: 7 checked, 1 exact supported-host listing, 0 complete indexes validated, 0 explicit permissions, 0 rights-cleared titles, 0 download runs. Yup-side 36-row research is complete through rounds 1–7; continue IDK. See [round-8 report](../campaigns/overnight/idk-alternative-source-research-round-8-20261122.md).
+
+
+## Bulk dispatch safety limits (23 November 2026)
+
+A safety PR now enforces the user-approved dispatch limits in code: at most 10 new titles per bulk workflow run (including retries), at most 2 active bulk workflow runs through the paced queue, and per-title archive plus public-distribution rights evidence before dispatch. The dispatcher passes `confirm_rights=true` only after the rights fields are present. `force=false` remains mandatory. No workflow was dispatched during this change.
+
+
+The bulk workflow now has a prepare-stage guard that rejects a third active run (counts other active runs and excludes the current run); the paced dispatcher also checks the active-run count before submitting. Planner and retry planner enforce the ten-new-title batch cap.

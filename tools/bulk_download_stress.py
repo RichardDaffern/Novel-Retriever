@@ -1,8 +1,8 @@
-"""Network-free stress checks for 20, 50 and 100 grouped bulk selections.
+"""Network-free stress checks for the ten-title bulk-run policy.
 
 No real novel sites are contacted, no chapter text is downloaded, and no
 production registry is modified. Exercises deduplication, cached skips,
-per-site matrix output and GitHub's true 256-job planning ceiling.
+per-site matrix output and the ten-new-title campaign ceiling.
 """
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ import tempfile
 import time
 from unittest.mock import patch
 
-from tools.mixed_source_bulk import MAX_MATRIX_JOBS, selection_plan, write_actions
+from tools.mixed_source_bulk import MAX_BATCH_TITLES, selection_plan, write_actions
 
 
 def synthetic_urls(n: int) -> list[str]:
@@ -30,11 +30,11 @@ def synthetic_urls(n: int) -> list[str]:
     ]
 
 
-def run_stress(sizes: tuple[int, ...] = (20, 50, 100)) -> list[dict]:
+def run_stress(sizes: tuple[int, ...] = (8, 13)) -> list[dict]:
     results = []
     for requested in sizes:
-        if requested <= 0 or requested > MAX_MATRIX_JOBS:
-            raise ValueError("Stress size must be between 1 and 256")
+        if requested <= 0 or requested > MAX_BATCH_TITLES + 4:
+            raise ValueError(f"Stress size must be between 1 and {MAX_BATCH_TITLES + 4}")
         urls = synthetic_urls(requested)
         # Deliberate repeat of the first four URLs simulates duplicate input.
         raw = ";\n".join(urls + urls[:4])
@@ -78,20 +78,25 @@ def run_stress(sizes: tuple[int, ...] = (20, 50, 100)) -> list[dict]:
             "scheduled": len(combined), "distinct": len(set(combined)),
             "elapsed_seconds": elapsed, "status": "passed",
         })
-    # Boundary test: 256 jobs accepted; 257 rejected *before* publishing output.
-    upper = selection_plan({"version": 1, "novels": []},
-                           {"version": 1, "novels": []}, "",
-                           "\n".join(synthetic_urls(256)), confirm_rights=True)
-    assert sum(len(v) for v in upper["groups"].values()) == 256
+    # Boundary test: three cached titles are skipped, leaving exactly ten
+    # new titles accepted; eleven new titles are rejected before output.
+    cached = {"version": 1, "novels": [
+        {"url": url, "title": "Cached", "downloads": [{
+            "status": "complete", "range": "all",
+            "expires_at_utc": "2099-12-31T23:59:59Z",
+        }]} for url in synthetic_urls(3)
+    ]}
+    upper = selection_plan(cached, {"version": 1, "novels": []}, "",
+                           "\n".join(synthetic_urls(13)), confirm_rights=True)
+    assert sum(len(v) for v in upper["groups"].values()) == MAX_BATCH_TITLES
     try:
-        selection_plan({"version": 1, "novels": []},
-                       {"version": 1, "novels": []}, "",
-                       "\n".join(synthetic_urls(257)), confirm_rights=True)
+        selection_plan(cached, {"version": 1, "novels": []}, "",
+                       "\n".join(synthetic_urls(14)), confirm_rights=True)
     except ValueError as exc:
-        assert "256 matrix jobs" in str(exc)
+        assert "limited to 10 new novel titles" in str(exc)
     else:
-        raise AssertionError("257 scheduled downloads did not fail")
-    results.append({"requested": 257, "status": "correctly_rejected"})
+        raise AssertionError("11 scheduled downloads did not fail")
+    results.append({"requested": 14, "status": "correctly_rejected"})
     return results
 
 

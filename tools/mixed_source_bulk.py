@@ -27,8 +27,10 @@ from tools.readnovelfull_source import validate_book_url as validate_readnovelfu
 from tools.wuxiaclick_source import validate_book_url as validate_wuxiaclick_url
 from tools.scribblehub_crosspost_downloader import _verified_record
 
-# This is GitHub's actual matrix execution limit, not an artificial ten-book
-# restriction. Only *scheduled* downloads count, not cached/skipped books.
+# User-approved maximum number of new titles in one resumable bulk run.
+# Cached/skipped titles do not count. Keep GitHub's larger platform ceiling
+# separate so campaign policy cannot silently expand to the platform maximum.
+MAX_BATCH_TITLES = 10
 MAX_MATRIX_JOBS = 256
 SITES = ("NovelFull", "FreeWebNovel", "ReadNovelFull", "WuxiaClick", "Scribble Hub")
 WEBSITE_CHOICES = ("All",) + SITES
@@ -199,12 +201,16 @@ def selection_plan(
         else:
             groups[item["site"]].append(payload)
     scheduled = sum(len(group) for group in groups.values())
+    if scheduled > MAX_BATCH_TITLES:
+        raise ValueError(
+            f"Each bulk workflow run is limited to {MAX_BATCH_TITLES} new novel "
+            f"titles, but {scheduled} were selected. Split the submission into "
+            "separate resumable runs; already-available novels do not count."
+        )
     if scheduled > MAX_MATRIX_JOBS:
         raise ValueError(
             f"GitHub Actions permits at most {MAX_MATRIX_JOBS} matrix jobs per "
-            f"workflow run, but {scheduled} new downloads were selected. "
-            "Split the submission into multiple runs; already-available novels "
-            "do not count."
+            f"workflow run, but {scheduled} new downloads were selected."
         )
     return {
         "version": 1, "website": website, "range": rng,
@@ -235,8 +241,13 @@ def retry_selection_plan(
         raise ValueError("Retry manifest is missing a failed/missing novels list")
     if not missing:
         raise ValueError("No failed or missing novels remain to retry")
+    if len(missing) > MAX_BATCH_TITLES:
+        raise ValueError(
+            f"A retry run is limited to {MAX_BATCH_TITLES} missing novels; "
+            "split the recovery into separate runs"
+        )
     if len(missing) > MAX_MATRIX_JOBS:
-        raise ValueError("A retry run cannot exceed 256 scheduled novels; split the selection")
+        raise ValueError("A retry run cannot exceed the GitHub matrix job limit")
     urls: list[str] = []
     seen: set[str] = set()
     ranges: set[str] = set()
