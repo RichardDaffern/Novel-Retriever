@@ -1297,3 +1297,6 @@ The existing `library-bulk-download.yml` workflow must be used only through the 
 - The mixed-source planner and recovery planner both enforce the 10-title cap.
 - Do not run source discovery as a download, do not use the old 4-run/2-title dispatcher behaviour, and do not dispatch from the read-only source-audit report because it contains no rights evidence.
 - The cap is a campaign policy below GitHub's platform matrix ceiling. Keep batches resumable and independently verified.
+
+
+The `library-bulk-download.yml` prepare job also checks other active runs through the GitHub Actions API and fails closed when two other bulk runs are already active. The paced dispatcher checks the same workflow before each submission. The workflow planner independently caps each run and retry at ten new titles.
