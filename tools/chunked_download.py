@@ -119,8 +119,8 @@ def discover_count(url: str, timeout_minutes: int = 15) -> int:
         # A list-only failure should expose its parser/transport reason, but
         # never echo query-string values that could contain access tokens.
         detail = re.sub(
-            r"(https?://[^\\s?]+)\\?[^\\s]+",
-            r"\\1?[redacted]",
+            r"(https?://[^\s?]+)\?[^\s]+",
+            r"\1?[redacted]",
             detail,
         )
         detail = detail[-1200:]
