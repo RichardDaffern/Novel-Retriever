@@ -24,6 +24,9 @@
 
 **Next priority:** finish the 32-title fanfiction identity/source research and the three blocked-source investigations before extending the 65-title Yup/IDK alternative-source sweep. The earlier 61-title sweep is historical evidence, not permission to skip the remaining fanfiction work.
 
+- Round 9 searched the 25 catalogue entries without an exact supported-host listing plus the three blocked works. It found 0 new exact supported-host matches, 8 non-supported catalogue/cross-post leads and 0 permissions. See [round 9](source-verification-round-9-20261122.md).
+- Round 10 expanded the exact title/author sweep to the supported WuxiaClick and restricted ScribbleHub routes, rechecked the five exact candidates and two near matches, and revisited all three blocked works. It found 0 new exact supported-host matches and 0 permissions. New identity/edition details include the Yun Sixie/IHaveNoNamingSense translation distinction, the PinkSnake/杠精萝卜头 original/translator split, the Alex_Clive/Milta translation credit, and further chapter-count mismatches for Genius Persona, Third Dark Lord and Platinum Dragon Wizard. See [round 10](source-verification-round-10-20261122.md).
+
 ## Overnight downloads
 
 The one-shot [Fanfiction - Queued Naruto and Harry Potter Source Matches](https://github.com/RichardDaffern/Novel-Retriever/actions/workflows/fanfiction-night-queue.yml) dispatcher launches independently of the approved **Yup then Idk** campaign. Adding start-20261119.json to main triggers it once.
