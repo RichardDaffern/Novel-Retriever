@@ -126,6 +126,13 @@ jobs:
           fi
           "${args[@]}"
 
+      - name: Verify evidence against resolved book URLs
+        env:
+          CONFIRM_RIGHTS: ${{ inputs.confirm_rights }}
+          RIGHTS_EVIDENCE_URL: ${{ inputs.rights_evidence_url }}
+        run: |
+          python tools/rights_gate.py --confirm-rights "$CONFIRM_RIGHTS" --evidence-url "$RIGHTS_EVIDENCE_URL" --plan-file library_bulk_plan.json
+
       - name: Preserve planned novel selection for partial recovery
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
