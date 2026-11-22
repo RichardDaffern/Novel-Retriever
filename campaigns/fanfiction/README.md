@@ -4,7 +4,7 @@
 
 **Input:** 11 screenshots inside the user's WhatsApp ZIP, recording 43 visible WebNovel titles and authors: **24 Naruto**, **19 Harry Potter**. This public file contains book titles and author names only, not the private screenshots, user profile, personal ratings or reading progress.
 
-**Current user priority:** work on these Harry Potter/Naruto fanfiction sources and recoveries **before** the 65 unresolved Yup/IDK titles from the 21 November source audit. Keep this catalogue, counts and download batches separate from the Yup/IDK campaigns. See [current status](../../docs/current-status.md), [source-audit report](../overnight/source-audit-report-20261121.md) and [issue #456](https://github.com/RichardDaffern/Novel-Retriever/issues/456).
+**Priority status:** the fanfiction-first source-research stage is complete for the current search scope. The catalogue remains 8 complete, 3 blocked and 32 unresolved; no rights-cleared source was found. The next research stage, the 65 unmatched Yup/IDK rows, has now been reviewed separately. Keep this catalogue, counts and download batches separate from the Yup/IDK campaigns. See [current status](../../docs/current-status.md), [source-audit report](../overnight/source-audit-report-20261121.md) and [issue #456](https://github.com/RichardDaffern/Novel-Retriever/issues/456).
 
 ## Current source research (22 November 2026)
 
@@ -80,4 +80,4 @@ See [round 18](source-verification-round-18-20261122.md).
 - Additional author/translator and rights checks found **0 new exact supported-host listings, 0 explicit archive permissions, 0 rights-cleared titles and 0 download runs**.
 - The 32 unresolved entries have now had exact title/credited-author and supported-source searches across the documented rounds. They remain unresolved, not worldwide-unavailable.
 - Wind Calamity, Konoha Medical and Arcane Thief remain blocked. Do not retry or publish them without the documented chapter-map/index and rights conditions.
-- The next research priority is the 65 unmatched Yup/IDK rows, after registry, exclusion and alias reconciliation. No download is authorised by public listing alone.
+- The 65 unmatched Yup/IDK alternative-source reviews have now been completed after this fanfiction-first stage. No rights-cleared title or new download run resulted; public listing alone is not archive permission.
