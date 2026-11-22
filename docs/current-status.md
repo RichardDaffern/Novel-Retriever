@@ -364,3 +364,11 @@ Full findings and source links: [Yup/IDK alternative-source round 3](../campaign
 - **0 explicit permissions, 0 rights-cleared titles, 0 download runs.** No chapter prose or archive bytes fetched. The 52 distinct non-alias rows remain unresolved, not globally unavailable.
 - Full report: [alternative-source research round 4](../campaigns/overnight/alternative-source-research-round-4-20261122.md).
 - PR #481's updated head CI [#45034989175](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45034989175) and push CI [#45034984616](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45034984616) both passed 4/4. PR remains open and unmerged.
+
+## Post-merge rights-gate and artifact inventory (22 November 2026)
+
+- [PR #481](https://github.com/RichardDaffern/Novel-Retriever/pull/481) merged as `3b5ec2dc9e79a081dd3268c24db08b6500da7f10`. PR CI #45035608529, push CI #45035604024 (attempt 2), and post-merge main CI #45035733191 all passed 4/4.
+- The latest 100 Actions runs show **0 active workflows**, including **0 active bulk downloads**. No new novel download run was dispatched.
+- The merged gate now requires explicit permission to archive and publicly share every selected artefact across NovelFull, FreeWebNovel and ReadNovelFull bulk/direct workflows. Fanfiction entries additionally require per-title `rights_verified` and `public_distribution_verified` flags. The queue enforces max 2 active bulk workflows and max 10 titles per batch. The flag is an attestation, not proof.
+- Existing public artifact blocker: run #44922285166 has 6 unexpired artefacts (including final #14714778249) expiring 19 February 2027; run #44379388243 has 22 unexpired artefacts (including final #14462633408 and chapter batches for Konoha Medical / Arcane Thief) expiring 16 February 2027. Seven additional completed fanfiction artefact IDs remain from the prior inventory. See [public artifact revocation inventory](../campaigns/overnight/public-artifact-revocation-inventory-20261122.md).
+- GitHub's REST API supports deleting artifacts with Actions write permission, but the connected GitHub operations used here do not expose deletion. Repository-owner action through GitHub UI/API is required if rights cannot be established.
