@@ -1,7 +1,7 @@
 # Novel Retriever: Current Operational Status
 
 **Snapshot:** 23 November 2026, 00:45 IST.
-**This is a dated snapshot, not a live dashboard.** Checked `main` head `fa459a271677aab8748d7342d4d3a2f6737e4b37`; PR #488 is merged and post-merge main CI [#45059462078](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45059462078) passed 4/4. The 26 exact source matches are triaged (18 Yup, 8 IDK); the five new candidates have two structural TOC passes and three failures, but zero rights clearances. The 43-title fanfiction research pass is complete through round 18 (8 complete, 3 blocked, 32 researched but rights-unresolved). The 65 unmatched rows (36 Yup, 29 IDK) have completed their first alternative-source pass. A new alias maps `Very Pure And Ambiguous` to already-registered `So Pure, So Flirtatious`, leaving 51 distinct non-alias titles (23 Yup, 28 IDK) after 13 registry aliases and one excluded alias. The source audit was read-only. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**This is a dated snapshot, not a live dashboard.** Checked `main` head `3509c523e04687247d91a61d64ce7d6c658659cd`; PR #489 is merged and post-merge main CI [#45060746559](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45060746559) passed 4/4. The 26 exact source matches are triaged (18 Yup, 8 IDK); the five new candidates have two structural TOC passes and three failures, but zero rights clearances. The 43-title fanfiction research pass is complete through round 18 (8 complete, 3 blocked, 32 researched but rights-unresolved). The 65 unmatched rows (36 Yup, 29 IDK) have completed their first alternative-source pass. A new alias maps `Very Pure And Ambiguous` to already-registered `So Pure, So Flirtatious`, leaving 51 distinct non-alias titles (23 Yup, 28 IDK) after 13 registry aliases and one excluded alias. The source audit was read-only. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
@@ -432,3 +432,32 @@ Other findings: `Man Huang Feng Bao` / `Storm in the Wilderness` has a 695-chapt
 - Run #44378479201 has 35 unexpired artifacts through 16 February 2027, including partial Wind Calamity batches and the separate successful A New Snake package. Wind Calamity remains failed. Do not count its partials as a completed download.
 - `So Pure, So Flirtatious` artifact #13636208314 expired 15 November 2026; the registry record remains complete.
 - Latest Actions query: zero queued/in-progress workflows and zero active bulk downloads. New download runs this round: **0**. No chapter prose or archive bytes fetched.
+
+
+## Yup alternative-source research round 9 (23 November 2026, 00:45 IST)
+
+See [round-9 report](../campaigns/overnight/yup-alternative-source-research-round-9-20261123.md). Seven Yup rows were checked: five distinct identities and two registry aliases. `Hidden Marriage Sweet Pampering` is a distinct Helan Yang Yang/WebNovel-licensed work (2,844 original chapters, incomplete English translation), not the registry's Jiong Jiong You Yao `Hidden Marriage`. `I Can Extract Everything` by Water (291 chapters, marked Dropped in COO) is not the registry's `Witcher: I Can Extract Everything` by Lich King Number 13 (393 chapters); the FreeWebNovel page is for the Witcher work. `Invincible Levelling King` is only a three-chapter MTL upload with no verified original author. `In Another World With My Smartphone` is Patora Fuyuhara's completed 636-chapter Japanese WN with a separate J-Novel Club-licensed LN. `The Kind Death God` by Tang Jia San Shao is marked unlicensed/incompletely translated, with 208 vs 226 original-index metadata. `The School Prince is a Girl` and `Records of the Human Emperor` reconfirm as aliases of registered `National School Prince Is A Girl` and `The Human Emperor`.
+
+**Round outcome:** 7 rows checked, 2 aliases reconfirmed, 0 new aliases, 0 new exact supported-host pages, 0 explicit archive permissions, 0 rights-cleared titles and 0 downloads. The 51 distinct non-alias rows (23 Yup, 28 IDK) remain. Preserve 343 completed registry records, 70 separately user-confirmed private-HF imports and 90 exclusions. Fanfiction remains 8 complete, 3 blocked and 32 researched but rights-unresolved.
+
+## Additional public artefact risks
+
+- National School Prince run #44444477580 has `confirm_rights=false`; archive artifact #14493119599 remains public through 17 February 2027 02:27:42 UTC.
+- Witcher: I Can Extract Everything run #43734417289 has `confirm_rights=false`; archive artifact #14225912094 remains public through 23 November 2026 12:28:08 UTC.
+- The Human Emperor artifact #13644389821 expired 16 November 2026.
+
+Do not fetch, link or redistribute these archives. Owner-side revocation/restriction is required if rights cannot be established; no artifact-delete operation is exposed by the connected GitHub tools.
+
+
+## Yup alternative-source research round 10 (23 November 2026, 00:45 IST)
+
+See [round-10 report](../campaigns/overnight/yup-alternative-source-research-round-10-20261123.md). Seven Yup rows were rechecked. `Apotheosis` is the 3,913-chapter Chinese web novel (Gift Of Liberation), unlicensed and incompletely translated; ReadNovelFull exposes 3,910 entries, so the three-entry TOC mismatch remains held. Its 1,301-chapter manhua is a separate edition. `Bringing the Nation's Husband Home` has a 969-chapter WebNovel edition versus a 973-entry FanMTL mirror and separately sold Apple Books anthologies. `Eternal Martial Sovereign` has 2,240 completed original chapters and a Gravity Tales licence, but translation-completeness metadata conflicts and no project archive permission exists. `Genjitsu Shugi Yuusha` has distinct WN/LN editions; the 21-volume LN is licensed to J-Novel Club/Seven Seas. `I'm in Hollywood` has a stale 335-chapter FreeWebNovel page versus 345 in an earlier mirror and 1,197 in MTL metadata. `Kujibiki Tokushou` has 398 deleted WN chapters plus six LN-only final chapters, while the English mirror has 320. `Mad God` has 176 completed original chapters, licence No and translation incomplete.
+
+**Round outcome:** 7 Yup rows checked, 2 supported-host pages revalidated but held for TOC/completeness or rights, 0 new aliases, 0 explicit archive permissions, 0 rights-cleared titles and 0 downloads. The distinct alternative-source backlog remains 51 titles (23 Yup, 28 IDK). Do not retry the Apotheosis mismatch unchanged.
+
+
+## Yup alternative-source research round 11 and phase transition (23 November 2026, 00:45 IST)
+
+See [round-11 report](../campaigns/overnight/yup-alternative-source-research-round-11-20261123.md). The final four distinct Yup rows were checked: `I Told You I'm Not 〇〇!!` has no re-verifiable 96-entry supported-host page (Novel Updates currently shows zero translated chapters); `Lonely Loser` is a Japanese WN with 58/63 chapter metadata and a separate 60-entry LN mirror (the earlier 326/320 count was a title/edition cross-match); `Omni-Magician` is 758 original chapters with 775 split translation entries but only 192 WuxiaWorldEU entries; and `Skirt-Chasing Young Monarch: City Lady-Killer` is 1,374 original chapters with 220-entry WuxiaWorldEU/ReadNovelEU mirrors and conflicting completeness metadata.
+
+**Phase transition:** all **23 distinct Yup** rows have now received deeper alternative-source/identity research (rounds 8–11). There are **28 distinct IDK** rows remaining. Proceed to IDK next; do not repeat Yup searches unless new evidence appears. No new aliases, exact supported-host pages, archive permissions, rights clearances or download runs resulted. The 65 rows remain 51 distinct (23 Yup, 28 IDK) after 13 registry aliases and one exclusion alias. The fanfiction pass remains 8 complete, 3 blocked and 32 researched but rights-unresolved.
