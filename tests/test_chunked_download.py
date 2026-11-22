@@ -2,6 +2,7 @@
 
 from hashlib import sha256
 import json
+import subprocess
 from pathlib import Path
 import tempfile
 import unittest
@@ -144,6 +145,23 @@ class ChapterBatchTests(unittest.TestCase):
         self.assertEqual(count, 4035)
         self.assertEqual(chapter_plan(URL, count)["pieces"][-1]["end"], 4035)
         self.assertTrue(runner.call_args.kwargs["check"])
+
+    def test_live_discovery_reports_child_error_and_redacts_query_values(self):
+        failure = subprocess.CalledProcessError(
+            1, ["novel_downloader.py"], output="",
+            stderr=(
+                "ValueError: invalid chapter archive link\\n"
+                "Source: https://novelfull.com/example/chapter-12.html?token=secret\\n"
+            ),
+        )
+        with patch("tools.chunked_download.subprocess.run", side_effect=failure):
+            with self.assertRaises(RuntimeError) as caught:
+                discover_count(URL)
+        message = str(caught.exception)
+        self.assertIn("List-only chapter discovery failed (exit 1)", message)
+        self.assertIn("ValueError: invalid chapter archive link", message)
+        self.assertIn("https://novelfull.com/example/chapter-12.html?[redacted]", message)
+        self.assertNotIn("secret", message)
 
     def test_adaptive_parallelism_stays_between_one_and_six(self):
         examples = [
