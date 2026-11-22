@@ -150,8 +150,8 @@ class ChapterBatchTests(unittest.TestCase):
         failure = subprocess.CalledProcessError(
             1, ["novel_downloader.py"], output="",
             stderr=(
-                "ValueError: invalid chapter archive link\\n"
-                "Source: https://novelfull.com/example/chapter-12.html?token=secret\\n"
+                "ValueError: invalid chapter archive link\n"
+                "Source: https://novelfull.com/example/chapter-12.html?token=secret\n"
             ),
         )
         with patch("tools.chunked_download.subprocess.run", side_effect=failure):
