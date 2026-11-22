@@ -64,3 +64,11 @@ This is a metadata-only identity ledger for the 32 entries marked `needs_source_
 - *There Will Be No Third Dark Lord At Hogwarts!!!*: public catalogue counts vary across WebNovel, NovelFlick and BedNovel/FreeWebNovel, while Patreon posts beyond the public index are locked. Do not merge counts or infer a complete edition.
 - *Naruto: Becoming the Soul King*: WuxiaFull lists 241 chapters while WebNovel lists 424. WuxiaFull is not the repository's WuxiaClick adapter.
 - *Hogwarts: Transmigrated as the Top Student*: FanFiction.net corroborates Hyperbeeam and 556 complete chapters, but it is not a supported downloader source.
+
+
+## Additional original-author corrections from round 12
+
+- **Naruto Birdcage:** The selected WebNovel credit DeCakraWnloverz is a translator identity. The Chinese original is 限制级火影 (also associated with 日光木叶) by 易安z; public Chinese catalogues mark it complete with differing 443-452 chapter totals, while WebNovel shows 443 translated chapters. The translator-group profile labels DeCakraWnloverz as a translator. No archive permission or supported NovelFull/ReadNovelFull/FreeWebNovel source was found.
+- **Konoha: Gu Master:** HyppoTL's 405-chapter WebNovel page explicitly describes a translation of a completed work by original author 宝石对影. No archive permission or supported source was found.
+- **Reborn in Konoha; I Think I'm Cultivating Immortality:** HyppoTL's 600-chapter WebNovel page explicitly describes a translation of a completed work by original author 余青衣. No archive permission or supported source was found.
+- **Naruto: Chronicles of a Fire Ninja:** FirstHokage's Royal Road author note reports unauthorised Amazon reuse. This is not a general archive licence or a grant to this project.
