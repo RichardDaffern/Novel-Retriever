@@ -29,7 +29,7 @@ VERIFIED = ROOT / "campaigns" / "yup-pilot" / "verified-urls.json"
 REGISTRY = ROOT / "downloaded_novels.json"
 CAMPAIGN = "yup-idk-overnight-20261119"
 WORKFLOW = "library-bulk-download.yml"
-MAX_ACTIVE_RUNS = 4
+MAX_ACTIVE_RUNS = 2
 MAX_SOURCE_REQUESTS = 500
 REQUEST_DELAY = 2
 RUN_DELAY = 150
@@ -284,6 +284,16 @@ def dispatch(verified: dict, tier: str, *, runner=subprocess.run,
                 or item.get("evidence") != "public_listing_exact_title"
                 or url not in candidate_urls(title)):
             raise QueueError(f"Untrusted or duplicate discovery entry: {title!r}")
+        rights_holder = item.get("rights_holder")
+        rights_url = item.get("rights_evidence_url")
+        if (item.get("rights_verified") is not True
+                or item.get("public_distribution_rights") is not True
+                or not isinstance(rights_holder, str) or not rights_holder.strip()
+                or not isinstance(rights_url, str) or not rights_url.startswith("https://")):
+            raise QueueError(
+                f"Title {title!r} lacks explicit archive and public-distribution "
+                "rights evidence; public listing alone is not permission"
+            )
         seen.add(norm(title))
         pending.append(item)
     report = {"version": 1, "tier": tier, "campaign": CAMPAIGN,
@@ -300,13 +310,14 @@ def dispatch(verified: dict, tier: str, *, runner=subprocess.run,
         if active_workflows(runner=runner) >= MAX_ACTIVE_RUNS:
             sleeper(POLL_DELAY)
             continue
-        group = pending[:2]
+        group = pending[:10]
         urls = [item["url"] for item in group]
         try:
             runner(
                 ["gh", "workflow", "run", WORKFLOW, "--ref", "main",
                  "--field", "novel_urls=" + ",".join(urls),
-                 "--field", "chapter_range=", "--field", "force=false"],
+                 "--field", "chapter_range=", "--field", "force=false",
+                 "--field", "confirm_rights=true"],
                 check=True, timeout=45,
             )
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as exc:
@@ -315,6 +326,11 @@ def dispatch(verified: dict, tier: str, *, runner=subprocess.run,
         report["submitted"].append({
             "titles": [item["title"] for item in group],
             "urls": urls,
+            "rights": [{
+                "title": item["title"],
+                "rights_holder": item["rights_holder"],
+                "rights_evidence_url": item["rights_evidence_url"],
+            } for item in group],
         })
         del pending[:len(group)]
         print(f"Queued [{tier}] {len(group)} checked books; "
