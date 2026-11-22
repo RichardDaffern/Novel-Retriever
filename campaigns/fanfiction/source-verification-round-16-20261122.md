@@ -1,7 +1,7 @@
 # Fanfiction source research round 16
 
 **Checked:** 22 November 2026, 14:44 IST  
-**Scope:** 15 remaining exact title/credited-author searches from the immutable 43-title catalogue, with supported-host-specific checks for ten titles and metadata-only rechecks of the three blocked works.  
+**Scope:** 15 additional exact title/credited-author searches from the immutable 43-title catalogue, with supported-host-specific checks for ten titles and metadata-only rechecks of the three blocked works.  
 **Method:** Public search results and book/author metadata only. No screenshots, chapter prose, archive bytes, locked Patreon material or access-controlled pages were fetched.
 
 ## Result
