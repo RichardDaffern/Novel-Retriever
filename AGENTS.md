@@ -1208,3 +1208,14 @@ The metadata-only round-15 report is `campaigns/fanfiction/source-verification-r
 ## Fanfiction source research round 16 (22 November 2026, 14:44 IST)
 
 Round 16 searched 15 exact title/credited-author pairs and rechecked the three blocked works. It found **0 new exact NovelFull, ReadNovelFull or FreeWebNovel listings, 0 explicit archive permissions, 0 rights-cleared titles and 0 download runs**. New metadata confirms SaintXI's *Naruto: Konoha's Genius is a bit Ordinary* is a translation whose author disclaims Naruto rights; *Harry Potter: Cael Vale's Journey to Hogwarts* is by 16622800 and has a third-party FICOOL listing; *Hogwarts: Bloodline Wizard* is a completed 1,049-chapter translation credited to Innocent Angel/Atlas Studios; NoviceAuthor's *Naruto: Transmigrated as an Uchiha* has 327 WebNovel vs 326 Xnovel chapters; and Ghidorah1707/Ghidorah_7074 is the cross-post identity for *The Flaw of Slytherin*. Patreon advance access is not archive permission. Wind Calamity still requires author contact and a complete chapter map; Konoha Medical's credited editor says they are not the original writer; Arcane Thief's FanFiction.net 183-chapter cross-post differs from the 254-chapter FreeWebNovel edition. Keep the 65 unmatched Yup/IDK rows deferred. See the [round-16 report](campaigns/fanfiction/source-verification-round-16-20261122.md).
+
+
+## Fanfiction source research round 17 (22 November 2026, 15:56 IST)
+
+See [round 17](campaigns/fanfiction/source-verification-round-17-20261122.md).
+
+- Exact title + selected-credit searches were repeated for all 32 unresolved entries across NovelFull, ReadNovelFull, FreeWebNovel and WuxiaClick. **0 additional exact supported-host listings** surfaced; three already-known FreeWebNovel matches resurfaced (Tenseigan, Chronicles of a Fire Ninja and Starting With Creating A Genius Persona). The two near/variant matches remain rejected.
+- **0 explicit archive permissions, 0 rights-cleared titles and 0 new download runs.** The 43-title catalogue remains 8 complete, 3 blocked and 32 research targets.
+- Fresh metadata reinforces edition/rights blockers: Tenseigan's FreeWebNovel labels are non-linear and differ from WebNovel's 967-chapter snapshot; Chronicles of a Fire Ninja shows a displayed/internal chapter split and advertises Patreon-only advance chapters; Starting With Creating A Genius Persona has 527 FreeWebNovel versus 487 CHERREADS chapters.
+- The three blocked works remain held. Wind Calamity's author has publicly objected to unauthorised translations and its TOC remains non-linear; Konoha Medical's credited editor says they are not the original writer and artifact #14462633408 remains public/unregistered/rights-unverified; Arcane Thief remains a distinct 254-chapter FreeWebNovel edition with incomplete full-TOC validation and no archive permission.
+- No screenshots, chapter prose or archive bytes were fetched. Keep the 65 unmatched Yup/IDK rows deferred.
