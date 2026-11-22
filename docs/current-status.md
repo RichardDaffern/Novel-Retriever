@@ -1,7 +1,7 @@
 # Novel Retriever: Current Operational Status
 
 **Snapshot:** 22 November 2026, 23:34 IST.
-**This is a dated snapshot, not a live dashboard.** Checked `main` head `3a1696860141bd67b3cc191d5676591858713395`; main CI [#45052497909](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45052497909) passed 4/4. The latest 100 Actions runs showed zero queued/in-progress workflows and zero active bulk downloads. IDK round 9 checked seven further audit rows and found one new exact NovelFull page for *Attack Of The Adorable Kid: President Daddy's Infinite Pampering* (Sweets Flood, 2,612 page-reported chapters); its full TOC and archive rights are not verified. No download was dispatched. See the [round-9 report](../campaigns/overnight/idk-alternative-source-research-round-9-20261122.md).
+**This is a dated snapshot, not a live dashboard.** Checked `main` head `3a1696860141bd67b3cc191d5676591858713395`; main CI [#45052497909](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45052497909) passed 4/4. IDK alternative-source rounds 8–10 are recorded on [PR #487](https://github.com/RichardDaffern/Novel-Retriever/pull/487); its initial CI #45053584370 passed 4/4, and the latest documentation additions require a fresh check. The latest 100 Actions runs at the last live check showed zero queued/in-progress download workflows. Round 9 found one new NovelFull page lead without a complete TOC or archive permission; round 10 found no new supported-host listings. No download was dispatched.
 
 ## 1. Repository and CI state
 
