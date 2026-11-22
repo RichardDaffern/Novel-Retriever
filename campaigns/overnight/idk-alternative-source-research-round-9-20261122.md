@@ -36,7 +36,7 @@ At 23:34 IST the latest 100 Actions runs contained **zero queued/in-progress wor
 
 ## Next IDK tranche
 
-Continue with the next distinct unresolved IDK rows: *Invisible Dragon*; *I'm Gonna Live with You Not Because My Parents Left Me Their Debt But Because I Like You*; *Juvenile Medical God*; *Konjiki no Wordmaster*; *Level Up Doctor Choi Kiseok*; *My Plain-looking Fiance is Secretly Sweet with Me*; and *Rebound: A 2nd Chance*. Reconcile each against the 343-record registry and 90 exclusions before searching. Do not dispatch unless exact work/author/edition, English language, complete ordered TOC, explicit archive rights and a non-public output route are all verified.
+Continue with the next distinct unresolved IDK rows: *Invisible Dragon*; *I’m Gonna Live with You Not Because My Parents Left Me Their Debt But Because I Like You*; *Juvenile Medical God*; *Konjiki no Wordmaster*; *Level Up Doctor Choi Kiseok*; *My Plain-looking Fiance is Secretly Sweet with Me*; and *Rebound: A 2nd Chance*. Reconcile each against the 343-record registry and 90 exclusions before searching. Do not dispatch unless exact work/author/edition, English language, complete ordered TOC, explicit archive rights and a non-public output route are all verified.
 
 ## Sources
 
