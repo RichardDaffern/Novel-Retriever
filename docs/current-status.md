@@ -346,3 +346,13 @@ The round-2 alias reconciliation is now followed by a broader alternative-source
 Full findings and source links: [Yup/IDK alternative-source round 3](../campaigns/overnight/alternative-source-research-round-3-20261122.md).
 
 **Acquisition decision remains 0 rights-cleared titles and 0 new download runs.** Do not treat these public pages or catalogue metadata as permission to archive. The 52 rows are not globally unavailable; this is an evidence-limited search.
+
+## Public archive rights-policy and workflow-gate check (22 November 2026, 20:08 IST)
+
+- Main is `58776c5a9059696c5c8142d851f62c93284de594`; PR #480 is merged. Post-merge main CI [#45029393072](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45029393072) passed 4/4.
+- The latest 100 Actions runs contained **0 queued/in-progress runs** and **0 active bulk workflows**. No new download run was dispatched.
+- PR #480's synthetic test artifacts #14756069575 (two-chapter smoke) and #14756059721 (bulk stress results) expire 25 November 2026. These are test artefacts, not novel downloads.
+- Rights terms checked directly: [NovelFull](https://novelfull.net/tos) and [ReadNovelFull](https://readnovelfull.com/site/tos) describe content as collected from public sources/free to read and place original-copyright responsibility on users; [FreeWebNovel](https://freewebnovel.com/termsofuse) limits its user-content licence to use through its services and requires uploaders to hold the necessary rights. None grants this project blanket off-platform archiving or public-redistribution permission.
+- GitHub's [Actions artifact API documentation](https://docs.github.com/en/rest/actions/artifacts) says public resources can be accessed without authentication; the public repository therefore does not provide private artifact storage.
+- Code review found that `tools.mixed_source_bulk.selection_plan` required `confirm_rights` only for WuxiaClick and Scribble Hub. NovelFull, FreeWebNovel and ReadNovelFull bulk selections and their direct workflows could upload public artifacts without that gate. PR #481 adds a universal gate and requires the direct source workflows to receive the same confirmation. The fanfiction queue is aligned to the two-active / ten-per-batch limits and holds entries without per-title archive and public-distribution evidence.
+- This is an attestation gate, not legal verification. No title has been promoted to rights-cleared. Existing counts remain 343 completed registry records, 70 separately user-confirmed private-HF imports and 90 exclusions. The 26 exact source matches remain read-only evidence; the 32 fanfiction research targets have been searched through round 18; the 52 distinct non-alias Yup/IDK titles remain without documented rights clearance.

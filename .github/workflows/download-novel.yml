@@ -16,6 +16,11 @@ on:
         required: false
         type: boolean
         default: false
+      confirm_rights:
+        description: 'I have permission to archive and publicly share this artefact from this public repository'
+        required: true
+        type: boolean
+        default: false
 
 
   workflow_call:
@@ -32,6 +37,11 @@ on:
       force:
         description: 'Force fresh download and bypass reusable cached ranges'
         required: false
+        type: boolean
+        default: false
+      confirm_rights:
+        description: 'Permission to archive and publicly share the resulting artefact'
+        required: true
         type: boolean
         default: false
 
@@ -66,6 +76,15 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
+
+      - name: Require permission to archive and publicly share this artefact
+        env:
+          CONFIRM_RIGHTS: ${{ inputs.confirm_rights }}
+        run: |
+          if [[ "$CONFIRM_RIGHTS" != "true" ]]; then
+            echo "::error::This public workflow requires documented permission to archive and publicly share the resulting artefact."
+            exit 1
+          fi
 
       - name: Check registry before doing any downloading
         id: registry

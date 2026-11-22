@@ -153,6 +153,12 @@ def selection_plan(
             )
         item = next((entry for entry in entries if entry["url"] == url), None)
         chosen[url] = item or {"url": url, "title": url.rsplit("/", 1)[-1], "site": site}
+    if not confirm_rights:
+        raise ValueError(
+            "All downloads in this public repository require explicit permission "
+            "to archive and publicly share every selected artefact; a public "
+            "listing or free-to-read page is not permission"
+        )
     rng = normalise_range(chapter_range)
     wuxia_selected = sum(item["site"] == "WuxiaClick" for item in chosen.values())
     if wuxia_selected:
@@ -329,7 +335,8 @@ def main(argv=None) -> int:
     parser.add_argument("--force", action="store_true")
     parser.add_argument(
         "--confirm-rights", action="store_true",
-        help="Required for WuxiaClick and Scribble Hub source downloads",
+        help=("Required for every source: permission to archive and publicly "
+              "share each resulting artefact from this public repository"),
     )
     parser.add_argument("--registry", type=Path, default=Path("downloaded_novels.json"))
     parser.add_argument("--catalogue", type=Path, default=DEFAULT_CATALOGUE)
