@@ -1352,3 +1352,20 @@ See [IDK round-15 report](campaigns/overnight/idk-alternative-source-research-ro
 **Round outcome:** 7/7 final IDK rows checked; IDK deep research 28/28; Yup deep research 23/23; all **51 distinct non-alias titles** among the 65 unresolved audit rows now have a deeper alternative-source/identity pass (13 registry aliases and one excluded alias removed). No new exact supported-host listing, registry alias, explicit archive permission, rights-cleared title or download run. The 65 are not globally unavailable; this records the current research scope only. Keep the 26 exact-match triage, 43-fanfiction research, and 65-row alternative-source stage in the prescribed order. Fanfiction remains 8 complete, 3 blocked and 32 source-researched but rights-unresolved. Preserve the 343 registry records, 70 separately user-confirmed private-HF imports and 90 exclusions. No chapter prose or archive bytes were fetched.
 
 **Next:** do not repeat broad searches across these 51 titles without new evidence. Continue only with new author/edition/index/rights evidence or a rights-holder response. No download is authorised until both a complete consecutive English index and explicit archiving/public-distribution permission are recorded.
+
+
+## Additional public artifact exposure verified (23 November 2026, 01:43 IST)
+
+A metadata-only inspection of run [#43734417289](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289) confirms its public `bulk-successful-novels` artifact **#14242470238** contains **nine nested final ZIPs** (39,072,154 bytes) and expires at **2026-11-23 15:57:51 UTC / 21:27 IST today**. The nine entries are already present in `downloaded_novels.json`, so they are not new acquisitions:
+
+- The Sweetest Medicine (857 chapters)
+- Witcher: I Can Extract Everything (393)
+- Trial Marriage Husband: Need to Work Hard (1,275)
+- Ze Tian Ji (1,185)
+- Three Days of Happiness (16)
+- Transmigrator Meets Reincarnator (709)
+- The Villainess Reverses the Hourglass (288)
+- Valhalla Saga (269)
+- Urban Banished Immortal (246)
+
+The individual Witcher archive **#14225912094** expires at **2026-11-23 12:28:08 UTC / 17:58 IST today**. These are existing public artifacts from the older run, not newly dispatched work. Do not fetch, link or redistribute the nested ZIPs. The repository-owner action remains to delete/restrict unlicensed artifacts; the connected GitHub operations expose no artifact-deletion operation. Preserve the 343-record registry count and do not re-download these titles.
