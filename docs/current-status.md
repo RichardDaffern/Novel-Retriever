@@ -411,3 +411,6 @@ Seven IDK rows checked. One exact supported-host listing was found for *Warrior'
 ## Bulk dispatch safety limits (23 November 2026)
 
 A safety PR now enforces the user-approved dispatch limits in code: at most 10 new titles per bulk workflow run (including retries), at most 2 active bulk workflow runs through the paced queue, and per-title archive plus public-distribution rights evidence before dispatch. The dispatcher passes `confirm_rights=true` only after the rights fields are present. `force=false` remains mandatory. No workflow was dispatched during this change.
+
+
+The bulk workflow now has a prepare-stage guard that rejects a third active run (counts other active runs and excludes the current run); the paced dispatcher also checks the active-run count before submitting. Planner and retry planner enforce the ten-new-title batch cap.
