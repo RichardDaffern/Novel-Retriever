@@ -103,11 +103,31 @@ def chapter_count_from_metadata(data: dict) -> int:
 
 
 def discover_count(url: str, timeout_minutes: int = 15) -> int:
-    completed = subprocess.run(
-        [sys.executable, "novel_downloader.py", url, "--confirm-rights", "--list-only",
-         "--timeout-minutes", str(timeout_minutes)],
-        capture_output=True, text=True, check=True, timeout=timeout_minutes * 60 + 30,
-    )
+    command = [
+        sys.executable, "novel_downloader.py", url, "--confirm-rights", "--list-only",
+        "--timeout-minutes", str(timeout_minutes),
+    ]
+    try:
+        completed = subprocess.run(
+            command, capture_output=True, text=True, check=True,
+            timeout=timeout_minutes * 60 + 30,
+        )
+    except subprocess.CalledProcessError as exc:
+        child_output = exc.stderr or exc.output or ""
+        lines = [line.rstrip() for line in child_output.splitlines() if line.strip()]
+        detail = "\n".join(lines[-12:])
+        # A list-only failure should expose its parser/transport reason, but
+        # never echo query-string values that could contain access tokens.
+        detail = re.sub(
+            r"(https?://[^\\s?]+)\\?[^\\s]+",
+            r"\\1?[redacted]",
+            detail,
+        )
+        detail = detail[-1200:]
+        suffix = f"\\nChild output (last 12 lines):\\n{detail}" if detail else ""
+        raise RuntimeError(
+            f"List-only chapter discovery failed (exit {exc.returncode}){suffix}"
+        ) from exc
     data = json.loads(completed.stdout.strip())
     return chapter_count_from_metadata(data)
 
