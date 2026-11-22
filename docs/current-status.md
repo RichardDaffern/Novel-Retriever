@@ -396,3 +396,8 @@ Continue Yup-side alternative and rights verification before IDK. Do not retry k
 
 
 Round-6 addendum: an exact non-supported listing for *I Told You I'm Not 〇〇!!* was verified under NaHCO3 (WuxiaClick/WuxiaWorldEU: 96 entries, latest labelled Chapter 97; Novel Updates: 99 Japanese web-novel chapters, hiatus, no English publisher). It is not an eligible supported complete English source and has no archive permission. No download.
+
+
+## Yup/IDK alternative-source research round 7 (22 November 2026, 23:06 IST)
+
+Seven unresolved Yup rows were rechecked. Four are title/edition collisions with existing registry records: Crazy Levelling System / Crazy Leveling System, Dungeon Defence / Dungeon Defense (46 registered chapters vs 507-chapter web novel), Invincible Dragon Emperor / The Invincible Dragon Emperor, and My Fury Will Burn The Heavens / Fury Towards The Burning Heaven. Existing download runs are #44780760719, #44791453169 and #44781304939; this pass dispatched none. Levelling Up And Becoming Undefeated has no reliable exact source; Omni-Magician has conflicting unsupported indexes; Soul Land's WebNovel 690-entry page splits a 336-chapter original and is not a new authorised archive source. Outcome: 7 checked, 0 net-new supported-host candidates, 0 explicit permissions, 0 rights-cleared titles, 0 new runs. See [round-7 report](../campaigns/overnight/alternative-source-research-round-7-20261122.md). Continue Yup first, then IDK; do not retry or re-download registry aliases.
