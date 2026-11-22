@@ -280,3 +280,14 @@ See [round 16](../campaigns/fanfiction/source-verification-round-16-20261122.md)
 - Wind Calamity still requires author contact and a complete chapter map. Konoha Medical's credited editor says they are not the original writer; its artifact #14462633408 remains public and rights-unverified. Arcane Thief's FanFiction.net 183-chapter cross-post differs from the 254-chapter FreeWebNovel edition.
 - No screenshots, chapter prose or archive bytes were fetched. No download run was dispatched. Keep the 65 unmatched Yup/IDK entries deferred.
 - At 14:44 IST, live Actions showed 0 queued/in-progress workflows and 0 active bulk download workflows.
+
+
+## Fanfiction source research round 17 (22 November 2026, 15:56 IST)
+
+See [round 17](campaigns/fanfiction/source-verification-round-17-20261122.md).
+
+- Exact title + selected-credit searches were repeated for all 32 unresolved entries across NovelFull, ReadNovelFull, FreeWebNovel and WuxiaClick. **0 additional exact supported-host listings** surfaced; three already-known FreeWebNovel matches resurfaced (Tenseigan, Chronicles of a Fire Ninja and Starting With Creating A Genius Persona). The two near/variant matches remain rejected.
+- **0 explicit archive permissions, 0 rights-cleared titles and 0 new download runs.** The 43-title catalogue remains 8 complete, 3 blocked and 32 research targets.
+- Fresh metadata reinforces edition/rights blockers: Tenseigan's FreeWebNovel labels are non-linear and differ from WebNovel's 967-chapter snapshot; Chronicles of a Fire Ninja shows a displayed/internal chapter split and advertises Patreon-only advance chapters; Starting With Creating A Genius Persona has 527 FreeWebNovel versus 487 CHERREADS chapters.
+- The three blocked works remain held. Wind Calamity's author has publicly objected to unauthorised translations and its TOC remains non-linear; Konoha Medical's credited editor says they are not the original writer and artifact #14462633408 remains public/unregistered/rights-unverified; Arcane Thief remains a distinct 254-chapter FreeWebNovel edition with incomplete full-TOC validation and no archive permission.
+- No screenshots, chapter prose or archive bytes were fetched. Keep the 65 unmatched Yup/IDK rows deferred.
