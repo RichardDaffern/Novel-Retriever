@@ -72,3 +72,23 @@ This is a metadata-only identity ledger for the 32 entries marked `needs_source_
 - **Konoha: Gu Master:** HyppoTL's 405-chapter WebNovel page explicitly describes a translation of a completed work by original author 宝石对影. No archive permission or supported source was found.
 - **Reborn in Konoha; I Think I'm Cultivating Immortality:** HyppoTL's 600-chapter WebNovel page explicitly describes a translation of a completed work by original author 余青衣. No archive permission or supported source was found.
 - **Naruto: Chronicles of a Fire Ninja:** FirstHokage's Royal Road author note reports unauthorised Amazon reuse. This is not a general archive licence or a grant to this project.
+
+
+## Additional source checks, round 13 (22 November 2026)
+
+The following ten original catalogue rows received another exact title/selected-credit and public-source pass. No exact NovelFull, ReadNovelFull or FreeWebNovel listing surfaced, and no explicit archiving permission was found.
+
+| Selected title | Catalogue credit | New evidence | Decision |
+|---|---|---|---|
+| Naruto: Uchiha's Genjutsu Demon | lazarus898 | WebNovel catalogue: 401 chapters. [Catalogue](https://www.webnovel.com/book/23143172205134805/catalog) | No supported-host listing or archive permission. |
+| Naruto: My Unique System | Cloe23 | WebNovel: 304 chapters. [Listing](https://www.webnovel.com/book/naruto-my-unique-system_28572579600144305) | No supported-host listing or archive permission. |
+| Naruto: The Hyuga Mastermind | NahinS77 | WebNovel: 380 entries; final entry is labelled Chapter 381. [Catalogue](https://www.webnovel.com/book/31282473100386105/catalog) | Chapter numbering discrepancy; no supported-host listing or archive permission. |
+| Naruto: Becoming the Soul King | Junkdog | WebNovel: 423–424 entries with final label Chapter 426; WuxiaFull: 241 and ongoing; NovelFlick has another count. [WebNovel](https://www.webnovel.com/book/34681130400701205), [WuxiaFull](https://www.wuxiafull.com/Naruto-Becoming-the-Soul-King/), [NovelFlick](https://www.novelflick.com/story/34681130400701205) | Unsupported mirrors and edition/index drift; no archive permission. |
+| Naruto: Konoha's Genius is a bit Ordinary | SaintXI | WebNovel: 472 chapters. The author page calls it a translation and says they do not own Naruto rights. [WebNovel](https://www.webnovel.com/book/30359049406191005), [author guide](https://www.patreon.com/SaintXI/posts/guide-for-novels-110650000) | No supported source or archive permission. |
+| Hogwarts: The Unscientific Wizard | Crazy_DarkSide_Cat | WebNovel chapter page identifies the author and directs readers to Patreon for advance chapters. [Chapter page](https://www.webnovel.com/ru/book/29448924500256905/81753904236261761) | No supported-host listing or archive permission. |
+| Succubus System At Hogwarts | Dragonel23 | WebNovel: 73 chapters; page says it is a translation of *Hogwarts: I am the savior, and I am breaking up couples*. Patreon advertises 12 advance chapters. [WebNovel](https://www.webnovel.com/book/31142522908061905/catalog), [Patreon](https://www.patreon.com/cw/Dragonel/membership) | Original author unresolved; no supported source or archive permission. |
+| Harry Potter: The Bard of Hogwarts | Dark_Peace | WebNovel: 431 chapters. A separate 12-chapter FanFiction.net story with the same title is by Vindicare40k. [WebNovel](https://www.webnovel.com/book/29905212700204005/catalog), [FanFiction.net](https://www.fanfiction.net/s/12246515/1/The-Bard-of-Hogwarts) | Title collision; not a verified cross-post. Do not substitute. |
+| Hogwarts: I Started as the Fool | ulquiorra_cifer_1152 | English WebNovel: 178 chapters; Thai snapshot: 222. [English](https://www.webnovel.com/book/hogwarts-i-started-as-the-fool_36540569508783705), [Thai](https://www.webnovel.com/th/book/hogwarts-i-started-as-the-fool_36540569508783705) | Edition/count drift; no supported source or archive permission. |
+| The Most Fortunate Malfoy in Harry Potter | Devilsatan | CHERREADS: 193 chapters; earlier WebNovel snapshot: 206. [CHERREADS](https://ellatoria.com/story/34592692808708405) | Edition drift; no archive permission. |
+
+See [source verification round 13](source-verification-round-13-20261122.md). This pass does not change the immutable catalogue JSON or the 8 complete / 3 blocked / 32 research-target reconciliation.
