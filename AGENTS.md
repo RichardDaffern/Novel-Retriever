@@ -1219,3 +1219,16 @@ See [round 17](campaigns/fanfiction/source-verification-round-17-20261122.md).
 - Fresh metadata reinforces edition/rights blockers: Tenseigan's FreeWebNovel labels are non-linear and differ from WebNovel's 967-chapter snapshot; Chronicles of a Fire Ninja shows a displayed/internal chapter split and advertises Patreon-only advance chapters; Starting With Creating A Genius Persona has 527 FreeWebNovel versus 487 CHERREADS chapters.
 - The three blocked works remain held. Wind Calamity's author has publicly objected to unauthorised translations and its TOC remains non-linear; Konoha Medical's credited editor says they are not the original writer and artifact #14462633408 remains public/unregistered/rights-unverified; Arcane Thief remains a distinct 254-chapter FreeWebNovel edition with incomplete full-TOC validation and no archive permission.
 - No screenshots, chapter prose or archive bytes were fetched. Keep the 65 unmatched Yup/IDK rows deferred.
+
+
+### Blocked Yup/IDK title classification corrections (22 November 2026)
+
+The 26 exact source-audit listings are 18 Yup and 8 IDK. Do not classify every prior blocked match as a chapter-number mismatch:
+
+- Issue #371 has nine confirmed identity mismatches: Awakening, Condemning the Heavens, Flower Master In The City, Heavenly Star, Ex Rank Supporting Role’s Replay in a Prestigious School, Game Market 1983, Parasite in Love, Sense and The S-Classes That I Raised.
+- Omega Summoner's cited run #44447221591 completed its chapter batches for 1–3,083, but recovery manifest #14496292098 saved **0 final ZIPs**. The often-repeated 2,069/2,070 mismatch is not in that run's logs; no mismatch claim until the original run is located.
+- Beauty And The Bodyguard timed out during chapter-list discovery; no index was obtained. Legend of Swordsman failed on an empty Chapter 5742 body; only a partial artifact exists.
+- Of the nine other audit matches with 20-Nov issues, Past Life Returner and This MC Is Kickass have deterministic identity mismatches; Martial Arts System and Weapon Master have incomplete/misnumbered indexes; Path to Heaven has a duplicate Chapter 152; The Alchemist God and The Mightiest Leveling System have invalid ReadNovelFull URLs. PR #453 (prologue support) did not resolve The Alchemist God. PR #465 adds diagnostics for rejected ReadNovelFull hrefs and duplicate URLs only. PR #466 adds FreeWebNovel offset diagnostics only.
+- Tomb Raider King and World Domination System had no child jobs in dispatch #44769541580, so no chapter failure can be claimed for them.
+
+No affected title was retried. Capture exact public TOC href/index evidence on the merged diagnostic code, add offline regression fixtures, and fix the root cause before any targeted retry. See the corrected [source-audit report](../campaigns/overnight/source-audit-report-20261121.md) and [issue #371](https://github.com/RichardDaffern/Novel-Retriever/issues/371).
