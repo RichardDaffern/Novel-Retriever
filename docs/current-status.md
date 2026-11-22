@@ -461,3 +461,52 @@ See [round-10 report](../campaigns/overnight/yup-alternative-source-research-rou
 See [round-11 report](../campaigns/overnight/yup-alternative-source-research-round-11-20261123.md). The final four distinct Yup rows were checked: `I Told You I'm Not 〇〇!!` has no re-verifiable 96-entry supported-host page (Novel Updates currently shows zero translated chapters); `Lonely Loser` is a Japanese WN with 58/63 chapter metadata and a separate 60-entry LN mirror (the earlier 326/320 count was a title/edition cross-match); `Omni-Magician` is 758 original chapters with 775 split translation entries but only 192 WuxiaWorldEU entries; and `Skirt-Chasing Young Monarch: City Lady-Killer` is 1,374 original chapters with 220-entry WuxiaWorldEU/ReadNovelEU mirrors and conflicting completeness metadata.
 
 **Phase transition:** all **23 distinct Yup** rows have now received deeper alternative-source/identity research (rounds 8–11). There are **28 distinct IDK** rows remaining. Proceed to IDK next; do not repeat Yup searches unless new evidence appears. No new aliases, exact supported-host pages, archive permissions, rights clearances or download runs resulted. The 65 rows remain 51 distinct (23 Yup, 28 IDK) after 13 registry aliases and one exclusion alias. The fanfiction pass remains 8 complete, 3 blocked and 32 researched but rights-unresolved.
+
+
+## IDK alternative-source research round 12 (23 November 2026, 00:45 IST)
+
+See [IDK round-12 report](../campaigns/overnight/idk-alternative-source-research-round-12-20261123.md). Seven distinct IDK rows were checked. `Attack of the Adorable Kid` has a NovelFull page with 2,612 entries matching its licensed WebNovel edition; its original metadata records 1,782 chapters. `Beautiful Time With You` has 1,129 completed WebNovel/FreeWebNovel entries, while Qidian metadata notes 1,135 original chapters. `Juvenile Medical God` has 4,144 completed original chapters but licence No and incomplete translation. `Warrior's Promise` is an ongoing 3,336-chapter WebNovel edition with mirror counts from 1,691 to 3,336. `Tensei Shitara Slime Datta Ken` has a 256-chapter WN plus 47 side stories and a separate Yen Press-licensed LN. `The Gloomy Me in Class` has 111 ongoing WN chapters versus 75–85 mirror entries. `Konjiki no Wordmaster` has separate WN/LN/manga editions; WN translation tracking stops at c319 while the source index lists chapters through at least 664.
+
+**Round outcome:** 7 IDK rows checked; 0 registry aliases; 0 excluded rows; 1 new exact NovelFull listing and 1 FreeWebNovel listing reconfirmed, both held for rights; 0 explicit archive permissions, 0 rights-cleared titles and 0 downloads. The distinct backlog remains 51 titles (23 Yup, 28 IDK); deeper Yup research is complete and 7/28 distinct IDK rows have now been checked.
+
+
+## IDK alternative-source research round 13 (23 November 2026, 00:45 IST)
+
+See [IDK round-13 report](../campaigns/overnight/idk-alternative-source-research-round-13-20261123.md). Seven more distinct IDK rows were checked. `An Eye for News` has 776 original chapters (Licensed=No) versus 751 FanMTL/WuxP/MTLN entries and 36 WuxiaWorldEU entries. `For Some Reason, the School Goddess Likes to Hang Out at My House` has 126 ongoing WN chapters and 147–166 mirror entries with split/short-story differences. `Genius Profiler Hansol Im` has 203 completed Korean WN chapters, translation incomplete. `HacKer` has 1,873 completed original chapters (Licensed=No) versus 1,933 WuxiaBox entries. `How To Melt the Ice Lady` has 90 ongoing WN chapters/two LN volumes and a Tentai Books licence; mirror pages expose 98 split entries. `I Know Everything` has 1,293 original chapters versus 1,302 FanMTL entries. `Invisible Dragon` has 50 completed Korean chapters, with a 17-chapter copied mirror.
+
+**Round outcome:** 7 IDK rows checked, 0 registry aliases, 0 excluded rows, 0 new exact supported-host pages, 0 explicit archive permissions, 0 rights-cleared titles and 0 downloads. IDK deep research is now 14/28; 14 distinct IDK titles remain. The total unmatched backlog remains 51 distinct titles (23 Yup, 28 IDK).
+
+
+## IDK alternative-source research round 14 (23 November 2026, 00:45 IST)
+
+See [IDK round-14 report](../campaigns/overnight/idk-alternative-source-research-round-14-20261123.md). Seven further distinct IDK rows were checked. `I'm Gonna Live with You Not Because My Parents Left Me Their Debt But Because I Like You` is a five-volume Japanese LN; its 77-chapter manga is separate. `Legend of the Mythological Genes` is a completed 520-chapter WebNovel commercial translation by Fish Leaping to the Peak/Lordbluefire. `Level Up Doctor Choi Kiseok` is a 404-chapter Korean novel across 16 volumes; the seven-chapter WuxiaWorldEU result is incomplete and the 111-chapter English result is its manhwa. `My Plain-looking Fiance` has a 251+6 WN and a separate eight-volume LN; the 46-entry mirror is incomplete. `Rebound: A 2nd Chance` is an original English WebNovel by The_Gaji, 352 chapters, while WuxiaWorldEU/ReadNovelEU omit chapter 69 and show 323/324. `Shen Mu` has 404 original chapters, but WuxiaWorldEU exposes 32 and other directories conflict on completeness. `Soudana, Tashika ni Kawaii na` has inconsistent one-/two-volume Japanese LN metadata and no English publisher.
+
+**Round outcome:** 7 IDK rows checked, 0 registry aliases, 0 exclusions, 0 new exact supported-host pages, 0 archive permissions, 0 rights clearances and 0 downloads. IDK deep research is now 21/28; 7 distinct IDK rows remain. Total alternative-source backlog remains 51 distinct (23 Yup, 28 IDK).
+
+
+## IDK alternative-source research round 15 and 65-row phase completion (23 November 2026, 01:43 IST)
+
+The final seven distinct IDK audit rows were researched; see [round 15 report](../campaigns/overnight/idk-alternative-source-research-round-15-20261123.md). Results include: `Super Doctor` (Ye Tian Nan, 1,215 original vs 1,126 FanMTL entries), `The Entertainment Circle is Mine` (Chun Dao Han, 101 WuxiaClick entries), `The Nine Godheads` (Chen Ji Tang Hong Dou, unlicensed/incomplete, conflicting 488/556/85/12 indexes), `The Reincarnated Cop Who Strikes With Wealth` (Baeppu, conflicting 196/197 and 112-entry mirrors), `Those Years When I Opened a Chinese Medicine Shop` (28 Novel Updates chapters, author not verified), ambiguous `Starting Over`, and `Yondome Wa Iyana Shi Zokusei Majutsushi` = `The Death Mage Who Doesn't Want a Fourth Time` (Densuke, 412 WN chapters + 69 side stories; supported-host index incomplete; English LN separately licensed by One Peace Books).
+
+**Phase status:** 23/23 distinct Yup rows and 28/28 distinct IDK rows have now received deeper alternative-source research. This covers all **51 distinct non-alias titles** among the 65 unmatched audit rows after 13 completed-registry aliases and one excluded alias. No new rights clearance or download resulted. The source audit and all research passes remain metadata-only.
+
+Preserve separate counts: 343 completed registry records, 70 separately user-confirmed private-HF imports, 90 red/Dropped exclusions, and fanfiction 8 complete / 3 blocked / 32 source-researched but rights-unresolved. Do not conflate registration with private-HF import. No download run was dispatched; no chapter prose or archive bytes were fetched.
+
+**Next:** only revisit these rows when new, independently verifiable source, author/edition/index or archiving/public-distribution rights evidence appears. Do not retry known deterministic failures or publish unlicensed archives. Keep the 10-title / two-active-workflow caps.
+
+
+## Additional public artifact exposure verified (23 November 2026, 01:43 IST)
+
+A metadata-only inspection of run [#43734417289](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289) confirms its public `bulk-successful-novels` artifact **#14242470238** contains **nine nested final ZIPs** (39,072,154 bytes) and expires at **2026-11-23 15:57:51 UTC / 21:27 IST today**. The nine entries are already present in `downloaded_novels.json`, so they are not new acquisitions:
+
+- The Sweetest Medicine (857 chapters)
+- Witcher: I Can Extract Everything (393)
+- Trial Marriage Husband: Need to Work Hard (1,275)
+- Ze Tian Ji (1,185)
+- Three Days of Happiness (16)
+- Transmigrator Meets Reincarnator (709)
+- The Villainess Reverses the Hourglass (288)
+- Valhalla Saga (269)
+- Urban Banished Immortal (246)
+
+The individual Witcher archive **#14225912094** expires at **2026-11-23 12:28:08 UTC / 17:58 IST today**. These are existing public artifacts from the older run, not newly dispatched work. Do not fetch, link or redistribute the nested ZIPs. The repository-owner action remains to delete/restrict unlicensed artifacts; the connected GitHub operations expose no artifact-deletion operation. Preserve the 343-record registry count and do not re-download these titles.
