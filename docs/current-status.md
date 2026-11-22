@@ -393,3 +393,6 @@ See [round-6 report](../campaigns/overnight/alternative-source-research-round-6-
 - Live Actions at 21:35 IST: 0 queued/in-progress workflows, 0 active bulk downloads.
 
 Continue Yup-side alternative and rights verification before IDK. Do not retry known failures unchanged or create public archives without explicit rights and a complete ordered English index.
+
+
+Round-6 addendum: an exact non-supported listing for *I Told You I'm Not 〇〇!!* was verified under NaHCO3 (WuxiaClick/WuxiaWorldEU: 96 entries, latest labelled Chapter 97; Novel Updates: 99 Japanese web-novel chapters, hiatus, no English publisher). It is not an eligible supported complete English source and has no archive permission. No download.
