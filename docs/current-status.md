@@ -1,7 +1,7 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 18:43 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `74a0981a426981b0d407001856103e0887cb3242`; PR #477's round-18 documentation is on main. PR #475 and #477 are closed. The source-audit and five-book preflight jobs both completed successfully; no CI run was returned for the documentation-only main commit. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 18:56 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `74a0981a426981b0d407001856103e0887cb3242`; PR #478 is merged, and main CI [#45026586978](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45026586978) passed 4/4. PR #479 is open with the round-2 Yup/IDK reconciliation and CI concurrency correction; push CI [#45027400435](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45027400435) and PR CI [#45027405087](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45027405087) both passed 4/4. PRs #475 and #477 are closed. The source audit and five-book preflight were read-only and fetched no chapter text. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
