@@ -9,7 +9,9 @@ public archiving and sharing. A public book listing is not evidence.
 from __future__ import annotations
 
 import argparse
+import json
 import re
+from pathlib import Path
 from urllib.parse import urlsplit
 
 
@@ -29,6 +31,29 @@ def _canonical(value: str) -> str:
     ).geturl()
 
 
+def _identity(value: str) -> tuple[str, str, str]:
+    parts = urlsplit(_canonical(value))
+    return parts.scheme, (parts.hostname or "").lower(), parts.path.rstrip("/")
+
+
+def _urls_from_plan(path: Path) -> str:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    groups = data.get("groups")
+    if not isinstance(groups, dict):
+        raise ValueError("Bulk plan has no source groups")
+    urls = []
+    for rows in groups.values():
+        if not isinstance(rows, list):
+            raise ValueError("Bulk plan contains an invalid source group")
+        for row in rows:
+            if isinstance(row, dict) and isinstance(row.get("novel_url"), str):
+                urls.append(row["novel_url"])
+    for row in data.get("skipped", []):
+        if isinstance(row, dict) and isinstance(row.get("novel_url"), str):
+            urls.append(row["novel_url"])
+    return " ".join(urls)
+
+
 def validate_rights_evidence(
     confirm_rights: str | bool,
     evidence_url: str,
@@ -44,6 +69,7 @@ def validate_rights_evidence(
             "Public archive blocked: provide a separate author/rights-holder permission or licence URL"
         )
     evidence = _canonical(evidence_url)
+    evidence_identity = _identity(evidence)
     sources = [
         item.strip()
         for item in re.split(r"[,;\s]+", source_urls or "")
@@ -51,7 +77,7 @@ def validate_rights_evidence(
     ]
     for source in sources:
         try:
-            if _canonical(source) == evidence:
+            if _identity(source) == evidence_identity:
                 raise ValueError(
                     "A public book listing cannot be used as rights evidence; provide a separate permission or licence page"
                 )
@@ -68,10 +94,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--confirm-rights", required=True)
     parser.add_argument("--evidence-url", required=True)
     parser.add_argument("--source-urls", default="")
+    parser.add_argument("--plan-file", type=Path)
     args = parser.parse_args(argv)
     try:
+        source_urls = args.source_urls
+        if args.plan_file is not None:
+            source_urls = " ".join(part for part in (source_urls, _urls_from_plan(args.plan_file)) if part)
         evidence = validate_rights_evidence(
-            args.confirm_rights, args.evidence_url, args.source_urls
+            args.confirm_rights, args.evidence_url, source_urls
         )
     except ValueError as exc:
         parser.error(str(exc))
