@@ -8,8 +8,15 @@ from unittest.mock import patch
 
 from tools.download_registry import website_name, write_registry, read_registry
 from tools.mixed_source_bulk import (
-    catalogue_entries, main, parse_names, read_curated, selection_plan,
+    catalogue_entries, main, parse_names, read_curated,
+    selection_plan as _selection_plan,
 )
+
+
+def selection_plan(*args, **kwargs):
+    """Successful-path tests explicitly model the required rights attestation."""
+    kwargs.setdefault("confirm_rights", True)
+    return _selection_plan(*args, **kwargs)
 
 NOVELFULL = "https://novelfull.com/the-world-online.html"
 COMMA = "https://novelfull.com/please-i-really-didnt-want-to-fall-in-love-with-my-master.html"
@@ -116,6 +123,9 @@ class LibraryBulkTests(unittest.TestCase):
         self.assertNotIn("inputs.website", workflow)
         self.assertNotIn("          WEBSITE:", workflow)
         self.assertNotIn("--website", workflow)
+        self.assertIn("confirm_rights:", inputs)
+        self.assertIn("required: true", inputs)
+        self.assertEqual(workflow.count("confirm_rights: ${{ inputs.confirm_rights }}"), 5)
         self.assertIn('--names "$NOVEL_NAMES" --urls "$NOVEL_URLS"', workflow)
         for child in (
             "download-novel.yml", "freewebnovel-download.yml",
@@ -137,6 +147,7 @@ class LibraryBulkTests(unittest.TestCase):
                     "plan", "--registry", str(registry),
                     "--catalogue", str(catalogue),
                     "--urls", f"{NOVELFULL};{FREE} {READ}",
+                    "--confirm-rights",
                     "--plan-file", str(plan_file),
                 ]), 0)
             plan = json.loads(plan_file.read_text(encoding="utf-8"))
@@ -242,9 +253,21 @@ class LibraryBulkTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "256 matrix jobs"):
             selection_plan(sample_registry(), CURATED, "", very_large, "NovelFull")
 
+    def test_all_supported_sources_require_public_archive_rights(self):
+        empty_registry = {"version": 1, "novels": []}
+        empty_curated = {"version": 1, "novels": []}
+        for url in (NOVELFULL, FREE, READ):
+            with self.subTest(url=url), self.assertRaisesRegex(
+                    ValueError, "publicly share"):
+                _selection_plan(empty_registry, empty_curated, "", url)
+            plan = _selection_plan(
+                empty_registry, empty_curated, "", url, confirm_rights=True
+            )
+            self.assertEqual(plan["selected_count"], 1)
+
     def test_scribblehub_crosspost_bulk_requires_rights_and_full_book(self):
         with self.assertRaisesRegex(ValueError, "permission"):
-            selection_plan(sample_registry(), CURATED, "", SCRIBBLE, "All")
+            _selection_plan(sample_registry(), CURATED, "", SCRIBBLE, "All")
         with self.assertRaisesRegex(ValueError, "full novels only"):
             selection_plan(
                 sample_registry(), CURATED, "", SCRIBBLE, "All",
@@ -299,7 +322,8 @@ class LibraryBulkTests(unittest.TestCase):
                 self.assertEqual(main([
                     "plan", "--registry", str(reg), "--catalogue", str(cat),
                     "--names", "The World Online; The First Order",
-                    "--chapter-range", "1-2", "--force", "--plan-file", str(root / "plan.json"),
+                    "--chapter-range", "1-2", "--force", "--confirm-rights",
+                    "--plan-file", str(root / "plan.json"),
                 ]), 0)
             pairs = dict(line.split("=", 1) for line in out.read_text().splitlines())
             self.assertEqual(pairs["has_novelfull"], "true")

@@ -168,7 +168,10 @@ class OvernightQueueTests(unittest.TestCase):
         with patch.object(q, "manifests", return_value=(
             ["A Novel", "B Novel", "C Novel"], [],
             {q.norm("The First Order")}, set()
-        )), patch.dict(os.environ, {"GITHUB_REPOSITORY": "RichardDaffern/Novel-Retriever"}):
+        )), patch.dict(os.environ, {
+            "GITHUB_REPOSITORY": "RichardDaffern/Novel-Retriever",
+            "GITHUB_RUN_ATTEMPT": "1",
+        }):
             result = q.dispatch(
                 synthetic, "Yup", runner=runner,
                 sleeper=sleeps.append, clock=lambda: 1.0

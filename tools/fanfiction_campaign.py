@@ -19,8 +19,8 @@ CATALOGUE = ROOT / "campaigns" / "fanfiction" / "webnovel-favourites-43.json"
 REGISTRY = ROOT / "downloaded_novels.json"
 WORKFLOW = "library-bulk-download.yml"
 CAMPAIGN = "hp-naruto-webnovel-fanfics-20261119"
-MAX_ACTIVE_BULK = 4
-MAX_PER_BATCH = 2
+MAX_ACTIVE_BULK = 2
+MAX_PER_BATCH = 10
 POLL_SECONDS = 75
 DISPATCH_SPACING_SECONDS = 150
 
@@ -94,11 +94,21 @@ def eligible_entries(catalogue: dict, registry: dict) -> tuple[list[dict], list[
         if (url in completed or matched_title.casefold().strip() in known_registry
                 or title.casefold().strip() in known_registry):
             held.append({"title": title, "reason": "already_in_complete_registry"})
+        elif (row.get("rights_verified") is not True
+              or row.get("public_distribution_verified") is not True):
+            held.append({"title": title, "reason": "rights_not_verified"})
         else:
             eligible.append({"title": title, "matched_title": matched_title, "url": url})
-    if len(eligible) + sum(x["reason"] == "already_in_complete_registry"
-                           for x in held) != 10:
-        raise FanficQueueError("Expected 10 previously source-matched candidate titles")
+    matched_count = sum(
+        isinstance(row, dict) and row.get("review_state") == "public_source_listing_matched"
+        for row in entries
+    )
+    reconciled_matches = len(eligible) + sum(
+        item["reason"] in {"already_in_complete_registry", "rights_not_verified"}
+        for item in held
+    )
+    if reconciled_matches != matched_count:
+        raise FanficQueueError("Source-matched fanfiction entries did not reconcile")
     if len(held) + len(eligible) != 43:
         raise FanficQueueError("Fanfiction catalogue count mismatch")
     return eligible, held
@@ -148,6 +158,7 @@ def dispatch(*, runner=subprocess.run, sleeper=time.sleep,
                 "gh", "workflow", "run", WORKFLOW, "--ref", "main",
                 "--field", "novel_urls=" + ",".join(urls),
                 "--field", "chapter_range=", "--field", "force=false",
+                "--field", "confirm_rights=true",
             ], check=True, timeout=45)
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
             report["reason"] = "GitHub Actions dispatch failed"
@@ -178,7 +189,9 @@ def main(argv=None) -> int:
             pending, held = eligible_entries(read_json(CATALOGUE), read_json(REGISTRY))
             report = {
                 "mode": "DRY RUN", "eligible": len(pending),
-                "held": len(held), "expected_batches": (len(pending) + 1) // 2
+                "held": len(held), "expected_batches": (
+                    len(pending) + MAX_PER_BATCH - 1
+                ) // MAX_PER_BATCH
             }
         else:
             report = dispatch(minutes=args.minutes)

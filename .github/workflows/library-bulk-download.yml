@@ -21,8 +21,8 @@ on:
         type: boolean
         default: false
       confirm_rights:
-        description: 'WuxiaClick/Scribble Hub: I have rights to archive and share artefacts'
-        required: false
+        description: 'I have permission to archive and publicly share every selected artefact from this public repository'
+        required: true
         type: boolean
         default: false
       retry_run_id:
@@ -61,6 +61,14 @@ jobs:
           cache: pip
       - name: Install catalogue dependencies
         run: python -m pip install -r requirements.lock
+      - name: Require permission to archive and publicly share every selected artefact
+        env:
+          CONFIRM_RIGHTS: ${{ inputs.confirm_rights }}
+        run: |
+          if [[ "$CONFIRM_RIGHTS" != "true" ]]; then
+            echo "::error::Every selected title requires documented permission to archive and publicly share its artefact. A public listing is not permission."
+            exit 1
+          fi
       - name: Validate previous bulk run ID and exclusive retry inputs
         if: ${{ inputs.retry_run_id != '' }}
         env:
@@ -135,6 +143,7 @@ jobs:
       novel_url: ${{ matrix.novel_url }}
       chapter_range: ${{ matrix.chapter_range }}
       force: ${{ matrix.force }}
+      confirm_rights: ${{ inputs.confirm_rights }}
     permissions:
       contents: write
       pull-requests: write
@@ -152,6 +161,7 @@ jobs:
       novel_url: ${{ matrix.novel_url }}
       chapter_range: ${{ matrix.chapter_range }}
       force: ${{ matrix.force }}
+      confirm_rights: ${{ inputs.confirm_rights }}
     permissions:
       contents: write
       pull-requests: write
@@ -170,6 +180,7 @@ jobs:
       novel_url: ${{ matrix.novel_url }}
       chapter_range: ${{ matrix.chapter_range }}
       force: ${{ matrix.force }}
+      confirm_rights: ${{ inputs.confirm_rights }}
     permissions:
       contents: write
       pull-requests: write

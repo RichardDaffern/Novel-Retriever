@@ -44,7 +44,7 @@ class RetryAndLoadTests(unittest.TestCase):
     def test_only_missing_with_exact_chapter_range_and_never_force(self):
         plan = retry_selection_plan(
             {"version": 1, "novels": []}, {"version": 1, "novels": []},
-            recovery_manifest(), expected_run_id="123456",
+            recovery_manifest(), expected_run_id="123456", confirm_rights=True,
         )
         self.assertEqual(plan["retry_from_run_id"], "123456")
         self.assertEqual(plan["selected_count"], 2)
@@ -60,7 +60,7 @@ class RetryAndLoadTests(unittest.TestCase):
     def test_skip_missing_book_if_another_run_already_completed_it(self):
         plan = retry_selection_plan(
             registry_with_cached(NF), {"version": 1, "novels": []},
-            recovery_manifest(), expected_run_id="123456",
+            recovery_manifest(), expected_run_id="123456", confirm_rights=True,
         )
         self.assertEqual(len(plan["skipped"]), 1)
         self.assertEqual(plan["skipped"][0]["novel_url"], NF)
@@ -123,7 +123,8 @@ class RetryAndLoadTests(unittest.TestCase):
                 "plan", "--registry", str(path / "registry.json"),
                 "--catalogue", str(path / "catalogue.json"),
                 "--retry-manifest", str(path / "prior.json"),
-                "--retry-run-id", "123456", "--plan-file", str(path / "plan.json"),
+                "--retry-run-id", "123456", "--confirm-rights",
+                "--plan-file", str(path / "plan.json"),
             ])
             self.assertEqual(rc, 0)
             result = json.loads((path / "plan.json").read_text())
