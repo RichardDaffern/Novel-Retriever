@@ -1,13 +1,13 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 11:15 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `707cb0e076ad4db887e236f4ceaf87937349c13c`; PRs #464–#470 are merged. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 11:30 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `a1af161846e72b042eb821e09e26e866205e9cd6`; PRs #464–#471 are merged. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
 | Item | Verified state | Evidence |
 |---|---|---|
-| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `707cb0e076ad4db887e236f4ceaf87937349c13c` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
+| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `a1af161846e72b042eb821e09e26e866205e9cd6` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
 | Completed registry | **343** complete records in `downloaded_novels.json`; this is not a count of currently available artifacts or private-HF imports | Current registry, reconciled 22 November |
 | User-confirmed private-HF imports | **70**, user-confirmed but not independently queried in this Retriever run | Separate Storage Controller source of truth |
 | Global exclusions | **90** red/Dropped titles; remain excluded from Yup and IDK campaigns | `campaigns/overnight/excluded-90.json` |
@@ -18,9 +18,9 @@
 
 The Seoul Station artifact is publicly available. The run, chapter batches, assembly and registry entry are technically verified, but no explicit public-archiving permission is recorded in this repository. Treat artifact `14714778249` as rights-unverified; do not create additional public novel artifacts without documented permission. If public redistribution is not authorised, repository-owner deletion/revocation is required.
 | PR #463 | Merged at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; CI [run #44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) green | Arcane Thief offset regression test and Wind Calamity fail-closed mapping |
-| Merged acquisition-research PRs | #464–#470 merged. PR #470 CI [#44986918695](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44986918695) and post-merge main CI [#44990799907](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44990799907) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469), [#470](https://github.com/RichardDaffern/Novel-Retriever/pull/470) |
+| Merged acquisition-research PRs | #464–#471 merged. PR #471 CI [#44991279486](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44991279486) and post-merge main CI [#44991393466](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44991393466) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469), [#470](https://github.com/RichardDaffern/Novel-Retriever/pull/470), [#471](https://github.com/RichardDaffern/Novel-Retriever/pull/471) |
 | Open PRs | #265 and #275 are open. #275 is held and unmergeable for Konoha Medical; do not merge without rights clearance. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275) |
-| Bulk download workflows | **0** queued/in-progress at 11:15 IST; no new download run dispatched. Post-merge main CI #44990799907 passed all four jobs and is not a download workflow. | Live Actions run list |
+| Bulk download workflows | **0** queued/in-progress at 11:30 IST; no new download run dispatched. Post-merge main CI #44991393466 passed all four jobs and is not a download workflow. | Live Actions run list |
 
 The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`, matching the registry. The seven still-present fanfiction final-artifact expiry values also match the live API; *The Adventurous Gamer Ninja* artifact expired on 21 November 2026 and no longer appears in the run’s artifact list. No registry expiry change was needed in this branch.
 
@@ -208,3 +208,15 @@ Additional catalogue evidence, not download eligibility:
 The three blocked works remain held. Devil_Hex's Wind Calamity note requires prospective translators to contact the author first; no grant exists and the FreeWebNovel chapter map remains non-linear. INeedRest says they are not Konoha Medical's original writer; run #44379388243 assembled 444 chapters but registry PR #275 failed, leaving public artifact #14462633408 unregistered and rights-unverified. Arcane Thief remains a 254-numbered-chapter FreeWebNovel edition plus an auxiliary entry, distinct from the 183-chapter FanFiction.net cross-post; the Rulate Russian translation page is not permission. PR #463's +1 offset fix remains merged.
 
 The immutable 43-title catalogue remains 24 Naruto + 19 Harry Potter: **8 complete, 3 blocked, 32 research targets**. The 65 unmatched Yup/IDK entries remain deferred. No screenshots or chapter prose were copied. No new download runs were dispatched. At 11:15 IST, main was 707cb0e076ad4db887e236f4ceaf87937349c13c, post-merge CI #44990799907 passed 4/4, and no Actions runs were queued or in progress.
+
+
+## 8. Fanfiction identity corrections round 12 (22 November 2026, 11:30 IST)
+
+The targeted identity report is [round 12](../campaigns/fanfiction/source-verification-round-12-20261122.md); the corrections are also appended to the [identity ledger](../campaigns/fanfiction/source-identity-resolution-20261122.md).
+
+- *Naruto Birdcage*: selected WebNovel credit DeCakraWnloverz is a translator; Chinese original title is 限制级火影, by 易安z. WebNovel shows 443 translated chapters; Chinese mirrors show 443-452 chapters and completed status. No supported downloader source or archive permission.
+- *Konoha: Gu Master*: HyppoTL's WebNovel listing says it is a translation of a completed work by original author 宝石对影; 405 English chapters. No supported source or archive permission.
+- *Reborn in Konoha; I Think I'm Cultivating Immortality*: HyppoTL's WebNovel listing says it is a translation of a completed work by original author 余青衣; 600 English chapters. No supported source or archive permission.
+- *Naruto: Chronicles of a Fire Ninja*: FirstHokage's Royal Road note reports unauthorised Amazon reuse. This is not a general archive licence or a grant to this project.
+
+No new exact NovelFull/ReadNovelFull/FreeWebNovel matches, explicit permissions, rights-cleared titles or download runs. The 43-title catalogue remains 8 complete, 3 blocked and 32 research targets. The 65 unmatched Yup/IDK titles remain deferred. At 11:30 IST, main was a1af161846e72b042eb821e09e26e866205e9cd6, post-merge main CI #44991393466 passed 4/4, and no Actions runs were queued or in progress.
