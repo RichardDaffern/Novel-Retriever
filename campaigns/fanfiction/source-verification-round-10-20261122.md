@@ -11,6 +11,8 @@
 - The original catalogue remains 24 Naruto + 19 Harry Potter. The 32 research rows remain separate from the eight completed and three blocked records.
 - WuxiaClick searches found no exact title/author candidate. The ScribbleHub downloader is not a general series scraper: it accepts only author-verified cross-post pairs already registered in tools/scribblehub_verified_crossposts.json. Its sole current entry is *The Adventurous Gamer Ninja - Daichi Hekima* (MonkWithAPen), already completed in the registry.
 - Search absence is not proof that a work is unavailable worldwide. Public catalogues and chapter counts are identity/edition evidence only, not permission.
+- All 65 unresolved audit rows report HTTP_404 for each of the four attempted URL patterns. This only establishes that those four patterns failed; it does not establish worldwide unavailability or justify treating the titles as permanently unavailable.
+- Alias reconciliation: four of the 65 audit rows are already-completed title aliases: Invincible Conqueror = Invincible, Xian Ni = Renegade Immortal, Records of the Human Emperor = The Human Emperor, and The School Prince is a Girl = National School Prince Is A Girl. These leave 61 distinct unresolved audit titles. A Thought Through Eternity is in the IDK campaign (not the 65 audit rows) and maps to A Will Eternal in the Yup campaign and completed registry.
 
 ## Additional identity and edition evidence
 
