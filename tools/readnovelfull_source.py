@@ -159,16 +159,28 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
     seen: dict[int, dict] = {}
     chapter_prefix = ""
     for anchor in anchors:
-        url = urljoin("https://" + HOST + "/", anchor["href"])
-        canonical, position, prefix = validate_chapter_url(
-            url, book_prefix=chapter_prefix)
+        href = anchor["href"]
+        url = urljoin("https://" + HOST + "/", href)
+        try:
+            canonical, position, prefix = validate_chapter_url(
+                url, book_prefix=chapter_prefix)
+        except SourceError as exc:
+            # Preserve the exact untrusted archive href for diagnosis. Do not
+            # normalise, repair, or guess a replacement URL.
+            raise SourceError(
+                f"Invalid ReadNovelFull chapter link in {book_url}: "
+                f"{href!r}: {exc}"
+            ) from exc
         if not chapter_prefix:
             chapter_prefix = prefix
         title = anchor.get("title") or anchor.get_text(" ", strip=True)
         title = title.strip()[:240] or ("Prologue" if position == 0 else f"Chapter {position}")
         if position in seen:
             if seen[position]["url"] != canonical:
-                raise SourceError(f"Duplicate Chapter {position} links in archive")
+                raise SourceError(
+                    f"Duplicate Chapter {position} links in archive for {book_url}: "
+                    f"{seen[position]['url']!r} and {canonical!r}"
+                )
             continue
         seen[position] = {"position": position, "title": title, "url": canonical}
         if len(seen) > MAX_CHAPTERS:
