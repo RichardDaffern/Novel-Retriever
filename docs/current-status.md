@@ -81,6 +81,8 @@ The immutable catalogue has **43 titles**: 24 Naruto and 19 Harry Potter. It rem
 | Source-matched but blocked/incomplete | 3 | Wind Calamity, Konoha's Medical Ninja, HP: The Arcane Thief |
 | Requiring source research | 32 | `webnovel-favourites-43.json` |
 
+The catalogue's `review_state` is a source-research state, not a download-completion state. It contains 1 `already_downloaded`, 10 `public_source_listing_matched` and 32 `needs_source_verification` rows. Seven of the ten public-source-matched rows are already complete in `downloaded_novels.json`; the remaining three are the blocked works. Together with the first row, this reconciles to **8 complete, 3 blocked and 32 requiring research**. The registry, not the catalogue's `review_state`, is authoritative for completion. The legacy `tools/fanfiction_campaign.py` one-shot queue is not to be rerun: its old 2-title batches and 4-active limit conflict with the current 10-title / 2-active policy.
+
 The corrected exact title/credited-author pass across NovelFull, ReadNovelFull and FreeWebNovel found **5 exact supported-host listings**, **2 near/variant matches**, and **25 with no exact supported-host listing**. None passed the complete edition, full-index and rights gate. No new fanfiction download run was dispatched.
 
 - The five exact listings are *Naruto: Chronicles of a Fire Ninja*, *Reborn into Naruto World with Tenseigan*, *Naruto: Starting With Creating A Genius Persona*, *Harry Potter: The Healer* and *There Will Be No Third Dark Lord At Hogwarts!!!*. See [round 3](../campaigns/fanfiction/source-verification-round-3-20261122.md).
