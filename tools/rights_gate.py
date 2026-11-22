@@ -46,7 +46,7 @@ def validate_rights_evidence(
     evidence = _canonical(evidence_url)
     sources = [
         item.strip()
-        for item in re.split(r"[,;\\s]+", source_urls or "")
+        for item in re.split(r"[,;\s]+", source_urls or "")
         if item.strip()
     ]
     for source in sources:
