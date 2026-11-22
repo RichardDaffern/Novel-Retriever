@@ -48,11 +48,11 @@ After correcting the aliases, the historical first-sweep counts adjust from 61 s
 - *My Plain-looking Fiance is Secretly Sweet with Me*: WuxiaClick has 46 versus 56 web-novel chapters; the Japanese light-novel work is published by Fujimi Fantasia Bunko. [WuxiaClick](https://wuxia.click/novel-detail/my-plain-looking-fiance-is-secretly-sweet-with-me) · [publisher/series discussion](https://forums.j-novel.club/topic/4273/my-plain-looking-fiance-is-secretly-sweet-with-me).
 - *Invincible Levelling King* is not the registered *Invincible* by Shen Jian: the surfaced WebNovel MTL listing credits Vaib123 and contains only three chapters. Keep identities separate. [WebNovel](https://www.webnovel.com/book/invincible-levelling-king-%28mtl-novel%29_15568622905877405).
 - *I Can Extract Everything* is not the registry's *Witcher: I Can Extract Everything* by Lich King Number 13. *Very Pure and Ambiguous* is not the registry's distinct *Very Pure and Ambiguous: The Prequel*. Do not merge either.
-- *Yong Heng Zhi Zun* is the alias of *Eternal Reverence* and is excluded, not a near-match download candidate. [NovelFull identity page](https://novelfull.com/eternal-reverence.html) · [Novel Updates](https://www.novelupdates.com/series/dungeon-defense/).
+- *Yong Heng Zhi Zun* is the alias of *Eternal Reverence* and is excluded, not a near-match download candidate. [NovelFull identity page](https://novelfull.com/eternal-reverence.html) · [Novel Updates](https://www.novelupdates.com/series/eternal-reverence/).
 
 ### Commercially licensed editions
 
-Public publisher/catalogue evidence also identifies licensed English editions for *Arifureta*, *How a Realist Hero Rebuilt the Kingdom*, *That Time I Got Reincarnated as a Slime* and *The Death Mage Who Doesn't Want a Fourth Time*. Those are not permission to archive third-party copies. Where the underlying web-novel edition is already in the 343-record registry, do not substitute or re-download the separate light-novel edition.
+Public publisher/catalogue evidence also identifies licensed English editions for *Arifureta*, *How a Realist Hero Rebuilt the Kingdom*, *That Time I Got Reincarnated as a Slime* and *The Death Mage Who Doesn't Want a Fourth Time*. *In Another World with My Smartphone* is also licensed in English by J-Novel Club. Those licences are not permission to archive third-party copies. Where the underlying web-novel edition is already in the 343-record registry, do not substitute or re-download the separate light-novel edition.
 
 ## Current acquisition decision
 
