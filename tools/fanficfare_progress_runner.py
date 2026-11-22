@@ -10,7 +10,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qsl, urlsplit, urlunsplit
 from bs4 import BeautifulSoup
 
 
@@ -44,8 +44,25 @@ def _preserve_verified_editorial_skip(url: str, index: int, title: str,
     return VERIFIED_SKIP_NOTE
 
 
-def _checkpoint_chapter(folder: Path, index: int, title: str, html: str | bytes) -> Path:
-    """Save a successfully fetched chapter before EPUB creation."""
+def _diagnostic_source_url(url: str | None) -> str:
+    """Return a chapter URL without credentials or query-string values."""
+    if not url:
+        return "<unknown source URL>"
+    try:
+        parsed = urlsplit(url)
+        if not parsed.scheme or not parsed.hostname:
+            return "<unparseable source URL>"
+        host = parsed.hostname
+        if parsed.port is not None:
+            host = f"{host}:{parsed.port}"
+        query_keys = parse_qsl(parsed.query, keep_blank_values=True)
+        safe_query = "&".join(f"{key}=[redacted]" for key, _ in query_keys)
+        return urlunsplit((parsed.scheme, host, parsed.path, safe_query, ""))
+    except ValueError:
+        return "<unparseable source URL>"
+
+
+def _checkpoint_chapter(folder: Path, index: int, title: str, html: str | bytes,\n                      source_url: str | None = None) -> Path:\n    """Save a successfully fetched chapter before EPUB creation."""
     soup = BeautifulSoup(html, "html.parser")
     for el in soup.select("script, style"):
         el.decompose()
@@ -53,7 +70,8 @@ def _checkpoint_chapter(folder: Path, index: int, title: str, html: str | bytes)
     lines = [p for p in lines if p]
     body = "\n\n".join(lines) if lines else soup.get_text("\n", strip=True)
     if not body.strip():
-        raise ValueError(f"Downloaded chapter {index+1} was empty")
+        raise ValueError(\n            f"Downloaded chapter {index+1} ({str(title)[:160]!r}) was empty at "
+            f"{_diagnostic_source_url(source_url)}"\n        )
     folder.mkdir(parents=True, exist_ok=True)
     destination = folder / f"chapter_{index+1:05d}.txt"
     temporary = destination.with_suffix(".txt.tmp")
@@ -84,7 +102,7 @@ def progress_reporter(writer):
             if first <= index <= last:
                 heading = adapter.chapterInfos[index].get("title", f"Chapter {index+1}")
                 html = _preserve_verified_editorial_skip(url, index, heading, html)
-                file = _checkpoint_chapter(checkpoint_dir, index, heading, html)
+                file = _checkpoint_chapter(checkpoint_dir, index, heading, html, source_url=url)
                 print(f"Saved checkpoint: {file.name}", flush=True)
             return html
         adapter.getChapterTextNum = checkpointing_fetch
