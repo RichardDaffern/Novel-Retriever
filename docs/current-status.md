@@ -1,13 +1,13 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 10:50 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `87cbeca671423abce00be7002d1f613142d0eea3`; PRs #464–#469 are merged. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 11:15 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `707cb0e076ad4db887e236f4ceaf87937349c13c`; PRs #464–#470 are merged. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
 | Item | Verified state | Evidence |
 |---|---|---|
-| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `87cbeca671423abce00be7002d1f613142d0eea3` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
+| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `707cb0e076ad4db887e236f4ceaf87937349c13c` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
 | Completed registry | **343** complete records in `downloaded_novels.json`; this is not a count of currently available artifacts or private-HF imports | Current registry, reconciled 22 November |
 | User-confirmed private-HF imports | **70**, user-confirmed but not independently queried in this Retriever run | Separate Storage Controller source of truth |
 | Global exclusions | **90** red/Dropped titles; remain excluded from Yup and IDK campaigns | `campaigns/overnight/excluded-90.json` |
@@ -18,9 +18,9 @@
 
 The Seoul Station artifact is publicly available. The run, chapter batches, assembly and registry entry are technically verified, but no explicit public-archiving permission is recorded in this repository. Treat artifact `14714778249` as rights-unverified; do not create additional public novel artifacts without documented permission. If public redistribution is not authorised, repository-owner deletion/revocation is required.
 | PR #463 | Merged at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; CI [run #44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) green | Arcane Thief offset regression test and Wind Calamity fail-closed mapping |
-| Merged acquisition-research PRs | #464–#469 merged. PR #469 CI [#44986219817](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44986219817) and post-merge main CI [#44986296039](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44986296039) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469) |
-| Open PRs | #265, #275 and #470 are open. #470 is documentation-only with CI pending; #275 is held and unmergeable for Konoha Medical. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275), [#470](https://github.com/RichardDaffern/Novel-Retriever/pull/470) |
-| Bulk download workflows | **0** queued/in-progress at 10:50 IST; no new download run dispatched. Post-merge main CI #44986296039 passed all four jobs and is not a download workflow. | Live Actions run list |
+| Merged acquisition-research PRs | #464–#470 merged. PR #470 CI [#44986918695](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44986918695) and post-merge main CI [#44990799907](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44990799907) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469), [#470](https://github.com/RichardDaffern/Novel-Retriever/pull/470) |
+| Open PRs | #265 and #275 are open. #275 is held and unmergeable for Konoha Medical; do not merge without rights clearance. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275) |
+| Bulk download workflows | **0** queued/in-progress at 11:15 IST; no new download run dispatched. Post-merge main CI #44990799907 passed all four jobs and is not a download workflow. | Live Actions run list |
 
 The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`, matching the registry. The seven still-present fanfiction final-artifact expiry values also match the live API; *The Adventurous Gamer Ninja* artifact expired on 21 November 2026 and no longer appears in the run’s artifact list. No registry expiry change was needed in this branch.
 
@@ -191,3 +191,20 @@ The live check found 343 completed registry records, 70 separately user-confirme
 The metadata-only follow-up is documented in [five-book-alternative-source-check-20261122.md](../campaigns/yup-pilot/five-book-alternative-source-check-20261122.md). It found three WuxiaClick leads among the five existing candidates: exact title/author listings for *Godly Student* and *Girl, I'll Teach You Cultivation*, plus the associated-title *Doomsday Lord* for *Doom Lord*. These are additional source URLs for existing candidates, not new titles.
 
 None is eligible: Godly Student has 543 entries numbered 1–544 with the final four reusing original labels 537–540, against the official 17K original listing at Chapter 9,742 on 16 November 2026 (a secondary mirror shows 9,754); Girl, I'll Teach You Cultivation has a clean 1–283 English TOC but the original Chinese edition is 812 chapters and Novel Updates marks the English translation incomplete; WuxiaClick's listing ends at 283; Doomsday Lord has 328 chapters against a completed original whose official Hongxiu listing ends at Chapter 856 and its TOC contains duplicate/split/misnumbered entries. Beast Piercing The Heavens still has a duplicate Chapter 11 on ReadNovelFull and no WuxiaClick match. The Military Female Soldier still has 2,104 missing ReadNovelFull chapter numbers and no WuxiaClick match. No explicit archiving permissions were found. No download was dispatched.
+
+
+## 7. Fanfiction source research round 11 (22 November 2026, 11:15 IST)
+
+The new metadata-only report is [round 11](../campaigns/fanfiction/source-verification-round-11-20261122.md). It rechecked the 25 entries without exact supported-host listings against NovelFull, ReadNovelFull and FreeWebNovel and investigated the three blocked works. **0 new exact supported-host matches**, **0 explicit archiving permissions**, **0 rights-cleared titles** and **0 new download runs**. Counts remain 5 exact supported-host candidates, 2 rejected near/variant matches and 25 without an exact supported-host listing.
+
+Additional catalogue evidence, not download eligibility:
+- *Hogwarts: Bloodline Wizard*: WebNovel lists Innocent Angel, completed, 1,049 chapters, with Atlas Studios as translator. No supported-host source or archive permission was found.
+- *Harry Potter: I, Tom Riddle, am not the Dark Lord*: WebNovel lists ElvenKing20 with 701/702 chapter snapshots; CHERREADS lists 626 and an older NovelUpdates mirror 237. These are differing snapshots/editions, not a validated complete index. Patreon advance posts do not grant archive rights.
+- *Harry Potter: Cael Vale's Journey to Hogwarts*: WebNovel lists 294 chapters by 16622800; one FICOOL chapter endpoint was found, but no complete FICOOL TOC or supported downloader source was verified.
+- *Harry Potter: The Duelist of Hogwarts*: FICOOL lists MeowthTL; no supported source or complete index verified.
+- *Naruto: Konoha's Genius is a bit Ordinary?*: WebNovel lists SaintXI and 472 chapters; the page says it is translated and disclaims rights to Naruto. It is not a supported download source.
+- The two near matches remain rejected: *Talent System In The Naruto Universe* credits Rashta, not selected author Rashita; *This Ninja Is Obviously Not Strong but Really Hard to Kill* credits Wu Mian Qi Liang, not selected nyawdao2.
+
+The three blocked works remain held. Devil_Hex's Wind Calamity note requires prospective translators to contact the author first; no grant exists and the FreeWebNovel chapter map remains non-linear. INeedRest says they are not Konoha Medical's original writer; run #44379388243 assembled 444 chapters but registry PR #275 failed, leaving public artifact #14462633408 unregistered and rights-unverified. Arcane Thief remains a 254-numbered-chapter FreeWebNovel edition plus an auxiliary entry, distinct from the 183-chapter FanFiction.net cross-post; the Rulate Russian translation page is not permission. PR #463's +1 offset fix remains merged.
+
+The immutable 43-title catalogue remains 24 Naruto + 19 Harry Potter: **8 complete, 3 blocked, 32 research targets**. The 65 unmatched Yup/IDK entries remain deferred. No screenshots or chapter prose were copied. No new download runs were dispatched. At 11:15 IST, main was 707cb0e076ad4db887e236f4ceaf87937349c13c, post-merge CI #44990799907 passed 4/4, and no Actions runs were queued or in progress.
