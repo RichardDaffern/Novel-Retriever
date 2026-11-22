@@ -447,3 +447,10 @@ See [round-9 report](../campaigns/overnight/yup-alternative-source-research-roun
 - The Human Emperor artifact #13644389821 expired 16 November 2026.
 
 Do not fetch, link or redistribute these archives. Owner-side revocation/restriction is required if rights cannot be established; no artifact-delete operation is exposed by the connected GitHub tools.
+
+
+## Yup alternative-source research round 10 (23 November 2026, 00:45 IST)
+
+See [round-10 report](../campaigns/overnight/yup-alternative-source-research-round-10-20261123.md). Seven Yup rows were rechecked. `Apotheosis` is the 3,913-chapter Chinese web novel (Gift Of Liberation), unlicensed and incompletely translated; ReadNovelFull exposes 3,910 entries, so the three-entry TOC mismatch remains held. Its 1,301-chapter manhua is a separate edition. `Bringing the Nation's Husband Home` has a 969-chapter WebNovel edition versus a 973-entry FanMTL mirror and separately sold Apple Books anthologies. `Eternal Martial Sovereign` has 2,240 completed original chapters and a Gravity Tales licence, but translation-completeness metadata conflicts and no project archive permission exists. `Genjitsu Shugi Yuusha` has distinct WN/LN editions; the 21-volume LN is licensed to J-Novel Club/Seven Seas. `I'm in Hollywood` has a stale 335-chapter FreeWebNovel page versus 345 in an earlier mirror and 1,197 in MTL metadata. `Kujibiki Tokushou` has 398 deleted WN chapters plus six LN-only final chapters, while the English mirror has 320. `Mad God` has 176 completed original chapters, licence No and translation incomplete.
+
+**Round outcome:** 7 Yup rows checked, 2 supported-host pages revalidated but held for TOC/completeness or rights, 0 new aliases, 0 explicit archive permissions, 0 rights-cleared titles and 0 downloads. The distinct alternative-source backlog remains 51 titles (23 Yup, 28 IDK). Do not retry the Apotheosis mismatch unchanged.
