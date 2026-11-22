@@ -150,24 +150,33 @@ class OvernightQueueTests(unittest.TestCase):
         self.assertEqual(result["verified"], [])
         self.assertEqual(result["summary"]["unresolved"], 1)
 
-    def test_dispatch_exact_allowlist_no_force_and_limited_batches(self):
+    def test_dispatch_enforces_ten_titles_and_two_active_runs(self):
+        titles = [f"Novel {n}" for n in range(12)]
+        rights = {
+            "rights_verified": True,
+            "public_distribution_rights": True,
+            "rights_holder": "Author / publisher",
+            "rights_evidence_url": "https://example.org/rights",
+        }
         synthetic = {
             "version": 1, "campaign": q.CAMPAIGN,
             "verified": [
                 {"title": title, "url": q.candidate_urls(title)[0],
-                 "tier": "Yup", "evidence": "public_listing_exact_title"}
-                for title in ("A Novel", "B Novel", "C Novel")
+                 "tier": "Yup", "evidence": "public_listing_exact_title", **rights}
+                for title in titles
             ]
         }
         commands, sleeps = [], []
+        active_counts = iter([2, 1, 2, 1])
         def runner(cmd, **kwargs):
             commands.append(cmd)
             if cmd[:2] == ["gh", "api"]:
-                return SimpleNamespace(stdout=json.dumps({"workflow_runs": []}))
+                count = next(active_counts)
+                runs = [{"status": "in_progress"} for _ in range(count)]
+                return SimpleNamespace(stdout=json.dumps({"workflow_runs": runs}))
             return SimpleNamespace(stdout="")
         with patch.object(q, "manifests", return_value=(
-            ["A Novel", "B Novel", "C Novel"], [],
-            {q.norm("The First Order")}, set()
+            titles, [], {q.norm("The First Order")}, set()
         )), patch.dict(os.environ, {
             "GITHUB_REPOSITORY": "RichardDaffern/Novel-Retriever",
             "GITHUB_RUN_ATTEMPT": "1",
@@ -178,12 +187,31 @@ class OvernightQueueTests(unittest.TestCase):
             )
         workflow_commands = [cmd for cmd in commands
                              if cmd[:3] == ["gh", "workflow", "run"]]
+        self.assertEqual(q.MAX_ACTIVE_RUNS, 2)
         self.assertEqual(len(workflow_commands), 2)
-        self.assertEqual([len(x["titles"]) for x in result["submitted"]], [2, 1])
+        self.assertEqual([len(x["titles"]) for x in result["submitted"]], [10, 2])
         self.assertEqual(result["held"], [])
         self.assertTrue(all("force=false" in cmd for cmd in workflow_commands))
         self.assertTrue(all("chapter_range=" in cmd for cmd in workflow_commands))
-        self.assertEqual(sleeps, [q.RUN_DELAY])
+        self.assertTrue(all("confirm_rights=true" in cmd for cmd in workflow_commands))
+        self.assertEqual(sleeps, [q.POLL_DELAY, q.RUN_DELAY, q.POLL_DELAY])
+
+    def test_dispatch_requires_explicit_archive_and_public_distribution_rights(self):
+        with patch.object(q, "manifests", return_value=(
+            ["A Novel"], [], set(), set()
+        )):
+            with self.assertRaisesRegex(q.QueueError, "public listing alone is not permission"):
+                q.dispatch(
+                    {"version": 1, "campaign": q.CAMPAIGN,
+                     "verified": [{
+                         "title": "A Novel",
+                         "url": q.candidate_urls("A Novel")[0],
+                         "tier": "Yup",
+                         "evidence": "public_listing_exact_title",
+                     }]}, "Yup", runner=lambda *args, **kwargs:
+                        (_ for _ in ()).throw(AssertionError("Must fail before dispatch")),
+                    clock=lambda: 1.0
+                )
 
     def test_dispatch_rejects_unverified_urls_and_red_titles(self):
         badcases = [
@@ -212,7 +240,9 @@ class OvernightQueueTests(unittest.TestCase):
                  "verified": [{
                      "title": "A Novel",
                      "url": q.candidate_urls("A Novel")[0],
-                     "tier": "Yup", "evidence": "public_listing_exact_title"
+                     "tier": "Yup", "evidence": "public_listing_exact_title",
+                     "rights_verified": True, "public_distribution_rights": True,
+                     "rights_holder": "Author", "rights_evidence_url": "https://example.org/rights"
                  }]}, "Yup", runner=lambda *args, **kwargs:
                     (_ for _ in ()).throw(AssertionError("Should not run"))
             )
