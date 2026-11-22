@@ -52,3 +52,15 @@ This is a metadata-only identity ledger for the 32 entries marked `needs_source_
 - A different translator, original-language author, title variant, fan translation, Patreon page or public mirror must not be silently substituted.
 - The five exact supported-host candidates and the two near matches have their chapter/edition caveats in [round 3](source-verification-round-3-20261122.md).
 - Do not alter the original JSON title strings or ask the user for the screenshots again.
+
+
+## Additional identity and edition evidence from round 10
+
+- *Life of a Villain in The Naruto World*: WebNovel identifies the Chinese original as 从火影开始的反派生活 by Yun Sixie; IHaveNoNamingSense is the English translation credit. Do not treat the translator as the original author.
+- *Naruto: Konoha's Trickster*: WebNovel identifies 杠精萝卜头 as the Chinese original author; PinkSnake/1PinkSnake1 is the translator/cross-post credit. The translator's reuse note is not a licence for the underlying Naruto work or franchise.
+- *Reborn into Naruto World with Tenseigan*: WebNovel labels Alex_Clive's page as a translation and points to Milta_translations for advance chapters. The original Chinese author and translation/archive rights remain unresolved.
+- *Harry Potter: The Flaw of Slytherin*: FanFiction.net credits Ghidorah1707 and records 97 chapters; the author note says continuation moved to WebNovel under Ghidorah_7074. Treat this as a pen-name/cross-post lead, not a separate work.
+- *Harry Potter: Platinum Dragon Wizard*: WebNovel credits BlurryPinkSnake, while mirrors credit BlurryDream and report 422/424 chapters. Author identity/edition remains unresolved.
+- *There Will Be No Third Dark Lord At Hogwarts!!!*: public catalogue counts vary across WebNovel, NovelFlick and BedNovel/FreeWebNovel, while Patreon posts beyond the public index are locked. Do not merge counts or infer a complete edition.
+- *Naruto: Becoming the Soul King*: WuxiaFull lists 241 chapters while WebNovel lists 424. WuxiaFull is not the repository's WuxiaClick adapter.
+- *Hogwarts: Transmigrated as the Top Student*: FanFiction.net corroborates Hyperbeeam and 556 complete chapters, but it is not a supported downloader source.
