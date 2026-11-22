@@ -150,3 +150,25 @@ No source-audit or TOC-preflight run is a chapter download. Keep Yup, IDK, fanfi
 ## 8. Refresh procedure
 
 Before changing this snapshot, inspect current `main`, Git status if a local worktree exists, recent commits, open PRs/issues, queued/in-progress Actions, relevant job logs/artifacts, the current registry and campaign inputs. Record the exact checked SHA and timestamp. Do **not** trigger an Actions workflow just to refresh documentation.
+
+
+## 22 November 2026, 09:22 IST: fanfiction source research round 9
+
+Round 9 searched the 25 catalogue entries that still had no exact NovelFull, ReadNovelFull or FreeWebNovel listing, plus the three separately blocked works. It found **0 new exact supported-host matches**, **8 additional non-supported catalogue/cross-post leads**, **0 explicit archiving permissions**, and **0 new download runs**. The existing totals remain 5 exact supported-host candidates, 2 rejected near/variant matches and 25 without an exact supported-host listing. The 8 additional pages are identity/edition leads only, not supported download sources; their TOCs were not validated end-to-end.
+
+Newly surfaced cross-post/alternate catalogue evidence includes:
+- *Naruto: Transmigrated as an Uchiha* (NoviceAuthor): Xnovel, 326 chapters.
+- *Hogwarts: Transmigrated as the Top Student* (Hyperbeeam): FanFiction.net, 556 chapters, complete.
+- *Naruto: Konoha's Trickster* (PinkSnake/1PinkSnake1): FanFiction.net translation note permits reuse of that translation, not the underlying fanfiction/franchise.
+- *Harry Potter: The Flaw of Slytherin* (Ghidorah_7074/Ghidorah1707): FanFiction.net cross-post, 97 chapters, with a note that continuation moved to WebNovel.
+- *Harry Potter: The Duelist of Hogwarts* (MeowthTL): FICOOL, 454 chapters.
+- *Naruto: Becoming the Soul King* (Junkdog): WuxiaFull, 241 chapters.
+- *Naruto Birdcage* (DeCakraWnloverz): FullChapters identifies the Chinese original as 限制级火影 by 易安z.
+- *The Most Fortunate Malfoy in Harry Potter* (Devilsatan): NovelFlick mirror.
+
+The three blocked works remain not cleared:
+- *Naruto: The Wind Calamity*: DevilHex explicitly requires prospective translators to ask permission first; no grant was found. Keep non-linear FreeWebNovel mapping fail-closed.
+- *Konoha's Medical Ninja*: INeedRest says they are not the original writer. The 444-chapter archive assembled, but registry publication failed; public artifact #14462633408 remains rights-unverified.
+- *HP: The Arcane Thief*: selected FreeWebNovel edition is 254 numbered chapters plus an auxiliary entry; the 183-chapter FanFiction.net cross-post is separate. PR #463's +1 offset fix remains merged; no archive permission.
+
+The immutable 43-title catalogue remains unchanged. The 65 unmatched Yup/IDK titles remain deferred. No downloads were dispatched. See the full evidence matrix in [round 9](../campaigns/fanfiction/source-verification-round-9-20261122.md).
