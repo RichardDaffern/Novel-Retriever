@@ -1369,3 +1369,14 @@ A metadata-only inspection of run [#43734417289](https://github.com/RichardDaffe
 - Urban Banished Immortal (246)
 
 The individual Witcher archive **#14225912094** expires at **2026-11-23 12:28:08 UTC / 17:58 IST today**. These are existing public artifacts from the older run, not newly dispatched work. Do not fetch, link or redistribute the nested ZIPs. The repository-owner action remains to delete/restrict unlicensed artifacts; the connected GitHub operations expose no artifact-deletion operation. Preserve the 343-record registry count and do not re-download these titles.
+
+
+## Fanfiction blocked-source recheck (23 November 2026)
+
+The three blocked selected fanfiction works were rechecked against public author/listing metadata in `campaigns/fanfiction/blocked-source-recheck-20261123.md`. No new supported-host source, explicit archive/public-distribution permission or rights-cleared title was found. Do not retry unchanged:
+
+- **Naruto: The Wind Calamity:** Devil_Hex's FanFiction.net author note requires prospective translators to contact the author first; no permission response is recorded. FanFiction.net and WebNovel show materially different chapter counts (455 and 952), so the chapter map remains fail-closed.
+- **Konoha's Medical Ninja:** INeedRest's WebNovel page says they are not the original writer and only edited the work. Existing artifact #14462633408 remains public, unregistered and rights-unverified. Do not merge PR #275, fetch the artifact or retry.
+- **HP: The Arcane Thief:** keep the merged URL-offset fix, but do not retry until the complete paginated TOC and explicit archive/distribution permission are established. WebNovel's 255 count includes an auxiliary entry plus numbered chapters through 254; FanFiction.net's 183-chapter cross-post is a separate edition. Patreon extras are not redistribution permission.
+
+The acquisition order remains **26 exact-match triage → 43 fanfiction title/author/source research → 65 unmatched Yup/IDK alternative-source research**. All three stages are documented as complete for the current bounded search scope; future work requires new source or rights evidence, not unchanged retries. Preserve 343 registry records, 70 separately confirmed private-HF imports and 90 red/Dropped exclusions. Never treat source discovery or a read-only TOC check as a download.
