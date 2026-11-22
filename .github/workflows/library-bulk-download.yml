@@ -69,6 +69,16 @@ jobs:
             echo "::error::Every selected title requires documented permission to archive and publicly share its artefact. A public listing is not permission."
             exit 1
           fi
+      - name: Enforce at most two active bulk runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          active_other_runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/library-bulk-download.yml/runs?per_page=100" --jq "[.workflow_runs[] | select(.status != \\\"completed\\\" and .id != ${GITHUB_RUN_ID})] | length")"
+          if [[ "$active_other_runs" -ge 2 ]]; then
+            echo "::error::At most two library-bulk-download runs may be active. Found $active_other_runs other active runs."
+            exit 1
+          fi
+
       - name: Validate previous bulk run ID and exclusive retry inputs
         if: ${{ inputs.retry_run_id != '' }}
         env:
