@@ -79,13 +79,20 @@ class FreeWebNovelTests(unittest.TestCase):
             [BOOK + "/chapter-2", BOOK + "/chapter-3"],
         )
 
-    def test_catalogue_rejects_non_linear_url_offsets(self):
+    def test_catalogue_rejects_non_linear_url_offsets_with_exact_mapping_evidence(self):
         non_linear = """<html><h1>Naruto: The Wind Calamity</h1>
 <a href="/novel/the-first-order/chapter-4">Chapter 1: Opening</a>
 <a href="/novel/the-first-order/chapter-5">Chapter 2: Orphanage</a>
 <a href="/novel/the-first-order/chapter-950">Chapter 948 - 941: Latest</a>
 </html>"""
-        with self.assertRaisesRegex(ProbeError, "Non-linear chapter URL mapping"):
+        with self.assertRaisesRegex(
+            ProbeError,
+            r"Non-linear chapter URL mapping.*Chapter 1 -> "
+            r"https://freewebnovel.com/novel/the-first-order/chapter-4 "
+            r"\(offset \+3\).*Chapter 948 -> "
+            r"https://freewebnovel.com/novel/the-first-order/chapter-950 "
+            r"\(offset \+2\)",
+        ):
             parse_catalogue(non_linear, BOOK)
 
     def test_catalogue_missing_first_chapter_rejected(self):
