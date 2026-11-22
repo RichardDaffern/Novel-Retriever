@@ -1,0 +1,27 @@
+# Five new Yup/IDK candidates: WuxiaClick alternative-source check
+
+**Checked:** 22 November 2026, 10:50 IST  
+**Scope:** The five candidates from the read-only source audit preflight: Beast Piercing The Heavens, Doom Lord, Godly Student, Girl, I'll Teach You Cultivation and The Military Female Soldier With Unwavering Stubbornness.  
+**Method:** Public listing, author, original-title, chapter-count and TOC metadata only. No chapter prose or archive bytes were fetched.
+
+## Baseline preflight
+
+The read-only preflight [run #44926984233](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44926984233), report artifact #14715652405 (expires 21 December 2026), checked five ReadNovelFull pages. It recorded two title/index passes (Doom Lord, 155 chapters; Girl, I'll Teach You Cultivation, 283 chapters), three index failures (Beast Piercing The Heavens: duplicate Chapter 11; Godly Student: invalid chapter URL; Military Female Soldier: 2,104 missing numbered chapters), and rights_verified=false for the entire report. It performed zero chapter downloads.
+
+## Alternative supported-host findings
+
+| Candidate | WuxiaClick / alternative evidence | Edition and TOC result | Decision |
+|---|---|---|---|
+| Beast Piercing The Heavens | No exact WuxiaClick listing found. Original Chinese title 兽破苍穹, author Yao Ye / 妖夜, 1,445 chapters, completed. [Catalogue](https://www.novelupdates.com/series/beast-piercing-the-heavens/) | ReadNovelFull candidate has duplicate Chapter 11. Public directory lists no fully translated edition; the English licensed ebook result is only Volume 15 and DRM single-user licensed, not a full source archive. [Publisher catalogue](https://fullnovels.com/beast-piercing-the-heavens/) · [Volume 15 ebook listing](https://www.schweitzer-online.de/ebook/Ye/Beast-Piercing-Heavens/9781648149474/A56261115/) | No complete supported source or archive permission. |
+| Doom Lord | WuxiaClick has an exact author/alias listing under *Doomsday Lord*, author Wishing For A Pillow To Sleep With / 想枕头的瞌睡. [Listing](https://wuxia.click/novel/doomsday-lord) | WuxiaClick lists 328 chapters against the completed original. The official Hongxiu listing shows Chapter 856 as the ending (863 catalogue entries including extras). TOC contains repeated chapter labels, split chapters and renumbering (for example, displayed chapters 82–100 map to original labels 81–98). ReadNovelFull preflight found 155 chapters. [official Hongxiu catalogue](https://www.hongxiu.com/book/22400649000617902) · [Novel Updates record](https://www.novelupdates.com/series/doomsday-lord/) | Partial translation and malformed/misaligned TOC; no permission. |
+| Godly Student | WuxiaClick has an exact title/author listing: 神级插班生, Such Ink-like Blood / 如墨似血. [Listing](https://wuxia.click/novel-detail/godly-student) | 543 entries numbered 1–544; the last four listing entries are labelled 541–544 but their underlying chapter titles are 537–540, and the details block says latest chapter 540. The ReadNovelFull candidate has invalid chapter URLs. The official 17K chapter page confirms the original title and author and was at Chapter 9,742 on 16 November 2026; a separate mirror lists 9,754. Either count makes 543 English entries a partial edition. [WuxiaClick final TOC page](https://wuxia.click/novel/godly-student?page=6) · [official 17K chapter page](https://www.17k.com/chapter/814433/50658256.html) · [secondary Chinese catalogue](https://www.8y8r.cc/book/23399/) | Exact source identity, but incomplete edition and four-entry TOC mismatch; no permission. |
+| Girl, I'll Teach You Cultivation | WuxiaClick has an exact title/author listing: 妹子，我教你修仙, Watchdog / 看门狗. [Listing](https://wuxia.click/novel/girl-ill-teach-you-cultivation) | TOC is contiguous 1–283, but Novel Updates records 812 completed chapters in the original Chinese edition and marks the English translation incomplete; WuxiaClick's English listing ends at chapter 283. [WuxiaClick final TOC page](https://wuxia.click/novel/girl-ill-teach-you-cultivation?page=3) · [Novel Updates edition record](https://www.novelupdates.com/series/girl-ill-teach-you-cultivation/) | Clean partial translation, not a complete edition; no permission. |
+| The Military Female Soldier With Unwavering Stubbornness | No exact WuxiaClick listing found. Author 直上青云. FanMTL lists 5,707 chapters while PawRead lists 2,481. [FanMTL](https://www.fanmtl.com/novel/the-military-female-soldier-with-unwavering-stubbornness.html) · [PawRead](https://www.pawread.com/novel/the-military-female-soldier-with-unwavering-stubbornness/) | ReadNovelFull preflight found 2,104 missing chapter numbers. Cross-site edition counts diverge substantially. | No complete validated supported TOC or archive permission. |
+
+## Outcome
+
+- **3 alternative WuxiaClick listings** found across the five candidates: two exact title/author matches (Godly Student and Girl, I'll Teach You Cultivation) and one exact author/associated-title match (Doom Lord / Doomsday Lord).
+- **0 complete, integrity-valid editions** after checking original edition size and TOC structure.
+- **0 explicit archiving permissions**, **0 rights-cleared candidates**, **0 download runs**.
+- The original five-candidate count is unchanged. These are additional source leads for three existing candidates, not three new titles.
+- Do not treat the public WuxiaClick Library Download link as permission to archive or redistribute. Do not retry the failed ReadNovelFull URLs or dispatch a bulk workflow unchanged.
