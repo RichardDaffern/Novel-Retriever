@@ -42,17 +42,16 @@ Search absence is not proof that a work is unavailable worldwide. It only means 
 
 ### Konoha's Medical Ninja: One Punch to beat up Madara
 
-- [FreeWebNovel's listing](https://freewebnovel.com/novel/konohas-medical-ninja-one-punch-to-beat-up-madara) and [WebNovel's listing](https://www.webnovel.com/book/29703350508171905) both expose 444 chapters.
-- The WebNovel credit is INeedRest, but its own note says: "I'm not the original writer for this, this was edited by me." Reviews also describe it as a Chinese work/translation.
-- The underlying original author remains unidentified. The 444-entry TOC and the existing assembled archive do not resolve authorship or rights.
+- [FreeWebNovel's public listing](https://freewebnovel.com/novel/konohas-medical-ninja-one-punch-to-beat-up-madara) credits INeedRest, labels the page English/ongoing, and shows latest entries 444–439 plus opening TOC entries 1–40. [WebNovel](https://www.webnovel.com/book/29703350508171905) also lists 444 chapters.
+- The WebNovel credit is INeedRest, but the page's own note says they are not the original writer and only edited the work. Reviews also describe it as a Chinese work/translation.
+- The underlying original author remains unidentified. The public 444-entry TOC and existing assembled archive do not resolve authorship or rights.
 - Existing public artifact `14462633408` remains rights-unverified. Do not link, re-download, register, or create another public copy. The connected GitHub operations do not expose artifact revocation.
 
 ### HP: The Arcane Thief
 
-- [FanFiction.net's original listing](https://www.fanfiction.net/s/14119836/167/Harry-Potter-The-Arcane-Thief-LitRPG) credits Snollygoster and shows 183 chapters.
-- [Ranobes' mirror record](https://ranobes.net/novels/1205620-the-arcane-thief-v741610.html) lists 254 written chapters and 275 available, in English, with a dropped status.
-- FreeWebNovel's 254-entry edition therefore does not yet reconcile to the selected 183-chapter FanFiction.net work. PR #463 fixed the consistent +1 chapter URL offset, but that technical fix does not prove edition identity, complete coverage or archive rights.
-- No retry until the editions and permission are resolved.
+- [FreeWebNovel's public listing](https://freewebnovel.com/novel/hp-the-arcane-thief) credits Snollygoster, labels the page English/ongoing, shows one auxiliary entry before Chapter 1, opening chapters 1–39 and latest entries 254–249. This is a 254-chapter Snollygoster edition and is the selected author/title match.
+- [FanFiction.net](https://www.fanfiction.net/s/14119836/167/Harry-Potter-The-Arcane-Thief-LitRPG) is a separate Snollygoster cross-post showing 183 chapters; [Ranobes](https://ranobes.net/novels/1205620-the-arcane-thief-v741610.html) reports 254 written/275 available. Do not treat the 183-chapter cross-post as proof that the selected 254-chapter FWN edition is incomplete.
+- PR #463 fixed the +1 URL offset caused by the auxiliary entry and added a regression test. The live full TOC has not been revalidated end-to-end after the merge, and no explicit archive permission was found. The technical adapter issue is fixed; the rights gate remains. No retry.
 
 ## Decision
 
