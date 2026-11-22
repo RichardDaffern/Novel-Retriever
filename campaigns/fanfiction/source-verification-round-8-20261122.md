@@ -25,7 +25,8 @@ The 32 source-research rows therefore remain 5 exact supported-host candidates, 
 
 - The [WebNovel listing](https://www.webnovel.com/book/29703350508171905) exposes 444 chapters and explicitly says INeedRest is not the original writer, but edited the work. It also points to Patreon advance chapters.
 - The original author remains unidentified. The 444-chapter technical archive does not resolve authorship or permission.
-- Existing public Actions artifact `14462633408` remains rights-unverified. Do not re-download, register, link or create another public copy.
+- Exact logs from [run #44379388243](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44379388243) show all nine chapter batches (1–444) succeeded. Assembly logged `ASSEMBLED 444 verified TXT chapters and EPUB` and uploaded artifact `14462633408` (3,370,287 bytes). The assembly job then failed only because `publish_registry` could not merge PR #275 after six attempts (`Base branch was modified` / `Pull Request is not mergeable`). Thus this is **assembled but unregistered**, not a chapter-integrity failure.
+- Existing public Actions artifact `14462633408` expires 16 February 2027 19:20:05 UTC and remains rights-unverified. Do not re-download, register, link or create another public copy; repository-owner deletion/revocation is required if rights cannot be documented.
 
 ### HP: The Arcane Thief
 
