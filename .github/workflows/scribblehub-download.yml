@@ -9,10 +9,14 @@ on:
         type: string
         default: 'https://www.scribblehub.com/series/445037/the-adventurous-gamer-ninja--daichi-hekima/'
       confirm_rights:
-        description: 'I confirm that I have permission to archive this work'
+        description: 'I have explicit rights to archive and publicly share this work through public GitHub Actions artefacts'
         required: true
         type: boolean
         default: false
+      rights_evidence_url:
+        description: 'Separate HTTPS author/rights-holder permission or licence page. A public book listing is not evidence.'
+        required: true
+        type: string
       force:
         description: 'Redownload even if a completed artefact is still available'
         required: false
@@ -26,9 +30,13 @@ on:
         required: true
         type: string
       confirm_rights:
-        description: 'Explicit rights confirmation for the requested book'
+        description: 'Explicit permission to archive and publicly share the requested book'
         required: true
         type: boolean
+      rights_evidence_url:
+        description: 'Separate HTTPS author/rights-holder permission or licence page'
+        required: true
+        type: string
       force:
         description: 'Redownload even if a completed artefact is available'
         required: false
@@ -60,6 +68,14 @@ jobs:
           python-version: '3.12'
           cache: pip
 
+      - name: Require explicit rights evidence before public archive access
+        env:
+          CONFIRM_RIGHTS: ${{ inputs.confirm_rights }}
+          RIGHTS_EVIDENCE_URL: ${{ inputs.rights_evidence_url }}
+          NOVEL_URL: ${{ inputs.novel_url }}
+        run: |
+          python tools/rights_gate.py --confirm-rights "$CONFIRM_RIGHTS" --evidence-url "$RIGHTS_EVIDENCE_URL" --source-urls "$NOVEL_URL"
+
       - name: Install pinned dependencies
         run: python -m pip install -r requirements.lock
 
@@ -68,6 +84,7 @@ jobs:
         env:
           NOVEL_URL: ${{ inputs.novel_url }}
           CONFIRM_RIGHTS: ${{ inputs.confirm_rights }}
+          RIGHTS_EVIDENCE_URL: ${{ inputs.rights_evidence_url }}
         run: |
           python - <<'PY'
           import os
