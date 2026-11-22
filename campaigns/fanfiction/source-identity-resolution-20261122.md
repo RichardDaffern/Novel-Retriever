@@ -92,3 +92,21 @@ The following ten original catalogue rows received another exact title/selected-
 | The Most Fortunate Malfoy in Harry Potter | Devilsatan | CHERREADS: 193 chapters; earlier WebNovel snapshot: 206. [CHERREADS](https://ellatoria.com/story/34592692808708405) | Edition drift; no archive permission. |
 
 See [source verification round 13](source-verification-round-13-20261122.md). This pass does not change the immutable catalogue JSON or the 8 complete / 3 blocked / 32 research-target reconciliation.
+
+
+## Additional source and identity checks, round 14 (22 November 2026)
+
+| Selected title | Catalogue credit | Evidence checked | Decision |
+|---|---|---|---|
+| Naruto: With Favorability System | NahinS77 | WebNovel spells it *Naruto: With Favorabiltity System*, lists 465 chapters, labels it a translation and links to the Xiaoshubao original. NahinS77 explicitly confirms being the translator. [WebNovel page](https://www.webnovel.com/book/naruto-with-favorabiltity-system_30715695200281005) | Original author remains unidentified; no supported-host listing or archive permission. |
+| Naruto: Transmigrated as an Uchiha | NoviceAuthor | WebNovel lists 327 chapters; Xnovel's NoviceAuthor page lists Chapter 326. [WebNovel](https://www.webnovel.com/book/28980126008082405/catalog), [Xnovel author page](https://xnovel.me/author/NoviceAuthor) | A FreeWebNovel category snapshot surfaced 325 chapters, but no direct page/author was verified. Do not count it as an exact supported-host match. No archive permission. |
+
+Ten exact selected-title/credit searches covered the two rows above plus *Naruto: Binding Uchiha Sasuke, Hundredfold Return* (tambeerg), *Harry Potter: Platinum Dragon Wizard* (BlurryPinkSnake), *Hogwarts: Transmigrated as the Top Student* (Hyperbeeam), *Hogwarts: Bloodline Wizard* (Innocent Angel), *Harry Potter: The Duelist of Hogwarts* (MeowthTL), *Harry Potter: The Flaw of Slytherin* (Ghidorah_7074), *Harry Potter: Cael Vale's Journey to Hogwarts* (16622800) and *Harry Potter: I, Tom Riddle, am not the Dark Lord* (ElvenKing20). No additional exact NovelFull, ReadNovelFull or FreeWebNovel listing or explicit archive permission was located.
+
+### Blocked-source TOC metadata recheck
+
+- **HP: The Arcane Thief:** [FreeWebNovel TOC](https://freewebnovel.com/novel/hp-the-arcane-thief) identifies Snollygoster, 254 numbered chapters and an auxiliary entry. Only the first TOC page was inspected; full post-PR-#463 index validation remains incomplete. No archive permission.
+- **Naruto: The Wind Calamity:** [FreeWebNovel TOC](https://freewebnovel.com/novel/naruto-the-wind-calamity) identifies Devil_Hex and shows latest labels 949→942, 948→941 and 947→940. This confirms the displayed/internal numbering split. Keep the existing fail-closed adapter; no retry without a complete one-to-one map and author permission.
+- **Konoha's Medical Ninja: One Punch to beat up Madara:** [FreeWebNovel TOC](https://freewebnovel.com/novel/konohas-medical-ninja-one-punch-to-beat-up-madara) lists 444 chapters and credits INeedRest. The prior 444-chapter assembly is unregistered because PR #275 registry publication failed after six merge attempts. Original-author and archive rights remain unresolved.
+
+No screenshots, chapter prose or archive bytes were fetched. No downloads dispatched. The 43-title catalogue remains 8 complete, 3 blocked and 32 research targets.

@@ -4,7 +4,7 @@
 >
 > **Scope:** Only the `RichardDaffern/Novel-Retriever` repository. This is a **download, acquisition, conversion, validation, packaging, metadata and local retrieval** project, **not** the web reader or the Hugging Face dataset controller.
 >
-> **Documentation validation point:** The handbook was rechecked against main at 4a5e7accafbbefb07644b16ebc954fad27e7d314 on 22 November 2026. PRs #464–#472 are merged. PR #472's pre-merge CI #44991670298 passed all four jobs; a separate post-merge main CI run was not independently confirmed in this check. Fanfiction source research round 13 is recorded in campaigns/fanfiction/source-verification-round-13-20261122.md and the identity ledger. This dated handbook snapshot is not a live-state guarantee.
+> **Documentation validation point:** The handbook was rechecked against main at b224a326880d9fbfab2b2aec0bb3ed48fb028432 on 22 November 2026. PRs #464–#473 are merged. PR #473 CI #44994367822 and post-merge main CI #44999069565 both passed all four jobs. Fanfiction source research round 14 is recorded in campaigns/fanfiction/source-verification-round-14-20261122.md and the identity ledger. This dated handbook snapshot is not a live-state guarantee.
 >
 > **Precedence:** For actual behaviour, trust the checked-out implementation and tests first, then active workflow definitions and observed run outputs, then current registry/campaign data, then focused documentation and Git history. Previous conversations, assistant summaries and old status snapshots are leads only. If documentation conflicts with current evidence, investigate and update it in the same change. Never silently treat experimental or historical code as production-ready.
 
@@ -1181,3 +1181,20 @@ Important identity/edition findings:
 - SaintXI explicitly labels *Konoha's Genius is a bit Ordinary* a translation and says they do not own Naruto rights. A translator credit or public catalogue is not archive permission.
 
 The three blocked sources were rechecked from exact Actions jobs: Wind Calamity #44378479201 job 135064355812 expected Chapter 51 but the page identified Chapter 48; Konoha Medical #44379388243 assembled 444 chapters but registry publication failed after six merge attempts on PR #275; Arcane Thief's old pre-PR-#463 batch expected Chapter 2 but the page identified Chapter 1, and PR #463 now contains the +1 offset fix. No retry is authorised until the specific index/edition issue and lawful rights are resolved. Keep the 65 unmatched Yup/IDK entries deferred until all 32 fanfiction research targets and the three blocked investigations are complete. Do not request screenshots, copy chapter prose, or create public archives without explicit rights.
+
+
+## Fanfiction source and blocked-TOC follow-up round 14 (22 November 2026)
+
+A targeted exact title/selected-credit pass covered ten unresolved catalogue rows: *Naruto: With Favorability System* (NahinS77), *Naruto: Binding Uchiha Sasuke, Hundredfold Return* (tambeerg), *Naruto: Transmigrated as an Uchiha* (NoviceAuthor), *Harry Potter: Platinum Dragon Wizard* (BlurryPinkSnake), *Hogwarts: Transmigrated as the Top Student* (Hyperbeeam), *Hogwarts: Bloodline Wizard* (Innocent Angel), *Harry Potter: The Duelist of Hogwarts* (MeowthTL), *Harry Potter: The Flaw of Slytherin* (Ghidorah_7074), *Harry Potter: Cael Vale's Journey to Hogwarts* (16622800) and *Harry Potter: I, Tom Riddle, am not the Dark Lord* (ElvenKing20). No new exact NovelFull, ReadNovelFull or FreeWebNovel listing could be verified, and no explicit archive permission was located.
+
+Identity/edition findings:
+- WebNovel spells the first title *Naruto: With Favorabiltity System* (465 chapters), labels it a translation, and links to a Xiaoshubao original. NahinS77 explicitly confirms being the translator; the original author remains unidentified. Do not treat NahinS77 as the original author or use the WebNovel page as a supported download source.
+- *Naruto: Transmigrated as an Uchiha* is listed by WebNovel under NoviceAuthor at 327 chapters; Xnovel's NoviceAuthor page shows 326. A FreeWebNovel category-search snapshot surfaced the same title at 325 chapters, but no direct title page or author attribution could be verified. This is not an exact supported-host match.
+- The other eight exact title/credit searches produced no verifiable exact supported-host listing. Search absence is not worldwide unavailability.
+
+Blocked-source metadata recheck:
+- *HP: The Arcane Thief*: the public FreeWebNovel TOC identifies Snollygoster, 254 numbered chapters and one auxiliary entry. This supports the known +1 auxiliary-entry distinction addressed by PR #463, but only the first TOC page was inspected; full post-fix index validation remains incomplete. No archive permission.
+- *Naruto: The Wind Calamity*: the public TOC's latest labels pair 949→942, 948→941 and 947→940, confirming that displayed and internal chapter numbers differ. The existing fail-closed mapping is correct; do not retry without a complete one-to-one map and author permission.
+- *Konoha's Medical Ninja: One Punch to beat up Madara*: the public TOC lists 444 chapters and credits INeedRest. Run #44379388243 assembled the 444-chapter archive, but registry publication failed after six PR #275 merge attempts. Original-author and archive rights remain unresolved; do not merge, re-download or republish.
+
+The 43-title catalogue remains 8 complete, 3 blocked and 32 research targets. The 65 unmatched Yup/IDK entries remain deferred. No screenshots, chapter prose or archive bytes were fetched; no download run was dispatched. See the [round-14 report](campaigns/fanfiction/source-verification-round-14-20261122.md).
