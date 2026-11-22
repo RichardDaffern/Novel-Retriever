@@ -1285,3 +1285,15 @@ See [round-7 report](campaigns/overnight/alternative-source-research-round-7-202
 ## IDK alternative-source research round 8 (22 November 2026, 23:06 IST)
 
 See [round-8 report](campaigns/overnight/idk-alternative-source-research-round-8-20261122.md). Seven IDK audit rows were checked. One new exact supported-host listing surfaced: *Warrior's Promise* on FreeWebNovel, author Baili Longxia, page-reported 3,336 chapters, ongoing. The fetched page exposed only the first 40 chapter links; the complete ordered index was not validated. FreeWebNovel's terms limit its user-content licence to use through its services, and WebNovel's terms limit user access/use to its service and prohibit reproduction/distribution. No archive permission; do not add a campaign URL or dispatch. Other checks found unsupported/incomplete metadata for *Legend of Mythological Genes* (520), *Super Doctor* (1,126 third-party vs 1,215 original), *The Nine Godheads* (12 Chinese chapters, hiatus), *The Entertainment Circle is Mine* (101 WuxiaClick vs 169+3 original), *The Reincarnated Cop Who Strikes With Wealth* (novel/manhwa edition mismatch) and *Those Years When I Opened a Chinese Medicine Shop* (28 catalogue chapters, author/source unresolved). **Round-8 outcome: 7 IDK rows checked, 1 exact supported-host listing, 0 complete indexes independently validated, 0 explicit archive permissions, 0 rights-cleared titles and 0 download runs.** Yup-side research has covered all 36 Yup audit rows; continue the remaining IDK review. The 32 fanfiction research targets remain rights-unresolved and the three blocked works remain held. No chapter prose or archive bytes fetched.
+
+## Bulk dispatch safety limits (23 November 2026)
+
+The existing `library-bulk-download.yml` workflow must be used only through the paced, reviewed dispatch path:
+
+- Maximum **10 new novel titles per workflow run**, including retries. Already-available titles skipped by the registry do not count.
+- Maximum **2 active `library-bulk-download.yml` runs** at once.
+- `force=false`; never re-download a complete title.
+- The queue dispatcher requires per-title `rights_verified=true`, `public_distribution_rights=true`, a non-empty rights holder and an HTTPS `rights_evidence_url`; it passes `confirm_rights=true` to the workflow only after those fields are present. A public listing is not rights evidence.
+- The mixed-source planner and recovery planner both enforce the 10-title cap.
+- Do not run source discovery as a download, do not use the old 4-run/2-title dispatcher behaviour, and do not dispatch from the read-only source-audit report because it contains no rights evidence.
+- The cap is a campaign policy below GitHub's platform matrix ceiling. Keep batches resumable and independently verified.
