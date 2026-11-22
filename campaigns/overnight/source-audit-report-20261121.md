@@ -22,7 +22,7 @@ The audit considered **91 eligible campaign entries** after the global exclusion
 |---|---|---|---|
 | Yup | Awakening | https://readnovelfull.com/awakening-v1.html | Prior integrity failure; do not retry unchanged |
 | Yup | Beast Piercing The Heavens | https://readnovelfull.com/beast-piercing-the-heavens-v1.html | Fresh candidate; TOC failed on duplicate Chapter 11 links |
-| Yup | Beauty And The Bodyguard | https://novelfull.com/beauty-and-the-bodyguard.html | Prior integrity failure |
+| Yup | Beauty And The Bodyguard | https://novelfull.com/beauty-and-the-bodyguard.html | Chapter-list discovery timed out after the 15-minute bound; no index was obtained |
 | Yup | Condemning the Heavens | https://freewebnovel.com/novel/condemning-the-heavens | Prior integrity failure |
 | Yup | Doom Lord | https://readnovelfull.com/doom-lord-v1.html | TOC passed; exact title, 155 chapters |
 | Yup | Flower Master In The City | https://readnovelfull.com/flower-master-in-the-city-v1.html | Prior integrity failure |
@@ -35,9 +35,9 @@ The audit considered **91 eligible campaign entries** after the global exclusion
 | Yup | The Alchemist God | https://readnovelfull.com/the-alchemist-god.html | Recent invalid chapter URL |
 | Yup | The Mightiest Leveling System | https://readnovelfull.com/the-mightiest-leveling-system-v1.html | Recent invalid chapter URL |
 | Yup | This MC Is Kickass | https://readnovelfull.com/this-mc-is-kickass-v1.html | Recent index failure; inspect before retry |
-| Yup | Tomb Raider King | https://freewebnovel.com/novel/tomb-raider-king | Recent chapter/index failure |
+| Yup | Tomb Raider King | https://freewebnovel.com/novel/tomb-raider-king | No child job was created in the cited dispatch; no chapter log exists |
 | Yup | Weapon Master | https://readnovelfull.com/weapon-master-v1.html | Recent preparation/index failure |
-| Yup | World Domination System | https://readnovelfull.com/world-domination-system-v1.html | Recent preparation/index failure |
+| Yup | World Domination System | https://readnovelfull.com/world-domination-system-v1.html | No child job was created in the cited dispatch; no chapter log exists |
 | IDK | Ex Rank Supporting Role’s Replay in a Prestigious School | https://freewebnovel.com/novel/ex-rank-supporting-roles-replay-in-a-prestigious-school | Prior integrity failure |
 | IDK | Game Market 1983 | https://freewebnovel.com/novel/game-market-1983 | Prior integrity failure |
 | IDK | Girl, I’ll Teach You Cultivation | https://readnovelfull.com/girl-ill-teach-you-cultivation-v1.html | TOC passed; exact title, 283 chapters |
@@ -161,3 +161,28 @@ The following exact campaign titles had no exact match at the tested URL pattern
 3. Reconcile every candidate with the current registry, the 90 global red/Dropped exclusions, issue #452/#448 and active workflows.
 4. Before any chapter download, confirm exact work/edition, complete consecutive index and rights to archive and store the content in the target visibility context. Keep batches bounded and use `force=false`.
 
+
+
+## Failure-classification corrections from direct log reconciliation (22 November 2026)
+
+The 26 matches remain 18 Yup and 8 IDK. The prior-failure labels above are not all chapter-integrity failures:
+
+### Twelve older blocked matches from issue #371
+
+- **Nine confirmed chapter-identity mismatches:** Awakening (expected 2, page 9), Condemning the Heavens (1, page 0), Flower Master In The City (1101, page 1110), Heavenly Star (266, page 267), Ex Rank Supporting Role’s Replay in a Prestigious School (851, page 852), Game Market 1983 (125, page 124; another batch 151 vs 150), Parasite in Love (2, page 1), Sense (1, page 0), and The S-Classes That I Raised (251, page 216).
+- **Omega Summoner:** the cited run #44447221591 has successful chapter-batch jobs for chapters 1–3,083. Recovery manifest artifact #14496292098 records **0 final ZIPs saved** and lists Omega Summoner and Parasite in Love as missing/failed. The previously repeated 2,069/2,070 mismatch is not present in that run's logs; do not repeat it unless the original failing run is located. Treat the title as not archived/registered, not as a verified chapter-number mismatch.
+- **Beauty And The Bodyguard:** chapter-list discovery timed out after its 15-minute bound; no chapter index was obtained. The parent log does not expose the inner timeout/HTTP cause.
+- **Legend of Swordsman:** job 135216534001 reports `ValueError: Downloaded chapter 5742 was empty`; partial artifact #14485801752 exists, but no final novel ZIP was produced.
+
+### Nine other matches with 20 November source/TOC failures
+
+- **Past Life Returner:** expected Chapter 501, page identifies 500.
+- **This MC Is Kickass:** expected Chapter 101, page identifies 102.
+- **Martial Arts System:** ReadNovelFull preparation reported a missing/misnumbered archive. PR #453 added strict same-book prologue support, but no post-fix preflight verified this title.
+- **Path to Heaven:** duplicate Chapter 152. PR #465 added exact rejected-link diagnostics only; no root-cause repair or retry is recorded.
+- **The Alchemist God:** PR #453's prologue support did not fix the later `Invalid ReadNovelFull chapter URL` failure in run #44804318431. PR #465 now preserves the offending href, but no post-merge diagnostic run has captured it.
+- **The Mightiest Leveling System:** `Invalid ReadNovelFull chapter URL`; PR #465 adds diagnostics only, with no post-merge diagnostic run.
+- **Weapon Master:** preparation reported a missing/misnumbered archive; no complete index was validated.
+- **Tomb Raider King** and **World Domination System:** no child job was created in the cited four-title dispatch #44769541580. There is no chapter log for either; do not describe them as failed chapter downloads.
+
+PR #466 adds exact FreeWebNovel URL/offset diagnostics for non-linear chapter labels, but it preserves fail-closed behaviour and does not provide a complete map or permission. No title in these groups was retried during this reconciliation. The exact next action is diagnostics-only TOC capture on the merged code, followed by a regression-tested root-cause fix before any targeted retry.
