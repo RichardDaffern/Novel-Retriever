@@ -7,7 +7,7 @@
 ## Result
 
 - **0 additional exact title + selected-author matches** surfaced on the three supported downloader hosts.
-- The existing **5 exact supported-host candidates**, **2 rejected near/variant matches** and **25 without an exact supported-host listing** remain unchanged from round 6.
+- The existing **5 exact supported-host candidates**, **2 rejected near/variant matches** and **25 without an exact supported-host listing** remain unchanged from round 6. The five exact candidates are still among the 32 `needs_source_verification` entries: a public listing is not yet an approved source until edition, full index and permission checks pass.
 - The FreeWebNovel result for *This Ninja Is Obviously Not Strong but Really Hard to Kill* still credits original author Wu Mian Qi Liang, not selected WebNovel credit nyawdao2. It remains a rejected author mismatch, not a new exact match.
 - Several exact WebNovel/alternate-catalogue identity records were found or reconfirmed, but those sites are not supported downloader adapters and do not establish permission.
 - **0 explicit archiving permissions**, **0 rights-cleared titles**, **0 new download runs**, **0 chapter prose fetched**, and no registry change.
@@ -17,7 +17,7 @@ Search absence is not proof that a work is unavailable worldwide. It only means 
 
 ## Fanfiction registry reconciliation
 
-The immutable catalogue's `review_state` is a source-research state, not the download-completion state. Its counts are 1 `already_downloaded`, 10 `public_source_listing_matched` and 32 `needs_source_verification`. Of those 10 source-matched rows, seven are already complete in `downloaded_novels.json` and three remain blocked. Together with the first row, this reconciles to **8 registry-complete, 3 blocked and 32 requiring research**. The registry is the source of truth for completion:
+The immutable catalogue's `review_state` is its initial campaign/source-review state, not live source discovery or download completion. Its counts are 1 `already_downloaded`, 10 `public_source_listing_matched` and 32 `needs_source_verification`. Of those 10 initial source-matched rows, seven are already complete in `downloaded_novels.json` and three remain blocked. The five exact supported-host candidates discovered in later research are still within the 32 `needs_source_verification` rows because edition, full-index or permission gates remain open. Together with the first row, the registry reconciles to **8 complete, 3 blocked and 32 requiring research**. The registry is the source of truth for completion:
 
 | Completed fanfiction | Chapters | Run | Final archive artifact | Artifact state at check |
 |---|---:|---:|---:|---|
