@@ -510,3 +510,18 @@ A metadata-only inspection of run [#43734417289](https://github.com/RichardDaffe
 - Urban Banished Immortal (246)
 
 The individual Witcher archive **#14225912094** expires at **2026-11-23 12:28:08 UTC / 17:58 IST today**. These are existing public artifacts from the older run, not newly dispatched work. Do not fetch, link or redistribute the nested ZIPs. The repository-owner action remains to delete/restrict unlicensed artifacts; the connected GitHub operations expose no artifact-deletion operation. Preserve the 343-record registry count and do not re-download these titles.
+
+
+## 23 November 2026, 02:42 IST: blocked fanfiction recheck
+
+Round 19 rechecked the three blocked fanfiction works using public author notes and listing metadata only. The report is `campaigns/fanfiction/blocked-source-recheck-20261123.md`.
+
+- Wind Calamity: author Devil_Hex asks prospective translators to contact them first; no permission response is recorded. FanFiction.net and WebNovel list 455 and 952 chapters respectively, so the chapter map remains unresolved.
+- Konoha Medical: credited editor INeedRest explicitly says they are not the original writer. Artifact #14462633408 remains public, unregistered and rights-unverified. Do not fetch, merge or retry.
+- Arcane Thief: the +1 URL-offset fix remains in place, but the complete paginated TOC and archive permission are still missing. WebNovel's 255 count includes an auxiliary entry and numbered chapters through 254; FanFiction.net's 183-chapter cross-post is a separate edition.
+
+**Round-19 result:** 0 new supported-host matches, 0 explicit permissions, 0 rights-cleared titles and 0 download runs. No chapter prose or archive bytes fetched.
+
+Live checks: audit #44924359606 completed successfully with metadata artifact #14714644436 (expires 21 December 2026); Seoul Station's Necromancer run #44922285166 remains complete at 209 chapters with artifact #14714778249 (expires 19 February 2027); latest Actions listing showed 0 queued/in-progress runs. Counts remain 343 registry records, 70 separately confirmed private-HF imports and 90 exclusions.
+
+Repository-owner action is still required for public rights-unverified artifacts. Run #43734417289 bundle #14242470238 expires 23 November at 21:27 IST, and its Witcher ZIP #14225912094 expires at 17:58 IST. Konoha Medical #14462633408 expires 16 February 2027. The connected GitHub operations expose no artifact-deletion action.
