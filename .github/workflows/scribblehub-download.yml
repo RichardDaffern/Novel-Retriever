@@ -98,6 +98,7 @@ jobs:
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as output:
               output.write("## Scribble Hub verified author cross-post\n\n")
               output.write(f"Series ID: {series_id}\n\n")
+              output.write("Rights evidence URL (manual review required): " + os.environ["RIGHTS_EVIDENCE_URL"] + "\n\n")
               output.write("Uses the same author's registered FanFiction.net cross-post through FicHub.\n\n")
               output.write("**Privacy:** Artefacts on a public repository may be accessible to others.\n")
           PY
