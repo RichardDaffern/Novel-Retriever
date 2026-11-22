@@ -43,6 +43,28 @@ class PublicArchiveRightsGateTests(unittest.TestCase):
         )
         self.assertEqual(evidence, "https://author.example/permissions/archive")
 
+    def test_every_public_download_workflow_requires_the_gate(self):
+        root = Path(__file__).resolve().parents[1]
+        workflows = [
+            "library-bulk-download.yml",
+            "download-novel.yml",
+            "freewebnovel-download.yml",
+            "readnovelfull-download.yml",
+            "wuxiaclick-download.yml",
+            "scribblehub-download.yml",
+        ]
+        for name in workflows:
+            content = (root / ".github" / "workflows" / name).read_text(encoding="utf-8")
+            with self.subTest(workflow=name):
+                self.assertIn("rights_evidence_url:", content)
+                self.assertIn("python tools/rights_gate.py", content)
+        bulk = (root / ".github" / "workflows" / "library-bulk-download.yml").read_text(encoding="utf-8")
+        self.assertEqual(
+            bulk.count("rights_evidence_url: ${{ inputs.rights_evidence_url }}"),
+            5,
+        )
+        self.assertIn("--plan-file library_bulk_plan.json", bulk)
+
     def test_plan_file_urls_are_checked_after_name_resolution(self):
         plan = {
             "groups": {
