@@ -127,6 +127,7 @@ class LibraryBulkTests(unittest.TestCase):
         self.assertIn("Enforce at most two active bulk runs", workflow)
         self.assertIn("actions/workflows/library-bulk-download.yml/runs?per_page=100", workflow)
         self.assertIn("active_other_runs", workflow)
+        self.assertIn(".status != \"completed\"", workflow)
         self.assertIn("MAX_BATCH_TITLES = 10", Path("tools/mixed_source_bulk.py").read_text(encoding="utf-8"))
         self.assertIn("required: true", inputs)
         self.assertEqual(workflow.count("confirm_rights: ${{ inputs.confirm_rights }}"), 5)
