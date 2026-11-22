@@ -51,7 +51,7 @@ def run_stress(sizes: tuple[int, ...] = (20, 50, 100)) -> list[dict]:
         ]}
         curated = {"version": 1, "novels": []}
         started = time.monotonic()
-        plan = selection_plan(registry, curated, "", raw)
+        plan = selection_plan(registry, curated, "", raw, confirm_rights=True)
         with tempfile.TemporaryDirectory() as folder:
             out = Path(folder) / "output"
             summary = Path(folder) / "summary.md"
@@ -81,12 +81,12 @@ def run_stress(sizes: tuple[int, ...] = (20, 50, 100)) -> list[dict]:
     # Boundary test: 256 jobs accepted; 257 rejected *before* publishing output.
     upper = selection_plan({"version": 1, "novels": []},
                            {"version": 1, "novels": []}, "",
-                           "\n".join(synthetic_urls(256)))
+                           "\n".join(synthetic_urls(256)), confirm_rights=True)
     assert sum(len(v) for v in upper["groups"].values()) == 256
     try:
         selection_plan({"version": 1, "novels": []},
                        {"version": 1, "novels": []}, "",
-                       "\n".join(synthetic_urls(257)))
+                       "\n".join(synthetic_urls(257)), confirm_rights=True)
     except ValueError as exc:
         assert "256 matrix jobs" in str(exc)
     else:

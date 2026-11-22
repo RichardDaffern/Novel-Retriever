@@ -235,7 +235,8 @@ class ReadNovelFullTests(unittest.TestCase):
             self.assertEqual(len(epub_chapters(final / "source.epub")[1]), 2)
         self.assertEqual(website_name(BOOK), "ReadNovelFull")
         bulk = selection_plan({"version": 1, "novels": []},
-                              {"version": 1, "novels": []}, "", BOOK, "ReadNovelFull", "1-2")
+                              {"version": 1, "novels": []}, "", BOOK, "ReadNovelFull", "1-2",
+                              confirm_rights=True)
         self.assertEqual(len(bulk["groups"]["ReadNovelFull"]), 1)
 
     def test_github_workflows_have_source_and_recovery(self):
