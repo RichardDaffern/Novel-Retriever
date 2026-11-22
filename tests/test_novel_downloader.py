@@ -511,6 +511,27 @@ class CheckpointTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 _checkpoint_chapter(Path(tmp), 0, "Empty", "<html><body></body></html>")
 
+    def test_blank_chapter_error_includes_safe_source_url(self):
+        url = (
+            "https://novelfull.com/legend-of-swordsman/chapter-5742.html"
+            "?token=private&chapter=5742"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(ValueError) as caught:
+                _checkpoint_chapter(
+                    Path(tmp), 5741, "Chapter 5742",
+                    "<html><body></body></html>", source_url=url,
+                )
+        message = str(caught.exception)
+        self.assertIn("Downloaded chapter 5742", message)
+        self.assertIn(
+            "https://novelfull.com/legend-of-swordsman/chapter-5742.html",
+            message,
+        )
+        self.assertIn("token=[redacted]", message)
+        self.assertNotIn("private", message)
+        self.assertNotIn("chapter=5742", message)
+
 
 if __name__ == "__main__":
     unittest.main()
