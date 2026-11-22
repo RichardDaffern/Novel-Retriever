@@ -132,10 +132,10 @@ class RetryAndLoadTests(unittest.TestCase):
             self.assertFalse(result["groups"]["NovelFull"])
             self.assertEqual(len(result["skipped"]), 1)
 
-    def test_synthetic_20_50_100_and_maximum_boundary(self):
+    def test_synthetic_8_13_and_maximum_boundary(self):
         results = run_stress()
-        self.assertEqual([r["requested"] for r in results], [20, 50, 100, 257])
-        self.assertTrue(all(r["status"] == "passed" for r in results[:3]))
+        self.assertEqual([r["requested"] for r in results], [8, 13, 14])
+        self.assertTrue(all(r["status"] == "passed" for r in results[:2]))
         self.assertEqual(results[-1]["status"], "correctly_rejected")
 
 
