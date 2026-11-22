@@ -329,7 +329,7 @@ def main(argv=None) -> int:
     parser.add_argument("--force", action="store_true")
     parser.add_argument(
         "--confirm-rights", action="store_true",
-        help="Required for WuxiaClick and Scribble Hub source downloads",
+        help="Public archive workflows require explicit rights confirmation for every source; WuxiaClick and Scribble Hub also enforce it in their adapters",
     )
     parser.add_argument("--registry", type=Path, default=Path("downloaded_novels.json"))
     parser.add_argument("--catalogue", type=Path, default=DEFAULT_CATALOGUE)
