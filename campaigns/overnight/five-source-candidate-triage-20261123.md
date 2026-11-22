@@ -44,9 +44,15 @@ The five preflight records explicitly set `rights_verified=false`. A public list
 
 Do not dispatch any of these five. Keep the 12 older blocked cases and nine 20-Nov failure cases held until their exact root causes are fixed and regression-tested.
 
-## Registry count discrepancy to resolve before any batch
+## Preflight known-title union reconciled
 
-The read-only audit preflight reports `previously_known=349`, while the current `downloaded_novels.json` contains **343** records. The six-record difference is not explained by the preflight artifact. Do not assume those six are completed titles or use the 349 value for duplicate suppression until the source of the discrepancy is traced. The working completion count remains 343 from the registry file.
+The `previously_known=349` value is **not** the completed registry count. In `tools/overnight_queue.py`, `manifests()` builds the known-title set as the union of normalized titles in `campaigns/yup-pilot/verified-urls.json` and `downloaded_novels.json`. At the audit commit, the verified-URL manifest has 21 entries, the registry has 343 entries, 15 verified-URL titles overlap the registry, and the union is 349.
+
+The six manifest-only entries are:
+- Five aliases of registry titles: Desolate Era → The Desolate Era; Warlock Of Magus World → Warlock of the Magus World; Solo Levelling → I Alone Level-Up; Advent of Archmage → Advent of the Archmage; Charm Of Soul Pet → The Charm of Soul Pets.
+- One known source URL not in the registry: **A Record Of Mortal’s Journey To Immortality**. It is a verified URL entry, not a completed/downloaded registry title. Do not count it among the 343 completed records.
+
+Therefore there is no six-record registry discrepancy. Keep **343** as the completed registry count; use **349** only for the audit's deduplication set, preserving the separate source-URL/alias distinction. This reconciles the preflight count without changing any completion totals.
 
 Other reconciled counts remain 70 separately user-confirmed private-HF imports and 90 red/Dropped exclusions. The 65 unmatched rows remain 36 Yup + 29 IDK; 12 completed-registry aliases plus one excluded alias leave 52 distinct non-alias titles. The 43-fanfiction state remains 8 registry-complete, 3 blocked and 32 source-researched but rights-unresolved.
 
