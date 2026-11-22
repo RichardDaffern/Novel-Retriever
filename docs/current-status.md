@@ -7,7 +7,7 @@
 
 | Item | Verified state | Evidence |
 |---|---|---|
-| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `f1891f1cbcf632e973aa51702c8b034df8492cef` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
+| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `fa459a271677aab8748d7342d4d3a2f6737e4b37` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
 | Completed registry | **343** complete records in `downloaded_novels.json`; this is not a count of currently available artifacts or private-HF imports | Current registry, reconciled 22 November |
 | User-confirmed private-HF imports | **70**, user-confirmed but not independently queried in this Retriever run | Separate Storage Controller source of truth |
 | Global exclusions | **90** red/Dropped titles; remain excluded from Yup and IDK campaigns | `campaigns/overnight/excluded-90.json` |
