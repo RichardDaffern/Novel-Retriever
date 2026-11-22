@@ -21,10 +21,14 @@ on:
         type: boolean
         default: false
       confirm_rights:
-        description: 'WuxiaClick/Scribble Hub: I have rights to archive and share artefacts'
-        required: false
+        description: 'I have explicit rights to archive and publicly share every selected work through public GitHub Actions artefacts'
+        required: true
         type: boolean
         default: false
+      rights_evidence_url:
+        description: 'Separate HTTPS author/rights-holder permission or licence page covering every selected work. A public book listing is not evidence.'
+        required: true
+        type: string
       retry_run_id:
         description: 'Optional previous bulk run ID; retry only failed or missing novels'
         required: false
@@ -59,6 +63,13 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
+      - name: Require explicit rights evidence before planning public artefacts
+        env:
+          CONFIRM_RIGHTS: ${{ inputs.confirm_rights }}
+          RIGHTS_EVIDENCE_URL: ${{ inputs.rights_evidence_url }}
+          NOVEL_URLS: ${{ inputs.novel_urls }}
+        run: |
+          python tools/rights_gate.py --confirm-rights "$CONFIRM_RIGHTS" --evidence-url "$RIGHTS_EVIDENCE_URL" --source-urls "$NOVEL_URLS"
       - name: Install catalogue dependencies
         run: python -m pip install -r requirements.lock
       - name: Validate previous bulk run ID and exclusive retry inputs
@@ -135,6 +146,8 @@ jobs:
       novel_url: ${{ matrix.novel_url }}
       chapter_range: ${{ matrix.chapter_range }}
       force: ${{ matrix.force }}
+      confirm_rights: ${{ inputs.confirm_rights }}
+      rights_evidence_url: ${{ inputs.rights_evidence_url }}
     permissions:
       contents: write
       pull-requests: write
@@ -189,6 +202,7 @@ jobs:
       chapter_range: ${{ matrix.chapter_range }}
       force: ${{ matrix.force }}
       confirm_rights: ${{ inputs.confirm_rights }}
+      rights_evidence_url: ${{ inputs.rights_evidence_url }}
     permissions:
       contents: write
       pull-requests: write
@@ -327,6 +341,7 @@ jobs:
           WUXIACLICK: ${{ needs.wuxiaclick.result }}
           SCRIBBLEHUB: ${{ needs.scribblehub.result }}
           RECOVERY: ${{ steps.recovery.outcome }}
+          RIGHTS_EVIDENCE_URL: ${{ inputs.rights_evidence_url }}
         run: |
           echo "## Grouped bulk result" >> "$GITHUB_STEP_SUMMARY"
           echo "| Group | Result |" >> "$GITHUB_STEP_SUMMARY"
@@ -338,6 +353,8 @@ jobs:
           echo "| WuxiaClick | $WUXIACLICK |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Scribble Hub | $SCRIBBLEHUB |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Partial recovery | $RECOVERY |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Rights evidence URL (manual review required): $RIGHTS_EVIDENCE_URL" >> "$GITHUB_STEP_SUMMARY"
           echo "Independently completed novels retain their original individual artefacts." >> "$GITHUB_STEP_SUMMARY"
           if [[ "$RECOVERY" == "success" ]]; then
             echo "Partial failure: bulk-successful-novels-$GITHUB_RUN_ID contains one portable ZIP per recovered book." >> "$GITHUB_STEP_SUMMARY"
