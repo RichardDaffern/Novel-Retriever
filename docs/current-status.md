@@ -1,7 +1,7 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 17:53 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `f1891f1cbcf632e973aa51702c8b034df8492cef`; PR #477's round-18 documentation is on main. PR #475 and #477 are closed. The source-audit and five-book preflight jobs both completed successfully; no CI run was returned for the documentation-only main commit. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 18:43 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `74a0981a426981b0d407001856103e0887cb3242`; PR #477's round-18 documentation is on main. PR #475 and #477 are closed. The source-audit and five-book preflight jobs both completed successfully; no CI run was returned for the documentation-only main commit. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
@@ -327,3 +327,14 @@ See [the full 29-row metadata matrix](../campaigns/overnight/idk-alternative-sou
 - **0 explicit archive permissions, 0 rights-cleared titles and 0 new download runs.** No chapter prose or archive bytes were fetched.
 
 The 65-row alternative-source review is complete for the current search scope, not a claim of worldwide unavailability. The next gate is rights and full-index verification, not another unchanged retry.
+
+
+## 6. Yup/IDK alias reconciliation and round-2 research
+
+The fanfiction-first stage is complete for the current scope. The next priority is the 65 unmatched audit rows (36 Yup, 29 IDK), after the 26 exact source matches and their failures have been triaged.
+
+The 65 rows have now been reconciled against the 343-record `downloaded_novels.json` registry and 90 red/Dropped exclusions. Exact title matching missed aliases: **12 rows map to existing registry records and one maps to excluded *Eternal Reverence***, leaving **52 distinct non-alias titles**. The 12 completed aliases are Invincible Conqueror, Xian Ni, Records of the Human Emperor, The School Prince is a Girl, Arifureta Shokugyou de Sekai Saikyou, Crazy Levelling System, Dungeon Defence, Evil Dragon Against The Heaven, Invincible Dragon Emperor, Levelling Up And Becoming Undefeated, Soul Land and My Fury Will Burn The Heavens. See the [round-2 report](../campaigns/overnight/alternative-source-research-round-2-20261122.md) for canonical registry titles, authors and historical run IDs.
+
+Alternative listings were found for *Addicted Pampering You*, *Attack Of The Adorable Kid*, *Hidden Marriage Sweet Pampering*, *Bringing The Nation's Husband Home*, *Eternal Martial Sovereign* and several shorter Japanese/Korean works. These are metadata leads only: chapter indexes are incomplete or inconsistent, some editions are commercially licensed, and **no explicit lawful archiving permission was found**. *Invincible Levelling King* is a separate MTL title, not *Invincible*. The distinct *Hidden Marriage*, *Witcher: I Can Extract Everything* and *Very Pure and Ambiguous: The Prequel* registry records must not be mistaken for the requested titles.
+
+Current decision: **0 rights-cleared titles, 0 new download runs, 0 active bulk workflows**. Keep the 52 distinct titles under research; do not call them globally unavailable. Do not repeat unchanged #371/#452 failures or rerun the one-shot source audit.
