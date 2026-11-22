@@ -23,9 +23,17 @@
 
 The title-only rescan also reconfirmed that *Naruto: My Unique System* (Cloe23, 304 chapters), *Hogwarts: Bloodline Wizard* (Innocent Angel, 1,049 chapters) and *Harry Potter: Cael Vale's Journey to Hogwarts* (16622800, 294 chapters) have public WebNovel metadata but no newly found exact listing on the three supported downloader hosts. WebNovel/alternate catalogues are identity evidence only, not supported acquisition adapters or permission.
 
+## Author-permission checks
+
+- **FirstHokage / Naruto: Chronicles of a Fire Ninja:** the author’s [Royal Road post](https://www.royalroad.com/fiction/90875/naruto-chronicles-of-a-fire-ninja/chapter/1859197/100-chapters-completed-yayyy) says an Amazon use of the narrative was unauthorised and asks readers to report sightings. This is not archive permission; it is an explicit warning against unauthorised reuse. The post also describes WebNovel/Patreon chapter history, so the 472-entry FWN index is not automatically the same edition.
+- **SweetestDeath / Naruto: Starting With Creating A Genius Persona:** public Patreon chapter pages exist, but they do not grant permission to archive or republish the work.
+- **mrfanfiction140 / There Will Be No Third Dark Lord At Hogwarts!!!:** the author advertises 30+ advance chapters and Patreon chapter posts are locked. Subscription access is not archive permission.
+- **Konoha's Medical Ninja:** the credited editor explicitly states they are not the original writer. The original author remains unidentified.
+- Searches for explicit archiving/reposting permission from Alex_Clive, TheRedSpell, Snollygoster and Devil_Hex found no permission statement. No selected work has documented permission for this use.
+
 ## Three blocked fanfiction sources
 
-- **Naruto: The Wind Calamity:** the selected author is Devil_Hex. FreeWebNovel's 951-entry catalogue includes auxiliary sections and has non-linear chapter URL mapping. PR #463 correctly fails closed; no complete one-to-one map or archiving permission was found.
+- **Naruto: The Wind Calamity:** the selected author is Devil_Hex. Public metadata now gives three different counts: NovelTrust 793, NovelLunar 910 and FreeWebNovel 951 (the latter includes auxiliary sections). FreeWebNovel's chapter URL mapping is non-linear. PR #463 correctly fails closed; no complete one-to-one map or archiving permission was found.
 - **Konoha's Medical Ninja: One Punch to beat up Madara:** the 444-chapter archive is technically assembled, but the credited editor says they are not the original writer and the underlying author remains unidentified. Existing public artifact `14462633408` is still rights-unverified; do not link, re-download or create another copy.
 - **HP: The Arcane Thief:** PR #463 merged the +1 URL-offset handling and regression tests. The 254-entry FreeWebNovel index still differs from the 183-chapter FanFiction.net listing. The offset fix does not resolve edition identity or rights; no retry.
 
