@@ -4,7 +4,7 @@
 >
 > **Scope:** Only the `RichardDaffern/Novel-Retriever` repository. This is a **download, acquisition, conversion, validation, packaging, metadata and local retrieval** project, **not** the web reader or the Hugging Face dataset controller.
 >
-> **Documentation validation point:** The handbook was rechecked against main at 650c4e85a5093b5ef4ee7df08b1dec12d374c2b2 on 22 November 2026. PRs #464–#474 are merged; PR #474 CI #44999685899 and post-merge main CI #44999833864 passed all four jobs. Fanfiction source research round 15 is recorded in campaigns/fanfiction/source-verification-round-15-20261122.md. This dated handbook snapshot is not a live-state guarantee.
+> **Documentation validation point:** The handbook was rechecked against main at 650c4e85a5093b5ef4ee7df08b1dec12d374c2b2 on 22 November 2026. PRs #464–#474 are merged; PR #475 is the open documentation-only update, and its prior head passed all four jobs in #45006455608 before the round-16 additions. Fanfiction source research rounds 15–16 are recorded in campaigns/fanfiction/source-verification-round-15-20261122.md and campaigns/fanfiction/source-verification-round-16-20261122.md. This dated handbook snapshot is not a live-state guarantee.
 >
 > **Precedence:** For actual behaviour, trust the checked-out implementation and tests first, then active workflow definitions and observed run outputs, then current registry/campaign data, then focused documentation and Git history. Previous conversations, assistant summaries and old status snapshots are leads only. If documentation conflicts with current evidence, investigate and update it in the same change. Never silently treat experimental or historical code as production-ready.
 
