@@ -139,7 +139,10 @@ def chapter_catalogue(html: str, book_url: str) -> dict:
         offset = source_number - number
         if number in chapters and chapters[number]["url"] != link:
             raise ProbeError(f"Conflicting Chapter {number} catalogue links")
-        chapters[number] = {"position": number, "title": label, "url": link}
+        chapters[number] = {
+            "position": number, "title": label, "url": link,
+            "source_number": source_number, "url_offset": offset,
+        }
         offsets.add(offset)
     if 1 not in chapters or 2 not in chapters:
         raise ProbeError(
@@ -149,9 +152,23 @@ def chapter_catalogue(html: str, book_url: str) -> dict:
         )
     if len(offsets) != 1:
         observed = ", ".join(str(value) for value in sorted(offsets))
+        examples = []
+        seen_offsets = set()
+        for number, row in sorted(chapters.items()):
+            offset = row["url_offset"]
+            if offset in seen_offsets:
+                continue
+            seen_offsets.add(offset)
+            examples.append(
+                f"Chapter {number} -> {row['url']} (offset {offset:+d})"
+            )
+            if len(examples) == 12:
+                break
         raise ProbeError(
             "Non-linear chapter URL mapping in public catalogue "
-            f"(observed URL offsets: {observed}); stopped without guessing"
+            f"(observed URL offsets: {observed}); "
+            f"sample mappings: {'; '.join(examples)}; "
+            "stopped without guessing"
         )
     return {
         "title": title,
