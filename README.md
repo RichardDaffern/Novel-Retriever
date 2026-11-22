@@ -110,6 +110,7 @@ not in repository files or command-line arguments.
 - [Download guide, chapter batching and troubleshooting](docs/download-guide.md)
 - [Source research and unsupported sites](docs/research/source-feasibility-2026-11-15.md)
 - [Yup/IDK alias reconciliation and alternative-source round 2](campaigns/overnight/alternative-source-research-round-2-20261122.md)
+- [Yup/IDK alternative-source follow-up round 3](campaigns/overnight/alternative-source-research-round-3-20261122.md)
 - [Technical handbook for contributors and AI agents](AGENTS.md)
 - [Project history, architectural decisions and roadmap](docs/project-history-and-decisions.md)
 
