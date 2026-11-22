@@ -45,3 +45,16 @@ Sources: [INeedRest's WebNovel listing](https://www.webnovel.com/book/konoha%27s
 - Live Actions check at 21:35 IST: **0 queued/in-progress workflows and 0 active bulk-download workflows**.
 
 Continue the 52 distinct alternatives in the required order: Yup first, then IDK. Prioritise full ordered English TOC and exact author/edition checks for the existing leads, then explicit title-specific rights. Public listings, commercial licences, translator credits and free reading access are not archive permission. Keep batches at no more than 10 titles and two active workflows; do not retry deterministic failures unchanged or publish unlicensed archives.
+
+
+## Additional exact alternative listing: I Told You I'm Not 〇〇!!
+
+A title-specific search resolved an exact third-party listing that the earlier sweep had only recorded as a catalogue cross-reference:
+
+- Novel Updates identifies **NaHCO3** as the author, Japanese web novel, 99 chapters, hiatus, original platforms Kakuyomu and Syosetu, and no English publisher.
+- WuxiaClick and WuxiaWorldEU list the exact title under NaHCO3 with 96 entries; the WuxiaWorldEU page labels the latest as Chapter 97. The three catalogues therefore disagree (96 listed versus 97 latest versus 99 original catalogue chapters).
+- This is not a NovelFull, ReadNovelFull or FreeWebNovel listing, and it is not a complete, reconciled English edition. No archiving or public-distribution permission was found. Do not add it to a download batch.
+
+Sources: [Novel Updates](https://www.novelupdates.com/series/i-told-you-im-not-%E3%80%87%E3%80%87-when-i-helped-out-the-most-beautiful-girl-in-my-class-my-identity-got-found-out/), [WuxiaClick](https://wuxia.click/novel/i-told-you-im-not-when-i-helped-out-the-most-beautiful-girl-in-my-class-my-identity-got-found-out), [WuxiaWorldEU](https://wuxiaworld.eu/novel/i-told-you-im-not-when-i-helped-out-the-most-beautiful-girl-in-my-class-my-identity-got-found-out).
+
+**Updated round-6 outcome:** 0 new exact supported-host listings, 1 additional exact non-supported alternative listing, 0 explicit permissions, 0 rights-cleared titles and 0 download runs.
