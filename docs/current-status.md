@@ -284,7 +284,7 @@ See [round 16](../campaigns/fanfiction/source-verification-round-16-20261122.md)
 
 ## Fanfiction source research round 17 (22 November 2026, 15:56 IST)
 
-See [round 17](campaigns/fanfiction/source-verification-round-17-20261122.md).
+See [round 17](../campaigns/fanfiction/source-verification-round-17-20261122.md).
 
 - Exact title + selected-credit searches were repeated for all 32 unresolved entries across NovelFull, ReadNovelFull, FreeWebNovel and WuxiaClick. **0 additional exact supported-host listings** surfaced; three already-known FreeWebNovel matches resurfaced (Tenseigan, Chronicles of a Fire Ninja and Starting With Creating A Genius Persona). The two near/variant matches remain rejected.
 - **0 explicit archive permissions, 0 rights-cleared titles and 0 new download runs.** The 43-title catalogue remains 8 complete, 3 blocked and 32 research targets.
