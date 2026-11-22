@@ -1120,3 +1120,15 @@ This section documents behaviour added after the handbook's original 13 November
 > **Preserve source identity. Verify every expected chapter. Protect existing novel data. Never mistake a checkpoint for a finished book. Respect source-site permissions. Keep real novel text out of Git. Maintain both Windows and Linux compatibility. Test offline first. Keep the single bulk workflow. Do not silently expand experimental source capabilities. Do not declare a deployment, merge, download or CI result successful until it is confirmed.**
 
 This handbook is designed to lower the cost of understanding a large, interconnected personal utility project. It is intentionally detailed, but it remains **documentation**: the latest executable source, workflow definitions, tests and explicit operator requirements take precedence whenever reality changes.
+
+
+## Fanfiction source research round 9 (22 November 2026, 09:22 IST)
+
+The latest round-9 report is [campaigns/fanfiction/source-verification-round-9-20261122.md](campaigns/fanfiction/source-verification-round-9-20261122.md). It searched the 25 original 43-catalogue entries that had no exact supported-host listing, plus the three blocked works. It found **0 new exact NovelFull/ReadNovelFull/FreeWebNovel matches**, **8 additional non-supported catalogue/cross-post leads**, **0 explicit archiving permissions**, and **0 new download runs**. These alternate mirrors are identity/edition evidence only; they are not approved downloader sources, and their chapter indexes were not validated end-to-end.
+
+Important author/rights findings:
+- DevilHex explicitly requires prospective translators to ask permission first for *Naruto: The Wind Calamity*. No permission grant was found; keep its non-linear FreeWebNovel mapping fail-closed.
+- INeedRest states they are not the original writer of *Konoha's Medical Ninja*. The 444-chapter EPUB/TXT was assembled, but registry publication failed; public artifact #14462633408 remains rights-unverified. Do not re-download, register, link or create another public copy.
+- *HP: The Arcane Thief* remains a 254-numbered-chapter FreeWebNovel edition plus an auxiliary entry; the 183-chapter FanFiction.net cross-post is a separate edition. PR #463's +1 offset fix is merged, but no archive permission was found.
+
+Do not change the immutable 43-title catalogue, do not request screenshots, do not start the deferred 65-title Yup/IDK sweep, and do not dispatch or publish a download without exact work/author, English edition, complete ordered TOC and explicit lawful archiving permission.
