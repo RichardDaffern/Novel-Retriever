@@ -1,13 +1,13 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 22 November 2026, 11:56 IST.
-**This is a dated snapshot, not a live dashboard.** The checked `main` head is `4a5e7accafbbefb07644b16ebc954fad27e7d314`; PRs #464–#472 are merged. PR #472's pre-merge CI #44991670298 passed all four jobs; a separate post-merge main CI run was not independently confirmed in this check. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 22 November 2026, 13:04 IST.
+**This is a dated snapshot, not a live dashboard.** The checked `main` head is `b224a326880d9fbfab2b2aec0bb3ed48fb028432`; PRs #464–#473 are merged. PR #473 CI #44994367822 and post-merge main CI #44999069565 both passed all four jobs. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
 | Item | Verified state | Evidence |
 |---|---|---|
-| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `a1af161846e72b042eb821e09e26e866205e9cd6` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
+| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `b224a326880d9fbfab2b2aec0bb3ed48fb028432` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
 | Completed registry | **343** complete records in `downloaded_novels.json`; this is not a count of currently available artifacts or private-HF imports | Current registry, reconciled 22 November |
 | User-confirmed private-HF imports | **70**, user-confirmed but not independently queried in this Retriever run | Separate Storage Controller source of truth |
 | Global exclusions | **90** red/Dropped titles; remain excluded from Yup and IDK campaigns | `campaigns/overnight/excluded-90.json` |
@@ -18,9 +18,9 @@
 
 The Seoul Station artifact is publicly available. The run, chapter batches, assembly and registry entry are technically verified, but no explicit public-archiving permission is recorded in this repository. Treat artifact `14714778249` as rights-unverified; do not create additional public novel artifacts without documented permission. If public redistribution is not authorised, repository-owner deletion/revocation is required.
 | PR #463 | Merged at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; CI [run #44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) green | Arcane Thief offset regression test and Wind Calamity fail-closed mapping |
-| Merged acquisition-research PRs | #464–#472 merged. PR #471 CI [#44991279486](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44991279486) and post-merge main CI [#44991393466](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44991393466) passed all four jobs. PR #472 pre-merge CI [#44991670298](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44991670298) also passed all four jobs; post-merge main CI is not independently confirmed here. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469), [#470](https://github.com/RichardDaffern/Novel-Retriever/pull/470), [#471](https://github.com/RichardDaffern/Novel-Retriever/pull/471), [#472](https://github.com/RichardDaffern/Novel-Retriever/pull/472) |
+| Merged acquisition-research PRs | #464–#473 merged. PR #473 CI [#44994367822](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44994367822) and post-merge main CI [#44999069565](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44999069565) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469), [#470](https://github.com/RichardDaffern/Novel-Retriever/pull/470), [#471](https://github.com/RichardDaffern/Novel-Retriever/pull/471), [#472](https://github.com/RichardDaffern/Novel-Retriever/pull/472), [#473](https://github.com/RichardDaffern/Novel-Retriever/pull/473) |
 | Open PRs | #265 and #275 are open. #275 remains held and unmergeable for Konoha Medical; do not merge or republish its artifact while rights are unresolved. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275) |
-| Bulk download workflows | **0** queued/in-progress at 11:30 IST; no new download run dispatched. Post-merge main CI #44991393466 passed all four jobs and is not a download workflow. | Live Actions run list |
+| Bulk download workflows | **0** queued/in-progress at 13:04 IST; no new download run dispatched. Main CI #44999069565 passed all four jobs and is not a download workflow. | Live Actions run list |
 
 The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`, matching the registry. The seven still-present fanfiction final-artifact expiry values also match the live API; *The Adventurous Gamer Ninja* artifact expired on 21 November 2026 and no longer appears in the run’s artifact list. No registry expiry change was needed in this branch.
 
@@ -248,3 +248,13 @@ A targeted pass checked ten unresolved catalogue rows using exact title/selected
 Seven completed fanfiction archives plus Konoha Medical's artifact remain publicly accessible without documented redistribution permission. The connected GitHub operations do not expose artifact revocation; repository-owner action is required if permission cannot be established.
 
 **Execution:** 343 completed registry records, 70 separately user-confirmed private-HF imports and 90 exclusions remain unchanged. No new download run was dispatched. The 65 unmatched Yup/IDK entries remain deferred. Remote API inspection only; local working-tree status is not observable.
+
+
+## Fanfiction source and blocked-TOC follow-up round 14 (22 November 2026, 13:04 IST)
+
+- Ten exact title/selected-credit searches were repeated across NovelFull, ReadNovelFull and FreeWebNovel. **0 new exact supported-host listings, 0 explicit archive permissions and 0 rights-cleared titles.**
+- *Naruto: With Favorability System* appears on WebNovel as *Naruto: With Favorabiltity System* (465 chapters). The page labels it a translation, links to a Xiaoshubao original, and NahinS77 confirms being the translator. Original author remains unidentified.
+- *Naruto: Transmigrated as an Uchiha* is listed by WebNovel under NoviceAuthor (327 chapters); Xnovel's author page shows 326. A FreeWebNovel category snapshot showed 325, but no direct page/author was verified, so this is not an exact supported-host match.
+- The Arcane Thief TOC shows 254 numbered chapters plus one auxiliary entry; the full paginated TOC has not been validated after PR #463. Wind Calamity's latest TOC labels 949→942, 948→941 and 947→940, confirming the dual numbering that keeps its adapter fail-closed. Konoha Medical's public TOC lists 444 chapters; its earlier workflow assembled the archive but failed during PR #275 registry publication.
+- No chapter prose or archive bytes were fetched. No download run was dispatched. The 43-title catalogue remains 8 complete, 3 blocked and 32 research targets. The 65 unmatched Yup/IDK entries remain deferred.
+- Main CI after PR #473 merge: [#44999069565](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44999069565), 4/4 passed. PR #473 pre-merge CI: [#44994367822](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44994367822), 4/4 passed. Main commit: b224a326880d9fbfab2b2aec0bb3ed48fb028432.
