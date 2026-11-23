@@ -1,4 +1,4 @@
-name: Campaign - NovelFull real search and 100-title bulk wave
+name: Campaign - NovelFull real search and 100-title bulk wave (subtitle matching)
 on:
   push:
     branches: [ops/novelfull-alias-search-20261124]
