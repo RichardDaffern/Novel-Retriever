@@ -668,6 +668,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/a-record-of-a-mortals-journey-to-immortality.html",
+      "title": "A Record of a Mortal’s Journey to Immortality",
+      "author": "Wang Yu",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 2455,
+          "run_id": 45249399799,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45249399799",
+          "artifact_id": 14860477386,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45249399799/artifacts/14860477386",
+          "completed_at_utc": "2026-11-23T20:41:41Z",
+          "expires_at_utc": "2026-11-30T20:41:41Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/a-will-eternal.html",
       "title": "A Will Eternal",
       "author": "Er Gen",
