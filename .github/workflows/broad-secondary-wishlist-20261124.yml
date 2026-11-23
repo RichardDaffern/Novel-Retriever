@@ -1,0 +1,77 @@
+name: Campaign - All remaining wishlist, verified secondary sources
+on:
+  push:
+    branches: [ops/broad-fallback-wishlist-wave-20261124]
+    paths: [.github/workflows/broad-secondary-wishlist-20261124.yml]
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: broad-secondary-wishlist-once-20261124
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned discovery requirements
+        run: python -m pip install -r requirements.lock
+      - name: Validate duplicate, edition and dispatch safety
+        run: python -m unittest tests.test_remaining_fwn_wishlist -v
+      - name: Survey all outstanding wishlist books on the fallback source
+        run: python -u -m tools.remaining_fwn_wishlist discover --out secondary-source-report.json
+      - name: Preserve verification evidence and failures, no chapter bodies
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: secondary-source-wishlist-${{ github.run_id }}
+          path: secondary-source-report.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  dispatch:
+    needs: discover
+    if: needs.discover.result == 'success' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 280
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned dispatcher requirements
+        run: python -m pip install -r requirements.lock
+      - name: Retrieve same-run verified chapter catalogue report
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: secondary-source-wishlist-${{ github.run_id }}
+          path: scan
+      - name: Dispatch every verified full-catalogue source, max six novels per run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python -u -m tools.remaining_fwn_wishlist dispatch \
+            --source scan/secondary-source-report.json \
+            --out secondary-bulk-dispatch-report.json
+      - name: Save exact submitted and held novel lists
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: secondary-bulk-dispatch-${{ github.run_id }}
+          path: secondary-bulk-dispatch-report.json
+          retention-days: 90
+          if-no-files-found: warn
