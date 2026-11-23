@@ -40,6 +40,28 @@ class PriorityWishlistTests(unittest.TestCase):
             self.assertEqual(report["verified"], [])
             self.assertEqual(len(report["unresolved"]), 1)
 
+    def test_incomplete_readnovelfull_original_edition_is_not_verified(self):
+        with tempfile.TemporaryDirectory() as td:
+            with patch.object(w, "pending_titles", return_value=(
+                [{"title": "Doom Lord", "tier": "Yup"}],
+                {"selected_for_source_search": 1, "completed_urls": []},
+            )), patch.object(w.q, "read_json", return_value={"books": []}):
+                report = w.discover(
+                    Path(td) / "scan.json",
+                    fetcher=lambda url: (
+                        ("<html><h1>Doom Lord</h1></html>", "ok")
+                        if url.endswith("doom-lord-v1.html")
+                        else (None, "HTTP_404")
+                    ),
+                    reader_discover=lambda url: {
+                        "title": "Doom Lord",
+                        "numChapters": 155,
+                    },
+                    sleeper=lambda _: None,
+                )
+            self.assertEqual(report["verified"], [])
+            self.assertIn("Shorter translation: 155", report["unresolved"][0]["reason"])
+
     def test_dispatch_sends_rights_and_avoids_forcing_completed(self):
         calls = []
         with tempfile.TemporaryDirectory() as td:
