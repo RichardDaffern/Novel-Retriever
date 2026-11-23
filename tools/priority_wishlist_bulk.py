@@ -67,6 +67,7 @@ def pending_titles() -> tuple[list[dict], dict]:
     idk = q.read_json(q.IDK)
     registry = q.read_json(q.REGISTRY)
     denied = q.read_json(q.DENY)
+    prior = q.read_json(q.VERIFIED)
     blocked = q.read_json(q.OVERNIGHT / "blocked-full-retries-20261120.json")
     if (len(yup.get("entries", [])) != 163
             or len(idk.get("entries", [])) != 82
@@ -89,11 +90,18 @@ def pending_titles() -> tuple[list[dict], dict]:
             and d.get("range") == "all" for d in row.get("downloads", [])
         )
     }
+    # Exact historical URLs already registered under another book title are
+    # canonical aliases, not new missing novels.
+    completed_aliases = {
+        _norm(row["title"]) for row in prior.get("entries", [])
+        if isinstance(row, dict) and row.get("url") in completed_urls
+        and isinstance(row.get("title"), str)
+    }
     excluded = {_norm(x) for x in denied["excluded"]}
     repairs = {_norm(x) for x in blocked["titles"]} | {
         _norm(x) for x in RECENT_REPAIR_HOLDS
     }
-    aliases = _aliases()
+    aliases = _aliases() | completed_aliases
     selected, seen = [], set()
     skip = {"complete": 0, "red_dropped": 0, "repair_hold": 0,
             "completed_alias": 0, "duplicate": 0}
