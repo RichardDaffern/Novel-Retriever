@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: priority-nf-rnf-wishlist-once-20261124
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   discover:
