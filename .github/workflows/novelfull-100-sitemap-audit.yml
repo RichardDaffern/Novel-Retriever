@@ -26,7 +26,10 @@ jobs:
           from pathlib import Path
           from urllib.parse import urlsplit
           from tools import novelfull_alias_campaign as c
-          xml=c.source_get("https://novelfull.com/sitemap.xml")
+          from urllib.request import Request,urlopen
+          request=Request("https://novelfull.com/sitemap.xml",headers={"User-Agent":"NovelRetriever-Book-Index/1.0"})
+          with urlopen(request,timeout=25) as response:
+            xml=response.read(18000000).decode("utf-8","ignore")
           urls=[x for x in re.findall(r'<loc>\s*(https://novelfull.com/[^<]+)\s*</loc>',xml)
                 if re.fullmatch(r'https://novelfull\.com/[a-z0-9-]+\.html',x)]
           assert 300<=len(urls)<50000
@@ -41,7 +44,11 @@ jobs:
                 if sim>=c.MATCH_MIN:
                   found.append((sim,url,query))
             found.sort(key=lambda x:(-x[0],x[1]))
-            found=list({x[1]:x for x in found}.values())
+            unique=[];seen=set()
+            for item in found:
+              if item[1] not in seen:
+                seen.add(item[1]);unique.append(item)
+            found=unique
             if len(found)>1 and sorted([x[0] for x in found],reverse=True)[1]>=found[0][0]-.035:
               ambiguous.append({"title":title,"candidate_urls":[x[1] for x in found[:4]]})
               continue
