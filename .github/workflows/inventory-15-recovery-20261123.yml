@@ -1,0 +1,68 @@
+name: One-shot inventory of all 15 historical novel recoveries
+on:
+  push:
+    branches: [ops/full-15-chapter-inventory-20261123]
+    paths:
+      - '.github/workflows/inventory-15-recovery-20261123.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  inventory:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Checkout reviewed metadata-only inventory utility (PR 496)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: tools/chapter-artifact-metadata-inventory-20261123
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Validate metadata-inventory algorithm without downloading novel text
+        run: python -m unittest tests.test_chapter_artifact_inventory -v
+      - name: Read all historical job/artefact listings, including pagination
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python -u -m tools.chapter_artifact_inventory \
+            --repo RichardDaffern/Novel-Retriever \
+            --run 44769541580 \
+            --run 44491462850 \
+            --run 44497262281 \
+            --run 44447221591 \
+            --run 44420098027 \
+            --run 44397904277 \
+            --run 44433623661 \
+            --run 44407279522 \
+            --run 44452473069 \
+            --run 44434135029 \
+            --run 44392181245 \
+            --run 44379747509 \
+            --run 44448231280 \
+            --output historical_recovery_inventory_20261123.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d = json.loads(Path("historical_recovery_inventory_20261123.json").read_text())
+          print("## Historical recovery catalogue", file=__import__("sys").stdout)
+          print("Runs:", len(d["runs"]), "source keys:", len(d["sources"]))
+          for source in d["sources"]:
+              if source["unexpired_complete_batches"] or source["unexpired_partial_checkpoints"]:
+                  print(source["source_url"] or source["key"],
+                        "complete-batch artefacts:", source["unexpired_complete_batches"],
+                        "partial checkpoints:", source["unexpired_partial_checkpoints"],
+                        "uncovered planned ranges:", source["uncovered_planned_ranges"])
+          PY
+      - name: Save only recovery inventory metadata, never chapter content
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: historical-15-recovery-inventory-20261123
+          path: historical_recovery_inventory_20261123.json
+          retention-days: 90
+          if-no-files-found: warn
