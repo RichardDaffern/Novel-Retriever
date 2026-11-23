@@ -49,6 +49,11 @@ ALREADY_SUBMITTED = {
     "Beauty And The Bodyguard",
     "Bringing The Nation's Husband Home",
     "Seoul Station's Necromancer",
+    "Legend of Swordsman",
+    "Legend of Mythological Genes",
+    "Tensei Shitara Slime Datta Ken",
+    "The Military Female Soldier With Unwavering Stubbornness",
+    "Yong Heng Zhi Zun",
 }
 STOPWORDS = {"a", "an", "and", "of", "for", "with", "the", "in", "is", "to", "on"}
 
@@ -64,18 +69,35 @@ def canon(s: str) -> str:
 
 
 def similarity(query: str, actual: str) -> float:
-    qn, an = normalise(query), normalise(actual)
-    if qn == an:
-        return 1.0
-    qt, at = [t for t in qn.split() if t not in STOPWORDS], [t for t in an.split() if t not in STOPWORDS]
-    if qt == at and qt:
-        return 1.0
-    if len(qn) < 12:
-        return 0.0
-    overlap = len(set(qt) & set(at)) / max(1, len(set(qt)))
-    ratio = SequenceMatcher(None, qn, an).ratio()
-    return ratio if overlap >= .75 and ratio >= MATCH_MIN else 0.0
+    """Match exact or near-exact titles, including a source-side colon suffix.
 
+    Never equate important different words (e.g. 'Extract' vs 'Track') merely
+    because the surrounding title is similar.
+    """
+    query_variants = [query]
+    actual_variants = [actual]
+    if ":" in query:
+        query_variants.append(query.rsplit(":", 1)[-1].strip())
+    if ":" in actual:
+        actual_variants.append(actual.rsplit(":", 1)[-1].strip())
+    best = 0.0
+    for q in query_variants:
+        for a in actual_variants:
+            qn, an = normalise(q), normalise(a)
+            if qn == an:
+                return 1.0
+            qt = [t for t in qn.split() if t not in STOPWORDS]
+            at = [t for t in an.split() if t not in STOPWORDS]
+            if qt == at and qt:
+                return 1.0
+            if len(qn) < 12 or not qt or not at:
+                continue
+            lexical = sum(any(SequenceMatcher(None, token, other).ratio() >= .82
+                              for other in at) for token in qt) / len(qt)
+            ratio = SequenceMatcher(None, qn, an).ratio()
+            if lexical >= .85 and ratio >= MATCH_MIN:
+                best = max(best, ratio)
+    return best
 
 def queries(title: str) -> list[str]:
     candidates = [title]
