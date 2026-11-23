@@ -1,0 +1,2735 @@
+{
+  "schema_version": 1,
+  "audited_date_utc": "2026-11-23",
+  "repository": "RichardDaffern/Novel-Retriever",
+  "base_commit": "d28561060ce348a381324b5618c726c14bd165c2",
+  "count": 15,
+  "classification": "metadata-only inventory; names of complete-batch artifacts are NOT full content/hash verification",
+  "exclusions_file": "campaigns/overnight/excluded-90.json",
+  "excluded_count": 90,
+  "complete_registry_file": "downloaded_novels.json",
+  "completed_registry_count": 343,
+  "no_publication_without_rights": true,
+  "titles": [
+    {
+      "title": "This MC Is Kickass",
+      "source_url": "https://freewebnovel.com/novel/this-mc-is-kickass",
+      "source_key": "4f760035d28e2b007ae9",
+      "planned_chapters": 406,
+      "run_ids": [
+        44769541580
+      ],
+      "chapter_plan_artifact_id": 14647975479,
+      "complete_batch_artifacts": [
+        {
+          "id": 14646755917,
+          "run_id": 44769541580,
+          "name": "chapter-batch-4f760035d28e2b007ae9-00001-00050",
+          "size_bytes": 416345,
+          "start": 1,
+          "end": 50
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14645989122,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-4f760035d28e2b007ae9-51-100",
+          "size_bytes": 35633,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14647245485,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-4f760035d28e2b007ae9-101-150",
+          "size_bytes": 35633,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14645804921,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-4f760035d28e2b007ae9-151-200",
+          "size_bytes": 35633,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14646503084,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-4f760035d28e2b007ae9-201-250",
+          "size_bytes": 35633,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14647180760,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-4f760035d28e2b007ae9-251-300",
+          "size_bytes": 35633,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14646866081,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-4f760035d28e2b007ae9-301-350",
+          "size_bytes": 35633,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14646856267,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-4f760035d28e2b007ae9-351-400",
+          "size_bytes": 35633,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14647450620,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-4f760035d28e2b007ae9-401-406",
+          "size_bytes": 35633,
+          "start": 401,
+          "end": 406
+        }
+      ],
+      "complete_batch_chapter_positions": 50,
+      "missing_complete_batch_ranges": [
+        [
+          51,
+          406
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Past Life Returner",
+      "source_url": "https://freewebnovel.com/novel/past-life-returner",
+      "source_key": "3cca1aac7705844a095e",
+      "planned_chapters": 575,
+      "run_ids": [
+        44769541580
+      ],
+      "chapter_plan_artifact_id": 14645449063,
+      "complete_batch_artifacts": [
+        {
+          "id": 14645649062,
+          "run_id": 44769541580,
+          "name": "chapter-batch-3cca1aac7705844a095e-00001-00050",
+          "size_bytes": 547541,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14646684349,
+          "run_id": 44769541580,
+          "name": "chapter-batch-3cca1aac7705844a095e-00051-00100",
+          "size_bytes": 537152,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14646168143,
+          "run_id": 44769541580,
+          "name": "chapter-batch-3cca1aac7705844a095e-00101-00150",
+          "size_bytes": 564915,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14647200570,
+          "run_id": 44769541580,
+          "name": "chapter-batch-3cca1aac7705844a095e-00151-00200",
+          "size_bytes": 618715,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14645854906,
+          "run_id": 44769541580,
+          "name": "chapter-batch-3cca1aac7705844a095e-00201-00250",
+          "size_bytes": 653751,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14645603360,
+          "run_id": 44769541580,
+          "name": "chapter-batch-3cca1aac7705844a095e-00251-00300",
+          "size_bytes": 635463,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14645603401,
+          "run_id": 44769541580,
+          "name": "chapter-batch-3cca1aac7705844a095e-00301-00350",
+          "size_bytes": 664535,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14647455563,
+          "run_id": 44769541580,
+          "name": "chapter-batch-3cca1aac7705844a095e-00551-00575",
+          "size_bytes": 335213,
+          "start": 551,
+          "end": 575
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14645269507,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-3cca1aac7705844a095e-351-400",
+          "size_bytes": 120868,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14647330633,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-3cca1aac7705844a095e-401-450",
+          "size_bytes": 43029,
+          "start": 401,
+          "end": 450
+        },
+        {
+          "id": 14646871316,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-3cca1aac7705844a095e-451-500",
+          "size_bytes": 43029,
+          "start": 451,
+          "end": 500
+        },
+        {
+          "id": 14647295877,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-3cca1aac7705844a095e-501-550",
+          "size_bytes": 43029,
+          "start": 501,
+          "end": 550
+        }
+      ],
+      "complete_batch_chapter_positions": 375,
+      "missing_complete_batch_ranges": [
+        [
+          351,
+          550
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Tomb Raider King",
+      "source_url": "https://freewebnovel.com/novel/tomb-raider-king",
+      "source_key": "0255d6703a29612165f4",
+      "planned_chapters": 416,
+      "run_ids": [
+        44769541580,
+        44491462850
+      ],
+      "chapter_plan_artifact_id": 14647945148,
+      "complete_batch_artifacts": [
+        {
+          "id": 14646931296,
+          "run_id": 44769541580,
+          "name": "chapter-batch-0255d6703a29612165f4-00051-00100",
+          "size_bytes": 743188,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14645394808,
+          "run_id": 44769541580,
+          "name": "chapter-batch-0255d6703a29612165f4-00101-00150",
+          "size_bytes": 776202,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14647590869,
+          "run_id": 44769541580,
+          "name": "chapter-batch-0255d6703a29612165f4-00151-00200",
+          "size_bytes": 772171,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14645459882,
+          "run_id": 44769541580,
+          "name": "chapter-batch-0255d6703a29612165f4-00201-00250",
+          "size_bytes": 771573,
+          "start": 201,
+          "end": 250
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14512483358,
+          "run_id": 44491462850,
+          "name": "partial-batch-44491462850-0255d6703a29612165f4-1-50",
+          "size_bytes": 194949,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14647390969,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-0255d6703a29612165f4-1-50",
+          "size_bytes": 194949,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14513666794,
+          "run_id": 44491462850,
+          "name": "partial-batch-44491462850-0255d6703a29612165f4-251-300",
+          "size_bytes": 262973,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14646981542,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-0255d6703a29612165f4-251-300",
+          "size_bytes": 262973,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14514070484,
+          "run_id": 44491462850,
+          "name": "partial-batch-44491462850-0255d6703a29612165f4-301-350",
+          "size_bytes": 84432,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14647011720,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-0255d6703a29612165f4-301-350",
+          "size_bytes": 84432,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14513910800,
+          "run_id": 44491462850,
+          "name": "partial-batch-44491462850-0255d6703a29612165f4-351-400",
+          "size_bytes": 84432,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14648080559,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-0255d6703a29612165f4-351-400",
+          "size_bytes": 84432,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14512993875,
+          "run_id": 44491462850,
+          "name": "partial-batch-44491462850-0255d6703a29612165f4-401-416",
+          "size_bytes": 84432,
+          "start": 401,
+          "end": 416
+        },
+        {
+          "id": 14648065757,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-0255d6703a29612165f4-401-416",
+          "size_bytes": 84432,
+          "start": 401,
+          "end": 416
+        }
+      ],
+      "complete_batch_chapter_positions": 200,
+      "missing_complete_batch_ranges": [
+        [
+          1,
+          50
+        ],
+        [
+          251,
+          416
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "World Domination System",
+      "source_url": "https://freewebnovel.com/novel/world-domination-system",
+      "source_key": "63c93351b2c93511b96f",
+      "planned_chapters": 1168,
+      "run_ids": [
+        44769541580,
+        44497262281
+      ],
+      "chapter_plan_artifact_id": 14647181233,
+      "complete_batch_artifacts": [],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14515297403,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-1-50",
+          "size_bytes": 51976,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14648065327,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-1-50",
+          "size_bytes": 51976,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14515542014,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-51-100",
+          "size_bytes": 50726,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14648000466,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-51-100",
+          "size_bytes": 50726,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14515503038,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-101-150",
+          "size_bytes": 50726,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14647311081,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-101-150",
+          "size_bytes": 50726,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14514414546,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-151-200",
+          "size_bytes": 50726,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14645839814,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-151-200",
+          "size_bytes": 50726,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14514479418,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-201-250",
+          "size_bytes": 50726,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14647111424,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-201-250",
+          "size_bytes": 50726,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14515693296,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-251-300",
+          "size_bytes": 50726,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14646771867,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-251-300",
+          "size_bytes": 50726,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14515163054,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-301-350",
+          "size_bytes": 50726,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14647251216,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-301-350",
+          "size_bytes": 50726,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14515322424,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-351-400",
+          "size_bytes": 50726,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14646444671,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-351-400",
+          "size_bytes": 50726,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14514738545,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-401-450",
+          "size_bytes": 50726,
+          "start": 401,
+          "end": 450
+        },
+        {
+          "id": 14646313751,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-401-450",
+          "size_bytes": 50726,
+          "start": 401,
+          "end": 450
+        },
+        {
+          "id": 14516180736,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-451-500",
+          "size_bytes": 50726,
+          "start": 451,
+          "end": 500
+        },
+        {
+          "id": 14647745954,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-451-500",
+          "size_bytes": 50726,
+          "start": 451,
+          "end": 500
+        },
+        {
+          "id": 14516120850,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-501-550",
+          "size_bytes": 50726,
+          "start": 501,
+          "end": 550
+        },
+        {
+          "id": 14646782011,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-501-550",
+          "size_bytes": 50726,
+          "start": 501,
+          "end": 550
+        },
+        {
+          "id": 14515842084,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-551-600",
+          "size_bytes": 50726,
+          "start": 551,
+          "end": 600
+        },
+        {
+          "id": 14647441402,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-551-600",
+          "size_bytes": 50726,
+          "start": 551,
+          "end": 600
+        },
+        {
+          "id": 14515992280,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-601-650",
+          "size_bytes": 50726,
+          "start": 601,
+          "end": 650
+        },
+        {
+          "id": 14647686188,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-601-650",
+          "size_bytes": 50726,
+          "start": 601,
+          "end": 650
+        },
+        {
+          "id": 14515408533,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-651-700",
+          "size_bytes": 50726,
+          "start": 651,
+          "end": 700
+        },
+        {
+          "id": 14647910969,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-651-700",
+          "size_bytes": 50726,
+          "start": 651,
+          "end": 700
+        },
+        {
+          "id": 14515383468,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-701-750",
+          "size_bytes": 50726,
+          "start": 701,
+          "end": 750
+        },
+        {
+          "id": 14646896877,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-701-750",
+          "size_bytes": 50726,
+          "start": 701,
+          "end": 750
+        },
+        {
+          "id": 14515892117,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-751-800",
+          "size_bytes": 50726,
+          "start": 751,
+          "end": 800
+        },
+        {
+          "id": 14647396190,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-751-800",
+          "size_bytes": 50726,
+          "start": 751,
+          "end": 800
+        },
+        {
+          "id": 14516066565,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-801-850",
+          "size_bytes": 50726,
+          "start": 801,
+          "end": 850
+        },
+        {
+          "id": 14647521532,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-801-850",
+          "size_bytes": 50726,
+          "start": 801,
+          "end": 850
+        },
+        {
+          "id": 14515558142,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-851-900",
+          "size_bytes": 50726,
+          "start": 851,
+          "end": 900
+        },
+        {
+          "id": 14647256594,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-851-900",
+          "size_bytes": 50726,
+          "start": 851,
+          "end": 900
+        },
+        {
+          "id": 14516150921,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-901-950",
+          "size_bytes": 50726,
+          "start": 901,
+          "end": 950
+        },
+        {
+          "id": 14646798763,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-901-950",
+          "size_bytes": 50726,
+          "start": 901,
+          "end": 950
+        },
+        {
+          "id": 14514874868,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-951-1000",
+          "size_bytes": 50726,
+          "start": 951,
+          "end": 1000
+        },
+        {
+          "id": 14648140305,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-951-1000",
+          "size_bytes": 50726,
+          "start": 951,
+          "end": 1000
+        },
+        {
+          "id": 14515048293,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-1001-1050",
+          "size_bytes": 50726,
+          "start": 1001,
+          "end": 1050
+        },
+        {
+          "id": 14647401350,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-1001-1050",
+          "size_bytes": 50726,
+          "start": 1001,
+          "end": 1050
+        },
+        {
+          "id": 14515148553,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-1051-1100",
+          "size_bytes": 50726,
+          "start": 1051,
+          "end": 1100
+        },
+        {
+          "id": 14645504088,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-1051-1100",
+          "size_bytes": 50726,
+          "start": 1051,
+          "end": 1100
+        },
+        {
+          "id": 14516240739,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-1101-1150",
+          "size_bytes": 50726,
+          "start": 1101,
+          "end": 1150
+        },
+        {
+          "id": 14647806246,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-1101-1150",
+          "size_bytes": 50726,
+          "start": 1101,
+          "end": 1150
+        },
+        {
+          "id": 14515059585,
+          "run_id": 44497262281,
+          "name": "partial-batch-44497262281-63c93351b2c93511b96f-1151-1168",
+          "size_bytes": 50726,
+          "start": 1151,
+          "end": 1168
+        },
+        {
+          "id": 14647581634,
+          "run_id": 44769541580,
+          "name": "partial-batch-44769541580-63c93351b2c93511b96f-1151-1168",
+          "size_bytes": 50726,
+          "start": 1151,
+          "end": 1168
+        }
+      ],
+      "complete_batch_chapter_positions": 0,
+      "missing_complete_batch_ranges": [
+        [
+          1,
+          1168
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Omega Summoner",
+      "source_url": "https://freewebnovel.com/novel/omega-summoner",
+      "source_key": "603a18e5fdc52e6c6890",
+      "planned_chapters": 3083,
+      "run_ids": [
+        44447221591
+      ],
+      "chapter_plan_artifact_id": 14494415463,
+      "complete_batch_artifacts": [
+        {
+          "id": 14492984533,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00001-00050",
+          "size_bytes": 387966,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14493363518,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00051-00100",
+          "size_bytes": 483448,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14492929861,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00101-00150",
+          "size_bytes": 479270,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14493358701,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00151-00200",
+          "size_bytes": 486558,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14493039460,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00201-00250",
+          "size_bytes": 445298,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14494460745,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00251-00300",
+          "size_bytes": 410798,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14494292349,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00301-00350",
+          "size_bytes": 400509,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14494845043,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00351-00400",
+          "size_bytes": 391145,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14494575773,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00401-00450",
+          "size_bytes": 394070,
+          "start": 401,
+          "end": 450
+        },
+        {
+          "id": 14493843157,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00451-00500",
+          "size_bytes": 446056,
+          "start": 451,
+          "end": 500
+        },
+        {
+          "id": 14494660566,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00501-00550",
+          "size_bytes": 414877,
+          "start": 501,
+          "end": 550
+        },
+        {
+          "id": 14493424379,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00551-00600",
+          "size_bytes": 390061,
+          "start": 551,
+          "end": 600
+        },
+        {
+          "id": 14494890699,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00601-00650",
+          "size_bytes": 379655,
+          "start": 601,
+          "end": 650
+        },
+        {
+          "id": 14494796049,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00651-00700",
+          "size_bytes": 398488,
+          "start": 651,
+          "end": 700
+        },
+        {
+          "id": 14493753952,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00701-00750",
+          "size_bytes": 392363,
+          "start": 701,
+          "end": 750
+        },
+        {
+          "id": 14494028621,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00751-00800",
+          "size_bytes": 375198,
+          "start": 751,
+          "end": 800
+        },
+        {
+          "id": 14494761444,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00801-00850",
+          "size_bytes": 394010,
+          "start": 801,
+          "end": 850
+        },
+        {
+          "id": 14494696097,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00851-00900",
+          "size_bytes": 387413,
+          "start": 851,
+          "end": 900
+        },
+        {
+          "id": 14493844286,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00901-00950",
+          "size_bytes": 408689,
+          "start": 901,
+          "end": 950
+        },
+        {
+          "id": 14494881628,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-00951-01000",
+          "size_bytes": 383133,
+          "start": 951,
+          "end": 1000
+        },
+        {
+          "id": 14494651572,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01001-01050",
+          "size_bytes": 402675,
+          "start": 1001,
+          "end": 1050
+        },
+        {
+          "id": 14494323988,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01051-01100",
+          "size_bytes": 390809,
+          "start": 1051,
+          "end": 1100
+        },
+        {
+          "id": 14494412688,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01101-01150",
+          "size_bytes": 397574,
+          "start": 1101,
+          "end": 1150
+        },
+        {
+          "id": 14494797333,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01151-01200",
+          "size_bytes": 416687,
+          "start": 1151,
+          "end": 1200
+        },
+        {
+          "id": 14494134655,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01201-01250",
+          "size_bytes": 392267,
+          "start": 1201,
+          "end": 1250
+        },
+        {
+          "id": 14494782543,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01251-01300",
+          "size_bytes": 412600,
+          "start": 1251,
+          "end": 1300
+        },
+        {
+          "id": 14494273560,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01301-01350",
+          "size_bytes": 395943,
+          "start": 1301,
+          "end": 1350
+        },
+        {
+          "id": 14494801865,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01351-01400",
+          "size_bytes": 396630,
+          "start": 1351,
+          "end": 1400
+        },
+        {
+          "id": 14494892789,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01401-01450",
+          "size_bytes": 419377,
+          "start": 1401,
+          "end": 1450
+        },
+        {
+          "id": 14493604747,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01451-01500",
+          "size_bytes": 393598,
+          "start": 1451,
+          "end": 1500
+        },
+        {
+          "id": 14495181532,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01501-01550",
+          "size_bytes": 410626,
+          "start": 1501,
+          "end": 1550
+        },
+        {
+          "id": 14495201624,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01551-01600",
+          "size_bytes": 404320,
+          "start": 1551,
+          "end": 1600
+        },
+        {
+          "id": 14495565914,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01601-01650",
+          "size_bytes": 418529,
+          "start": 1601,
+          "end": 1650
+        },
+        {
+          "id": 14494428608,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01651-01700",
+          "size_bytes": 402370,
+          "start": 1651,
+          "end": 1700
+        },
+        {
+          "id": 14494938408,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01701-01750",
+          "size_bytes": 390385,
+          "start": 1701,
+          "end": 1750
+        },
+        {
+          "id": 14495277051,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01751-01800",
+          "size_bytes": 423858,
+          "start": 1751,
+          "end": 1800
+        },
+        {
+          "id": 14495740622,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01801-01850",
+          "size_bytes": 407457,
+          "start": 1801,
+          "end": 1850
+        },
+        {
+          "id": 14495137759,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01851-01900",
+          "size_bytes": 395966,
+          "start": 1851,
+          "end": 1900
+        },
+        {
+          "id": 14494659677,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01901-01950",
+          "size_bytes": 401608,
+          "start": 1901,
+          "end": 1950
+        },
+        {
+          "id": 14495810596,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-01951-02000",
+          "size_bytes": 414217,
+          "start": 1951,
+          "end": 2000
+        },
+        {
+          "id": 14495920365,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02001-02050",
+          "size_bytes": 433093,
+          "start": 2001,
+          "end": 2050
+        },
+        {
+          "id": 14495457372,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02101-02150",
+          "size_bytes": 418899,
+          "start": 2101,
+          "end": 2150
+        },
+        {
+          "id": 14495622084,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02151-02200",
+          "size_bytes": 392586,
+          "start": 2151,
+          "end": 2200
+        },
+        {
+          "id": 14495377760,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02201-02250",
+          "size_bytes": 398428,
+          "start": 2201,
+          "end": 2250
+        },
+        {
+          "id": 14495717048,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02251-02300",
+          "size_bytes": 396762,
+          "start": 2251,
+          "end": 2300
+        },
+        {
+          "id": 14495816316,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02301-02350",
+          "size_bytes": 416385,
+          "start": 2301,
+          "end": 2350
+        },
+        {
+          "id": 14495363164,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02351-02400",
+          "size_bytes": 399103,
+          "start": 2351,
+          "end": 2400
+        },
+        {
+          "id": 14496175157,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02401-02450",
+          "size_bytes": 388968,
+          "start": 2401,
+          "end": 2450
+        },
+        {
+          "id": 14495836295,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02451-02500",
+          "size_bytes": 379561,
+          "start": 2451,
+          "end": 2500
+        },
+        {
+          "id": 14495737911,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02501-02550",
+          "size_bytes": 391371,
+          "start": 2501,
+          "end": 2550
+        },
+        {
+          "id": 14495826631,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02551-02600",
+          "size_bytes": 404633,
+          "start": 2551,
+          "end": 2600
+        },
+        {
+          "id": 14496325761,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02601-02650",
+          "size_bytes": 409355,
+          "start": 2601,
+          "end": 2650
+        },
+        {
+          "id": 14495613547,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02651-02700",
+          "size_bytes": 428880,
+          "start": 2651,
+          "end": 2700
+        },
+        {
+          "id": 14495229655,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02701-02750",
+          "size_bytes": 396028,
+          "start": 2701,
+          "end": 2750
+        },
+        {
+          "id": 14496545334,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02751-02800",
+          "size_bytes": 400901,
+          "start": 2751,
+          "end": 2800
+        },
+        {
+          "id": 14496386278,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02801-02850",
+          "size_bytes": 416052,
+          "start": 2801,
+          "end": 2850
+        },
+        {
+          "id": 14495444415,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02851-02900",
+          "size_bytes": 432561,
+          "start": 2851,
+          "end": 2900
+        },
+        {
+          "id": 14496496084,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02901-02950",
+          "size_bytes": 410136,
+          "start": 2901,
+          "end": 2950
+        },
+        {
+          "id": 14496695511,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-02951-03000",
+          "size_bytes": 417424,
+          "start": 2951,
+          "end": 3000
+        },
+        {
+          "id": 14496277012,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-03001-03050",
+          "size_bytes": 453184,
+          "start": 3001,
+          "end": 3050
+        },
+        {
+          "id": 14496526199,
+          "run_id": 44447221591,
+          "name": "chapter-batch-603a18e5fdc52e6c6890-03051-03083",
+          "size_bytes": 325124,
+          "start": 3051,
+          "end": 3083
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14494694927,
+          "run_id": 44447221591,
+          "name": "partial-batch-44447221591-603a18e5fdc52e6c6890-2051-2100",
+          "size_bytes": 101343,
+          "start": 2051,
+          "end": 2100
+        }
+      ],
+      "complete_batch_chapter_positions": 3033,
+      "missing_complete_batch_ranges": [
+        [
+          2051,
+          2100
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": "Partial checkpoint 14494694927 was opened: chapters 2051–2068 present; positions 2069–2100 not present in that checkpoint."
+    },
+    {
+      "title": "Legend of Swordsman",
+      "source_url": "https://novelfull.com/legend-of-swordsman.html",
+      "source_key": "fa203efb2efba95e9c58",
+      "planned_chapters": 6493,
+      "run_ids": [
+        44420098027
+      ],
+      "chapter_plan_artifact_id": 14481059034,
+      "complete_batch_artifacts": [
+        {
+          "id": 14482022817,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-00001-00200",
+          "size_bytes": 1324667,
+          "start": 1,
+          "end": 200
+        },
+        {
+          "id": 14482267356,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-00201-00400",
+          "size_bytes": 1261768,
+          "start": 201,
+          "end": 400
+        },
+        {
+          "id": 14483323848,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-00401-00600",
+          "size_bytes": 1179321,
+          "start": 401,
+          "end": 600
+        },
+        {
+          "id": 14481519759,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-00601-00800",
+          "size_bytes": 1215050,
+          "start": 601,
+          "end": 800
+        },
+        {
+          "id": 14481224974,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-00801-01000",
+          "size_bytes": 1259519,
+          "start": 801,
+          "end": 1000
+        },
+        {
+          "id": 14481263562,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-01001-01200",
+          "size_bytes": 1291840,
+          "start": 1001,
+          "end": 1200
+        },
+        {
+          "id": 14484880336,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-01201-01400",
+          "size_bytes": 1202738,
+          "start": 1201,
+          "end": 1400
+        },
+        {
+          "id": 14483612369,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-01401-01600",
+          "size_bytes": 1319563,
+          "start": 1401,
+          "end": 1600
+        },
+        {
+          "id": 14483867218,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-01601-01800",
+          "size_bytes": 1362472,
+          "start": 1601,
+          "end": 1800
+        },
+        {
+          "id": 14482172760,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-01801-02000",
+          "size_bytes": 1293876,
+          "start": 1801,
+          "end": 2000
+        },
+        {
+          "id": 14482142844,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-02001-02200",
+          "size_bytes": 1176767,
+          "start": 2001,
+          "end": 2200
+        },
+        {
+          "id": 14484621417,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-02201-02400",
+          "size_bytes": 1189978,
+          "start": 2201,
+          "end": 2400
+        },
+        {
+          "id": 14484561673,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-02401-02600",
+          "size_bytes": 1321699,
+          "start": 2401,
+          "end": 2600
+        },
+        {
+          "id": 14483503492,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-02601-02800",
+          "size_bytes": 1303808,
+          "start": 2601,
+          "end": 2800
+        },
+        {
+          "id": 14486550636,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-02801-03000",
+          "size_bytes": 1271195,
+          "start": 2801,
+          "end": 3000
+        },
+        {
+          "id": 14483069783,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-03001-03200",
+          "size_bytes": 1268728,
+          "start": 3001,
+          "end": 3200
+        },
+        {
+          "id": 14484890372,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-03201-03400",
+          "size_bytes": 1277909,
+          "start": 3201,
+          "end": 3400
+        },
+        {
+          "id": 14485005300,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-03401-03600",
+          "size_bytes": 1271070,
+          "start": 3401,
+          "end": 3600
+        },
+        {
+          "id": 14485543349,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-03601-03800",
+          "size_bytes": 1254658,
+          "start": 3601,
+          "end": 3800
+        },
+        {
+          "id": 14486695439,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-03801-04000",
+          "size_bytes": 1276447,
+          "start": 3801,
+          "end": 4000
+        },
+        {
+          "id": 14483403017,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-04001-04200",
+          "size_bytes": 1278552,
+          "start": 4001,
+          "end": 4200
+        },
+        {
+          "id": 14483618310,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-04201-04400",
+          "size_bytes": 1396262,
+          "start": 4201,
+          "end": 4400
+        },
+        {
+          "id": 14483587713,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-04401-04600",
+          "size_bytes": 1411999,
+          "start": 4401,
+          "end": 4600
+        },
+        {
+          "id": 14483049459,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-04601-04800",
+          "size_bytes": 1424524,
+          "start": 4601,
+          "end": 4800
+        },
+        {
+          "id": 14484202435,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-04801-05000",
+          "size_bytes": 1385830,
+          "start": 4801,
+          "end": 5000
+        },
+        {
+          "id": 14487005124,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-05001-05200",
+          "size_bytes": 1478503,
+          "start": 5001,
+          "end": 5200
+        },
+        {
+          "id": 14486875619,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-05201-05400",
+          "size_bytes": 1585895,
+          "start": 5201,
+          "end": 5400
+        },
+        {
+          "id": 14483452895,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-05401-05600",
+          "size_bytes": 1565461,
+          "start": 5401,
+          "end": 5600
+        },
+        {
+          "id": 14487910817,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-05801-06000",
+          "size_bytes": 1494648,
+          "start": 5801,
+          "end": 6000
+        },
+        {
+          "id": 14488155643,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-06001-06200",
+          "size_bytes": 1475935,
+          "start": 6001,
+          "end": 6200
+        },
+        {
+          "id": 14488035512,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-06201-06400",
+          "size_bytes": 1538356,
+          "start": 6201,
+          "end": 6400
+        },
+        {
+          "id": 14485897046,
+          "run_id": 44420098027,
+          "name": "chapter-batch-fa203efb2efba95e9c58-06401-06493",
+          "size_bytes": 749996,
+          "start": 6401,
+          "end": 6493
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14485801752,
+          "run_id": 44420098027,
+          "name": "partial-batch-44420098027-fa203efb2efba95e9c58-5601-5800",
+          "size_bytes": 516754,
+          "start": 5601,
+          "end": 5800
+        }
+      ],
+      "complete_batch_chapter_positions": 6293,
+      "missing_complete_batch_ranges": [
+        [
+          5601,
+          5800
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Flower Master in the City",
+      "source_url": "https://freewebnovel.com/novel/flower-master-in-the-city",
+      "source_key": "9d6dd3ac46d551233059",
+      "planned_chapters": 1553,
+      "run_ids": [
+        44397904277
+      ],
+      "chapter_plan_artifact_id": 14472127035,
+      "complete_batch_artifacts": [
+        {
+          "id": 14472182207,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00001-00050",
+          "size_bytes": 548055,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14470662676,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00051-00100",
+          "size_bytes": 546768,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14471572403,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00101-00150",
+          "size_bytes": 536615,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14472022651,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00151-00200",
+          "size_bytes": 537499,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14471553255,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00201-00250",
+          "size_bytes": 535571,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14471943028,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00251-00300",
+          "size_bytes": 530420,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14470078648,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00301-00350",
+          "size_bytes": 526819,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14470613994,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00351-00400",
+          "size_bytes": 518368,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14470028882,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00401-00450",
+          "size_bytes": 421740,
+          "start": 401,
+          "end": 450
+        },
+        {
+          "id": 14471563850,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00451-00500",
+          "size_bytes": 386197,
+          "start": 451,
+          "end": 500
+        },
+        {
+          "id": 14471643357,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00501-00550",
+          "size_bytes": 390506,
+          "start": 501,
+          "end": 550
+        },
+        {
+          "id": 14471448403,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00551-00600",
+          "size_bytes": 398567,
+          "start": 551,
+          "end": 600
+        },
+        {
+          "id": 14470014360,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00601-00650",
+          "size_bytes": 391951,
+          "start": 601,
+          "end": 650
+        },
+        {
+          "id": 14470363988,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00651-00700",
+          "size_bytes": 389403,
+          "start": 651,
+          "end": 700
+        },
+        {
+          "id": 14470644273,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00701-00750",
+          "size_bytes": 390084,
+          "start": 701,
+          "end": 750
+        },
+        {
+          "id": 14471194218,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00751-00800",
+          "size_bytes": 392521,
+          "start": 751,
+          "end": 800
+        },
+        {
+          "id": 14472383464,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00801-00850",
+          "size_bytes": 392910,
+          "start": 801,
+          "end": 850
+        },
+        {
+          "id": 14472465314,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00851-00900",
+          "size_bytes": 385578,
+          "start": 851,
+          "end": 900
+        },
+        {
+          "id": 14472665146,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00901-00950",
+          "size_bytes": 389279,
+          "start": 901,
+          "end": 950
+        },
+        {
+          "id": 14471944855,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-00951-01000",
+          "size_bytes": 432952,
+          "start": 951,
+          "end": 1000
+        },
+        {
+          "id": 14473045050,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-01001-01050",
+          "size_bytes": 509461,
+          "start": 1001,
+          "end": 1050
+        },
+        {
+          "id": 14471434777,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-01051-01100",
+          "size_bytes": 505040,
+          "start": 1051,
+          "end": 1100
+        },
+        {
+          "id": 14472730529,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-01151-01200",
+          "size_bytes": 516421,
+          "start": 1151,
+          "end": 1200
+        },
+        {
+          "id": 14471334863,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-01301-01350",
+          "size_bytes": 516280,
+          "start": 1301,
+          "end": 1350
+        },
+        {
+          "id": 14473440806,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-01351-01400",
+          "size_bytes": 508054,
+          "start": 1351,
+          "end": 1400
+        },
+        {
+          "id": 14473225728,
+          "run_id": 44397904277,
+          "name": "chapter-batch-9d6dd3ac46d551233059-01551-01553",
+          "size_bytes": 104289,
+          "start": 1551,
+          "end": 1553
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14471454723,
+          "run_id": 44397904277,
+          "name": "partial-batch-44397904277-9d6dd3ac46d551233059-1101-1150",
+          "size_bytes": 36661,
+          "start": 1101,
+          "end": 1150
+        },
+        {
+          "id": 14473175343,
+          "run_id": 44397904277,
+          "name": "partial-batch-44397904277-9d6dd3ac46d551233059-1201-1250",
+          "size_bytes": 158620,
+          "start": 1201,
+          "end": 1250
+        },
+        {
+          "id": 14473670127,
+          "run_id": 44397904277,
+          "name": "partial-batch-44397904277-9d6dd3ac46d551233059-1251-1300",
+          "size_bytes": 138901,
+          "start": 1251,
+          "end": 1300
+        },
+        {
+          "id": 14473375507,
+          "run_id": 44397904277,
+          "name": "partial-batch-44397904277-9d6dd3ac46d551233059-1401-1450",
+          "size_bytes": 36661,
+          "start": 1401,
+          "end": 1450
+        },
+        {
+          "id": 14473630554,
+          "run_id": 44397904277,
+          "name": "partial-batch-44397904277-9d6dd3ac46d551233059-1451-1500",
+          "size_bytes": 80369,
+          "start": 1451,
+          "end": 1500
+        },
+        {
+          "id": 14474535080,
+          "run_id": 44397904277,
+          "name": "partial-batch-44397904277-9d6dd3ac46d551233059-1501-1550",
+          "size_bytes": 36661,
+          "start": 1501,
+          "end": 1550
+        }
+      ],
+      "complete_batch_chapter_positions": 1253,
+      "missing_complete_batch_ranges": [
+        [
+          1101,
+          1150
+        ],
+        [
+          1201,
+          1300
+        ],
+        [
+          1401,
+          1550
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Ex Rank Supporting Role's Replay in a Prestigious School",
+      "source_url": "https://freewebnovel.com/novel/ex-rank-supporting-roles-replay-in-a-prestigious-school",
+      "source_key": "bcf9e5833e399a0264e0",
+      "planned_chapters": 1441,
+      "run_ids": [
+        44433623661
+      ],
+      "chapter_plan_artifact_id": 14487632642,
+      "complete_batch_artifacts": [
+        {
+          "id": 14488085767,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00001-00050",
+          "size_bytes": 900739,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14487855852,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00051-00100",
+          "size_bytes": 787686,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14487334811,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00101-00150",
+          "size_bytes": 783828,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14488235933,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00151-00200",
+          "size_bytes": 779177,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14487024896,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00201-00250",
+          "size_bytes": 742925,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14488800476,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00251-00300",
+          "size_bytes": 719610,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14488405798,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00301-00350",
+          "size_bytes": 688042,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14488275935,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00351-00400",
+          "size_bytes": 678417,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14488745480,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00401-00450",
+          "size_bytes": 691176,
+          "start": 401,
+          "end": 450
+        },
+        {
+          "id": 14487564253,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00451-00500",
+          "size_bytes": 672100,
+          "start": 451,
+          "end": 500
+        },
+        {
+          "id": 14488391222,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00501-00550",
+          "size_bytes": 654145,
+          "start": 501,
+          "end": 550
+        },
+        {
+          "id": 14489150814,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00551-00600",
+          "size_bytes": 684133,
+          "start": 551,
+          "end": 600
+        },
+        {
+          "id": 14488971236,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00601-00650",
+          "size_bytes": 638644,
+          "start": 601,
+          "end": 650
+        },
+        {
+          "id": 14489360113,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00651-00700",
+          "size_bytes": 644464,
+          "start": 651,
+          "end": 700
+        },
+        {
+          "id": 14489305692,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00701-00750",
+          "size_bytes": 645825,
+          "start": 701,
+          "end": 750
+        },
+        {
+          "id": 14489045864,
+          "run_id": 44433623661,
+          "name": "chapter-batch-bcf9e5833e399a0264e0-00751-00800",
+          "size_bytes": 677413,
+          "start": 751,
+          "end": 800
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14489111182,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-801-850",
+          "size_bytes": 282487,
+          "start": 801,
+          "end": 850
+        },
+        {
+          "id": 14488097804,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-851-900",
+          "size_bytes": 82516,
+          "start": 851,
+          "end": 900
+        },
+        {
+          "id": 14489061626,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-901-950",
+          "size_bytes": 82516,
+          "start": 901,
+          "end": 950
+        },
+        {
+          "id": 14487837907,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-951-1000",
+          "size_bytes": 82516,
+          "start": 951,
+          "end": 1000
+        },
+        {
+          "id": 14488507473,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1001-1050",
+          "size_bytes": 82516,
+          "start": 1001,
+          "end": 1050
+        },
+        {
+          "id": 14488756618,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1051-1100",
+          "size_bytes": 82516,
+          "start": 1051,
+          "end": 1100
+        },
+        {
+          "id": 14488162938,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1101-1150",
+          "size_bytes": 82516,
+          "start": 1101,
+          "end": 1150
+        },
+        {
+          "id": 14488681473,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1151-1200",
+          "size_bytes": 82516,
+          "start": 1151,
+          "end": 1200
+        },
+        {
+          "id": 14488297126,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1201-1250",
+          "size_bytes": 82516,
+          "start": 1201,
+          "end": 1250
+        },
+        {
+          "id": 14488301700,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1251-1300",
+          "size_bytes": 82516,
+          "start": 1251,
+          "end": 1300
+        },
+        {
+          "id": 14488011997,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1301-1350",
+          "size_bytes": 82516,
+          "start": 1301,
+          "end": 1350
+        },
+        {
+          "id": 14489390691,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1351-1400",
+          "size_bytes": 82516,
+          "start": 1351,
+          "end": 1400
+        },
+        {
+          "id": 14489505346,
+          "run_id": 44433623661,
+          "name": "partial-batch-44433623661-bcf9e5833e399a0264e0-1401-1441",
+          "size_bytes": 82516,
+          "start": 1401,
+          "end": 1441
+        }
+      ],
+      "complete_batch_chapter_positions": 800,
+      "missing_complete_batch_ranges": [
+        [
+          801,
+          1441
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Heavenly Star",
+      "source_url": "https://freewebnovel.com/novel/heavenly-star",
+      "source_key": "31cdcf0d284320c85b2b",
+      "planned_chapters": 335,
+      "run_ids": [
+        44407279522
+      ],
+      "chapter_plan_artifact_id": 14476065759,
+      "complete_batch_artifacts": [
+        {
+          "id": 14474937595,
+          "run_id": 44407279522,
+          "name": "chapter-batch-31cdcf0d284320c85b2b-00001-00050",
+          "size_bytes": 487462,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14476820778,
+          "run_id": 44407279522,
+          "name": "chapter-batch-31cdcf0d284320c85b2b-00051-00100",
+          "size_bytes": 530550,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14474913069,
+          "run_id": 44407279522,
+          "name": "chapter-batch-31cdcf0d284320c85b2b-00101-00150",
+          "size_bytes": 656509,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14474993048,
+          "run_id": 44407279522,
+          "name": "chapter-batch-31cdcf0d284320c85b2b-00151-00200",
+          "size_bytes": 676952,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14476057256,
+          "run_id": 44407279522,
+          "name": "chapter-batch-31cdcf0d284320c85b2b-00201-00250",
+          "size_bytes": 601545,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14475063777,
+          "run_id": 44407279522,
+          "name": "chapter-batch-31cdcf0d284320c85b2b-00301-00335",
+          "size_bytes": 345357,
+          "start": 301,
+          "end": 335
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14475537293,
+          "run_id": 44407279522,
+          "name": "partial-batch-44407279522-31cdcf0d284320c85b2b-251-300",
+          "size_bytes": 123121,
+          "start": 251,
+          "end": 300
+        }
+      ],
+      "complete_batch_chapter_positions": 285,
+      "missing_complete_batch_ranges": [
+        [
+          251,
+          300
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "The S-Classes That I Raised",
+      "source_url": "https://freewebnovel.com/novel/the-s-classes-that-i-raised",
+      "source_key": "661c5fb576beae79b591",
+      "planned_chapters": 817,
+      "run_ids": [
+        44452473069
+      ],
+      "chapter_plan_artifact_id": 14496541067,
+      "complete_batch_artifacts": [
+        {
+          "id": 14495509855,
+          "run_id": 44452473069,
+          "name": "chapter-batch-661c5fb576beae79b591-00001-00050",
+          "size_bytes": 807155,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14496037962,
+          "run_id": 44452473069,
+          "name": "chapter-batch-661c5fb576beae79b591-00051-00100",
+          "size_bytes": 855398,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14495822933,
+          "run_id": 44452473069,
+          "name": "chapter-batch-661c5fb576beae79b591-00101-00150",
+          "size_bytes": 661743,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14496341513,
+          "run_id": 44452473069,
+          "name": "chapter-batch-661c5fb576beae79b591-00151-00200",
+          "size_bytes": 395694,
+          "start": 151,
+          "end": 200
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14495619848,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-201-250",
+          "size_bytes": 55137,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14495917904,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-251-300",
+          "size_bytes": 48392,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14496655847,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-301-350",
+          "size_bytes": 48392,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14495888043,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-351-400",
+          "size_bytes": 48392,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14496441497,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-401-450",
+          "size_bytes": 48392,
+          "start": 401,
+          "end": 450
+        },
+        {
+          "id": 14496671337,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-451-500",
+          "size_bytes": 48392,
+          "start": 451,
+          "end": 500
+        },
+        {
+          "id": 14495853064,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-501-550",
+          "size_bytes": 48392,
+          "start": 501,
+          "end": 550
+        },
+        {
+          "id": 14497210210,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-551-600",
+          "size_bytes": 48392,
+          "start": 551,
+          "end": 600
+        },
+        {
+          "id": 14496516314,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-601-650",
+          "size_bytes": 48392,
+          "start": 601,
+          "end": 650
+        },
+        {
+          "id": 14497075462,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-651-700",
+          "size_bytes": 48392,
+          "start": 651,
+          "end": 700
+        },
+        {
+          "id": 14495888192,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-701-750",
+          "size_bytes": 48392,
+          "start": 701,
+          "end": 750
+        },
+        {
+          "id": 14496048624,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-751-800",
+          "size_bytes": 48392,
+          "start": 751,
+          "end": 800
+        },
+        {
+          "id": 14497295126,
+          "run_id": 44452473069,
+          "name": "partial-batch-44452473069-661c5fb576beae79b591-801-817",
+          "size_bytes": 48392,
+          "start": 801,
+          "end": 817
+        }
+      ],
+      "complete_batch_chapter_positions": 200,
+      "missing_complete_batch_ranges": [
+        [
+          201,
+          817
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Game Market 1983",
+      "source_url": "https://freewebnovel.com/novel/game-market-1983",
+      "source_key": "c5f279b3707907951996",
+      "planned_chapters": 252,
+      "run_ids": [
+        44434135029
+      ],
+      "chapter_plan_artifact_id": 14487359745,
+      "complete_batch_artifacts": [
+        {
+          "id": 14487991339,
+          "run_id": 44434135029,
+          "name": "chapter-batch-c5f279b3707907951996-00001-00050",
+          "size_bytes": 507914,
+          "start": 1,
+          "end": 50
+        }
+      ],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14489120219,
+          "run_id": 44434135029,
+          "name": "partial-batch-44434135029-c5f279b3707907951996-51-100",
+          "size_bytes": 149727,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14488515958,
+          "run_id": 44434135029,
+          "name": "partial-batch-44434135029-c5f279b3707907951996-101-150",
+          "size_bytes": 146243,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14487941653,
+          "run_id": 44434135029,
+          "name": "partial-batch-44434135029-c5f279b3707907951996-151-200",
+          "size_bytes": 48808,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14489195512,
+          "run_id": 44434135029,
+          "name": "partial-batch-44434135029-c5f279b3707907951996-201-250",
+          "size_bytes": 48808,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14487444719,
+          "run_id": 44434135029,
+          "name": "partial-batch-44434135029-c5f279b3707907951996-251-252",
+          "size_bytes": 48808,
+          "start": 251,
+          "end": 252
+        }
+      ],
+      "complete_batch_chapter_positions": 50,
+      "missing_complete_batch_ranges": [
+        [
+          51,
+          252
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Condemning the Heavens",
+      "source_url": "https://freewebnovel.com/novel/condemning-the-heavens",
+      "source_key": "d5c643d55cd62ea36820",
+      "planned_chapters": 650,
+      "run_ids": [
+        44392181245
+      ],
+      "chapter_plan_artifact_id": 14469191619,
+      "complete_batch_artifacts": [],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14469096975,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-1-50",
+          "size_bytes": 24288,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14467562771,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-51-100",
+          "size_bytes": 24288,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14467787667,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-101-150",
+          "size_bytes": 24288,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14467982551,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-151-200",
+          "size_bytes": 24288,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14469596470,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-201-250",
+          "size_bytes": 24288,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14469262259,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-251-300",
+          "size_bytes": 24288,
+          "start": 251,
+          "end": 300
+        },
+        {
+          "id": 14469097067,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-301-350",
+          "size_bytes": 24288,
+          "start": 301,
+          "end": 350
+        },
+        {
+          "id": 14469307177,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-351-400",
+          "size_bytes": 24288,
+          "start": 351,
+          "end": 400
+        },
+        {
+          "id": 14468017655,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-401-450",
+          "size_bytes": 24288,
+          "start": 401,
+          "end": 450
+        },
+        {
+          "id": 14468372657,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-451-500",
+          "size_bytes": 24288,
+          "start": 451,
+          "end": 500
+        },
+        {
+          "id": 14467857846,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-501-550",
+          "size_bytes": 24288,
+          "start": 501,
+          "end": 550
+        },
+        {
+          "id": 14469631666,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-551-600",
+          "size_bytes": 24288,
+          "start": 551,
+          "end": 600
+        },
+        {
+          "id": 14469826314,
+          "run_id": 44392181245,
+          "name": "partial-batch-44392181245-d5c643d55cd62ea36820-601-650",
+          "size_bytes": 24288,
+          "start": 601,
+          "end": 650
+        }
+      ],
+      "complete_batch_chapter_positions": 0,
+      "missing_complete_batch_ranges": [
+        [
+          1,
+          650
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Awakening",
+      "source_url": "https://freewebnovel.com/novel/awakening",
+      "source_key": "4c1b0cbb008a8bb51417",
+      "planned_chapters": 285,
+      "run_ids": [
+        44379747509
+      ],
+      "chapter_plan_artifact_id": 14461924236,
+      "complete_batch_artifacts": [],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14462776686,
+          "run_id": 44379747509,
+          "name": "partial-batch-44379747509-4c1b0cbb008a8bb51417-1-50",
+          "size_bytes": 41253,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14464176108,
+          "run_id": 44379747509,
+          "name": "partial-batch-44379747509-4c1b0cbb008a8bb51417-51-100",
+          "size_bytes": 22333,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14462159162,
+          "run_id": 44379747509,
+          "name": "partial-batch-44379747509-4c1b0cbb008a8bb51417-101-150",
+          "size_bytes": 22333,
+          "start": 101,
+          "end": 150
+        },
+        {
+          "id": 14463741419,
+          "run_id": 44379747509,
+          "name": "partial-batch-44379747509-4c1b0cbb008a8bb51417-151-200",
+          "size_bytes": 22333,
+          "start": 151,
+          "end": 200
+        },
+        {
+          "id": 14462891717,
+          "run_id": 44379747509,
+          "name": "partial-batch-44379747509-4c1b0cbb008a8bb51417-201-250",
+          "size_bytes": 22333,
+          "start": 201,
+          "end": 250
+        },
+        {
+          "id": 14462204227,
+          "run_id": 44379747509,
+          "name": "partial-batch-44379747509-4c1b0cbb008a8bb51417-251-285",
+          "size_bytes": 22333,
+          "start": 251,
+          "end": 285
+        }
+      ],
+      "complete_batch_chapter_positions": 0,
+      "missing_complete_batch_ranges": [
+        [
+          1,
+          285
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Sense",
+      "source_url": "https://freewebnovel.com/novel/sense",
+      "source_key": "94c88fe7edac610d3892",
+      "planned_chapters": 109,
+      "run_ids": [
+        44448231280
+      ],
+      "chapter_plan_artifact_id": 14494665575,
+      "complete_batch_artifacts": [],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14494900521,
+          "run_id": 44448231280,
+          "name": "partial-batch-44448231280-94c88fe7edac610d3892-1-50",
+          "size_bytes": 57831,
+          "start": 1,
+          "end": 50
+        },
+        {
+          "id": 14493563971,
+          "run_id": 44448231280,
+          "name": "partial-batch-44448231280-94c88fe7edac610d3892-51-100",
+          "size_bytes": 57831,
+          "start": 51,
+          "end": 100
+        },
+        {
+          "id": 14493568996,
+          "run_id": 44448231280,
+          "name": "partial-batch-44448231280-94c88fe7edac610d3892-101-109",
+          "size_bytes": 57831,
+          "start": 101,
+          "end": 109
+        }
+      ],
+      "complete_batch_chapter_positions": 0,
+      "missing_complete_batch_ranges": [
+        [
+          1,
+          109
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": null
+    },
+    {
+      "title": "Parasite in Love",
+      "source_url": "https://freewebnovel.com/novel/parasite-in-love",
+      "source_key": "c0600e28510efaa12ec2",
+      "planned_chapters": 11,
+      "run_ids": [
+        44447221591
+      ],
+      "chapter_plan_artifact_id": 14493169168,
+      "complete_batch_artifacts": [],
+      "partial_checkpoint_artifacts": [
+        {
+          "id": 14494440316,
+          "run_id": 44447221591,
+          "name": "partial-batch-44447221591-c0600e28510efaa12ec2-1-11",
+          "size_bytes": 55367,
+          "start": 1,
+          "end": 11
+        }
+      ],
+      "complete_batch_chapter_positions": 0,
+      "missing_complete_batch_ranges": [
+        [
+          1,
+          11
+        ]
+      ],
+      "source_content_verified": false,
+      "final_archive_verified": false,
+      "public_distribution_rights_verified": false,
+      "notes": "Partial checkpoint 14494440316 was opened: chapter 1 present; positions 2–11 not present in that checkpoint."
+    }
+  ]
+}
