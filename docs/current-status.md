@@ -1,13 +1,13 @@
 # Novel Retriever: Current Operational Status
 
-**Snapshot:** 23 November 2026, 00:45 IST.
-**This is a dated snapshot, not a live dashboard.** Checked `main` head `5d5175bedcb1a38c26a3d29667a03165fa6b02c3`; PR #492 is merged and post-merge main CI [#45077348856](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45077348856) passed 4/4. The 26 exact source matches are triaged (18 Yup, 8 IDK); the five new candidates have two structural TOC passes and three failures, but zero rights clearances. The 43-title fanfiction research pass is complete through round 20 (8 complete, 3 blocked, 32 source-researched but rights-unresolved). The 65 unmatched rows (36 Yup, 29 IDK) have completed their alternative-source pass; 13 registry aliases and one excluded alias leave 51 distinct titles (23 Yup, 28 IDK). The source audit was read-only. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
+**Snapshot:** 23 November 2026, 04:56 IST.
+**This is a dated snapshot, not a live dashboard.** Checked `main` at `f9137f0bb3dd966c942ac90a0bf6d71d417064a3`; PR #493 is merged, PR CI [#45078029411](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45078029411), push CI [#45078023924](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45078023924) and post-merge main CI [#45078133741](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45078133741) passed 4/4. The 26 exact source matches are triaged (18 Yup, 8 IDK); the five new candidates have two structural TOC passes and three failures, with zero rights clearances. The 43-title fanfiction research pass is complete through round 20 (8 complete, 3 blocked, 32 source-researched but rights-unresolved). The 65 unmatched rows (36 Yup, 29 IDK) have completed their alternative-source pass; 13 completed-registry aliases and one excluded alias leave 51 distinct titles (23 Yup, 28 IDK). No new download runs were dispatched and no bulk downloads are active. The source audit and five-book preflight were read-only. Re-check live Actions, PRs and artefacts before acting. See the [dynamic-state rules](../AGENTS.md#mandatory-dynamic-project-state-inspection) and [Operations Runbook](operations-runbook.md).
 
 ## 1. Repository and CI state
 
 | Item | Verified state | Evidence |
 |---|---|---|
-| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `fa459a271677aab8748d7342d4d3a2f6737e4b37` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
+| Canonical repository / checked main head | `RichardDaffern/Novel-Retriever`, `main` at `f9137f0bb3dd966c942ac90a0bf6d71d417064a3` | [Repository](https://github.com/RichardDaffern/Novel-Retriever) |
 | Completed registry | **343** complete records in `downloaded_novels.json`; this is not a count of currently available artifacts or private-HF imports | Current registry, reconciled 22 November |
 | User-confirmed private-HF imports | **70**, user-confirmed but not independently queried in this Retriever run | Separate Storage Controller source of truth |
 | Global exclusions | **90** red/Dropped titles; remain excluded from Yup and IDK campaigns | `campaigns/overnight/excluded-90.json` |
@@ -19,8 +19,8 @@
 The Seoul Station artifact is publicly available. The run, chapter batches, assembly and registry entry are technically verified, but no explicit public-archiving permission is recorded in this repository. Treat artifact `14714778249` as rights-unverified; do not create additional public novel artifacts without documented permission. If public redistribution is not authorised, repository-owner deletion/revocation is required.
 | PR #463 | Merged at `72aa1ae839501cd4ea1552deddaa4d6e689bf044`; CI [run #44938176666](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44938176666) green | Arcane Thief offset regression test and Wind Calamity fail-closed mapping |
 | Merged acquisition-research PRs | #464–#474 merged. PR #474 CI [#44999685899](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44999685899) and post-merge main CI [#44999833864](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44999833864) passed all four jobs. | [#464](https://github.com/RichardDaffern/Novel-Retriever/pull/464), [#465](https://github.com/RichardDaffern/Novel-Retriever/pull/465), [#466](https://github.com/RichardDaffern/Novel-Retriever/pull/466), [#467](https://github.com/RichardDaffern/Novel-Retriever/pull/467), [#468](https://github.com/RichardDaffern/Novel-Retriever/pull/468), [#469](https://github.com/RichardDaffern/Novel-Retriever/pull/469), [#470](https://github.com/RichardDaffern/Novel-Retriever/pull/470), [#471](https://github.com/RichardDaffern/Novel-Retriever/pull/471), [#472](https://github.com/RichardDaffern/Novel-Retriever/pull/472), [#473](https://github.com/RichardDaffern/Novel-Retriever/pull/473) |
-| Open PRs | #265 and #275 are open. #275 remains held and unmergeable for Konoha Medical. PR #475 contains the round-15/16 documentation updates; round-16 CI is pending. Do not merge or republish the Konoha Medical artifact while rights are unresolved. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275), [#475](https://github.com/RichardDaffern/Novel-Retriever/pull/475) |
-| Bulk download workflows | **0** queued/in-progress at the last verified check, 16:50 IST; no new download run was dispatched in the 17:53 source-research pass. Main CI and documentation checks are not download workflows. | Issue #456 / live Actions check |
+| Open PRs | Pre-existing PRs #265 and #275 remain open; documentation PR #494 is open for this status refresh. #275 remains held and unmergeable for Konoha Medical because the underlying author and archive rights are unresolved. | [#265](https://github.com/RichardDaffern/Novel-Retriever/pull/265), [#275](https://github.com/RichardDaffern/Novel-Retriever/pull/275), [#494](https://github.com/RichardDaffern/Novel-Retriever/pull/494) |
+| Bulk download workflows | **0** queued/in-progress at 04:56 IST; **0 new download runs**. Main CI is complete and is not a download workflow. | Live Actions API, 23 November 2026, 04:56 IST |
 
 The live Actions API reports Seoul Station’s Necromancer artifact expiry as `2027-02-19T16:01:42Z`, matching the registry. The seven still-present fanfiction final-artifact expiry values also match the live API; *The Adventurous Gamer Ninja* artifact expired on 21 November 2026 and no longer appears in the run’s artifact list. No registry expiry change was needed in this branch.
 
@@ -536,5 +536,46 @@ Repository-owner action is still required for public rights-unverified artifacts
 - Issue [#452](https://github.com/RichardDaffern/Novel-Retriever/issues/452) now records exact failed-job evidence. Current main ReadNovelFull diagnostics preserve offending archive hrefs and both URLs for duplicate chapter numbers, with regression tests `test_invalid_archive_href_is_reported_without_rewriting` and `test_duplicate_archive_error_reports_both_exact_urls`. Main CI passed, but these are diagnostic improvements, not source-index repairs. No targeted retry is authorised.
 - Registry remains 343; separately user-confirmed private-HF imports 70; red/Dropped exclusions 90. Live Actions check: 0 active bulk-download workflows and 2 CI runs in progress for this documentation PR (#45077944620 PR CI; #45077952144 push CI). New download runs: 0.
 - Public rights-unverified artifacts remain an owner action: Witcher ZIP #14225912094 expires 23 November at 17:58 IST; bundle #14242470238 expires at 21:27 IST; Konoha Medical #14462633408 expires 16 February 2027. The connected GitHub operations expose no artifact-deletion action. Do not fetch, link or redistribute these archives.
+
+No chapter prose or archive bytes were fetched during this recheck.
+
+
+## 23 November 2026, 04:56 IST: live-state and source/edition recheck round 21
+
+### Live repository and workflow state
+
+- Checked `main` at `f9137f0bb3dd966c942ac90a0bf6d71d417064a3`. PR #493 is merged. PR CI #45078029411, push CI #45078023924 and post-merge main CI #45078133741 all passed 4/4.
+- Pre-existing PRs #265 and #275 remain open, and this documentation refresh is proposed in PR #494. #275 is still held for Konoha Medical; do not merge or republish its archive while author and redistribution rights are unresolved.
+- Actions reports **0 queued/in-progress workflows** and **0 new download runs**. Run #44922285166 remains completed successfully: Seoul Station's Necromancer, 209 chapters, final artifact #14714778249, expiry `2027-02-19T16:01:42Z`. The archive is technically complete but public-redistribution permission is not recorded.
+- Registry remains **343**; separately user-confirmed private-HF imports remain **70**; global red/Dropped exclusions remain **90**. No counts were inferred from source-audit or TOC-preflight runs.
+
+### Additional source and edition evidence
+
+Metadata-only searches added the following checks. No chapter prose or archive bytes were fetched.
+
+| Work | New evidence | Decision |
+|---|---|---|
+| *Doom Lord* | WuxiaFull's 155-entry listing is materially shorter than the 328-entry WuxiaClick/ReadNovelEU listings and the 856-chapter completed original reported by FullNovels/FullChapters. | The 155-entry TOC pass is not a complete edition; hold. [WuxiaFull](https://www.wuxiafull.com/Doom-Lord/), [WuxiaClick](https://wuxia.click/novel/doomsday-lord), [FullNovels](https://fullnovels.com/doom-lord/). |
+| *Girl, I'll Teach You Cultivation* | Novel Updates reports 812 original chapters, not fully translated, and no English publisher; WuxiaClick exposes 283. | The passing 283-entry preflight is partial; hold. [Novel Updates](https://www.novelupdates.com/series/girl-ill-teach-you-cultivation/), [WuxiaClick](https://wuxia.click/novel/girl-ill-teach-you-cultivation). |
+| *Beast Piercing The Heavens* | Novel Updates reports 1,445 completed original chapters, no licence and an incomplete English translation; the ReadNovelFull preflight had only 224 links with duplicate Chapter 11. | Not a complete supported English edition; hold. [Novel Updates](https://www.novelupdates.com/series/beast-piercing-the-heavens/), [FullNovels](https://fullnovels.com/beast-piercing-the-heavens/). |
+| *The Military Female Soldier With Unwavering Stubbornness* | WTR-LAB exposes a 5,707-chapter metadata index, marked hiatus; the ReadNovelFull preflight has a large missing-number range. | Alternative metadata is not a validated supported index or archive permission; hold. [WTR-LAB](https://wtr-lab.com/en/novel/468/the-military-female-soldier-with-unwavering-stubbornness). |
+| *Bringing The Nation's Husband Home* | The 973-chapter WebNovel listing is labelled Tagalog. Apple Books separately lists a paid English anthology from Beijing Book Co. Inc. | Do not treat the Tagalog listing as the English anthology's edition or archive the commercial edition. [WebNovel](https://www.webnovel.com/book/bringing-the-nation%27s-husband-home-%28tagalog%29_12284826805198305), [Apple Books](https://books.apple.com/us/book/bringing-the-nations-husband-home-1-anthology/id1532157678). |
+| *The Gloomy Me in Class is Actually the Vocalist of a Very Popular Band* | Novel Updates reports 111 original web-novel chapters, one light-novel volume and no English publisher; WuxiaClick lists 75. | Incomplete edition/index; hold. [Novel Updates](https://www.novelupdates.com/series/the-gloomy-me-in-class-is-actually-the-vocalist-of-a-very-popular-band/), [WuxiaClick](https://wuxia.click/novel/the-gloomy-me-in-class-is-actually-the-vocalist-of-a-very-popular-band). |
+| *My Plain-looking Fiance is Secretly Sweet with Me* | Novel Updates reports 251 chapters plus six epilogue chapters across eight volumes, with no English publisher; WuxiaClick lists 46. | Incomplete edition/index; hold. [Novel Updates](https://www.novelupdates.com/series/my-plain-looking-fiance-is-secretly-sweet-with-me/), [WuxiaClick](https://wuxia.click/novel-detail/my-plain-looking-fiance-is-secretly-sweet-with-me). |
+
+No explicit permission to archive and publicly distribute any of these works was found. No source passed all identity, English-edition, complete-index and rights gates. **No download or retry is authorised.**
+
+### Public artefact exposure requiring owner action
+
+The following public artefacts remain rights-unverified. The first two are due to expire later today; no archive bytes were fetched.
+
+| Artifact | Run | API expiry (UTC) | India time |
+|---|---:|---|---|
+| `14225912094` (single-novel ZIP) | #43734417289 | 2026-11-23 12:28:08 | 17:58:08 IST |
+| `14242470238` (bulk-successful-novels bundle) | #43734417289 | 2026-11-23 15:57:51 | 21:27:51 IST |
+| `14462633408` (Konoha Medical final archive) | #44379388243 | 2027-02-16 19:20:05 | 16 February, 00:50:05 IST |
+| `14714778249` (Seoul Station's Necromancer final archive) | #44922285166 | 2027-02-19 16:01:42 | 19 February, 21:31:42 IST |
+
+The seven present fanfiction final artefacts and the Seoul Station artefact are also public with rights unverified. The available GitHub connector exposes artifact listing and download, but no artifact deletion/revocation operation. If public redistribution is not authorised, repository-owner action through GitHub's UI or API is required. Do not fetch, link or redistribute these archive contents.
 
 No chapter prose or archive bytes were fetched during this recheck.
