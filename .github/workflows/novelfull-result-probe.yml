@@ -1,0 +1,39 @@
+name: NovelFull search-result structure probe
+on:
+  push:
+    branches: [ops/novelfull-alias-search-20261124]
+    paths: [.github/workflows/novelfull-result-probe.yml]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Read public search metadata, no chapter text
+        shell: bash
+        run: |
+          python - <<'PY'
+          import urllib.request,urllib.parse,re
+          from html.parser import HTMLParser
+          class Check(HTMLParser):
+            def __init__(self):super().__init__();self.anchors=[];self.cur=None
+            def handle_starttag(self,tag,attrs):
+              a=dict(attrs)
+              if tag=='a' and a.get('href'):
+                self.cur={'url':a['href'],'text':''};self.anchors.append(self.cur)
+            def handle_data(self,t):
+              if self.cur:self.cur['text']+=t
+            def handle_endtag(self,tag):
+              if tag=='a':self.cur=None
+          titles=['Legend of Swordsman','President Daddys Infinite Pampering','City Lady Killer','The Conglomerates Little Wife','Apotheosis','Eternal Martial Sovereign','Tomb Raider King']
+          for title in titles:
+            url='https://novelfull.com/search?'+urllib.parse.urlencode({'keyword':title})
+            try:
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'NovelRetriever-Book-Index/1.0'}),timeout=16) as r:
+                data=r.read(180000).decode('utf-8','ignore');code=r.status
+              a=Check();a.feed(data)
+              books=[{'title':x['text'].strip(),'url':x['url']} for x in a.anchors if re.search(r'^/[^/?]+\\.html$',x['url']) and x['text'].strip()]
+              print('SEARCH',title,'code',code,'book_links',books[:18],flush=True)
+            except Exception as e: print('SEARCH_ERROR',title,type(e).__name__,str(e)[:200],flush=True)
+          PY
