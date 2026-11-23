@@ -44,7 +44,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (310 novels)
+## NovelFull (311 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -106,6 +106,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Emperor’s Domination](https://novelfull.com/emperors-domination.html) | all | 7212 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13657994600) | 2026-11-16T08:16:29Z |
 | [Enchantress Amongst Alchemists: Ghost King’s Wife](https://novelfull.com/enchantress-amongst-alchemists-ghost-kings-wife.html) | all | 1195 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44433291468/artifacts/14490233466) | 2026-11-26T02:00:44Z |
 | [Era of Castles: Starting with 99 Dragon Eggs](https://novelfull.com/era-of-castles-starting-with-99-dragon-eggs.html) | all | 485 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44394387715/artifacts/14472997436) | 2026-11-25T21:35:00Z |
+| [Eternal Reverence](https://novelfull.com/eternal-reverence.html) | all | 1019 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45252831663/artifacts/14862281066) | 2026-11-30T20:49:39Z |
 | [Everyone Else is a Returnee](https://novelfull.com/everyone-else-is-a-returnee.html) | all | 355 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14203215661) | 2026-11-23T06:30:20Z |
 | [Everyone Has Four Skills](https://novelfull.com/everyone-has-four-skills.html) | all | 615 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13653765829) | 2026-11-16T06:13:54Z |
 | [Evil Emperor’s Poisonous Consort: Divine Doctor Young Miss](https://novelfull.com/evil-emperors-poisonous-consort-divine-doctor-young-miss.html) | all | 941 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44433291468/artifacts/14489879318) | 2026-11-26T01:54:01Z |

@@ -1676,6 +1676,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/eternal-reverence.html",
+      "title": "Eternal Reverence",
+      "author": "Jian You Tai Xu",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 1019,
+          "run_id": 45252831663,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45252831663",
+          "artifact_id": 14862281066,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45252831663/artifacts/14862281066",
+          "completed_at_utc": "2026-11-23T20:49:39Z",
+          "expires_at_utc": "2026-11-30T20:49:39Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/everyone-else-is-a-returnee.html",
       "title": "Everyone Else is a Returnee",
       "author": "Toika",
