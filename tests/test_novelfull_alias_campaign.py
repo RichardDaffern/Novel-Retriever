@@ -28,6 +28,10 @@ class SearchTests(unittest.TestCase):
         self.assertEqual(c.similarity("Apotheosis","Apotheosis Begins with Tai Chi"),0)
         self.assertEqual(c.similarity("Invincible Levelling King","Invincible Leveling King"),1)
         self.assertEqual(c.similarity("City Lady Killer","City Lady Killer"),1)
+        self.assertEqual(c.similarity("I Can Extract Everything",
+                          "Witcher: I Can Extract Everything"),1)
+        self.assertEqual(c.similarity("I Can Extract Everything",
+                          "I Can Track Everything"),0)
 
     def test_verify_real_book_page_title(self):
         getter=lambda url:"<html><h3 class='title'>Legend of Swordsman</h3></html>"
