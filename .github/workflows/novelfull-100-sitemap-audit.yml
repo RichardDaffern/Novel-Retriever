@@ -1,0 +1,75 @@
+name: NovelFull sitemap cross-check for 100 missing titles
+on:
+  push:
+    branches: [ops/novelfull-alias-search-20261124]
+    paths: [.github/workflows/novelfull-100-sitemap-audit.yml]
+permissions:
+  contents: read
+jobs:
+  crosscheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned book-metadata dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Cross-check public NovelFull sitemap against 100 titles
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,re,time
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          from tools import novelfull_alias_campaign as c
+          xml=c.source_get("https://novelfull.com/sitemap.xml")
+          urls=[x for x in re.findall(r'<loc>\s*(https://novelfull.com/[^<]+)\s*</loc>',xml)
+                if re.fullmatch(r'https://novelfull\.com/[a-z0-9-]+\.html',x)]
+          assert 300<=len(urls)<50000
+          titles=json.loads(c.TARGETS.read_text(encoding="utf-8"))["titles"]
+          matches=[];ambiguous=[];held=[]
+          for title in titles:
+            found=[]
+            for query in c.queries(title):
+              for url in urls:
+                slug=url.rsplit("/",1)[-1][:-5].replace("-"," ")
+                sim=c.similarity(query,slug)
+                if sim>=c.MATCH_MIN:
+                  found.append((sim,url,query))
+            found.sort(key=lambda x:(-x[0],x[1]))
+            found=list({x[1]:x for x in found}.values())
+            if len(found)>1 and sorted([x[0] for x in found],reverse=True)[1]>=found[0][0]-.035:
+              ambiguous.append({"title":title,"candidate_urls":[x[1] for x in found[:4]]})
+              continue
+            if not found:held.append(title);continue
+            score,url,query=found[0]
+            try:
+              name=c.ALTERNATES.get(title,(query,None))[0] if query==c.ALTERNATES.get(title,("",None))[0] else query
+              good,real=c.verify_title_page(url,name)
+              if not good:
+                raise ValueError("Book page title did not match")
+            except Exception as e:
+              held.append(title);print("VALIDATION_HELD",title,str(e)[:160],flush=True)
+              continue
+            matches.append({"title":title,"source_title":real,"url":url,"query":query,"score":score})
+            print("SITEMAP_MATCH",title,"=>",real,url,flush=True)
+            time.sleep(.3)
+          out={"source":"novelfull.com/sitemap.xml","total_titles":len(titles),
+               "sitemap_book_urls":len(urls),"matches":matches,
+               "confirmed_count":len(matches),"ambiguous":ambiguous,"unmatched":held}
+          Path("novelfull-sitemap-audit.json").write_text(json.dumps(out,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+          print("SITEMAP_AUDIT_TOTAL",json.dumps({"targets":len(titles),"confirmed":len(matches),
+             "ambiguous":len(ambiguous),"unmatched":len(held),"novel_urls":len(urls)}),flush=True)
+          PY
+      - name: Save only link metadata
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: novelfull-100-sitemap-links-${{ github.run_id }}
+          path: novelfull-sitemap-audit.json
+          retention-days: 90
+          if-no-files-found: warn
