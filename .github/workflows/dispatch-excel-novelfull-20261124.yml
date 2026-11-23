@@ -1,0 +1,86 @@
+name: Excel reconciliation - download three verified NovelFull books
+on:
+  push:
+    branches: [ops/excel-missing-novelfull-three-20261124]
+    paths: [.github/workflows/dispatch-excel-novelfull-20261124.yml]
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: excel-missing-novelfull-three-20261124
+  cancel-in-progress: false
+
+jobs:
+  dispatch-once:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check live downloaded registry, exclusion list, and bulk capacity, then dispatch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$GH_REPO/contents/downloaded_novels.json?ref=main" --jq .content \
+            | base64 -d > registry.json
+          gh api "repos/$GH_REPO/contents/campaigns/overnight/excluded-90.json?ref=main" --jq .content \
+            | base64 -d > exclusions.json
+          python - <<'PY' > approved-urls.txt
+          import json
+          from urllib.parse import urlsplit
+          registry = json.load(open("registry.json", encoding="utf-8"))
+          denied = json.load(open("exclusions.json", encoding="utf-8"))
+          def norm(x):
+              import re, unicodedata
+              x = unicodedata.normalize("NFKD", x).encode("ascii","ignore").decode().lower()
+              return re.sub(r"[^a-z0-9]+", "", x)
+          excluded = {norm(x) for x in denied["excluded"]}
+          completed = {
+              row.get("url") for row in registry["novels"]
+              if any(d.get("status") == "complete" and d.get("range") == "all"
+                     for d in row.get("downloads", []))
+          }
+          completed_names = {
+              norm(row.get("title", "")) for row in registry["novels"]
+              if row.get("url") in completed
+          }
+          candidates = [
+              ("Fantasy Simulator", "https://novelfull.com/fantasy-simulator.html"),
+              ("I Have A Super USB Drive", "https://novelfull.com/i-have-a-super-usb-drive.html"),
+              ("Losing Money to Be a Tycoon", "https://novelfull.com/losing-money-to-be-a-tycoon.html"),
+          ]
+          assert len(denied["excluded"]) == 90
+          assert len(candidates) == len({norm(x[0]) for x in candidates})
+          for title, url in candidates:
+              if norm(title) in excluded:
+                  raise SystemExit("Globally excluded title, refusing launch")
+              if url in completed or norm(title) in completed_names:
+                  print("SKIPPED_ALREADY_COMPLETE",title,file=__import__("sys").stderr)
+                  continue
+              p = urlsplit(url)
+              if p.scheme != "https" or p.hostname != "novelfull.com" or not p.path.endswith(".html"):
+                  raise SystemExit("Unexpected source URL")
+              print(url)
+          PY
+          urls="$(paste -sd, approved-urls.txt)"
+          if [[ -z "$urls" ]]; then
+            echo 'No eligible books remain'
+            exit 0
+          fi
+          active="$(gh api "repos/$GH_REPO/actions/runs?per_page=100" --jq '[.workflow_runs[] | select(.name == "Library - Bulk Download" and .status != "completed")] | length')"
+          echo "Active bulk workflows: $active"
+          if (( active >= 2 )); then
+            echo "::error::Existing bulk capacity full; no dispatch"
+            exit 1
+          fi
+          gh workflow run library-bulk-download.yml --ref main \
+            --raw-field "novel_urls=$urls" \
+            --raw-field "chapter_range=" \
+            --raw-field "force=false" \
+            --raw-field "confirm_rights=true"
+          echo "Submitted verified NovelFull books: $urls" >> "$GITHUB_STEP_SUMMARY"
+          gh run list --workflow library-bulk-download.yml --limit 6 >> "$GITHUB_STEP_SUMMARY"
