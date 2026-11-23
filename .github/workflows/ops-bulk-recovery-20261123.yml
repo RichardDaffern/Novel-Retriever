@@ -1,0 +1,58 @@
+name: One-shot approved bulk recovery dispatch (2026-11-23)
+on:
+  push:
+    branches:
+      - ops/bulk-recovery-dispatch-20261123
+    paths:
+      - .github/workflows/ops-bulk-recovery-20261123.yml
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: one-shot-approved-recovery-20261123
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Dispatch two non-forced, separately tracked recovery batches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTIVE="$(gh api "repos/$GH_REPO/actions/workflows/library-bulk-download.yml/runs?per_page=100" --jq '[.workflow_runs[] | select(.status != "completed")] | length')"
+          echo "Active Library - Bulk Download workflows: $ACTIVE"
+          if (( ACTIVE > 0 )); then
+            echo "::error::Refusing to add runs while other bulk downloads are active"
+            exit 1
+          fi
+
+          # Exact historical source URLs, absent from global red/Dropped exclusions.
+          # User explicitly confirms archive and public artefact permissions.
+          gh workflow run library-bulk-download.yml --ref main \
+            --raw-field "novel_urls=https://freewebnovel.com/novel/this-mc-is-kickass,https://freewebnovel.com/novel/past-life-returner" \
+            --raw-field "force=false" \
+            --raw-field "confirm_rights=true"
+
+          sleep 8
+
+          gh workflow run library-bulk-download.yml --ref main \
+            --raw-field "novel_urls=https://freewebnovel.com/novel/tomb-raider-king,https://freewebnovel.com/novel/world-domination-system" \
+            --raw-field "force=false" \
+            --raw-field "confirm_rights=true"
+
+          {
+            echo '## Recovery bulk dispatches submitted'
+            echo '- Batch 1: This MC Is Kickass; Past Life Returner'
+            echo '- Batch 2: Tomb Raider King; World Domination System'
+            echo '- Four confirmed source URLs, force=false, confirm_rights=true.'
+            echo '- Eleven historically blocked deterministic failures excluded.'
+            gh run list --workflow library-bulk-download.yml --limit 10
+          } >> "$GITHUB_STEP_SUMMARY"
