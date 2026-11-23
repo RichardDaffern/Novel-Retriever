@@ -1,0 +1,26 @@
+name: NovelFull public sitemap coverage probe
+on:
+  push:
+    branches: [ops/novelfull-alias-search-20261124]
+    paths: [.github/workflows/novelfull-sitemap-coverage-probe.yml]
+permissions:
+  contents: read
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check public novel sitemap only (no chapters)
+        shell: bash
+        run: |
+          python - <<'PY'
+          import urllib.request,re
+          r=urllib.request.Request('https://novelfull.com/sitemap.xml',headers={'User-Agent':'NovelRetriever-Book-Index/1.0'})
+          with urllib.request.urlopen(r,timeout=30) as res:
+            body=res.read(24000001);size=res.headers.get('Content-Length')
+          links=re.findall(rb'<loc>\s*(https://novelfull\.com/[^<]+)\s*</loc>',body)
+          books=[x.decode('utf-8','ignore') for x in links if re.fullmatch(rb'https://novelfull\.com/[a-z0-9-]+\.html',x)]
+          print('SITEMAP', 'bytes',len(body),'header_size',size,'truncated',len(body)>24000000,'locations',len(links),'book_pages',len(books),'first',books[:12],'last',books[-5:],flush=True)
+          for slug in ['legend-of-swordsman','reborn-at-boot-camp-general-dont-mess-around','apotheosis-ascension-to-godhood','tomb-raider-king']:
+            print('KNOWN_BOOK',slug,any(('/'+slug+'.html') in x for x in books),flush=True)
+          PY
