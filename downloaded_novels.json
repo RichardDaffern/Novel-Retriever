@@ -4999,6 +4999,24 @@
       ]
     },
     {
+      "url": "https://novelfull.com/tensei-shitara-slime-datta-ken-wn.html",
+      "title": "Tensei Shitara Slime Datta Ken (WN)",
+      "author": "Fuse",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 417,
+          "run_id": 45252831663,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45252831663",
+          "artifact_id": 14863867186,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45252831663/artifacts/14863867186",
+          "completed_at_utc": "2026-11-23T21:24:03Z",
+          "expires_at_utc": "2026-11-30T21:24:03Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/terror-infinity.html",
       "title": "Terror Infinity",
       "author": "Zhttty",
