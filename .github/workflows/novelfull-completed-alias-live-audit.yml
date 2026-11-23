@@ -1,0 +1,80 @@
+name: NovelFull live verification of completed alternate-title records
+on:
+  push:
+    branches: [ops/novelfull-alias-search-20261124]
+    paths: [.github/workflows/novelfull-completed-alias-live-audit.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned metadata parser
+        run: python -m pip install -r requirements.lock
+      - name: Verify actual live NovelFull book pages, not just historical URLs
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,time
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          from tools import novelfull_alias_campaign as c
+          from tools import overnight_queue as q
+
+          titles=[
+            "Advent of the Archmage", "Arifureta Shokugyou de Sekai Saikyou (WN)",
+            "The Charm of Soul Pets","Crazy Leveling System","The Desolate Era",
+            "Dungeon Defense","Online Game: Evil Dragon Against The Heaven",
+            "Golden Time","The Invincible Dragon Emperor",
+            "Leveling Up And Becoming Undefeatable","The Human Emperor",
+            "I Alone Level-Up","Douluo Dalu","National School Prince Is A Girl",
+            "Warlock of the Magus World","Renegade Immortal",
+            "A Will Eternal","Seoul Station’s Necromancer",
+            "Witcher: I Can Extract Everything",
+          ]
+          registry=q.read_json(q.REGISTRY)["novels"]
+          checked=[]
+          for title in titles:
+            item=next((x for x in registry if x.get("title")==title),None)
+            if not item or not item.get("url","").startswith("https://novelfull.com/"):
+              checked.append({"registry_title":title,"live":False,"reason":"missing completed NovelFull registry record"})
+              continue
+            url=item["url"]
+            complete=any(d.get("status")=="complete" and d.get("range")=="all"
+                         for d in item.get("downloads",[]))
+            if not complete:
+              checked.append({"registry_title":title,"url":url,"live":False,"reason":"record not complete"})
+              continue
+            try:
+              html=c.source_get(url)
+              soup=BeautifulSoup(html,"html.parser")
+              headings=[h.get_text(" ",strip=True) for h in soup.select("h1,h2,h3.title")]
+              actual=next((h for h in headings if c.similarity(title,h)>=c.MATCH_MIN),None)
+              if not actual:raise ValueError("The live page title does not match the registered edition")
+              checked.append({"registry_title":title,"live_title":actual,"url":url,"live":True})
+              print("ALIAS_LIVE",title,url,flush=True)
+            except Exception as e:
+              checked.append({"registry_title":title,"url":url,"live":False,"reason":str(e)[:160]})
+              print("ALIAS_NOT_VERIFIED",title,type(e).__name__,str(e)[:160],flush=True)
+            time.sleep(.25)
+          result={"checked":len(titles),"confirmed_live":sum(x["live"] for x in checked),
+                  "results":checked}
+          Path("novelfull-completed-alias-audit.json").write_text(
+              json.dumps(result,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+          print("ALIAS_LIVE_TOTAL",result["confirmed_live"],"of",len(titles),flush=True)
+          PY
+      - name: Preserve live link evidence only
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: novelfull-verified-completed-aliases-${{ github.run_id }}
+          path: novelfull-completed-alias-audit.json
+          retention-days: 90
+          if-no-files-found: warn
