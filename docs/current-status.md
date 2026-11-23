@@ -579,3 +579,44 @@ The following public artefacts remain rights-unverified. The first two are due t
 The seven present fanfiction final artefacts and the Seoul Station artefact are also public with rights unverified. The available GitHub connector exposes artifact listing and download, but no artifact deletion/revocation operation. If public redistribution is not authorised, repository-owner action through GitHub's UI or API is required. Do not fetch, link or redistribute these archive contents.
 
 No chapter prose or archive bytes were fetched during this recheck.
+
+
+## Live verification and public-artifact inventory (23 November 2026, 07:26 IST)
+
+- Main CI [#45089118140](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45089118140) passed all four jobs. The first 100 Actions runs showed zero queued/in-progress workflows, zero active bulk downloads and zero new download runs.
+- Reconciled the current manifests: `downloaded_novels.json` has 343 completed records; Yup backlog 163 rows; IDK backlog 82 rows; exclusions 90; the immutable fanfiction catalogue has 43 entries (24 Naruto, 19 Harry Potter). Fanfiction remains 8 complete, 3 blocked and 32 source-researched but rights-unresolved. The 65 unmatched Yup/IDK rows remain 36 Yup + 29 IDK; after 13 completed-registry aliases and one excluded alias, the bounded alternative-source pass covers 51 distinct titles.
+- No new title has explicit archive/public-distribution permission. No new download was dispatched. Do not infer chapter downloads from source-audit or metadata-only checks.
+
+### Run #43734417289 public artifact exposure
+
+A paginated metadata-only Actions API check returned all **142 artifacts** for run [#43734417289](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289); all 142 were unexpired at the time of this check:
+- 6 final archive artifacts: five individual novel ZIPs plus the bulk-successful-novels bundle.
+- 118 chapter/partial-batch artifacts.
+- 18 plans, manifests, selection/performance or other metadata artifacts.
+- The bulk bundle #14242470238 contains nine nested final ZIPs, all already represented in the completed registry. No artifact ZIP or nested novel ZIP was downloaded or opened.
+
+Final archive artifact expiries, 23 November 2026 (IST):
+| Artifact | Expiry |
+|---|---:|
+| #14202771949 | 12:04:16 |
+| #14206287674 | 13:11:49 |
+| #14212677158 | 15:00:53 |
+| #14225912094 | 17:58:08 |
+| #14241396863 | 21:16:18 |
+| #14242470238 | 21:27:51 |
+
+The 118 chapter/partial-batch artifacts are also publicly accessible until their individual expiries. Their contents were not inspected. If any contain material without public-redistribution rights, repository-owner revocation is required. The connected GitHub integration exposes no artifact deletion/revocation operation.
+
+### Other rights-unverified artifacts
+
+- Konoha Medical run [#44379388243](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44379388243) has 22 live artifacts, including 15 chapter-batch/partial-batch artifacts and final archive #14462633408 (expiry 16 February 2027). Its 444 chapter-batch jobs succeeded, but registry publication failed. The credited WebNovel editor states they are not the original writer and only edited the work. Keep PR #275 held; do not fetch, merge, republish or retry.
+- Seoul Station's Necromancer run [#44922285166](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44922285166) remains complete at 209 chapters, final artifact #14714778249 (expiry 19 February 2027). It is already in the 343-record registry; do not redownload. Public-redistribution permission is not recorded.
+- Read-only source-audit artifact #14714644436 remains metadata-only and expires 21 December 2026.
+
+### Fresh metadata-only fanfiction recheck
+
+- [Naruto: The Wind Calamity](https://www.webnovel.com/book/19921530006000505/catalog) remains credited to Devil_Hex and shows 952 chapters. Non-supported mirrors report 515 ([RealmRead](https://www.realmread.com/novel/naruto-the-wind-calamity)), 793 ([NovelTrust](https://noveltrust.com/author/Devil_Hex)) and 910 ([NovelShadow](https://www.novelshadow.com/novel/naruto-the-wind-calamity)). These are not supported-source or permission evidence; retain the chapter-map hold.
+- [The Arcane Thief](https://www.webnovel.com/book/20892578405832405/catalog) remains credited to Snollygoster. Its 255 catalogue entries include an auxiliary entry, with numbered chapters through 254. No archive/public-distribution permission found.
+- [Konoha's Medical Ninja](https://www.webnovel.com/book/29703350508171905) remains credited to INeedRest on WebNovel, whose page explicitly says they are not the original writer and only edited it.
+
+Preserve the acquisition order in `AGENTS.md`: **26 exact-match triage → 43 fanfiction title/author/source research → 65 unmatched Yup/IDK alternative-source research**. All three stages are complete for the current bounded search scope; reopen only for materially new source, edition, index or rights evidence. No chapter prose or archive bytes were fetched in this recheck.
