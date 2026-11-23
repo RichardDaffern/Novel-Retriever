@@ -4,13 +4,14 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (34 novels)
+## FreeWebNovel (35 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
 | [A New Snake In The Shinobi World](https://freewebnovel.com/novel/a-new-snake-in-the-shinobi-world) | all | 423 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378479201/artifacts/14464695010) | 2027-02-16T19:14:59Z |
 | [All My Disciples Suck!](https://freewebnovel.com/novel/all-my-disciples-suck) | all | 773 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44348388296/artifacts/14449120241) | 2026-11-25T16:45:43Z |
 | [Ancient Godly Monarch](https://freewebnovel.com/novel/ancient-godly-monarch) | all | 2053 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44348388296/artifacts/14469162858) | 2026-11-25T20:40:31Z |
+| [Attack of the Adorable Kid: President Daddy's Infinite Pampering](https://freewebnovel.com/novel/attack-of-the-adorable-kid-president-daddys-infinite-pampering) | all | 2612 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45244706019/artifacts/14855577595) | 2026-11-30T19:45:48Z |
 | [Big Life](https://freewebnovel.com/novel/big-life) | all | 304 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14171863992) | 2026-11-22T17:21:51Z |
 | [Demon Sect Cultivation: I Can Disable Debuffs](https://freewebnovel.com/novel/demon-sect-cultivation-i-can-disable-debuffs) | all | 150 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44432975021/artifacts/14487373925) | 2026-11-26T01:01:20Z |
 | [Devouring The Heavens](https://freewebnovel.com/novel/devouring-the-heavens) | all | 362 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14175172715) | 2026-11-22T18:46:57Z |
@@ -86,11 +87,11 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Cultivation Online](https://novelfull.com/cultivation-online.html) | all | 2701 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636934179) | 2026-11-15T22:36:34Z |
 | [Cultivation! My Augmented Statuses Have Unlimited Duration](https://novelfull.com/cultivation-my-augmented-statuses-have-unlimited-duration.html) | all | 904 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636307740) | 2026-11-15T22:04:49Z |
 | [Cultivation: I Can Add Descriptors To My Body](https://novelfull.com/cultivation-i-can-add-descriptors-to-my-body.html) | all | 202 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44427178280/artifacts/14486677776) | 2026-11-26T00:48:12Z |
-| [Damn it! You Call This Beast Taming?](https://novelfull.com/damn-it-you-call-this-beast-taming.html) | all | 593 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14250691539) | 2026-11-23T17:20:35Z |
-| [Destroyer of Ice and Fire](https://novelfull.com/destroyer-of-ice-and-fire.html) | all | 680 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14254369238) | 2026-11-23T17:57:25Z |
+| [Damn it! You Call This Beast Taming?](https://novelfull.com/damn-it-you-call-this-beast-taming.html) | all | 593 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14250691539) | 2026-11-23T17:20:35Z |
+| [Destroyer of Ice and Fire](https://novelfull.com/destroyer-of-ice-and-fire.html) | all | 680 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14254369238) | 2026-11-23T17:57:25Z |
 | [Devil’s Son-in-Law](https://novelfull.com/devils-son-in-law.html) | all | 1275 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13644028986) | 2026-11-16T01:59:32Z |
 | [Divine Beast Adventures](https://novelfull.com/divine-beast-adventures.html) | all | 581 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13645946310) | 2026-11-16T02:34:21Z |
-| [Divine Brilliance](https://novelfull.com/divine-brilliance.html) | all | 1228 | [Available](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14252653694) | 2026-11-23T17:40:47Z |
+| [Divine Brilliance](https://novelfull.com/divine-brilliance.html) | all | 1228 | [Expired](https://github.com/RichardDaffern/Novel_Library/actions/runs/43734388839/artifacts/14252653694) | 2026-11-23T17:40:47Z |
 | [Divine Throne of Primordial Blood](https://novelfull.com/divine-throne-of-primordial-blood.html) | all | 1156 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44393940766/artifacts/14472411461) | 2026-11-25T21:26:32Z |
 | [Dominating Sword Immortal](https://novelfull.com/dominating-sword-immortal.html) | all | 913 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44394387715/artifacts/14471454257) | 2026-11-25T21:19:56Z |
 | [Douluo Dalu](https://novelfull.com/douluo-dalu.html) | all | 337 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14192730294) | 2026-11-23T02:12:20Z |
@@ -201,7 +202,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [MMORPG: Rebirth of the Legendary Guardian](https://novelfull.com/mmorpg-rebirth-of-the-legendary-guardian.html) | all | 856 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13656875945) | 2026-11-16T07:25:35Z |
 | [MMORPG: The Elementalist](https://novelfull.com/mmorpg-the-elementalist.html) | all | 709 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466326150/artifacts/14503143183) | 2026-11-26T05:58:32Z |
 | [Monarch of Evernight](https://novelfull.com/monarch-of-evernight.html) | all | 1522 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13657376302) | 2026-11-16T07:40:24Z |
-| [Monarch of Time](https://novelfull.com/monarch-of-time.html) | all | 1087 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14248118413) | 2026-11-23T17:00:32Z |
+| [Monarch of Time](https://novelfull.com/monarch-of-time.html) | all | 1087 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14248118413) | 2026-11-23T17:00:32Z |
 | [Monster Paradise](https://novelfull.com/monster-paradise.html) | all | 1935 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466326150/artifacts/14504337352) | 2026-11-26T06:17:38Z |
 | [Monster Synthesis Master](https://novelfull.com/monster-synthesis-master.html) | all | 1078 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466606941/artifacts/14504221496) | 2026-11-26T06:09:58Z |
 | [Mr Fu, I Really Love You](https://novelfull.com/mr-fu-i-really-love-you.html) | all | 1461 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44466606941/artifacts/14504155771) | 2026-11-26T06:03:42Z |
@@ -314,7 +315,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Sacred Ruins](https://novelfull.com/the-sacred-ruins.html) | all | 1645 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489265432/artifacts/14513562641) | 2026-11-26T09:04:34Z |
 | [The Second Coming of Gluttony](https://novelfull.com/the-second-coming-of-gluttony.html) | all | 550 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13626140911) | 2026-11-15T16:56:44Z |
 | [The Strong, The Few, True Cultivators on Campus](https://novelfull.com/the-strong-the-few-true-cultivators-on-campus.html) | all | 309 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44489990459/artifacts/14514187498) | 2026-11-26T09:13:10Z |
-| [The Strongest Dan God](https://novelfull.com/the-strongest-dan-god.html) | all | 601 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14247235889) | 2026-11-23T16:37:54Z |
+| [The Strongest Dan God](https://novelfull.com/the-strongest-dan-god.html) | all | 601 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14247235889) | 2026-11-23T16:37:54Z |
 | [The Strongest Gene](https://novelfull.com/the-strongest-gene.html) | all | 880 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44363052288/artifacts/14457039833) | 2026-11-25T18:30:12Z |
 | [The Strongest System](https://novelfull.com/the-strongest-system.html) | all | 1159 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365733484/artifacts/14457004662) | 2026-11-25T18:28:31Z |
 | [The Surgeon’s Studio](https://novelfull.com/the-surgeons-studio.html) | all | 2977 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494513599/artifacts/13627346622) | 2026-11-15T17:31:08Z |
