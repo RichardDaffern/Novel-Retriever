@@ -37,6 +37,7 @@ COMPLETED_ALIASES = {
     "evil dragon against the heaven", "invincible dragon emperor",
     "levelling up and becoming undefeated", "records of the human emperor",
     "soul land", "the school prince is a girl", "xian ni",
+    "invincible conqueror",
 }
 # Repair these old chapter-index problems separately, after the easy-source
 # campaign. Current FreeWebNovel runs reconfirmed the four additional holds.
@@ -46,9 +47,9 @@ RECENT_REPAIR_HOLDS = {
 }
 # Previously audited full original editions versus shorter mirror indexes.
 MINIMUM_FULL_EDITION = {
-    "doom lord": 856,
-    "girl ill teach you cultivation": 812,
-    "beast piercing the heavens": 1445,
+    "doomlord": 856,
+    "girlillteachyoucultivation": 812,
+    "beastpiercingtheheavens": 1445,
 }
 MAIN_CAMPAIGN = "priority-novelfull-readnovelfull-20261124"
 
