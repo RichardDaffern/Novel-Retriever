@@ -14,8 +14,7 @@ class PriorityWishlistTests(unittest.TestCase):
         self.assertEqual(audit["wishlist_yup"], 163)
         self.assertEqual(audit["wishlist_idk"], 82)
         self.assertNotIn("Past Life Returner", [row["title"] for row in rows])
-        self.assertNotIn("Doom Lord", [row["title"] for row in rows]
-                         if row["title"] == "A Thought Through Eternity")
+        self.assertNotIn("A Thought Through Eternity", [row["title"] for row in rows])
 
     def test_only_two_easier_hosts_and_reviewed_alias_candidate(self):
         urls = w.source_candidates("Apotheosis", {
