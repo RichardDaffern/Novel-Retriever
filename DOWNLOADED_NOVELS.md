@@ -44,7 +44,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (307 novels)
+## NovelFull (308 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -72,6 +72,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Birth of the Demonic Sword](https://novelfull.com/birth-of-the-demonic-sword.html) | all | 2364 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44384968692/artifacts/14469218665) | 2026-11-25T20:42:59Z |
 | [Black Bellied Belle: Demon Lord, Bite the Bait Please](https://novelfull.com/black-bellied-belle-demon-lord-bite-the-bait-please.html) | all | 1074 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14186577524) | 2026-11-22T23:53:13Z |
 | [Black Iron’s Glory](https://novelfull.com/black-irons-glory.html) | all | 593 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14233217365) | 2026-11-23T14:08:17Z |
+| [Bringing the Nation's Husband Home](https://novelfull.com/bringing-the-nations-husband-home.html) | all | 973 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45249399799/artifacts/14859028131) | 2026-11-30T20:28:17Z |
 | [Can’t Take My Eyes Off You](https://novelfull.com/cant-take-my-eyes-off-you.html) | all | 2351 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44384968692/artifacts/14467248666) | 2026-11-25T20:19:47Z |
 | [Castle of Black Iron](https://novelfull.com/castle-of-black-iron.html) | all | 2014 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44385661877/artifacts/14468470711) | 2026-11-25T20:23:43Z |
 | [Chaotic Lightning Cultivation](https://novelfull.com/chaotic-lightning-cultivation.html) | all | 293 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14241748246) | 2026-11-23T16:05:32Z |
