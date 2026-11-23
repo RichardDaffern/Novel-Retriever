@@ -15,6 +15,8 @@ class PriorityWishlistTests(unittest.TestCase):
         self.assertEqual(audit["wishlist_idk"], 82)
         self.assertNotIn("Past Life Returner", [row["title"] for row in rows])
         self.assertNotIn("A Thought Through Eternity", [row["title"] for row in rows])
+        for alias in ("Advent of Archmage", "Charm Of Soul Pet", "Solo Levelling"):
+            self.assertNotIn(alias, [row["title"] for row in rows])
 
     def test_only_two_easier_hosts_and_reviewed_alias_candidate(self):
         urls = w.source_candidates("Apotheosis", {
