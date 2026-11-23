@@ -4,7 +4,7 @@ This is an index of **completed** downloads, not a copy of the novels.
 Actual text/EPUB files are in temporary GitHub Actions artifacts, **not the Git repository**.
 Expired artifacts cannot be retrieved; such entries remain as history but will not block a new download.
 
-## FreeWebNovel (35 novels)
+## FreeWebNovel (34 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -29,7 +29,6 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Naruto: Kurotsuchi Mayuri](https://freewebnovel.com/novel/naruto-kurotsuchi-mayuri) | all | 524 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44378935249/artifacts/14463808054) | 2027-02-16T19:17:32Z |
 | [Overlord of Blood and Iron](https://freewebnovel.com/novel/overlord-of-blood-and-iron-novel) | all | 355 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14172990861) | 2026-11-22T17:38:41Z |
 | [Pain, Pain, Go Away](https://freewebnovel.com/novel/pain-pain-go-away) | all | 11 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14201972631) | 2026-11-23T06:11:19Z |
-| [Past Life Returner](https://freewebnovel.com/novel/past-life-returner) | all | 40 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45214822002/artifacts/14836869473) | 2026-11-30T16:19:50Z |
 | [Path of Medicine With a System](https://freewebnovel.com/novel/path-of-medicine-with-a-system) | all | 315 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14202635894) | 2026-11-23T06:19:23Z |
 | [Peerless Genius System](https://freewebnovel.com/novel/peerless-genius-system) | all | 859 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14177902316) | 2026-11-22T19:48:44Z |
 | [Perfect Superstar](https://freewebnovel.com/novel/perfect-superstar) | all | 231 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734404117/artifacts/14177333229) | 2026-11-22T19:46:18Z |
