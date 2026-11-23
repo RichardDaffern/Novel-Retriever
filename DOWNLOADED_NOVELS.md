@@ -44,12 +44,13 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Three Days of Happiness](https://freewebnovel.com/novel/three-days-of-happiness) | all | 16 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14170286767) | 2026-11-22T16:22:11Z |
 | [Urban Banished Immortal](https://freewebnovel.com/novel/urban-banished-immortal) | all | 246 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734417289/artifacts/14174511568) | 2026-11-22T18:23:49Z |
 
-## NovelFull (308 novels)
+## NovelFull (309 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
 | [12 Hours After](https://novelfull.com/12-hours-after.html) | all | 198 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14171010402) | 2026-11-22T16:39:40Z |
 | [48 Hours a Day](https://novelfull.com/48-hours-a-day.html) | all | 1449 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43819213500/artifacts/14206459587) | 2026-11-23T08:02:39Z |
+| [A Record of a Mortal’s Journey to Immortality](https://novelfull.com/a-record-of-a-mortals-journey-to-immortality.html) | all | 2455 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45249399799/artifacts/14860477386) | 2026-11-30T20:41:41Z |
 | [A Will Eternal](https://novelfull.com/a-will-eternal.html) | all | 1315 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44365259574/artifacts/14458662644) | 2026-11-25T18:28:17Z |
 | [Abe the Wizard](https://novelfull.com/abe-the-wizard.html) | all | 1512 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42393126629/artifacts/13592251409) | 2026-11-14T21:53:01Z |
 | [Adorable Treasured Fox: Divine Doctor Mother Overturning The Heavens!](https://novelfull.com/adorable-treasured-fox-divine-doctor-mother-overturning-the-heavens.html) | all | 2030 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44425947238/artifacts/14486687001) | 2026-11-26T00:40:31Z |
