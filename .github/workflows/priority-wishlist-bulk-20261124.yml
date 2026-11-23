@@ -1,0 +1,81 @@
+name: Campaign - Priority NovelFull and ReadNovelFull bulk wishlist
+on:
+  push:
+    branches: [ops/priority-novelfull-readnovelfull-bulk-20261124]
+    paths:
+      - '.github/workflows/priority-wishlist-bulk-20261124.yml'
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: priority-nf-rnf-wishlist-once-20261124
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned source-index dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Verify offline campaign safety and dispatch tests
+        run: python -m unittest tests.test_priority_wishlist_bulk -v
+      - name: Search missing wishlists, preferring NovelFull then ReadNovelFull only
+        run: |
+          python -u -m tools.priority_wishlist_bulk discover \
+            --out priority-source-results.json
+      - name: Preserve source matches, unresolved titles and exclusion counts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: priority-wishlist-source-scan-${{ github.run_id }}
+          path: priority-source-results.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  dispatch:
+    needs: discover
+    if: needs.discover.result == 'success' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 285
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned dispatch dependencies (BeautifulSoup required by URL validation)
+        run: python -m pip install -r requirements.lock
+      - name: Retrieve the exact source-listing audit
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: priority-wishlist-source-scan-${{ github.run_id }}
+          path: scan
+      - name: Dispatch verified wishlist URLs, ten books per run, two runs at a time
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python -u -m tools.priority_wishlist_bulk dispatch \
+            --source scan/priority-source-results.json \
+            --out priority-bulk-dispatch-report.json \
+            --minutes 270
+      - name: Publish submitted and held book lists
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: priority-wishlist-bulk-dispatch-${{ github.run_id }}
+          path: priority-bulk-dispatch-report.json
+          retention-days: 90
+          if-no-files-found: warn
