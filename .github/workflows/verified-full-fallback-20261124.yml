@@ -1,0 +1,142 @@
+name: One-shot complete-edition fallback bulk wave
+on:
+  push:
+    branches: [ops/verified-full-fallback-wave-20261124]
+    paths: [.github/workflows/verified-full-fallback-20261124.yml]
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: verified-complete-fallback-20261124
+  cancel-in-progress: false
+
+jobs:
+  preflight-and-dispatch:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Check three additional previously verified wishlist sources, without chapter text
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.freewebnovel_downloader import book_details
+          from tools.freewebnovel_source import fetch_public_html
+          from tools import overnight_queue as q
+
+          candidates = [
+            {
+              "requested": "Beautiful Time With You",
+              "titles": ["Beautiful Time With You", "The Beautiful Time With You"],
+              "url": "https://freewebnovel.com/novel/the-beautiful-time-with-you",
+              "author": "Ye Fei Ye",
+              "minimum": 1129,
+            },
+            {
+              "requested": "Attack Of The Adorable Kid: President Daddy's Infinite Pampering",
+              "titles": ["Attack Of The Adorable Kid: President Daddy's Infinite Pampering"],
+              "url": "https://freewebnovel.com/novel/attack-of-the-adorable-kid-president-daddys-infinite-pampering",
+              "author": "Sweets Flood",
+              "minimum": 2612,
+            },
+            {
+              "requested": "A Record Of Mortal’s Journey To Immortality",
+              "titles": ["A Record Of Mortal’s Journey To Immortality",
+                         "A Record of a Mortal's Journey to Immortality"],
+              "url": "https://freewebnovel.com/novel/a-record-of-a-mortals-journey-to-immortality-novel",
+              "author": "Wang Yu",
+              "minimum": 2451,
+            },
+          ]
+          registry = q.read_json(q.REGISTRY)
+          exclusions = {q.norm(t) for t in q.read_json(q.DENY)["excluded"]}
+          already = {d["url"] for d in registry["novels"]
+                     if any(x.get("status") == "complete" and x.get("range") == "all"
+                            for x in d.get("downloads", []))}
+          prior = q.read_json(q.VERIFIED)["entries"]
+          idk = {q.norm(x["title"]) for x in q.read_json(q.IDK)["entries"]}
+          approved, held = [], []
+          for item in candidates:
+            name = item["requested"]
+            try:
+              if q.norm(name) in exclusions or any(q.norm(t) in exclusions for t in item["titles"]):
+                raise ValueError("Global red/Dropped exclusion")
+              if item["url"] in already:
+                raise ValueError("Already registered completed source URL")
+              if (q.norm(name) not in idk
+                  and not any(x["title"] == name and x["url"] == item["url"] for x in prior)):
+                raise ValueError("Not in approved wishlist or previously verified wishlist sources")
+              info = book_details(fetch_public_html(item["url"]), item["url"])
+              if q.norm(info["title"]) not in {q.norm(t) for t in item["titles"]}:
+                raise ValueError("Source title does not match the requested edition")
+              if q.norm(item["author"]) not in q.norm(info.get("author", "")):
+                raise ValueError("Author identity does not match")
+              if info["numChapters"] < item["minimum"]:
+                raise ValueError("Index shorter than expected original edition")
+              if info.get("status") not in (None, "", "Completed"):
+                raise ValueError("Source has not reported Completed status")
+              approved.append({
+                  "requested": name,
+                  "source_title": info["title"],
+                  "url": item["url"],
+                  "chapters_indexed": info["numChapters"],
+                  "author": info["author"],
+              })
+              print("APPROVED_FULL_CATALOGUE", name, info["numChapters"], flush=True)
+            except Exception as error:
+              held.append({"requested": name, "url": item["url"],
+                           "reason": str(error)[:500]})
+              print("HELD", name, str(error)[:500], flush=True)
+          Path("verified-full-fallback.json").write_text(
+              json.dumps({"approved": approved, "held": held}, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          print("Preflight complete:", len(approved), "approved;", len(held), "held", flush=True)
+          PY
+      - name: Dispatch all confirmed complete-catalogue candidates in one ordinary bulk run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          urls="$(python - <<'PY'
+          import json
+          data=json.load(open("verified-full-fallback.json",encoding="utf-8"))
+          print(",".join(row["url"] for row in data["approved"]))
+          PY
+          )"
+          if [[ -z "$urls" ]]; then
+            echo 'No candidates passed complete-edition index checks; nothing dispatched' | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          active="$(gh api "repos/$GH_REPO/actions/runs?per_page=80" --jq '[.workflow_runs[] | select(.name == "Library - Bulk Download" and .status != "completed")] | length')"
+          echo "Existing bulk runs: $active"
+          if (( active >= 2 )); then
+            echo "::error::Bulk workflow capacity is full, safely holding verified candidates"
+            exit 1
+          fi
+          gh workflow run library-bulk-download.yml --ref main \
+            --raw-field "novel_urls=$urls" --raw-field "chapter_range=" \
+            --raw-field "force=false" --raw-field "confirm_rights=true"
+          echo "Bulk workflow dispatch accepted for the preflight-validated URLs: $urls" >> "$GITHUB_STEP_SUMMARY"
+          gh run list --workflow library-bulk-download.yml --limit 5 >> "$GITHUB_STEP_SUMMARY"
+      - name: Save verified metadata-only report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: verified-complete-fallback-candidates-${{ github.run_id }}
+          path: verified-full-fallback.json
+          retention-days: 90
+          if-no-files-found: warn
