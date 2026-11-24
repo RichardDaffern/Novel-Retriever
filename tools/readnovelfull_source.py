@@ -14,7 +14,9 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 HOST = "readnovelfull.com"
 BOOK = re.compile(r"/([a-z0-9][a-z0-9_-]*)\.html\Z")
-CHAPTER = re.compile(r"/([a-z0-9][a-z0-9_-]*)/chapter-([1-9][0-9]*)(?:[a-z_-][a-z0-9_-]*)?\.html\Z")
+# The site has published numeric chapters using these literal typo-prefixes.
+# Accept only exact, source-listed URLs with a numbered chapter, never guess slugs.
+CHAPTER = re.compile(r"/([a-z0-9][a-z0-9_-]*)/(?:chapter|chapters|chatper|charter|c)-?([1-9][0-9]*)(?:[a-z_-][a-z0-9_-]*)?\.html\Z")
 PROLOGUE = re.compile(r"/([a-z0-9][a-z0-9_-]*)/prologue\.html\Z")
 ARCHIVE = "/ajax/chapter-archive"
 MAX_HTML = 12 * 1024 * 1024
