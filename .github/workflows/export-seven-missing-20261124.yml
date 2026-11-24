@@ -1,0 +1,111 @@
+name: Export 7 new completed novels for Storage Controller
+on:
+  push:
+    branches: [ops/export-seven-missing-from-available-20261124]
+    paths: [.github/workflows/export-seven-missing-20261124.yml]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: one-shot-export-seven-20261124
+  cancel-in-progress: false
+
+jobs:
+  export:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 260
+    steps:
+      - name: Checkout exact current completed registry and vetted export tool
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned exporter dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Validate exporter and deduplication implementation
+        run: python -m unittest tests.test_export_completed_github_novels tests.test_cover_dedup_integration tests.test_export_end_to_end -v
+      - name: Select exactly the 7 completed books missing from user's Available.csv
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          registry=json.loads(Path('downloaded_novels.json').read_text(encoding='utf-8'))
+          expected={
+            'https://freewebnovel.com/novel/attack-of-the-adorable-kid-president-daddys-infinite-pampering':45244706019,
+            'https://novelfull.com/a-record-of-a-mortals-journey-to-immortality.html':45249399799,
+            'https://novelfull.com/bringing-the-nations-husband-home.html':45249399799,
+            'https://novelfull.com/eternal-reverence.html':45252831663,
+            'https://novelfull.com/legend-of-the-mythological-genes.html':45252831663,
+            'https://novelfull.com/reborn-at-boot-camp-general-dont-mess-around.html':45252831663,
+            'https://novelfull.com/tensei-shitara-slime-datta-ken-wn.html':45252831663,
+          }
+          chosen=[]
+          for url, run_id in expected.items():
+            rows=[r for r in registry['novels'] if r.get('url')==url]
+            if len(rows)!=1:
+              raise ValueError('Missing/duplicate completed registry URL: '+url)
+            row=rows[0]
+            matching=[d for d in row.get('downloads',[]) if
+                      d.get('status')=='complete' and d.get('range')=='all' and
+                      d.get('run_id')==run_id and d.get('artifact_id')]
+            if len(matching)!=1:
+              raise ValueError('Expected exact completed archive and source run: '+url)
+            chosen.append(row)
+          # This exact seven-title subset was verified absent from the
+          # user's current Available(1).csv locally on 24 November 2026.
+          Path('selected-7-registry.json').write_text(
+            json.dumps({'novels':chosen},indent=2,ensure_ascii=False)+'\n',
+            encoding='utf-8')
+          print('SELECTED_COMPLETED_BOOKS',len(chosen),flush=True)
+          PY
+      - name: Create HF Smart Bulk Upload ZIPs and integrity manifest
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PYTHONUNBUFFERED: '1'
+        run: python -u -m tools.export_completed_github_novels --registry selected-7-registry.json --only-listed --output export
+      - name: Verify the exact seven import-ready book ZIPs
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('export')
+          manifest=json.loads((p/'manifest.json').read_text(encoding='utf-8'))
+          assert manifest['registry_books']==7,manifest['registry_books']
+          assert manifest['exported_novels']==7,manifest['exported_novels']
+          assert not manifest['conflicting_editions'], 'Conflicting original editions'
+          assert not manifest['unavailable_registry_books'], 'Missing source artefacts'
+          zips=sorted((p/'novels').glob('*.zip'))
+          assert len(zips)==7,len(zips)
+          expected_sha={}
+          for line in (p/'SHA256SUMS.txt').read_text(encoding='utf-8').splitlines():
+            sha,name=line.split('  ',1)
+            expected_sha[name]=sha
+          for z in zips:
+            sha=hashlib.file_digest(z.open('rb'),'sha256').hexdigest()
+            rel='novels/'+z.name
+            assert expected_sha[rel]==sha,(rel,'checksum mismatch')
+          print('SEVEN_IMPORT_READY_ARCHIVES_VERIFIED',len(zips),'total_bytes',sum(z.stat().st_size for z in zips),flush=True)
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as stream:
+            stream.write('### Storage Controller ready export\n\n')
+            stream.write('Verified **7** completed novels missing from Available.csv. ')
+            stream.write('Artifact family: taiyou-completed-novels. ')
+            stream.write('Next: import preview in the Storage Controller using this export run ID; do not use the downloader run ID.\n')
+          PY
+      - name: Preserve finished bundle for cloud import or user download
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: taiyou-completed-novels-${{ github.run_id }}
+          path: export/
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: warn
