@@ -63,6 +63,30 @@ class ReadNovelFullTests(unittest.TestCase):
         with self.assertRaises(SourceError):
             validate_chapter_url(CH1, book_prefix="another")
 
+    def test_real_source_typo_prefixes_keep_exact_chapter_numbers(self):
+        # Published ReadNovelFull catalogue links, not fabricated URL repairs.
+        samples = (
+            ("godly-student", "chapters-121-delivering-the-immortal-frui", 121),
+            ("heavenly-star", "chatper-202-the-heaven-and-earth-split-open-the-god-of-war-dies-part-i", 202),
+            ("the-alchemist-god", "charter-140-falling-over-on-another", 140),
+            ("the-mightiest-leveling-system", "chapter233-meet-nangong-yan-again", 233),
+            ("world-domination-system", "c-1-power-levels-and-abbreviations", 1),
+        )
+        for book, fragment, chapter in samples:
+            url = f"https://readnovelfull.com/{book}/{fragment}.html"
+            with self.subTest(url=url):
+                canonical, observed, prefix = validate_chapter_url(url, book_prefix=book)
+                self.assertEqual(canonical, url)
+                self.assertEqual(observed, chapter)
+                self.assertEqual(prefix, book)
+        with self.assertRaisesRegex(SourceError, "Invalid"):
+            validate_chapter_url("https://readnovelfull.com/heavenly-star/chatper-intro.html")
+        with self.assertRaisesRegex(SourceError, "Invalid"):
+            validate_chapter_url("https://readnovelfull.com/heavenly-star/chapterz-202.html")
+        with self.assertRaisesRegex(SourceError, "another novel"):
+            validate_chapter_url("https://readnovelfull.com/heavenly-star/chatper-202.html",
+                                 book_prefix="godly-student")
+
     def test_archive_is_full_and_ordered(self):
         seen = []
         def fetch(url):
