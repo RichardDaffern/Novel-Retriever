@@ -1,0 +1,43 @@
+name: ReadNovelFull verified matching and chapter-index probe
+on:
+  push:
+    branches: [ops/readnovelfull-secondary-wave-20261124]
+    paths: [.github/workflows/readnovelfull-index-sample.yml]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.lock
+      - name: Check official search markup and validate selected public book chapter catalogues
+        run: |
+          python - <<'PY'
+          import urllib.request,urllib.parse,re
+          from bs4 import BeautifulSoup
+          from tools.readnovelfull_source import discover
+          for title in ['Godly Student','Beauty And The Bodyguard','Heavenly Star']:
+            u='https://readnovelfull.com/novel-list/search?'+urllib.parse.urlencode({'keyword':title})
+            try:
+              with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'NovelRetriever-Book-Index/1.0'}),timeout=20) as f:
+                html=f.read(350000).decode('utf8','ignore')
+              soup=BeautifulSoup(html,'html.parser')
+              found=[{'text':a.get_text(' ',strip=True)[:70],'href':a['href']}
+                for a in soup.select('a[href]') if
+                str(a['href']).endswith('.html') and a.get_text(' ',strip=True)]
+              print('SEARCH_LINKS',title,found[:18],flush=True)
+            except Exception as e:print('SEARCH_ERROR',title,type(e).__name__,str(e)[:160],flush=True)
+          for u in ['https://readnovelfull.com/godly-student.html',
+                    'https://readnovelfull.com/heavenly-star.html']:
+            try:
+              d=discover(u)
+              print('BOOK_INDEX',u,'title',d.get('title'),'author',d.get('author'),'status',d.get('status'),'chapters',d.get('numChapters'),flush=True)
+            except Exception as e:print('BOOK_ERROR',u,type(e).__name__,str(e)[:200],flush=True)
+          PY
