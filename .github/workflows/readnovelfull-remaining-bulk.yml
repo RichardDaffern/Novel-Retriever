@@ -1,0 +1,78 @@
+name: Campaign - ReadNovelFull remaining 71 titles and bulk dispatch
+on:
+  push:
+    branches: [ops/readnovelfull-secondary-wave-20261124]
+    paths: [.github/workflows/readnovelfull-remaining-bulk.yml]
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: readnovelfull-remaining-71-once-20261124
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned source discovery dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Verify strict book matching and 71-title scope
+        run: python -m unittest tests.test_readnovelfull_remaining_bulk -v
+      - name: Search 71 remaining missing books using real ReadNovelFull search and chapter indexes
+        run: |
+          python -u -m tools.readnovelfull_remaining_bulk scan --out readnovelfull-source-candidates.json
+      - name: Preserve full match / hold evidence without chapter prose
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: readnovelfull-71-verified-links-${{ github.run_id }}
+          path: readnovelfull-source-candidates.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  dispatch:
+    needs: discover
+    if: needs.discover.result == 'success' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 280
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned bulk dispatch dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Retrieve source-verified catalogue from this exact GitHub run
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: readnovelfull-71-verified-links-${{ github.run_id }}
+          path: scan
+      - name: Dispatch verified ReadNovelFull candidates, up to 10 per run, two concurrent runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python -u -m tools.readnovelfull_remaining_bulk dispatch \
+            --input scan/readnovelfull-source-candidates.json \
+            --out readnovelfull-dispatch-report.json
+      - name: Save exact submitted URLs and held titles
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: readnovelfull-71-bulk-dispatch-${{ github.run_id }}
+          path: readnovelfull-dispatch-report.json
+          retention-days: 90
+          if-no-files-found: warn
