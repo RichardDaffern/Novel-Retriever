@@ -1,0 +1,48 @@
+name: ReadNovelFull public discovery capability probe
+on:
+  push:
+    branches: [ops/readnovelfull-secondary-wave-20261124]
+    paths: [.github/workflows/readnovelfull-probe-20261124.yml]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Probe public site navigation and verified book indexes
+        run: |
+          python - <<'PY'
+          import urllib.request,urllib.parse,re
+          from html.parser import HTMLParser
+          class Peek(HTMLParser):
+            def __init__(self):super().__init__();self.forms=[];self.current=None;self.title='';self._title=False
+            def handle_starttag(self,t,attrs):
+              a=dict(attrs)
+              if t=='form':self.forms.append(a)
+              if t=='input' and self.forms:self.forms[-1].setdefault('inputs',[]).append(a.get('name'))
+              if t=='title':self._title=True
+            def handle_data(self,t):
+              if self._title:self.title+=t
+            def handle_endtag(self,t):
+              if t=='title':self._title=False
+          items=[
+            'https://readnovelfull.com/',
+            'https://readnovelfull.com/robots.txt',
+            'https://readnovelfull.com/sitemap.xml',
+            'https://readnovelfull.com/search?'+urllib.parse.urlencode({'keyword':'Godly Student'}),
+            'https://readnovelfull.com/godly-student.html',
+            'https://readnovelfull.com/eternal-martial-sovereign.html',
+            'https://readnovelfull.com/doom-lord.html',
+            'https://readnovelfull.com/legend-of-swordsman.html',
+          ]
+          for u in items:
+            try:
+              with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'NovelRetriever-Book-Index/1.0'}),timeout=12) as stream:
+                b=stream.read(160000).decode('utf-8','ignore');status=stream.status;target=stream.url
+              d=Peek();d.feed(b)
+              loc=re.findall(r'<loc>[^<]+</loc>',b)[:5]
+              print('SITE',u,'status',status,'final',target,'bytes',len(b),'title',d.title[:90],'forms',d.forms[:3],'sitemap',loc,flush=True)
+            except Exception as e:
+              print('SITE_ERROR',u,type(e).__name__,str(e)[:160],flush=True)
+          PY
