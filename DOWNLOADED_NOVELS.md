@@ -63,7 +63,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Astral Pet Store](https://novelfull.com/astral-pet-store.html) | all | 1581 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44426646813/artifacts/14486117386) | 2026-11-26T00:39:04Z |
 | [Awakening The Weakest Talent: Only I Level Up](https://novelfull.com/awakening-the-weakest-talent-only-i-level-up.html) | all | 1152 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381093390/artifacts/14465111168) | 2026-11-25T19:52:38Z |
 | [Badge in Azure](https://novelfull.com/badge-in-azure.html) | all | 1553 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44381093390/artifacts/14465551332) | 2026-11-25T19:55:14Z |
-| [Battle Through the Heavens](https://novelfull.com/battle-through-the-heavens.html) | all | 1648 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340373775) | 2026-11-24T15:18:37Z |
+| [Battle Through the Heavens](https://novelfull.com/battle-through-the-heavens.html) | all | 1648 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340373775) | 2026-11-24T15:18:37Z |
 | [Be Happy With Sports](https://novelfull.com/be-happy-with-sports.html) | all | 597 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14228769646) | 2026-11-23T13:24:15Z |
 | [Beauty and the Beasts](https://novelfull.com/beauty-and-the-beasts.html) | all | 1661 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44426646813/artifacts/14487462095) | 2026-11-26T00:54:46Z |
 | [Becoming An Ancestor In Another World From This Day On](https://novelfull.com/becoming-an-ancestor-in-another-world-from-this-day-on.html) | all | 398 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44382190182/artifacts/14465956617) | 2026-11-25T19:57:31Z |
@@ -79,7 +79,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Chaotic Lightning Cultivation](https://novelfull.com/chaotic-lightning-cultivation.html) | all | 293 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734388839/artifacts/14241748246) | 2026-11-23T16:05:32Z |
 | [Chaotic Sword God](https://novelfull.com/chaotic-sword-god.html) | all | 4035 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42466652147/artifacts/13619781585) | 2026-11-15T13:43:07Z |
 | [City of Sin](https://novelfull.com/city-of-sin.html) | all | 1419 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44385661877/artifacts/14468143532) | 2026-11-25T20:41:27Z |
-| [Coiling Dragon](https://novelfull.com/coiling-dragon.html) | all | 808 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340223119) | 2026-11-24T15:14:34Z |
+| [Coiling Dragon](https://novelfull.com/coiling-dragon.html) | all | 808 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14340223119) | 2026-11-24T15:14:34Z |
 | [Commanding Wind and Cloud](https://novelfull.com/commanding-wind-and-cloud.html) | all | 731 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530/artifacts/14468455280) | 2026-11-25T20:20:57Z |
 | [Complete Martial Arts Attributes](https://novelfull.com/complete-martial-arts-attributes.html) | all | 4963 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44386095530/artifacts/14471386807) | 2026-11-25T21:04:56Z |
 | [Crazy Detective](https://novelfull.com/crazy-detective.html) | all | 2686 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513475192/artifacts/13636899276) | 2026-11-15T22:35:59Z |
@@ -131,7 +131,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [God-Like Extraction](https://novelfull.com/god-like-extraction.html) | all | 629 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734393507/artifacts/14213450890) | 2026-11-23T09:38:24Z |
 | [Godly Model Creator](https://novelfull.com/godly-model-creator.html) | all | 1085 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13645836077) | 2026-11-16T02:36:42Z |
 | [God’s Song](https://novelfull.com/gods-song.html) | all | 283 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44439000913/artifacts/14490679178) | 2026-11-26T02:03:22Z |
-| [Golden Time](https://novelfull.com/golden-time.html) | all | 155 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14361818541) | 2026-11-24T19:33:04Z |
+| [Golden Time](https://novelfull.com/golden-time.html) | all | 155 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14361818541) | 2026-11-24T19:33:04Z |
 | [Gourmet of Another World](https://novelfull.com/gourmet-of-another-world.html) | all | 1851 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44403206970/artifacts/14476574535) | 2026-11-25T22:23:37Z |
 | [Grasping Evil](https://novelfull.com/grasping-evil.html) | all | 1544 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44406854446/artifacts/14476458663) | 2026-11-25T22:22:24Z |
 | [Great Demon King](https://novelfull.com/great-demon-king.html) | all | 1028 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513447856/artifacts/13650731871) | 2026-11-16T04:51:47Z |
@@ -154,7 +154,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [I Found A Planet](https://novelfull.com/i-found-a-planet.html) | all | 493 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44440246704/artifacts/14492338973) | 2026-11-26T02:33:13Z |
 | [I Have A City In An Alternate World](https://novelfull.com/i-have-a-city-in-an-alternate-world.html) | all | 4831 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44409430288/artifacts/14482368441) | 2026-11-25T23:42:22Z |
 | [I Have a Mansion in the Post-apocalyptic World](https://novelfull.com/i-have-a-mansion-in-the-post-apocalyptic-world.html) | all | 1609 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44413334054/artifacts/14482210606) | 2026-11-25T23:22:09Z |
-| [I Have A Martial Arts Panel](https://novelfull.com/i-have-a-martial-arts-panel.html) | all | 369 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14343980584) | 2026-11-24T15:36:30Z |
+| [I Have A Martial Arts Panel](https://novelfull.com/i-have-a-martial-arts-panel.html) | all | 369 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14343980584) | 2026-11-24T15:36:30Z |
 | [I Have A Special Cultivation Talent](https://novelfull.com/i-have-a-special-cultivation-talent.html) | all | 1007 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43819213500/artifacts/14209343141) | 2026-11-23T08:49:25Z |
 | [I Have Countless Legendary Swords!](https://novelfull.com/i-have-countless-legendary-swords.html) | all | 806 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14206206831) | 2026-11-23T07:39:26Z |
 | [I Have the Alchemy Emperor in My Head](https://novelfull.com/i-have-the-alchemy-emperor-in-my-head.html) | all | 2555 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513431015/artifacts/13636831037) | 2026-11-15T22:13:06Z |
@@ -194,7 +194,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Martial God Space](https://novelfull.com/martial-god-space.html) | all | 951 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423515325/artifacts/14485145679) | 2026-11-26T00:08:17Z |
 | [Martial Immortality: Starting with the Spirit Beast Scroll](https://novelfull.com/martial-immortality-starting-with-the-spirit-beast-scroll.html) | all | 524 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42494499443/artifacts/13626848455) | 2026-11-15T17:27:56Z |
 | [Martial Peak](https://novelfull.com/martial-peak.html) | all | 6133 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13651454047) | 2026-11-16T05:35:13Z |
-| [Martial World](https://novelfull.com/martial-world.html) | all | 2276 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14345670300) | 2026-11-24T15:57:25Z |
+| [Martial World](https://novelfull.com/martial-world.html) | all | 2276 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14345670300) | 2026-11-24T15:57:25Z |
 | [Master of the End Times](https://novelfull.com/master-of-the-end-times.html) | all | 1087 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734398943/artifacts/14233689388) | 2026-11-23T14:26:52Z |
 | [Mechanical God Emperor](https://novelfull.com/mechanical-god-emperor.html) | all | 1569 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44423515325/artifacts/14484702287) | 2026-11-26T00:11:39Z |
 | [Medical Master](https://novelfull.com/medical-master.html) | all | 2028 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/42513414021/artifacts/13645342551) | 2026-11-16T02:29:39Z |
@@ -297,7 +297,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [The Amber Sword](https://novelfull.com/the-amber-sword.html) | all | 876 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/43734410920/artifacts/14224943698) | 2026-11-23T12:27:42Z |
 | [The Avalon Of Five Elements](https://novelfull.com/the-avalon-of-five-elements.html) | all | 715 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44452173627/artifacts/14495964574) | 2026-11-26T03:53:54Z |
 | [The Beautiful Wife of the Whirlwind Marriage](https://novelfull.com/the-beautiful-wife-of-the-whirlwind-marriage.html) | all | 1583 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44479280337/artifacts/14508793174) | 2026-11-26T07:49:12Z |
-| [The Book Eating Magician](https://novelfull.com/the-book-eating-magician.html) | all | 400 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14347011139) | 2026-11-24T16:15:28Z |
+| [The Book Eating Magician](https://novelfull.com/the-book-eating-magician.html) | all | 400 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44104360128/artifacts/14347011139) | 2026-11-24T16:15:28Z |
 | [The Charm of Soul Pets](https://novelfull.com/the-charm-of-soul-pets.html) | all | 1820 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44762670118/artifacts/14647909674) | 2026-11-27T16:30:19Z |
 | [The Desolate Era](https://novelfull.com/the-desolate-era.html) | all | 1451 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44347886492/artifacts/14453459463) | 2026-11-25T17:35:14Z |
 | [The Divine Nine-Dragon Cauldron](https://novelfull.com/the-divine-nine-dragon-cauldron.html) | all | 3240 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44480435284/artifacts/14509767161) | 2026-11-26T08:03:48Z |
@@ -364,11 +364,12 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Zhan Long](https://novelfull.com/zhan-long.html) | all | 1395 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14521375062) | 2026-11-26T10:37:34Z |
 | [Zhanxian](https://novelfull.com/zhanxian.html) | all | 1187 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14518591797) | 2026-11-26T10:16:40Z |
 
-## ReadNovelFull (1 novels)
+## ReadNovelFull (2 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
 | [Archean Eon Art](https://readnovelfull.com/archean-eon-art-v1.html) | all | 766 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44791453169/artifacts/14656214990) | 2026-11-27T18:29:37Z |
+| [Omega Summoner](https://readnovelfull.com/omega-summoner.html) | all | 3089 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45445777486/artifacts/15036797100) | 2026-12-02T15:25:51Z |
 
 ## Scribble Hub (1 novels)
 
