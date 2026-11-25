@@ -277,7 +277,7 @@ def extract_chapter(page: str, *, number: int, title: str) -> dict:
         and any("power levels and abbreviations" in h.casefold() for h in headings)
     )
     if number == 0 and not (is_prologue or is_known_front_matter):
-        raise SourceError("Expected prologue or verified front-matter heading")
+        raise SourceError("Expected prologue heading or verified front-matter heading")
     if m and int(m.group(1)) != number:
         raise SourceError(f"Expected Chapter {number}, received Chapter {m.group(1)}")
     node = next((soup.select_one(selector) for selector in BODY_SELECTORS
