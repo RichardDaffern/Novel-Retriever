@@ -1,0 +1,101 @@
+name: Correct FWN fallback batch to one genuinely missing novel
+on:
+  push:
+    branches: [ops/fwn-corrected-warriors-promise-20261125]
+    paths: [.github/workflows/correct-fwn-batch-20261125.yml]
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: correct-fwn-dedupe-once-20261125
+  cancel-in-progress: false
+jobs:
+  correct-and-dispatch:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.lock
+      - name: Verify exact missing book source and original chapter catalogue
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.overnight_queue import norm
+          from tools.freewebnovel_source import fetch_public_html
+          from tools.freewebnovel_downloader import book_details, extract_chapter
+          title="Warrior's Promise"
+          url="https://freewebnovel.com/novel/warriors-promise"
+          denied={norm(x) for x in json.loads(
+              Path("campaigns/overnight/excluded-90.json").read_text())["excluded"]}
+          registry=json.loads(Path("downloaded_novels.json").read_text())["novels"]
+          completed={norm(x["title"]) for x in registry if any(
+              d.get("status")=="complete" and d.get("range")=="all"
+              for d in x.get("downloads",[]))}
+          if norm(title) in denied or norm(title) in completed:
+              raise SystemExit("Warrior's Promise is excluded or already complete")
+          info=book_details(fetch_public_html(url),url)
+          if norm(info["title"])!=norm(title) or info["numChapters"]<3336:
+              raise SystemExit("The public book is not the original 3,336-chapter catalogue")
+          for record in info["first_two_links"]:
+              number=record["position"]
+              extract_chapter(fetch_public_html(record["url"]),number=number)
+          Path("warriors-promise-preflight.json").write_text(json.dumps({
+              "title":title,"url":url,"chapters":info["numChapters"],
+              "status":info["status"],"approved":True},indent=2)+"\n")
+          print("VERIFIED_REAL_MISSING_BOOK",title,info["numChapters"],flush=True)
+          PY
+      - name: Cancel accidental duplicate/short-edition campaign
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'Cancelling #45647451769: contained already completed alias books and truncated Martial Arts System'
+          status="$(gh api "repos/$GH_REPO/actions/runs/45647451769" --jq .status)"
+          if [[ "$status" != "completed" ]]; then
+            gh run cancel 45647451769 --repo "$GH_REPO"
+          else
+            echo "Previous run already finished: review its registry output"
+          fi
+      - name: Submit only Warrior's Promise after capacity frees
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in $(seq 1 130); do
+            active="$(gh api "repos/$GH_REPO/actions/runs?per_page=100" \
+              --jq '[.workflow_runs[] | select(.name == "Library - Bulk Download" and .status != "completed")] | length')"
+            if (( active < 2 )); then
+              gh workflow run library-bulk-download.yml --ref main \
+                --raw-field "novel_urls=https://freewebnovel.com/novel/warriors-promise" \
+                --raw-field "chapter_range=" \
+                --raw-field "force=false" \
+                --raw-field "confirm_rights=true"
+              echo 'CORRECTED_DISPATCH Warriors Promise (3336 chapters)' | tee -a "$GITHUB_STEP_SUMMARY"
+              gh run list --workflow library-bulk-download.yml --limit 5 >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::No available bulk slot after bounded wait"
+          exit 1
+      - name: Preserve exact verified missing-book source metadata
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: corrected-fwn-warriors-promise-${{ github.run_id }}
+          path: warriors-promise-preflight.json
+          retention-days: 90
+          if-no-files-found: warn
