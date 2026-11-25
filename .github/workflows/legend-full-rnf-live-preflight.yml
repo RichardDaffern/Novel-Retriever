@@ -1,0 +1,65 @@
+name: Legend full ReadNovelFull public archive verification
+on:
+  push:
+    branches: [fix/rnf-legend-verified-aliases-20261125]
+    paths: [.github/workflows/legend-full-rnf-live-preflight.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'RichardDaffern/Novel-Retriever'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned source and validation requirements
+        run: python -m pip install -r requirements.lock
+      - name: Verify existing adapter + exact Legend link exceptions
+        run: python -m unittest tests.test_readnovelfull tests.test_legend_alias_index -v
+      - name: Verify all 6,492 exact indexed chapters and three actual source bodies
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.readnovelfull_source import (
+              LEGEND_BOOK, LEGEND_CANONICAL_5247, LEGEND_REAL_5333,
+              discover, fetch_public_html, extract_chapter,
+          )
+          d=discover(LEGEND_BOOK)
+          assert d["title"].casefold()=="legend of swordsman",d["title"]
+          assert d["status"]=="Completed",d["status"]
+          assert d["numChapters"]==6492,d["numChapters"]
+          assert [c["position"] for c in d["chapters"]]==list(range(1,6493))
+          assert [c["chapter_number"] for c in d["chapters"]]==list(range(1,6493))
+          assert d["chapters"][5246]["url"]==LEGEND_CANONICAL_5247
+          assert d["chapters"][5332]["url"]==("https://readnovelfull.com"+LEGEND_REAL_5333)
+          source_checks=[]
+          for chapter in (1,5247,5333,5742,6492):
+              row=d["chapters"][chapter-1]
+              found=extract_chapter(
+                  fetch_public_html(row["url"]),
+                  number=row["chapter_number"],title=row["title"],
+              )
+              assert len(found["text"])>=200
+              source_checks.append({"chapter":chapter,"chars":len(found["text"])})
+              print("LEGEND_REAL_CHAPTER_VALIDATED",chapter,len(found["text"]),flush=True)
+          report={"title":d["title"],"url":LEGEND_BOOK,
+                  "chapters":d["numChapters"],"status":d["status"],
+                  "sample_checks":source_checks,"full_index_verified":True}
+          Path("legend-full-source-preflight.json").write_text(
+              json.dumps(report,indent=2)+"\n",encoding="utf-8")
+          print("LEGEND_FULL_EDITION_VERIFIED",d["numChapters"],flush=True)
+          PY
+      - name: Preserve provenance and full-index proof, no chapter text
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: legend-complete-source-index-${{ github.run_id }}
+          path: legend-full-source-preflight.json
+          retention-days: 90
+          if-no-files-found: warn
