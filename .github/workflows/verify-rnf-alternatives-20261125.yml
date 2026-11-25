@@ -1,0 +1,142 @@
+name: Recovery - verify alternate source for two failed novels
+on:
+  push:
+    branches: [ops/alternate-recovery-failed-books-20261125]
+    paths: [.github/workflows/verify-rnf-alternatives-20261125.yml]
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: alternative-rnf-recovery-once-20261125
+  cancel-in-progress: false
+
+jobs:
+  verify-and-dispatch:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 270
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.lock
+      - name: Verify the original failed books against distinct ReadNovelFull editions
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,re,time
+          from pathlib import Path
+          from urllib.parse import urlencode,urljoin,urlsplit
+          from urllib.request import Request,urlopen
+          from bs4 import BeautifulSoup
+          from tools.readnovelfull_source import (discover,extract_chapter,
+              fetch_public_html,validate_book_url)
+          from tools.overnight_queue import norm
+          titles=[("Legend of Swordsman",6492),
+                  ("Beautiful Time With You",1129)]
+          data=json.loads(Path("downloaded_novels.json").read_text(encoding="utf-8"))
+          blocked={norm(t) for t in json.loads(
+              Path("campaigns/overnight/excluded-90.json").read_text())["excluded"]}
+          complete_names={norm(n["title"]) for n in data["novels"] if any(
+              d.get("status")=="complete" and d.get("range")=="all"
+              for d in n.get("downloads",[]))}
+          completed_urls={n["url"] for n in data["novels"] if any(
+              d.get("status")=="complete" and d.get("range")=="all"
+              for d in n.get("downloads",[]))}
+          approved=[];held=[]
+          for title,min_chapters in titles:
+            result={"title":title}
+            try:
+              if norm(title) in blocked or norm(title) in complete_names:
+                raise ValueError("Excluded or already complete")
+              endpoint="https://readnovelfull.com/novel-list/search?"+urlencode({"keyword":title})
+              with urlopen(Request(endpoint,headers={"User-Agent":"NovelRetriever-Book-Index/1.0"}),timeout=18) as response:
+                if urlsplit(response.url).hostname!="readnovelfull.com":
+                  raise ValueError("Search redirected to another host")
+                raw=response.read(350000).decode("utf-8","ignore")
+              soup=BeautifulSoup(raw,"html.parser")
+              candidates={}
+              for a in soup.select("a[href]"):
+                if norm(a.get_text(" ",strip=True))!=norm(title):
+                  continue
+                url=urljoin("https://readnovelfull.com/",a["href"])
+                p=urlsplit(url)
+                if p.hostname!="readnovelfull.com" or not re.fullmatch(
+                    r"/[a-z0-9][a-z0-9_-]*\.html",p.path):
+                  continue
+                candidates[url]=a.get_text(" ",strip=True)
+              if len(candidates)!=1:
+                raise ValueError(f"Cannot uniquely identify source edition: {len(candidates)} matches")
+              url=validate_book_url(next(iter(candidates)))
+              if url in completed_urls:
+                raise ValueError("Source URL already completely exported")
+              details=discover(url)
+              if norm(details["title"])!=norm(title):
+                raise ValueError("Different book discovered")
+              if details["numChapters"]<min_chapters:
+                raise ValueError(f"Edition too short: {details['numChapters']}, need {min_chapters}")
+              chapters=details["chapters"]
+              for item in (chapters[0],chapters[min(len(chapters)-1,1)],chapters[-1]):
+                doc=extract_chapter(fetch_public_html(item["url"]),
+                                    number=item["chapter_number"],title=item["title"])
+                if len(doc["text"])<200:
+                  raise ValueError("Short or locked chapter text")
+              result.update({"url":url,"chapters":len(chapters),"status":details["status"]})
+              approved.append(result)
+              print("ALTERNATE_VERIFIED",title,len(chapters),url,flush=True)
+            except Exception as exc:
+              result["reason"]=str(exc)[:260]
+              held.append(result)
+              print("ALTERNATE_HELD",title,type(exc).__name__,str(exc)[:200],flush=True)
+            time.sleep(1)
+          report={"approved":approved,"held":held}
+          Path("alternate-source-preflight.json").write_text(json.dumps(
+             report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+          print("ALTERNATE_SOURCE_TOTAL",len(approved),"of",len(titles),flush=True)
+          PY
+      - name: Submit fully validated alternative edition when bulk download slots become available
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          urls="$(python - <<'PY'
+          import json
+          report=json.load(open("alternate-source-preflight.json",encoding="utf-8"))
+          print(",".join(x["url"] for x in report["approved"]))
+          PY
+          )"
+          if [[ -z "$urls" ]]; then
+            echo 'No alternative editions passed validation' | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          for attempt in $(seq 1 110); do
+            active="$(gh api "repos/$GH_REPO/actions/runs?per_page=100" \
+              --jq '[.workflow_runs[] | select(.name == "Library - Bulk Download" and .status != "completed")] | length')"
+            if (( active < 2 )); then
+              gh workflow run library-bulk-download.yml --ref main \
+                --raw-field "novel_urls=$urls" \
+                --raw-field "chapter_range=" \
+                --raw-field "force=false" \
+                --raw-field "confirm_rights=true"
+              echo "DISPATCHED_ALTERNATE $urls" | tee -a "$GITHUB_STEP_SUMMARY"
+              gh run list --workflow library-bulk-download.yml --limit 6 >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 75
+          done
+          echo "::warning::All permitted slots remained occupied, approved links saved for retry"
+          exit 1
+      - name: Preserve source identity and outcome (no chapter prose)
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: alternate-recovery-source-preflight-${{ github.run_id }}
+          path: alternate-source-preflight.json
+          retention-days: 90
+          if-no-files-found: warn
