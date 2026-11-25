@@ -12,7 +12,7 @@ from tools.readnovelfull_source import (
     SourceError, archive_url, chapter_index, discover,
     extract_chapter, validate_book_url, validate_chapter_url,
 )
-from tools.readnovelfull_downloader import DownloadError, download_range
+from tools.readnovelfull_downloader import DownloadError, download_range, fetch_chapter_with_retry
 from tools.readnovelfull_chunks import plan_download, fetch_batch
 
 BOOK = "https://readnovelfull.com/cultivation-online-v3.html"
@@ -200,6 +200,44 @@ class ReadNovelFullTests(unittest.TestCase):
             extract_chapter('<div id="chr-content">Unlock this chapter</div>', number=1, title="Chapter 1")
         with self.assertRaises(SourceError):
             extract_chapter("<title>Just a moment...</title>", number=1, title="Chapter 1")
+
+    def test_transient_transport_retry_only_for_exact_chapter_url(self):
+        from http.client import RemoteDisconnected
+        calls, sleeps = [], []
+        def network(url):
+            calls.append(url)
+            if len(calls) <= 2:
+                raise RemoteDisconnected("Remote end closed connection without response")
+            return html_chapter(1)
+        self.assertIn("Chapter 1", fetch_chapter_with_retry(
+            CH1, fetcher=network, sleeper=sleeps.append))
+        self.assertEqual(calls, [CH1, CH1, CH1])
+        self.assertEqual(sleeps, [5, 15])
+
+    def test_transient_retry_never_bypasses_access_or_integrity_failure(self):
+        failures = ("ReadNovelFull returned HTTP 429; stopped",
+                    "Access challenge or unexpected HTTP response",
+                    "Expected Chapter 1, received Chapter 2")
+        for message in failures:
+            calls, sleeps = [], []
+            def stopped(url):
+                calls.append(url)
+                raise SourceError(message)
+            with self.subTest(message=message), self.assertRaises(SourceError):
+                fetch_chapter_with_retry(CH1, fetcher=stopped, sleeper=sleeps.append)
+            self.assertEqual(calls, [CH1])
+            self.assertEqual(sleeps, [])
+
+    def test_transport_retry_is_bounded_and_propagates_real_failure(self):
+        calls, sleeps = [], []
+        def always_reset(url):
+            calls.append(url)
+            raise ConnectionResetError("Connection reset by peer")
+        with self.assertRaises(ConnectionResetError):
+            fetch_chapter_with_retry(CH2, fetcher=always_reset, sleeper=sleeps.append)
+        self.assertEqual(calls, [CH2] * 3)
+        self.assertEqual(sleeps, [5, 15])
+
 
     def test_rights_and_range_checked_before_network(self):
         calls = []
