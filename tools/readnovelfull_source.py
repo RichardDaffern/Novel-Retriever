@@ -18,6 +18,16 @@ BOOK = re.compile(r"/([a-z0-9][a-z0-9_-]*)\.html\Z")
 # Accept only exact, source-listed URLs with a numbered chapter, never guess slugs.
 CHAPTER = re.compile(r"/([a-z0-9][a-z0-9_-]*)/(?:chapter|chapters|chatper|charter|c)-?([1-9][0-9]*)(?:[a-z_-][a-z0-9_-]*)?\.html\Z")
 PROLOGUE = re.compile(r"/([a-z0-9][a-z0-9_-]*)/prologue\.html\Z")
+# Source-confirmed, distinct editorial front matter. Preserve this exact link
+# without conflating it with the novel's proper Chapter 1.
+WORLD_DOMINATION_FRONT_MATTER = "/world-domination-system/c-1-power-levels-and-abbreviations.html"
+# The chapter archive explicitly labels these as Chapter 152 and Chapter 152-2.
+# They are distinct reading entries, not two interchangeable URLs for one page.
+PATH_TO_HEAVEN_SPLIT = (
+    "https://readnovelfull.com/path-to-heaven/chapter-152-unique-spirit-root-physique.html",
+    "https://readnovelfull.com/path-to-heaven/chapter-152-2-toying-with-me-on-purpose.html",
+)
+
 ARCHIVE = "/ajax/chapter-archive"
 MAX_HTML = 12 * 1024 * 1024
 MAX_CHAPTERS = 20000
@@ -54,14 +64,16 @@ def validate_chapter_url(url: str, *, book_prefix: str = "") -> tuple[str, int, 
     p = _parts(url)
     numbered = CHAPTER.fullmatch(p.path)
     prologue = PROLOGUE.fullmatch(p.path)
-    if p.query or (numbered is None and prologue is None):
+    is_known_front_matter = p.path == WORLD_DOMINATION_FRONT_MATTER
+    if p.query or (numbered is None and prologue is None and not is_known_front_matter):
         raise SourceError("Invalid ReadNovelFull chapter URL")
-    prefix = numbered.group(1) if numbered else prologue.group(1)
+    prefix = (numbered.group(1) if numbered else
+              prologue.group(1) if prologue else "world-domination-system")
     if book_prefix and prefix != book_prefix:
         raise SourceError("Chapter link belongs to another novel")
-    # A verified standalone /prologue.html is part of the story, not Chapter 1.
+    # The exact real front-matter URL precedes Chapter 1, not a second Chapter 1.
     return ("https://" + HOST + p.path,
-            int(numbered.group(2)) if numbered else 0, prefix)
+            0 if is_known_front_matter or prologue else int(numbered.group(2)), prefix)
 
 
 def archive_url(novel_id: str) -> str:
@@ -84,7 +96,8 @@ def fetch_public_html(url: str) -> str:
             raise SourceError("Unexpected AJAX query parameters")
         archive_url(qs["novelId"][0])
     elif p.query or (not BOOK.fullmatch(p.path) and not CHAPTER.fullmatch(p.path)
-                     and not PROLOGUE.fullmatch(p.path)):
+                     and not PROLOGUE.fullmatch(p.path)
+                     and p.path != WORLD_DOMINATION_FRONT_MATTER):
         raise SourceError("Refusing non-novel ReadNovelFull URL")
     headers = {"User-Agent": "NovelLibraryReadNovelFull/1.0", "Accept": "text/html"}
     if is_archive:
@@ -159,6 +172,7 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
     if not anchors:
         raise SourceError("AJAX chapter archive did not contain a chapter list")
     seen: dict[int, dict] = {}
+    split_chapters: dict[int, dict] = {}
     chapter_prefix = ""
     for anchor in anchors:
         href = anchor["href"]
@@ -178,14 +192,28 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
         title = anchor.get("title") or anchor.get_text(" ", strip=True)
         title = title.strip()[:240] or ("Prologue" if position == 0 else f"Chapter {position}")
         if position in seen:
-            if seen[position]["url"] != canonical:
-                raise SourceError(
-                    f"Duplicate Chapter {position} links in archive for {book_url}: "
-                    f"{seen[position]['url']!r} and {canonical!r}"
-                )
-            continue
+            if seen[position]["url"] == canonical:
+                continue
+            # An independently inspected public archive contains a genuine
+            # named Chapter 152-2 immediately after Chapter 152. Retain both
+            # original URL entries, without treating arbitrary duplicates
+            # as legitimate split chapters.
+            if (book_url == "https://readnovelfull.com/path-to-heaven-v1.html"
+                    and position == 152
+                    and seen[position]["url"] == PATH_TO_HEAVEN_SPLIT[0]
+                    and canonical == PATH_TO_HEAVEN_SPLIT[1]
+                    and "152-2" in title
+                    and position not in split_chapters):
+                split_chapters[position] = {
+                    "position": position, "title": title, "url": canonical,
+                }
+                continue
+            raise SourceError(
+                f"Duplicate Chapter {position} links in archive for {book_url}: "
+                f"{seen[position]['url']!r} and {canonical!r}"
+            )
         seen[position] = {"position": position, "title": title, "url": canonical}
-        if len(seen) > MAX_CHAPTERS:
+        if len(seen) + len(split_chapters) > MAX_CHAPTERS:
             raise SourceError("Chapter archive exceeds 20,000-chapter limit")
     numbered = sorted(n for n in seen if n > 0)
     missing = ([n for n in range(1, numbered[-1] + 1) if n not in seen]
@@ -197,7 +225,10 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
         raise SourceError(f"Chapter archive is missing or misnumbering chapters: {detail}")
     # Position is the reading/EPUB order; chapter_number is the printed number.
     # Preserve a genuine prologue without renumbering the source's Chapter 1.
-    ordered = ([seen[0]] if 0 in seen else []) + [seen[n] for n in numbered]
+    ordered = ([seen[0]] if 0 in seen else []) + [
+        row for n in numbered
+        for row in ([seen[n]] + ([split_chapters[n]] if n in split_chapters else []))
+    ]
     for position, row in enumerate(ordered, 1):
         row["chapter_number"] = row["position"]
         row["position"] = position
@@ -240,8 +271,13 @@ def extract_chapter(page: str, *, number: int, title: str) -> dict:
     heading = next((h for h in headings if re.search(
         r"\bchapter\s+([1-9][0-9]*)\b", h, re.I)), "")
     m = re.search(r"\bchapter\s+([1-9][0-9]*)\b", heading, re.I)
-    if number == 0 and not any(re.search(r"\bprologue\b", h, re.I) for h in headings):
-        raise SourceError("Expected prologue heading")
+    is_prologue = any(re.search(r"\bprologue\b", h, re.I) for h in headings)
+    is_known_front_matter = (
+        "power levels and abbreviations" in title.casefold()
+        and any("power levels and abbreviations" in h.casefold() for h in headings)
+    )
+    if number == 0 and not (is_prologue or is_known_front_matter):
+        raise SourceError("Expected prologue or verified front-matter heading")
     if m and int(m.group(1)) != number:
         raise SourceError(f"Expected Chapter {number}, received Chapter {m.group(1)}")
     node = next((soup.select_one(selector) for selector in BODY_SELECTORS
