@@ -44,7 +44,7 @@ ALREADY_SUBMITTED = {
     "World Domination System", "Path to Heaven", "Omega Summoner",
     "A Record Of Mortal’s Journey To Immortality",
     "Attack Of The Adorable Kid: President Daddy's Infinite Pampering",
-    "Beautiful Time With You", "Beauty And The Bodyguard",
+    "Beautiful Time With You",
     "Bringing The Nation's Husband Home", "Legend of Swordsman",
     "Legend of Mythological Genes", "Tensei Shitara Slime Datta Ken",
     "The Military Female Soldier With Unwavering Stubbornness",
@@ -152,6 +152,10 @@ def discover(out:Path,*,searcher=search_page,page_fetcher=fetch_public_html,
     # recovered separately, not retried wholesale as new books.
     blocked={q.norm(x) for x in q.read_json(
         q.OVERNIGHT/"blocked-full-retries-20261120.json")["titles"]}
+    blocked.update(q.norm(t) for t in (
+        "This MC Is Kickass", "Past Life Returner", "Tomb Raider King",
+        "World Domination System", "Beautiful Time With You",
+    ))
     verified=[];held=[];requests=0;seen_urls=set();blocked_site=False
     for title in targets:
         key=q.norm(title)
@@ -204,8 +208,9 @@ def discover(out:Path,*,searcher=search_page,page_fetcher=fetch_public_html,
             if max(score(title,result["title"]),score(name,result["title"]))<.94:
                 raise ValueError("Book page title disagrees with the requested novel")
             count=result["numChapters"]
-            if count<FLOOR.get(key,2):
-                raise ValueError(f"Short source edition: {count} chapters, expected at least {FLOOR[key]}")
+            minimum=FLOOR.get(key,2)
+            if count<minimum:
+                raise ValueError(f"Short source edition: {count} chapters, expected at least {minimum}")
             if result.get("status") not in ("Completed","Ongoing"):
                 raise ValueError("No verified publication status")
             candidate={"title":title,"url":url,"source_title":result["title"],
