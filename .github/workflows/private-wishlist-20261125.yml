@@ -1,0 +1,92 @@
+name: Private wishlist download batch
+on:
+  push:
+    branches: [campaign/private-wishlist-20261125]
+    paths: ['.github/workflows/private-wishlist-20261125.yml']
+permissions:
+  contents: read
+env:
+  CAMPAIGN: campaigns/private-wishlist-20261125
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      books: ${{ steps.select.outputs.books }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - id: select
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          rows=json.loads((Path(os.environ['CAMPAIGN'])/'queue.json').read_text())
+          selected=[r['key'] for r in rows if any(urlsplit(u).hostname!='wuxia.click' for u in r['urls'])]
+          assert len(selected)==len(set(selected)) and len(selected)>=30
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f: print('books='+json.dumps(selected),file=f)
+          print(f'{len(selected)} unique books selected')
+          PY
+  download:
+    needs: select
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        book: ${{ fromJSON(needs.select.outputs.books) }}
+    env:
+      BOOK: ${{ matrix.book }}
+      NOVEL_RETRIEVER: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - run: pip install -q -r requirements.lock
+      - name: Validate sources and retrieve one book
+        id: fetch
+        continue-on-error: true
+        run: timeout --kill-after=30s 315m python -u "$CAMPAIGN/remote.py" --book "$BOOK" > "$RUNNER_TEMP/retrieval.log" 2>&1
+      - name: Seal completed book or recoverable chapter files
+        id: seal
+        shell: bash
+        run: |
+          if test -s "$CAMPAIGN/completed/$BOOK.zip"; then
+            input="$CAMPAIGN/completed/$BOOK.zip"
+            kind=complete
+          elif test -d "$CAMPAIGN/work" && find "$CAMPAIGN/work" -name 'chapter_*.txt' -print -quit | grep -q .; then
+            tar -czf "$RUNNER_TEMP/checkpoint.tgz" -C "$CAMPAIGN" work
+            input="$RUNNER_TEMP/checkpoint.tgz"
+            kind=checkpoint
+          else
+            echo "No chapter archive produced" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          mkdir -p sealed
+          openssl cms -encrypt -binary -outform DER -aes-256-gcm -in "$input" -out "sealed/$BOOK.$kind.cms" "$CAMPAIGN/recipient.pem"
+          echo "kind=$kind" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: steps.seal.outputs.kind != ''
+        with:
+          name: ${{ steps.seal.outputs.kind }}-${{ matrix.book }}
+          path: sealed/*.cms
+          if-no-files-found: error
+          retention-days: 30
+      - name: Report title outcome
+        if: always()
+        run: |
+          python - <<'PY'
+          import os,json
+          from pathlib import Path
+          p=Path(os.environ['CAMPAIGN'])/'progress.jsonl'
+          if p.exists():
+              for line in p.read_text().splitlines():
+                  row=json.loads(line)
+                  print(row['state'],row.get('url',''),row.get('reason','')[:200])
+          PY
+          test "${{ steps.fetch.outcome }}" = success
