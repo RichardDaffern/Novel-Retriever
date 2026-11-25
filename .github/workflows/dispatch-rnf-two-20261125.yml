@@ -1,0 +1,110 @@
+name: Dispatch two fully verified ReadNovelFull novel archives
+on:
+  push:
+    branches: [ops/dispatch-rnf-world-and-path-20261125]
+    paths: [.github/workflows/dispatch-rnf-two-20261125.yml]
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: one-shot-rnf-world-and-path-20261125
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned source index and dispatch dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Confirm complete live source indexes and exclude completed or denied titles
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.overnight_queue import norm
+          from tools.readnovelfull_source import discover,extract_chapter,fetch_public_html
+          registry=json.loads(Path("downloaded_novels.json").read_text(encoding="utf-8"))
+          denied={norm(t) for t in json.loads(Path("campaigns/overnight/excluded-90.json").read_text())["excluded"]}
+          complete={r["url"] for r in registry["novels"]
+                    if any(d.get("status")=="complete" and d.get("range")=="all"
+                       for d in r.get("downloads",[]))}
+          candidates=[
+            ("World Domination System",
+              "https://readnovelfull.com/world-domination-system-v1.html",1168,(0,1,2)),
+            ("Path to Heaven",
+              "https://readnovelfull.com/path-to-heaven-v1.html",1290,(0,151,152)),
+          ]
+          approved=[];held=[]
+          for title,url,total,positions in candidates:
+            result={"title":title,"url":url,"expected_chapters":total}
+            try:
+              if norm(title) in denied or url in complete:
+                raise ValueError("Excluded or already complete")
+              source=discover(url)
+              if norm(source["title"])!=norm(title) or source["numChapters"]!=total:
+                raise ValueError("Wrong source title or incomplete chapter index")
+              for position in positions:
+                item=source["chapters"][position]
+                chapter=extract_chapter(fetch_public_html(item["url"]),
+                   number=item["chapter_number"],title=item["title"])
+                if len(chapter["text"])<200:
+                  raise ValueError("Missing or restricted chapter content")
+              result["source_status"]=source["status"]
+              result["approved"]=True
+              approved.append(result)
+              print("APPROVED_SOURCE",title,total,flush=True)
+            except Exception as exc:
+              result.update({"approved":False,"reason":str(exc)[:220]})
+              held.append(result)
+              print("HELD_SOURCE",title,str(exc)[:220],flush=True)
+          report={"approved":approved,"held":held}
+          Path("rnf-dispatch-preflight.json").write_text(json.dumps(
+            report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+          if len(approved)!=2:
+            raise SystemExit("Expected both source catalogues to be completely validated")
+          PY
+      - name: Dispatch the two approved books in one guarded 2-title bulk run
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          active="$(gh api "repos/$GH_REPO/actions/runs?per_page=100" \
+            --jq '[.workflow_runs[] | select(.name == "Library - Bulk Download" and .status != "completed")] | length')"
+          if (( active >= 2 )); then
+            echo "::error::Both permitted bulk slots are occupied"
+            exit 1
+          fi
+          urls="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("rnf-dispatch-preflight.json").read_text())
+          print(",".join(x["url"] for x in d["approved"]))
+          PY
+          )"
+          gh workflow run library-bulk-download.yml --ref main \
+            --raw-field "novel_urls=$urls" \
+            --raw-field "chapter_range=" \
+            --raw-field "force=false" \
+            --raw-field "confirm_rights=true"
+          echo "BULK_DISPATCHED_2 $urls" | tee -a "$GITHUB_STEP_SUMMARY"
+          gh run list --workflow library-bulk-download.yml --limit 6 >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve preflight report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: rnf-two-approved-books-${{ github.run_id }}
+          path: rnf-dispatch-preflight.json
+          retention-days: 90
+          if-no-files-found: warn
