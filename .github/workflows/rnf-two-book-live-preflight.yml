@@ -1,0 +1,79 @@
+name: ReadNovelFull verify two complete source catalogues and example chapters
+on:
+  push:
+    branches: [fix/rnf-explicit-catalogue-intro-and-split-20261125]
+    paths: [.github/workflows/rnf-two-book-live-preflight.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.lock
+      - name: Verify strict source adapter regression suite
+        run: python -m unittest tests.test_readnovelfull -v
+      - name: Validate two real complete ordered indexes and exact sample chapter bodies
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.readnovelfull_source import discover, fetch_public_html, extract_chapter
+          books=[
+              ("World Domination System",
+               "https://readnovelfull.com/world-domination-system-v1.html",
+               1168,[0,1,2]),
+              ("Path to Heaven",
+               "https://readnovelfull.com/path-to-heaven-v1.html",
+               1290,[0,151,152]),
+          ]
+          report=[]
+          for title,url,expected,positions in books:
+              result={"title":title,"url":url,"passed":False}
+              try:
+                  data=discover(url)
+                  if data["title"].casefold()!=title.casefold() or data["numChapters"]!=expected:
+                      raise ValueError("Wrong title or incomplete original catalogue")
+                  for position in positions:
+                      item=data["chapters"][position]
+                      chapter=extract_chapter(fetch_public_html(item["url"]),
+                          number=item["chapter_number"],title=item["title"])
+                      if len(chapter["text"])<200:
+                          raise ValueError("Missing sample chapter content")
+                      print("VERIFIED_SOURCE_CHAPTER",title,item["position"],
+                            item["chapter_number"],len(chapter["text"]),flush=True)
+                  if title=="World Domination System":
+                      if data["chapters"][0]["chapter_number"]!=0:
+                          raise ValueError("Glossary intro misidentified as Chapter 1")
+                      if data["chapters"][1]["chapter_number"]!=1:
+                          raise ValueError("Original Chapter 1 missing")
+                  else:
+                      numbers=[c["chapter_number"] for c in data["chapters"]]
+                      if numbers[151:153]!=[152,152]:
+                          raise ValueError("Distinct Chapter 152 and 152-2 not preserved")
+                  result.update({"passed":True,"chapters":expected})
+                  print("BOOK_INDEX_VERIFIED",title,expected,flush=True)
+              except Exception as error:
+                  result["error"]=str(error)[:300]
+                  print("BOOK_INDEX_HELD",title,type(error).__name__,str(error)[:160],flush=True)
+              report.append(result)
+          Path("two-book-rnf-preflight.json").write_text(
+              json.dumps({"books":report},indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+          if not all(x["passed"] for x in report):
+              raise SystemExit("At least one catalogue has an unsafe chapter")
+          PY
+      - name: Preserve preflight metadata without chapter prose
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: rnf-two-book-preflight-${{ github.run_id }}
+          path: two-book-rnf-preflight.json
+          retention-days: 90
+          if-no-files-found: warn
