@@ -1,0 +1,47 @@
+name: FreeWebNovel live search result structure sample
+on:
+  push:
+    branches: [ops/freewebnovel-real-source-search-20261125]
+    paths: [.github/workflows/fwn-public-search-sample.yml]
+permissions:
+  contents: read
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.lock
+      - name: Observe result-card titles, canonical book hrefs, without chapter content
+        run: |
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          from urllib.parse import urlencode,urljoin
+          from bs4 import BeautifulSoup
+          titles=[
+              "Eternal Martial Sovereign","Past Life Returner",
+              "The S-Classes That I Raised","Apotheosis",
+              "Weapon Master","Invincible Levelling King","Tomb Raider King",
+              "HacKer",
+          ]
+          for title in titles:
+            url="https://freewebnovel.com/search?"+urlencode({"keyword":title})
+            try:
+              with urlopen(Request(url,headers={"User-Agent":"NovelRetriever-Book-Index/1.0"}),timeout=20) as response:
+                html=response.read(450000).decode("utf-8","replace")
+              doc=BeautifulSoup(html,"html.parser")
+              links=[]
+              for a in doc.select("a[href]"):
+                href=urljoin(url,a["href"])
+                if (href.startswith("https://freewebnovel.com/novel/")
+                    and a.get_text(" ",strip=True)):
+                  links.append({"title":a.get_text(" ",strip=True)[:90],"href":href})
+              print("FWSEARCH",title,"novels",links[:16],flush=True)
+            except Exception as exc:
+              print("FWSEARCH_ERROR",title,type(exc).__name__,str(exc)[:220],flush=True)
+          PY
