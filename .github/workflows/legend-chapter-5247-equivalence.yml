@@ -1,4 +1,4 @@
-name: Legend of Swordsman compare suspected duplicate chapter 5247 text
+name: Legend of Swordsman compare ordered token overlap in duplicate 5247
 on:
   push:
     branches: [ops/rnf-index-diagnostics-20261125]
@@ -49,10 +49,18 @@ jobs:
           a,b=items
           ratio=SequenceMatcher(None,a["clean_text"],b["clean_text"]).ratio()
           overlap=len(a["word_set"] & b["word_set"])/max(1,len(a["word_set"] | b["word_set"]))
+          words_a=re.findall(r"[a-z0-9]+",a["clean_text"])
+          words_b=re.findall(r"[a-z0-9]+",b["clean_text"])
+          shingle_a=set(zip(*(words_a[i:] for i in range(6))))
+          shingle_b=set(zip(*(words_b[i:] for i in range(6))))
+          ngram_overlap=len(shingle_a & shingle_b)/max(1,len(shingle_a | shingle_b))
+          token_sequence=SequenceMatcher(None,words_a,words_b,autojunk=False).ratio()
           result={"urls":urls,"char_lengths":[a["characters"],b["characters"]],
                   "token_counts":[a["tokens"],b["tokens"]],
                   "normalized_shas":[a["sha256"],b["sha256"]],
                   "sequence_similarity":round(ratio,5),
+                  "ordered_token_similarity":round(token_sequence,5),
+                  "six_word_shingle_jaccard":round(ngram_overlap,5),
                   "word_set_overlap":round(overlap,5)}
           Path("legend-5247-equivalence.json").write_text(json.dumps(result,indent=2)+"\n")
           print("LEGEND_EQUIVALENCE",json.dumps(result),flush=True)
