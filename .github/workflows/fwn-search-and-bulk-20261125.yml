@@ -1,0 +1,75 @@
+name: Campaign - FreeWebNovel real search and verified bulk download
+on:
+  push:
+    branches: [ops/freewebnovel-real-source-search-20261125]
+    paths: [.github/workflows/fwn-search-and-bulk-20261125.yml]
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: fwn-real-search-wave-once-20261125
+  cancel-in-progress: false
+jobs:
+  discover:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned source and metadata dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Check book matching, original wishlist, exclusions and safe dispatch
+        run: python -m unittest tests.test_fwn_search_verified_bulk -v
+      - name: Search real FreeWebNovel source for missing wishlist titles
+        run: |
+          python -u -m tools.fwn_search_verified_bulk discover \
+            --out fwn-source-audit.json
+      - name: Save all verified source matches and remaining holds
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: fwn-real-source-scan-${{ github.run_id }}
+          path: fwn-source-audit.json
+          retention-days: 90
+          if-no-files-found: warn
+  dispatch:
+    needs: discover
+    if: needs.discover.result == 'success' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 265
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned dispatch dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Restore same-run verified public source URLs
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: fwn-real-source-scan-${{ github.run_id }}
+          path: scan
+      - name: Submit all verified novels, max eight per bulk run, two concurrent runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python -u -m tools.fwn_search_verified_bulk dispatch \
+            --source scan/fwn-source-audit.json \
+            --out fwn-bulk-dispatch-report.json
+      - name: Preserve submitted and queued novel source lists
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: fwn-real-source-dispatch-${{ github.run_id }}
+          path: fwn-bulk-dispatch-report.json
+          retention-days: 90
+          if-no-files-found: warn
