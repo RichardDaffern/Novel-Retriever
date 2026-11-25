@@ -28,6 +28,11 @@ PATH_TO_HEAVEN_SPLIT = (
     "https://readnovelfull.com/path-to-heaven/chapter-152-2-toying-with-me-on-purpose.html",
 )
 
+LEGEND_BOOK = "https://readnovelfull.com/legend-of-swordsman-v1.html"
+LEGEND_TYPO_5247 = "/legend-of-swordsman/chapter-chhapter-5247-5247-a-suitable-treasure.html"
+LEGEND_CANONICAL_5247 = "https://readnovelfull.com/legend-of-swordsman/chapter-5247-a-suitable-treasure.html"
+LEGEND_REAL_5333 = "/legend-of-swordsman/home-chapter-5333.html"
+
 ARCHIVE = "/ajax/chapter-archive"
 MAX_HTML = 12 * 1024 * 1024
 MAX_CHAPTERS = 20000
@@ -65,15 +70,18 @@ def validate_chapter_url(url: str, *, book_prefix: str = "") -> tuple[str, int, 
     numbered = CHAPTER.fullmatch(p.path)
     prologue = PROLOGUE.fullmatch(p.path)
     is_known_front_matter = p.path == WORLD_DOMINATION_FRONT_MATTER
-    if p.query or (numbered is None and prologue is None and not is_known_front_matter):
+    is_legend_5333 = p.path == LEGEND_REAL_5333
+    if p.query or (numbered is None and prologue is None
+                   and not is_known_front_matter and not is_legend_5333):
         raise SourceError("Invalid ReadNovelFull chapter URL")
     prefix = (numbered.group(1) if numbered else
-              prologue.group(1) if prologue else "world-domination-system")
+              prologue.group(1) if prologue else
+              "legend-of-swordsman" if is_legend_5333 else "world-domination-system")
     if book_prefix and prefix != book_prefix:
         raise SourceError("Chapter link belongs to another novel")
-    # The exact real front-matter URL precedes Chapter 1, not a second Chapter 1.
-    return ("https://" + HOST + p.path,
-            0 if is_known_front_matter or prologue else int(numbered.group(2)), prefix)
+    chapter_number = (5333 if is_legend_5333 else
+                      0 if is_known_front_matter or prologue else int(numbered.group(2)))
+    return ("https://" + HOST + p.path, chapter_number, prefix)
 
 
 def archive_url(novel_id: str) -> str:
@@ -97,7 +105,8 @@ def fetch_public_html(url: str) -> str:
         archive_url(qs["novelId"][0])
     elif p.query or (not BOOK.fullmatch(p.path) and not CHAPTER.fullmatch(p.path)
                      and not PROLOGUE.fullmatch(p.path)
-                     and p.path != WORLD_DOMINATION_FRONT_MATTER):
+                     and p.path != WORLD_DOMINATION_FRONT_MATTER
+                     and p.path != LEGEND_REAL_5333):
         raise SourceError("Refusing non-novel ReadNovelFull URL")
     headers = {"User-Agent": "NovelLibraryReadNovelFull/1.0", "Accept": "text/html"}
     if is_archive:
@@ -174,9 +183,15 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
     seen: dict[int, dict] = {}
     split_chapters: dict[int, dict] = {}
     chapter_prefix = ""
+    skipped_legend_alias = False
     for anchor in anchors:
         href = anchor["href"]
         url = urljoin("https://" + HOST + "/", href)
+        if book_url == LEGEND_BOOK and url == "https://" + HOST + LEGEND_TYPO_5247:
+            if skipped_legend_alias:
+                raise SourceError("Repeated publisher typo alias")
+            skipped_legend_alias = True
+            continue
         try:
             canonical, position, prefix = validate_chapter_url(
                 url, book_prefix=chapter_prefix)
@@ -215,6 +230,10 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
         seen[position] = {"position": position, "title": title, "url": canonical}
         if len(seen) + len(split_chapters) > MAX_CHAPTERS:
             raise SourceError("Chapter archive exceeds 20,000-chapter limit")
+    if skipped_legend_alias and (
+            seen.get(5247, {}).get("url") != LEGEND_CANONICAL_5247
+            or seen.get(5333, {}).get("url") != "https://" + HOST + LEGEND_REAL_5333):
+        raise SourceError("Legend archive missing verified canonical 5247 or real 5333")
     numbered = sorted(n for n in seen if n > 0)
     missing = ([n for n in range(1, numbered[-1] + 1) if n not in seen]
                if numbered else [])
