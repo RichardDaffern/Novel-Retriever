@@ -1,0 +1,67 @@
+name: Legend of Swordsman compare suspected duplicate chapter 5247 text
+on:
+  push:
+    branches: [ops/rnf-index-diagnostics-20261125]
+    paths: [.github/workflows/legend-chapter-5247-equivalence.yml]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.lock
+      - name: Compare same-source chapter bodies without displaying novel text
+        run: |
+          python - <<'PY'
+          from bs4 import BeautifulSoup
+          from urllib.request import Request,urlopen
+          from difflib import SequenceMatcher
+          import hashlib,json,re
+          from pathlib import Path
+          base="https://readnovelfull.com/legend-of-swordsman/"
+          urls=[
+            base+"chapter-chhapter-5247-5247-a-suitable-treasure.html",
+            base+"chapter-5247-a-suitable-treasure.html",
+          ]
+          items=[]
+          for url in urls:
+            with urlopen(Request(url,headers={"User-Agent":"NovelRetriever-Book-Index/1.0"}),timeout=25) as r:
+              html=r.read(1100000).decode("utf-8","replace")
+            soup=BeautifulSoup(html,"html.parser")
+            body=soup.select_one("#chr-content,.chr-c")
+            if body is None:
+              raise ValueError("Expected public chapter content")
+            for node in body.select("script,style,iframe,nav,aside,form,.ads,.adv,.advertisement"):
+              node.decompose()
+            raw=body.get_text(" ",strip=True)
+            clean=" ".join(raw.casefold().split())
+            words=re.findall(r"[a-z0-9]+",clean)
+            items.append({"url":url,"characters":len(raw),
+                          "tokens":len(words),"sha256":hashlib.sha256(clean.encode()).hexdigest(),
+                          "clean_text":clean,"word_set":set(words)})
+          a,b=items
+          ratio=SequenceMatcher(None,a["clean_text"],b["clean_text"]).ratio()
+          overlap=len(a["word_set"] & b["word_set"])/max(1,len(a["word_set"] | b["word_set"]))
+          result={"urls":urls,"char_lengths":[a["characters"],b["characters"]],
+                  "token_counts":[a["tokens"],b["tokens"]],
+                  "normalized_shas":[a["sha256"],b["sha256"]],
+                  "sequence_similarity":round(ratio,5),
+                  "word_set_overlap":round(overlap,5)}
+          Path("legend-5247-equivalence.json").write_text(json.dumps(result,indent=2)+"\n")
+          print("LEGEND_EQUIVALENCE",json.dumps(result),flush=True)
+          PY
+      - name: Preserve diagnostic metrics only
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: legend-5247-equivalence-${{ github.run_id }}
+          path: legend-5247-equivalence.json
+          retention-days: 90
+          if-no-files-found: warn
