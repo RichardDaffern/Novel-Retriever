@@ -1,4 +1,4 @@
-name: Diagnose remaining ReadNovelFull chapter catalogue blockers
+name: Diagnose ReadNovelFull catalogue blockers including Legend of Swordsman
 on:
   push:
     branches: [ops/rnf-index-diagnostics-20261125]
@@ -45,6 +45,7 @@ jobs:
             "The Alchemist God": "the-alchemist-god",
             "The Mightiest Leveling System": "the-mightiest-leveling-system-v1",
             "Weapon Master": "weapon-master-v1",
+            "Legend of Swordsman": "legend-of-swordsman-v1",
           }
           report=[]
           for title,slug in links.items():
