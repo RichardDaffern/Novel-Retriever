@@ -1,0 +1,104 @@
+name: Download full Beautiful Time With You from verified NovelFull
+on:
+  push:
+    branches: [ops/dispatch-nf-beautiful-time-20261125]
+    paths: [.github/workflows/download-beautiful-time-novelfull-20261125.yml]
+permissions:
+  contents: read
+  actions: write
+# Serialise this dispatcher behind the Legend source recovery; respect
+# the two active bulk-run limit and never submit duplicate source URLs.
+concurrency:
+  group: legend-rnf-complete-20261125-single-launch
+  cancel-in-progress: false
+jobs:
+  verify-and-submit:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 305
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned source-index tools
+        run: python -m pip install -r requirements.lock
+      - name: Confirm NovelFull full edition, author, 1129 chapter ending, and safety exclusions
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,re
+          from pathlib import Path
+          from tools.overnight_queue import norm,fetch_public_book_page,page_titles
+          from bs4 import BeautifulSoup
+          url="https://novelfull.com/the-beautiful-time-with-you.html"
+          title="The Beautiful Time With You"
+          registry=json.loads(Path("downloaded_novels.json").read_text(encoding="utf-8"))
+          excluded={norm(t) for t in json.loads(Path(
+              "campaigns/overnight/excluded-90.json").read_text())["excluded"]}
+          if norm(title) in excluded or norm("Beautiful Time With You") in excluded:
+              raise SystemExit("Title excluded by red/Dropped wishlist rules")
+          if any((r.get("url")==url or norm(r.get("title",""))==norm(title))
+                  and any(d.get("status")=="complete" and d.get("range")=="all"
+                  for d in r.get("downloads",[]))
+                  for r in registry["novels"]):
+              raise SystemExit("Already fully downloaded under verified source name")
+          html,status=fetch_public_book_page(url)
+          if status!="ok" or not html:
+              raise SystemExit("No accessible public book listing: "+str(status))
+          names={norm(n) for n in page_titles(html)}
+          if norm(title) not in names:
+              raise SystemExit("NovelFull listing title does not match original book")
+          soup=BeautifulSoup(html,"html.parser")
+          author=soup.get_text(" ",strip=True)
+          if "Ye Fei Ye" not in author and "叶非夜" not in author:
+              raise SystemExit("Expected original author not found on listing")
+          if not re.search(r"\bChapter\s+1129\b",author,re.I):
+              raise SystemExit("Original edition does not list completed Chapter 1129")
+          if not re.search(r"\bCompleted\b",author,re.I):
+              raise SystemExit("Book not marked completed")
+          Path("beautiful-time-preflight.json").write_text(json.dumps({
+              "title":title,"url":url,"original_author":"Ye Fei Ye",
+              "last_verified_chapter":1129,"completed":True},indent=2)+"\n",
+              encoding="utf-8")
+          print("BEAUTIFUL_TIME_1129_SOURCE_VERIFIED",flush=True)
+          PY
+      - name: Verify NovelFull adapter can enumerate book metadata and chapter URLs
+        run: |
+          python -u novel_downloader.py \
+            https://novelfull.com/the-beautiful-time-with-you.html \
+            --confirm-rights --list-only --timeout-minutes 12
+      - name: Wait for free bulk capacity and dispatch whole original novel
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 225); do
+            active="$(gh api "repos/$GH_REPO/actions/runs?per_page=100" \
+              --jq '[.workflow_runs[] | select(.name == "Library - Bulk Download" and .status != "completed")] | length')"
+            if (( active < 2 )); then
+              gh workflow run library-bulk-download.yml --ref main \
+                --raw-field "novel_urls=https://novelfull.com/the-beautiful-time-with-you.html" \
+                --raw-field "chapter_range=" \
+                --raw-field "force=false" \
+                --raw-field "confirm_rights=true"
+              echo "BEAUTIFUL_TIME_BULK_DISPATCHED" | tee -a "$GITHUB_STEP_SUMMARY"
+              gh run list --workflow library-bulk-download.yml --limit 5 >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 75
+          done
+          echo "::error::Both bulk slots remained occupied within bounded Actions runtime"
+          exit 1
+      - name: Preserve validated original-book source evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: beautiful-time-novelfull-source-${{ github.run_id }}
+          path: beautiful-time-preflight.json
+          retention-days: 90
+          if-no-files-found: warn
