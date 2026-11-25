@@ -1,4 +1,4 @@
-name: ReadNovelFull verify two complete source catalogues and example chapters
+name: ReadNovelFull verify two complete source catalogues and examples (updated fixtures)
 on:
   push:
     branches: [fix/rnf-explicit-catalogue-intro-and-split-20261125]
