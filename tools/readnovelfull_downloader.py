@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 from hashlib import sha256
+from http.client import RemoteDisconnected, IncompleteRead
 import json
 from pathlib import Path
 import re
@@ -27,6 +28,50 @@ MAX_PER_RUN = 100
 
 class DownloadError(ValueError):
     """A chapter batch cannot be safely completed."""
+
+
+# Network retry is narrowly scoped to transient transport interruptions.
+# Never retry 403/429, anti-bot challenges, access restrictions, wrong chapter
+# identity or catalogue inconsistencies.
+TRANSIENT_TRANSPORT_TEXT = (
+    "connection reset", "connection aborted", "timed out",
+    "remote end closed connection", "broken pipe",
+)
+
+
+def _transient_transport_error(exc: Exception) -> bool:
+    if isinstance(exc, (RemoteDisconnected, IncompleteRead, ConnectionResetError,
+                        ConnectionAbortedError, TimeoutError, BrokenPipeError)):
+        return True
+    if isinstance(exc, SourceError):
+        message = str(exc).casefold()
+        return message.startswith("readnovelfull not reachable:") and any(
+            marker in message for marker in TRANSIENT_TRANSPORT_TEXT
+        )
+    return False
+
+
+def fetch_chapter_with_retry(url: str, *, fetcher, sleeper, attempts=3) -> str:
+    """Boundedly retry only network drops for this exact chapter URL.
+
+    A successful chapter still passes extract_chapter and SHA-256 validation.
+    Retries have 5s/15s back-off and never change URL or bypass any restriction.
+    """
+    if not 1 <= attempts <= 3:
+        raise ValueError("Transport retry attempts must be within 1..3")
+    delays = (5, 15)
+    for attempt in range(attempts):
+        try:
+            return fetcher(url)
+        except (RemoteDisconnected, IncompleteRead, ConnectionResetError,
+                ConnectionAbortedError, TimeoutError, BrokenPipeError, SourceError) as exc:
+            if not _transient_transport_error(exc) or attempt == attempts - 1:
+                raise
+            print(f"ReadNovelFull transient network interruption on the exact URL "
+                  f"(attempt {attempt + 1}/{attempts}): {type(exc).__name__}; "
+                  f"backing off {delays[attempt]}s", flush=True)
+            sleeper(delays[attempt])
+    raise AssertionError("Unreachable retry state")
 
 
 def download_range(url: str, first: int, last: int, output_dir: Path, *,
@@ -86,7 +131,8 @@ def download_range(url: str, first: int, last: int, output_dir: Path, *,
             written[position] = prior[position]
             continue
         sleeper(1)
-        item = extract_chapter(fetcher(chapter["url"]),
+        item = extract_chapter(fetch_chapter_with_retry(
+                                   chapter["url"], fetcher=fetcher, sleeper=sleeper),
                                number=chapter.get("chapter_number", position),
                                title=chapter["title"])
         content = f"{item['title']}\n\n{item['text'].strip()}\n"
