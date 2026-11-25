@@ -1,0 +1,108 @@
+name: One-shot full Legend of Swordsman download after source verification
+on:
+  push:
+    branches: [ops/dispatch-full-legend-readnovelfull-20261125]
+    paths: [.github/workflows/dispatch-full-legend-20261125.yml]
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: legend-rnf-complete-20261125-single-launch
+  cancel-in-progress: false
+jobs:
+  dispatch:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned chapter-index validation dependencies
+        run: python -m pip install -r requirements.lock
+      - name: Verify full public Legend edition and known empty chapter recovery
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.overnight_queue import norm
+          from tools.readnovelfull_source import (
+            LEGEND_BOOK,LEGEND_CANONICAL_5247,LEGEND_REAL_5333,
+            discover,fetch_public_html,extract_chapter,
+          )
+          forbidden={norm(x) for x in json.loads(Path(
+             "campaigns/overnight/excluded-90.json").read_text())["excluded"]}
+          registry=json.loads(Path("downloaded_novels.json").read_text())["novels"]
+          if norm("Legend of Swordsman") in forbidden:
+              raise SystemExit("Legend of Swordsman excluded by global red/Dropped policy")
+          if any(x.get("url")==LEGEND_BOOK and any(
+              d.get("status")=="complete" and d.get("range")=="all"
+              for d in x.get("downloads",[])) for x in registry):
+              print("Legend already complete for this source; do not dispatch")
+              Path("legend-launch-preflight.json").write_text(
+                  json.dumps({"url":LEGEND_BOOK,"skip_complete":True})+"\n")
+              raise SystemExit(0)
+          details=discover(LEGEND_BOOK)
+          if (norm(details["title"])!=norm("Legend of Swordsman")
+              or details["status"]!="Completed" or details["numChapters"]!=6492):
+              raise SystemExit("Source does not contain full 6492-chapter Legend edition")
+          if (details["chapters"][5246]["url"]!=LEGEND_CANONICAL_5247 or
+              details["chapters"][5332]["url"]!="https://readnovelfull.com"+LEGEND_REAL_5333):
+              raise SystemExit("Verified publisher Chapter 5247/5333 links changed")
+          for ch in (1,5247,5333,5742,6492):
+              row=details["chapters"][ch-1]
+              body=extract_chapter(fetch_public_html(row["url"]),
+                                   number=row["chapter_number"],title=row["title"])
+              if len(body["text"])<200:
+                  raise SystemExit("Source chapter body unavailable")
+              print("LEGEND_CHAPTER_CONFIRMED",ch,len(body["text"]),flush=True)
+          Path("legend-launch-preflight.json").write_text(json.dumps(
+              {"title":details["title"],"url":LEGEND_BOOK,
+               "chapters":6492,"verified":True},indent=2)+"\n")
+          print("LEGEND_6492_READY_FOR_DISPATCH",flush=True)
+          PY
+      - name: Wait for authorised bulk slot, then dispatch once
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("legend-launch-preflight.json").read_text())
+          if d.get("skip_complete"):
+              raise SystemExit(0)
+          if not d.get("verified") or d.get("chapters")!=6492:
+              raise SystemExit("Incomplete source proof")
+          PY
+          for attempt in $(seq 1 235); do
+              active="$(gh api "repos/$GH_REPO/actions/runs?per_page=100" \
+                --jq '[.workflow_runs[] | select(.name == "Library - Bulk Download" and .status != "completed")] | length')"
+              if (( active < 2 )); then
+                gh workflow run library-bulk-download.yml --ref main \
+                  --raw-field "novel_urls=https://readnovelfull.com/legend-of-swordsman-v1.html" \
+                  --raw-field "chapter_range=" \
+                  --raw-field "force=false" \
+                  --raw-field "confirm_rights=true"
+                echo "LEGEND_RNF_BULK_DISPATCHED https://readnovelfull.com/legend-of-swordsman-v1.html"
+                gh run list --workflow library-bulk-download.yml --limit 6 >> "$GITHUB_STEP_SUMMARY"
+                exit 0
+              fi
+              sleep 75
+          done
+          echo "::error::No bulk slot freed before the maximum Actions window; source proof saved"
+          exit 1
+      - name: Preserve source metadata evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: legend-full-dispatch-preflight-${{ github.run_id }}
+          path: legend-launch-preflight.json
+          retention-days: 90
+          if-no-files-found: warn
