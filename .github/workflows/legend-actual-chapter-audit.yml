@@ -1,0 +1,77 @@
+name: Legend of Swordsman diagnose three published unusual chapter links
+on:
+  push:
+    branches: [ops/rnf-index-diagnostics-20261125]
+    paths: [.github/workflows/legend-actual-chapter-audit.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.lock
+      - name: Compare public chapter headings and body hashes for suspected aliases
+        run: |
+          python - <<'PY'
+          from tools.readnovelfull_source import (fetch_public_html,archive_url,book_metadata)
+          from bs4 import BeautifulSoup
+          from urllib.parse import urljoin,urlsplit
+          from urllib.request import Request,urlopen
+          import hashlib,json
+          from pathlib import Path
+          book="https://readnovelfull.com/legend-of-swordsman-v1.html"
+          meta=book_metadata(fetch_public_html(book),book)
+          page=fetch_public_html(archive_url(meta["novel_id"]))
+          soup=BeautifulSoup(page,"html.parser")
+          anchors=soup.select("ul.list-chapter li a[href]")
+          targets=[a for a in anchors if any(x in a["href"] for x in (
+            "chapter-5247","chapter-chhapter-5247","chapter-5333",
+            "home-chapter-5333","chapter-5742",
+          ))]
+          results=[]
+          for a in targets:
+            link=urljoin(book,a["href"])
+            if urlsplit(link).hostname!="readnovelfull.com":
+              continue
+            row={"url":link,"label":a.get("title") or a.get_text(" ",strip=True)}
+            try:
+              with urlopen(Request(link,headers={
+                   "User-Agent":"NovelRetriever-Book-Index/1.0"}),timeout=25) as response:
+                raw=response.read(1200000)
+                if response.status!=200 or urlsplit(response.url).hostname!="readnovelfull.com":
+                  raise ValueError("Unexpected redirect or response")
+              content=BeautifulSoup(raw.decode("utf-8","replace"),"html.parser")
+              heads=[h.get_text(" ",strip=True) for h in content.select("h1,h2,h3,.chapter-title")]
+              body=content.select_one("#chr-content,.chr-c")
+              if body is None:
+                raise ValueError("Missing public reader content")
+              for unwanted in body.select("script,style,iframe,nav,aside,form,.ads,.advertisement"):
+                unwanted.decompose()
+              text=body.get_text(" ",strip=True)
+              row.update({"heading":heads[:5],"characters":len(text),
+                          "content_sha256":hashlib.sha256(text.encode("utf-8")).hexdigest()})
+              print("LEGEND_SOURCE_CHECK",row["label"],link,"chars",len(text),
+                    "sha",row["content_sha256"][:14],flush=True)
+            except Exception as exc:
+              row["error"]=str(exc)[:220]
+              print("LEGEND_SOURCE_HELD",link,type(exc).__name__,str(exc)[:170],flush=True)
+            results.append(row)
+          Path("legend-chapter-alias-review.json").write_text(
+            json.dumps({"title":meta["title"],"items":results},indent=2,ensure_ascii=False)+"\n",
+            encoding="utf-8")
+          PY
+      - name: Save metadata-only comparison
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: legend-chapter-alias-review-${{ github.run_id }}
+          path: legend-chapter-alias-review.json
+          retention-days: 90
+          if-no-files-found: warn
