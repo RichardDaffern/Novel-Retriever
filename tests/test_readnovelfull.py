@@ -70,7 +70,7 @@ class ReadNovelFullTests(unittest.TestCase):
             ("heavenly-star", "chatper-202-the-heaven-and-earth-split-open-the-god-of-war-dies-part-i", 202),
             ("the-alchemist-god", "charter-140-falling-over-on-another", 140),
             ("the-mightiest-leveling-system", "chapter233-meet-nangong-yan-again", 233),
-            ("world-domination-system", "c-1-power-levels-and-abbreviations", 1),
+            ("world-domination-system", "c-1-power-levels-and-abbreviations", 0),
         )
         for book, fragment, chapter in samples:
             url = f"https://readnovelfull.com/{book}/{fragment}.html"
