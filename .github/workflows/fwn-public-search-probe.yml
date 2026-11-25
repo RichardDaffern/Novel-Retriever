@@ -1,0 +1,56 @@
+name: Check FreeWebNovel public search routes for unresolved wishlist
+on:
+  push:
+    branches: [ops/freewebnovel-real-source-search-20261125]
+    paths: [.github/workflows/fwn-public-search-probe.yml]
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Inspect public search forms and a few candidate searches
+        shell: bash
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from urllib.request import Request,urlopen
+          from urllib.parse import urlencode,urlsplit
+          class Doc(HTMLParser):
+              def __init__(self):
+                  super().__init__();self.forms=[];self.anchors=[];self.current=None
+                  self.title="";self.in_title=False
+              def handle_starttag(self,tag,attributes):
+                  a=dict(attributes)
+                  if tag=="form":
+                      self.forms.append({"action":a.get("action"),"method":a.get("method"),"inputs":[]})
+                  if tag=="input" and self.forms:
+                      self.forms[-1]["inputs"].append((a.get("name"),a.get("placeholder")))
+                  if tag=="a" and a.get("href") and "search" in a["href"].lower():
+                      self.anchors.append((a.get("href"),a.get("title")))
+                  if tag=="title":self.in_title=True
+              def handle_data(self,s):
+                  if self.in_title:self.title+=s
+              def handle_endtag(self,tag):
+                  if tag=="title":self.in_title=False
+          urls=[
+              "https://freewebnovel.com/",
+              "https://freewebnovel.com/robots.txt",
+              "https://freewebnovel.com/search?"+urlencode({"keyword":"Eternal Martial Sovereign"}),
+              "https://freewebnovel.com/search?"+urlencode({"name":"Eternal Martial Sovereign"}),
+              "https://freewebnovel.com/novel/eternal-martial-sovereign",
+          ]
+          for url in urls:
+              try:
+                  with urlopen(Request(url,headers={"User-Agent":"NovelRetriever-Book-Index/1.0"}),timeout=16) as response:
+                      body=response.read(240000).decode("utf-8","ignore")
+                      final=response.url
+                      status=response.status
+                  obj=Doc();obj.feed(body)
+                  print("FWSITE",url,"status",status,"final",final,
+                        "title",obj.title[:90],"forms",obj.forms[:5],
+                        "searchlinks",obj.anchors[:10],flush=True)
+              except Exception as exc:
+                  print("FWSITE_ERROR",url,type(exc).__name__,str(exc)[:200],flush=True)
+          PY
