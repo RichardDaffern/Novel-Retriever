@@ -150,6 +150,53 @@ class ReadNovelFullTests(unittest.TestCase):
                 "https://readnovelfull.com/cultivation-online/intro.html"
             )
 
+    def test_verified_world_domination_front_matter_is_not_chapter_one(self):
+        book = "https://readnovelfull.com/world-domination-system-v1.html"
+        intro = "https://readnovelfull.com/world-domination-system/c-1-power-levels-and-abbreviations.html"
+        first = "https://readnovelfull.com/world-domination-system/chapter-1-daneel.html"
+        second = "https://readnovelfull.com/world-domination-system/chapter-2-intro.html"
+        self.assertEqual(validate_chapter_url(intro)[1], 0)
+        index = ('<ul class="list-chapter">'
+                 f'<li><a href="{intro}">Chapter c-1 Power Levels And Abbreviations</a></li>'
+                 f'<li><a href="{first}">Chapter 1 Daneel</a></li>'
+                 f'<li><a href="{second}">Chapter 2 Intro</a></li></ul>')
+        rows = chapter_index(index, book)
+        self.assertEqual([x["chapter_number"] for x in rows], [0, 1, 2])
+        self.assertEqual([x["position"] for x in rows], [1, 2, 3])
+        self.assertEqual([x["url"] for x in rows], [intro, first, second])
+        page = ('<html><h2>C-1: Power Levels And Abbreviations</h2>'
+                f'<div id="chr-content"><p>{TEXT}</p></div></html>')
+        self.assertIn("traveller", extract_chapter(
+            page, number=0, title="Chapter c-1 Power Levels And Abbreviations")["text"])
+        with self.assertRaisesRegex(SourceError, "verified front-matter"):
+            extract_chapter(page.replace("Power Levels And Abbreviations", "Unknown Heading"),
+                            number=0, title="Chapter c-1 Power Levels And Abbreviations")
+        with self.assertRaisesRegex(SourceError, "another novel"):
+            validate_chapter_url(intro, book_prefix="other-novel")
+
+    def test_only_exact_verified_path_to_heaven_152_2_is_preserved(self):
+        book = "https://readnovelfull.com/path-to-heaven-v1.html"
+        primary = "https://readnovelfull.com/path-to-heaven/chapter-152-unique-spirit-root-physique.html"
+        split = "https://readnovelfull.com/path-to-heaven/chapter-152-2-toying-with-me-on-purpose.html"
+        anchors = [
+            f'<li><a href="/path-to-heaven/chapter-{n}.html">Chapter {n}</a></li>'
+            for n in range(1, 154) if n != 152
+        ]
+        anchors += [
+            f'<li><a href="{primary}">Chapter 152 Unique Spirit Root Physique</a></li>',
+            f'<li><a href="{split}">Chapter 152-2: Toying with me on purpose?</a></li>',
+        ]
+        rows = chapter_index('<ul class="list-chapter">' +
+                             ''.join(anchors) + '</ul>', book)
+        self.assertEqual(len(rows), 154)
+        self.assertEqual([x["url"] for x in rows[151:153]], [primary, split])
+        self.assertEqual([x["chapter_number"] for x in rows[151:153]], [152, 152])
+        self.assertEqual([x["position"] for x in rows], list(range(1, 155)))
+        wrong = split.replace("toying-with-me-on-purpose", "another-story")
+        with self.assertRaisesRegex(SourceError, "Duplicate Chapter 152"):
+            chapter_index(('<ul class="list-chapter">' + ''.join(anchors) +
+                           f'<li><a href="{wrong}">Chapter 152-2</a></li></ul>'), book)
+
     def test_refuse_invalid_archive_or_wrong_identity(self):
         with self.assertRaisesRegex(SourceError, "missing"):
             chapter_index(INDEX.replace("chapter-1-cultivation-online", "chapter-3-cultivation-online"), BOOK)
