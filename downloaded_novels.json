@@ -632,6 +632,24 @@
       ]
     },
     {
+      "url": "https://freewebnovel.com/novel/warriors-promise",
+      "title": "Warrior's Promise",
+      "author": "百里龙虾",
+      "downloads": [
+        {
+          "range": "all",
+          "status": "complete",
+          "chapter_count": 3336,
+          "run_id": 45647872647,
+          "run_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45647872647",
+          "artifact_id": 15040544723,
+          "artifact_url": "https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45647872647/artifacts/15040544723",
+          "completed_at_utc": "2026-11-25T16:31:10Z",
+          "expires_at_utc": "2026-12-02T16:31:10Z"
+        }
+      ]
+    },
+    {
       "url": "https://novelfull.com/12-hours-after.html",
       "title": "12 Hours After",
       "author": "FromHell",
