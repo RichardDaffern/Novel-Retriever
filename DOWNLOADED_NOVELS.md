@@ -365,12 +365,13 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Zhan Long](https://novelfull.com/zhan-long.html) | all | 1395 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14521375062) | 2026-11-26T10:37:34Z |
 | [Zhanxian](https://novelfull.com/zhanxian.html) | all | 1187 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14518591797) | 2026-11-26T10:16:40Z |
 
-## ReadNovelFull (3 novels)
+## ReadNovelFull (4 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
 | [Archean Eon Art](https://readnovelfull.com/archean-eon-art-v1.html) | all | 766 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44791453169/artifacts/14656214990) | 2026-11-27T18:29:37Z |
 | [Doom Lord](https://readnovelfull.com/doom-lord-v1.html) | all | 155 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45837013390/artifacts/15125588474) | 2026-12-03T14:20:52Z |
+| [Girl, I'll Teach You Cultivation](https://readnovelfull.com/girl-ill-teach-you-cultivation-v1.html) | all | 283 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45837055424/artifacts/15125429169) | 2026-12-03T14:23:01Z |
 | [Omega Summoner](https://readnovelfull.com/omega-summoner.html) | all | 3089 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45445777486/artifacts/15036797100) | 2026-12-02T15:25:51Z |
 
 ## Scribble Hub (1 novels)
