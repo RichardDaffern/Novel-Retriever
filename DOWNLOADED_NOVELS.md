@@ -365,7 +365,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Zhan Long](https://novelfull.com/zhan-long.html) | all | 1395 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14521375062) | 2026-11-26T10:37:34Z |
 | [Zhanxian](https://novelfull.com/zhanxian.html) | all | 1187 | [Expired](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/44497656162/artifacts/14518591797) | 2026-11-26T10:16:40Z |
 
-## ReadNovelFull (5 novels)
+## ReadNovelFull (6 novels)
 
 | Novel | Range | Chapters | Artifact | Expiry (UTC) |
 |---|---|---:|---|---|
@@ -374,6 +374,7 @@ Expired artifacts cannot be retrieved; such entries remain as history but will n
 | [Girl, I'll Teach You Cultivation](https://readnovelfull.com/girl-ill-teach-you-cultivation-v1.html) | all | 283 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45837055424/artifacts/15125429169) | 2026-12-03T14:23:01Z |
 | [My Hidden Wife is Sweet](https://readnovelfull.com/my-hidden-wife-is-sweet-v1.html) | all | 1820 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45837055424/artifacts/15128387650) | 2026-12-03T14:48:44Z |
 | [Omega Summoner](https://readnovelfull.com/omega-summoner.html) | all | 3089 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45445777486/artifacts/15036797100) | 2026-12-02T15:25:51Z |
+| [The Alchemist God](https://readnovelfull.com/the-alchemist-god.html) | all | 227 | [Available](https://github.com/RichardDaffern/Novel-Retriever/actions/runs/45837055424/artifacts/15128403941) | 2026-12-03T14:55:42Z |
 
 ## Scribble Hub (1 novels)
 
