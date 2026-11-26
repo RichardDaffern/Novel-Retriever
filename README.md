@@ -22,13 +22,13 @@ Novel Retriever is the **acquisition and packaging component**, not the web read
 | [Agent session handover template](docs/agent-handover-template.md) | Reproducible evidence and exact next-step checklist |
 | [Changelog](CHANGELOG.md) | Operator-relevant modifications and confirmed milestones |
 
-**Current campaign model (checked 22 November 2026):** the 20 November one-shot Yup/IDK activation is historical and must not be re-run. Read-only audit #44924359606 found **26 public listings from 91 eligible rows** (18 Yup, 8 IDK) and **65 unmatched** (36 Yup, 29 IDK); the five-book TOC preflight fetched no chapter text and cleared no rights. The fanfiction-first research stage is complete for the current scope (8 complete, 3 blocked, 32 unresolved). The 36-row Yup and 29-row IDK alternative-source reviews are now documented; the IDK pass found one exact NovelFull/FreeWebNovel listing for *Attack Of The Adorable Kid* (Sweets Flood, 2,612 page-reported chapters) but no archive permission. There are **0 rights-cleared titles and 0 new download runs**. Review [Current Status](docs/current-status.md), [the Yup report](campaigns/overnight/alternative-source-research-20261122.md), [the IDK report](campaigns/overnight/idk-alternative-source-research-20261122.md), and [issue #456](https://github.com/RichardDaffern/Novel-Retriever/issues/456) before launching any download. Public listing alone is not permission; require a complete TOC and explicit lawful rights, use a non-public output route, `force=false`, no more than 10 titles per batch and no more than two active bulk workflows. Never retry deterministic index failures unchanged.
+**Current operations:** temporary campaign workflows and manifests were retired on 26 November 2026. Review [exclusions](config/excluded-novels.json), [known blocked retries](config/known-blocked-retries.json) and the current registry before new work. Keep source identity, explicit lawful rights, complete indexes, non-public output, `force=false`, at most ten titles per batch and no more than two active bulk workflows. Never retry deterministic index failures unchanged. Historical evidence remains in [Git history](https://github.com/RichardDaffern/Novel-Retriever/blob/6674b26c9959d7b2f506cc32dc115975ab30c275/campaigns).
 
 ## Curated bulk downloads (preferred workflow)
 
 **Discover and verify sources before dispatch, not inside GitHub Actions.** A maintainer or AI agent checks outstanding books against the completed registry and the original approved Yup/Idk lists, then confirms the actual **book pages** on supported sources, preferring **NovelFull**, then **ReadNovelFull**, then FreeWebNovel where appropriate. Review aliases, the 90 red/Dropped exclusions, 14 known broken full-book retries, site permissions and the presently active runs. Save an evidence-backed URL list, then send those exact URLs through the existing [Library - Bulk Download](.github/workflows/library-bulk-download.yml), with `force=false`.
 
-The historical automatic search-based large-wave dispatcher is **not the preferred entry point** for new campaigns. Its 20 November discovery selected only four eligible URLs and all four were blocked by deterministic FreeWebNovel chapter-number issues. A reusable manually curated URL launcher is implemented in `tools/dispatch_curated_bulk.py`; see [Operations Runbook](docs/operations-runbook.md) for workflow and one-shot activation details. A verified public book page proves **identity**, not authorisation to copy, chapter completeness or upload readiness.
+The historical automatic and curated campaign dispatchers have been retired. Use the reusable bulk workflow for reviewed, authorised requests. A verified public book page proves identity, not permission, completeness or upload readiness.
 
 ## Download novels
 
@@ -109,8 +109,8 @@ not in repository files or command-line arguments.
 - [Import an authorised local EPUB](docs/website-support.md) and [manage covers/metadata](docs/metadata-guide.md)
 - [Download guide, chapter batching and troubleshooting](docs/download-guide.md)
 - [Source research and unsupported sites](docs/research/source-feasibility-2026-11-15.md)
-- [Yup/IDK alias reconciliation and alternative-source round 2](campaigns/overnight/alternative-source-research-round-2-20261122.md)
-- [Yup/IDK alternative-source follow-up round 3](campaigns/overnight/alternative-source-research-round-3-20261122.md)
+- [Yup/IDK alias reconciliation and alternative-source round 2](https://github.com/RichardDaffern/Novel-Retriever/blob/6674b26c9959d7b2f506cc32dc115975ab30c275/campaigns/overnight/alternative-source-research-round-2-20261122.md)
+- [Yup/IDK alternative-source follow-up round 3](https://github.com/RichardDaffern/Novel-Retriever/blob/6674b26c9959d7b2f506cc32dc115975ab30c275/campaigns/overnight/alternative-source-research-round-3-20261122.md)
 - [Technical handbook for contributors and AI agents](AGENTS.md)
 - [Project history, architectural decisions and roadmap](docs/project-history-and-decisions.md)
 
