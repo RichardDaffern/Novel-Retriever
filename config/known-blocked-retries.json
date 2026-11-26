@@ -17,5 +17,79 @@
     "The S-Classes That I Raised",
     "Beauty And The Bodyguard",
     "Legend of Swordsman"
+  ],
+  "source_specific_holds": [
+    {
+      "title": "Apotheosis – Ascension to Godhood",
+      "source": "ReadNovelFull",
+      "issue": 448,
+      "reason": "Advertised 3913 chapters versus 3910 listed; no independently verified complete ordered source."
+    },
+    {
+      "title": "Past Life Returner",
+      "source": "FreeWebNovel",
+      "issue": 498,
+      "reason": "Historical plan 575 chapters; later listing truncated to 40. Full registry publication now rejects this regression."
+    },
+    {
+      "title": "This MC Is Kickass",
+      "source": "FreeWebNovel",
+      "issue": 498,
+      "reason": "Conflicting Chapter 414 links and Chapter 101/102 identity mismatch."
+    },
+    {
+      "title": "Tomb Raider King",
+      "source": "FreeWebNovel",
+      "issue": 498,
+      "reason": "Non-linear chapter URL mapping."
+    },
+    {
+      "title": "World Domination System",
+      "source": "FreeWebNovel",
+      "issue": 452,
+      "reason": "Historical source review incomplete; later plan 1167 chapters does not establish verified complete edition."
+    },
+    {
+      "title": "Martial Arts System",
+      "source": "ReadNovelFull",
+      "issue": 452,
+      "reason": "Historical source archive numbering, duplicate link or invalid chapter URL failure; recheck exact source before reuse."
+    },
+    {
+      "title": "Path to Heaven",
+      "source": "ReadNovelFull",
+      "issue": 452,
+      "reason": "Historical source archive numbering, duplicate link or invalid chapter URL failure; recheck exact source before reuse."
+    },
+    {
+      "title": "The Alchemist God",
+      "source": "ReadNovelFull",
+      "issue": 452,
+      "reason": "Historical source archive numbering, duplicate link or invalid chapter URL failure; recheck exact source before reuse."
+    },
+    {
+      "title": "The Mightiest Leveling System",
+      "source": "ReadNovelFull",
+      "issue": 452,
+      "reason": "Historical source archive numbering, duplicate link or invalid chapter URL failure; recheck exact source before reuse."
+    },
+    {
+      "title": "Weapon Master",
+      "source": "ReadNovelFull",
+      "issue": 452,
+      "reason": "Historical source archive numbering, duplicate link or invalid chapter URL failure; recheck exact source before reuse."
+    },
+    {
+      "title": "Archean Eon Art",
+      "source": "FreeWebNovel",
+      "issue": 257,
+      "reason": "Original source exhibited chapter identity mismatches; alternate-source complete registry records exist. Do not assume original source repaired."
+    },
+    {
+      "title": "A Record of a Mortal’s Journey to Immortality",
+      "source": "FreeWebNovel",
+      "issue": 257,
+      "reason": "Original source exhibited chapter identity mismatches; alternate-source complete registry records exist. Do not assume original source repaired."
+    }
   ]
 }

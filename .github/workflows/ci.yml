@@ -17,58 +17,13 @@ on:
 # Keep push and pull_request in separate groups so their duplicate events do not cancel each other.
 # The latest commit per event is always validated; main has its own independent group.
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Prune retired Actions history without live artefacts' && 'one-shot-prune' || 'normal' }}
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-
-  prune-retired-actions:
-    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Prune retired Actions history without live artefacts'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    permissions:
-      actions: write
-      contents: read
-    steps:
-      - name: Remove only audited retired runs without unexpired artifacts
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          removed=0
-          preserved=0
-          for id in 45658117909 45649908827 45649614927 45648801461 45648126013 45647996170 45647832306 45647665472 45647437162 45647305748 45647143636 45646667510 45646448624 45645960193 45645800510 45645433668 45645233759 45644594177 45446417919 45445367566 45444777021 45444253858 45444097191 45443917441 45254046357 45253400779 45252846611 45252796973 45252591507 45252431874 45251670221 45251527360 45251283551 45249378217 45249030671 45245467386 45244656987 45243857999 45243550260 45241339858 45236690963 45235981165 45214789692 44926984233 44924359606 44922271046 44805047361 44804298709 44791413875 44781277418 44780738328 44764626782 44762437176 44521807242 44466510737 44463492638 44379714549 44378456717 44374654975 44365231299 44362807985 44347866520 44104360128 44065866512 44036739854 43819213500 43733541073 42513475192 42513447856 42513431015 42513414021 42513387437 42513372924 42513348683 42494513599 42494499443 42466682898 42393833316 42393548617 42393126629; do
-            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id")"
-            path="$(jq -r '.path' <<< "$run")"
-            state="$(jq -r '.status' <<< "$run")"
-            case "$path" in
-              .github/workflows/ci.yml|.github/workflows/download-covers.yml|.github/workflows/download-novel.yml|.github/workflows/export-completed-novels-20261116.yml|.github/workflows/freewebnovel-download.yml|.github/workflows/library-bulk-download.yml|.github/workflows/pdf-conversion-ci.yml|.github/workflows/readnovelfull-download.yml|.github/workflows/scribblehub-download.yml|.github/workflows/webnovel-public-access.yml|.github/workflows/wuxiaclick-download.yml)
-                echo "Preserving active workflow: $id $path"
-                preserved=$((preserved+1))
-                continue ;;
-              .github/workflows/*) ;;
-              *) echo "Unrecognised path, preserving: $id $path"; preserved=$((preserved+1)); continue ;;
-            esac
-            if [[ "$state" != completed ]]; then
-              echo "Preserving non-completed run $id"
-              preserved=$((preserved+1))
-              continue
-            fi
-            live="$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$id/artifacts?per_page=100" --jq '.artifacts[] | select(.expired != true) | .id')"
-            if [[ -n "$live" ]]; then
-              echo "Preserving $id $path (unexpired artifacts)"
-              preserved=$((preserved+1))
-              continue
-            fi
-            gh api --method DELETE "repos/$GITHUB_REPOSITORY/actions/runs/$id" >/dev/null
-            echo "Deleted retired run $id $path"
-            removed=$((removed+1))
-          done
-          printf 'Removed: %s\nPreserved: %s\n' "$removed" "$preserved" | tee -a "$GITHUB_STEP_SUMMARY"
   security-audit:
     runs-on: ubuntu-latest
     timeout-minutes: 12
