@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 from tools.download_registry import (
     already_available, canonical_url, main, normalise_range,
-    read_registry, record_download, write_registry,
+    read_registry, record_download, write_registry, validate_full_chapter_count,
 )
 
 
@@ -120,6 +120,30 @@ class DownloadRegistryTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Missing chapter file"):
                 record_download(registry, url, "1-2", base / "downloads",
                                 "9999", "url", "500", now=NOW)
+
+    def test_full_registry_guard_rejects_catalogue_shrink_even_after_expiry(self):
+        data = registry_with(item("all", expiry_hours=-1, chapter_count=100))
+        url = "https://novelfull.com/sample.html"
+        with self.assertRaisesRegex(ValueError, "catalogue shrank"):
+            validate_full_chapter_count(data, url, list(range(1, 41)))
+        validate_full_chapter_count(data, url, list(range(1, 101)))
+        validate_full_chapter_count(data, url, list(range(1, 102)))
+
+    def test_full_registry_guard_preserves_historical_partial_positions(self):
+        data = registry_with(item("551-575", expiry_hours=-1, chapter_count=25))
+        with self.assertRaisesRegex(ValueError, "minimum 575"):
+            validate_full_chapter_count(data, "https://novelfull.com/sample.html", list(range(1, 41)))
+
+    def test_past_life_returner_floor_survives_registry_correction(self):
+        data = {"version": 1, "novels": []}
+        url = "https://freewebnovel.com/novel/past-life-returner"
+        with self.assertRaisesRegex(ValueError, "minimum 575"):
+            validate_full_chapter_count(data, url, list(range(1, 41)))
+        validate_full_chapter_count(data, url, list(range(1, 576)))
+
+    def test_full_registry_guard_rejects_noncontiguous_positions(self):
+        with self.assertRaisesRegex(ValueError, "positions"):
+            validate_full_chapter_count(registry_with(), "https://novelfull.com/sample.html", [1, 3])
 
     def test_markdown_tracks_artifact_and_expiry(self):
         with tempfile.TemporaryDirectory() as tmp:

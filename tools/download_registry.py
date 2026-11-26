@@ -167,6 +167,42 @@ def write_registry(registry: dict, json_path: Path, md_path: Path) -> None:
     md_path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
+# Verified historical source plan (run 44769541580): the later 40-chapter
+# catalogue was truncated, not a new complete edition. Keep the floor even
+# after the incorrect registry entry was removed by PR #499.
+HISTORICAL_CHAPTER_FLOORS = {
+    "https://freewebnovel.com/novel/past-life-returner": 575,
+}
+
+
+def validate_full_chapter_count(registry: dict, url: str, positions: list[int]) -> None:
+    """Reject incomplete ranges and catalogue regressions before publication."""
+    url = canonical_url(url)
+    if positions != list(range(1, len(positions) + 1)):
+        raise ValueError("Full-book chapter positions must cover 1 through the final chapter")
+    floor = HISTORICAL_CHAPTER_FLOORS.get(url, 0)
+    for novel in registry["novels"]:
+        if canonical_url(novel["url"]) != url:
+            continue
+        for entry in novel.get("downloads", []):
+            if entry.get("status") != "complete":
+                continue
+            count = entry.get("chapter_count")
+            if entry.get("range") == "all" and type(count) is int:
+                floor = max(floor, count)
+            else:
+                match = RANGE_RE.fullmatch(str(entry.get("range", "")))
+                if match and type(count) is int:
+                    first, last = map(int, match.groups())
+                    if count == last - first + 1:
+                        floor = max(floor, last)
+    if len(positions) < floor:
+        raise ValueError(
+            f"Full-book catalogue shrank: {len(positions)} chapters, "
+            f"historically verified minimum {floor}; not recording completion"
+        )
+
+
 def record_download(registry: dict, url: str, chapter_range: str, downloads_dir: Path,
                     run_id: str, artifact_url: str, artifact_id: str,
                     retention_days: int = 7,
@@ -214,6 +250,8 @@ def record_download(registry: dict, url: str, chapter_range: str, downloads_dir:
     if (any(position < 1 for position in positions) or
             positions != sorted(set(positions))):
         raise ValueError("Duplicate or unordered chapter positions")
+    if chapter_range == "all":
+        validate_full_chapter_count(registry, url, positions)
     if not (metadata_path.parent / "source.epub").is_file():
         raise ValueError("Missing source EPUB")
     now = now or datetime.now(timezone.utc)
