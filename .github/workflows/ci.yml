@@ -17,7 +17,7 @@ on:
 # Keep push and pull_request in separate groups so their duplicate events do not cancel each other.
 # The latest commit per event is always validated; main has its own independent group.
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'chore: prune retired Actions history with no live artefacts' && 'one-shot-prune' || 'normal' }}
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Prune retired Actions history without live artefacts' && 'one-shot-prune' || 'normal' }}
   cancel-in-progress: true
 
 permissions:
@@ -26,7 +26,7 @@ permissions:
 jobs:
 
   prune-retired-actions:
-    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'chore: prune retired Actions history with no live artefacts'
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Prune retired Actions history without live artefacts'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
