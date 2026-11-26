@@ -103,11 +103,24 @@ def chapter_count_from_metadata(data: dict) -> int:
 
 
 def discover_count(url: str, timeout_minutes: int = 15) -> int:
-    completed = subprocess.run(
-        [sys.executable, "novel_downloader.py", url, "--confirm-rights", "--list-only",
-         "--timeout-minutes", str(timeout_minutes)],
-        capture_output=True, text=True, check=True, timeout=timeout_minutes * 60 + 30,
-    )
+    try:
+        completed = subprocess.run(
+            [sys.executable, "novel_downloader.py", url, "--confirm-rights", "--list-only",
+             "--timeout-minutes", str(timeout_minutes)],
+            capture_output=True, text=True, check=True, timeout=timeout_minutes * 60 + 30,
+        )
+    except subprocess.CalledProcessError as error:
+        detail = (error.stderr or "").strip()[-2000:]
+        raise ValueError(
+            f"Chapter catalogue discovery failed (exit {error.returncode}; "
+            f"discovery limit {timeout_minutes} minutes): "
+            f"{detail or 'No diagnostic stderr returned'}"
+        ) from None
+    except subprocess.TimeoutExpired:
+        raise ValueError(
+            f"Chapter catalogue discovery exceeded the {timeout_minutes}-minute "
+            "discovery limit and subprocess shutdown allowance"
+        ) from None
     data = json.loads(completed.stdout.strip())
     return chapter_count_from_metadata(data)
 

@@ -4,6 +4,7 @@ from hashlib import sha256
 import json
 from pathlib import Path
 import tempfile
+import subprocess
 import unittest
 import zipfile
 
@@ -49,6 +50,20 @@ def make_piece(root: Path, url: str, key: str, first: int, last: int) -> Path:
 
 
 class ChapterBatchTests(unittest.TestCase):
+    def test_discovery_nonzero_exit_preserves_child_diagnostic(self):
+        error = subprocess.CalledProcessError(
+            1, ["synthetic"], stderr="ERROR: source catalogue timed out"
+        )
+        with patch("tools.chunked_download.subprocess.run", side_effect=error):
+            with self.assertRaisesRegex(ValueError, "source catalogue timed out"):
+                discover_count(URL)
+
+    def test_discovery_outer_timeout_reports_limit(self):
+        error = subprocess.TimeoutExpired(["synthetic"], 930)
+        with patch("tools.chunked_download.subprocess.run", side_effect=error):
+            with self.assertRaisesRegex(ValueError, "15-minute"):
+                discover_count(URL)
+
     def test_assembled_title_ignores_first_batch_range_suffix(self):
         self.assertEqual(
             assembled_title("Chaotic Sword God (Ch 1-200)", {"start": 1, "end": 200}),
