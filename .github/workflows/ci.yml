@@ -17,13 +17,88 @@ on:
 # Keep push and pull_request in separate groups so their duplicate events do not cancel each other.
 # The latest commit per event is always validated; main has its own independent group.
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Prune retired metadata report runs after artefact audit' && 'one-shot-report-prune' || 'normal' }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
+
+  prune-retired-reports:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Prune retired metadata report runs after artefact audit'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Delete audited report-only runs with unchanged artifact inventory
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          removed=0
+          preserved=0
+          while IFS=' ' read -r id expected; do
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id")"
+            path="$(jq -r '.path' <<< "$run")"
+            state="$(jq -r '.status' <<< "$run")"
+            case "$path" in
+              .github/workflows/ci.yml|.github/workflows/download-covers.yml|.github/workflows/download-novel.yml|.github/workflows/export-completed-novels-20261116.yml|.github/workflows/freewebnovel-download.yml|.github/workflows/library-bulk-download.yml|.github/workflows/pdf-conversion-ci.yml|.github/workflows/readnovelfull-download.yml|.github/workflows/scribblehub-download.yml|.github/workflows/webnovel-public-access.yml|.github/workflows/wuxiaclick-download.yml)
+                echo "Preserving active workflow $id"; preserved=$((preserved+1)); continue ;;
+              .github/workflows/*) ;;
+              *) echo "Preserving unexpected workflow path $id"; preserved=$((preserved+1)); continue ;;
+            esac
+            if [[ "$state" != completed ]]; then
+              echo "Preserving non-completed run $id"; preserved=$((preserved+1)); continue
+            fi
+            items="$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$id/artifacts?per_page=100" | jq -cs '[.[].artifacts[]]')"
+            actual="$(jq -r '[.[].id] | sort | join(",")' <<< "$items")"
+            if [[ "$actual" != "$expected" ]] || ! jq -e 'all(.[]; .size_in_bytes <= 10000)' <<< "$items" >/dev/null; then
+              echo "Preserving $id because inventory differs"; preserved=$((preserved+1)); continue
+            fi
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/actions/runs/$id" >/dev/null
+            echo "Deleted report-only run $id"
+            removed=$((removed+1))
+          done <<'AUDITED'
+          45648801461 15038153559
+          45648126013 15039515448
+          45647996170 15039266018
+          45647832306 15037764226
+          45647437162 15037143357
+          45647305748 15037093359
+          45645433668 15037532520
+          45644594177 15036398298
+          45446417919 14946097489
+          45254046357 14857104409
+          45649908827 15040251863
+          45649614927 15040896209
+          45647665472 15039480323
+          45647143636 15037008395,15038965732
+          45645960193 15038280399
+          45445367566 14945747593,14945902337
+          45253400779 14855884986,14857670859
+          45252846611 14855954966
+          45252431874 14855383069,14856593410
+          45245467386 14854052198,14854111693
+          45244656987 14852897167
+          45243857999 14853676944,14854071456
+          45241339858 14850829494
+          45235981165 14850615305
+          44926984233 14715652405
+          44924359606 14714644436
+          44791413875 14656113220
+          44781277418 14651447065
+          44780738328 14650951868
+          44764626782 14646020116,14646382934
+          44463492638 14515807305
+          44379714549 14482774252,14497229738
+          44378456717 14466794568
+          44374654975 14461378747
+          AUDITED
+          printf 'Removed: %s\nPreserved: %s\n' "$removed" "$preserved" | tee -a "$GITHUB_STEP_SUMMARY"
   security-audit:
     runs-on: ubuntu-latest
     timeout-minutes: 12
