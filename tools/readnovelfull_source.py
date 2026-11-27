@@ -173,18 +173,65 @@ def book_metadata(page: str, url: str) -> dict:
     }
 
 
-# The actual published catalogue for this book uses URL slugs 101/102
-# for Chapters 10.1/10.2, then 101-2/102-2 for Chapters 101/102.
-# Use explicit printed labels only for this independently inspected source.
+# Exact exceptional printed identities from the 27 Nov 2026 public
+# catalogue and navigation audit. A missing printed Chapter 282 is not
+# invented or silently counted as complete.
 HOLLYWOOD_BOOK = "https://readnovelfull.com/im-in-hollywood-v1.html"
-HOLLYWOOD_SPLITS = {
+HOLLYWOOD_EXCEPTION_URLS = {
     "10.1": "/im-in-hollywood/chapter-101.html",
     "10.2": "/im-in-hollywood/chapter-102.html",
+    "124 part1": "/im-in-hollywood/chapter-124-part1.html",
+    "124.5 part2": "/im-in-hollywood/chapter-1245-part2.html",
+    "129 part1": "/im-in-hollywood/chapter-129-part1.html",
+    "129 part2": "/im-in-hollywood/chapter-129-part2.html",
+    "129 part3": "/im-in-hollywood/chapter-129-part3.html",
+    "130 part1": "/im-in-hollywood/chapter-130-part1.html",
+    "130 part2": "/im-in-hollywood/chapter-130-part2.html",
+    "133 part1": "/im-in-hollywood/chapter-133-part1.html",
+    "133 part2": "/im-in-hollywood/chapter-133-part2.html",
+    "134 part1": "/im-in-hollywood/chapter-134-part1.html",
+    "134 part2": "/im-in-hollywood/chapter-134-part2.html",
+    "136 part1": "/im-in-hollywood/chapter-136-part1.html",
+    "136 part2": "/im-in-hollywood/chapter-136-part2.html",
+    "136 part3": "/im-in-hollywood/chapter-136-part3.html",
+    "137 part1": "/im-in-hollywood/chapter-137-part1.html",
+    "137 part2": "/im-in-hollywood/chapter-137-part2.html",
+    "137 part3": "/im-in-hollywood/chapter-137-part3.html",
+    "137 part4": "/im-in-hollywood/chapter-137-part4.html",
+    "138 part1": "/im-in-hollywood/chapter-138-part1.html",
+    "138 part2": "/im-in-hollywood/chapter-138-part2.html",
+    "150 part1": "/im-in-hollywood/chapter-150-part1.html",
+    "150 part2": "/im-in-hollywood/chapter-150-part2.html",
+    "101": "/im-in-hollywood/chapter-101-2.html",
+    "102": "/im-in-hollywood/chapter-102-2.html",
 }
-PRINTED_LABEL = re.compile(r"\bchapter\s+([1-9][0-9]*(?:\.[1-9][0-9]*)?)\b", re.I)
+HOLLYWOOD_SPLIT_GROUPS = {
+    10: ("10.1", "10.2"),
+    124: ("124 part1", "124.5 part2"),
+    129: ("129 part1", "129 part2", "129 part3"),
+    130: ("130 part1", "130 part2"),
+    133: ("133 part1", "133 part2"),
+    134: ("134 part1", "134 part2"),
+    136: ("136 part1", "136 part2", "136 part3"),
+    137: ("137 part1", "137 part2", "137 part3", "137 part4"),
+    138: ("138 part1", "138 part2"),
+    150: ("150 part1", "150 part2"),
+}
+PRINTED_LABEL = re.compile(
+    r"\bchapter\s+([1-9][0-9]*(?:\.[1-9][0-9]*)?)(?:\s+part\s*([1-9][0-9]*))?\b",
+    re.I,
+)
+HOLLYWOOD_TITLE = re.compile(
+    r"Chapter\s+([1-9][0-9]*(?:\.[1-9][0-9]*)?)(?:\s+part\s*([1-9][0-9]*))?(?:\s*[:\-]\s*.+)?",
+    re.I,
+)
 
 
-def _hollywood_index(anchors) -> list[dict]:
+def _printed_identity(match) -> str:
+    return match.group(1) + (f" part{match.group(2)}" if match.group(2) else "")
+
+
+def _hollywood_index(anchors, *, allow_verified_prefix=False) -> list[dict]:
     rows = []
     seen_urls = set()
     labels = []
@@ -193,15 +240,17 @@ def _hollywood_index(anchors) -> list[dict]:
         canonical, slug_number, _ = validate_chapter_url(
             urljoin("https://" + HOST + "/", href), book_prefix="im-in-hollywood")
         title = (a.get("title") or a.get_text(" ", strip=True)).strip()
-        label_match = re.fullmatch(r"Chapter\s+([1-9][0-9]*(?:\.[1-9][0-9]*)?)", title, re.I)
-        if not label_match:
+        match = HOLLYWOOD_TITLE.fullmatch(title)
+        if not match:
             raise SourceError(f"Unrecognised Hollywood printed label: {title!r}")
-        label = label_match.group(1)
-        base = int(label.split(".")[0])
-        if label in HOLLYWOOD_SPLITS:
-            if urlsplit(canonical).path != HOLLYWOOD_SPLITS[label]:
-                raise SourceError("Hollywood split entry does not match its verified URL")
-        elif "." in label or base != slug_number or base == 10:
+        label = _printed_identity(match)
+        base = int(match.group(1).split(".")[0])
+        if base > MAX_CHAPTERS:
+            raise SourceError("Hollywood printed chapter number exceeds limit")
+        if label in HOLLYWOOD_EXCEPTION_URLS:
+            if urlsplit(canonical).path != HOLLYWOOD_EXCEPTION_URLS[label]:
+                raise SourceError("Hollywood exceptional entry does not match its verified URL")
+        elif label != str(base) or base != slug_number or base in HOLLYWOOD_SPLIT_GROUPS:
             raise SourceError(f"Unverified Hollywood chapter mapping: {label!r}, {href!r}")
         if canonical in seen_urls:
             raise SourceError("Repeated Hollywood chapter URL")
@@ -211,15 +260,24 @@ def _hollywood_index(anchors) -> list[dict]:
                      "printed_label": label, "title": title, "url": canonical})
         if len(rows) > MAX_CHAPTERS:
             raise SourceError("Chapter archive exceeds 20,000-chapter limit")
-    final_number = int(labels[-1].split(".")[0]) if labels else 0
+    final_number = rows[-1]["chapter_number"] if rows else 0
     expected = [label for n in range(1, final_number + 1)
-                for label in (["10.1", "10.2"] if n == 10 else [str(n)])]
-    if final_number < 102 or labels != expected:
-        raise SourceError("Hollywood printed catalogue is incomplete, duplicate or out of order")
-    return rows
+                for label in HOLLYWOOD_SPLIT_GROUPS.get(n, (str(n),))]
+    if final_number < 102:
+        raise SourceError("Hollywood catalogue unexpectedly truncated")
+    if labels == expected:
+        return rows
+    if final_number > 282 and labels == [x for x in expected if x != "282"]:
+        if allow_verified_prefix:
+            # The source's navigation jumps directly 281 -> 283. Explicit
+            # partial ranges may recover only the contiguous verified prefix.
+            # A full plan must still fail, never publish a false completion.
+            return rows[:labels.index("283")]
+        raise SourceError("Hollywood catalogue missing printed Chapter 282; full archive blocked")
+    raise SourceError("Hollywood printed catalogue is incomplete, duplicate or out of order")
 
 
-def chapter_index(page: str, book_url: str) -> list[dict]:
+def chapter_index(page: str, book_url: str, *, allow_verified_prefix=False) -> list[dict]:
     """Use the actual full AJAX chapter list, never invent slug or chapter URLs."""
     validate_book_url(book_url)
     soup = BeautifulSoup(page, "html.parser")
@@ -227,7 +285,7 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
     if not anchors:
         raise SourceError("AJAX chapter archive did not contain a chapter list")
     if book_url == HOLLYWOOD_BOOK:
-        return _hollywood_index(anchors)
+        return _hollywood_index(anchors, allow_verified_prefix=allow_verified_prefix)
     seen: dict[int, dict] = {}
     split_chapters: dict[int, dict] = {}
     chapter_prefix = ""
@@ -302,11 +360,12 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
     return ordered
 
 
-def discover(book_url: str, *, fetcher=fetch_public_html) -> dict:
+def discover(book_url: str, *, fetcher=fetch_public_html, allow_verified_prefix=False) -> dict:
     book_url = validate_book_url(book_url)
     page = fetcher(book_url)
     metadata = book_metadata(page, book_url)
-    rows = chapter_index(fetcher(archive_url(metadata["novel_id"])), book_url)
+    rows = chapter_index(fetcher(archive_url(metadata["novel_id"])), book_url,
+                         allow_verified_prefix=allow_verified_prefix)
     # The visible first chapters must agree with the AJAX archive to guard
     # against a valid but unrelated novelId in an altered book page.
     soup = BeautifulSoup(page, "html.parser")
@@ -348,7 +407,7 @@ def extract_chapter(page: str, *, number: int, title: str,
         raise SourceError("Expected prologue heading or verified front-matter heading")
     if printed_label is not None:
         printed = PRINTED_LABEL.search(heading)
-        if not printed or printed.group(1) != printed_label:
+        if not printed or _printed_identity(printed) != printed_label:
             raise SourceError(f"Expected printed Chapter {printed_label}; received {heading!r}")
     if m and int(m.group(1)) != number:
         raise SourceError(f"Expected Chapter {number}, received Chapter {m.group(1)}")

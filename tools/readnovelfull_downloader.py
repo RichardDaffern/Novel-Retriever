@@ -82,7 +82,7 @@ def download_range(url: str, first: int, last: int, output_dir: Path, *,
     url = validate_book_url(url)
     if first < 1 or last < first or last - first + 1 > MAX_PER_RUN:
         raise DownloadError("A batch must contain 1 to 100 consecutive chapters")
-    details = discover(url, fetcher=fetcher)
+    details = discover(url, fetcher=fetcher, allow_verified_prefix=True)
     if last > details["numChapters"]:
         raise DownloadError(f"Chapter {last} exceeds the discovered book index")
     expected = details["chapters"][first - 1:last]

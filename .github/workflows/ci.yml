@@ -17,7 +17,7 @@ on:
 # Keep push and pull_request in separate groups so their duplicate events do not cancel each other.
 # The latest commit per event is always validated; main has its own independent group.
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Check neighbouring navigation for missing printed chapter' && 'one-shot-gap-audit' || 'normal' }}
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Validate Hollywood partial recovery without hiding missing chapter' && 'one-shot-prefix' || 'normal' }}
   cancel-in-progress: true
 
 permissions:
@@ -25,30 +25,39 @@ permissions:
 
 jobs:
 
-  hollywood-gap-audit:
-    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Check neighbouring navigation for missing printed chapter'
+  hollywood-verified-prefix-retry:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Validate Hollywood partial recovery without hiding missing chapter'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     permissions:
       contents: read
+      actions: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements.lock
-      - name: Inspect ordinary public navigation metadata only
+      - run: python -m unittest tests.test_readnovelfull tests.test_chunked_download -v
+      - name: Verify full catalogue remains blocked and partial prefix is sound
         run: |
           python - <<'PY'
-          from bs4 import BeautifulSoup
-          from tools.readnovelfull_source import fetch_public_html
-          import json
-          for path in ('chapter-281-brick.html','chapter-283-ultimatum.html','chapter-124-part1.html','chapter-1245-part2.html','chapter-101.html','chapter-101-2.html'):
-              p=BeautifulSoup(fetch_public_html('https://readnovelfull.com/im-in-hollywood/'+path),'html.parser')
-              headings=[h.get_text(' ',strip=True) for h in p.select('.chapter-title,h1,h2,h3') if 'chapter' in h.get_text(' ',strip=True).lower()][:3]
-              links=[{'href':a.get('href'),'rel':a.get('rel'),'id':a.get('id'),'text':a.get_text(' ',strip=True)[:80]} for a in p.select('a[rel=prev],a[rel=next],a#prev_chap,a#next_chap,a[href*="chapter-282"]')]
-              print('NAV_METADATA',json.dumps({'path':path,'headings':headings,'links':links},ensure_ascii=False))
+          from tools.readnovelfull_source import discover, SourceError, HOLLYWOOD_BOOK
+          try:
+              discover(HOLLYWOOD_BOOK)
+          except SourceError as e:
+              assert 'missing printed Chapter 282' in str(e), str(e)
+          else:
+              raise AssertionError('Source has changed; reassess full catalogue')
+          d=discover(HOLLYWOOD_BOOK,allow_verified_prefix=True)
+          assert d['numChapters']==295 and d['chapters'][-1]['chapter_number']==281
+          print('VERIFIED_PREFIX',d['numChapters'],'published entries through printed chapter',d['chapters'][-1]['chapter_number'])
           PY
+      - name: Recover only the verified explicit range
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run readnovelfull-download.yml --repo "$GITHUB_REPOSITORY" --ref main -f novel_url=https://readnovelfull.com/im-in-hollywood-v1.html -f chapter_range=1-295 -f confirm_rights=true -f force=false
   security-audit:
     runs-on: ubuntu-latest
     timeout-minutes: 12

@@ -11,7 +11,7 @@ import subprocess
 import sys
 
 from tools import chunked_download as batches
-from tools.readnovelfull_source import discover, validate_book_url
+from tools.readnovelfull_source import HOLLYWOOD_BOOK, discover, validate_book_url
 
 
 def _output(key: str, value: str) -> None:
@@ -26,7 +26,8 @@ def plan_download(url: str, chapter_range: str, chunk_size: int,
     url = validate_book_url(url)
     if not 1 <= chunk_size <= 100:
         raise ValueError("ReadNovelFull batch size must be 1-100")
-    details = discoverer(url)
+    details = (discoverer(url, allow_verified_prefix=True)
+               if url == HOLLYWOOD_BOOK and chapter_range.strip() else discoverer(url))
     plan = batches.chapter_plan(url, details["numChapters"], chapter_range, chunk_size)
     # Do not increase source load with many concurrent chapter batches.
     plan["parallelism"] = min(2, plan["parallelism"])

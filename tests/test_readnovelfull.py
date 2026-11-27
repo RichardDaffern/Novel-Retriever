@@ -67,6 +67,33 @@ class ReadNovelFullTests(unittest.TestCase):
         with self.assertRaises(SourceError):
             chapter_index(index.replace(anchors[49], ""), book)
 
+    def test_hollywood_missing_chapter_allows_explicit_prefix_only(self):
+        from tools.readnovelfull_source import HOLLYWOOD_EXCEPTION_URLS, HOLLYWOOD_SPLIT_GROUPS
+        book = "https://readnovelfull.com/im-in-hollywood-v1.html"
+        anchors = []
+        for n in range(1, 284):
+            if n == 282:
+                continue
+            for label in HOLLYWOOD_SPLIT_GROUPS.get(n, (str(n),)):
+                href = HOLLYWOOD_EXCEPTION_URLS.get(label, f"/im-in-hollywood/chapter-{n}.html")
+                title = "Chapter " + label + (": A synthetic title" if n == 283 else "")
+                anchors.append(f'<li><a href="{href}">{title}</a></li>')
+        index = '<ul class="list-chapter">' + ''.join(anchors) + '</ul>'
+        with self.assertRaisesRegex(SourceError, "missing printed Chapter 282"):
+            chapter_index(index, book)
+        rows = chapter_index(index, book, allow_verified_prefix=True)
+        self.assertEqual(len(rows), 295)
+        self.assertEqual(rows[-1]["chapter_number"], 281)
+        self.assertEqual([r["printed_label"] for r in rows[124:126]], ["124 part1", "124.5 part2"])
+        self.assertEqual(extract_chapter(html_chapter("124.5 part2"), number=124,
+                                        title="Chapter 124.5 part2", printed_label="124.5 part2")["title"],
+                         "Chapter 124.5 part2")
+        with self.assertRaisesRegex(SourceError, "Expected printed Chapter"):
+            extract_chapter(html_chapter("124 part1"), number=124, title="Chapter 124.5 part2",
+                            printed_label="124.5 part2")
+        with self.assertRaises(SourceError):
+            chapter_index(index.replace(anchors[3], ""), book, allow_verified_prefix=True)
+
     def test_strict_book_and_chapter_urls(self):
         self.assertEqual(validate_book_url(BOOK), BOOK)
         self.assertEqual(validate_book_url(BOOK.replace("https://", "https://www.")), BOOK)
