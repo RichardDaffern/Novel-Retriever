@@ -17,7 +17,7 @@ on:
 # Keep push and pull_request in separate groups so their duplicate events do not cancel each other.
 # The latest commit per event is always validated; main has its own independent group.
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Validate repaired catalogue and retry two requested titles' && 'one-shot-retry' || 'normal' }}
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Inspect all exceptional Hollywood catalogue labels' && 'one-shot-label-audit' || 'normal' }}
   cancel-in-progress: true
 
 permissions:
@@ -25,42 +25,34 @@ permissions:
 
 jobs:
 
-  targeted-retry-preflight:
-    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Validate repaired catalogue and retry two requested titles'
+  hollywood-label-audit:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Inspect all exceptional Hollywood catalogue labels'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     permissions:
       contents: read
-      actions: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements.lock
-      - name: Test only affected modules
-        run: python -m unittest tests.test_readnovelfull tests.test_chunked_download -v
-      - name: Validate Hollywood printed catalogue without chapter text
-        id: catalogue
-        continue-on-error: true
+      - name: Print exceptional published catalogue labels only
         run: |
           python - <<'PY'
-          from tools.readnovelfull_source import discover
-          d=discover('https://readnovelfull.com/im-in-hollywood-v1.html')
-          print('Verified ordered catalogue entries:',d['numChapters'])
-          print('First split labels:',[r['printed_label'] for r in d['chapters'][9:11]])
+          from bs4 import BeautifulSoup
+          from tools.readnovelfull_source import fetch_public_html, book_metadata, archive_url
+          import json,re
+          url='https://readnovelfull.com/im-in-hollywood-v1.html'
+          m=book_metadata(fetch_public_html(url),url)
+          a=BeautifulSoup(fetch_public_html(archive_url(m['novel_id'])),'html.parser').select('ul.list-chapter li a[href], .list-chapter li a[href]')
+          for i,x in enumerate(a):
+              title=(x.get('title') or x.get_text(' ',strip=True)).strip()
+              match=re.fullmatch(r'Chapter ([0-9]+)',title,re.I)
+              if not match or not x['href'].endswith('/chapter-'+match.group(1)+'.html'):
+                  print('EXCEPTION',json.dumps([i,title,x['href']],ensure_ascii=False))
+          print('CATALOGUE_COUNT',len(a))
           PY
-      - name: Retry Beauty and the Bodyguard with expanded bounded discovery
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run download-novel.yml --repo "$GITHUB_REPOSITORY" --ref main -f novel_url=https://novelfull.com/beauty-and-the-bodyguard.html -f confirm_rights=true -f force=false
-      - name: Retry Hollywood only after successful catalogue validation
-        if: steps.catalogue.outcome == 'success'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run readnovelfull-download.yml --repo "$GITHUB_REPOSITORY" --ref main -f novel_url=https://readnovelfull.com/im-in-hollywood-v1.html -f confirm_rights=true -f force=false
   security-audit:
     runs-on: ubuntu-latest
     timeout-minutes: 12
