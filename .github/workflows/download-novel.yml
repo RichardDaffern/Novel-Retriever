@@ -60,7 +60,7 @@ concurrency:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 50
     outputs:
       skip: ${{ steps.registry.outputs.skip }}
       matrix: ${{ steps.make_plan.outputs.matrix }}
@@ -116,7 +116,7 @@ jobs:
         run: |
           python -u -m tools.chunked_download plan \
             --url "$NOVEL_URL" --chapter-range "$CHAPTER_RANGE" \
-            --chunk-size 200 --plan-file chapter_plan.json
+            --chunk-size 200 --discovery-timeout-minutes 40 --plan-file chapter_plan.json
 
       - name: Save chapter plan for final assembly
         if: steps.registry.outputs.skip != 'true'

@@ -535,6 +535,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--start", type=int, default=0)
     parser.add_argument("--end", type=int, default=0)
     parser.add_argument("--timeout-minutes", type=int, default=65)
+    parser.add_argument("--discovery-timeout-minutes", type=int, default=20,
+                        help="Bounded metadata discovery timeout, separate from chapter fetches")
     parser.add_argument("--plan-file", type=Path, default=Path("chapter_plan.json"))
     parser.add_argument("--output-dir", type=Path, default=Path("chapter_batch"))
     parser.add_argument("--scratch-dir", type=Path, default=Path("scratch"))
@@ -542,7 +544,9 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     url = SYNTHETIC_URL if args.self_test else canonical_url(args.url)
     if args.action == "plan":
-        total = 9 if args.self_test else (args.total or discover_count(url))
+        if not 1 <= args.discovery_timeout_minutes <= 45:
+            parser.error("--discovery-timeout-minutes must be between 1 and 45")
+        total = 9 if args.self_test else (args.total or discover_count(url, args.discovery_timeout_minutes))
         plan = chapter_plan(url, total, args.chapter_range, args.chunk_size)
         args.plan_file.write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
         matrix = json.dumps({"include": plan["pieces"]}, separators=(",", ":"))

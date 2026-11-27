@@ -17,7 +17,7 @@ on:
 # Keep push and pull_request in separate groups so their duplicate events do not cancel each other.
 # The latest commit per event is always validated; main has its own independent group.
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Prune confirmed uploaded historical runs' && 'one-shot-upload-prune' || 'normal' }}
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Check exact source catalogue labels and expand discovery budget' && 'one-shot-catalogue-label' || 'normal' }}
   cancel-in-progress: true
 
 permissions:
@@ -25,39 +25,35 @@ permissions:
 
 jobs:
 
-  prune-uploaded-history:
-    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Prune confirmed uploaded historical runs'
+  catalogue-label-check:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Check exact source catalogue labels and expand discovery budget'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
-      actions: write
       contents: read
     steps:
-      - name: Delete four reconciled retired runs only
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.lock
+      - name: Inspect catalogue labels around duplicate number only
         run: |
-          set -euo pipefail
-          removed=0
-          while IFS=' ' read -r id expected; do
-            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id")"
-            [[ "$(jq -r .status <<< "$run")" == completed ]]
-            case "$(jq -r .path <<< "$run")" in
-              .github/workflows/completed-reading-bulk-20261117.yml|.github/workflows/approved-novelfull-followup-20261116.yml|.github/workflows/export-controller-bundle-104-20261119.yml|.github/workflows/export-10-new-novels-20261117.yml) ;;
-              *) echo "Unexpected workflow path for $id"; exit 1 ;;
-            esac
-            actual="$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$id/artifacts?per_page=100" | jq -scr '[.[].artifacts[].id] | sort | join(",")')"
-            [[ "$actual" == "$expected" ]] || { echo "Artifact inventory changed for $id"; exit 1; }
-            gh api --method DELETE "repos/$GITHUB_REPOSITORY/actions/runs/$id"
-            echo "Deleted confirmed uploaded run $id"
-            removed=$((removed+1))
-          done <<'AUDITED'
-          44104360128 14336979088,14337074517,14337586953,14337636683,14338344100,14338780406,14338889299,14338929208,14338958919,14339144796,14339502549,14339791013,14339791307,14339824795,14339940818,14340223119,14340373775,14340648886,14340808812,14340949670,14341351821,14341704882,14341784887,14341975624,14342004172,14342104299,14342124680,14342138375,14342208507,14342208711,14343321155,14343361146,14343411154,14343850351,14343980584,14344095154,14344732334,14344761901,14345400351,14345403333,14345670300,14347011139,14361818541
-          43819213500 14203264938,14204136530,14204249145,14204758837,14205038997,14205356778,14205393045,14205544569,14205771470,14205823717,14206105695,14206361425,14206413725,14206459587,14206527987,14206563079,14206623566,14207249011,14207271134,14207300548,14207324935,14207523604,14207546905,14207698858,14207706863,14208207091,14208271001,14208341725,14208522647,14208623643,14208661199,14208797737,14208852475,14208866175,14209040701,14209322592,14209343141,14209388230,14209434232,14209652454,14209762342,14209967331,14209979654,14210146745,14211483911,14211521628,14211667366,14212040148,14212067183,14213157992,14213222228,14213429462,14213639683,14214081352,14214240717
-          44466510737 14501639496
-          44036739854 14307058517
-          AUDITED
-          echo "Removed: $removed" | tee -a "$GITHUB_STEP_SUMMARY"
+          python - <<'PY'
+          from bs4 import BeautifulSoup
+          from tools.readnovelfull_source import fetch_public_html, book_metadata, archive_url
+          import json
+          url = 'https://readnovelfull.com/im-in-hollywood-v1.html'
+          page = fetch_public_html(url)
+          meta = book_metadata(page, url)
+          archive = fetch_public_html(archive_url(meta['novel_id']))
+          anchors = BeautifulSoup(archive, 'html.parser').select('ul.list-chapter li a[href], .list-chapter li a[href]')
+          matches = []
+          for i, a in enumerate(anchors):
+              if any('/chapter-' + str(n) in a['href'] for n in (100,101,102)) and any(a['href'].split('/chapter-')[-1].split('.')[0] == str(n) or a['href'].split('/chapter-')[-1].startswith(str(n)+'-') for n in (100,101,102)):
+                  matches.append({'index':i, 'href':a['href'], 'label':a.get('title') or a.get_text(' ',strip=True)})
+          print('CATALOGUE_METADATA', json.dumps({'title':meta['title'],'status':meta['status'],'entries':len(anchors),'matches':matches},ensure_ascii=False))
+          PY
   security-audit:
     runs-on: ubuntu-latest
     timeout-minutes: 12
