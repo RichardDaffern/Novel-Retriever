@@ -17,47 +17,13 @@ on:
 # Keep push and pull_request in separate groups so their duplicate events do not cancel each other.
 # The latest commit per event is always validated; main has its own independent group.
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Validate Hollywood partial recovery without hiding missing chapter' && 'one-shot-prefix' || 'normal' }}
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-
-  hollywood-verified-prefix-retry:
-    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Validate Hollywood partial recovery without hiding missing chapter'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-      actions: write
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
-        with:
-          python-version: '3.12'
-      - run: python -m pip install -r requirements.lock
-      - run: python -m unittest tests.test_readnovelfull tests.test_chunked_download -v
-      - name: Verify full catalogue remains blocked and partial prefix is sound
-        run: |
-          python - <<'PY'
-          from tools.readnovelfull_source import discover, SourceError, HOLLYWOOD_BOOK
-          try:
-              discover(HOLLYWOOD_BOOK)
-          except SourceError as e:
-              assert 'missing printed Chapter 282' in str(e), str(e)
-          else:
-              raise AssertionError('Source has changed; reassess full catalogue')
-          d=discover(HOLLYWOOD_BOOK,allow_verified_prefix=True)
-          assert d['numChapters']==295 and d['chapters'][-1]['chapter_number']==281
-          print('VERIFIED_PREFIX',d['numChapters'],'published entries through printed chapter',d['chapters'][-1]['chapter_number'])
-          PY
-      - name: Recover only the verified explicit range
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run readnovelfull-download.yml --repo "$GITHUB_REPOSITORY" --ref main -f novel_url=https://readnovelfull.com/im-in-hollywood-v1.html -f chapter_range=1-295 -f confirm_rights=true -f force=false
   security-audit:
     runs-on: ubuntu-latest
     timeout-minutes: 12
