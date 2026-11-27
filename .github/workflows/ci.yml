@@ -17,7 +17,7 @@ on:
 # Keep push and pull_request in separate groups so their duplicate events do not cancel each other.
 # The latest commit per event is always validated; main has its own independent group.
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Inspect all exceptional Hollywood catalogue labels' && 'one-shot-label-audit' || 'normal' }}
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}-${{ github.event.head_commit.message == 'Check neighbouring navigation for missing printed chapter' && 'one-shot-gap-audit' || 'normal' }}
   cancel-in-progress: true
 
 permissions:
@@ -25,8 +25,8 @@ permissions:
 
 jobs:
 
-  hollywood-label-audit:
-    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Inspect all exceptional Hollywood catalogue labels'
+  hollywood-gap-audit:
+    if: github.repository == 'RichardDaffern/Novel-Retriever' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Check neighbouring navigation for missing printed chapter'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -37,21 +37,17 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements.lock
-      - name: Print exceptional published catalogue labels only
+      - name: Inspect ordinary public navigation metadata only
         run: |
           python - <<'PY'
           from bs4 import BeautifulSoup
-          from tools.readnovelfull_source import fetch_public_html, book_metadata, archive_url
-          import json,re
-          url='https://readnovelfull.com/im-in-hollywood-v1.html'
-          m=book_metadata(fetch_public_html(url),url)
-          a=BeautifulSoup(fetch_public_html(archive_url(m['novel_id'])),'html.parser').select('ul.list-chapter li a[href], .list-chapter li a[href]')
-          for i,x in enumerate(a):
-              title=(x.get('title') or x.get_text(' ',strip=True)).strip()
-              match=re.fullmatch(r'Chapter ([0-9]+)',title,re.I)
-              if not match or not x['href'].endswith('/chapter-'+match.group(1)+'.html'):
-                  print('EXCEPTION',json.dumps([i,title,x['href']],ensure_ascii=False))
-          print('CATALOGUE_COUNT',len(a))
+          from tools.readnovelfull_source import fetch_public_html
+          import json
+          for path in ('chapter-281-brick.html','chapter-283-ultimatum.html','chapter-124-part1.html','chapter-1245-part2.html','chapter-101.html','chapter-101-2.html'):
+              p=BeautifulSoup(fetch_public_html('https://readnovelfull.com/im-in-hollywood/'+path),'html.parser')
+              headings=[h.get_text(' ',strip=True) for h in p.select('.chapter-title,h1,h2,h3') if 'chapter' in h.get_text(' ',strip=True).lower()][:3]
+              links=[{'href':a.get('href'),'rel':a.get('rel'),'id':a.get('id'),'text':a.get_text(' ',strip=True)[:80]} for a in p.select('a[rel=prev],a[rel=next],a#prev_chap,a#next_chap,a[href*="chapter-282"]')]
+              print('NAV_METADATA',json.dumps({'path':path,'headings':headings,'links':links},ensure_ascii=False))
           PY
   security-audit:
     runs-on: ubuntu-latest
