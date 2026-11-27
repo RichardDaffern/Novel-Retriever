@@ -173,6 +173,52 @@ def book_metadata(page: str, url: str) -> dict:
     }
 
 
+# The actual published catalogue for this book uses URL slugs 101/102
+# for Chapters 10.1/10.2, then 101-2/102-2 for Chapters 101/102.
+# Use explicit printed labels only for this independently inspected source.
+HOLLYWOOD_BOOK = "https://readnovelfull.com/im-in-hollywood-v1.html"
+HOLLYWOOD_SPLITS = {
+    "10.1": "/im-in-hollywood/chapter-101.html",
+    "10.2": "/im-in-hollywood/chapter-102.html",
+}
+PRINTED_LABEL = re.compile(r"\bchapter\s+([1-9][0-9]*(?:\.[1-9][0-9]*)?)\b", re.I)
+
+
+def _hollywood_index(anchors) -> list[dict]:
+    rows = []
+    seen_urls = set()
+    labels = []
+    for a in anchors:
+        href = a["href"]
+        canonical, slug_number, _ = validate_chapter_url(
+            urljoin("https://" + HOST + "/", href), book_prefix="im-in-hollywood")
+        title = (a.get("title") or a.get_text(" ", strip=True)).strip()
+        label_match = re.fullmatch(r"Chapter\s+([1-9][0-9]*(?:\.[1-9][0-9]*)?)", title, re.I)
+        if not label_match:
+            raise SourceError(f"Unrecognised Hollywood printed label: {title!r}")
+        label = label_match.group(1)
+        base = int(label.split(".")[0])
+        if label in HOLLYWOOD_SPLITS:
+            if urlsplit(canonical).path != HOLLYWOOD_SPLITS[label]:
+                raise SourceError("Hollywood split entry does not match its verified URL")
+        elif "." in label or base != slug_number or base == 10:
+            raise SourceError(f"Unverified Hollywood chapter mapping: {label!r}, {href!r}")
+        if canonical in seen_urls:
+            raise SourceError("Repeated Hollywood chapter URL")
+        seen_urls.add(canonical)
+        labels.append(label)
+        rows.append({"position": len(rows) + 1, "chapter_number": base,
+                     "printed_label": label, "title": title, "url": canonical})
+        if len(rows) > MAX_CHAPTERS:
+            raise SourceError("Chapter archive exceeds 20,000-chapter limit")
+    final_number = int(labels[-1].split(".")[0]) if labels else 0
+    expected = [label for n in range(1, final_number + 1)
+                for label in (["10.1", "10.2"] if n == 10 else [str(n)])]
+    if final_number < 102 or labels != expected:
+        raise SourceError("Hollywood printed catalogue is incomplete, duplicate or out of order")
+    return rows
+
+
 def chapter_index(page: str, book_url: str) -> list[dict]:
     """Use the actual full AJAX chapter list, never invent slug or chapter URLs."""
     validate_book_url(book_url)
@@ -180,6 +226,8 @@ def chapter_index(page: str, book_url: str) -> list[dict]:
     anchors = soup.select("ul.list-chapter li a[href], .list-chapter li a[href]")
     if not anchors:
         raise SourceError("AJAX chapter archive did not contain a chapter list")
+    if book_url == HOLLYWOOD_BOOK:
+        return _hollywood_index(anchors)
     seen: dict[int, dict] = {}
     split_chapters: dict[int, dict] = {}
     chapter_prefix = ""
@@ -279,7 +327,8 @@ def discover(book_url: str, *, fetcher=fetch_public_html) -> dict:
     return metadata
 
 
-def extract_chapter(page: str, *, number: int, title: str) -> dict:
+def extract_chapter(page: str, *, number: int, title: str,
+                    printed_label: str | None = None) -> dict:
     soup = BeautifulSoup(page, "html.parser")
     page_title = soup.title.get_text(" ", strip=True).casefold() if soup.title else ""
     if any(x in page_title for x in ("just a moment", "attention required", "access denied")):
@@ -297,6 +346,10 @@ def extract_chapter(page: str, *, number: int, title: str) -> dict:
     )
     if number == 0 and not (is_prologue or is_known_front_matter):
         raise SourceError("Expected prologue heading or verified front-matter heading")
+    if printed_label is not None:
+        printed = PRINTED_LABEL.search(heading)
+        if not printed or printed.group(1) != printed_label:
+            raise SourceError(f"Expected printed Chapter {printed_label}; received {heading!r}")
     if m and int(m.group(1)) != number:
         raise SourceError(f"Expected Chapter {number}, received Chapter {m.group(1)}")
     node = next((soup.select_one(selector) for selector in BODY_SELECTORS

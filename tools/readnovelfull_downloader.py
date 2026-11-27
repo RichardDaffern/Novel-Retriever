@@ -134,7 +134,8 @@ def download_range(url: str, first: int, last: int, output_dir: Path, *,
         item = extract_chapter(fetch_chapter_with_retry(
                                    chapter["url"], fetcher=fetcher, sleeper=sleeper),
                                number=chapter.get("chapter_number", position),
-                               title=chapter["title"])
+                               title=chapter["title"],
+                               printed_label=chapter.get("printed_label"))
         content = f"{item['title']}\n\n{item['text'].strip()}\n"
         digest = sha256(content.encode("utf-8")).hexdigest()
         if any(row["sha256"] == digest for row in written.values()):

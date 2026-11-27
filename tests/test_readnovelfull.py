@@ -43,6 +43,30 @@ def html_chapter(number):
 
 
 class ReadNovelFullTests(unittest.TestCase):
+    def test_hollywood_labels_distinguish_split_entries_from_chapter_101(self):
+        book = "https://readnovelfull.com/im-in-hollywood-v1.html"
+        anchors = []
+        for n in range(1, 104):
+            labels = ("10.1", "10.2") if n == 10 else (str(n),)
+            for label in labels:
+                slug = {"10.1": "101", "10.2": "102", "101": "101-2",
+                        "102": "102-2"}.get(label, label)
+                anchors.append(f'<li><a href="/im-in-hollywood/chapter-{slug}.html">Chapter {label}</a></li>')
+        index = '<ul class="list-chapter">' + ''.join(anchors) + '</ul>'
+        rows = chapter_index(index, book)
+        self.assertEqual(len(rows), 104)
+        self.assertEqual([x["printed_label"] for x in rows[9:11]], ["10.1", "10.2"])
+        self.assertEqual(rows[101]["printed_label"], "101")
+        self.assertTrue(rows[101]["url"].endswith("/chapter-101-2.html"))
+        self.assertEqual(extract_chapter(html_chapter("10.1"), number=10,
+                                        title="Chapter 10.1", printed_label="10.1")["title"], "Chapter 10.1")
+        with self.assertRaisesRegex(SourceError, "Expected printed Chapter"):
+            extract_chapter(html_chapter("10.2"), number=10, title="Chapter 10.1", printed_label="10.1")
+        with self.assertRaises(SourceError):
+            chapter_index(index.replace("Chapter 10.2", "Chapter 10.1"), book)
+        with self.assertRaises(SourceError):
+            chapter_index(index.replace(anchors[49], ""), book)
+
     def test_strict_book_and_chapter_urls(self):
         self.assertEqual(validate_book_url(BOOK), BOOK)
         self.assertEqual(validate_book_url(BOOK.replace("https://", "https://www.")), BOOK)
